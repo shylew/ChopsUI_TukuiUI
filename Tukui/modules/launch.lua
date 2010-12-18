@@ -58,11 +58,6 @@ local function install()
 	SetCVar("bloattest", 0)
 	SetCVar("showArenaEnemyFrames", 0)
 	
-	-- setting this the creator or tukui only, because a lot of people don't like this change.		
-	if TukuiDB.myname == "Tukz" then	
-		SetCVar("secureAbilityToggle", 0)
-	end
-	
 	-- Var ok, now setting chat frames if using Tukui chats.	
 	if (TukuiCF.chat.enable == true) and (not IsAddOnLoaded("Prat") or not IsAddOnLoaded("Chatter")) then					
 		FCF_ResetChatWindows()
