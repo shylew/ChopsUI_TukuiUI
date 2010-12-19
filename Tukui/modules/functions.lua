@@ -60,6 +60,37 @@ function TukuiDB.CreatePanel(f, w, h, a1, p, a2, x, y)
 	f:SetBackdropBorderColor(unpack(TukuiCF["media"].bordercolor))
 end
 
+function TukuiDB.CreateTransparentPanel(f, w, h, a1, p, a2, x, y)
+  sh = scale(h)
+  sw = scale(w)
+  f:SetFrameLevel(1)
+  f:SetHeight(sh)
+  f:SetWidth(sw)
+  f:SetFrameStrata("BACKGROUND")
+  f:SetPoint(a1, p, a2, x, y)
+  f:SetBackdrop({
+    bgFile = TukuiCF["media"].blank,
+    edgeFile = TukuiCF["media"].blank,
+    tile = false, tileSize = 0, edgeSize = mult,
+    --insets = { left = TukuiDB.Scale(2), right = TukuiDB.Scale(2), top = TukuiDB.Scale(2), bottom = TukuiDB.Scale(2)}
+    insets = { left = -mult, right = -mult, top = -mult, bottom = -mult }
+  })
+  f:SetBackdropColor(.075, .075, .075, .7) -- (red, green, blue, alpha)
+  f:SetBackdropBorderColor(unpack(TukuiCF["media"].bordercolor))
+
+  --local border = CreateFrame("Frame", nil, f)
+  --border:SetFrameLevel(0)
+  --border:SetPoint("TOPLEFT", f, "TOPLEFT", TukuiDB.Scale(-1), TukuiDB.Scale(1))
+  --border:SetFrameStrata("BACKGROUND")
+  --border:SetBackdrop {
+  --  edgeFile = TukuiCF["media"].blank, edgeSize = TukuiDB.Scale(3),
+  --  insets = {left = 0, right = 0, top = 0, bottom = 0}
+  --}
+  --border:SetBackdropColor(unpack(TukuiCF["media"].backdropcolor))
+  --border:SetBackdropBorderColor(unpack(TukuiCF["media"].backdropcolor))
+  --border:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", TukuiDB.Scale(1), TukuiDB.Scale(-1))
+end
+
 function TukuiDB.SetTemplate(f)
 	f:SetBackdrop({
 	  bgFile = TukuiCF["media"].blank, 

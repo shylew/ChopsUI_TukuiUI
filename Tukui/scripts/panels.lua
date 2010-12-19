@@ -9,6 +9,7 @@ TukuiCF["panels"] = {["tinfowidth"] = 370}
 
 local barbg = CreateFrame("Frame", "TukuiActionBarBackground", UIParent)
 TukuiDB.CreatePanel(barbg, 1, 1, "BOTTOM", UIParent, "BOTTOM", 0, TukuiDB.Scale(14))
+TukuiDB.CreateShadow(TukuiActionBarBackground)
 if TukuiDB.lowversion == true then
 	barbg:SetWidth((TukuiDB.buttonsize * 12) + (TukuiDB.buttonspacing * 13))
 	if TukuiCF["actionbar"].bottomrows == 2 then
@@ -32,67 +33,17 @@ local invbarbg = CreateFrame("Frame", "InvTukuiActionBarBackground", UIParent)
 invbarbg:SetSize(barbg:GetWidth(), barbg:GetHeight())
 invbarbg:SetPoint("BOTTOM", 0, TukuiDB.Scale(14))
 
--- LEFT VERTICAL LINE
-local ileftlv = CreateFrame("Frame", "TukuiInfoLeftLineVertical", barbg)
-TukuiDB.CreatePanel(ileftlv, 2, 130, "BOTTOMLEFT", UIParent, "BOTTOMLEFT", TukuiDB.Scale(22), TukuiDB.Scale(30))
-
--- RIGHT VERTICAL LINE
-local irightlv = CreateFrame("Frame", "TukuiInfoRightLineVertical", barbg)
-TukuiDB.CreatePanel(irightlv, 2, 130, "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", TukuiDB.Scale(-22), TukuiDB.Scale(30))
-
--- CUBE AT LEFT, ACT AS A BUTTON (CHAT MENU)
-local cubeleft = CreateFrame("Frame", "TukuiCubeLeft", barbg)
-TukuiDB.CreatePanel(cubeleft, 10, 10, "BOTTOM", ileftlv, "TOP", 0, 0)
-cubeleft:EnableMouse(true)
-cubeleft:SetScript("OnMouseDown", function(self, btn)
-	if TukuiInfoLeftBattleGround and UnitInBattleground("player") then
-		if btn == "RightButton" then
-			if TukuiInfoLeftBattleGround:IsShown() then
-				TukuiInfoLeftBattleGround:Hide()
-			else
-				TukuiInfoLeftBattleGround:Show()
-			end
-		end
-	end
-	
-	if btn == "LeftButton" then	
-		ToggleFrame(ChatMenu)
-	end
-end)
-
--- CUBE AT RIGHT, ACT AS A BUTTON (CONFIGUI or BG'S)
-local cuberight = CreateFrame("Frame", "TukuiCubeRight", barbg)
-TukuiDB.CreatePanel(cuberight, 10, 10, "BOTTOM", irightlv, "TOP", 0, 0)
-if TukuiCF["bags"].enable then
-	cuberight:EnableMouse(true)
-	cuberight:SetScript("OnMouseDown", function(self)
-		ToggleKeyRing()
-	end)
-end
-
--- HORIZONTAL LINE LEFT
-local ltoabl = CreateFrame("Frame", "TukuiLineToABLeft", barbg)
-TukuiDB.CreatePanel(ltoabl, 5, 2, "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0)
-ltoabl:ClearAllPoints()
-ltoabl:SetPoint("BOTTOMLEFT", ileftlv, "BOTTOMLEFT", 0, 0)
-ltoabl:SetPoint("RIGHT", barbg, "BOTTOMLEFT", TukuiDB.Scale(-1), TukuiDB.Scale(17))
-
--- HORIZONTAL LINE RIGHT
-local ltoabr = CreateFrame("Frame", "TukuiLineToABRight", barbg)
-TukuiDB.CreatePanel(ltoabr, 5, 2, "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0)
-ltoabr:ClearAllPoints()
-ltoabr:SetPoint("LEFT", barbg, "BOTTOMRIGHT", TukuiDB.Scale(1), TukuiDB.Scale(17))
-ltoabr:SetPoint("BOTTOMRIGHT", irightlv, "BOTTOMRIGHT", 0, 0)
-
 -- INFO LEFT (FOR STATS)
 local ileft = CreateFrame("Frame", "TukuiInfoLeft", barbg)
-TukuiDB.CreatePanel(ileft, TukuiCF["panels"].tinfowidth, 23, "LEFT", ltoabl, "LEFT", TukuiDB.Scale(14), 0)
+TukuiDB.CreatePanel(ileft, TukuiCF["panels"].tinfowidth, 23, "BOTTOMLEFT", UIParent, "BOTTOMLEFT", TukuiDB.Scale(14), TukuiDB.Scale(14))
+TukuiDB.CreateShadow(TukuiInfoLeft)
 ileft:SetFrameLevel(2)
 ileft:SetFrameStrata("BACKGROUND")
 
 -- INFO RIGHT (FOR STATS)
 local iright = CreateFrame("Frame", "TukuiInfoRight", barbg)
-TukuiDB.CreatePanel(iright, TukuiCF["panels"].tinfowidth, 23, "RIGHT", ltoabr, "RIGHT", TukuiDB.Scale(-14), 0)
+TukuiDB.CreatePanel(iright, TukuiCF["panels"].tinfowidth, 23, "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", TukuiDB.Scale(-14), TukuiDB.Scale(14))
+TukuiDB.CreateShadow(TukuiInfoRight)
 iright:SetFrameLevel(2)
 iright:SetFrameStrata("BACKGROUND")
 
@@ -108,6 +59,7 @@ end
 if TukuiCF["actionbar"].enable == true then
 	local barbgr = CreateFrame("Frame", "TukuiActionBarBackgroundRight", UIParent)
 	TukuiDB.CreatePanel(barbgr, 1, (TukuiDB.buttonsize * 12) + (TukuiDB.buttonspacing * 13), "RIGHT", UIParent, "RIGHT", TukuiDB.Scale(-23), TukuiDB.Scale(-13.5))
+  TukuiDB.CreateShadow(TukuiActionBarBackgroundRight)
 	if TukuiCF["actionbar"].rightbars == 1 then
 		barbgr:SetWidth(TukuiDB.buttonsize + (TukuiDB.buttonspacing * 2))
 	elseif TukuiCF["actionbar"].rightbars == 2 then
@@ -149,3 +101,25 @@ if TukuiCF["datatext"].battleground == true then
 	bgframe:SetFrameLevel(0)
 	bgframe:EnableMouse(true)
 end
+
+--BOTTOM HORIZONTAL BAR FRAME
+local bottomBarFrame = CreateFrame("Frame", "ChopsuiBottomHorizontalBar", UIParent)
+TukuiDB.CreatePanel(bottomBarFrame, 1, TukuiDB.Scale(28), "BOTTOM", UIParent, "BOTTOM", 0, -2)
+bottomBarFrame:SetPoint("LEFT", UIParent, "LEFT", -2, -2)
+bottomBarFrame:SetPoint("RIGHT", UIParent, "RIGHT", 2, -2)
+bottomBarFrame:SetFrameStrata("BACKGROUND")
+bottomBarFrame:SetFrameLevel(0)
+
+--LEFT CHAT WINDOW BACKGROUND
+local leftChatFrame = CreateFrame("Frame", "ChopsuiChatBackgroundLeft", barbg)
+TukuiDB.CreateTransparentPanel(leftChatFrame, TukuiCF["panels"].tinfowidth, TukuiDB.Scale(117), "BOTTOMLEFT", TukuiInfoLeft, "TOPLEFT", 0, 3)
+TukuiDB.CreateShadow(leftChatFrame)
+leftChatFrame:SetFrameStrata("BACKGROUND")
+leftChatFrame:SetFrameLevel(0)
+
+--RIGHT CHAT WINDOW BACKGROUND
+local rightChatFrame = CreateFrame("Frame", "ChopsuiChatBackgroundRight", barbg)
+TukuiDB.CreateTransparentPanel(rightChatFrame, TukuiCF["panels"].tinfowidth, TukuiDB.Scale(117), "BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 3)
+TukuiDB.CreateShadow(rightChatFrame)
+rightChatFrame:SetFrameStrata("BACKGROUND")
+rightChatFrame:SetFrameLevel(0)

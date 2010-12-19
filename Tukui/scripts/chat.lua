@@ -205,13 +205,15 @@ local function SetupChatPosAndFont(self)
 		-- doing resize of chat also here for users that hit "cancel" when default installation is show.
 		if i == 1 then
 			chat:ClearAllPoints()
-			chat:SetPoint("BOTTOMLEFT", TukuiInfoLeft, "TOPLEFT", 0, TukuiDB.Scale(6))
+			chat:SetPoint("BOTTOMLEFT", TukuiInfoLeft, "TOPLEFT", TukuiDB.Scale(4), TukuiDB.Scale(7))
+      chat:SetWidth(TukuiCF["panels"].tinfowidth - 5)
 			FCF_SavePositionAndDimensions(chat)
 		elseif i == 4 and name == LOOT then
 			if not chat.isDocked then
 				chat:ClearAllPoints()
-				chat:SetPoint("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, TukuiDB.Scale(6))
+				chat:SetPoint("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", TukuiDB.Scale(-4), TukuiDB.Scale(7))
 				chat:SetJustifyH("RIGHT") 
+        chat:SetWidth(TukuiCF["panels"].tinfowidth - 5)
 				FCF_SavePositionAndDimensions(chat)
 			end
 		end
