@@ -32,14 +32,7 @@ hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self, parent)
 		if InCombatLockdown() and db.hidecombat == true then
 			self:Hide()
 		else
-			-- avoids flicker when mouseover unitframes with open bags
-			if TukuiCF["bags"].enable == true and StuffingFrameBags:IsShown() then
-				self:ClearAllPoints()
-				self:SetPoint("BOTTOMRIGHT", StuffingFrameBags, "TOPRIGHT", 0, TukuiDB.Scale(4))
-			else
-				self:ClearAllPoints()
-				self:SetPoint("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, TukuiDB.Scale(5))
-			end
+      self:SetPoint("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, TukuiDB.Scale(135))
 		end
 	end
 end)
@@ -55,14 +48,7 @@ GameTooltip:HookScript("OnUpdate",function(self, ...)
 		if InCombatLockdown() and db.hidecombat == true then
 			self:Hide()
 		else
-			-- moves tooltip when opening bags
-			if TukuiCF["bags"].enable == true and StuffingFrameBags:IsShown() then
-				self:ClearAllPoints()
-				self:SetPoint("BOTTOMRIGHT", StuffingFrameBags, "TOPRIGHT", 0, TukuiDB.Scale(4))
-			else
-				self:ClearAllPoints()
-				self:SetPoint("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, TukuiDB.Scale(5))
-			end
+      self:SetPoint("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, TukuiDB.Scale(135))
 		end
 	end
 end)
