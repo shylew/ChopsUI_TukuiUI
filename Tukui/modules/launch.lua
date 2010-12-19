@@ -183,6 +183,10 @@ local function install()
   -- Set up Skada frames (ChopsUI edit)
   if (IsAddOnLoaded("Skada")) then
 
+    -- Switch the Skada profile to a character specific profile
+    local skadaProfile = UnitName("player") .. " - " .. GetRealmName()
+    Skada.db:SetProfile(skadaProfile)
+
     -- Reset Skada windows
     Skada.db.profile.windows = {}
 
@@ -197,6 +201,9 @@ local function install()
     local barHeight = windowHeight / 8
     local maxBars = math.floor(windowHeight / barHeight)
     
+    -- Set some general Skada options
+    Skada.db.profile.icon.hide = true
+
     -- Create a new window and position that to the bottom right of the screen
     Skada:CreateWindow("DPS")
     local skadaDpsWindow = Skada.db.profile.windows[1]
@@ -216,9 +223,6 @@ local function install()
     skadaThreatWindow.barslocked = false
     skadaThreatWindow.enabletitle = false
     skadaThreatWindow.spark = false
-
-    -- Set some general Skada options
-    Skada.db.profile.icon.hide = true
 
   end
 		   
