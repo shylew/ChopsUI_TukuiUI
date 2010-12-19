@@ -245,7 +245,7 @@ local function install()
     DBM.Bars:SetOption("TimerY", 0)
 
     -- Position the DBM huge timer frame
-    local hugeTimerOffset = InvTukuiActionBarBackground:GetHeight() + oUF_Tukz_player:GetHeight() + TukuiDB.Scale(75)
+    local hugeTimerOffset = oUF_Tukz_focustarget:GetTop() + TukuiDB.Scale(5)
     DBM.Bars:SetOption("HugeTimerPoint", "BOTTOM")
     DBM.Bars:SetOption("HugeTimerX", 0)
     DBM.Bars:SetOption("HugeTimerY", hugeTimerOffset)
