@@ -7,8 +7,6 @@
 	<Script file='skins\Blizzard_GameMenuFrame.lua' />
 	<Script file='skins\Blizzard_StaticPopups.lua' />
 	<!-- Addon Skins -->
-	<Script file='skins\ArkInventory.lua' />
-	<!-- <Script file='skins\DBM.lua' /> -->
 	<Script file='skins\DXE.lua' />
 	<Script file='skins\HealBot.lua' />
 	<Script file='skins\LibSharedMedia.lua' />
