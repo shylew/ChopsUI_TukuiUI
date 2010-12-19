@@ -225,6 +225,32 @@ local function install()
     skadaThreatWindow.spark = false
 
   end
+
+  -- Set up Deadly Bos Mods (ChopsUI edit)
+  if (IsAddOnLoaded("DBM-Core") and IsAddOnLoaded("Tukui_DBM")) then
+
+    UploadDBM() -- This is a local function (made public as a hack) inside Tukui_DBM that we just run to set things up properly.
+
+    -- Set some general DBM options
+    DBM.Options.ShowMinimapButton = false
+
+    -- Position the boss health bar frame
+    DBM.Options.HPFramePoint = "TOPLEFT"
+    DBM.Options.HPFrameX = TukuiDB.Scale(88)
+    DBM.Options.HPFrameY = TukuiDB.Scale(10)
+
+    -- Position the DBM timer frame
+    DBM.Bars:SetOption("TimerPoint", "LEFT")
+    DBM.Bars:SetOption("TimerX", TukuiDB.Scale(141))
+    DBM.Bars:SetOption("TimerY", 0)
+
+    -- Position the DBM huge timer frame
+    local hugeTimerOffset = InvTukuiActionBarBackground:GetHeight() + oUF_Tukz_player:GetHeight() + TukuiDB.Scale(75)
+    DBM.Bars:SetOption("HugeTimerPoint", "BOTTOM")
+    DBM.Bars:SetOption("HugeTimerX", 0)
+    DBM.Bars:SetOption("HugeTimerY", hugeTimerOffset)
+
+  end
 		   
 	TukuiInstallv1200 = true
 	
