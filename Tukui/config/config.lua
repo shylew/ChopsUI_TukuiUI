@@ -82,7 +82,7 @@ TukuiCF["nameplate"] = {
 }
 
 TukuiCF["bags"] = {
-	["enable"] = true,                     -- enable an all in one bag mod that fit tukui perfectly
+	["enable"] = false,                    -- enable an all in one bag mod that fit tukui perfectly
 }
 
 TukuiCF["map"] = {
