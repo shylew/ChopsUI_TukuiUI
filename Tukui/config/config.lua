@@ -46,12 +46,12 @@ TukuiCF["unitframes"] = {
 	["gridscale"] = 1,                     -- set the healing grid scaling
 	
 	-- boss frames
-	["showboss"] = true,                   -- enable boss unit frames for PVELOL encounters.
+	["showboss"] = false,                   -- enable boss unit frames for PVELOL encounters.
 
 	-- priest only plugin
 	["ws_show_time"] = false,              -- show time on weakened soul bar
-	["ws_show_player"] = true,             -- show weakened soul bar on player unit
-	["ws_show_target"] = true,             -- show weakened soul bar on target unit
+	["ws_show_player"] = false,             -- show weakened soul bar on player unit
+	["ws_show_target"] = false,             -- show weakened soul bar on target unit
 	
 	-- death knight only plugin
 	["runebar"] = true,                    -- enable tukui runebar plugin
@@ -70,7 +70,7 @@ TukuiCF["actionbar"] = {
 	["hotkey"] = true,                     -- enable hotkey display because it was a lot requested
 	["hideshapeshift"] = false,            -- hide shapeshift or totembar because it was a lot requested.
 	["bottomrows"] = 2,                    -- numbers of row you want to show at the bottom (select between 1 and 2 only)
-	["rightbars"] = 3,                     -- numbers of right bar you want
+	["rightbars"] = 0,                     -- numbers of right bar you want
 	["showgrid"] = true,                   -- show grid on empty button
 }
 
@@ -89,7 +89,7 @@ TukuiCF["map"] = {
 TukuiCF["loot"] = {
 	["lootframe"] = true,                  -- reskin the loot frame to fit tukui
 	["rolllootframe"] = true,              -- reskin the roll frame to fit tukui
-	["autogreed"] = true,                  -- auto-dez or auto-greed item at max level, auto-greed Frozen orb
+	["autogreed"] = false,                 -- auto-dez or auto-greed item at max level, auto-greed Frozen orb
 }
 
 TukuiCF["cooldown"] = {
@@ -158,27 +158,3 @@ TukuiCF["buffreminder"] = {
 TukuiCF["others"] = {
 	["pvpautorelease"] = true,             -- enable auto-release in bg or wintergrasp. (not working for shaman, sorry)
 }
-
-----------------------------------------------------------------------------
--- Per Class Config (overwrite general)
--- Class need to be UPPERCASE
-----------------------------------------------------------------------------
-
-if TukuiDB.myclass == "PRIEST" then
-	-- do some config!
-end
-
-----------------------------------------------------------------------------
--- Per Character Name Config (overwrite general and class)
--- Name need to be case sensitive
-----------------------------------------------------------------------------
-
-if TukuiDB.myname == "Tukz" then
-	-- yeah my default config is not really like default tukui.
-	TukuiCF.actionbar.rightbars = 0
-	TukuiCF.actionbar.bottomrows = 1
-	TukuiCF.actionbar.hotkey = false
-	TukuiCF.actionbar.hideshapeshift = true
-	TukuiCF.others.pvpautorelease = true
-	TukuiCF.unitframes.enemyhcolor = true
-end
