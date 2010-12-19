@@ -105,6 +105,8 @@
 	<Script file="scripts\skin.lua"/>
 	<Script file="scripts\totemskin.lua"/>
 	<Script file="scripts\bubbles.lua"/>
+
+  <Script file="scripts\skada.lua"/>
 	
 	<Include file="unitframes\templates.xml"/>
 	<Script file="unitframes\tags.lua"/>

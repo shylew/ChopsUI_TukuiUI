@@ -179,6 +179,48 @@ local function install()
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL4")
 		ToggleChatColorNamesByClassGroup(true, "CHANNEL5")
 	end
+
+  -- Set up Skada frames (ChopsUI edit)
+  if (IsAddOnLoaded("Skada")) then
+
+    -- Reset Skada windows
+    Skada.db.profile.windows = {}
+
+    -- Figure out the size of the loot frame and base our Skada windows on that
+    local lootWindow = _G[format("ChatFrame%s", 4)]
+    local panelWidth = lootWindow:GetWidth() - TukuiDB.Scale(14)
+    local panelHeight = lootWindow:GetHeight()
+
+    -- Calculate the size of the Skada windows
+    local windowWidth = panelWidth / 2
+    local windowHeight = panelHeight
+    local barHeight = windowHeight / 8
+    local maxBars = math.floor(windowHeight / barHeight)
+    
+    -- Create a new window and position that to the bottom right of the screen
+    Skada:CreateWindow("DPS")
+    local skadaDpsWindow = Skada.db.profile.windows[1]
+    skadaDpsWindow.barwidth = windowWidth
+    skadaDpsWindow.barheight = barHeight
+    skadaDpsWindow.barmax = maxBars
+    skadaDpsWindow.barslocked = false
+    skadaDpsWindow.enabletitle = false
+    skadaDpsWindow.spark = false
+
+    -- Create a new window and position that to the left of the first window
+    Skada:CreateWindow("Threat")
+    local skadaThreatWindow = Skada.db.profile.windows[2]
+    skadaThreatWindow.barwidth = windowWidth
+    skadaThreatWindow.barheight = barHeight
+    skadaThreatWindow.barmax = maxBars
+    skadaThreatWindow.barslocked = false
+    skadaThreatWindow.enabletitle = false
+    skadaThreatWindow.spark = false
+
+    -- Set some general Skada options
+    Skada.db.profile.icon.hide = true
+
+  end
 		   
 	TukuiInstallv1200 = true
 	

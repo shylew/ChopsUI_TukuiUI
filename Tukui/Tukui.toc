@@ -7,7 +7,7 @@
 ## Notes: UI of awesomeness!
 ## SavedVariables: TukuiData, TukuiArena
 ## SavedVariablesPerCharacter: TukuiInstallv1200, TukuiUFpos
-## OptionalDeps: Tukui_ConfigUI, !ClassColors, Clique
+## OptionalDeps: Tukui_ConfigUI, !ClassColors, Clique, Skada
 ## X-oUF: oUF
 
 Tukui.xml
