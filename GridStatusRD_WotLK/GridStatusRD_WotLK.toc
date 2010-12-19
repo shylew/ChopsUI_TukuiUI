@@ -1,0 +1,21 @@
+## Interface: 40000
+## Title: GridStatusRaidDebuff(Wrath of the Lich King)
+## Notes: Debuff List for Wrath of the Lich King
+## Author: Azelkeeber(KR-Tirion)
+## Version: 1.1
+## Grid Author: Pastamancer & Maia
+## Dependencies: GridStatusRaidDebuff
+## X-Curse-Packaged-Version: 284 release
+## X-Curse-Project-Name: GridStatusRaidDebuff
+## X-Curse-Project-ID: grid-status-raid-debuff
+## X-Curse-Repository-ID: wow/grid-status-raid-debuff/mainline
+
+Naxxramas.lua
+Sartharion.lua
+Malygos.lua
+Ulduar.lua
+Coliseum.lua
+Archavon.lua
+IcecrownCitadel.lua
+Halion.lua
+

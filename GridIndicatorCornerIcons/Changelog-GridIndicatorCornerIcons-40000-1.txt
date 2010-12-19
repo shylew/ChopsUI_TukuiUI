@@ -1,0 +1,27 @@
+------------------------------------------------------------------------
+r60 | kunda | 2010-10-16 16:47:35 +0000 (Sat, 16 Oct 2010) | 1 line
+Changed paths:
+   A /tags/40000-1 (from /trunk:59)
+
+Tagging as 40000-1
+------------------------------------------------------------------------
+r59 | kunda | 2010-10-16 16:42:42 +0000 (Sat, 16 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridIndicatorCornerIcons.lua
+   M /trunk/GridIndicatorCornerIcons.toc
+
+Thanks, mleebert.
+------------------------------------------------------------------------
+r58 | mleebert | 2010-10-16 05:12:16 +0000 (Sat, 16 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridIndicatorCornerIcons.lua
+
+- Enabled configuration mode
+------------------------------------------------------------------------
+r57 | mleebert | 2010-10-15 23:12:47 +0000 (Fri, 15 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridIndicatorCornerIcons.lua
+   M /trunk/GridIndicatorCornerIcons.toc
+
+- Ported to new Grid and Wow 4.0.1
+------------------------------------------------------------------------

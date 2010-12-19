@@ -1,0 +1,70 @@
+------------------------------------------------------------------------
+r285 | greltok | 2010-11-02 07:21:07 +0000 (Tue, 02 Nov 2010) | 1 line
+Changed paths:
+   A /tags/284 release (from /trunk:284)
+
+Tagging as 284 release
+------------------------------------------------------------------------
+r284 | greltok | 2010-11-02 07:15:54 +0000 (Tue, 02 Nov 2010) | 1 line
+Changed paths:
+   M /trunk/BC/GridStatusRD_BC.toc
+   M /trunk/GridStatusRaidDebuff.toc
+   M /trunk/WotLK/GridStatusRD_WotLK.toc
+
+Bump versions.
+------------------------------------------------------------------------
+r283 | greltok | 2010-10-19 08:59:18 +0000 (Tue, 19 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/Core.lua
+
+Check name isn't nil when adding debuff.
+------------------------------------------------------------------------
+r282 | greltok | 2010-10-19 07:09:42 +0000 (Tue, 19 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/WotLK/Halion.lua
+
+Removed debug print message.
+------------------------------------------------------------------------
+r281 | greltok | 2010-10-19 07:02:09 +0000 (Tue, 19 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/WotLK/Halion.lua
+
+Fixed eol-style.
+------------------------------------------------------------------------
+r280 | greltok | 2010-10-19 07:01:16 +0000 (Tue, 19 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/Core.lua
+   M /trunk/WotLK/GridStatusRD_WotLK.toc
+   A /trunk/WotLK/Halion.lua
+
+Added suicidalkatt's Halion debuffs.  Fixed issue when attempting to delete detected debuffs for a zone where none existed.
+------------------------------------------------------------------------
+r279 | greltok | 2010-10-17 23:23:58 +0000 (Sun, 17 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/Core.lua
+
+Removed unneeded code for checking whether event was registered.
+------------------------------------------------------------------------
+r278 | greltok | 2010-10-17 23:12:23 +0000 (Sun, 17 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/BC/GridStatusRD_BC.toc
+   M /trunk/Core.lua
+   M /trunk/WotLK/GridStatusRD_WotLK.toc
+
+Updates for Ace3 Grid and WoW 4.0.
+------------------------------------------------------------------------
+r277 | nivfreak | 2010-10-13 21:00:22 +0000 (Wed, 13 Oct 2010) | 3 lines
+Changed paths:
+   M /trunk/Core.lua
+   M /trunk/GridStatusRaidDebuff.toc
+
+- Migrate to Ace3. There are some errors removing debuffs, but it's usable.
+- Bump TOC to 40000
+
+------------------------------------------------------------------------
+r276 | onyxmaster | 2010-06-12 11:56:29 +0000 (Sat, 12 Jun 2010) | 1 line
+Changed paths:
+   M /trunk/Core.lua
+
+ruRU debuff detector messages
+------------------------------------------------------------------------
