@@ -101,7 +101,7 @@ TukuiCF["datatext"] = {
 	["fps_ms"] = 4,                        -- show fps and ms on panels
 	["mem"] = 5,                           -- show total memory on panels
 	["bags"] = 0,                          -- show space used in bags on panels
-	["gold"] = 6,                          -- show your current gold on panels
+	["gold"] = 0,                          -- show your current gold on panels
 	["wowtime"] = 8,                       -- show time on panels
 	["guild"] = 1,                         -- show number on guildmate connected on panels
 	["dur"] = 2,                           -- show your equipment durability on panels.
@@ -119,6 +119,10 @@ TukuiCF["datatext"] = {
 	["time24"] = true,                     -- set time to 24h format.
 	["localtime"] = false,                 -- set time to local time instead of server time.
 	["fontsize"] = 12,                     -- font size for panels.
+}
+
+TukuiCF["broker_datatext"] = {
+  ["Broker_Auditor"] = 6
 }
 
 TukuiCF["chat"] = {

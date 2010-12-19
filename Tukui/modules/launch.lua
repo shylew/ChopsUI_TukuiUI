@@ -251,6 +251,14 @@ local function install()
     DBM.Bars:SetOption("HugeTimerY", hugeTimerOffset)
 
   end
+
+  -- Set up Auditor2 Broker
+  if (IsAddOnLoaded("Broker_Auditor")) then
+
+    -- Set cash format to "Graphical" to avoid eating up too much space in the info panel
+    AuditorBroker.db.profile.cashFormat.Bar = "Graphical"
+
+  end
 		   
 	TukuiInstallv1200 = true
 	
