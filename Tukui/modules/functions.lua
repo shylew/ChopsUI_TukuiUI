@@ -713,9 +713,9 @@ do
 		if unit == "vehicle" then unit = "player" end
 
 		if self.interrupt and UnitCanAttack("player", unit) then
-			self:SetStatusBarColor(1, 0, 0, 0.5)	
+      self:SetStatusBarColor(0.8, 0.3, 0.3, 1)
 		else
-			self:SetStatusBarColor(0.31, 0.45, 0.63, 0.5)		
+      self:SetStatusBarColor(0.48, 0.63, 0.81, 1)
 		end
 	end
 
