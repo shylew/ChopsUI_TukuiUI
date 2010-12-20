@@ -77,18 +77,6 @@ function TukuiDB.CreateTransparentPanel(f, w, h, a1, p, a2, x, y)
   })
   f:SetBackdropColor(.075, .075, .075, .7) -- (red, green, blue, alpha)
   f:SetBackdropBorderColor(unpack(TukuiCF["media"].bordercolor))
-
-  --local border = CreateFrame("Frame", nil, f)
-  --border:SetFrameLevel(0)
-  --border:SetPoint("TOPLEFT", f, "TOPLEFT", TukuiDB.Scale(-1), TukuiDB.Scale(1))
-  --border:SetFrameStrata("BACKGROUND")
-  --border:SetBackdrop {
-  --  edgeFile = TukuiCF["media"].blank, edgeSize = TukuiDB.Scale(3),
-  --  insets = {left = 0, right = 0, top = 0, bottom = 0}
-  --}
-  --border:SetBackdropColor(unpack(TukuiCF["media"].backdropcolor))
-  --border:SetBackdropBorderColor(unpack(TukuiCF["media"].backdropcolor))
-  --border:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", TukuiDB.Scale(1), TukuiDB.Scale(-1))
 end
 
 function TukuiDB.SetTemplate(f)
@@ -1056,3 +1044,45 @@ RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED")
 RoleUpdater:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
 RoleUpdater:SetScript("OnEvent", CheckRole)
 CheckRole()
+
+------------------------------------------------------------------------
+--	Highlight the appropriate chat buttons when a chat window is shown
+------------------------------------------------------------------------
+local function SetChatButtonInactive(name)
+  local f = _G["Chopsui" .. name .. "ChatButton"]
+	f:SetBackdropColor(unpack(TukuiCF["media"].backdropcolor))
+end
+
+local function SetChatButtonActive(name)
+  local f = _G["Chopsui" .. name .. "ChatButton"]
+  f:SetBackdropColor(0.26, 0.26, 0.26, 1)
+  TukuiDB.CreateShadow(f)
+end
+
+local function SetActiveLeftChatButton(name)
+
+  -- Disable all left chat buttons
+  SetChatButtonInactive("Social")
+  SetChatButtonInactive("Log")
+  SetChatButtonInactive("General")
+
+  SetChatButtonActive(name)
+
+end
+
+local function SetActiveRightChatButton(name)
+
+  -- Disable all right chat buttons
+  SetChatButtonInactive("Loot")
+  SetChatButtonInactive("Skada")
+
+  SetChatButtonActive(name)
+  
+end
+
+ChatFrame1:HookScript("OnShow", function() SetActiveLeftChatButton("Social") end)
+ChatFrame2:HookScript("OnShow", function() SetActiveLeftChatButton("Log") end)
+ChatFrame3:HookScript("OnShow", function() SetActiveLeftChatButton("General") end)
+ChatFrame4:HookScript("OnShow", function() SetActiveRightChatButton("Loot") end)
+SkadaBarWindowDPS:HookScript("OnShow", function() SetActiveRightChatButton("Skada") end)
+SkadaBarWindowThreat:HookScript("OnShow", function() SetActiveRightChatButton("Skada") end)

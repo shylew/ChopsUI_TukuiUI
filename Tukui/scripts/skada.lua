@@ -10,16 +10,12 @@ if not IsAddOnLoaded("Skada") or not dpsFrame or not threatFrame then return end
 local lootFrame = _G[format("ChatFrame%s", 4)]
 local lootFrameTab = _G[format("ChatFrame%sTab", 4)]
 
--- Figure out the actual height of the Skada frames.
-local frameHeight = (Skada.db.profile.windows[1].barheight * Skada.db.profile.windows[1].barmax)
-local frameOffset = frameHeight + TukuiDB.Scale(2)
-
 -- Position the frames
 dpsFrame:ClearAllPoints()
-dpsFrame:SetPoint("BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", TukuiDB.Scale(-2), frameOffset)
+dpsFrame:SetPoint("TOPRIGHT", ChopsuiChatBackgroundRight, "TOPRIGHT", TukuiDB.Scale(-5), TukuiDB.Scale(-4))
 
 threatFrame:ClearAllPoints()
-threatFrame:SetPoint("BOTTOMLEFT", TukuiInfoRight, "TOPLEFT", TukuiDB.Scale(2), frameOffset)
+threatFrame:SetPoint("TOPLEFT", ChopsuiChatBackgroundRight, "TOPLEFT", TukuiDB.Scale(5), TukuiDB.Scale(-4))
 
 -- Hide the loot frame and loot frame tab
 local function hideLootFrame()

@@ -57,13 +57,9 @@ local function SetChatStyle(frame)
 	-- always set alpha to 1, don't fade it anymore
 	tab:SetAlpha(1)
 	tab.SetAlpha = UIFrameFadeRemoveFrame
-	
-	-- hide text when setting chat
-	_G[chat.."TabText"]:Hide()
-	
-	-- now show text if mouse is found over tab.
-	tab:HookScript("OnEnter", function() _G[chat.."TabText"]:Show() end)
-	tab:HookScript("OnLeave", function() _G[chat.."TabText"]:Hide() end)
+
+  -- Hide tab text
+	 _G[chat.."TabText"]:Hide()
 	
 	-- yeah baby
 	_G[chat]:SetClampRectInsets(0,0,0,0)

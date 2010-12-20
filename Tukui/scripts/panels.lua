@@ -117,9 +117,48 @@ TukuiDB.CreateShadow(leftChatFrame)
 leftChatFrame:SetFrameStrata("BACKGROUND")
 leftChatFrame:SetFrameLevel(0)
 
+--LEFT CHAT BUTTONS
+local socialChatButton = CreateFrame("Button", "ChopsuiSocialChatButton", ChopsuiChatBackgroundLeft)
+TukuiDB.CreateTransparentPanel(socialChatButton, TukuiDB.Scale(10), TukuiDB.Scale(10), "TOPLEFT", ChopsuiChatBackgroundLeft, "TOPRIGHT", 5, 0)
+--TukuiDB.CreateShadow(socialChatButton)
+socialChatButton:SetScript("OnClick", function()
+  ChatFrame2:Hide()
+  ChatFrame3:Hide()
+  ChatFrame1:Show()
+end)
+
+local logChatButton = CreateFrame("Button", "ChopsuiLogChatButton", ChopsuiSocialChatButton)
+TukuiDB.CreateTransparentPanel(logChatButton, TukuiDB.Scale(10), TukuiDB.Scale(10), "TOPLEFT", ChopsuiSocialChatButton, "BOTTOMLEFT", 0, -5)
+TukuiDB.CreateShadow(logChatButton)
+logChatButton:SetScript("OnClick", function()
+  ChatFrame1:Hide()
+  ChatFrame3:Hide()
+  ChatFrame2:Show()
+end)
+
+local generalChatButton = CreateFrame("Button", "ChopsuiGeneralChatButton", ChopsuiLogChatButton)
+TukuiDB.CreateTransparentPanel(generalChatButton, TukuiDB.Scale(10), TukuiDB.Scale(10), "TOPLEFT", ChopsuiLogChatButton, "BOTTOMLEFT", 0, -5)
+TukuiDB.CreateShadow(generalChatButton)
+generalChatButton:SetScript("OnClick", function()
+  ChatFrame1:Hide()
+  ChatFrame2:Hide()
+  ChatFrame3:Show()
+end)
+
 --RIGHT CHAT WINDOW BACKGROUND
 local rightChatFrame = CreateFrame("Frame", "ChopsuiChatBackgroundRight", barbg)
 TukuiDB.CreateTransparentPanel(rightChatFrame, TukuiCF["panels"].tinfowidth, TukuiDB.Scale(117), "BOTTOMRIGHT", TukuiInfoRight, "TOPRIGHT", 0, 3)
 TukuiDB.CreateShadow(rightChatFrame)
 rightChatFrame:SetFrameStrata("BACKGROUND")
 rightChatFrame:SetFrameLevel(0)
+
+--RIGHT CHAT BUTTONS
+local lootChatButton = CreateFrame("Button", "ChopsuiLootChatButton", ChopsuiChatBackgroundRight)
+TukuiDB.CreateTransparentPanel(lootChatButton, TukuiDB.Scale(10), TukuiDB.Scale(10), "TOPRIGHT", ChopsuiChatBackgroundRight, "TOPLEFT", -5, 0)
+TukuiDB.CreateShadow(lootChatButton)
+lootChatButton:SetScript("OnClick", function() Skada:SetActive(false) end)
+
+local skadaChatButton = CreateFrame("Button", "ChopsuiSkadaChatButton", ChopsuiLootChatButton)
+TukuiDB.CreateTransparentPanel(skadaChatButton, TukuiDB.Scale(10), TukuiDB.Scale(10), "TOPLEFT", ChopsuiLootChatButton, "BOTTOMLEFT", 0, -5)
+TukuiDB.CreateShadow(skadaChatButton)
+skadaChatButton:SetScript("OnClick", function() Skada:SetActive(true) end)

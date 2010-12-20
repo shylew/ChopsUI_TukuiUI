@@ -192,10 +192,9 @@ local function install()
     -- Reset Skada windows
     Skada.db.profile.windows = {}
 
-    -- Figure out the size of the loot frame and base our Skada windows on that
-    local lootWindow = _G[format("ChatFrame%s", 4)]
-    local panelWidth = lootWindow:GetWidth() - TukuiDB.Scale(14)
-    local panelHeight = lootWindow:GetHeight()
+    -- Figure out the size of the right chat frame and base our Skada windows on that
+    local panelWidth = ChopsuiChatBackgroundRight:GetWidth() - TukuiDB.Scale(17)
+    local panelHeight = ChopsuiChatBackgroundRight:GetHeight() - TukuiDB.Scale(17)
 
     -- Calculate the size of the Skada windows
     local windowWidth = panelWidth / 2

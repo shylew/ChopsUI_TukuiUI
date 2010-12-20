@@ -595,6 +595,7 @@ local function Shared(self, unit)
 			debuffs["growth-x"] = "LEFT"
 			debuffs.PostCreateIcon = TukuiDB.PostCreateAura
 			debuffs.PostUpdateIcon = TukuiDB.PostUpdateAura
+      debuffs.onlyShowPlayer = true
 			self.Debuffs = debuffs
 		end
 		
