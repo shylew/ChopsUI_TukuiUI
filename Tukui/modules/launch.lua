@@ -311,8 +311,8 @@ local function install()
     GridLayout.db.profile.horizontal = true
 
     -- Position and lock the frame
-    GridLayout.db.profile.PosX = 10
-    GridLayout.db.profile.PosY = TukuiDB.Scale(135)
+    GridLayout.db.profile.PosX = TukuiDB.Scale(10)
+    GridLayout.db.profile.PosY = TukuiDB.Scale(119)
     GridLayout.db.profile.hideTab = true
     GridLayout.db.profile.FrameLock = true
 
