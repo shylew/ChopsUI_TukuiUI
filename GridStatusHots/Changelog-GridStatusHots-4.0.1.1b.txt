@@ -1,0 +1,216 @@
+------------------------------------------------------------------------
+r163 | bogenlampe | 2010-10-21 05:28:38 +0000 (Thu, 21 Oct 2010) | 1 line
+Changed paths:
+   A /tags/4.0.1.1b (from /trunk:162)
+
+tagging as 4.0.1.1b
+------------------------------------------------------------------------
+r162 | bogenlampe | 2010-10-21 05:24:51 +0000 (Thu, 21 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.toc
+
+update toc again
+------------------------------------------------------------------------
+r161 | bogenlampe | 2010-10-21 05:22:10 +0000 (Thu, 21 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.toc
+
+deleted double-lines from toc
+------------------------------------------------------------------------
+r160 | bogenlampe | 2010-10-21 05:20:46 +0000 (Thu, 21 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.toc
+
+just a test
+------------------------------------------------------------------------
+r159 | bogenlampe | 2010-10-21 05:17:14 +0000 (Thu, 21 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.toc
+
+update toc
+------------------------------------------------------------------------
+r158 | StingerSoft | 2010-10-19 08:54:50 +0000 (Tue, 19 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHotsLocale_ruRU.lua
+
+ruRU update
+------------------------------------------------------------------------
+r157 | Sayclub | 2010-10-19 02:24:23 +0000 (Tue, 19 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHotsLocale_koKR.lua
+
+koKR update
+------------------------------------------------------------------------
+r156 | bogenlampe | 2010-10-18 22:56:51 +0000 (Mon, 18 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.lua
+   M /trunk/GridStatusHotsLocale_deDE.lua
+   M /trunk/GridStatusHotsLocale_esES.lua
+   M /trunk/GridStatusHotsLocale_esMX.lua
+   M /trunk/GridStatusHotsLocale_frFR.lua
+   M /trunk/GridStatusHotsLocale_koKR.lua
+   M /trunk/GridStatusHotsLocale_ruRU.lua
+   M /trunk/GridStatusHotsLocale_zhCN.lua
+   M /trunk/GridStatusHotsLocale_zhTW.lua
+
+added Holy Word: Aspire
+------------------------------------------------------------------------
+r155 | bogenlampe | 2010-10-18 22:04:59 +0000 (Mon, 18 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.lua
+
+fixed lifebloom (2 spell-ids for tree of life- and non-tree of life-lifebloom). i hope.
+------------------------------------------------------------------------
+r154 | bogenlampe | 2010-10-18 01:11:09 +0000 (Mon, 18 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.lua
+
+fixed code for pw:s
+------------------------------------------------------------------------
+r153 | bogenlampe | 2010-10-16 14:01:40 +0000 (Sat, 16 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.lua
+
+correct spell-id for earthshield
+------------------------------------------------------------------------
+r152 | onyxmaster | 2010-10-16 12:49:00 +0000 (Sat, 16 Oct 2010) | 3 lines
+Changed paths:
+   M /trunk/GridStatusHotsLocale_deDE.lua
+   M /trunk/GridStatusHotsLocale_esES.lua
+   M /trunk/GridStatusHotsLocale_esMX.lua
+   M /trunk/GridStatusHotsLocale_frFR.lua
+   M /trunk/GridStatusHotsLocale_koKR.lua
+   M /trunk/GridStatusHotsLocale_ruRU.lua
+   M /trunk/GridStatusHotsLocale_zhCN.lua
+   M /trunk/GridStatusHotsLocale_zhTW.lua
+
+removed SS, FoL and SoL from locales again (r150 probably mistakenly replaced all locales wit their pre-r143 versions)
+fixed ruRU locale again (same as above)
+added ruRU translation for PW:S
+------------------------------------------------------------------------
+r151 | onyxmaster | 2010-10-16 12:46:55 +0000 (Sat, 16 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.lua
+
+removed old FoL-related code
+------------------------------------------------------------------------
+r150 | bogenlampe | 2010-10-16 11:36:15 +0000 (Sat, 16 Oct 2010) | 2 lines
+Changed paths:
+   M /trunk/GridStatusHots.lua
+   M /trunk/GridStatusHots.toc
+   M /trunk/GridStatusHotsLocale_deDE.lua
+   M /trunk/GridStatusHotsLocale_esES.lua
+   M /trunk/GridStatusHotsLocale_esMX.lua
+   M /trunk/GridStatusHotsLocale_frFR.lua
+   M /trunk/GridStatusHotsLocale_koKR.lua
+   M /trunk/GridStatusHotsLocale_ruRU.lua
+   M /trunk/GridStatusHotsLocale_zhCN.lua
+   M /trunk/GridStatusHotsLocale_zhTW.lua
+
+added combined timer for pw:s and weakened soul
+changed code for localization and updated localizations (need some translations)
+------------------------------------------------------------------------
+r149 | bogenlampe | 2010-10-16 11:34:22 +0000 (Sat, 16 Oct 2010) | 1 line
+Changed paths:
+   D /trunk/GridStatusHotsLocale_enUS.lua
+
+removed enUS locale (obsolete)
+------------------------------------------------------------------------
+r148 | mleebert | 2010-10-15 17:58:15 +0000 (Fri, 15 Oct 2010) | 3 lines
+Changed paths:
+   M /trunk/GridStatusHots.lua
+   M /trunk/GridStatusHotsLocale_deDE.lua
+   M /trunk/GridStatusHotsLocale_enUS.lua
+   M /trunk/GridStatusHotsLocale_esES.lua
+   M /trunk/GridStatusHotsLocale_esMX.lua
+   M /trunk/GridStatusHotsLocale_frFR.lua
+   M /trunk/GridStatusHotsLocale_koKR.lua
+   M /trunk/GridStatusHotsLocale_ruRU.lua
+   M /trunk/GridStatusHotsLocale_zhCN.lua
+   M /trunk/GridStatusHotsLocale_zhTW.lua
+
+Added Power Word: Shield and Weakened Soul
+Non-English localizations are stubbed out for new alerts but need to be updated
+Removed last references of old roster library
+------------------------------------------------------------------------
+r147 | bogenlampe | 2010-10-15 10:21:09 +0000 (Fri, 15 Oct 2010) | 2 lines
+Changed paths:
+   M /trunk/GridStatusHots.lua
+   M /trunk/GridStatusHots.toc
+
+removed old roster library
+removed update frequency (all it did with acetimer 3 was add a delay)
+------------------------------------------------------------------------
+r146 | mleebert | 2010-10-15 08:49:12 +0000 (Fri, 15 Oct 2010) | 3 lines
+Changed paths:
+   M /trunk/GridStatusHots.lua
+
+- fixed options menu
+- fixed refresh frequency option and timer
+
+------------------------------------------------------------------------
+r145 | onyxmaster | 2010-10-14 10:35:07 +0000 (Thu, 14 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHotsLocale_enUS.lua
+
+enUS default locale handling and cleanup
+------------------------------------------------------------------------
+r144 | bogenlampe | 2010-10-14 10:01:19 +0000 (Thu, 14 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.toc
+   A /trunk/GridStatusHotsLocale_enUS.lua
+
+added enUS locale
+------------------------------------------------------------------------
+r143 | onyxmaster | 2010-10-14 09:11:44 +0000 (Thu, 14 Oct 2010) | 2 lines
+Changed paths:
+   M /trunk/GridStatusHots.lua
+   M /trunk/GridStatusHotsLocale_deDE.lua
+   M /trunk/GridStatusHotsLocale_esES.lua
+   M /trunk/GridStatusHotsLocale_esMX.lua
+   M /trunk/GridStatusHotsLocale_frFR.lua
+   M /trunk/GridStatusHotsLocale_koKR.lua
+   M /trunk/GridStatusHotsLocale_ruRU.lua
+   M /trunk/GridStatusHotsLocale_zhCN.lua
+   M /trunk/GridStatusHotsLocale_zhTW.lua
+
+removed Paladin abilities that are gone in 4.x: Sacred Shield, Sheath of Light and Flash of Light HoT
+ruRU locale updated (grammar, caps, etc.)
+------------------------------------------------------------------------
+r142 | bogenlampe | 2010-10-14 08:52:57 +0000 (Thu, 14 Oct 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusHots.toc
+   A /trunk/GridStatusHotsLocale_deDE.lua
+   A /trunk/GridStatusHotsLocale_esES.lua
+   A /trunk/GridStatusHotsLocale_esMX.lua
+   A /trunk/GridStatusHotsLocale_frFR.lua
+   A /trunk/GridStatusHotsLocale_koKR.lua
+   A /trunk/GridStatusHotsLocale_ruRU.lua
+   A /trunk/GridStatusHotsLocale_zhCN.lua
+   A /trunk/GridStatusHotsLocale_zhTW.lua
+
+new locales (hopefully without too many stupid mistakes because of me being tired)
+------------------------------------------------------------------------
+r141 | bogenlampe | 2010-10-14 08:51:54 +0000 (Thu, 14 Oct 2010) | 1 line
+Changed paths:
+   D /trunk/GridStatusHotsLocale_de.lua
+
+replace with correctly named file
+------------------------------------------------------------------------
+r140 | bogenlampe | 2010-10-14 08:50:35 +0000 (Thu, 14 Oct 2010) | 1 line
+Changed paths:
+   D /trunk/GridStatusHots_locale.lua
+
+new locales
+------------------------------------------------------------------------
+r139 | bogenlampe | 2010-10-14 05:06:50 +0000 (Thu, 14 Oct 2010) | 4 lines
+Changed paths:
+   M /trunk/GridStatusHots.lua
+   M /trunk/GridStatusHots.toc
+   A /trunk/GridStatusHotsLocale_de.lua
+
+- make addon work in 4.0.1
+- remove dispel type magic for rejuv (relict was changed)
+
+only deDE localization (and enUS of course) working right now and haven't really tested anything but renew yet
+------------------------------------------------------------------------

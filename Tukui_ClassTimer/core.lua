@@ -548,6 +548,10 @@ local CLASS_FILTERS = {
 			target = {
 				CreateSpellEntry( 94009 ), -- Rend
 				CreateSpellEntry( 12294 ), -- Mortal Strike
+        CreateSpellEntry( 702 ), -- Curse of Weakness
+        CreateSpellEntry( 99 ), -- Demoralizing Roar
+        CreateSpellEntry( 81130 ), -- Scarlet Fever
+        CreateSpellEntry( 26017 ), -- Vindication
 				CreateSpellEntry( 1160 ), -- Demoralizing Shout
 				CreateSpellEntry( 64382 ), -- Shattering Throw
 				CreateSpellEntry( 58567 ), -- Sunder Armor
@@ -559,6 +563,9 @@ local CLASS_FILTERS = {
 				CreateSpellEntry( 29703 ), -- Daze (Shield Bash)
 				CreateSpellEntry( 18498 ), -- Gag Order
 				CreateSpellEntry( 12809 ), -- Concussion Blow
+        CreateSpellEntry( 58180 ), -- Infected Wounds
+        CreateSpellEntry( 59921 ), -- Frost Fever
+        CreateSpellEntry( 68055 ), -- Judgements of the Just
 				CreateSpellEntry( 6343 ), -- Thunderclap
 				CreateSpellEntry( 12162 ), CreateSpellEntry( 12850 ), CreateSpellEntry( 12868 ), -- Deep Wounds Rank 1, 2 & 3
 			},

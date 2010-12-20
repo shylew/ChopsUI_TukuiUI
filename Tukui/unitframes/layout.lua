@@ -793,14 +793,20 @@ local function Shared(self, unit)
 		if db.totdebuffs == true and TukuiDB.lowversion ~= true then
 			local debuffs = CreateFrame("Frame", nil, health)
 			debuffs:SetHeight(20)
-			debuffs:SetWidth(127)
+			debuffs:SetWidth(42)
 			debuffs.size = 20
 			debuffs.spacing = 2
-			debuffs.num = 6
+			debuffs.num = 4
 
-			debuffs:SetPoint("TOPLEFT", health, "TOPLEFT", -0.5, 24)
-			debuffs.initialAnchor = "TOPLEFT"
-			debuffs["growth-y"] = "UP"
+      if TukuiCF["general"].healer == true then
+        debuffs:SetPoint("TOPRIGHT", health, "TOPRIGHT", 24, 0)
+        debuffs.initialAnchor = "TOPRIGHT"
+        debuffs["growth-y"] = "DOWN"
+      else
+        debuffs:SetPoint("TOPLEFT", health, "TOPLEFT", -0.5, 24)
+        debuffs.initialAnchor = "TOPLEFT"
+        debuffs["growth-y"] = "UP"
+      end
 			debuffs.PostCreateIcon = TukuiDB.PostCreateAura
 			debuffs.PostUpdateIcon = TukuiDB.PostUpdateAura
 			self.Debuffs = debuffs
@@ -1299,6 +1305,11 @@ end
 -- for lower reso
 local adjustXY = 0
 local totdebuffs = 0
+local healerOffset = 85
+if TukuiCF["actionbar"].bottomrows < 2 then
+  healerOffset = TukuiDB.Scale(119)
+end
+
 if TukuiDB.lowversion then adjustXY = 24 end
 if db.totdebuffs then totdebuffs = 24 end
 
@@ -1306,11 +1317,17 @@ oUF:RegisterStyle('Tukz', Shared)
 
 -- player
 local player = oUF:Spawn('player', "oUF_Tukz_player")
-player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8+adjustXY)
-if TukuiDB.lowversion then
-	player:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(51))
+
+if TukuiCF["general"].healer == true then
+  player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", -150, healerOffset)
 else
-	player:SetSize(TukuiDB.Scale(250), TukuiDB.Scale(57))
+  player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8+adjustXY)
+end
+
+if TukuiDB.lowversion then
+  player:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(51))
+else
+  player:SetSize(TukuiDB.Scale(250), TukuiDB.Scale(57))
 end
 
 -- focus
@@ -1320,7 +1337,12 @@ focus:SetSize(TukuiInfoRight:GetWidth() - TukuiDB.Scale(4), TukuiInfoRight:GetHe
 
 -- target
 local target = oUF:Spawn('target', "oUF_Tukz_target")
-target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8+adjustXY)
+if TukuiCF["general"].healer == true then
+  target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 150, healerOffset)
+else
+  target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8+adjustXY)
+end
+
 if TukuiDB.lowversion then
 	target:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(51))
 else
@@ -1329,27 +1351,41 @@ end
 
 -- tot
 local tot = oUF:Spawn('targettarget', "oUF_Tukz_targettarget")
-if TukuiDB.lowversion then
-	tot:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8)
-	tot:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(18))
+if TukuiCF["general"].healer == true then
+  tot:SetPoint("BOTTOMLEFT", oUF_Tukz_target, "BOTTOMLEFT", 0, -45)
+  tot:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
 else
-	tot:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,8)
-	tot:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+  if TukuiDB.lowversion then
+    tot:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8)
+    tot:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(18))
+  else
+    tot:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,8)
+    tot:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+  end
 end
 
 -- pet
 local pet = oUF:Spawn('pet', "oUF_Tukz_pet")
-if TukuiDB.lowversion then
-	pet:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8)
-	pet:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(18))
+if TukuiCF["general"].healer == true then
+  pet:SetPoint("BOTTOMRIGHT", oUF_Tukz_player, "BOTTOMRIGHT", 0, -45)
+  pet:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
 else
-	pet:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,49+totdebuffs)
-	pet:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+  if TukuiDB.lowversion then
+    pet:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8)
+    pet:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(18))
+  else
+    pet:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,49+totdebuffs)
+    pet:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+  end
 end
 
 if db.showfocustarget then 
 	local focustarget = oUF:Spawn("focustarget", "oUF_Tukz_focustarget")
-	focustarget:SetPoint("BOTTOM", 0, 224)
+  if TukuiCF["general"].healer == true then
+    focustarget:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 220)
+  else
+    focustarget:SetPoint("BOTTOM", 0, 224)
+  end
 	focustarget:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
 end
 

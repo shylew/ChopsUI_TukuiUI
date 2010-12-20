@@ -269,6 +269,7 @@ local function install()
     local GridStatus = Grid:GetModule("GridStatus")
     local GridFrame = Grid:GetModule("GridFrame")
     local GridIndicatorCornerIcons = GridFrame:GetModule("GridIndicatorCornerIcons")
+    local GridStatusAuras = GridStatus:GetModule("GridStatusAuras")
     local GridStatusAurasExt = GridStatus:GetModule("GridStatusAurasExt")
 
     local buffAuras = {
@@ -301,18 +302,18 @@ local function install()
 
     -- Set some general Grid options
     Grid.db.profile.minimap.hide = true
+    GridLayout.db.profile.layouts = {
+      ["solo"] = "None"
+    }
+    GridLayout.db.profile.layout = "None"
 
-    -- Anchor the frames from bottomleft instead of topleft
-    GridLayout.db.profile.anchorRel = "BOTTOMLEFT"
-    GridLayout.db.profile.anchor = "BOTTOMLEFT"
+    -- Anchor the groups to the bottom left
     GridLayout.db.profile.groupAnchor = "BOTTOMLEFT"
 
     -- Horizontal groups
     GridLayout.db.profile.horizontal = true
 
-    -- Position and lock the frame
-    GridLayout.db.profile.PosX = TukuiDB.Scale(10)
-    GridLayout.db.profile.PosY = TukuiDB.Scale(119)
+    -- Lock the frame
     GridLayout.db.profile.hideTab = true
     GridLayout.db.profile.FrameLock = true
 
@@ -325,12 +326,6 @@ local function install()
     GridLayout.db.profile.BackgroundG = 0
     GridLayout.db.profile.BackgroundB = 0
 
-    -- Set the appropriate width and height for the frames
-    local totalWidth = TukuiInfoLeft:GetWidth() + TukuiDB.Scale(24)
-    local frameWidth = math.floor(totalWidth / 5)
-    GridFrame.db.profile.frameWidth = frameWidth
-    GridFrame.db.profile.frameHeight = TukuiDB.Scale(42)
-
     -- Style the frame
     GridFrame.db.profile.font = "TelUI Font"
     GridFrame.db.profile.fontSize = 12
@@ -340,7 +335,6 @@ local function install()
     GridFrame.db.profile.orientation = "HORIZONTAL"
     GridFrame.db.profile.enableMouseoverHighlight = false
     GridFrame.db.profile.iconSize = 22
-    GridFrame.db.profile.cornerSize = 14
 
     -- Set up some frame defaults
     GridFrame.db.profile.statusmap.border.alert_lowMana = false
@@ -402,6 +396,26 @@ local function install()
       GridStatusAurasExt:NewAuraGroup("Missing Buff Group: Agility/Strength", "missing buffs")
       GridStatusAurasExt.db.profile["status_Missing Buff Group: Agility/Strength"].ids = buffAuras["str_agi"]
       GridFrame.db.profile.statusmap.iconBRcornerright["status_Missing Buff Group: Agility/Strength"] = true
+    end
+
+    --------------------------------------------------------------------------
+    -- PRIEST HEALING GRID SETUP
+    --------------------------------------------------------------------------
+    if TukuiDB.myclass == "PRIEST" then
+      GridFrame.db.profile.statusmap.text2.unitShieldLeft = true
+      GridFrame.db.profile.statusmap.corner1.debuff_WeakenedSoul = true
+      GridFrame.db.profile.statusmap.corner2.alert_pom = true
+      GridFrame.db.profile.statusmap.corner3.alert_gracestack = true
+      GridFrame.db.profile.statusmap.corner4.alert_renew = true
+      GridFrame.db.profile.statusmap.icon.debuff_curse = false
+      GridFrame.db.profile.statusmap.icon.debuff_poison = false
+      GridStatusAuras.db.profile.debuff_WeakenedSoul = {
+        ["color"] = {
+          ["b"] = 0,
+          ["g"] = 0.4470588235294117,
+          ["r"] = 0.8470588235294118
+        }
+      }
     end
 
   end

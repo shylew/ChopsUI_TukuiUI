@@ -3,6 +3,7 @@
 	["uiscale"] = 0.71,                    -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 	["overridelowtohigh"] = false,         -- EXPERIMENTAL ONLY! override lower version to higher version on a lower reso.
 	["multisampleprotect"] = true,         -- i don't recommend this because of shitty border but, voila!
+  ["healer"] = false,                    -- use healer layout on the unit frames and Grid
 }
 
 TukuiCF["unitframes"] = {
@@ -165,3 +166,20 @@ TukuiCF["buffreminder"] = {
 TukuiCF["others"] = {
 	["pvpautorelease"] = true,             -- enable auto-release in bg or wintergrasp. (not working for shaman, sorry)
 }
+
+----------------------------------------------------------------------------
+-- Per Class Config (overwrite general)
+-- Class need to be UPPERCASE
+----------------------------------------------------------------------------
+--if TukuiDB.myclass == "PRIEST" then
+--	do some config!
+--end
+
+----------------------------------------------------------------------------
+-- Per Character Name Config (overwrite general and class)
+-- Name need to be case sensitive
+----------------------------------------------------------------------------
+if TukuiDB.myname == "Popesuey" then
+  TukuiCF.actionbar.bottomrows = 1
+  TukuiCF.general.healer = true
+end
