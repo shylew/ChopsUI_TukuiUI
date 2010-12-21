@@ -301,7 +301,9 @@ local function install()
     Grid.db:SetProfile(gridProfile)
 
     -- Set some general Grid options
-    Grid.db.profile["minimap"]["hide"] = true
+    Grid.db.profile["minimap"] = {
+      ["hide"] = true
+    }
     GridLayout.db.profile["layouts"] = {
       ["solo"] = "None"
     }
@@ -337,6 +339,17 @@ local function install()
     GridFrame.db.profile["iconSize"] = 22
 
     -- Set up some frame defaults
+    GridFrame.db.profile["statusmap"] = {
+      ["border"] = {},
+      ["corner1"] = {},
+      ["corner2"] = {},
+      ["corner3"] = {},
+      ["corner4"] = {},
+      ["icon"] = {},
+      ["iconBRcornerright"] = {},
+      ["text"] = {},
+      ["text2"] = {}
+    }
     GridFrame.db.profile["statusmap"]["border"]["alert_lowMana"] = false
     GridFrame.db.profile["statusmap"]["border"]["alert_lowHealth"] = false
     GridFrame.db.profile["statusmap"]["border"]["alert_aggro"] = true
