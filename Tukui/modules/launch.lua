@@ -301,71 +301,71 @@ local function install()
     Grid.db:SetProfile(gridProfile)
 
     -- Set some general Grid options
-    Grid.db.profile.minimap.hide = true
-    GridLayout.db.profile.layouts = {
+    Grid.db.profile["minimap"]["hide"] = true
+    GridLayout.db.profile["layouts"] = {
       ["solo"] = "None"
     }
-    GridLayout.db.profile.layout = "None"
+    GridLayout.db.profile["layout"] = "None"
 
     -- Anchor the groups to the bottom left
-    GridLayout.db.profile.groupAnchor = "BOTTOMLEFT"
+    GridLayout.db.profile["groupAnchor"] = "BOTTOMLEFT"
 
     -- Horizontal groups
-    GridLayout.db.profile.horizontal = true
+    GridLayout.db.profile["horizontal"] = true
 
     -- Lock the frame
-    GridLayout.db.profile.hideTab = true
-    GridLayout.db.profile.FrameLock = true
+    GridLayout.db.profile["hideTab"] = true
+    GridLayout.db.profile["FrameLock"] = true
 
     -- Style the layout
-    GridLayout.db.profile.Padding = 0
-    GridLayout.db.profile.Spacing = 0
-    GridLayout.db.profile.borderTexture = "None"
-    GridLayout.db.profile.BackgroundA = 0
-    GridLayout.db.profile.BackgroundR = 0
-    GridLayout.db.profile.BackgroundG = 0
-    GridLayout.db.profile.BackgroundB = 0
+    GridLayout.db.profile["Padding"] = 0
+    GridLayout.db.profile["Spacing"] = 0
+    GridLayout.db.profile["borderTexture"] = "None"
+    GridLayout.db.profile["BackgroundA"] = 0
+    GridLayout.db.profile["BackgroundR"] = 0
+    GridLayout.db.profile["BackgroundG"] = 0
+    GridLayout.db.profile["BackgroundB"] = 0
 
     -- Style the frame
-    GridFrame.db.profile.font = "TelUI Font"
-    GridFrame.db.profile.fontSize = 12
-    GridFrame.db.profile.textlength = 12
-    GridFrame.db.profile.texture = "TelUI Statusbar"
-    GridFrame.db.profile.enableText2 = true
-    GridFrame.db.profile.orientation = "HORIZONTAL"
-    GridFrame.db.profile.enableMouseoverHighlight = false
-    GridFrame.db.profile.iconSize = 22
+    GridFrame.db.profile["font"] = "TelUI Font"
+    GridFrame.db.profile["fontSize"] = 12
+    GridFrame.db.profile["textlength"] = 12
+    GridFrame.db.profile["texture"] = "TelUI Statusbar"
+    GridFrame.db.profile["enableText2"] = true
+    GridFrame.db.profile["orientation"] = "HORIZONTAL"
+    GridFrame.db.profile["enableMouseoverHighlight"] = false
+    GridFrame.db.profile["iconSize"] = 22
 
     -- Set up some frame defaults
-    GridFrame.db.profile.statusmap.border.alert_lowMana = false
-    GridFrame.db.profile.statusmap.border.alert_lowHealth = false
-    GridFrame.db.profile.statusmap.border.alert_aggro = true
-    GridFrame.db.profile.statusmap.border.debuff_curse = true
-    GridFrame.db.profile.statusmap.border.debuff_magic = true
-    GridFrame.db.profile.statusmap.border.debuff_disease = true
-    GridFrame.db.profile.statusmap.border.debuff_poison = true
-    GridFrame.db.profile.statusmap.corner1.alert_heals = false
-    GridFrame.db.profile.statusmap.corner3.debuff_curse = false
-    GridFrame.db.profile.statusmap.corner3.debuff_poison = false
-    GridFrame.db.profile.statusmap.corner3.debuff_disease = false
-    GridFrame.db.profile.statusmap.corner3.debuff_magic = false
-    GridFrame.db.profile.statusmap.corner4.alert_aggro = false
-    GridFrame.db.profile.statusmap.icon.alert_RaidDebuff = false
-    GridFrame.db.profile.statusmap.iconBRcornerright.alert_RaidDebuff = true
-    GridFrame.db.profile.statusmap.text.alert_offline = false
-    GridFrame.db.profile.statusmap.text.unit_healthDeficit = false
-    GridFrame.db.profile.statusmap.text.debuff_Ghost = false
-    GridFrame.db.profile.statusmap.text.alert_heals = false
-    GridFrame.db.profile.statusmap.text.alert_death = false
-    GridFrame.db.profile.statusmap.text.alert_feignDeath = false
+    GridFrame.db.profile["statusmap"]["border"]["alert_lowMana"] = false
+    GridFrame.db.profile["statusmap"]["border"]["alert_lowHealth"] = false
+    GridFrame.db.profile["statusmap"]["border"]["alert_aggro"] = true
+    GridFrame.db.profile["statusmap"]["border"]["debuff_curse"] = true
+    GridFrame.db.profile["statusmap"]["border"]["debuff_magic"] = true
+    GridFrame.db.profile["statusmap"]["border"]["debuff_disease"] = true
+    GridFrame.db.profile["statusmap"]["border"]["debuff_poison"] = true
+    GridFrame.db.profile["statusmap"]["corner1"]["alert_heals"] = false
+    GridFrame.db.profile["statusmap"]["corner3"]["debuff_curse"] = false
+    GridFrame.db.profile["statusmap"]["corner3"]["debuff_poison"] = false
+    GridFrame.db.profile["statusmap"]["corner3"]["debuff_disease"] = false
+    GridFrame.db.profile["statusmap"]["corner3"]["debuff_magic"] = false
+    GridFrame.db.profile["statusmap"]["corner4"]["alert_aggro"] = false
+    GridFrame.db.profile["statusmap"]["icon"]["alert_RaidDebuff"] = false
+    GridFrame.db.profile["statusmap"]["iconBRcornerright"]["alert_RaidDebuff"] = true
+    GridFrame.db.profile["statusmap"]["text"]["alert_offline"] = false
+    GridFrame.db.profile["statusmap"]["text"]["unit_healthDeficit"] = false
+    GridFrame.db.profile["statusmap"]["text"]["debuff_Ghost"] = false
+    GridFrame.db.profile["statusmap"]["text"]["alert_heals"] = false
+    GridFrame.db.profile["statusmap"]["text"]["alert_death"] = false
+    GridFrame.db.profile["statusmap"]["text"]["alert_feignDeath"] = false
 
     -- Set up corner icons
-    GridIndicatorCornerIcons.db.profile.iconSizeTopLeftCorner = 16
-    GridIndicatorCornerIcons.db.profile.iconSizeTopRightCorner = 16
-    GridIndicatorCornerIcons.db.profile.iconSizeBottomLeftCorner = 16
-    GridIndicatorCornerIcons.db.profile.iconSizeBottomRightCorner = 16
-    GridIndicatorCornerIcons.db.profile.xoffset = 2
-    GridIndicatorCornerIcons.db.profile.yoffset = -1
+    GridIndicatorCornerIcons.db.profile["iconSizeTopLeftCorner"] = 16
+    GridIndicatorCornerIcons.db.profile["iconSizeTopRightCorner"] = 16
+    GridIndicatorCornerIcons.db.profile["iconSizeBottomLeftCorner"] = 16
+    GridIndicatorCornerIcons.db.profile["iconSizeBottomRightCorner"] = 16
+    GridIndicatorCornerIcons.db.profile["xoffset"] = 2
+    GridIndicatorCornerIcons.db.profile["yoffset"] = -1
 
     -- Remove any old aura groups
     for name, _ in pairs(GridStatusAurasExt.db.profile.auraGroups) do
@@ -380,36 +380,36 @@ local function install()
     if TukuiDB.myclass == "DRUID" or TukuiDB.myclass == "PALADIN" then
       GridStatusAurasExt:NewAuraGroup("Missing Buff Group: Stats", "missing buffs")
       GridStatusAurasExt.db.profile["status_Missing Buff Group: Stats"].ids = buffAuras["stats"]
-      GridFrame.db.profile.statusmap.iconBRcornerright["status_Missing Buff Group: Stats"] = true
+      GridFrame.db.profile["statusmap"]["iconBRcornerright"]["status_Missing Buff Group: Stats"] = true
     end
     if TukuiDB.myclass == "PRIEST" or TukuiDB.myclass == "WARLOCK" or TukuiDB.myclass == "WARRIOR" then
       GridStatusAurasExt:NewAuraGroup("Missing Buff Group: Stamina", "missing buffs")
       GridStatusAurasExt.db.profile["status_Missing Buff Group: Stamina"].ids = buffAuras["stamina"]
-      GridFrame.db.profile.statusmap.iconBRcornerright["status_Missing Buff Group: Stamina"] = true
+      GridFrame.db.profile["statusmap"]["iconBRcornerright"]["status_Missing Buff Group: Stamina"] = true
     end
     if TukuiDB.myclass == "MAGE" or TukuiDB.myclass == "WARLOCK" then
       GridStatusAurasExt:NewAuraGroup("Missing Buff Group: Mana", "missing buffs")
       GridStatusAurasExt.db.profile["status_Missing Buff Group: Mana"].ids = buffAuras["mana"]
-      GridFrame.db.profile.statusmap.iconBRcornerright["status_Missing Buff Group: Mana"] = true
+      GridFrame.db.profile["statusmap"]["iconBRcornerright"]["status_Missing Buff Group: Mana"] = true
     end
     if TukuiDB.myclass == "DEATHKNIGHT" or TukuiDB.myclass == "SHAMAN" or TukuiDB.myclass == "WARRIOR" then
       GridStatusAurasExt:NewAuraGroup("Missing Buff Group: Agility/Strength", "missing buffs")
       GridStatusAurasExt.db.profile["status_Missing Buff Group: Agility/Strength"].ids = buffAuras["str_agi"]
-      GridFrame.db.profile.statusmap.iconBRcornerright["status_Missing Buff Group: Agility/Strength"] = true
+      GridFrame.db.profile["statusmap"]["iconBRcornerright"]["status_Missing Buff Group: Agility/Strength"] = true
     end
 
     --------------------------------------------------------------------------
     -- PRIEST HEALING GRID SETUP
     --------------------------------------------------------------------------
     if TukuiDB.myclass == "PRIEST" then
-      GridFrame.db.profile.statusmap.text2.unitShieldLeft = true
-      GridFrame.db.profile.statusmap.corner1.debuff_WeakenedSoul = true
-      GridFrame.db.profile.statusmap.corner2.alert_pom = true
-      GridFrame.db.profile.statusmap.corner3.alert_gracestack = true
-      GridFrame.db.profile.statusmap.corner4.alert_renew = true
-      GridFrame.db.profile.statusmap.icon.debuff_curse = false
-      GridFrame.db.profile.statusmap.icon.debuff_poison = false
-      GridStatusAuras.db.profile.debuff_WeakenedSoul = {
+      GridFrame.db.profile["statusmap"]["text2"]["unitShieldLeft"] = true
+      GridFrame.db.profile["statusmap"]["corner1"]["debuff_WeakenedSoul"] = true
+      GridFrame.db.profile["statusmap"]["corner2"]["alert_pom"] = true
+      GridFrame.db.profile["statusmap"]["corner3"]["alert_gracestack"] = true
+      GridFrame.db.profile["statusmap"]["corner4"]["alert_renew"] = true
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_curse"] = false
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_poison"] = false
+      GridStatusAuras.db.profile["debuff_WeakenedSoul"] = {
         ["color"] = {
           ["b"] = 0,
           ["g"] = 0.4470588235294117,
