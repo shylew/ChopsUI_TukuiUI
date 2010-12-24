@@ -18,7 +18,8 @@ local function install()
 	SetCVar("nameplateShowEnemyGuardians", 1)
 	SetCVar("nameplateShowEnemyTotems", 1)
 	SetCVar("ShowClassColorInNameplate", 1)
-	SetCVar("screenshotQuality", 8)
+	SetCVar("screenshotQuality", 10)
+  SetCVar("screenshotFormat", "png")
 	SetCVar("cameraDistanceMax", 50)
 	SetCVar("cameraDistanceMaxFactor", 3.4)
 	SetCVar("chatMouseScroll", 1)
@@ -150,14 +151,12 @@ local function install()
 		ChatFrame_AddChannel(ChatFrame3, tukuilocal.chat_lfg) -- erf, it seem we need to localize this now
 				
 		-- Setup the right chat
-    print("Before setting up ChatFrame4")
 		ChatFrame_RemoveAllMessageGroups(ChatFrame4)
 		ChatFrame_AddMessageGroup(ChatFrame4, "COMBAT_XP_GAIN")
 		ChatFrame_AddMessageGroup(ChatFrame4, "COMBAT_HONOR_GAIN")
 		ChatFrame_AddMessageGroup(ChatFrame4, "COMBAT_FACTION_CHANGE")
 		ChatFrame_AddMessageGroup(ChatFrame4, "LOOT")
 		ChatFrame_AddMessageGroup(ChatFrame4, "MONEY")
-    print("After setting up ChatFrame4")
 				
 		-- enable classcolor automatically on login and on each character without doing /configure each time.
 		ToggleChatColorNamesByClassGroup(true, "SAY")
