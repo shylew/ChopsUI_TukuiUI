@@ -1,0 +1,215 @@
+------------------------------------------------------------------------------
+-- CONFIGURE NEEDTOKNOW
+------------------------------------------------------------------------------
+function ChopsuiNeedToKnowConfigure()
+
+  -- Always set the CURRENTSPEC of NeedToKnow to 1, we handle spec changing
+  -- internally.
+  NeedToKnow.ExecutiveFrame_OLD_PLAYER_LOGIN = NeedToKnow.ExecutiveFrame_PLAYER_LOGIN
+  NeedToKnow.ExecutiveFrame_PLAYER_LOGIN = function()
+    NeedToKnow.ExecutiveFrame_OLD_PLAYER_LOGIN()
+    NEEDTOKNOW.CURRENTSPEC = 1
+    NeedToKnow.Update()
+  end
+
+  -- Remove the talent update event from the NeedToKnow Executive Frame
+  _G["NeedToKnow_ExecutiveFrame"]:UnregisterEvent("PLAYER_TALENT_UPDATE")
+
+  -- Override the group update function to properly attach the player and
+  -- target frames to the player and target unit frame
+  NeedToKnow.Old_Group_Update = NeedToKnow.Group_Update
+  NeedToKnow.Group_Update = function(groupID)
+
+    NeedToKnow.Old_Group_Update(groupID)
+    local groupName = "NeedToKnow_Group" .. groupID
+    local group = _G[groupName]
+
+    if groupID == 1 then
+
+      -- If this is group 1, attach it to the player frame
+      group:ClearAllPoints()
+      group:SetPoint("BOTTOMLEFT", oUF_Tukz_player, "TOPLEFT", 0, TukuiDB.Scale(150))
+      
+    elseif groupID == 2 then
+
+      -- If this is group 1, attach it to the target frame
+      local xOffset = NeedToKnow_Settings["Spec"][1]["Groups"][2]["Width"] * -1
+      group:ClearAllPoints()
+      group:SetPoint("BOTTOMRIGHT", oUF_Tukz_target, "TOPRIGHT", xOffset, TukuiDB.Scale(220))
+
+    end
+
+  end
+
+  NeedToKnow.Update()
+
+  -- Configure the NeedToKnow bars
+  local eventFrame = CreateFrame("Frame")
+  eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+  eventFrame:SetScript("OnEvent", function()
+
+    -- Disable all player buffs and target debuffs
+    for groupId = 1, 2 do
+      for barId = 1, NEEDTOKNOW.MAXBARS do
+        NeedToKnow_Settings["Spec"][1]["Groups"][groupId]["Bars"][barId]["Enabled"] = false
+        NeedToKnow_Settings["Spec"][1]["Groups"][groupId]["Bars"][barId]["AuraName"] = ""
+        NeedToKnow_Settings["Spec"][1]["Groups"][groupId]["Bars"][barId]["BarColor"] = {
+          ["r"] = 0.6,
+          ["b"] = 0.6,
+          ["g"] = 0.6,
+          ["a"] = 1
+        }
+      end
+    end
+
+    -- Set up player buffs
+    ChopsuiNeedToKnowConfigurePlayerBuffs()
+
+    -- Set up target debuffs
+    ChopsuiNeedToKnowConfigureTargetDebuffs()
+
+    -- Lock NeedToKnow
+    NeedToKnow_Settings["Locked"] = true
+
+    -- Update NeedToKnow
+    NeedToKnow.Update()
+
+    -- Disable this event
+    eventFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
+
+  end)
+
+end
+
+------------------------------------------------------------------------------
+-- CONFIGURE NEEDTOKNOW PLAYER BUFFS
+------------------------------------------------------------------------------
+function ChopsuiNeedToKnowConfigurePlayerBuffs()
+
+  print("Configuring player buffs for " .. TukuiDB.myclass .. "/" .. TukuiDB.myspec)
+
+  if TukuiDB.myclass == "PRIEST" then
+
+    if TukuiDB.myspec == "DISCIPLINE" then
+      ChopsuiNeedToKnowPlayerBuff(1, "Borrowed Time", 0.96, 0.65, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Evangelism", 0.91, 0.88, 0.96, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Archangel", 1, 0.86, 0.01, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Inner Focus", 0, 0.79, 1, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Fade", 0, 0.37, 1, true)
+    elseif TukuiDB.myspec == "SHADOW" then
+      ChopsuiNeedToKnowPlayerBuff(1, "Shadow Orb", 0.5, 0.08, 0.57, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Dark Evangelism", 0.45, 0.43, 0.48, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Dark Archangel", 1, 0.25, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Dispersion", 0.02, 0.64, 0.13, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Fade", 0, 0.37, 1, true)
+    end
+
+  elseif TukuiDB.myclass == "WARRIOR" then
+
+    if TukuiDB.myspec == "PROTECTION" then
+      ChopsuiNeedToKnowPlayerBuff(1, "Shield Wall", 0.19, 0.71, 0.78, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Last Stand", 0.75, 0.58, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Earthen Armor", 0.25, 0.25, 0.25, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Shield Block, Spell Reflection", 0.91, 0.91, 0.91, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Hold the Line", 0.14, 0.6, 0.2, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Thunderstruck", 0.6, 0, 0.05, true)
+    end
+
+  end
+
+end
+
+------------------------------------------------------------------------------
+-- CONFIGURE NEEDTOKNOW TARGET DEBUFFS
+------------------------------------------------------------------------------
+function ChopsuiNeedToKnowConfigureTargetDebuffs()
+
+  if TukuiDB.myclass == "PRIEST" then
+
+    if TukuiDB.myspec == "SHADOW" then
+      ChopsuiNeedToKnowTargetDebuff(1, "Vampiric Touch", 0, 0.38, 0.6, true)
+      ChopsuiNeedToKnowTargetDebuff(2, "Shadow Word: Pain", 0.86, 0.41, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(3, "Devouring Plague", 0.62, 0, 0.75, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Mind Flay, Mind Sear", 0.38, 0.76, 0.81, true)
+    end
+
+  elseif TukuiDB.myclass == "WARRIOR" then
+
+    if TukuiDB.myspec == "PROTECTION" then
+      ChopsuiNeedToKnowTargetDebuff(1, "Shockwave", 0.04, 0.29, 0.6, true)
+      ChopsuiNeedToKnowTargetDebuff(2, "Concussion Blow", 0.91, 0.91, 0.91, true)
+      ChopsuiNeedToKnowTargetDebuff(3, "Rend", 0.6, 0.01, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Expose Armor, Sunder Armor, Faerie Fire", 0.75, 0.58, 0, false)
+      ChopsuiNeedToKnowTargetDebuff(5, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout", 0.19, 0.71, 0.78, false)
+      ChopsuiNeedToKnowTargetDebuff(6, "Frost Fever, Infected Wounds, Judgements of the Just, Thunder Clap", 0.28, 0.79, 0.30, false)
+    end
+
+  end
+
+end
+
+------------------------------------------------------------------------------
+-- SET A NEEDTOKNOW PLAYER BUFF
+------------------------------------------------------------------------------
+function ChopsuiNeedToKnowPlayerBuff(barID, buffName, red, green, blue, onlyMine)
+
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["BuffOrDebuff"] = "HELPFUL"
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["Enabled"] = true
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["AuraName"] = buffName
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["OnlyMine"] = onlyMine
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["Unit"] = "player"
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["BarColor"] = {
+    ["r"] = red,
+    ["g"] = green,
+    ["b"] = blue,
+    ["a"] = 1
+  }
+
+end
+
+------------------------------------------------------------------------------
+-- SET A NEEDTOKNOW TARGET DEBUFF
+------------------------------------------------------------------------------
+function ChopsuiNeedToKnowTargetDebuff(barID, debuffName, red, green, blue)
+
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["BuffOrDebuff"] = "HARMFUL"
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["Enabled"] = true
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["AuraName"] = debuffName
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["OnlyMine"] = onlyMine
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["Unit"] = "target"
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["BarColor"] = {
+    ["r"] = red,
+    ["g"] = green,
+    ["b"] = blue,
+    ["a"] = 1
+  }
+  
+end
+
+------------------------------------------------------------------------------
+-- RESET NEEDTOKNOW
+------------------------------------------------------------------------------
+function ChopsuiNeedToKnowReset()
+
+  local scale = 0.6666667461395264
+
+  -- Reset the settings of NeedToKnow
+  NeedToKnow_Settings = CopyTable(NEEDTOKNOW.DEFAULTS)
+
+  -- Change the texture and font
+  NeedToKnow_Settings["BarTexture"] = "TukTex"
+  NeedToKnow_Settings["BarFont"] = "Interface\\Addons\\Tukui\\media\\fonts\\normal_font.ttf"
+
+  -- Change the player bar look&feel
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Enabled"] = true
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["NumberBars"] = 6
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Scale"] = scale
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Width"] = 290
+
+  -- Change the target bar look&feel
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Enabled"] = true
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["NumberBars"] = 6
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Scale"] = scale
+  NeedToKnow_Settings["Spec"][1]["Groups"][2]["Width"] = 290
+
+end

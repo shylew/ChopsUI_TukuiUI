@@ -798,7 +798,7 @@ local function Shared(self, unit)
 			debuffs.spacing = 2
 			debuffs.num = 4
 
-      if TukuiCF["general"].healer == true then
+      if TukuiDB.myrole == "healer" then
         debuffs:SetPoint("TOPRIGHT", health, "TOPRIGHT", 24, 0)
         debuffs.initialAnchor = "TOPRIGHT"
         debuffs["growth-y"] = "DOWN"
@@ -1318,7 +1318,7 @@ oUF:RegisterStyle('Tukz', Shared)
 -- player
 local player = oUF:Spawn('player', "oUF_Tukz_player")
 
-if TukuiCF["general"].healer == true then
+if TukuiDB.myrole == "healer" then
   player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", -150, healerOffset)
 else
   player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8+adjustXY)
@@ -1337,7 +1337,7 @@ focus:SetSize(TukuiInfoRight:GetWidth() - TukuiDB.Scale(4), TukuiInfoRight:GetHe
 
 -- target
 local target = oUF:Spawn('target', "oUF_Tukz_target")
-if TukuiCF["general"].healer == true then
+if TukuiDB.myrole == "healer" then
   target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 150, healerOffset)
 else
   target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8+adjustXY)
@@ -1351,7 +1351,7 @@ end
 
 -- tot
 local tot = oUF:Spawn('targettarget', "oUF_Tukz_targettarget")
-if TukuiCF["general"].healer == true then
+if TukuiDB.myrole == "healer" then
   tot:SetPoint("BOTTOMLEFT", oUF_Tukz_target, "BOTTOMLEFT", 0, -45)
   tot:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
 else
@@ -1366,7 +1366,7 @@ end
 
 -- pet
 local pet = oUF:Spawn('pet', "oUF_Tukz_pet")
-if TukuiCF["general"].healer == true then
+if TukuiDB.myrole == "healer" then
   pet:SetPoint("BOTTOMRIGHT", oUF_Tukz_player, "BOTTOMRIGHT", 0, -45)
   pet:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
 else
@@ -1381,7 +1381,7 @@ end
 
 if db.showfocustarget then 
 	local focustarget = oUF:Spawn("focustarget", "oUF_Tukz_focustarget")
-  if TukuiCF["general"].healer == true then
+  if TukuiDB.myrole == "healer" then
     focustarget:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 220)
   else
     focustarget:SetPoint("BOTTOM", 0, 224)

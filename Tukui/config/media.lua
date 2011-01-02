@@ -2,7 +2,7 @@ TukuiCF["media"] = {
 	-- fonts (ENGLISH, FRENCH, DEUTCH, SPANISH)
 	["font"] = [=[Interface\Addons\Tukui\media\fonts\normal_font.ttf]=], -- general font of tukui
 	["uffont"] = [[Interface\AddOns\Tukui\media\fonts\uf_font.ttf]], -- general font of unitframes
-	["dmgfont"] = [[Interface\AddOns\Tukui\media\fonts\combat_font.ttf]], -- general font of dmg / sct
+	["dmgfont"] = [[Interface\AddOns\Tukui\media\fonts\normal_font.ttf]], -- general font of dmg / sct
 	
 	-- fonts (RUSSIAN)
 	["ru_font"] = [=[Interface\Addons\Tukui\media\fonts\normal_font.ttf]=], -- general font of tukui

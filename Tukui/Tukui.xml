@@ -29,7 +29,7 @@
 	<Script file="libs\oUF_RaidDebuffs\oUF_RaidDebuffs.lua"/>	
 	
 	<Script file="config\watch.lua"/>
-		
+
 	<Script file="modules\colors.lua"/>	
 	<Script file="modules\functions.lua"/>
 	<Script file="modules\launch.lua"/>
@@ -115,4 +115,13 @@
 			
 	<Script file="class\priest.lua"/>
 	<Script file="class\hunter.lua"/>
+
+  <Script file="chopsui\skada.lua"/>
+  <Script file="chopsui\auditor.lua"/>
+  <Script file="chopsui\grid.lua"/>
+  <Script file="chopsui\bigwigs.lua"/>
+  <Script file="chopsui\needtoknow.lua"/>
+  <Script file="chopsui\msbt.lua"/>
+  <Script file="chopsui\chopsui.lua"/>
+		
 </Ui>

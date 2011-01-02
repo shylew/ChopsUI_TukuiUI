@@ -1006,44 +1006,98 @@ do
 	end
 end
 
----Check Player's Role
-local RoleUpdater = CreateFrame("Frame")
-local function CheckRole(self, event, unit)
-  local resilience
-  if GetCombatRating(COMBAT_RATING_RESILIENCE_PLAYER_DAMAGE_TAKEN)*0.02828 > GetDodgeChance() then
-    resilience = true
-  else
-    resilience = false
-  end
-  --print(dodge, resil)
-  if ((TukuiDB.myclass == "PALADIN" and GetPrimaryTalentTree() == 2) or
-    (TukuiDB.myclass == "WARRIOR" and GetPrimaryTalentTree() == 3) or
-    (TukuiDB.myclass == "DEATHKNIGHT" and GetPrimaryTalentTree() == 1)) and
-    resilience == false or
-    --Check for 'Thick Hide' tanking talent
-    (TukuiDB.myclass == "DRUID" and GetPrimaryTalentTree() == 2 and GetBonusBarOffset() == 3) then
-    TukuiDB.Role = "Tank"
-  else
-    local playerint = select(2, UnitStat("player", 4))
-    local playeragi	= select(2, UnitStat("player", 2))
-    local base, posBuff, negBuff = UnitAttackPower("player");
-    local playerap = base + posBuff + negBuff;
+-- Return the current players spec
+local function GetPlayerSpec()
 
-    if ((playerap > playerint) or (playeragi > playerint)) and not (UnitBuff("player", GetSpellInfo(24858)) or UnitBuff("player", GetSpellInfo(65139))) then
-      TukuiDB.Role = "Melee"
-    else
-      TukuiDB.Role = "Caster"
-    end
+  local classTalentMap = {
+    ["DEATHKNIGHT"] = { "BLOOD", "FROST", "UNHOLY" },
+    ["DRUID"] = { "BALANCE", "FERALCOMBAT", "RESTORATION" },
+    ["HUNTER"] = { "BEASTMASTERY", "MARKSMANSHIP", "SURVIVAL" },
+    ["MAGE"] = { "ARCANE", "FIRE", "FROST" },
+    ["PALADIN"] = { "HOLY", "PROTECTION", "RETRIBUTION" },
+    ["PRIEST"] = { "DISCIPLINE", "HOLY", "SHADOW" },
+    ["ROGUE"] = { "ASSASSINATION", "COMBAT", "SUBTLETY" },
+    ["SHAMAN"] = { "ELEMENTAL", "ENHANCEMENT", "RESTORATION" },
+    ["WARLOCK"] = { "AFFLICTION", "DEMONOLOGY", "DESTRUCTION" },
+    ["WARRIOR"] = { "ARMS", "FURY", "PROTECTION" }
+  }
+  local talentGroup = GetActiveTalentGroup()
+  local talentTree = GetPrimaryTalentTree(false, false, talentGroup)
+  if talentTree then
+    return classTalentMap[TukuiDB.myclass][talentTree]
+  else
+    print("WARNING: Unable to detect primary talent tree")
+    return "NONE"
   end
 end
-RoleUpdater:RegisterEvent("PLAYER_ENTERING_WORLD")
-RoleUpdater:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-RoleUpdater:RegisterEvent("PLAYER_TALENT_UPDATE")
-RoleUpdater:RegisterEvent("CHARACTER_POINTS_CHANGED")
-RoleUpdater:RegisterEvent("UNIT_INVENTORY_CHANGED")
-RoleUpdater:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
-RoleUpdater:SetScript("OnEvent", CheckRole)
-CheckRole()
+
+-- Return the current players role
+local function GetPlayerRole()
+  if (
+    (TukuiDB.myclass == "DEATHKNIGHT" and GetPrimaryTalentTree() == 1) or
+    (TukuiDB.myclass == "DRUID" and GetPrimaryTalentTree() == 2 and select(5, GetTalentInfo(2, 11)) > 0) or -- Feral druid with Thick Hide talent
+    (TukuiDB.myclass == "PALADIN" and GetPrimaryTalentTree() == 2) or
+    (TukuiDB.myclass == "WARRIOR" and GetPrimaryTalentTree() == 3)
+  ) then
+    return "tank"
+  elseif (
+    (TukuiDB.myclass == "DRUID" and GetPrimaryTalentTree() == 3) or
+    (TukuiDB.myclass == "PALADIN" and GetPrimaryTalentTree() == 1) or
+    (TukuiDB.myclass == "PRIEST" and (GetPrimaryTalentTree() == 1 or GetPrimaryTalentTree() == 2)) or
+    (TukuiDB.myclass == "SHAMAN" and GetPrimaryTalentTree() == 3)
+  ) then
+    return "healer"
+  else
+    return "dps"
+  end
+end
+
+local specFrame = CreateFrame("Frame")
+specFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+specFrame:SetScript("OnEvent", function()
+  TukuiDB.myspec = GetPlayerSpec()
+  specFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
+end)
+
+-- Set the current players role
+TukuiDB.myrole = GetPlayerRole()
+
+-- Reload the UI to make it fit the current role
+local function ReloadRoleUI()
+  ChopsuiReset()
+  ReloadUI()
+end
+
+-- Create a dialog asking the user if the UI should be reloaded when the spec is changed
+StaticPopupDialogs["RELOAD_ROLE_UI"] = {
+  text = "Your active talents have changed. Do you want to reload the UI to update it for the new spec?",
+  button1 = ACCEPT,
+  button2 = CANCEL,
+  OnAccept = function() ReloadRoleUI() end,
+  OnCancel = function() end,
+  timeout = 0,
+  whileDead = 1
+}
+
+-- Add an event for handling talent group changes
+local TalentGroupMonitor = CreateFrame("Frame")
+local function UpdatePlayerRole(self, event, unit)
+  
+  local oldRole = TukuiDB.myrole
+  local oldSpec = TukuiDB.myspec
+
+  -- Set the new role and spec
+  TukuiDB.myrole = GetPlayerRole()
+  TukuiDB.myspec = GetPlayerSpec()
+
+  -- If the new role is different from the previous one, ask the user if they want to modify the UI
+  if (oldRole ~= TukuiDB.myrole or oldSpec ~= TukuiDB.myspec) then
+    StaticPopup_Show("RELOAD_ROLE_UI")
+  end
+
+end
+TalentGroupMonitor:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+TalentGroupMonitor:SetScript("OnEvent", UpdatePlayerRole)
 
 ------------------------------------------------------------------------
 --	Highlight the appropriate chat buttons when a chat window is shown

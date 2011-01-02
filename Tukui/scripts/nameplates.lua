@@ -93,7 +93,7 @@ local threatUpdate = function(self, elapsed)
 			if TukuiCF["nameplate"].enhancethreat == true then
 				if not self.oldglow:IsShown() then
 					if InCombatLockdown() and not CheckClass(self) then
-						if TukuiDB.Role == "Tank" then
+						if TukuiDB.myrole == "tank" then
 							self.healthBar.hpGlow:SetBackdropBorderColor(1, 0, 0)
 							self.healthBar:SetStatusBarColor(1, 0, 0)
 							self.healthBar.hpBackground:SetVertexColor(0.3, 0, 0)
@@ -112,7 +112,7 @@ local threatUpdate = function(self, elapsed)
 				else
 					local r, g, b = self.oldglow:GetVertexColor()
 					if g + b == 0 then
-						if TukuiDB.Role == "Tank" then
+						if TukuiDB.myrole == "tank" then
 							self.healthBar.hpGlow:SetBackdropBorderColor(0, 1, 0)
 							self.healthBar:SetStatusBarColor(0, 1, 0)
 							self.healthBar.hpBackground:SetVertexColor(0, 0.3, 0)
