@@ -3,7 +3,6 @@
 	["uiscale"] = 0.71,                    -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 	["overridelowtohigh"] = false,         -- EXPERIMENTAL ONLY! override lower version to higher version on a lower reso.
 	["multisampleprotect"] = true,         -- i don't recommend this because of shitty border but, voila!
-  ["healer"] = false,                    -- use healer layout on the unit frames and Grid
 }
 
 TukuiCF["unitframes"] = {
@@ -148,14 +147,14 @@ TukuiCF["merchant"] = {
 }
 
 TukuiCF["error"] = {
-	["enable"] = true,                     -- true to enable this mod, false to disable
+	["enable"] = false,                    -- true to enable this mod, false to disable
 	filter = {                             -- what messages to not hide
 		["Inventory is full."] = true,     -- inventory is full will not be hidden by default
 	},
 }
 
 TukuiCF["invite"] = { 
-	["autoaccept"] = true,                 -- auto-accept invite from guildmate and friends.
+	["autoaccept"] = false,                -- auto-accept invite from guildmate and friends.
 }
 
 TukuiCF["buffreminder"] = {
