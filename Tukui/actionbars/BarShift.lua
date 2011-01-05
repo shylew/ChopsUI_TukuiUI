@@ -6,37 +6,8 @@ if not TukuiCF["actionbar"].enable == true then return end
 
 -- used for anchor totembar or shapeshiftbar
 local TukuiShift = CreateFrame("Frame","TukuiShiftBar",UIParent)
-TukuiShift:SetPoint("TOPLEFT", 2, -2)
-TukuiShift:SetWidth(29)
-TukuiShift:SetHeight(58)
-
--- shapeshift command to move totem or shapeshift in-game
-local ssmover = CreateFrame("Frame", "ssmoverholder", UIParent)
-ssmover:SetAllPoints(TukuiShift)
-TukuiDB.SetTemplate(ssmover)
-ssmover:SetAlpha(0)
-TukuiShift:SetMovable(true)
-TukuiShift:SetUserPlaced(true)
-local ssmove = false
-local function showmovebutton()
-	-- don't allow moving while in combat
-	if InCombatLockdown() then print(ERR_NOT_IN_COMBAT) return end
-	
-	if ssmove == false then
-		ssmove = true
-		ssmover:SetAlpha(1)
-		TukuiShift:EnableMouse(true)
-		TukuiShift:RegisterForDrag("LeftButton", "RightButton")
-		TukuiShift:SetScript("OnDragStart", function(self) self:StartMoving() end)
-		TukuiShift:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
-	elseif ssmove == true then
-		ssmove = false
-		ssmover:SetAlpha(0)
-		TukuiShift:EnableMouse(false)
-	end
-end
-SLASH_SHOWMOVEBUTTON1 = "/mss"
-SlashCmdList["SHOWMOVEBUTTON"] = showmovebutton
+TukuiShift:SetSize(TukuiDB.buttonsize, TukuiDB.buttonsize)
+TukuiShift:SetPoint("BOTTOM", TukuiActionBarBackground, "TOP", 0, -TukuiDB.Scale(20))
 
 -- hide it if not needed and stop executing code
 if TukuiCF.actionbar.hideshapeshift then TukuiShift:Hide() return end
@@ -67,6 +38,7 @@ bar:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
 bar:SetScript("OnEvent", function(self, event, ...)
 	if event == "PLAYER_LOGIN" then
 		local button
+    local activeButtons = 0
 		for i = 1, NUM_SHAPESHIFT_SLOTS do
 			button = _G["ShapeshiftButton"..i]
 			button:ClearAllPoints()
@@ -80,8 +52,18 @@ bar:SetScript("OnEvent", function(self, event, ...)
 			local _, name = GetShapeshiftFormInfo(i)
 			if name then
 				button:Show()
+        activeButtons = activeButtons + 1
 			end
 		end
+
+    -- If we have one or more active buttons, resize the action bar
+    -- background panel to nudge unit frames and other depending frames up
+    if activeButtons > 0 then
+      local currentBackgroundHeight = _G["InvTukuiActionBarBackground"]:GetHeight()
+      _G["InvTukuiActionBarBackground"]:SetHeight(currentBackgroundHeight + TukuiShift:GetHeight() + TukuiDB.Scale(13))
+    end
+    
+    TukuiDB.TukuiShiftBarResize()
 		RegisterStateDriver(self, "visibility", States[TukuiDB.myclass] or "hide")
 	elseif event == "UPDATE_SHAPESHIFT_FORMS" then
 		-- Update Shapeshift Bar Button Visibility
@@ -97,7 +79,9 @@ bar:SetScript("OnEvent", function(self, event, ...)
 				button:Hide()
 			end
 		end
+    TukuiDB.TukuiShiftBarResize()
 		TukuiDB.TukuiShiftBarUpdate()
+
 	elseif event == "PLAYER_ENTERING_WORLD" then
 		TukuiDB.StyleShift()
 	else
