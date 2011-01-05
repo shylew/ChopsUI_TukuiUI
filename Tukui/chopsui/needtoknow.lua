@@ -86,9 +86,22 @@ end
 ------------------------------------------------------------------------------
 function ChopsuiNeedToKnowConfigurePlayerBuffs()
 
-  print("Configuring player buffs for " .. TukuiDB.myclass .. "/" .. TukuiDB.myspec)
+  if TukuiDB.myclass == "DEATHKNIGHT" then
 
-  if TukuiDB.myclass == "PRIEST" then
+    if TukuiDB.myspec == "BLOOD" then
+      ChopsuiNeedToKnowPlayerBuff(6, "Blade Barrier", 0.6, 0, 0.07, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Bone Shield", 0.04, 0.46, 0.98, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Vampiric Blood", 0.74, 0, 0.02, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Icebound Fortitude", 0.01, 0.56, 0.6, true)
+    elseif TukuiDB.myspec == "FROST" then
+      ChopsuiNeedToKnowPlayerBuff(6, "Killing Machine", 0, 0.68, 1, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Pillar of Frost", 0, 1, 0.91, true)
+    elseif TukuiDB.myspec == "UNHOLY" then
+      ChopsuiNeedToKnowPlayerBuff(5, "Icebound Fortitude", 0.01, 0.56, 0.6, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Shadow Infusion, Dark Transformation", 0, 0.6, 0.03, true, "pet")
+    end
+
+  elseif TukuiDB.myclass == "PRIEST" then
 
     if TukuiDB.myspec == "DISCIPLINE" then
       ChopsuiNeedToKnowPlayerBuff(1, "Borrowed Time", 0.96, 0.65, 0, true)
@@ -124,7 +137,21 @@ end
 ------------------------------------------------------------------------------
 function ChopsuiNeedToKnowConfigureTargetDebuffs()
 
-  if TukuiDB.myclass == "PRIEST" then
+  if TukuiDB.myclass == "DEATHKNIGHT" then
+
+    ChopsuiNeedToKnowTargetDebuff(5, "Blood Plague", 0.6, 0, 0.07, true)
+    ChopsuiNeedToKnowTargetDebuff(6, "Frost Fever", 0.07, 0.65, 0.81, true)
+
+    if TukuiDB.myspec == "BLOOD" then
+      ChopsuiNeedToKnowTargetDebuff(4, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout, Scarlet Fever", 0.19, 0.71, 0.78, false)
+    elseif TukuiDB.myspec == "FROST" then
+      ChopsuiNeedToKnowTargetDebuff(4, "Hungering Cold", 0, 0.6, 1, true)
+    elseif TukuiDB.myspec == "UNHOLY" then
+      ChopsuiNeedToKnowTargetDebuff(4, "Ebon Plague", 0.6, 0, 0.54, true)
+      ChopsuiNeedToKnowTargetDebuff(3, "Unholy Blight", 0, 0.51, 0.14, true)
+    end
+
+  elseif TukuiDB.myclass == "PRIEST" then
 
     if TukuiDB.myspec == "SHADOW" then
       ChopsuiNeedToKnowTargetDebuff(1, "Vampiric Touch", 0, 0.38, 0.6, true)
@@ -140,7 +167,7 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
       ChopsuiNeedToKnowTargetDebuff(2, "Concussion Blow", 0.91, 0.91, 0.91, true)
       ChopsuiNeedToKnowTargetDebuff(3, "Rend", 0.6, 0.01, 0, true)
       ChopsuiNeedToKnowTargetDebuff(4, "Expose Armor, Sunder Armor, Faerie Fire", 0.75, 0.58, 0, false)
-      ChopsuiNeedToKnowTargetDebuff(5, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout", 0.19, 0.71, 0.78, false)
+      ChopsuiNeedToKnowTargetDebuff(5, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout, Scarlet Fever", 0.19, 0.71, 0.78, false)
       ChopsuiNeedToKnowTargetDebuff(6, "Frost Fever, Infected Wounds, Judgements of the Just, Thunder Clap", 0.28, 0.79, 0.30, false)
     end
 
@@ -151,13 +178,17 @@ end
 ------------------------------------------------------------------------------
 -- SET A NEEDTOKNOW PLAYER BUFF
 ------------------------------------------------------------------------------
-function ChopsuiNeedToKnowPlayerBuff(barID, buffName, red, green, blue, onlyMine)
+function ChopsuiNeedToKnowPlayerBuff(barID, buffName, red, green, blue, onlyMine, unit)
+
+  if not unit then
+    unit = "player"
+  end
 
   NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["BuffOrDebuff"] = "HELPFUL"
   NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["Enabled"] = true
   NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["AuraName"] = buffName
   NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["OnlyMine"] = onlyMine
-  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["Unit"] = "player"
+  NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["Unit"] = unit
   NeedToKnow_Settings["Spec"][1]["Groups"][1]["Bars"][barID]["BarColor"] = {
     ["r"] = red,
     ["g"] = green,
