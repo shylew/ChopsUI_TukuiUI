@@ -19,6 +19,8 @@ if L then
 	L.next_system_failure = "Siguiente fallo del sistema"
 	L.break_message = "%2$dx Romper en %1$s"
 
+	L.mortality_report = "¡%s está al %d%% de vida, %s pronto!"
+
 	L.warmup = "Calentamiento"
 	L.warmup_desc = "Temporizador para Calentamiento"
 end
@@ -34,6 +36,9 @@ if L then
 	L.slump_desc = "Cae hacia delante exponiendose a sí mismo"
 
 	L.slump_trigger = "¡%s cae hacia delante y deja expuestas sus tenazas!"
+
+	L.expose_trigger = "cabeza"
+	L.expose_message = "¡Cabeza expuesta!"
 end
 
 L = BigWigs:NewBossLocale("Maloriak", "esES")
@@ -90,6 +95,7 @@ if L then
 	L.nef_desc = "Avisos para las abilidades de Lord Victor Nefarius"
 	L.switch = "Cambio"
 	L.switch_desc = "Advertencia para los cambios"
+	L.switch_message = "Cambio - %s %s"
 
 	L.next_switch = "Siguiente cambio"
 
@@ -101,4 +107,9 @@ if L then
 	L.acquiring_target = "Eligiendo objetivo"
 
 	L.cloud_message = "¡Nube en TI!"
+	L.protocol_message = "¡Bomba de veneno!"
+
+	L.iconomnotron = "Icon on active boss"
+	L.iconomnotron_desc = "Place the primary raid icon on the active boss (requires promoted or leader)."
 end
+

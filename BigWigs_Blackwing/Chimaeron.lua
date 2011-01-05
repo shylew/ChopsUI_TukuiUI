@@ -22,6 +22,8 @@ if L then
 	L.next_system_failure = "Next System Failure"
 	L.break_message = "%2$dx Break on %1$s"
 
+	L.mortality_report = "%s is at %d%% health, %s soon!"
+
 	L.warmup = "Warmup"
 	L.warmup_desc = "Warmup timer"
 end
@@ -39,16 +41,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DoubleAttack", 88826)
 	self:Log("SPELL_CAST_START", "Massacre", 82848)
 
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "Warmup")
+	self:RegisterEvent("UNIT_HEALTH")
 
 	self:Death("Win", 43296)
 end
 
 function mod:Warmup(_, msg)
 	if msg == L["bileotron_engage"] then
-		self:Bar("warmup", L["warmup"], 30, "achievement_boss_chimaeron")
+		self:Bar("warmup", L["warmup"], 30, "achievement_dungeon_blackwingdescent_raid_chimaron")
 	end
 end
 
@@ -96,3 +98,12 @@ function mod:DoubleAttack(_, spellId, _, _, spellName)
 	self:Message(88826, spellName, "Attention", spellId)
 end
 
+function mod:UNIT_HEALTH(event, unit)
+	if unit == "boss1" then
+		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+		if hp < 25 then
+			self:Message(82890, L["mortality_report"]:format((UnitName(unit)), hp, (GetSpellInfo(82890))), "Attention", 82890, "Info")
+			self:UnregisterEvent("UNIT_HEALTH")
+		end
+	end
+end

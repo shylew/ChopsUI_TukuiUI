@@ -4,7 +4,7 @@
 
 local mod = BigWigs:NewBoss("Ascendant Council", "The Bastion of Twilight")
 if not mod then return end
-mod:RegisterEnableMob(43686, 43687, 43688, 43689) --Ignacious, Feludius, Arion, Terrastra
+mod:RegisterEnableMob(43686, 43687, 43688, 43689, 43735) --Ignacious, Feludius, Arion, Terrastra, Elementium Monstrosity
 mod.toggleOptions = {{92067, "FLASHSHAKE", "SAY", "ICON"}, {92075, "FLASHSHAKE", "SAY", "ICON"}, {92307, "FLASHSHAKE", "WHISPER"}, 82631, 82660, 82746, 82665, 82762, 83067, {83099, "SAY", "ICON", "FLASHSHAKE"}, 83500, 83565, 92541, 83581, "proximity", "switch", "bosskill"}
 
 --------------------------------------------------------------------------------
@@ -65,23 +65,22 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LightningRodApplied",83099)
 	self:Log("SPELL_AURA_REMOVED", "LightningRodRemoved",83099)
 
-	self:Log("SPELL_CAST_START", "AegisofFlame", 82631, 92513, 92512)
-	self:Log("SPELL_CAST_START", "HardenSkin", 92541, 92542)
-	self:Log("SPELL_CAST_START", "Glaciate", 82746, 92507, 92506)
+	self:Log("SPELL_CAST_START", "AegisofFlame", 82631, 92513, 92512, 92514)
+	self:Log("SPELL_CAST_START", "HardenSkin", 92541, 92542, 92543)
+	self:Log("SPELL_CAST_START", "Glaciate", 82746, 92507, 92506, 92508)
 	self:Log("SPELL_AURA_APPLIED", "Waterlogged", 82762)
 	self:Log("SPELL_CAST_SUCCESS", "HeartofIce", 82665)
 	self:Log("SPELL_CAST_SUCCESS", "BurningBlood", 82660)
 
 	self:Yell("Switch", L["switch_trigger"])
 
-	self:Log("SPELL_CAST_START", "Quake", 83565, 92544, 92545)
-	self:Log("SPELL_CAST_START", "Thundershock", 83067, 92469, 92470)
+	self:Log("SPELL_CAST_START", "Quake", 83565, 92544, 92545, 92546)
+	self:Log("SPELL_CAST_START", "Thundershock", 83067, 92469, 92470, 92471)
 
 	self:Emote("QuakeTrigger", L["quake_trigger"])
 	self:Emote("ThundershockTrigger", L["thundershock_trigger"])
 
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:RegisterEvent("UNIT_HEALTH")
 

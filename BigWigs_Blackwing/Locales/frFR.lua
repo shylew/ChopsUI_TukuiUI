@@ -2,10 +2,6 @@ local L = BigWigs:NewBossLocale("Atramedes", "frFR")
 if L then
 	L.tracking_me = "Pistage sur moi !"
 
-	L.shield = "Ancien bouclier nain"
-	L.shield_desc = "Indique le nombre d'anciens boucliers nains restants."
-	L.shield_message = "%d |4Anciens boucliers nains restants:Ancien bouclier nain restant;"
-
 	L.ground_phase = "Phase au sol"
 	L.ground_phase_desc = "Prévient quand Atramédès atterrit."
 	L.air_phase = "Phase aérienne"
@@ -23,6 +19,8 @@ if L then
 	L.next_system_failure = "Prochaine Défaillance"
 	L.break_message = "%2$dx Brèche sur %1$s"
 
+	L.mortality_report = "%s est à %d%% de vie, %s imminent !"
+
 	L.warmup = "Échauffement"
 	L.warmup_desc = "Minuteur de l'échauffement."
 end
@@ -30,12 +28,17 @@ end
 L = BigWigs:NewBossLocale("Magmaw", "frFR")
 if L then
 	L.inferno = (GetSpellInfo(92191))
-	L.inferno_desc = "Summons Blazing Bone Construct"
+	L.inferno_desc = "Invoque un Assemblage d'os flamboyant."
+
+	L.pillar_of_flame_cd = "~Pilier de flammes"
 
 	L.slump = "Affalement"
 	L.slump_desc = "Prévient quand le boss s'affale vers l'avant et s'expose."
 
 	L.slump_trigger = "%s s'affale vers l'avant et expose ses pinces !"
+
+	L.expose_trigger = "expose sa tête"
+	L.expose_message = "Tête exposée !"
 end
 
 L = BigWigs:NewBossLocale("Maloriak", "frFR")
@@ -92,6 +95,7 @@ if L then
 	L.nef_desc = "Prévient quand le Seigneur Victor Nefarius utilise une technique."
 	L.switch = "Changement"
 	L.switch_desc = "Prévient de l'arrivée des changements."
+	L.switch_message = "Changement - %s %s"
 
 	L.next_switch = "Prochain changement"
 
@@ -103,4 +107,9 @@ if L then
 	L.acquiring_target = "Acquisition d'une cible"
 
 	L.cloud_message = "Nuage chimique sur vous !"
+	L.protocol_message = "Bombes de poison !"
+
+	L.iconomnotron = "Icon on active boss"
+	L.iconomnotron_desc = "Place the primary raid icon on the active boss (requires promoted or leader)."
 end
+

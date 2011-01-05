@@ -5,7 +5,7 @@
 local mod = BigWigs:NewBoss("Valiona and Theralion", "The Bastion of Twilight")
 if not mod then return end
 mod:RegisterEnableMob(45992, 45993)
-mod.toggleOptions = {93051, {86788, "ICON", "FLASHSHAKE", "WHISPER"}, {88518, "ICON", "FLASHSHAKE"}, 86059, 86840, {86622, "ICON", "FLASHSHAKE", "WHISPER"}, "proximity", "phase_switch", "bosskill"}
+mod.toggleOptions = {93051, {86788, "ICON", "FLASHSHAKE", "WHISPER"}, {88518, "FLASHSHAKE"}, 86059, 86840, {86622, "ICON", "FLASHSHAKE", "WHISPER"}, "proximity", "phase_switch", "bosskill"}
 mod.optionHeaders = {
 	[93051] = "heroic",
 	[86788] = "Valiona",
@@ -56,15 +56,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DazzlingDestruction", 86408)
 	self:Yell("DeepBreath", L["valiona_trigger"])
 
-	self:Log("SPELL_AURA_APPLIED", "BlackoutApplied", 86788, 92877, 92876)
-	self:Log("SPELL_AURA_REMOVED", "BlackoutRemoved", 86788, 92877, 92876)
+	self:Log("SPELL_AURA_APPLIED", "BlackoutApplied", 86788, 92877, 92876, 92878)
+	self:Log("SPELL_AURA_REMOVED", "BlackoutRemoved", 86788, 92877, 92876, 92878)
 	self:Log("SPELL_CAST_START", "DevouringFlames", 86840)
 
 	self:Log("SPELL_AURA_APPLIED", "EngulfingMagicApplied", 86622, 95640, 95639, 95641)
 	self:Log("SPELL_AURA_REMOVED", "EngulfingMagicRemoved", 86622, 95640, 95639, 95641)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:RegisterEvent("UNIT_AURA")
 
@@ -84,6 +83,7 @@ end
 --
 
 function mod:TwilightShift(player, spellId, _, _, spellName, stack)
+	self:Bar(93051, spellName, 20, 93051)
 	if stack > 3 then
 		self:TargetMessage(93051, L["twilight_shift"], player, "Important", spellId, nil, stack)
 	end
@@ -123,19 +123,17 @@ function mod:BlackoutRemoved(player, spellId, _, _, spellName)
 	self:Bar(86788, spellName, 40, spellId) -- make sure to remove bar when it takes off
 end
 
+local function markRemoved()
+	markWarned = false
+end
+
 function mod:UNIT_AURA(event, unit)
-	for i = 1, GetNumRaidMembers() do
-		local _, _, _, _, _, _, expires = UnitDebuff("raid"..i, marked)
-		if expires and (GetTime() - expires) > 5 then
-			-- make sure we only mark people with marks that are not older than 1 sec, might need more marks for 25 man
-			self:SecondaryIcon(88518, "raid"..i)
-		end
-	end
 	if unit == "player" then
 		if UnitDebuff("player", marked) and not markWarned then
 			self:FlashShake(88518)
 			self:LocalMessage(88518, CL["you"]:format(marked), "Personal", 88518, "Alarm")
 			markWarned = true
+			self:ScheduleTimer(markRemoved, 7)
 		end
 	end
 end

@@ -358,8 +358,8 @@ local function rearrangeBars(anchor)
 	for i, bar in next, tmp do
 		bar:ClearAllPoints()
 		if up or (db.emphasizeGrowup and bar:Get("bigwigs:emphasized")) then
-			bar:SetPoint("BOTTOMLEFT", lastUpBar or anchor, "TOPLEFT", 0, 4)
-			bar:SetPoint("BOTTOMRIGHT", lastUpBar or anchor, "TOPRIGHT", 0, 4)
+      bar:SetPoint("BOTTOMLEFT", lastUpBar or anchor, "TOPLEFT", 0, 4) 
+      bar:SetPoint("BOTTOMRIGHT", lastUpBar or anchor, "TOPRIGHT", 0, 4) 
 			lastUpBar = bar
 		else
 			bar:SetPoint("TOPLEFT", lastDownBar or anchor, "BOTTOMLEFT", 0, -4)

@@ -1,4 +1,216 @@
 ------------------------------------------------------------------------
+r7759 | StingerSoft | 2011-01-05 11:54:48 +0000 (Wed, 05 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/ruRU.lua
+   A /trunk/Bastion/Locales/ruRU.lua
+   A /trunk/Blackwing/Locales/ruRU.lua
+   M /trunk/Locales/ruRU.lua
+   M /trunk/Plugins/Locales/ruRU.lua
+   A /trunk/Throne/Locales/ruRU.lua
+
+ruRU added/update
+------------------------------------------------------------------------
+r7758 | nebula169 | 2011-01-05 07:36:25 +0000 (Wed, 05 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Chimaeron.lua
+
+Chimaeron warmup icon
+------------------------------------------------------------------------
+r7756 | funkydude | 2011-01-05 03:06:20 +0000 (Wed, 05 Jan 2011) | 2 lines
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/Blackwing/Omnotron.lua
+
+Blackwing/Omnotron: minor tweak
+toc version bump
+------------------------------------------------------------------------
+r7755 | funkydude | 2011-01-05 00:56:47 +0000 (Wed, 05 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Omnotron.lua
+
+Blackwing/Omnotron: line 8 bugfix
+------------------------------------------------------------------------
+r7754 | mojosdojo | 2011-01-05 00:37:44 +0000 (Wed, 05 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Locales/deDE.lua
+   M /trunk/Blackwing/Omnotron.lua
+   M /trunk/Throne/Locales/deDE.lua
+
+deDE update.
+------------------------------------------------------------------------
+r7753 | funkydude | 2011-01-05 00:19:46 +0000 (Wed, 05 Jan 2011) | 4 lines
+Changed paths:
+   M /trunk/Blackwing/Locales/deDE.lua
+   M /trunk/Blackwing/Locales/esES.lua
+   M /trunk/Blackwing/Locales/frFR.lua
+   M /trunk/Blackwing/Locales/koKR.lua
+   M /trunk/Blackwing/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhTW.lua
+   M /trunk/Blackwing/Omnotron.lua
+
+Blackwing/Omnotron: Improve boss switch function (may lack heroic Id's)
+- Add option to set the primary icon (default skull) on currently active boss
+- Actually show a message for lightning conductor
+- cleanups, drycoded
+------------------------------------------------------------------------
+r7752 | funkydude | 2011-01-05 00:07:45 +0000 (Wed, 05 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Magmaw.lua
+
+Blackwing/Magmaw: Exposed not explosed.
+------------------------------------------------------------------------
+r7751 | pettigrow | 2011-01-05 00:06:32 +0000 (Wed, 05 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r7750 | jongt23 | 2011-01-05 00:05:41 +0000 (Wed, 05 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Bastion/Locales/esES.lua
+   M /trunk/Blackwing/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r7749 | funkydude | 2011-01-04 22:48:50 +0000 (Tue, 04 Jan 2011) | 2 lines
+Changed paths:
+   M /trunk/Blackwing/Locales/deDE.lua
+   M /trunk/Blackwing/Locales/esES.lua
+   M /trunk/Blackwing/Locales/frFR.lua
+   M /trunk/Blackwing/Locales/koKR.lua
+   M /trunk/Blackwing/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhTW.lua
+   M /trunk/Blackwing/Magmaw.lua
+   M /trunk/Blackwing/Omnotron.lua
+
+Blackwing/Magmaw: bugfix
+Blackwing/Omnotron: stop spamming fixate, give a warning when the poison bombs are coming, self warn if one is chasing you.
+------------------------------------------------------------------------
+r7748 | funkydude | 2011-01-04 20:29:34 +0000 (Tue, 04 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Locales/deDE.lua
+   M /trunk/Blackwing/Locales/esES.lua
+   M /trunk/Blackwing/Locales/frFR.lua
+   M /trunk/Blackwing/Locales/koKR.lua
+   M /trunk/Blackwing/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhTW.lua
+   M /trunk/Blackwing/Magmaw.lua
+
+Blackwing/Magmaw: hopefully make vulnerability work
+------------------------------------------------------------------------
+r7747 | Maat | 2011-01-04 18:11:20 +0000 (Tue, 04 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Bastion/TwilightAscendants.lua
+
+add 25 man heroic spellIds
+------------------------------------------------------------------------
+r7746 | pettigrow | 2011-01-03 15:22:23 +0000 (Mon, 03 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/frFR.lua
+   M /trunk/Blackwing/Locales/frFR.lua
+   M /trunk/Throne/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r7745 | jongt23 | 2011-01-03 14:56:12 +0000 (Mon, 03 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/esES.lua
+   M /trunk/Blackwing/Locales/esES.lua
+   M /trunk/Throne/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r7744 | Maat | 2011-01-03 13:58:21 +0000 (Mon, 03 Jan 2011) | 3 lines
+Changed paths:
+   M /trunk/Blackwing/Chimaeron.lua
+   M /trunk/Throne/Conclave.lua
+
+Chimaeron.lua add a Mortality soon warning (ticket 243 or well a warning at least)
+Conclave.lua add wind blast and storm shield (ticket 253, 249)
+
+------------------------------------------------------------------------
+r7743 | 7destiny | 2011-01-03 10:24:34 +0000 (Mon, 03 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/koKR.lua
+
+koKR Update
+------------------------------------------------------------------------
+r7742 | funkydude | 2011-01-03 03:15:16 +0000 (Mon, 03 Jan 2011) | 2 lines
+Changed paths:
+   M /trunk/Bastion/DoubleDragon.lua
+   M /trunk/Bastion/Halfus.lua
+   M /trunk/Bastion/TwilightAscendants.lua
+   M /trunk/Blackwing/Nefarian.lua
+   M /trunk/Blackwing/Omnotron.lua
+   M /trunk/Core/BossPrototype.lua
+   M /trunk/Throne/Conclave.lua
+
+Core/BossPrototype: improve multi-mob detection (Omnotron)
+Encounters: move the remaining encounters over to CheckBossStatus
+------------------------------------------------------------------------
+r7741 | mojosdojo | 2011-01-03 02:49:36 +0000 (Mon, 03 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Argaloth.lua
+   M /trunk/Baradin/Locales/deDE.lua
+
+Argaloth: Added some bars for meteor slash (ticket 254).
+------------------------------------------------------------------------
+r7740 | funkydude | 2011-01-03 02:14:20 +0000 (Mon, 03 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: remove some brackets
+------------------------------------------------------------------------
+r7739 | funkydude | 2011-01-03 02:04:07 +0000 (Mon, 03 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: Tweak CheckBossStatus to work with multi-mob encounters and not rely on mob translation, drycoded.
+------------------------------------------------------------------------
+r7738 | mojosdojo | 2011-01-03 01:46:38 +0000 (Mon, 03 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Bastion/Locales/deDE.lua
+   M /trunk/Blackwing/Locales/deDE.lua
+   M /trunk/Throne/Locales/deDE.lua
+
+deDE update.
+------------------------------------------------------------------------
+r7737 | funkydude | 2011-01-02 22:13:06 +0000 (Sun, 02 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Magmaw.lua
+
+Blackwing/Magmaw: prevent vulnerability function firing when the boss respawns after a wipe.
+------------------------------------------------------------------------
+r7736 | Maat | 2011-01-02 20:08:59 +0000 (Sun, 02 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Bastion/DoubleDragon.lua
+
+don't use Icons for Twilight Meteorite
+------------------------------------------------------------------------
+r7735 | Maat | 2011-01-02 19:22:57 +0000 (Sun, 02 Jan 2011) | 2 lines
+Changed paths:
+   M /trunk/Bastion/DoubleDragon.lua
+
+fix Twilight Meteor Mark
+add timer for Twilight Shift
+------------------------------------------------------------------------
+r7734 | funkydude | 2011-01-02 18:15:02 +0000 (Sun, 02 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Atramedes.lua
+   M /trunk/Blackwing/Chimaeron.lua
+   M /trunk/Blackwing/Magmaw.lua
+   M /trunk/Blackwing/Maloriak.lua
+   M /trunk/Blackwing/Nefarian.lua
+   M /trunk/Throne/Alakir.lua
+
+more bosses over to CheckBossStatus
+------------------------------------------------------------------------
+r7733 | pettigrow | 2011-01-02 01:39:29 +0000 (Sun, 02 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Blackwing/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
 r7732 | jongt23 | 2011-01-01 15:27:02 +0000 (Sat, 01 Jan 2011) | 1 line
 Changed paths:
    M /trunk/Blackwing/Locales/esES.lua
@@ -815,100 +1027,4 @@ Changed paths:
    M /trunk/Plugins/Messages.lua
 
 Use a dedicated icon frame so that the icon position doesn't get screwed up when the font size changes.
-------------------------------------------------------------------------
-r7622 | rabbit | 2010-12-01 19:35:55 +0000 (Wed, 01 Dec 2010) | 1 line
-Changed paths:
-   M /trunk/Options/libs.xml
-   M /trunk/Plugins/Bars.lua
-   M /trunk/Plugins/Messages.lua
-   M /trunk/Plugins/RaidIcon.lua
-   M /trunk/Plugins/Sound.lua
-
-Enable LibDDI dropdowns, yay\!
-------------------------------------------------------------------------
-r7621 | pettigrow | 2010-12-01 16:54:25 +0000 (Wed, 01 Dec 2010) | 1 line
-Changed paths:
-   M /trunk/Plugins/Locales/frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r7620 | mojosdojo | 2010-12-01 16:44:23 +0000 (Wed, 01 Dec 2010) | 1 line
-Changed paths:
-   M /trunk/Bastion/BigWigs_Bastion.toc
-   M /trunk/Blackwing/BigWigs_Blackwing.toc
-   M /trunk/Plugins/Locales/deDE.lua
-   M /trunk/Throne/BigWigs_Throne.toc
-
-deDE update.
-------------------------------------------------------------------------
-r7619 | 7destiny | 2010-12-01 14:29:04 +0000 (Wed, 01 Dec 2010) | 1 line
-Changed paths:
-   M /trunk/Plugins/Locales/koKR.lua
-
-koKR Update
-------------------------------------------------------------------------
-r7618 | zhTW | 2010-12-01 07:22:00 +0000 (Wed, 01 Dec 2010) | 1 line
-Changed paths:
-   M /trunk/Bastion/BigWigs_Bastion.toc
-   M /trunk/Bastion/Locales/zhCN.lua
-   M /trunk/Bastion/Locales/zhTW.lua
-   M /trunk/Blackwing/BigWigs_Blackwing.toc
-   M /trunk/Blackwing/Locales/zhCN.lua
-   M /trunk/Blackwing/Locales/zhTW.lua
-   M /trunk/Throne/BigWigs_Throne.toc
-   M /trunk/Throne/Locales/zhCN.lua
-   M /trunk/Throne/Locales/zhTW.lua
-
-zhTW & zhCN update
-------------------------------------------------------------------------
-r7617 | rabbit | 2010-12-01 04:22:51 +0000 (Wed, 01 Dec 2010) | 1 line
-Changed paths:
-   M /trunk/Options/author-list.lua
-   M /trunk/Options/libs.xml
-   M /trunk/Options/scripts/authors.lua
-
-Update the author list and fix Maat's login; apparently he commits as both Maat and maat - wtf? Also disable LibDDI for now since it will probably error without the Ace3 changes.
-------------------------------------------------------------------------
-r7616 | rabbit | 2010-12-01 01:05:18 +0000 (Wed, 01 Dec 2010) | 1 line
-Changed paths:
-   M /trunk/embeds.xml
-
-Forgot embeds.xml.
-------------------------------------------------------------------------
-r7615 | rabbit | 2010-12-01 01:04:53 +0000 (Wed, 01 Dec 2010) | 8 lines
-Changed paths:
-   M /trunk/.pkgmeta
-   M /trunk/BigWigs.toc
-   M /trunk/Foreign/libs.xml
-   M /trunk/Options/libs.xml
-   M /trunk/Plugins/Bars.lua
-   M /trunk/Plugins/Emphasize.lua
-   M /trunk/Plugins/Locales/deDE.lua
-   M /trunk/Plugins/Locales/enUS.lua
-   M /trunk/Plugins/Locales/esES.lua
-   M /trunk/Plugins/Locales/frFR.lua
-   M /trunk/Plugins/Locales/koKR.lua
-   M /trunk/Plugins/Locales/ruRU.lua
-   M /trunk/Plugins/Locales/zhCN.lua
-   M /trunk/Plugins/Locales/zhTW.lua
-   M /trunk/Plugins/Messages.lua
-   M /trunk/Plugins/Proximity.lua
-   M /trunk/Plugins/RaidIcon.lua
-   M /trunk/Plugins/Sound.lua
-   M /trunk/Plugins/Tips.lua
-
-* Add an option to clickable bars to only enable it when a modifier (ctrl/alt/shift) is down
-* Consolidate the anchor code between bars/messages
-* Add some raid tips from the vodka US guild
-* Add an anchor for the Super Emphasized messages
-* Fix icon sizes in raid messages to be more in line with the font height
-* Change default anchor positions for normal bars, emphasized messages and the proximity window to something more sensible
-* Remove some dead code and shuffle the Bars code around slightly to make more sense
-
-------------------------------------------------------------------------
-r7614 | 7destiny | 2010-11-28 10:48:08 +0000 (Sun, 28 Nov 2010) | 1 line
-Changed paths:
-   M /trunk/Plugins/Locales/koKR.lua
-
-koKR Update
 ------------------------------------------------------------------------
