@@ -79,8 +79,12 @@ function ChopsuiGridReset()
     GridFrame.db.profile["cornerSize"] = 16
 
     -- Position the frame
+    local gridYOffset = TukuiDB.Scale(120)
+    if TukuiCF["actionbar"].bottomrows < 2 then
+      gridYOffset = TukuiDB.Scale(94)
+    end
     GridLayout.db.profile["PosX"] = 0
-    GridLayout.db.profile["PosY"] = TukuiDB.Scale(94)
+    GridLayout.db.profile["PosY"] = gridYOffset
 
   else
 
