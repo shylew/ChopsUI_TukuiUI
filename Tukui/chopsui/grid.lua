@@ -61,6 +61,49 @@ function ChopsuiGridReset()
   -- Horizontal groups
   GridLayout.db.profile["horizontal"] = true
 
+  -- Position the frame
+  if TukuiDB.myrole == "healer" then
+
+    -- Anchor the frames to the bottom center edge
+    GridLayout.db.profile["anchorRel"] = "BOTTOM"
+    GridLayout.db.profile["anchor"] = "BOTTOM"
+    GridLayout.db.profile["groupAnchor"] = "BOTTOMLEFT"
+
+    -- Set the appropriate width and height for the frames
+    local totalWidth = TukuiDB.Scale(470)
+    local frameWidth = math.floor(totalWidth / 5)
+    GridFrame.db.profile["frameWidth"] = frameWidth
+    GridFrame.db.profile["frameHeight"] = TukuiDB.Scale(50)
+
+    -- Style the frame
+    GridFrame.db.profile["cornerSize"] = 16
+
+    -- Position the frame
+    GridLayout.db.profile["PosX"] = 0
+    GridLayout.db.profile["PosY"] = TukuiDB.Scale(94)
+
+  else
+
+    -- Anchor the frames to the bottom left corner
+    GridLayout.db.profile["anchorRel"] = "BOTTOMLEFT"
+    GridLayout.db.profile["anchor"] = "BOTTOMLEFT"
+    GridLayout.db.profile["groupAnchor"] = "BOTTOMLEFT"
+
+    -- Set the appropriate width and height for the frames
+    local totalWidth = ChopsuiChatBackgroundLeft:GetWidth() + TukuiDB.Scale(8)
+    local frameWidth = math.floor(totalWidth / 5)
+    GridFrame.db.profile["frameWidth"] = frameWidth
+    GridFrame.db.profile["frameHeight"] = TukuiDB.Scale(42)
+
+    -- Style the frame
+    GridFrame.db.profile["cornerSize"] = 14
+
+    -- Position the frame
+    GridLayout.db.profile["PosX"] = TukuiDB.Scale(7)
+    GridLayout.db.profile["PosY"] = TukuiDB.Scale(119)
+    
+  end
+
   -- Lock the frame
   GridLayout.db.profile["hideTab"] = true
   GridLayout.db.profile["FrameLock"] = true
@@ -161,7 +204,14 @@ function ChopsuiGridReset()
   --------------------------------------------------------------------------
   -- PRIEST HEALING GRID SETUP
   --------------------------------------------------------------------------
-  if TukuiDB.myclass == "PRIEST" then
+  if TukuiDB.myclass == "PALADIN" then
+
+    if TukuiDB.myspec == "HOLY" then
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_curse"] = false
+      GridFrame.db.profile["statusmap"]["corner1"]["alert_beacon"] = true
+    end
+
+  elseif TukuiDB.myclass == "PRIEST" then
 
     -- Common stuff between Discipline and Holy
     if TukuiDB.myspec == "DISCIPLINE" or TukuiDB.myspec == "HOLY" then

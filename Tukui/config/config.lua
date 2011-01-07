@@ -179,6 +179,5 @@ TukuiCF["others"] = {
 -- Name need to be case sensitive
 ----------------------------------------------------------------------------
 if TukuiDB.myname == "Popesuey" then
-  TukuiCF.actionbar.bottomrows = 1
-  TukuiCF.general.healer = true
+  --TukuiCF.actionbar.bottomrows = 1
 end

@@ -89,16 +89,27 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
   if TukuiDB.myclass == "DEATHKNIGHT" then
 
     if TukuiDB.myspec == "BLOOD" then
-      ChopsuiNeedToKnowPlayerBuff(6, "Blade Barrier", 0.6, 0, 0.07, true)
-      ChopsuiNeedToKnowPlayerBuff(5, "Bone Shield", 0.04, 0.46, 0.98, true)
-      ChopsuiNeedToKnowPlayerBuff(4, "Vampiric Blood", 0.74, 0, 0.02, true)
       ChopsuiNeedToKnowPlayerBuff(3, "Icebound Fortitude", 0.01, 0.56, 0.6, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Vampiric Blood", 0.74, 0, 0.02, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Bone Shield", 0.04, 0.46, 0.98, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Blade Barrier", 0.6, 0, 0.07, true)
     elseif TukuiDB.myspec == "FROST" then
-      ChopsuiNeedToKnowPlayerBuff(6, "Killing Machine", 0, 0.68, 1, true)
       ChopsuiNeedToKnowPlayerBuff(5, "Pillar of Frost", 0, 1, 0.91, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Killing Machine", 0, 0.68, 1, true)
     elseif TukuiDB.myspec == "UNHOLY" then
       ChopsuiNeedToKnowPlayerBuff(5, "Icebound Fortitude", 0.01, 0.56, 0.6, true)
       ChopsuiNeedToKnowPlayerBuff(6, "Shadow Infusion, Dark Transformation", 0, 0.6, 0.03, true, "pet")
+    end
+
+  elseif TukuiDB.myclass == "PALADIN" then
+
+    if TukuiDB.myspec == "HOLY" then
+      ChopsuiNeedToKnowPlayerBuff(1, "Divine Shield, Divine Protection", 0.78, 0, 0.06, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Conviction", 0.6, 0.23, 0.09, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Divine Plea", 0.74, 0.59, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Divine Favor", 0.86, 0.86, 0.86, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Avenging Wrath", 0.91, 0.85, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Judgements of the Pure", 0.6, 0.44, 0, true)
     end
 
   elseif TukuiDB.myclass == "PRIEST" then
@@ -147,8 +158,14 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
     elseif TukuiDB.myspec == "FROST" then
       ChopsuiNeedToKnowTargetDebuff(4, "Hungering Cold", 0, 0.6, 1, true)
     elseif TukuiDB.myspec == "UNHOLY" then
-      ChopsuiNeedToKnowTargetDebuff(4, "Ebon Plague", 0.6, 0, 0.54, true)
       ChopsuiNeedToKnowTargetDebuff(3, "Unholy Blight", 0, 0.51, 0.14, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Ebon Plague", 0.6, 0, 0.54, true)
+    end
+
+  elseif TukuiDB.myclass == "PALADIN" then
+
+    if TukuiDB.myspec == "HOLY" then
+      ChopsuiNeedToKnowTargetDebuff(6, "Hammer of Justice", 0, 0.57, 0.6, true)
     end
 
   elseif TukuiDB.myclass == "PRIEST" then

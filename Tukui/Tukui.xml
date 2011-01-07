@@ -107,7 +107,6 @@
 	<Script file="scripts\bubbles.lua"/>
 
   <Script file="scripts\skada.lua"/>
-  <Script file="scripts\grid.lua"/>
 	
 	<Include file="unitframes\templates.xml"/>
 	<Script file="unitframes\tags.lua"/>
