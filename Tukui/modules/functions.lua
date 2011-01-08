@@ -175,22 +175,19 @@ function TukuiDB.PP(p, obj)
 	end
 end
 
-function TukuiDB.TukuiShiftBarResize()
-
-  -- Count the number of active shapeshift buttons
-  local buttons = 0
-  for i = 1, NUM_SHAPESHIFT_SLOTS do
-    local _, name = GetShapeshiftFormInfo(i)
-    if name then
-      buttons = buttons + 1
-    end
-  end
+function TukuiDB.TukuiShiftBarResize(buttonCount)
 
   -- increase the width of the anchor frame to make it properly centered
-  local frameWidth = TukuiDB.buttonsize * buttons
-  frameWidth = frameWidth + (TukuiDB.buttonspacing * buttons)
+  local frameWidth = TukuiDB.buttonsize * buttonCount
+  frameWidth = frameWidth + (TukuiDB.buttonspacing * buttonCount)
+  print("Determined width to be " .. frameWidth)
   _G["TukuiShiftBar"]:SetWidth(frameWidth)
   
+end
+
+function TukuiDB.TukuiShiftBarEnable()
+  local currentBackgroundHeight = _G["InvTukuiActionBarBackground"]:GetHeight()
+  _G["InvTukuiActionBarBackground"]:SetHeight(currentBackgroundHeight + _G["TukuiShiftBar"]:GetHeight() + TukuiDB.Scale(13))
 end
 
 function TukuiDB.TukuiShiftBarUpdate()

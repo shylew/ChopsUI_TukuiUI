@@ -59,27 +59,31 @@ bar:SetScript("OnEvent", function(self, event, ...)
     -- If we have one or more active buttons, resize the action bar
     -- background panel to nudge unit frames and other depending frames up
     if activeButtons > 0 then
-      local currentBackgroundHeight = _G["InvTukuiActionBarBackground"]:GetHeight()
-      _G["InvTukuiActionBarBackground"]:SetHeight(currentBackgroundHeight + TukuiShift:GetHeight() + TukuiDB.Scale(13))
+      TukuiDB.TukuiShiftBarEnable()
+      TukuiDB.TukuiShiftBarResize(activeButtons)
     end
     
-    TukuiDB.TukuiShiftBarResize()
 		RegisterStateDriver(self, "visibility", States[TukuiDB.myclass] or "hide")
 	elseif event == "UPDATE_SHAPESHIFT_FORMS" then
 		-- Update Shapeshift Bar Button Visibility
 		-- I seriously don't know if it's the best way to do it on spec changes or when we learn a new stance.
 		if InCombatLockdown() then return end -- > just to be safe ;p
 		local button
+    local activeButtons = 0
 		for i = 1, NUM_SHAPESHIFT_SLOTS do
 			button = _G["ShapeshiftButton"..i]
 			local _, name = GetShapeshiftFormInfo(i)
 			if name then
 				button:Show()
+        activeButtons = activeButtons + 1
 			else
 				button:Hide()
 			end
 		end
-    TukuiDB.TukuiShiftBarResize()
+
+    if activeButtons > 0 then
+      TukuiDB.TukuiShiftBarResize(activeButtons)
+    end
 		TukuiDB.TukuiShiftBarUpdate()
 
 	elseif event == "PLAYER_ENTERING_WORLD" then

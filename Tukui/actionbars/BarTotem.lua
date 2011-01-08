@@ -4,8 +4,11 @@ if TukuiCF["actionbar"].enable ~= true then return end
 -- we parent it to our shapeshift bar.
 -- This is approx the same script as it was in WOTLK Tukui version.
 
+print("Determining if we should show totem bar")
 if TukuiDB.myclass == "SHAMAN" then
+  print("Found class")
 	if MultiCastActionBarFrame then
+    print("Found frame")
 		MultiCastActionBarFrame:SetScript("OnUpdate", nil)
 		MultiCastActionBarFrame:SetScript("OnShow", nil)
 		MultiCastActionBarFrame:SetScript("OnHide", nil)
@@ -18,5 +21,10 @@ if TukuiDB.myclass == "SHAMAN" then
 		MultiCastActionBarFrame.SetParent = TukuiDB.dummy
 		MultiCastActionBarFrame.SetPoint = TukuiDB.dummy
 		MultiCastRecallSpellButton.SetPoint = TukuiDB.dummy -- bug fix, see http://www.tukui.org/v2/forums/topic.php?id=2405
+
+    -- chopsui modification; resize the shapeshift bar to hold our totem buttons
+    TukuiDB.TukuiShiftBarEnable()
+    TukuiDB.TukuiShiftBarResize(6)
+
 	end
 end
