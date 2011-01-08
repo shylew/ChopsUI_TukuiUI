@@ -238,6 +238,16 @@ function ChopsuiGridReset()
       GridFrame.db.profile["statusmap"]["corner3"]["alert_gracestack"] = true
     end
 
+  elseif TukuiDB.myclass == "SHAMAN" then
+
+    if TukuiDB.myspec == "RESTORATION" then
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_poison"] = false
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_disease"] = false
+      GridFrame.db.profile["statusmap"]["corner1"]["alert_earthshield"] = true
+      GridFrame.db.profile["statusmap"]["corner3"]["alert_earthliving"] = true
+      GridFrame.db.profile["statusmap"]["corner4"]["alert_riptide"] = true
+    end
+
   elseif TukuiDB.myclass == "WARRIOR" then
 
     if TukuiDB.myspec == "PROTECTION" then
