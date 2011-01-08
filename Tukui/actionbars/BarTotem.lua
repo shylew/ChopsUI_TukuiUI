@@ -4,11 +4,8 @@ if TukuiCF["actionbar"].enable ~= true then return end
 -- we parent it to our shapeshift bar.
 -- This is approx the same script as it was in WOTLK Tukui version.
 
-print("Determining if we should show totem bar")
 if TukuiDB.myclass == "SHAMAN" then
-  print("Found class")
 	if MultiCastActionBarFrame then
-    print("Found frame")
 		MultiCastActionBarFrame:SetScript("OnUpdate", nil)
 		MultiCastActionBarFrame:SetScript("OnShow", nil)
 		MultiCastActionBarFrame:SetScript("OnHide", nil)
