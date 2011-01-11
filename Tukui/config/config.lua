@@ -46,7 +46,7 @@ TukuiCF["unitframes"] = {
 	["gridscale"] = 1,                     -- set the healing grid scaling
 	
 	-- boss frames
-	["showboss"] = false,                   -- enable boss unit frames for PVELOL encounters.
+	["showboss"] = true,                   -- enable boss unit frames for PVELOL encounters.
 
 	-- priest only plugin
 	["ws_show_time"] = false,              -- show time on weakened soul bar
