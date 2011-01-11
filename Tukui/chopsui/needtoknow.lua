@@ -128,6 +128,8 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
       ChopsuiNeedToKnowPlayerBuff(5, "Fade", 0, 0.37, 1, true)
     end
 
+  elseif TukuiDB.myclass == "WARLOCK" then
+
   elseif TukuiDB.myclass == "WARRIOR" then
 
     if TukuiDB.myspec == "PROTECTION" then
@@ -175,6 +177,17 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
       ChopsuiNeedToKnowTargetDebuff(2, "Shadow Word: Pain", 0.86, 0.41, 0, true)
       ChopsuiNeedToKnowTargetDebuff(3, "Devouring Plague", 0.62, 0, 0.75, true)
       ChopsuiNeedToKnowTargetDebuff(4, "Mind Flay, Mind Sear", 0.38, 0.76, 0.81, true)
+    end
+
+  elseif TukuiDB.myclass == "WARLOCK" then
+
+    if TukuiDB.myspec == "AFFLICTION" then
+      ChopsuiNeedToKnowTargetDebuff(1, "Haunt", 0, 0.74, 1, true)
+      ChopsuiNeedToKnowTargetDebuff(2, "Unstable Affliction", 0.47, 0.31, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(3, "Bane of Agony", 0.79, 0.52, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Shadow and Flame", 0, 0.10, 0.96, true)
+      ChopsuiNeedToKnowTargetDebuff(5, "Corruption", 0.74, 0, 0.06, true)
+      ChopsuiNeedToKnowTargetDebuff(6, "Curse of the Elements", 0.53, 0, 0.78, true)
     end
 
   elseif TukuiDB.myclass == "WARRIOR" then
