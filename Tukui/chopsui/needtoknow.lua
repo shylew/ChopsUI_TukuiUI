@@ -103,13 +103,23 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
 
   elseif TukuiDB.myclass == "PALADIN" then
 
+    ChopsuiNeedToKnowPlayerBuff(1, "Divine Shield, Divine Protection", 0.78, 0, 0.06, true)
+    ChopsuiNeedToKnowPlayerBuff(5, "Avenging Wrath", 0.91, 0.85, 0, true)
+    ChopsuiNeedToKnowPlayerBuff(6, "Judgements of the Pure", 0.6, 0.44, 0, true)
+    
     if TukuiDB.myspec == "HOLY" then
-      ChopsuiNeedToKnowPlayerBuff(1, "Divine Shield, Divine Protection", 0.78, 0, 0.06, true)
       ChopsuiNeedToKnowPlayerBuff(2, "Conviction", 0.6, 0.23, 0.09, true)
       ChopsuiNeedToKnowPlayerBuff(3, "Divine Plea", 0.74, 0.59, 0, true)
       ChopsuiNeedToKnowPlayerBuff(4, "Divine Favor", 0.86, 0.86, 0.86, true)
-      ChopsuiNeedToKnowPlayerBuff(5, "Avenging Wrath", 0.91, 0.85, 0, true)
-      ChopsuiNeedToKnowPlayerBuff(6, "Judgements of the Pure", 0.6, 0.44, 0, true)
+    elseif TukuiDB.myspec == "PROTECTION" then
+      ChopsuiNeedToKnowPlayerBuff(2, "Guardian of Ancient Kings", 1, 0.30, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Ardent Defender", 0.6, 0.44, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Inquisition", 1, 0.60, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Sacred Duty", 0, 0.41, 0.6, true)
+    elseif TukuiDB.myspec == "RETRIBUTION" then
+      ChopsuiNeedToKnowPlayerBuff(2, "Inquisition", 1, 0.60, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "The Art of War", 1, 0.94, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Hand of Light", 0.87, 0, 1,true)
     end
 
   elseif TukuiDB.myclass == "PRIEST" then
@@ -167,7 +177,16 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
   elseif TukuiDB.myclass == "PALADIN" then
 
     if TukuiDB.myspec == "HOLY" then
-      ChopsuiNeedToKnowTargetDebuff(6, "Hammer of Justice", 0, 0.57, 0.6, true)
+      ChopsuiNeedToKnowTargetDebuff(1, "Hammer of Justice", 0, 0.57, 0.6, true)
+    elseif TukuiDB.myspec == "PROTECTION" then
+      ChopsuiNeedToKnowTargetDebuff(3, "Hammer of Justice", 0, 0.57, 0.6, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Censure", 1, 0.98, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(5, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout, Scarlet Fever", 0.19, 0.71, 0.78, false)
+      ChopsuiNeedToKnowTargetDebuff(6, "Frost Fever, Infected Wounds, Judgements of the Just, Thunder Clap", 0.28, 0.79, 0.30, false)
+    elseif TukuiDB.myspec == "RETRIBUTION" then
+      ChopsuiNeedToKnowTargetDebuff(4, "Hammer of Justice", 0, 0.57, 0.6, true)
+      ChopsuiNeedToKnowTargetDebuff(5, "Repentence", 0.04, 0.29, 0.6, true)
+      ChopsuiNeedToKnowTargetDebuff(6, "Censure", 1, 0.98, 0, true)
     end
 
   elseif TukuiDB.myclass == "PRIEST" then
