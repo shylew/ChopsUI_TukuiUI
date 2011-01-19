@@ -180,8 +180,6 @@ TukuiCF["others"] = {
 ----------------------------------------------------------------------------
 if TukuiDB.myname == "Popesuey" then
   TukuiCF.actionbar.bottomrows = 1
-elseif TukuiDB.myname == "Baconsuey" then
-  TukuiCF.actionbar.bottomrows = 1
 elseif TukuiDB.myname == "Shocksuey" then
   TukuiCF.actionbar.bottomrows = 1
 end
