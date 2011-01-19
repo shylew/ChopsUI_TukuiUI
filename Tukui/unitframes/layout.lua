@@ -1223,6 +1223,7 @@ local function Shared(self, unit)
 		debuffs["growth-x"] = "RIGHT"
 		debuffs.PostCreateIcon = TukuiDB.PostCreateAura
 		debuffs.PostUpdateIcon = TukuiDB.PostUpdateAura
+    debuffs.onlyShowPlayer = true
 		self.Debuffs = debuffs	
 				
 		-- trinket feature via trinket plugin
@@ -1414,13 +1415,13 @@ if db.showboss then
 
 	local boss = {}
 	for i = 1, MAX_BOSS_FRAMES do
-		boss[i] = oUF:Spawn("boss"..i, "oUF_Boss"..i)
-		if i == 1 then
-			boss[i]:SetPoint("BOTTOM", UIParent, "BOTTOM", 252, 260)
-		else
-			boss[i]:SetPoint('BOTTOM', boss[i-1], 'TOP', 0, 10)             
-		end
-		boss[i]:SetSize(TukuiDB.Scale(200), TukuiDB.Scale(29))
+    boss[i] = oUF:Spawn("boss"..i, "oUF_Boss"..i)
+    if i == 1 then
+      boss[i]:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -22, -200)
+    else
+      boss[i]:SetPoint('BOTTOM', boss[i-1], 'BOTTOM', 0, -39)
+    end
+    boss[i]:SetSize(TukuiDB.Scale(200), TukuiDB.Scale(29))
 	end
 end
 
