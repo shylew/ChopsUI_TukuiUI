@@ -14,7 +14,7 @@ NeedToKnow = {}
 
 -- NEEDTOKNOW = {} is defined in the localization file, which must be loaded before this file
 
-NEEDTOKNOW.VERSION = "3.2.04"
+NEEDTOKNOW.VERSION = "3.2.05"
 NEEDTOKNOW.MAXGROUPS = 4
 NEEDTOKNOW.MAXBARS = 6
 NEEDTOKNOW.UPDATE_INTERVAL = 0.05
@@ -258,11 +258,19 @@ function NeedToKnow.ExecutiveFrame_PLAYER_LOGIN()
 end
 
 
+function NeedToKnow.ExecutiveFrame_ACTIVE_TALENT_GROUP_CHANGED()
+    -- This is the only event we're guaranteed to get on a talent switch,
+    -- so we have to listen for it.  However, the client may not yet have
+    -- the spellbook updates, so trying to evaluate the cooldows may fail.
+    -- This is one of the reasons the cooldown logic has to fail silently
+    -- and try again later
+    NeedToKnow.ExecutiveFrame_PLAYER_TALENT_UPDATE()
+end
+
 function NeedToKnow.ExecutiveFrame_PLAYER_TALENT_UPDATE()
-    -- Not all the info about new spells has arrived yet, so wait a little longer
-        NEEDTOKNOW.CURRENTSPEC = GetActiveTalentGroup()
-        NeedToKnow.Update()
-        NeedToKnow.UIPanel_Update()
+    NEEDTOKNOW.CURRENTSPEC = GetActiveTalentGroup()
+    NeedToKnow.Update()
+    NeedToKnow.UIPanel_Update()
 end
 
 
@@ -386,6 +394,7 @@ end
 
 function NeedToKnow.Update()
     if (UnitExists("player")) then
+        NeedToKnow.UpdateWeaponEnchants()
         for groupID = 1, NEEDTOKNOW.MAXGROUPS do
             NeedToKnow.Group_Update(groupID)
         end
@@ -413,6 +422,7 @@ do
     executiveFrame:RegisterEvent("ADDON_LOADED")
     executiveFrame:RegisterEvent("PLAYER_LOGIN")
     executiveFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
+    executiveFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 end
 
 
@@ -733,6 +743,7 @@ function NeedToKnow.SetScripts(bar)
             bar:RegisterEvent("STOP_AUTOREPEAT_SPELL")
         end
         bar:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
+        bar:RegisterEvent("SPELL_UPDATE_COOLDOWN")
     elseif ( "USABLE" == bar.settings.BuffOrDebuff ) then
         bar:RegisterEvent("SPELL_UPDATE_USABLE")
     elseif ( "mhand" == bar.settings.Unit or "ohand" == bar.settings.Unit ) then
@@ -805,6 +816,7 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
         end 
     elseif ( event == "PLAYER_TOTEM_UPDATE"  ) or
            ( event == "ACTIONBAR_UPDATE_COOLDOWN" ) or
+           ( event == "SPELL_UPDATE_COOLDOWN" ) or
            ( event == "SPELL_UPDATE_USABLE" ) or
            ( event == "PLAYER_REGEN_ENABLED"  ) or
            ( event == "PLAYER_REGEN_DISABLED"  )
@@ -1285,7 +1297,7 @@ end
 function NeedToKnow.UpdateWeaponEnchants()
     local mdata = NeedToKnow.weapon_enchants.mhand
     local odata = NeedToKnow.weapon_enchants.ohand
-    
+
     mdata.present, mdata.expiration, mdata.charges, 
       odata.present, odata.expiration, odata.charges 
       = GetWeaponEnchantInfo()
@@ -1293,18 +1305,31 @@ function NeedToKnow.UpdateWeaponEnchants()
     if ( mdata.present ) then
        local oldname = mdata.name
        mdata.name = NeedToKnow.DetermineTempEnchantFromTooltip(16)
+       if not mdata.name then
+           mdata.name = "Unknown"
+           print("Warning: NTK couldn't figure out what enchant is on the main hand weapon")
+       end
        mdata.expiration = GetTime() + mdata.expiration/1000
        if oldname ~= mdata.name then
          _,_,mdata.icon = GetSpellInfo(mdata.name)
        end
+    else
+        mdata.name=nil
     end
+
     if ( odata.present ) then
        local oldname = odata.name
        odata.name = NeedToKnow.DetermineTempEnchantFromTooltip(17)
+       if not odata.name then
+           odata.name = "Unknown"
+           print("Warning: NTK couldn't figure out what enchant is on the off-hand weapon")
+       end
        odata.expiration = GetTime() + odata.expiration/1000
        if oldname ~= odata.name then
          _,_,odata.icon = GetSpellInfo(odata.name)
        end
+    else
+        odata.name = nil
     end
 end
 
@@ -1351,7 +1376,7 @@ end
 -- FIXME: this is the only bar type that does not work with spell ids.
 function NeedToKnow.AuraCheck_Weapon(bar, idxName, barSpell, isSpellID)
     local data = NeedToKnow.weapon_enchants[bar.settings.Unit]
-    if ( data.present and data.name:find(barSpell) ) then
+    if ( data.present and data.name and data.name:find(barSpell) ) then
         return 1800,                                       -- duration TODO: Get real duration?
                data.name,                                  -- name
                data.charges,                               -- count
@@ -1372,7 +1397,7 @@ function NeedToKnow.AuraCheck_CASTCD(bar, idxName, barSpell, isSpellID)
 
     -- filter out the GCD, we only care about actual spell CDs
     if start and cd_len <= 1.5 and func ~= NeedToKnow.GetAutoShotCooldown then
-        if bar.expirationTime then
+        if bar.expirationTime and bar.expirationTime <= (start + cd_len) then
             start = bar.expirationTime - bar.duration
             cd_len = bar.duration
         else

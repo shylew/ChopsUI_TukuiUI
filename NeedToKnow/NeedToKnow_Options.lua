@@ -169,8 +169,8 @@ function NeedToKnow.UIPanel_Appearance_Update()
     barPaddingSlider:SetMinMaxValues(0, NEEDTOKNOW.MAXBARPADDING);
     barPaddingSlider:SetValue(settings.BarPadding);
 
-	NeedToKnow.UpdateBarTextureDropDown(panelName);
-	NeedToKnow.UpdateBarFontDropDown(panelName);
+    NeedToKnow.UpdateBarTextureDropDown(panelName);
+    NeedToKnow.UpdateBarFontDropDown(panelName);
 end
 
 
