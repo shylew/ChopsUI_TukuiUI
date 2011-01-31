@@ -6,10 +6,10 @@
 ## Notes-deDE: Ein Damage-Meter.
 ## Notes-frFR: Un damage meter.
 ## Notes-zhCN: 伤害统计
-## Author: Zarnivoop
-## Version: 1.2-30
+## Author: Zarnivoop/kryptik
+## Version: 1.2-31
 ## SavedVariables: SkadaDB
-## X-Curse-Packaged-Version: 1.2-30
+## X-Curse-Packaged-Version: 1.2-31
 ## X-Curse-Project-Name: Skada Damage Meter
 ## X-Curse-Project-ID: skada
 ## X-Curse-Repository-ID: wow/skada/mainline

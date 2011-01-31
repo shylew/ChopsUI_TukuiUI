@@ -1613,7 +1613,12 @@ function Skada:get_player(set, playerid, playername)
 		if not playername then
 			return
 		end
-		player = {id = playerid, class = select(2, UnitClass(playername)), name = playername, first = time(), ["time"] = 0}
+		
+		-- Strip realm name
+		local player_name, realm = string.split("-", playername, 2)		
+		player_name = player_name or playername
+		
+		player = {id = playerid, class = select(2, UnitClass(playername)), name = player_name, first = time(), ["time"] = 0}
 		
 		-- Tell each mode to apply its needed attributes.
 		for i, mode in ipairs(modes) do
@@ -1775,7 +1780,7 @@ function Skada:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, eventtype, srcGUID,
 	if self.current and src_is_interesting and not self.current.gotboss then
 		-- Store mob name for set name. For now, just save first unfriendly name available, or first boss available.
 		if bit.band(dstFlags, COMBATLOG_OBJECT_REACTION_HOSTILE) ~=0 then
-			if not self.current.gotboss and boss.BossIDs[tonumber(dstGUID:sub(9, 12), 16)] then
+			if not self.current.gotboss and boss.BossIDs[tonumber(dstGUID:sub(7, 10), 16)] then
 				self.current.mobname = dstName
 				self.current.gotboss = true
 			elseif not self.current.mobname then
