@@ -627,3 +627,8 @@ do
 	loader.RemoveInterfaceOptions = removeFrame
 end
 
+
+-- ChopsUI hack to allow external initialization of BigWigs
+function BigWigs_LoadAndEnableCore()
+  loadAndEnableCore()
+end

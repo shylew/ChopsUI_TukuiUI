@@ -2,10 +2,6 @@
 -- CONFIGURE BIGWIGS
 ------------------------------------------------------------------------------
 function ChopsuiBigWigsConfigure()
-
-  local messageYOffset = TukuiDB.getscreenheight - TukuiDB.Scale(400)
-  print("Message Y offset is " .. messageYOffset)
-  
 end
 
 ------------------------------------------------------------------------------
@@ -20,18 +16,26 @@ function ChopsuiBigWigsReset()
   -- Switch the BigWigs profile to a character specific profile
   local bigwigsProfile = UnitName("player") .. " - " .. GetRealmName()
   BigWigs.db:SetProfile(bigwigsProfile)
-  BigWigs.db:ResetProfile()
+  --BigWigs.db:ResetProfile()
 
   local barProfile = BigWigs.db:GetNamespace("BigWigs_Plugins_Bars")
   local messageProfile = BigWigs.db:GetNamespace("BigWigs_Plugins_Messages")
+  local proximityProfile = BigWigs.db:GetNamespace("BigWigs_Plugins_Proximity")
+
+  barProfile:ResetProfile()
+  messageProfile:ResetProfile()
+  proximityProfile:ResetProfile()
 
   -- Set some BigWigs default settings
-  barProfile.profile["texture"] = "TukTex"
+  barProfile.profile["texture"] = "TelUI Statusbar"
+  barProfile.profile["barStyle"] = "TukUI"
   barProfile.profile["font"] = "TelUI Font"
-  barProfile.profile["emphasizeScale"] = 1
+  barProfile.profile["emphasizeScale"] = 1.2
   barProfile.profile["emphasizeGrowup"] = true
   messageProfile.profile["font"] = "TelUI Font"
   messageProfile.profile["fontSize"] = 15
+  proximityProfile.profile["fontSize"] = 15
+  proximityProfile.profile["font"] = "TelUI Font"
 
   -- Set the size of the bars
   barProfile.profile["BigWigsAnchor_width"] = 200
