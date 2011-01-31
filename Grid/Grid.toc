@@ -1,7 +1,7 @@
 ## Interface: 40000
-## Version: 1.40000.1400-beta
+## Version: 1.40000.1403
 ## X-ReleaseDate: "$Date: 2010-10-30 20:17:03 +0000 (Sat, 30 Oct 2010) $"
-## X-Curse-Packaged-Version: 1.40000.1400-beta
+## X-Curse-Packaged-Version: 1.40000.1403
 ## X-Curse-Project-Name: Grid
 ## X-Curse-Project-ID: grid
 ## X-Curse-Repository-ID: wow/grid/mainline
