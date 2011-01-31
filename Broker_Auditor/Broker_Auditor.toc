@@ -1,8 +1,8 @@
-﻿## Interface: 30300
+﻿## Interface: 40000
 ## Author: Alarisha
 ## Title: Auditor |cffffffffBroker|r
 ## Notes: Broker display plugin for Auditor.
-## Version: 4.3.3
+## Version: 4.4.2
 ## X-Category:
 ## X-eMail: alarisha@gmail.com
 ## X-Website:
@@ -11,7 +11,7 @@
 ## OptionalDeps: Ace3, LibQTip-1.0, LibDBIcon-1.0
 ## X-WoWI-ID: 5429
 ## X-Child-Of: Auditor2
-## X-Curse-Packaged-Version: v4.3.3
+## X-Curse-Packaged-Version: v4.4.2
 ## X-Curse-Project-Name: Auditor
 ## X-Curse-Project-ID: auditor
 ## X-Curse-Repository-ID: wow/auditor/mainline

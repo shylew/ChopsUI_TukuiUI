@@ -17,7 +17,7 @@ local auditorCurrentMoney, auditorLastMoney = nil, nil
 local auditorMode = ""
 local subHolder
 local auditorHDay = { "6days", "5days", "4days", "3days", "2days", "1days", "0days" }
-local auditorLogMode = { "loot", "merch", "quest", "trade", "mail", "ah", "train", "taxi", "repairs", "other", "reconciliation", "guildbank" }
+local auditorLogMode = { "loot", "merch", "quest", "trade", "mail", "ah", "train", "taxi", "repairs", "other", "reconciliation", "guildbank", "reforge", "guildcontrib", "lfg" }
 local auditorTimeframe = { "session", "day", "week", "total" }
 
 local COPPER_ABBR, SILVER_ABBR, GOLD_ABBR
@@ -59,6 +59,7 @@ local defaults = {
 		notifyAH = true,
 		notifyGuildbank = true,
 		notifyTrainer = true,
+		notifyReforge = true,
 		timeOffset = 0,
 		useOffset = false
 	},
@@ -70,6 +71,7 @@ function addon:Initialize()
 	auditorSessionTime = time()
 	auditorFocus = auditorPlayer
 	if not addon.db.realm[auditorPlayer] then addon:NewCharDB() end -- Create DB for char if it doesn't exist
+	addon:UpgradeCategories() -- Add any new categories
 end
 
 --[[ LOCAL MAIN FUNCTIONS ]]--
@@ -144,22 +146,28 @@ local function ReconcileData() -- Reconcile data if Auditor and reality don't sy
 	addon.db.realm.chars[auditorPlayer] = auditorCurrentMoney
 	data.totals.incomings, data.totals.outgoings = 0, 0
 	for _, logmode in pairs(auditorLogMode) do -- Add up total incomings and outgoings according to Auditor
-		data.totals.incomings = data.totals.incomings + data[logmode]["total"].incomings
-		data.totals.outgoings = data.totals.outgoings + data[logmode]["total"].outgoings
+		if logmode ~= "guildcontrib" then
+			data.totals.incomings = data.totals.incomings + data[logmode]["total"].incomings
+			data.totals.outgoings = data.totals.outgoings + data[logmode]["total"].outgoings
+		end
 	end
 	data.totals.actual = data.totals.incomings - data.totals.outgoings
 	if data.totals.actual ~= auditorCurrentMoney then -- Does Auditor's data sync with reality? If not, make it so
 		local diff = auditorCurrentMoney - data.totals.actual
 		if diff > 0 then
 			for _,logmode in pairs(auditorTimeframe) do
-				data["reconciliation"][logmode].incomings = data["reconciliation"][logmode].incomings + diff
+				if logmode ~= "guildcontrib" then
+					data["reconciliation"][logmode].incomings = data["reconciliation"][logmode].incomings + diff
+				end
 			end
 			historical[auditorHDay[7]]["reconciliation"].incomings = data["reconciliation"]["day"].incomings
 			data.totals.incomings = data.totals.incomings + diff
 		elseif diff < 0 then
 			diff = diff * -1;
 			for _,logmode in pairs(auditorTimeframe) do
-				data["reconciliation"][logmode].outgoings = data["reconciliation"][logmode].outgoings + diff
+				if logmode ~= "guildcontrib" then
+					data["reconciliation"][logmode].outgoings = data["reconciliation"][logmode].outgoings + diff
+				end
 			end
 			historical[auditorHDay[7]]["reconciliation"].outgoings = data["reconciliation"]["day"].outgoings
 			data.totals.outgoings = data.totals.outgoings + diff
@@ -270,6 +278,29 @@ local function ShareMoneyScan(msg)
 	local gold = string.match(msg, GOLD_SCAN_AMOUNT)
 	local money = (gold or 0) * 10000 + (silver or 0) * 100 + (copper or 0)
 	
+	local guildLevel = GetGuildLevel()
+	local guildMultiplier -- Guild contributions
+	if guildLevel > 4 then
+		guildMultiplier = 0.05
+	elseif guildLevel > 15 then
+		guildMultiplier = 0.1
+	else
+		guildMultiplier = 0
+	end
+	local guildContrib = math.floor((money*guildMultiplier)+0.5)
+		
+	if guildContrib > 0 then
+		local auditorMode = "guildcontrib"
+		local data = addon.db.realm[auditorPlayer].data
+		local historical = addon.db.realm[auditorPlayer].historical
+		
+		for _,logmode in pairs(auditorTimeframe) do
+				data[auditorMode][logmode].incomings = data[auditorMode][logmode].incomings + guildContrib
+		end
+		
+		historical[auditorHDay[7]][auditorMode].incomings = data[auditorMode]["day"].incomings
+	end
+	
 	local oldMode = auditorMode 
 	if not auditorLastMoney then auditorLastMoney = 0 end
 	auditorLastMoney = auditorLastMoney - money -- Force a money update with calculated amount
@@ -302,6 +333,9 @@ f:RegisterEvent("AUCTION_HOUSE_CLOSED")
 f:RegisterEvent("CHAT_MSG_MONEY")
 f:RegisterEvent("PLAYER_MONEY")
 f:RegisterEvent("CONFIRM_TALENT_WIPE")
+f:RegisterEvent("FORGE_MASTER_OPENED")
+f:RegisterEvent("FORGE_MASTER_CLOSED")
+f:RegisterEvent("LFG_COMPLETION_REWARD")
 f:SetScript("OnEvent", function(self, event, arg1, arg2)
 	if event == "PLAYER_MONEY" then
 		UpdateTimeFrame()
@@ -328,7 +362,7 @@ f:SetScript("OnEvent", function(self, event, arg1, arg2)
 		if addon.db.realm.sellGreys == true then
 			addon:ScheduleTimer("AUDITOR_SELLGREYS_DELAY", SellGreys, 2)
 		end
-	elseif event == "MERCHANT_CLOSED" or event == "GUILDBANKFRAME_CLOSED" or event == "MAIL_CLOSED" or event == "TRAINER_CLOSED" or event == "AUCTION_HOUSE_CLOSED" then
+	elseif event == "MERCHANT_CLOSED" or event == "FORGE_MASTER_CLOSED" or event == "GUILDBANKFRAME_CLOSED" or event == "MAIL_CLOSED" or event == "TRAINER_CLOSED" or event == "AUCTION_HOUSE_CLOSED" then
 		auditorMode = ""
 		CashNotify()
 	elseif event == "QUEST_COMPLETE" then
@@ -339,6 +373,14 @@ f:SetScript("OnEvent", function(self, event, arg1, arg2)
 		auditorMode = "trade"
 	elseif event == "BANKFRAME_OPENED" then
 		auditorMode = "merch"
+	elseif event == "FORGE_MASTER_OPENED" then
+		auditorMode = "reforge"
+		if addon.db.realm.notifyReforge == true then
+			auditorCN_open = true
+			auditorCN_gain = 0
+			auditorCN_spend = 0
+			auditorCN_mode = L.Reforge
+		end
 	elseif event == "TRADE_CLOSE" or event == "BANKFRAME_CLOSED" then
 		auditorMode = ""
 	elseif event == "MAIL_SHOW" then
@@ -375,6 +417,8 @@ f:SetScript("OnEvent", function(self, event, arg1, arg2)
 		end
 	elseif event == "CONFIRM_TALENT_WIPE" then
 		auditorMode = "train"
+	elseif event == "LFG_COMPLETION_REWARD" then
+		auditorMode = "lfg"
 	else
 	end
 end)
@@ -447,6 +491,37 @@ function addon:NewCharDB(arg)
 	end
 	if not addon.db.realm[arg].guildRepairsTally then -- Guild repairs tally
 		addon.db.realm[arg].guildRepairsTally = 0
+	end
+end
+
+function addon:UpgradeCategories()
+	for charParse,_ in pairs (addon.db.realm.chars) do
+		for _,logmode in pairs(auditorLogMode) do -- If I've added a new category
+			if not addon.db.realm[charParse].data[logmode] then
+				addon.db.realm[charParse].data[logmode] = {}
+				for _,timeframe in pairs(auditorTimeframe) do
+					addon.db.realm[charParse].data[logmode][timeframe] = {incomings = 0, outgoings = 0}
+				end
+			end
+		end
+		
+		if not addon.db.realm[charParse].historical then -- Historical
+			addon.db.realm[charParse].historical = {}
+			for _,hday in pairs(auditorHDay) do
+				addon.db.realm[charParse].historical[hday] = {}
+				for _,logmode in pairs(auditorLogMode) do
+					addon.db.realm[charParse].historical[hday][logmode] = {incomings = 0, outgoings = 0}
+				end
+			end
+		else
+			for _,hday in pairs(auditorHDay) do
+				for _,logmode in pairs(auditorLogMode) do
+					if not addon.db.realm[charParse].historical[hday][logmode] then
+						addon.db.realm[charParse].historical[hday][logmode] = {incomings = 0, outgoings = 0}
+					end
+				end
+			end
+		end
 	end
 end
 

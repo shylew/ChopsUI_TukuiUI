@@ -34,7 +34,7 @@ local barCashStyles = {
 }
 
 local auditorHDay = { "6days", "5days", "4days", "3days", "2days", "1days", "0days" }
-local auditorLogMode = { "loot", "merch", "quest", "trade", "mail", "ah", "train", "taxi", "repairs", "other", "reconciliation", "guildbank" }
+local auditorLogMode = { "loot", "merch", "quest", "trade", "mail", "ah", "train", "taxi", "repairs", "other", "reconciliation", "guildbank", "reforge", "guildcontrib", "lfg" }
 local auditorTimeframe = { "session", "day", "week", "total" }
 local cashIn, cashOut, names = {}, {}, {}
 local allTotal, netIn, netOut, netTotal, charCount, subHolder, sessionHours, realmWealth, sessionProfit, text, total
@@ -583,7 +583,9 @@ function addon:UpdateBrokerText()
 		end
 		if profile.hideNetTotal == false then
 			for i = 1, #auditorLogMode do
-				sessionProfit = sessionProfit + Auditor.db.realm[auditorPlayer].data[auditorLogMode[i]].session.incomings - Auditor.db.realm[auditorPlayer].data[auditorLogMode[i]].session.outgoings
+				if auditorLogMode[i] ~= "guildcontrib" then
+					sessionProfit = sessionProfit + Auditor.db.realm[auditorPlayer].data[auditorLogMode[i]].session.incomings - Auditor.db.realm[auditorPlayer].data[auditorLogMode[i]].session.outgoings
+				end	
 			end
 			if sessionProfit > 0 then
 				sessionProfit = Auditor:MoneyStyle(sessionProfit, true, true)
@@ -633,9 +635,11 @@ function addon:ShowTooltip()
 							if not cashIn[i] then cashIn[i], cashOut[i] = 0, 0 end
 							cashIn[i] = cashIn[i] + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings
 							cashOut[i] = cashOut[i] + Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
-							netIn = netIn + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings
-							netOut = netOut + Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
-							netTotal = netTotal + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings - Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
+							if auditorLogMode[i] ~= "guildcontrib" then
+								netIn = netIn + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings
+								netOut = netOut + Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
+								netTotal = netTotal + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings - Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
+							end	
 						end
 						charCount = charCount + 1
 					end
@@ -648,9 +652,11 @@ function addon:ShowTooltip()
 						if not cashIn[i] then cashIn[i], cashOut[i] = 0, 0 end
 						cashIn[i] = cashIn[i] + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings
 						cashOut[i] = cashOut[i] + Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
-						netIn = netIn + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings
-						netOut = netOut + Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
-						netTotal = netTotal + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings - Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
+						if auditorLogMode[i] ~= "guildcontrib" then
+							netIn = netIn + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings
+							netOut = netOut + Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
+							netTotal = netTotal + Auditor.db.realm[name].data[auditorLogMode[i]][style].incomings - Auditor.db.realm[name].data[auditorLogMode[i]][style].outgoings
+						end
 					end
 					charCount = charCount + 1
 				end
@@ -660,9 +666,11 @@ function addon:ShowTooltip()
 		for i = 1, #auditorLogMode do
 			cashIn[i] = Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].incomings
 			cashOut[i] = Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].outgoings
-			netIn = netIn + Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].incomings
-			netOut = netOut + Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].outgoings
-			netTotal = netTotal + Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].incomings - Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].outgoings
+			if auditorLogMode[i] ~= "guildcontrib" then
+				netIn = netIn + Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].incomings
+				netOut = netOut + Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].outgoings
+				netTotal = netTotal + Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].incomings - Auditor.db.realm[auditorFocus].data[auditorLogMode[i]][style].outgoings
+			end
 		end
 	end
 
