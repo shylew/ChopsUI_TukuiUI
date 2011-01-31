@@ -1,4 +1,4 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs", "enUS", true, true)
+local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs", "enUS", true, "raw")
 
 -- Core.lua
 L["%s has been defeated"] = true
@@ -25,6 +25,8 @@ L["There are people in your group with older versions or without Big Wigs. You c
 L["Up to date:"] = true
 L["Out of date:"] = true
 L["No Big Wigs 3.x:"] = true
+
+L.coreAddonDisabled = "Big Wigs won't function properly since the addon %s is disabled. You can enable it from the addon control panel at the character selection screen."
 
 -- Options.lua
 L["Big Wigs Encounters"] = true
@@ -76,6 +78,8 @@ L["WHISPER_desc"] = "Some effects are important enough that Big Wigs will send a
 L["SAY_desc"] = "Chat bubbles are easy to spot. Big Wigs will use a say message to announce people nearby about an effect on you."
 L["PING_desc"] = "Sometimes locations can be important, Big Wigs will ping the minimap so people know where you are."
 L["EMPHASIZE_desc"] = "Enabling this will SUPER EMPHASIZE any messages or bars associated with this encounter ability. Messages will be bigger, bars will flash and have a different color, sounds will be used to count down when the ability is imminent. Basically you will notice it."
+L["PROXIMITY"] = "Proximity display"
+L["PROXIMITY_desc"] = "Abilities will sometimes require you to spread out. The proximity display will be set up specifically for this ability so that you will be able to tell at-a-glance whether or not you are safe."
 L["Advanced options"] = true
 L["<< Back"] = true
 

@@ -6,6 +6,10 @@ if not L then return end
 -- Bars.lua
 --
 
+L["Style"] = "모양"
+L.bigWigsBarStyleName_Default = "기본값"
+L.bigWigsBarStyleName_BeautyCase = "Beauty Case"
+
 L["Clickable Bars"] = "클릭이 가능한 바"
 L.clickableBarsDesc = "Big Wigs 바에 클릭을 통해 기본적인 기능을 가지게 합니다. |cffff4411만약 당신이 클릭이가 능한 바를 사용할경우에는\n Big Wigs를 통해 생성된 바에서는 대상 지정, 카메라 시점등의 불편함도 생길수 있으니 유의하시기 바랍니다.\n바의 위에서는 클릭이 가능한 바의 기능이 사용되기 때문입니다."
 L["Enables bars to receive mouse clicks."] = "바에 마우스 클릭으로 나타내기를 활성화합니다."
@@ -46,6 +50,10 @@ L["Whether to show or hide the time left on the bars."] = "바의 우측에 시�
 L["Icon"] = "아이콘"
 L["Shows or hides the bar icons."] = "바 아이콘을 숨기거나 표시합니다."
 L["Font"] = "글꼴"
+L["Restart"] = "재시작"
+L["Restarts emphasized bars so they start from the beginning and count from 10."] = "이전의 시간을 그대로 적용하지않고 새롭게 10초부터 특수강조바를 생성합니다."
+L["Fill"] = "채우기"
+L["Fills the bars up instead of draining them."] = "바를 채우기로 표시합니다."
 
 L["Local"] = "로컬"
 L["%s: Timer [%s] finished."] = "%s: [%s] 타이머가 종료되었습니다."
@@ -151,6 +159,8 @@ L["Default only"] = "기본음"
 -- Proximity.lua
 --
 
+L["|T%s:20:20:-5|tAbility name"] = "|T%s:20:20:-5|t스킬 이름"
+L["Custom range indicator"] = "사용자 거리 지시기"
 L["%d yards"] = "%d 미터"
 L["Proximity"] = "근접"
 L["Sound"] = "효과음"
@@ -176,6 +186,10 @@ L["Shows or hides the sound button."] = "소리 버튼을 표시하거나 숨깁
 L["Close button"] = "닫기 버튼"
 L["Shows or hides the close button."] = "닫기 버튼을 표시하거나 숨깁니다."
 L["Show/hide"] = "표시/숨김"
+L["Ability name"] = "스킬 이름"
+L["Shows or hides the ability name above the window."] = "스킬의 이름을 창위에 표시하거나 숨깁니다."
+L["Tooltip"] = "툴팁"
+L["Shows or hides a spell tooltip if the Proximity display is currently tied directly to a boss encounter ability."] = "현재 보스 스킬에 직접 연결되어 자동으로 뜨는 근접 표시창에 대해 커서를 올릴시 툴팁을 표시하거나 숨깁니다."
 
 -----------------------------------------------------------------------
 -- Tips.lua

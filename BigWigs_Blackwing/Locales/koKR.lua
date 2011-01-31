@@ -15,9 +15,12 @@ end
 L = BigWigs:NewBossLocale("Chimaeron", "koKR")
 if L then
 	L.bileotron_engage = "담즙로봇이 움직이기 시작하더니 고약한 냄새가 나는 물질을 방출합니다."
+	L.win_trigger = "A shame to lose that experiment..."	--check
 
-	L.next_system_failure = "다음 시스템 오류"
+	L.next_system_failure = "~다음 시스템 오류"
 	L.break_message = "깨부수기 x%2$d : %1$s"
+	
+	L.phase2_message = "곧 치명상 단계!"
 
 	L.warmup = "전투 준비"
 	L.warmup_desc = "전투가 시작되기까지의 시간입니다."
@@ -25,41 +28,57 @@ end
 
 L = BigWigs:NewBossLocale("Magmaw", "koKR")
 if L then
-	L.inferno = (GetSpellInfo(92191))
+	-- heroic
+	L.inferno = "이글거리는 지옥불"
 	L.inferno_desc = "이글거리는 지옥불 소환을 알립니다."
+	
+	L.phase2 = "2 단계"
+	L.phase2_desc = "2 단계 알림과 근접창 체크를 표시합니다."
+	L.phase2_message = "2 단계!"
+	L.phase2_yell = "이런 곤란한 데가! 이러다간 내 용암"	--check
+	
+	-- normal
 
 	L.pillar_of_flame_cd = "~불꽃 기둥 대기시간"
+	
+	L.blazing_message = "해골 추가!"
+	L.blazing_bar = "다음 해골"
 
-	L.slump = "슬럼프"
+	L.slump = "슬럼프 (로데오)"
 	L.slump_desc = "슬럼프 상태를 알립니다."
 
-	L.slump_trigger = "%s|1이;가; 창에 꽂혀 머리가 노출되었습니다!"
+	L.slump_bar = "다음 슬럼프"
+	L.slump_message = "올라타세요~!"
+	L.slump_trigger = "%s|1이;가; 집게를 드러내며 앞으로 몸을 기울입니다!"
+	
+	L.infection_message = "당신은 기생 감염!"
 
-	L.expose_trigger = "head"
-	L.expose_message = "Head Explosed!"
+	L.expose_trigger = "%s|1이;가; 창에 꽂혀 머리가 노출되었습니다!"
+	L.expose_message = "머리 노출!"
 end
 
 L = BigWigs:NewBossLocale("Maloriak", "koKR")
 if L then
 	--heroic
-	L.darkSludge = (GetSpellInfo(92987))
-	L.darkSludge_desc = ("%s 에 서있다면 알립니다."):format((GetSpellInfo(92987)))
+	L.sludge = "어둠의 폐수"
+	L.sludge_desc = "어둠의 폐수에 서있을시 알립니다."
+	L.sludge_message = "당신은 폐수!"
 
 	--normal
 	L.final_phase = "마지막 단계"
 
-	L.release_aberration_message = "돌연변이 %s 남음"
-	L.release_all = "모든 실험체 %s!"
+	L.release_aberration_message = "돌연변이 %d 남음"
+	L.release_all = "모든 실험체 %d!"
 
 	L.bitingchill_say = "나에게 살을 에는 추위!"
 
 	L.flashfreeze = "~순간 빙결"
+	L.next_blast = "~맹렬한 폭발"
 
 	L.phase = "단계"
 	L.phase_desc = "단계 변화를 알립니다."
 	L.next_phase = "다음 단계"
-
-	L.you = "당신은 %s!"
+	L.green_phase_bar = "녹색 단계"
 
 	L.red_phase_trigger = "섞고 흔들어서, 열을 가한다..."
 	L.red_phase = "|cFFFF0000붉은|r 단계"
@@ -79,8 +98,11 @@ if L then
 	L.phase_two_trigger = "저주받을 필멸자들!"	--check
 
 	L.phase_three_trigger = "품위있는"	--check
+	
+	L.crackle_trigger = "전기가"	--check
+	L.crackle_message = "곧 감전!"
 
-	L.shadowblaze_trigger = "살을 재로"	--check
+	L.onyxia_power_message = "곧 폭발!"
 
 	L.cinder_say = "나에게 폭발하는 잿더미!"
 
@@ -93,21 +115,22 @@ if L then
 	L.nef_desc = "군주 빅터 네파리우스의 기술을 알립니다."
 	L.switch = "전환"
 	L.switch_desc = "전환을 알립니다."
-	L.switch_message = "전환 - %s %s"
+	L.switch_message = "%s %s"
 
-	L.next_switch = "다음 전환"
+	L.next_switch = "다음 활성화"
 
-	L.nef_trigger1 = "Were you planning on using Toxitron's chemicals to damage the other constructs? Clever plan, let me ruin that for you."	--check
-	L.nef_trigger2 = "Stupid Dwarves and your fascination with runes! Why would you create something that would help your enemy?"	--check
+	L.nef_trigger1 = "맹독골렘의 화학 물질로 다른 골렘에 피해를 줄 생각이었겠지? 영리한 계획이다만, 그렇게 둘 수는 없지."
+	L.nef_trigger2 = "멍청한 드워프 놈들은 왜 그렇게 룬을 좋아하는지! 적을 도울 수도 있는 걸 도대체 왜 만들었는지 모르겠군."
 
-	L.nef_next = "~Next ability buff"
+	L.nef_next = "~다음 기술 버프"
 
 	L.acquiring_target = "대상 획득"
 
+	L.cloud_say = "나에게 화학 구름!"
 	L.cloud_message = "당신은 화학 구름!"
-	L.protocol_message = "Poison Bombs!"
+	L.protocol_message = "독 폭탄!"
 
-	L.iconomnotron = "Icon on active boss"
-	L.iconomnotron_desc = "Place the primary raid icon on the active boss (requires promoted or leader)."
+	L.iconomnotron = "활성화 보스 전술"
+	L.iconomnotron_desc = "활성화된 보스에 공격대 전술을 지정합니다. (공격대장이나 승급된 사람만이 가능합니다)."
 end
 

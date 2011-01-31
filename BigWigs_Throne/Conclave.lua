@@ -5,19 +5,14 @@
 local mod = BigWigs:NewBoss("Conclave of Wind", "Throne of the Four Winds")
 if not mod then return end
 mod:RegisterEnableMob(45870, 45871, 45872) -- Anshal, Nezir, Rohash
-mod.toggleOptions = {86193, "storm_shield", {84645, "FLASHSHAKE"}, 85422, 86307, "full_power", "berserk", "bosskill"}
-mod.optionHeaders = {
-	[86193] = "Rohash",
-	[84645] = "Nezir",
-	[85422] = "Anshal",
-	[86307] = "general",
-}
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local firstWindBlast = true
+local toxicSporesWarned = false
+local stormShield, nurture, windBlast, toxicSpores = GetSpellInfo(95865), GetSpellInfo(85422), GetSpellInfo(86193), GetSpellInfo(86281)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -27,20 +22,34 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.gather_strength = "%s is Gathering Strength"
 
-	L.storm_shield = GetSpellInfo(95865)
+	L.storm_shield = stormShield
 	L.storm_shield_desc = "Absorption Shield"
 
 	L.full_power = "Full Power"
 	L.full_power_desc = "Warning for when the bosses reach full power and start to cast the special abilities."
 	L.gather_strength_emote = "%s begins to gather strength from the remaining Wind Lords!"
 
-	L.wind_chill = "YOU have %s stacks of Wind Chill"
+	L.wind_chill = "%sx Wind Chill on YOU!"
 end
 L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:GetOptions()
+	return {
+		86193, "storm_shield",
+		{84645, "FLASHSHAKE"},
+		85422, 86281,
+		86307, "full_power", "berserk", "bosskill"
+	}, {
+		[86193] = "Rohash",
+		[84645] = "Nezir",
+		[85422] = "Anshal",
+		[86307] = "general",
+	}
+end
 
 function mod:OnBossEnable()
 
@@ -61,6 +70,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "WindChill", 84645)
 
 	self:Log("SPELL_CAST_SUCCESS", "Nurture", 85422)
+	self:Log("SPELL_AURA_APPLIED", "ToxicSpores", 86281)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -69,14 +79,13 @@ end
 
 
 function mod:OnEngage(diff)
-	if diff > 2 then
-		self:Berserk(480)
-	end
+	self:Berserk(480)
 	firstWindBlast = true
+	toxicSporesWarned = false
 	self:Bar("full_power", L["full_power"], 90, 86193)
-	self:Bar(85422, (GetSpellInfo(85422)), 30, 85422)
-	self:Bar(86193, (GetSpellInfo(86193)), 30, 86193)
-	self:Bar("storm_shield", (GetSpellInfo(95865)), 30, 95865)
+	self:Bar(85422, nurture, 30, 85422)
+	self:Bar(86193, windBlast, 30, 86193)
+	self:Bar("storm_shield", stormShield, 30, 95865)
 end
 
 --------------------------------------------------------------------------------
@@ -130,9 +139,19 @@ function mod:WindBlast(_, spellId, _, _, spellName)
 	end
 end
 
+function mod:ToxicSpores(_, spellId, _, _, spellName)
+	if not toxicSporesWarned then
+		self:Bar(86281, spellName, 20, spellId)
+		self:Message(86281, spellName, "Urgent", spellId)
+		toxicSporesWarned = true
+	end
+end
+
 function mod:Nurture(_, spellId, _, _, spellName)
 	self:Bar(85422, spellName, 113, spellId)
 	self:Message(85422, spellName, "Urgent", spellId)
+	self:Bar(86281, toxicSpores, 23, 86281)
+	toxicSporesWarned = false
 end
 
 function mod:GatherStrength(msg, sender)

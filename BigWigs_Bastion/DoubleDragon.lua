@@ -5,24 +5,17 @@
 local mod = BigWigs:NewBoss("Valiona and Theralion", "The Bastion of Twilight")
 if not mod then return end
 mod:RegisterEnableMob(45992, 45993)
-mod.toggleOptions = {93051, {86788, "ICON", "FLASHSHAKE", "WHISPER"}, {88518, "FLASHSHAKE"}, 86059, 86840, {86622, "ICON", "FLASHSHAKE", "WHISPER"}, "proximity", "phase_switch", "bosskill"}
-mod.optionHeaders = {
-	[93051] = "heroic",
-	[86788] = "Valiona",
-	[86622] = "Theralion",
-	proximity = "general",
-}
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local lastDestruction = 0
-local marked = GetSpellInfo(88518)
+local phaseCount = 0
+local marked, blackout, deepBreath = GetSpellInfo(88518), GetSpellInfo(86788), GetSpellInfo(86059)
 local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-local Theralion, Valiona = BigWigs:Translate("Theralion"), BigWigs:Translate("Valiona")
+local theralion, valiona = BigWigs:Translate("Theralion"), BigWigs:Translate("Valiona")
+local emTargets = mod:NewTargetList()
 local markWarned = false
-local count = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -31,22 +24,41 @@ local count = 0
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.phase_switch = "Phase Switch"
-	L.phase_switch_desc = "Warning for Phase Switches"
+	L.phase_switch_desc = "Warning for phase switches."
 
-	L.engulfingmagic_say = "Engulfing Magic on ME!"
+	L.phase_bar = "%s landing"
+	L.breath_message = "Deep Breaths incoming!"
+	L.dazzling_message = "Swirly zones incoming!"
+
+	L.engulfingmagic_say = "Engulf on ME!"
 	L.engulfingmagic_cooldown = "~Engulfing Magic"
 
 	L.devouringflames_cooldown = "~Devouring Flames"
 
 	L.valiona_trigger = "Theralion, I will engulf the hallway. Cover their escape!"
+	L.win_trigger = "At least... Theralion dies with me..."
 
-	L.twilight_shift = "%2$dx Twilight Shift on %1$s"
+	L.twilight_shift = "%2$dx shift on %1$s"
 end
 L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
+
+function mod:GetOptions(CL)
+	return {
+		{86788, "ICON", "FLASHSHAKE", "WHISPER"}, {88518, "FLASHSHAKE"}, 86059, 86840,
+		{86622, "FLASHSHAKE", "SAY", "WHISPER"}, 86408,
+		93051,
+		"proximity", "phase_switch", "bosskill"
+	}, {
+		[86788] = "Valiona",
+		[86622] = "Theralion",
+		[93051] = "heroic",
+		proximity = "general",
+	}
+end
 
 function mod:OnBossEnable()
 	-- Heroic
@@ -55,6 +67,7 @@ function mod:OnBossEnable()
 	-- Phase Switch -- should be able to do this easier once we get Transcriptor logs
 	self:Log("SPELL_CAST_START", "DazzlingDestruction", 86408)
 	self:Yell("DeepBreath", L["valiona_trigger"])
+	self:Emote("DeepBreathCast", deepBreath)
 
 	self:Log("SPELL_AURA_APPLIED", "BlackoutApplied", 86788, 92877, 92876, 92878)
 	self:Log("SPELL_AURA_REMOVED", "BlackoutRemoved", 86788, 92877, 92876, 92878)
@@ -67,20 +80,37 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("UNIT_AURA")
 
-	self:Death("Win", 45992) -- They Share HP, they die at the same time
+	self:Death("Win", 45992, 45993)
+	self:Yell("Win", L["win_trigger"])
 end
 
 function mod:OnEngage(diff)
-	lastDestruction = 0
 	markWarned = false
 	self:Bar(86840, L["devouringflames_cooldown"], 25, 86840)
-	self:Bar(86788, (GetSpellInfo(86788)), 20, 86788)
-	self:Bar("phase_switch", Theralion, 95, 60639)
+	self:Bar(86788, blackout, 11, 86788)
+	self:Bar("phase_switch", L["phase_bar"]:format(theralion), 103, 60639)
+	self:OpenProximity(8)
+	phaseCount = 0
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+local function valionaHasLanded()
+	mod:SendMessage("BigWigs_StopBar", mod, L["engulfingmagic_cooldown"])
+	mod:Message("phase_switch", L["phase_bar"]:format(valiona), "Positive", 60639)
+	mod:Bar(86840, L["devouringflames_cooldown"], 26, 86840)
+	mod:Bar(86788, blackout, 11, 86788)
+	mod:OpenProximity(8)
+end
+
+local function theralionHasLanded()
+	mod:SendMessage("BigWigs_StopBar", mod, blackout)
+	mod:SendMessage("BigWigs_StopBar", mod, L["devouringflames_cooldown"])
+	mod:Bar("phase_switch", L["phase_bar"]:format(valiona), 130, 60639)
+	mod:CloseProximity()
+end
 
 function mod:TwilightShift(player, spellId, _, _, spellName, stack)
 	self:Bar(93051, spellName, 20, 93051)
@@ -89,32 +119,43 @@ function mod:TwilightShift(player, spellId, _, _, spellName, stack)
 	end
 end
 
+-- When Theralion is landing he casts DD 3 times, with a 5 second interval.
 function mod:DazzlingDestruction()
-	if (GetTime() - lastDestruction) > 6 then
-		self:SendMessage("BigWigs_StopBar", self, (GetSpellInfo(86788)))
-		self:SendMessage("BigWigs_StopBar", self, L["devouringflames_cooldown"])
-		self:Bar("phase_switch", Valiona, 113, 60639)
+	phaseCount = phaseCount + 1
+	if phaseCount == 1 then
+		self:Message(86408, L["dazzling_message"], "Important", 86408, "Alarm")
+	elseif phaseCount == 3 then
+		self:ScheduleTimer(theralionHasLanded, 5)
+		self:Message("phase_switch", L["phase_bar"]:format(theralion), "Positive", 60639)
+		phaseCount = 0
 	end
-	lastDestruction = GetTime()
-	count = 0
-	self:Bar(86059, (GetSpellInfo(86059)), 110, 92194)	-- looks like a dragon 'deep breath' :)
 end
 
+-- She emotes 3 times, every time she does a breath
+function mod:DeepBreathCast()
+	phaseCount = phaseCount + 1
+	self:Message(86059, L["breath_message"], "Important", 92194, "Alarm")
+	if phaseCount == 3 then
+		self:Bar("phase_switch", L["phase_bar"]:format(theralion), 105, 60639)
+		phaseCount = 0
+	end
+end
+
+-- Valiona does this when she fires the first deep breath and begins the landing phase
+-- It only triggers once from her yell, not 3 times.
 function mod:DeepBreath()
-	self:Message(86059, (GetSpellInfo(86059)), "Important", 92194, "Alert")
-	self:Bar("phase_switch", Valiona, 137, 60639)
-	self:Bar(86788, (GetSpellInfo(86788)), 60, 86788) -- probably inaccurate
-	self:Bar(86840, L["devouringflames_cooldown"], 75, 86840) -- probably inaccurate
+	self:Bar("phase_switch", L["phase_bar"]:format(valiona), 40, 60639)
+	self:ScheduleTimer(valionaHasLanded, 40)
 end
 
 function mod:BlackoutApplied(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
 		self:FlashShake(86788)
 	end
-	self:TargetMessage(86788, spellName, player, "Personal", spellId, "Alarm")
+	self:TargetMessage(86788, spellName, player, "Personal", spellId, "Alert")
+	self:Bar(86788, spellName, 45, spellId)
 	self:Whisper(86788, player, spellName)
 	self:PrimaryIcon(86788, player)
-	self:Bar(86788, spellName, 45, 86788)
 	self:CloseProximity()
 end
 
@@ -128,13 +169,11 @@ local function markRemoved()
 end
 
 function mod:UNIT_AURA(event, unit)
-	if unit == "player" then
-		if UnitDebuff("player", marked) and not markWarned then
-			self:FlashShake(88518)
-			self:LocalMessage(88518, CL["you"]:format(marked), "Personal", 88518, "Alarm")
-			markWarned = true
-			self:ScheduleTimer(markRemoved, 7)
-		end
+	if unit == "player" and not markWarned and UnitDebuff("player", marked) then
+		self:FlashShake(88518)
+		self:LocalMessage(88518, CL["you"]:format(marked), "Personal", 88518, "Long")
+		markWarned = true
+		self:ScheduleTimer(markRemoved, 7)
 	end
 end
 
@@ -143,18 +182,25 @@ function mod:DevouringFlames(_, spellId, _, _, spellName)
 	self:Message(86840, spellName, "Important", spellId, "Alert")
 end
 
-function mod:EngulfingMagicApplied(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:Say(86622, L["engulfingmagic_say"])
-		self:FlashShake(86622)
-		self:OpenProximity(10)
+do
+	local scheduled = nil
+	local function emWarn(spellName)
+		mod:TargetMessage(86622, spellName, emTargets, "Personal", 86622, "Alarm")
+		mod:Bar(86622, L["engulfingmagic_cooldown"], 37, 86622)
+		scheduled = nil
 	end
-	self:TargetMessage(86622, spellName, player, "Personal", spellId, "Alarm")
-	self:Whisper(86622, player, spellName)
-	self:PrimaryIcon(86622, player)
-	count = count + 1
-	if count < 4 then
-		self:Bar(86622, L["engulfingmagic_cooldown"], 37, 86622)
+	function mod:EngulfingMagicApplied(player, spellId, _, _, spellName)
+		if UnitIsUnit(player, "player") then
+			self:Say(86622, L["engulfingmagic_say"])
+			self:FlashShake(86622)
+			self:OpenProximity(10)
+		end
+		emTargets[#emTargets + 1] = player
+		if not scheduled then
+			scheduled = true
+			self:ScheduleTimer(emWarn, 0.3, spellName)
+		end
+		self:Whisper(86622, player, spellName)
 	end
 end
 

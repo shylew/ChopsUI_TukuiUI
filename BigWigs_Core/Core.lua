@@ -12,6 +12,7 @@ local GetSpellInfo = GetSpellInfo
 local C -- = BigWigs.C, set from Constants.lua
 local AL = LibStub("AceLocale-3.0")
 local L = AL:GetLocale("Big Wigs")
+local CL = AL:GetLocale("Big Wigs: Common")
 
 local customBossOptions = {}
 local pName = UnitName("player")
@@ -66,53 +67,50 @@ local function chatMsgMonsterYell(event, msg, source)
 	end
 end
 local function updateMouseover() targetCheck("mouseover") end
-local function targetChanged() targetCheck("target") end
 local function unitTargetChanged(event, target)
 	targetCheck(target .. "target")
 end
 
 local function zoneChanged()
+	if not IsInInstance() then
+		for _, module in addon:IterateBossModules() do
+			if module.isEngaged then module:Reboot() end
+		end
+	end
 	if enablezones[GetRealZoneText()] or enablezones[GetSubZoneText()] or enablezones[GetZoneText()] then
 		if not monitoring then
 			monitoring = true
 			addon:RegisterEvent("CHAT_MSG_MONSTER_YELL", chatMsgMonsterYell)
-			--addon:RegisterEvent("PLAYER_TARGET_CHANGED", targetChanged)
 			addon:RegisterEvent("UPDATE_MOUSEOVER_UNIT", updateMouseover)
 			addon:RegisterEvent("UNIT_TARGET", unitTargetChanged)
 		end
 	elseif monitoring then
 		monitoring = nil
 		addon:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
-		--addon:UnregisterEvent("PLAYER_TARGET_CHANGED")
 		addon:UnregisterEvent("UPDATE_MOUSEOVER_UNIT")
 		addon:UnregisterEvent("UNIT_TARGET")
 	end
 end
 
 do
-	local function add(moduleName, tbl, entry)
-		local t = type(tbl[entry])
-		if t == "nil" then
-			tbl[entry] = moduleName
-		elseif t == "table" then
-			tbl[entry][#tbl[entry] + 1] = moduleName
-		elseif t == "string" then
-			local tmp = tbl[entry]
-			tbl[entry] = { tmp, moduleName }
-		else
-			error("What the hell .. Unknown type in a enable trigger table.")
-		end
-	end
-	function addon:RegisterEnableMob(module, ...)
+	local function add(moduleName, tbl, ...)
 		for i = 1, select("#", ...) do
-			add(module.moduleName, enablemobs, (select(i, ...)))
+			local entry = select(i, ...)
+			local t = type(tbl[entry])
+			if t == "nil" then
+				tbl[entry] = moduleName
+			elseif t == "table" then
+				tbl[entry][#tbl[entry] + 1] = moduleName
+			elseif t == "string" then
+				local tmp = tbl[entry]
+				tbl[entry] = { tmp, moduleName }
+			else
+				error(("Unknown type in a enable trigger table at index %d for %q."):format(i, tostring(moduleName)))
+			end
 		end
 	end
-	function addon:RegisterEnableYell(module, ...)
-		for i = 1, select("#", ...) do
-			add(module.moduleName, enableyells, (select(i, ...)))
-		end
-	end
+	function addon:RegisterEnableMob(module, ...) add(module.moduleName, enablemobs, ...) end
+	function addon:RegisterEnableYell(module, ...) add(module.moduleName, enableyells, ...) end
 	function addon:GetEnableMobs() return enablemobs end
 	function addon:GetEnableYells() return enableyells end
 end
@@ -288,9 +286,11 @@ function addon:OnInitialize()
 	self.db = db
 
 	-- check for and load the babbles early if available, used for packed versions of bigwigs
-	if LOCALE ~= "enUS" and ( not BZ or not BB ) and LibStub("LibBabble-Boss-3.0", true) and LibStub("LibBabble-Zone-3.0", true) then
-		BZ = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
-		BB = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
+	if LOCALE ~= "enUS" and (not BZ or not BB) then
+		local lbb = LibStub("LibBabble-Boss-3.0", true)
+		if lbb then BB = lbb:GetUnstrictLookupTable() end
+		local lbz = LibStub("LibBabble-Zone-3.0", true)
+		if lbz then BZ = lbz:GetUnstrictLookupTable() end
 	end
 
 	self:RegisterBossOption("bosskill", L["bosskill"], L["bosskill_desc"])
@@ -317,9 +317,6 @@ function addon:OnEnable()
 	self.bossCore:Enable()
 
 	zoneChanged()
-
-	-- XXX calebv remove at will!
-	print("|cffffff00The Cataclysm encounter modules are getting better, but we could still use some Transcriptor logs. You can contact us at #bigwigs@irc.freenode.net or with the wowace ticket tracker.|r")
 end
 
 function addon:OnDisable()
@@ -329,8 +326,11 @@ function addon:OnDisable()
 	monitoring = nil
 end
 
-function addon:Print(...)
-	print("|cff33ff99BigWigs|r:", ...)
+do
+	local outputFormat = "|cffffff00%s|r"
+	function addon:Print(msg)
+		print(outputFormat:format(msg))
+	end
 end
 
 -------------------------------------------------------------------------------
@@ -395,61 +395,65 @@ do
 	function addon:IteratePlugins() return self.pluginCore:IterateModules() end
 	function addon:GetPlugin(...) return self.pluginCore:GetModule(...) end
 
-	local function register(module)
+	local defaultToggles = nil
+
+	local function setupOptions(module)
 		if not C then C = addon.C end
-		if not addon.defaultToggles then
-			addon.defaultToggles = setmetatable({
+		if not defaultToggles then
+			defaultToggles = setmetatable({
 				berserk = C.BAR + C.MESSAGE,
 				bosskill = C.MESSAGE,
-				proximity = C.PROXIMITY
+				proximity = C.PROXIMITY,
 			}, {__index = function(self, key)
-				if not rawget(self, key) then
-					return C.BAR + C.MESSAGE
-				end
-			end })
+				return C.BAR + C.MESSAGE
+			end})
 		end
 
 		if module.optionHeaders then
-			local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 			for k, v in pairs(module.optionHeaders) do
 				if type(v) == "string" then
-					if CL[v] then
-						module.optionHeaders[k] = CL[v]
-					elseif LOCALE ~= "enUS" and BB and BZ then
+					if LOCALE ~= "enUS" and BB and BB[v] then
 						module.optionHeaders[k] = BB[v]
+					elseif CL[v] then
+						module.optionHeaders[k] = CL[v]
 					end
+				elseif type(v) == "number" then
+					module.optionHeaders[k] = GetSpellInfo(v)
 				end
 			end
 		end
+
 		if module.toggleOptions then
 			module.toggleDefaults = {}
-			local bf
 			for k, v in next, module.toggleOptions do
-				bf = 0
+				local bitflags = 0
 				local t = type(v)
 				if t == "table" then
-					for i=2,#v,1 do
-						if C[v[i]] and v[i] ~= "EMPHASIZE" then
-							bf = bf + C[v[i]]
+					for i = 2, #v do
+						local flagName = v[i]
+						if C[flagName] and flagName ~= "EMPHASIZE" then
+							bitflags = bitflags + C[flagName]
 						else
-							error(("%q tried to register '%q' as a bitflag for toggleoption '%q'"):format(module.moduleName, v[1], v[i]))
+							error(("%q tried to register '%q' as a bitflag for toggleoption '%q'"):format(module.moduleName, flagName, v[1]))
 						end
 					end
 					v = v[1]
 					t = type(v)
 				end
-				-- mix in default toggles for keys we know this allows for mod.toggleOptions = {1234, {"bosskill", "bar"}} while bosskill usually only has message
-				for n, b in pairs(C) do
-					if bit.band(addon.defaultToggles[v], b) == b and bit.band(bf, b) ~= b then
-						bf = bf + b
+				-- mix in default toggles for keys we know
+				-- this allows for mod.toggleOptions = {1234, {"bosskill", "bar"}}
+				-- while bosskill usually only has message
+				for _, b in pairs(C) do
+					if bit.band(defaultToggles[v], b) == b and bit.band(bitflags, b) ~= b then
+						bitflags = bitflags + b
 					end
 				end
-				if t == "string"  then
-					module.toggleDefaults[v] = bf
+				if t == "string" then
+					module.toggleDefaults[v] = bitflags
 				elseif t == "number" and v > 1 then
 					local n = GetSpellInfo(v)
 					if not n then error(("Invalid spell ID %d in the toggleOptions for module %s."):format(v, module.name)) end
-					module.toggleDefaults[n] = bf
+					module.toggleDefaults[n] = bitflags
 				end
 			end
 			module.db = addon.db:RegisterNamespace(module.name, { profile = module.toggleDefaults })
@@ -458,18 +462,31 @@ do
 
 	function addon:RegisterBossModule(module)
 		if not module.displayName then module.displayName = module.moduleName end
-		if LOCALE ~= "enUS" and BB and BZ then
-			module.zoneName = BZ[module.zoneName] or module.zoneName
-			if module.otherMenu then
-				module.otherMenu = BZ[module.otherMenu]
+		if LOCALE ~= "enUS" then
+			if BZ then
+				module.zoneName = BZ[module.zoneName] or module.zoneName
+				if module.otherMenu then
+					module.otherMenu = BZ[module.otherMenu]
+				end
 			end
-			if module.displayName and BB[module.displayName] then
-				module.displayName = BB[module.displayName]
+			if BB then
+				if module.displayName and BB[module.displayName] then
+					module.displayName = BB[module.displayName]
+				end
 			end
 		end
 		enablezones[module.zoneName] = true
 
-		register(module)
+		module.SetupOptions = function(self)
+			if self.GetOptions then
+				local toggles, headers = self:GetOptions(CL)
+				if toggles then self.toggleOptions = toggles end
+				if headers then self.optionHeaders = headers end
+				self.GetOptions = nil
+			end
+			setupOptions(self)
+			self.SetupOptions = nil
+		end
 
 		-- Call the module's OnRegister (which is our OnInitialize replacement)
 		if type(module.OnRegister) == "function" then
@@ -483,7 +500,7 @@ do
 			module.db = self.db:RegisterNamespace(module.name, { profile = module.defaultDB } )
 		end
 
-		register(module)
+		setupOptions(module)
 
 		-- Call the module's OnRegister (which is our OnInitialize replacement)
 		if type(module.OnRegister) == "function" then
@@ -516,3 +533,4 @@ function pluginCore:OnEnable()
 		mod:Enable()
 	end
 end
+

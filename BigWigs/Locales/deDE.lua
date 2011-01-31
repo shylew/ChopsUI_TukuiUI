@@ -28,11 +28,13 @@ L["Up to date:"] = "Up to date:"
 L["Out of date:"] = "Veraltet:"
 L["No Big Wigs 3.x:"] = "Kein Big Wigs 3.x:"
 
+L.coreAddonDisabled = "Big Wigs wird nicht richtig funktionieren, da das Addon %s deaktiviert ist. Du kannst es über die Addonkonfiguration im Charakterauswahlmenü aktivieren."
+
 -- Options.lua
-L["Big Wigs Encounters"] = "Big Wigs Begegnungen"
+L["Big Wigs Encounters"] = "Big Wigs Module"
 L["Customize ..."] = "Anpassen ..."
 L["Profiles"] = "Profile"
-L.introduction = "Willkommen bei Big Wigs, dort, wo die Boss-Begegnungen rumschwirren. Bitte legen Sie Ihren Sicherheitsgurt an, stellen Sie die Rückenlehne gerade und genießen Sie den Flug. Wir werden Ihnen und Ihrer Raidgruppe bei der Begegnung mit Bossen zur Hand gehen und sie Ihnen als 7-Gänge-Menü zubereiten.\n"
+L.introduction = "Willkommen bei Big Wigs, dort, wo die Bossbegegnungen rumschwirren. Bitte legen Sie Ihren Sicherheitsgurt an, stellen Sie die Rückenlehne gerade und genießen Sie den Flug. Wir werden Ihnen und Ihrer Raidgruppe bei der Begegnung mit Bossen zur Hand gehen und sie Ihnen als 7-Gänge-Menü zubereiten.\n"
 L["Configure ..."] = "Einstellungen ..."
 L.configureDesc = "Schließt das Interface-Fenster und lässt dich die Anzeigen für z.B. Leisten und Nachrichten einstellen.\n\nWenn du mehr Dinge hinter den Kulissen anpassen willst, kannst du Big Wigs im Menü links aufmachen und 'Anpassen ...' wählen."
 L["Sound"] = "Sound"
@@ -80,6 +82,8 @@ L["WHISPER_desc"] = "Manche Effekte sind wichtig genug, dass Big Wigs eine gefl�
 L["SAY_desc"] = "Chatblasen sind leicht zu sehen. Big Wigs benutzt eine /sagen-Nachricht, um Leute um dich herum auf Effekte auf dir aufmerksam zu machen."
 L["PING_desc"] = "Manchmal können bestimmte Orte wichtig sein und Big Wigs kann dann die Minimap pingen, so dass die Leute wissen, wo du bist."
 L["EMPHASIZE_desc"] = "Sobald aktiviert, werden entsprechende Nachrichten und Leisten stark HERVORGEHOBEN. Nachrichten werden größer, Leisten werden blinken und eine andere Farbe bekommen und Sounds werden als Countdown verwendet. Du wirst die Fähigkeit definitiv bemerken."
+L["PROXIMITY"] = "Näheanzeige"
+L["PROXIMITY_desc"] = "Fähigkeiten von Begegnungen erfordern manchmal, dass alle Mitspieler auseinander stehen. Die Näheanzeige wird speziell für diese Fähigkeit eingestellt, so dass du auf einen Blick siehst, ob du sicher bist oder nicht."
 L["Advanced options"] = "Erweiterte Optionen"
 L["<< Back"] = "<< Zurück"
 

@@ -1,139 +1,221 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs: Plugins", "esES")
-
 if not L then return end
+-----------------------------------------------------------------------
+-- Bars.lua
+--
 
--- Bars2.lua
+L["Clickable Bars"] = "Barras clicables"
+L.clickableBarsDesc = "Las barras de Big Wigs bars son clicables por defecto. De esta forma puedes targetear objetos o lanzar hechizos AoE detr\195\161s de ellos, cambia el \195\161ngulo de la c\195\161mara, y as\195\173 sucesivamente, mientras tu cursos est\195\161 encima de las barras. |cffff4411Si habilitas las barras clicables, esto dejar\195\161 de funcionar.|r Las barras interceptar\195\161n cualquier clic de rat\195\179n que hagas en ellas.\n"
+L["Enables bars to receive mouse clicks."] = "Activa las barras para recivir clics de rat\195\179n"
+L["Modifier"] = "Modificador"
+L["Hold down the selected modifier key to enable click actions on the timer bars."] = "Presiona la tecla de modificador elegido para activar acciones de clics en los tiempos de las barras."
+L["Only with modifier key"] = "Solo con una tecla de modificador"
+L["Allows bars to be click-through unless the specified modifier key is held down, at which point the mouse actions described below will be available."] = "Permite a las barras que sean clicables en el caso de que est\195\169 presionada la tecla modificadora, en este punto las acciones de rat\195\179n describir\195\161n justo debajo si estar\195\161n disponibles."
 
-L["%s: Timer [%s] finished."] = "%s: Temporizador [%s] finalizado"
-L["Invalid time (|cffff0000%q|r) or missing bar text in a custom bar started by |cffd9d919%s|r. <time> can be either a number in seconds, a M:S pair, or Mm. For example 5, 1:20 or 2m."] = "Tiempo inv\195\161lido (|cffff0000%q|r) o texto de barra ausente en una barra personal iniciada por |cffd9d919%s|r. <tiempo> puede ser un n\195\186mero en segundos, una pareja M:S, o Mm. Por ejemplo 5, 1:20 or 2m."
+L["Temporarily Super Emphasizes the bar and any messages associated with it for the duration."] = "Temporalmente Super Enfatiza la barra y los mensajes asociados para la duraci\195\179n."
+L["Report"] = "Reportar"
+L["Reports the current bars status to the active group chat; either battleground, raid, party or guild, as appropriate."] = "Reporta el estado de las barras actuales al chat del grupo activo; bg, raid, grupo o hermandad, el m\195\161s apropiado."
+L["Remove"] = "Quitar"
+L["Temporarily removes the bar and all associated messages."] = "Temporalmente quita la barra y los mensajes asociados"
+L["Remove other"] = "Quitar otro"
+L["Temporarily removes all other bars (except this one) and associated messages."] = "Temporalmente quita todas las barras (excepto esta) y los mensajes asociados."
+L["Disable"] = "Desactivar"
+L["Permanently disables the boss encounter ability option that spawned this bar."] = "Desactiva permanentemente la habilidad del encuentro para que no de opci\195\179n a que reaparezca esta barra"
 
+L["Scale"] = "Escala"
+L["Grow upwards"] = "Crecer ascendente"
+L["Toggle bars grow upwards/downwards from anchor."] = "Alterna entre crecer las barras ascendente/descendente desde el anclaje."
+L["Texture"] = "Textura"
+L["Emphasize"] = "Enfatizar"
+L["Enable"] = "Permitir"
+L["Move"] = "Mover"
+L["Moves emphasized bars to the Emphasize anchor. If this option is off, emphasized bars will simply change scale and color, and maybe start flashing."] = "Mueve las barras enfatizadas al anclaje de Enfatizar. Si esta opcion esta apagada, las barras enfatizadas simplemente cambiar\195\161n el color y la escala, y puede que empiecen a flashear."
+L["Flash"] = "Flash"
+L["Flashes the background of emphasized bars, which could make it easier for you to spot them."] = "Flashea el fondo de la barra enfatizada, haciendola m\195\161s facil de ver"
+L["Regular bars"] = "Barras regulares"
+L["Emphasized bars"] = "Barras emfatizadas"
+L["Align"] = "Alineaci\195\179n"
+L["Left"] = "Izquierda"
+L["Center"] = "Centro"
+L["Right"] = "Derecha"
+L["Time"] = "Tiempo"
+L["Whether to show or hide the time left on the bars."] = "Oculta o muestra el tiempo restante en las barras."
+L["Icon"] = "Icono"
+L["Shows or hides the bar icons."] = "Muestra u oculta los iconos de las barras."
+L["Font"] = "Fuente"
+L["Restart"] = "Reiniciar"
+L["Restarts emphasized bars so they start from the beginning and count from 10."] = "Reinicia las barras enfatizadas para que empiecen desde el principio y el recuento desde 10."
+L["Fill"] = "Llenar"
+L["Fills the bars up instead of draining them."] = "Llena las barras o las drena."
 
+L["Local"] = "Local"
+L["%s: Timer [%s] finished."] = "%s: Contador [%s] terminado."
+L["Invalid time (|cffff0000%q|r) or missing bar text in a custom bar started by |cffd9d919%s|r. <time> can be either a number in seconds, a M:S pair, or Mm. For example 5, 1:20 or 2m."] = true
+
+-----------------------------------------------------------------------
 -- Colors.lua
+--
+
 L["Colors"] = "Colores"
 
 L["Messages"] = "Mensajes"
 L["Bars"] = "Barras"
-L["Short"] = "Cortas"
-L["Long"] = "Largas"
-L["Short bars"] = "Barras cortas"
-L["Long bars"] = "Barras largas"
-L["Color "] = "Color"
-L["Number of colors"] = "Número de colores"
 L["Background"] = "Fondo"
 L["Text"] = "Texto"
+L["Flash and shake"] = "Flash y temblar"
+L["Normal"] = "Normal"
+L["Emphasized"] = "Enfatizado"
+
 L["Reset"] = "Reiniciar"
-
-L["Bar"] = "Barra"
-L["Change the normal bar color."] = "Cambia el color de la barra normal"
-L["Emphasized bar"] = "Barra enfatizada"
-L["Change the emphasized bar color."] = "Cambia el color de la barra enfatizada"
-
-L["Colors of messages and bars."] = "Color de los mensajes y barras"
-L["Change the color for %q messages."] = "Cambia el color para %q mensajes"
-L["Change the %s color."] = "Cambia el %s color"
-L["Change the bar background color."] = "Cambia el color de fondo de la barra"
-L["Change the bar text color."] = "Cambia el color del texto de la barra"
-L["Resets all colors to defaults."] = "Reinicia todos los colores a los valores por defecto"
+L["Resets the above colors to their defaults."] = "Reinicia los colores por defecto"
+L["Reset all"] = "Resetear todo"
+L["If you've customized colors for any boss encounter settings, this button will reset ALL of them so the colors defined here will be used instead."] = "Si has personallizado los colores y los ajustes de algun encuentro de jefe, este bot\195\179n seiniciar\195\161 TODO y se usar\195\161n los colores por defecto."
 
 L["Important"] = "Importante"
 L["Personal"] = "Personal"
 L["Urgent"] = "Urgente"
-L["Attention"] = "Atención"
+L["Attention"] = "Atenci\195\179n"
 L["Positive"] = "Positivo"
-L["Bosskill"] = "Muerte de Jefe"
-L["Core"] = "Núcleo"
-	
+
+-----------------------------------------------------------------------
 -- Messages.lua
+--
+
+L.sinkDescription = "Route output from this addon through the Big Wigs message display. This display supports icons, colors and can show up to 4 messages on the screen at a time. Newly inserted messages will grow in size and shrink again quickly to notify the user."
+L.emphasizedSinkDescription = "Route output from this addon through the Big Wigs Emphasized message display. This display supports text and colors, and can only show one message at a time."
+
 L["Messages"] = "Mensajes"
-L["Options for message display."] = "Opciones para mostrar mensajes."
-
-L["BigWigs Anchor"] = "Ancla de BigWigs"
-L["Output Settings"] = "Parámetros de salida"
-
-L["Show anchor"] = "Mostrar ancla"
-L["Show the message anchor frame.\n\nNote that the anchor is only usable if you select 'BigWigs' as Output."] = "Mostrar la ventana del ancla de los mensajes.\n\nLa ventana de ancla es utilizable solo si seleccionas BigWigs como salida."
+L["Normal messages"] = "Mensajes normales"
+L["Emphasized messages"] = "Mensajes enfatizados"
+L["Output"] = "Salida"
 
 L["Use colors"] = "Usar colores"
-L["Toggles white only messages ignoring coloring."] = "Mostrar solo mensajes en blanco, ignorando colores."
-
-L["Scale"] = "Escala"
-L["Set the message frame scale."] = "Establece la escala del mensaje."
+L["Toggles white only messages ignoring coloring."] = "Mensajes de color blanco ignorando los colores."
 
 L["Use icons"] = "Usar iconos"
-L["Show icons next to messages, only works for Raid Warning."] = "mostrar iconos al lado de los mensajes. Solo funciona para avisos de banda."
+L["Show icons next to messages, only works for Raid Warning."] = "Muestra los siguientes iconos para mensajes, solo funciona para alertas de raid."
 
-L["|cffff0000Co|cffff00fflo|cff00ff00r|r"] = "|cffff0000Co|cffff00fflo|cff00ff00r|r"
-L["White"] = "Blanco"
-
-L["Outputs all BigWigs messages to the default chat frame in addition to the display setting."] = "Envía también a la ventana de chat por defecto todos los mensaje de BigWigs."
+L["Class colors"] = "Colores de clase"
+L["Colors player names in messages by their class."] = "Colores el nombre del jugador en los mensajes con el color de su clase"
 
 L["Chat frame"] = "Ventana de chat"
+L["Outputs all BigWigs messages to the default chat frame in addition to the display setting."] = "Todos los mensajes de salida de Big Wigs a la ventana de chat por defecto en adici\195\179n a los ajustes mostrados"
 
-L["Test"] = "Probar"
-L["Close"] = "Cerrar"
+L["Font size"] = "Tama\195\177o de fuente"
+L["None"] = "Ninguno"
+L["Thin"] = "Fino"
+L["Thick"] = "Grueso"
+L["Outline"] = "Contorno"
+L["Monochrome"] = "Monocromo"
+L["Toggles the monochrome flag on all messages, removing any smoothing of the font edges."] = "Cambia a monocromo el indicador en todos los mensajes, quitando cualquier suavizado de fuente."
 
-L["Reset position"] = "Reiniciar posición"
-L["Reset the anchor position, moving it to the center of your screen."] = "Reinicia la posición del ancla, moviéndola al centro de la pantalla."
-
-
+-----------------------------------------------------------------------
 -- RaidIcon.lua
-L["Raid Icons"] = "Iconos de banda"
-L["Configure which icon Big Wigs should use when placing raid target icons on players for important 'bomb'-type boss abilities."] = "Configura qué iconos colocará BigWigs sobre jugadores afectados por habilidades de Jefe tipo 'Bomba' u otras."
+--
 
-L["RaidIcon"] = "Icono de banda"
+L["Icons"] = "Iconos"
 
-L["Place"] = "Colocar"
-L["Place Raid Icons"] = "Activar iconos en jugadores"
-L["Toggle placing of Raid Icons on players."] = "Activa la colocación de iconos de banda sobre jugadores."
-
-L["Icon"] = "Icono"
-L["Set Icon"] = "Establecer icono"
-L["Set which icon to place on players."] = "Establece qué icono se colocará sobre los jugadores."
-
-L["Use the %q icon when automatically placing raid icons for boss abilities."] = "Usar el icono %q al colocar automáticamente iconos de banda para habilidades de Jefes."
+L.raidIconDescription = "Elementos de tipo 'bomba' y simirales en un jugador pueden ser de interes especial. Aqui puedes configurar como se deber\195\173a marar con iconos algunos pjs.\n\nSi solo se usa un icono para un encuentro se usar\195\161 el primario, nunca se usar\195\161 el mismo icono para 2 habilidades distintas, para eso esta el icono secundario.\n\n|cffff4411Nota si un jugador ha sido marcado manualmente Big Wigs nunca cambiar\195\161 su icono.|r"
+L["Primary"] = "Primario"
+L["The first raid target icon that a encounter script should use."] = "El primer objetivo de la raid el cual deberia usar este icono"
+L["Secondary"] = "Secundario"
+L["The second raid target icon that a encounter script should use."] = "El secundario objetivo de la raid el cual deber\195\173a usar este icono"
 
 L["Star"] = "Estrella"
-L["Circle"] = "Círculo"
+L["Circle"] = "C\195\173rculo"
 L["Diamond"] = "Diamante"
-L["Triangle"] = "Triángulo"
+L["Triangle"] = "Tri\195\161ngulo"
 L["Moon"] = "Luna"
 L["Square"] = "Cuadrado"
 L["Cross"] = "Cruz"
 L["Skull"] = "Calavera"
+L["|cffff0000Disable|r"] = "|cffff0000Desactivar|r"
 
--- RaidWarn.lua
-L["RaidWarning"] = "Aviso de banda"
-
-L["Whisper"] = "Susurrar"
-L["Toggle whispering warnings to players."] = "Activa el susurro de avisos a los jugadores."
-
-L["raidwarning_desc"] = "Te permite configurar dónde enviará BigWigs los mensajes de jefes además de en local."
-
+-----------------------------------------------------------------------
 -- Sound.lua
+--
+
+L.soundDefaultDescription = "Con esa opci\195\179n puesta, Big Wigs solo usar\195\161 el sonido por defecto de Blizzard para las alertas de raid y para mensajes que llegan con una alerta de sonido. Nota que solo algunos mensajes de los scripts de encuentros usar\195\161n un gatillo como alerta de sonido."
+
 L["Sounds"] = "Sonidos"
-L["Options for sounds."] = "Opciones de los sonidos"
 
 L["Alarm"] = "Alarma"
-L["Info"] = "Información"
+L["Info"] = "Info"
 L["Alert"] = "Alerta"
 L["Long"] = "Largo"
 L["Victory"] = "Victoria"
 
-L["Set the sound to use for %q.\n\nCtrl-Click a sound to preview."] = "Establece el sonido a usar para %q (Ctrl-Click en un sonido para escucharlo)."
-L["Toggle all sounds on or off."] = "Activa o desactiva todos los sonidos."
+L["Set the sound to use for %q.\n\nCtrl-Click a sound to preview."] = "Ajusta el sonido a usar para %q.\n\nCtrl-Clic un sonido a vista previa."
 L["Default only"] = "Solo por defecto"
-L["Use only the default sound."] = "Usar solo el sonido por defecto"
+
+-----------------------------------------------------------------------
 -- Proximity.lua
+--
 
+L["|T%s:20:20:-5|tAbility name"] = "|T%s:20:20:-5|tNombre de la habilidad"
+L["Custom range indicator"] = "Indicador de rango personalizado"
+L["%d yards"] = "%d yrd/mtr"
 L["Proximity"] = "Proximidad"
-
-L["Options for the Proximity Display."] = "Opciones para la ventana de proximidad"
-L["|cff777777Nobody|r"] = "|cff777777Nadie|r"
 L["Sound"] = "Sonido"
-L["Play sound on proximity."] = "Tocar sonido cuando est\195\169 en proximidad"
 L["Disabled"] = "Desactivado"
-L["Disable the proximity display for all modules that use it."] = "Desactivar la ventana de proximidad para todos los m\195\179dulos que lo usen"
+L["Disable the proximity display for all modules that use it."] = "Desactiva la ventana de proximidad pra todos los m\195\179dulos que la usen."
+L["The proximity display will show next time. To disable it completely for this encounter, you need to toggle it off in the encounter options."] = "La ventana de proximidad se mostrar\195\161 la pr\195\179xima vez. Para desativarla completamente de este encuentro, necesitas apagarla de las opciones de encuentros."
 
-L.proximity = "Ventana de proximidad"
-L.proximity_desc = "Muestra la ventana de proximidad cuando sea apropiado para este encuentro, listando los jugadores que est\195\161n demasiado cerca de t\195\173."
+L.proximity = "Visualizar proximidad"
+L.proximity_desc = "Muestra la ventana de proximidad cuando sea apropidada para este encuentro, lista los jugadores que est\195\161n demasiado cerca tuya."
+
+L["Close"] = "Cerrar"
+L["Closes the proximity display.\n\nTo disable it completely for any encounter, you have to go into the options for the relevant boss module and toggle the 'Proximity' option off."] = true
+L["Lock"] = "Bloquear"
+L["Locks the display in place, preventing moving and resizing."] = "Bloquea la ventana en el lugar, previniendo que se mueva y redimensione"
+L["Title"] = "T\195\173tulo"
+L["Shows or hides the title."] = "Muestra/oculta el t\195\173tulo"
+L["Background"] = "Fondo"
+L["Shows or hides the background."] = "Muestra/oculta el fondo"
+L["Toggle sound"] = "Cambiar sonido"
+L["Toggle whether or not the proximity window should beep when you're too close to another player."] = "Activada o no la ventana de proximidad deber\195\173a emitir un beep si est\195\161s cerca de otro jugador."
+L["Sound button"] = "Bot\195\179n de sonido"
+L["Shows or hides the sound button."] = "Muestra/oculta el bot\195\179n de sonido"
+L["Close button"] = "Boton cerrar"
+L["Shows or hides the close button."] = "Muestra/oculta el bot\195\179n de cerrar"
+L["Show/hide"] = "Mostrar/ocultar"
+L["Ability name"] = "Nombre de habilidad"
+L["Shows or hides the ability name above the window."] = "Muestra/oculta el nombre de la habilidad encima de la ventana"
+L["Tooltip"] = "Tooltip"
+L["Shows or hides a spell tooltip if the Proximity display is currently tied directly to a boss encounter ability."] = "Muestra/oculta el tooltip del hechizo si la ventana de proximidad esta empatada con una habilidad del boss."
+
+-----------------------------------------------------------------------
+-- Tips.lua
+--
+
+L["|cff%s%s|r says:"] = "|cff%s%s|r dice:"
+L["Cool!"] = "Guay!"
+L["Tips"] = "Consejos"
+L["Tip of the Raid"] = "Consejo de la raid"
+L["Tip of the raid will show by default when you zone in to a raid instance, you are not in combat, and your raid group has more than 9 players in it. Only one tip will be shown per session, typically.\n\nHere you can tweak how to display that tip, either using the pimped out window (default), or outputting it to chat. If you play with officers who overuse the |cffff4411/sendtip command|r, you might want to show them in chat frame instead!"] = "Los consejos de la raid se mostrar\195\161n por defecto cuando entres en una zona dentro de una estancia de raid, si no estas en combate, y tu grupo de raid tiene m\195\161s de 9 jugadores en el. Solo un consejo se mostrar\195\161 por sesi\195\179n, normalmente.\n\nAqu\195\173 puedes descubrir como visualizar estos consejos, o usar la ventana chula (por defecto), o visualizarlos en el chat. Si juegas con oficiales quienes usando el |cffff4411comando /sendtip |r, puedes ver lo que quieren mostrarnos en el chat \194\161en lugar de la ventana!."
+L["If you don't want to see any tips, ever, you can toggle them off here. Tips sent by your raid officers will also be blocked by this, so be careful."] = "Si no quieres ver alg\195\186n consejo, siempre, pueedes cambiarlo a apagado aqu\195\173. Los consejos enviados por tus oficiales de raid tambi\195\169n son bloqueados por esto, se cuidadoso."
+L["Automatic tips"] = "Consejos autom\195\161ticos"
+L["If you don't want to see the awesome tips we have, contributed by some of the best PvE players in the world, pop up when you zone in to a raid instance, you can disable this option."] = "Si no quieres ver los formidables consejos que tenemos, contribuidos por algunos de los mejores jugadores PvE del mundo, con una ventanita cuando entres en una zona de raid, puedes desactivar esta opci\195\179n."
+L["Manual tips"] = "Consejos manuales"
+L["Raid officers have the ability to show manual tips with the /sendtip command. If you have an officer who spams these things, or for some other reason you just don't want to see them, you can disable it with this option."] = "Los oficiales de raid tienen la habilidad de mostrar manualmente consejos con el comando /sendtip. Si tienes un oficial que spamea esto, o por otras razones solo no quieres verlos, puedes desactivar esto con esta opci\195\179n."
+L["Output to chat frame"] = "Salida al marco de chat"
+L["By default the tips will be shown in their own, awesome window in the middle of your screen. If you toggle this, however, the tips will ONLY be shown in your chat frame as pure text, and the window will never bother you again."] = "Por defecto los consejos se mostrar\195\161n para cada uno, en una formidable ventanita en el medio de la pantalla. Si quieres cambiar esto, sin embargo, los consejos SOLO ser\195\161n mostrados en tu chat como texto puro, y la ventana nunca se mostrar\195\161 de nuevo."
+L["Usage: /sendtip <index|\"Custom tip\">"] = "Uso: /sendtip <index|\"Consejo personalizado personalizado\">"
+L["You must be an officer in the raid to broadcast a tip."] = "Debes ser un oficial en la raid para difundir un tip"
+L["Tip index out of bounds, accepted indexes range from 1 to %d."] = "\195\173ndice de consejos fuera de l\195\173mite, aceptados rangos de \195\173ndices desde 1 a %d."
+
+-----------------------------------------------------------------------
+-- Emphasize.lua
+--
+
+L["Super Emphasize"] = "Super Enfatizar"
+L.superEmphasizeDesc = "Da a los mensajes o barras relacionados con una habilidad de un encuentro.\n\nAqu\195\173 configuras exactamente que deber\195\173a ocurrir cuando cambias a activado en la opci\195\179n de Super Enfatizar en la secci\195\179n avanzada para una habilidad de un encuentro de un jefe.\n\n|cffff4411Nota que Super Enfatizar est\195\161 apagado por defecto para todas las habilidades.|r\n"
+L["UPPERCASE"] = "MAYUSCULAS"
+L["Uppercases all messages related to a super emphasized option."] = "May\195\186sculas en todos los mensajes relacionados con una opci\195\179n super enfatizada."
+L["Double size"] = "Tama\195\177o doble"
+L["Doubles the size of super emphasized bars and messages."] = "Dobla el tama\195\177o de las barras super enfatizadas y los mensajes"
+L["Countdown"] = "Cuenta atr\195\161s"
+L["If a related timer is longer than 5 seconds, a vocal and visual countdown will be added for the last 5 seconds. Imagine someone counting down \"5... 4... 3... 2... 1... COUNTDOWN!\" and big numbers in the middle of your screen."] = "Si un contador es relativamente mayor de 5 segundos, una cuenta vocal y visual ser\195\161 a\195\177adida para los \195\186ltimos 5 segundos. Imagina alguna cuenta atr\195\161s \"5... 4... 3... 2... 1... \194\161CUENTA ATR\195\161S!\" y grandes n\195\186meros en el medio de la pantalla."
+L["Flash"] = "Flash"
+L["Flashes the screen red during the last 3 seconds of any related timer."] = "Flashea la pantalla en rojo durante los 3 \195\186ltimos segundos o de algun contador relacionado."
 

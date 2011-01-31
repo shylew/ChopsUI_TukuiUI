@@ -1,17 +1,33 @@
 local L = BigWigs:NewBossLocale("Cho'gall", "ruRU")
 if L then
 	--heroic
-	L.orders = "Приказы огня/Тьмы"
-	L.orders_desc = "Сообщать о Приказах огня/Тьмы"
+	L.orders = "Смена приказа"
+	L.orders_desc = "Сообщать когда Чо'Галл сменяет приказы огня/тьмы"
 
 	--normal
-	L.worship_cooldown = "~Поклонение"
+	L.worship_cooldown = "~Поклонение"	
+	L.adherent_bar = "След. адепт-искуситель"
+	L.adherent_message = "Адепт-искуситель!"
+	L.ooze_bar = "Слизнюки"
+	L.ooze_message = "Надвигаются Слизнюки!"
+	L.tentacles_bar = "Смутные творения"
+	L.tentacles_message = "Смутные творения!"
+	L.sickness_message = "Вы больны, и вас сейчас стошнит!"
+	L.fury_bar = "След. Неистовство"
+	L.fury_message = "Неистовство!"
+
+	L.phase2_message = "2-ая фаза!"
+	L.phase2_soon = "Скоро 2-ая фаза!"
 end
 
 L = BigWigs:NewBossLocale("Valiona and Theralion", "ruRU")
 if L then
 	L.phase_switch = "Смена фаз"
 	L.phase_switch_desc = "Сообщать о смене фаз"
+	
+	L.phase_bar = "%s приземление"
+	L.breath_message = "Надвигается Глубокий вдох!"
+	L.dazzling_message = "Надвигается Шокирующее разрушение!"
 
 	L.engulfingmagic_say = "Избыточная магия на МНЕ!"
 	L.engulfingmagic_cooldown = "~Избыточная магия"
@@ -30,7 +46,13 @@ end
 
 L = BigWigs:NewBossLocale("Sinestra", "ruRU")
 if L then
+	L.egg_vulnerable = "Omlet time!"
 
+	L.omlet_trigger = "You mistake this for weakness?  Fool!"
+
+	L.phase13 = "Фаза 1 и 3"
+	L.phase = "Фаза"
+	L.phase_desc = "Сообщать о смене фаз"
 end
 
 L = BigWigs:NewBossLocale("Ascendant Council", "ruRU")
@@ -41,9 +63,14 @@ if L then
 	L.switch = "Смена"
 	L.switch_desc = "Сообщать о смене боссов"
 
+	L.shield_up_message = "ЩИТ!"
+	L.shield_bar = "След. щит"
+	
 	L.lightning_rod_say = "На МНЕ - Громоотвод!"
 
 	L.switch_trigger = "Мы займемся ими!"
+	
+	L.thundershock_quake_soon = "%s через 10сек!"
 
 	L.quake_trigger = "Земля уходит у вас из-под ног..."
 	L.thundershock_trigger = "Воздух потрескивает от скопившейся энергии..."

@@ -10,7 +10,7 @@
 -- @name LibCandyBar-3.0
 
 local major = "LibCandyBar-3.0"
-local minor = tonumber(("$Rev: 29 $"):match("(%d+)")) or 1
+local minor = tonumber(("$Rev: 33 $"):match("(%d+)")) or 1
 if not LibStub then error("LibCandyBar-3.0 requires LibStub.") end
 local cbh = LibStub:GetLibrary("CallbackHandler-1.0")
 if not cbh then error("LibCandyBar-3.0 requires CallbackHandler-1.0") end
@@ -21,7 +21,7 @@ local cb = lib.callbacks
 -- ninjaed from LibBars-1.0
 lib.dummyFrame = lib.dummyFrame or CreateFrame("Frame")
 lib.barFrameMT = lib.barFrameMT or {__index = lib.dummyFrame}
-lib.barPrototype = lib.barProtoType or setmetatable({}, lib.barFrameMT)
+lib.barPrototype = lib.barPrototype or setmetatable({}, lib.barFrameMT)
 lib.barPrototype_mt = lib.barPrototype_mt or {__index = lib.barPrototype}
 lib.availableBars = lib.availableBars or {}
 
@@ -59,14 +59,20 @@ local scripts = {
 	"OnMouseDown", "OnMouseUp", "OnMouseWheel",
 	"OnSizeChanged", "OnEvent"
 }
-local function reset(bar)
+local _fontName, _fontSize = GameFontHighlightSmallOutline:GetFont()
+local function stopBar(bar)
 	if bar.data then wipe(bar.data) end
 	if bar.funcs then wipe(bar.funcs) end
 	bar.running = nil
+	bar:Hide()
+end
+local function resetBar(bar)
+	bar.flip = nil
 	bar.showTime = true
 	for i, script in next, scripts do
 		bar:SetScript(script, nil)
 	end
+
 	bar.candyBarBackground:SetVertexColor(0.5, 0.5, 0.5, 0.3)
 	bar:ClearAllPoints()
 	bar:SetWidth(bar.width)
@@ -77,9 +83,14 @@ local function reset(bar)
 	bar.candyBarLabel:SetTextColor(1,1,1,1)
 	bar.candyBarLabel:SetJustifyH("CENTER")
 	bar.candyBarLabel:SetJustifyV("MIDDLE")
+	bar.candyBarLabel:SetFont(_fontName, _fontSize)
 	bar.candyBarLabel:SetFontObject("GameFontHighlightSmallOutline")
+	
+	bar.candyBarDuration:SetTextColor(1,1,1,1)
+	bar.candyBarDuration:SetJustifyH("CENTER")
+	bar.candyBarDuration:SetJustifyV("MIDDLE")
+	bar.candyBarDuration:SetFont(_fontName, _fontSize)
 	bar.candyBarDuration:SetFontObject("GameFontHighlightSmallOutline")
-	bar:Hide()
 end
 
 local function onUpdate(self)
@@ -89,7 +100,11 @@ local function onUpdate(self)
 	else
 		local time = self.exp - t
 		self.remaining = time
-		self.candyBarBar:SetValue(time)
+		if self.fill then
+			self.candyBarBar:SetValue(t)
+		else
+			self.candyBarBar:SetValue(time)
+		end
 		self.candyBarDuration:SetFormattedText(SecondsToTimeDetail(time))
 		if self.funcs then
 			for i, v in next, self.funcs do v(self) end
@@ -122,6 +137,12 @@ local function restyleBar(self)
 	end
 end
 
+--- Set whether the bar should drain (default) or fill up.
+-- @param fill Boolean true/false
+function barPrototype:SetFill(fill)
+	if self.running then error("Can't set the fill/drain behavior on a running bar.") end
+	self.fill = fill
+end
 --- Adds a function to the timerbar. The function will run every update and will receive the bar as a parameter.
 -- @param func Function to run every update
 -- @usage
@@ -167,7 +188,12 @@ function barPrototype:SetDuration(duration) self.remaining = duration end
 function barPrototype:Start()
 	self.running = true
 	restyleBar(self)
-	self.candyBarBar:SetMinMaxValues(0, self.remaining)
+	if self.fill then
+		local t = GetTime()
+		self.candyBarBar:SetMinMaxValues(t, t + self.remaining)
+	else
+		self.candyBarBar:SetMinMaxValues(0, self.remaining)
+	end
 	self.exp = GetTime() + self.remaining
 	self:SetScript("OnUpdate", onUpdate)
 	self:Show()
@@ -183,8 +209,8 @@ end
 -- LibStub("LibCandyBar-3.0"):RegisterCallback(myaddonobject, "LibCandyBar_Stop", barstopped)
 function barPrototype:Stop()
 	cb:Fire("LibCandyBar_Stop", self)
-	reset(self)
-	tinsert(availableBars, self)
+	stopBar(self)
+	availableBars[#availableBars + 1] = self
 end
 
 -- ------------------------------------------------------------------------------
@@ -206,7 +232,7 @@ function lib:New(texture, width, height)
 		local frame = CreateFrame("Frame", nil, UIParent)
 		--frame:SetFrameStrata("DIALOG")
 		bar = setmetatable(frame, barPrototype_meta)
-		local icon = bar:CreateTexture(nil, "BACKGROUND")
+		local icon = bar:CreateTexture(nil, "LOW")
 		icon:SetPoint("TOPLEFT")
 		icon:SetPoint("BOTTOMLEFT")
 		icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
@@ -234,7 +260,7 @@ function lib:New(texture, width, height)
 	bar.candyBarBackground:SetTexture(texture)
 	bar.width = width
 	bar.height = height
-	reset(bar)
+	resetBar(bar)
 	return bar
 end
 

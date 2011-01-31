@@ -1,28 +1,24 @@
 local L = BigWigs:NewBossLocale("Al'Akir", "esES")
 if L then
-	L.windburst = (GetSpellInfo(87770))
-
 	-- L.phase3_yell = "Enough! I will no longer be contained!"
 	
-	L.phase_change = "Cambio de fase"
-	L.phase_change_desc = "Anuncia los cambios de fase."
-	L.phase_message = "Fase %d"
+	L.phase = "Cambio de fase"
+	L.phase_desc = "Anuncia los cambios de fase."
 	
+	L.cloud_message = "\194\161Franklin estar\195\173a orgulloso!"
 	L.feedback_message = "%dx rebote"
-	
-	L.you = "%s en TI!"
 end
 
 local L = BigWigs:NewBossLocale("Conclave of Wind", "esES")
 if L then
-	L.gather_strength = "%s está reuniendo fuerza"
+	L.gather_strength = "%s empieza a extraer fuerza"
 
-	L.storm_shield = GetSpellInfo(95865)
-	L.storm_shield_desc = "Escudo de absorción"
+	L.storm_shield = stormShield
+	L.storm_shield_desc = "Escudo de absorci\195\179n"
 	
-	L.full_power = "Full Power"
-	L.full_power_desc = "Avisa cuando los jefes alcanzan Full Power y empiezan a lanzar las abilidades especiales."
-	L.gather_strength_emote = "¡%s empieza a reunir fuerza de los señores de viento restantes!"
+	L.full_power = "Poder M\195\161ximo"
+	L.full_power_desc = "Avisa cuando los jefes alcanzan Poder M\195\161ximo y empiezan a lanzar las abilidades especiales."
+	L.gather_strength_emote = "¡%s empieza a extraer fuerza de los señores del viento que quedan!"
 	
-	L.wind_chill = "TU tienes %s stacks de Viento escalofriante"
+	L.wind_chill = "\194\161%sx Viento escalofriante en TI!"
 end

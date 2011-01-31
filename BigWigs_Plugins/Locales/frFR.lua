@@ -4,6 +4,10 @@ if not L then return end
 -- Bars.lua
 --
 
+L["Style"] = "Style"
+L.bigWigsBarStyleName_Default = "Défaut"
+L.bigWigsBarStyleName_BeautyCase = "Beauty Case"
+
 L["Clickable Bars"] = "Barres cliquables"
 L.clickableBarsDesc = "Par défaut, les barres de Big Wigs ignorent la souris. Vous pouvez ainsi cibler ou lancer des sorts de zone derrière elles, changer l'angle de la caméra, etc. tandis que votre curseur survole les barres. |cffff4411Si vous activez ceci, tout cela ne fonctionnera plus.|r Les barres intercepteront tout clic que vous effectuez sur elles.\n"
 L["Enables bars to receive mouse clicks."] = "Permet aux barres de recevoir les clics de la souris."
@@ -43,6 +47,10 @@ L["Whether to show or hide the time left on the bars."] = "Affiche ou non le tem
 L["Icon"] = "Icône"
 L["Shows or hides the bar icons."] = "Affiche ou non les icônes des barres."
 L["Font"] = "Police d'écriture"
+L["Restart"] = "Relancer"
+L["Restarts emphasized bars so they start from the beginning and count from 10."] = "Relance les barres mises en évidence afin qu'elles commencent du début."
+L["Fill"] = "Remplir"
+L["Fills the bars up instead of draining them."] = "Remplit les barres au lieu de les vider."
 
 L["Local"] = "Local"
 L["%s: Timer [%s] finished."] = "%s : Minuteur [%s] terminé."
@@ -148,6 +156,8 @@ L["Default only"] = "Son par défaut uniquement"
 -- Proximity.lua
 --
 
+L["|T%s:20:20:-5|tAbility name"] = "|T%s:20:20:-5|tNom technique"
+L["Custom range indicator"] = "Indicateur personnalisé de portée"
 L["%d yards"] = "%d mètres"
 L["Proximity"] = "Proximité"
 L["Sound"] = "Son"
@@ -173,6 +183,10 @@ L["Shows or hides the sound button."] = "Affiche ou non le bouton du son."
 L["Close button"] = "Bouton de fermeture"
 L["Shows or hides the close button."] = "Affiche ou non le bouton de fermeture."
 L["Show/hide"] = "Afficher/cacher"
+L["Ability name"] = "Nom de la technique"
+L["Shows or hides the ability name above the window."] = "Affiche ou non le nom de la technique au dessus de la fenêtre."
+L["Tooltip"] = "Bulle d'aide"
+L["Shows or hides a spell tooltip if the Proximity display is currently tied directly to a boss encounter ability."] = "Affiche ou non la bulle d'aide du sort si l'affichage de proximité est actuellement directement lié avec une technique de rencontre de boss."
 
 -----------------------------------------------------------------------
 -- Tips.lua

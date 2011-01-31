@@ -39,6 +39,164 @@ local timers = nil
 local clickHandlers = {}
 
 --------------------------------------------------------------------------------
+-- Bar styles setup
+--
+
+local currentBarStyler = nil
+
+local barStyles = {
+	Default = {
+		apiVersion = 1,
+		version = 1,
+		--GetSpacing = function(bar) end,
+		--ApplyStyle = function(bar) end,
+		--BarStopped = function(bar) end,
+		GetStyleName = function()
+			return L.bigWigsBarStyleName_Default
+		end,
+	},
+}
+local barStyleRegister = {}
+
+do
+	-- BeautyCase styling, based on !BeatyCase by someone, I forget who.
+	local textureNormal = "Interface\\AddOns\\BigWigs\\Textures\\beautycase"
+
+	local function createBorder(self)
+		local border = UIParent:CreateTexture(nil, "OVERLAY")
+		border:SetParent(self)
+		border:SetTexture(textureNormal)
+		border:SetWidth(11)
+		border:SetHeight(11)
+		border:SetVertexColor(1, 1, 1)
+		return border
+	end
+
+	local freeBorderSets = {}
+
+	local function freeStyle(bar)
+		local borders = bar:Get("bigwigs:beautycase:borders")
+		if not borders then return end
+		for i, border in next, borders do
+			border:SetParent(UIParent)
+			border:Hide()
+		end
+		freeBorderSets[#freeBorderSets + 1] = borders
+	end
+
+	local function styleBar(bar)
+		local borders = nil
+		if #freeBorderSets > 0 then
+			borders = table.remove(freeBorderSets)
+			for i, border in next, borders do
+				border:SetParent(bar.candyBarBar)
+				border:ClearAllPoints()
+				border:Show()
+			end
+		else
+			borders = {}
+			for i = 1, 8 do
+				borders[i] = createBorder(bar.candyBarBar)
+			end
+		end
+		for i, border in next, borders do
+			if i == 1 then
+				border:SetTexCoord(0, 1/3, 0, 1/3)
+				border:SetPoint("TOPLEFT", -18, 4)
+			elseif i == 2 then
+				border:SetTexCoord(2/3, 1, 0, 1/3)
+				border:SetPoint("TOPRIGHT", 4, 4)
+			elseif i == 3 then
+				border:SetTexCoord(0, 1/3, 2/3, 1)
+				border:SetPoint("BOTTOMLEFT", -18, -4)
+			elseif i == 4 then
+				border:SetTexCoord(2/3, 1, 2/3, 1)
+				border:SetPoint("BOTTOMRIGHT", 4, -4)
+			elseif i == 5 then
+				border:SetTexCoord(1/3, 2/3, 0, 1/3)
+				border:SetPoint("TOPLEFT", borders[1], "TOPRIGHT")
+				border:SetPoint("TOPRIGHT", borders[2], "TOPLEFT")
+			elseif i == 6 then
+				border:SetTexCoord(1/3, 2/3, 2/3, 1)
+				border:SetPoint("BOTTOMLEFT", borders[3], "BOTTOMRIGHT")
+				border:SetPoint("BOTTOMRIGHT", borders[4], "BOTTOMLEFT")
+			elseif i == 7 then
+				border:SetTexCoord(0, 1/3, 1/3, 2/3)
+				border:SetPoint("TOPLEFT", borders[1], "BOTTOMLEFT")
+				border:SetPoint("BOTTOMLEFT", borders[3], "TOPLEFT")
+			elseif i == 8 then
+				border:SetTexCoord(2/3, 1, 1/3, 2/3)
+				border:SetPoint("TOPRIGHT", borders[2], "BOTTOMRIGHT")
+				border:SetPoint("BOTTOMRIGHT", borders[4], "TOPRIGHT")
+			end
+		end
+		bar:Set("bigwigs:beautycase:borders", borders)
+	end
+
+	barStyles.BeautyCase = {
+		apiVersion = 1,
+		version = 1,
+		GetSpacing = function(bar) return 11 end,
+		ApplyStyle = styleBar, -- function(bar) return end
+		BarStopped = freeStyle,
+		GetStyleName = function()
+			return L.bigWigsBarStyleName_BeautyCase
+		end,
+	}
+end
+
+do
+	-- TukUI Bar Styler
+	local freeBackgrounds = {}
+	local backdrop = {
+		bgFile = "Interface\\Buttons\\WHITE8X8",
+		edgeFile = "Interface\\Buttons\\WHITE8X8",
+		tile = false, tileSize = 0, edgeSize = 0.64, 
+		insets = { left = -0.64, right = -0.64, top = -0.64, bottom = -0.64}
+	}
+	local function createBackground()
+		local bg = CreateFrame("Frame")
+		bg:SetBackdrop(backdrop)
+		bg:SetBackdropColor(.1,.1,.1,1)
+		bg:SetBackdropBorderColor(.6,.6,.6,1)
+		return bg
+	end
+
+	local function freeStyle(bar)
+		local bg = bar:Get("bigwigs:tukui:bg")
+		if not bg then return end
+		bg:SetParent(UIParent)
+		bg:Hide()
+		freeBackgrounds[#freeBackgrounds + 1] = bg
+	end
+
+	local function styleBar(bar)
+		local bg = nil
+		if #freeBackgrounds > 0 then
+			bg = table.remove(freeBackgrounds)
+		else
+			bg = createBackground()
+		end
+		bg:SetParent(bar)
+		bg:ClearAllPoints()
+		bg:SetPoint("TOPLEFT", bar, "TOPLEFT", -1, 1)
+		bg:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", 1, -1)
+		bg:SetFrameStrata("BACKGROUND")
+		bg:Show()
+		bar:Set("bigwigs:tukui:bg", bg)
+	end
+
+	barStyles.TukUI = {
+		apiVersion = 1,
+		version = 1,
+		GetSpacing = function(bar) return 4 end,
+		ApplyStyle = styleBar,
+		BarStopped = freeStyle,
+		GetStyleName = function() return "TukUI" end,
+	}
+end
+
+--------------------------------------------------------------------------------
 -- Options
 --
 
@@ -50,11 +208,14 @@ plugin.defaultDB = {
 	time = true,
 	align = "LEFT",
 	icon = true,
+	fill = nil,
+	barStyle = "Default",
 	emphasize = true,
 	emphasizeFlash = true,
 	emphasizeMove = true,
 	emphasizeScale = 1.5,
 	emphasizeGrowup = nil,
+	emphasizeRestart = true,
 	BigWigsAnchor_width = 200,
 	BigWigsEmphasizeAnchor_width = 300,
 	interceptMouse = nil,
@@ -220,6 +381,8 @@ do
 					elseif key == "font" then
 						local list = media:List("font")
 						db.font = list[value]
+					elseif key == "barStyle" then
+						plugin:SetBarStyle(value)
 					else
 						db[key] = value
 					end
@@ -241,6 +404,13 @@ do
 						width = "full",
 						itemControl = "DDI-Font",
 					},
+					barStyle = {
+						type = "select",
+						name = L["Style"],
+						order = 2,
+						values = barStyleRegister,
+						width = "full",
+					},
 					align = {
 						type = "select",
 						name = L["Align"],
@@ -258,12 +428,21 @@ do
 						name = L["Icon"],
 						desc = L["Shows or hides the bar icons."],
 						order = 4,
+						width = "half",
 					},
 					time = {
 						type = "toggle",
 						name = L["Time"],
 						desc = L["Whether to show or hide the time left on the bars."],
 						order = 5,
+						width = "half",
+					},
+					fill = {
+						type = "toggle",
+						name = L["Fill"],
+						desc = L["Fills the bars up instead of draining them."],
+						order = 6,
+						width = "half",
 					},
 					normal = {
 						type = "group",
@@ -276,7 +455,6 @@ do
 								name = L["Grow upwards"],
 								desc = L["Toggle bars grow upwards/downwards from anchor."],
 								order = 1,
-								width = "full",
 							},
 							scale = {
 								type = "range",
@@ -284,11 +462,11 @@ do
 								min = 0.2,
 								max = 2.0,
 								step = 0.1,
-								order = 2,
+								order = 3,
 								width = "full",
 							},
 						},
-						order = 6,
+						order = 10,
 					},
 					emphasize = {
 						type = "group",
@@ -300,36 +478,48 @@ do
 								type = "toggle",
 								name = L["Enable"],
 								order = 1,
+								width = "half",
 							},
 							emphasizeFlash = {
 								type = "toggle",
 								name = L["Flash"],
 								desc = L["Flashes the background of emphasized bars, which could make it easier for you to spot them."],
 								order = 2,
+								width = "half",
 							},
 							emphasizeMove = {
 								type = "toggle",
 								name = L["Move"],
 								desc = L["Moves emphasized bars to the Emphasize anchor. If this option is off, emphasized bars will simply change scale and color, and maybe start flashing."],
 								order = 3,
+								width = "half",
 							},
 							emphasizeGrowup = {
 								type = "toggle",
 								name = L["Grow upwards"],
 								desc = L["Toggle bars grow upwards/downwards from anchor."],
 								order = 4,
+								width = "half",
+							},
+							emphasizeRestart = {
+								type = "toggle",
+								name = L["Restart"],
+								desc = L["Restarts emphasized bars so they start from the beginning and count from 10."],
+								order = 6,
+								width = "half",
+								disabled = function() return not db.emphasizeMove end,
 							},
 							emphasizeScale = {
 								type = "range",
 								name = L["Scale"],
-								order = 5,
+								order = 7,
 								min = 0.2,
 								max = 2.0,
 								step = 0.1,
 								width = "full",
-							}
+							},
 						},
-						order = 7,
+						order = 20,
 					},
 				},
 			}
@@ -347,6 +537,16 @@ local function barSorter(a, b)
 end
 local tmp = {}
 local function rearrangeBars(anchor)
+	if not anchor then return end
+	if anchor == normalAnchor then -- only show the empupdater when there are bars on the normal anchor running
+		if next(anchor.bars) and db.emphasize then
+			empUpdate:Show()
+		else
+			empUpdate:Hide()
+		end
+	end
+	if not next(anchor.bars) then return end
+
 	wipe(tmp)
 	for bar in pairs(anchor.bars) do
 		tmp[#tmp + 1] = bar
@@ -356,27 +556,22 @@ local function rearrangeBars(anchor)
 	local up = nil
 	if anchor == normalAnchor then up = db.growup else up = db.emphasizeGrowup end
 	for i, bar in next, tmp do
+		local spacing = currentBarStyler.GetSpacing(bar) or 0
 		bar:ClearAllPoints()
 		if up or (db.emphasizeGrowup and bar:Get("bigwigs:emphasized")) then
-      bar:SetPoint("BOTTOMLEFT", lastUpBar or anchor, "TOPLEFT", 0, 4) 
-      bar:SetPoint("BOTTOMRIGHT", lastUpBar or anchor, "TOPRIGHT", 0, 4) 
+			bar:SetPoint("BOTTOMLEFT", lastUpBar or anchor, "TOPLEFT", 0, spacing)
+			bar:SetPoint("BOTTOMRIGHT", lastUpBar or anchor, "TOPRIGHT", 0, spacing)
 			lastUpBar = bar
 		else
-			bar:SetPoint("TOPLEFT", lastDownBar or anchor, "BOTTOMLEFT", 0, -4)
-			bar:SetPoint("TOPRIGHT", lastDownBar or anchor, "BOTTOMRIGHT", 0, -4)
+			bar:SetPoint("TOPLEFT", lastDownBar or anchor, "BOTTOMLEFT", 0, -spacing)
+			bar:SetPoint("TOPRIGHT", lastDownBar or anchor, "BOTTOMRIGHT", 0, -spacing)
 			lastDownBar = bar
-		end
-	end
-	if anchor == normalAnchor then -- only show the empupdater when there are bars on the normal anchor running
-		if #tmp > 0 and db.emphasize then
-			empUpdate:Show()
-		else
-			empUpdate:Hide()
 		end
 	end
 end
 
 local function barStopped(event, bar)
+	currentBarStyler.BarStopped(bar)
 	local a = bar:Get("bigwigs:anchor")
 	if a and a.bars and a.bars[bar] then
 		a.bars[bar] = nil
@@ -533,6 +728,12 @@ function plugin:OnRegister()
 	if not db.font then db.font = media:GetDefault("font") end
 
 	self:RegisterMessage("BigWigs_ProfileUpdate", updateProfile)
+
+	for k, v in pairs(barStyles) do
+		barStyleRegister[k] = v:GetStyleName()
+	end
+
+	self:SetBarStyle(db.barStyle)
 end
 
 function plugin:OnPluginEnable()
@@ -570,6 +771,61 @@ function plugin:BigWigs_SetConfigureTarget(event, module)
 	else
 		normalAnchor.background:SetTexture(0, 0, 0, 0.3)
 		emphasizeAnchor.background:SetTexture(0, 0, 0, 0.3)
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Bar styles API
+--
+
+do
+	local currentAPIVersion = 1
+	local errorWrongAPI = "The bar style API version is now %d; the bar style %q needs to be updated for this version of Big Wigs."
+	local errorMismatchedData = "The given style data does not seem to be a Big Wigs bar styler."
+	local errorAlreadyExist = "Trying to register %q as a bar styler, but it already exists."
+	function plugin:RegisterBarStyle(key, styleData)
+		if type(key) ~= "string" then error(errorMismatchedData) end
+		if type(styleData) ~= "table" then error(errorMismatchedData) end
+		if type(styleData.version) ~= "number" then error(errorMismatchedData) end
+		if type(styleData.apiVersion) ~= "number" then error(errorMismatchedData) end
+		if styleData.apiVersion ~= currentAPIVersion then error(errorWrongAPI:format(currentAPIVersion, key)) end
+		if barStyles[key] and barStyles[key].version == styleData.version then error(errorAlreadyExist:format(key)) end
+		if not barStyles[key] or barStyles[key].version < styleData.version then
+			barStyles[key] = styleData
+		end
+	end
+end
+
+do
+	local errorNoStyle = "No style with the ID %q has been registered. Reverting to default style."
+	local function noop() end
+	function plugin:SetBarStyle(style)
+		if type(style) ~= "string" or not barStyles[style] then
+			error(errorNoStyle:format(tostring(style)))
+			style = "Default"
+		end
+		local newBarStyler = barStyles[style]
+		if not newBarStyler.ApplyStyle then newBarStyler.ApplyStyle = noop end
+		if not newBarStyler.BarStopped then newBarStyler.BarStopped = noop end
+		if not newBarStyler.GetSpacing then newBarStyler.GetSpacing = noop end
+
+		-- Iterate all running bars
+		if currentBarStyler then
+			for bar in pairs(normalAnchor.bars) do
+				currentBarStyler.BarStopped(bar)
+				newBarStyler.ApplyStyle(bar)
+			end
+			for bar in pairs(emphasizeAnchor.bars) do
+				currentBarStyler.BarStopped(bar)
+				newBarStyler.ApplyStyle(bar)
+			end
+		end
+		currentBarStyler = newBarStyler
+
+		rearrangeBars(normalAnchor)
+		rearrangeBars(emphasizeAnchor)
+
+		db.barStyle = style
 	end
 end
 
@@ -811,8 +1067,6 @@ function plugin:BigWigs_StartBar(message, module, key, text, time, icon)
 	bar:Set("bigwigs:module", module)
 	bar:Set("bigwigs:anchor", normalAnchor)
 	bar:Set("bigwigs:option", key)
-  bar:SetWidth(bar:GetWidth() * 1.4)
-  bar:SetHeight(bar:GetHeight() * 1.4)
 	bar:SetColor(colors:GetColor("barColor", module, key))
 	bar.candyBarLabel:SetTextColor(colors:GetColor("barText", module, key))
 	bar.candyBarLabel:SetJustifyH(db.align)
@@ -825,13 +1079,7 @@ function plugin:BigWigs_StartBar(message, module, key, text, time, icon)
 	bar:SetTimeVisibility(db.time)
 	bar:SetIcon(db.icon and icon or nil)
 	bar:SetScale(db.scale)
-
-  local bwbg = CreateFrame("Frame", "bwbg", bar)
-  TukuiDB.CreatePanel(bwbg, 0, 0, "TOP", bar, "TOP", 0, 0)
-  bwbg:SetFrameLevel(2)
-  bwbg:SetPoint("TOPLEFT", bar,  "TOPLEFT",-1,1)
-  bwbg:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT",1,-1)
-
+	bar:SetFill(db.fill)
 	if db.emphasize and time < 15 then
 		self:EmphasizeBar(bar)
 	end
@@ -841,6 +1089,7 @@ function plugin:BigWigs_StartBar(message, module, key, text, time, icon)
 	if superemp and superemp:IsSuperEmphasized(module, key) then
 		actuallyEmphasize(bar, time)
 	end
+	currentBarStyler.ApplyStyle(bar)
 	bar:Start()
 	rearrangeBars(bar:Get("bigwigs:anchor"))
 end
@@ -866,7 +1115,9 @@ function plugin:EmphasizeBar(bar)
 		normalAnchor.bars[bar] = nil
 		emphasizeAnchor.bars[bar] = true
 		bar:Set("bigwigs:anchor", emphasizeAnchor)
-		bar:Start() -- restart the bar -> remaining time is a full length bar again after moving it to the emphasize anchor
+		if db.emphasizeRestart then
+			bar:Start() -- restart the bar -> remaining time is a full length bar again after moving it to the emphasize anchor
+		end
 	end
 	if db.emphasizeFlash then
 		bar:AddUpdateFunction(flash)
@@ -908,7 +1159,7 @@ local function startCustomBar(bar, nick, localOnly)
 	local time, barText = select(3, bar:find("(%S+) (.*)"))
 	local seconds = parseTime(time)
 	if type(seconds) ~= "number" or type(barText) ~= "string" then
-		BigWigs:Print(L["Invalid time (|cffff0000%q|r) or missing bar text in a custom bar started by |cffd9d919%s|r. <time> can be either a number in seconds, a M:S pair, or Mm. For example 5, 1:20 or 2m."]:format(tostring(time), nick or UnitName("player")))
+		print(L["Invalid time (|cffff0000%q|r) or missing bar text in a custom bar started by |cffd9d919%s|r. <time> can be either a number in seconds, a M:S pair, or Mm. For example 5, 1:20 or 2m."]:format(tostring(time), nick or UnitName("player")))
 		return
 	end
 

@@ -4,6 +4,10 @@ local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs: Plugins", "enUS", true)
 -- Bars.lua
 --
 
+L["Style"] = true
+L.bigWigsBarStyleName_Default = "Default"
+L.bigWigsBarStyleName_BeautyCase = "Beauty Case"
+
 L["Clickable Bars"] = true
 L.clickableBarsDesc = "Big Wigs bars are click-through by default. This way you can target objects or launch targetted AoE spells behind them, change the camera angle, and so on, while your cursor is over the bars. |cffff4411If you enable clickable bars, this will no longer work.|r The bars will intercept any mouse clicks you perform on them.\n"
 L["Enables bars to receive mouse clicks."] = true
@@ -43,6 +47,10 @@ L["Whether to show or hide the time left on the bars."] = true
 L["Icon"] = true
 L["Shows or hides the bar icons."] = true
 L["Font"] = true
+L["Restart"] = true
+L["Restarts emphasized bars so they start from the beginning and count from 10."] = true
+L["Fill"] = true
+L["Fills the bars up instead of draining them."] = true
 
 L["Local"] = true
 L["%s: Timer [%s] finished."] = true
@@ -148,6 +156,8 @@ L["Default only"] = true
 -- Proximity.lua
 --
 
+L["|T%s:20:20:-5|tAbility name"] = true
+L["Custom range indicator"] = true
 L["%d yards"] = true
 L["Proximity"] = true
 L["Sound"] = true
@@ -173,6 +183,10 @@ L["Shows or hides the sound button."] = true
 L["Close button"] = true
 L["Shows or hides the close button."] = true
 L["Show/hide"] = true
+L["Ability name"] = true
+L["Shows or hides the ability name above the window."] = true
+L["Tooltip"] = true
+L["Shows or hides a spell tooltip if the Proximity display is currently tied directly to a boss encounter ability."] = true
 
 -----------------------------------------------------------------------
 -- Tips.lua

@@ -1,8 +1,9 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs: Common", "enUS", true, true)
+local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs: Common", "enUS", true, "raw")
 
 -- Prototype.lua common words
 L.you = "%s on YOU!"
 L.other = "%s: %s"
+L.say = "%s on ME!"
 
 L.phase = "Phase %d"
 L.normal = "Normal mode"
@@ -15,3 +16,4 @@ L.berserk_end = "%s goes Berserk!"
 L.berserk_min = "Berserk in %d min"
 L.berserk_sec = "Berserk in %d sec!"
 L.berserk = "Berserk"
+

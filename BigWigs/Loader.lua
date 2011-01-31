@@ -17,13 +17,13 @@ do
 	local releaseType = RELEASE
 	local releaseRevision = nil
 	local releaseString = nil
-	--@alpha@
+	--[===[@alpha@
 	-- The following code will only be present in alpha ZIPs.
 	releaseType = ALPHA
-	--@end-alpha@
+	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("7759")
+	releaseRevision = tonumber("8014")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -92,6 +92,9 @@ local enableZones = {} -- contains the zones in which BigWigs will enable
 -- Utility
 --
 
+local printFormat = "|cffffff00%s|r"
+local function sysprint(msg) print(printFormat:format(msg)) end
+
 local getGroupMembers = nil
 do
 	local members = {}
@@ -106,8 +109,8 @@ do
 				if n then members[#members + 1] = n end
 			end
 		elseif party > 0 then
-			members[#members + 1] = UnitName("player")
-			for i = 1, 4, 1 do
+			members[#members + 1] = pName
+			for i = 1, 4 do
 				local n = UnitName("party" .. i)
 				if n then members[#members + 1] = n end
 			end
@@ -148,13 +151,13 @@ local function load(obj, name)
 	-- Verify that the addon isn't disabled
 	local enabled = select(4, GetAddOnInfo(name))
 	if not enabled then
-		print("Error loading " .. name .. " ("..name.." is not enabled)")
+		sysprint("Error loading " .. name .. " ("..name.." is not enabled)")
 		return
 	end
 	-- Load the addon
 	local succ, err = LoadAddOn(name)
 	if not succ then
-		print("Error loading " .. name .. " (" .. err .. ")")
+		sysprint("Error loading " .. name .. " (" .. err .. ")")
 		return
 	end
 	return true
@@ -193,25 +196,37 @@ end
 --
 
 local function versionTooltipFunc(tt)
-	local m = getGroupMembers()
-	if not m then return end
+	-- Try to avoid calling getGroupMembers as long as possible.
+	-- XXX We should just get a file-local boolean flag that we update
+	-- whenever we receive a version reply from someone. That way we
+	-- reduce the processing required to open a simple tooltip.
 	local add = nil
-	for i, player in next, m do
-		if usersRelease[player] then
-			if usersRelease[player] < highestReleaseRevision then
-				add = true
-				break
-			end
-		elseif usersAlpha[player] then
-			-- version == -1 means the user is using a svn checkout, and not a downloadable alpha zip
-			-- we ignore svn users
-			if usersAlpha[player] < (highestReleaseRevision - 1) and usersAlpha[player] ~= -1 then
-				add = true
-				break
-			end
-		else
+	for player, version in pairs(usersRelease) do
+		if version < highestReleaseRevision then
 			add = true
 			break
+		end
+	end
+	if not add then
+		for player, version in pairs(usersAlpha) do
+			if version ~= -1 and version < (highestReleaseRevision - 1) then
+				add = true
+				break
+			end
+		end
+	end
+	if not add and next(usersUnknown) then
+		add = true
+	end
+	if not add then
+		local m = getGroupMembers()
+		if m then
+			for i, player in next, m do
+				if not usersRelease[player] and not usersAlpha[player] then
+					add = true
+					break
+				end
+			end
 		end
 	end
 	if add then
@@ -222,6 +237,12 @@ end
 -----------------------------------------------------------------------
 -- Loader initialization
 --
+
+local reqFuncAddons = {
+	BigWigs_Core = true,
+	BigWigs_Options = true,
+	BigWigs_Plugins = true,
+}
 
 function loader:OnInitialize()
 	for i = 1, GetNumAddOns() do
@@ -239,6 +260,8 @@ function loader:OnInitialize()
 			if meta then
 				loadOnZoneAddons[#loadOnZoneAddons + 1] = name
 			end
+		elseif not enabled and reqFuncAddons[name] then
+			sysprint(L["coreAddonDisabled"])
 		end
 	end
 
@@ -261,7 +284,7 @@ function loader:OnEnable()
 		end
 		-- check again and error if you can't find
 		if not LibStub("LibBabble-Zone-3.0", true) or not LibStub("LibBabble-Boss-3.0", true) then
-			print("Error retrieving LibBabble-Zone-3.0 and LibBabble-Boss-3.0, please reinstall Big Wigs.")
+			sysprint("Error retrieving LibBabble-Zone-3.0 and LibBabble-Boss-3.0, please reinstall Big Wigs.")
 		else
 			BZ = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
 			BB = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
@@ -330,7 +353,7 @@ do
 			if not tonumber(message) or warnedOutOfDate then return end
 			if tonumber(message) > BIGWIGS_RELEASE_REVISION then
 				warnedOutOfDate = true
-				print(L["There is a new release of Big Wigs available. You can visit curse.com, wowinterface.com, wowace.com or use the Curse Updater to get the new release."])
+				sysprint(L["There is a new release of Big Wigs available. You can visit curse.com, wowinterface.com, wowace.com or use the Curse Updater to get the new release."])
 			end
 		elseif prefix == "BWVR3" then
 			message = tonumber(message)
@@ -354,11 +377,6 @@ end
 
 function loader:ZoneChanged()
 	if not grouped then return end
-	if BigWigs and UnitIsGhost("player") and BigWigs:IsEnabled() then
-		for name, module in BigWigs:IterateBossModules() do
-			if module.isEngaged then module:Reboot() end
-		end
-	end
 	local z1, z2 = GetRealZoneText(), GetZoneText()
 	-- load party content in raid, but don't load raid content in a party...
 	if (enableZones[z1] and enableZones[z1] <= grouped) or (enableZones[z2] and enableZones[z2] <= grouped) then
@@ -398,7 +416,6 @@ function loader:BigWigs_BossModuleRegistered(message, name, module)
 end
 
 function loader:BigWigs_CoreEnabled()
-	coreEnabled = true
 	if ldb then
 		ldb.icon = "Interface\\AddOns\\BigWigs\\Textures\\icons\\core-enabled"
 	end
@@ -411,7 +428,6 @@ function loader:BigWigs_CoreEnabled()
 end
 
 function loader:BigWigs_CoreDisabled()
-	coreEnabled = false
 	if ldb then
 		ldb.icon = "Interface\\AddOns\\BigWigs\\Textures\\icons\\core-disabled"
 	end
@@ -481,13 +497,13 @@ if ldb11 then
 					for name, module in BigWigs:IterateBossModules() do
 						if module:IsEnabled() then module:Disable() end
 					end
-					BigWigs:Print(L["All running modules have been disabled."])
+					sysprint(L["All running modules have been disabled."])
 				end
 			else
 				for name, module in BigWigs:IterateBossModules() do
 					if module:IsEnabled() then module:Reboot() end
 				end
-				BigWigs:Print(L["All running modules have been reset."])
+				sysprint(L["All running modules have been reset."])
 			end
 		end
 	end
@@ -574,9 +590,9 @@ do
 				bad[#bad + 1] = coloredNames[player]
 			end
 		end
-		if #good > 0 then print(L["Up to date:"], table.concat(good, ", ")) end
-		if #ugly > 0 then print(L["Out of date:"], table.concat(ugly, ", ")) end
-		if #bad > 0 then print(L["No Big Wigs 3.x:"], table.concat(bad, ", ")) end
+		if #good > 0 then print(L["Up to date:"], unpack(good)) end
+		if #ugly > 0 then print(L["Out of date:"], unpack(ugly)) end
+		if #bad > 0 then print(L["No Big Wigs 3.x:"], unpack(bad)) end
 		good, bad, ugly = nil, nil, nil
 	end
 
@@ -611,7 +627,3 @@ do
 	loader.RemoveInterfaceOptions = removeFrame
 end
 
--- ChopsUI hack to allow external initialization of BigWigs
-function BigWigs_LoadAndEnableCore()
-  loadAndEnableCore()
-end

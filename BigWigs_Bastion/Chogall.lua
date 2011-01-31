@@ -5,14 +5,6 @@
 local mod = BigWigs:NewBoss("Cho'gall", "The Bastion of Twilight")
 if not mod then return end
 mod:RegisterEnableMob(43324)
-mod.toggleOptions = {"orders", 91303, 81628, 82299, 82630, 82414, "berserk", "bosskill"}
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
-mod.optionHeaders = {
-	orders = "heroic",
-	[91303] = CL.phase:format(1),
-	[82630] = CL.phase:format(2),
-	bosskill = "general",
-}
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -20,6 +12,11 @@ mod.optionHeaders = {
 
 local worshipTargets = mod:NewTargetList()
 local worshipCooldown = 24
+local sicknessWarned = nil
+local counter = 1
+local corruptingCrash = GetSpellInfo(93180)
+local bigcount = 1
+local oozecount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -27,12 +24,23 @@ local worshipCooldown = 24
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	--heroic
-	L.orders = "Shadow/Flame Orders"
-	L.orders_desc = "Warning for Shadow/Flame Orders"
+	L.orders = "Stance changes"
+	L.orders_desc = "Warning for when Cho'gall changes between Shadow/Flame Orders stances."
 
-	--normal
+	L.crash_say = "Crash on ME!"
 	L.worship_cooldown = "~Worship"
+	L.adherent_bar = "Big add #%d"
+	L.adherent_message = "Add %d incoming!"
+	L.ooze_bar = "Ooze swarm %d"
+	L.ooze_message = "Ooze swarm %d incoming!"
+	L.tentacles_bar = "Tentacles spawn"
+	L.tentacles_message = "Tentacle disco party!"
+	L.sickness_message = "You feel terrible!"
+	L.fury_bar = "Next Fury"
+	L.fury_message = "Fury!"
+
+	L.phase2_message = "Phase 2!"
+	L.phase2_soon = "Phase 2 soon!"
 end
 L = mod:GetLocale()
 
@@ -40,33 +48,110 @@ L = mod:GetLocale()
 -- Initialization
 --
 
+function mod:GetOptions(CL)
+	return {
+		91303, {81538, "FLASHSHAKE"}, {93180, "FLASHSHAKE", "ICON", "SAY"}, 82524, 81628, 82299,
+		82630, 82414,
+		"orders", {82235, "FLASHSHAKE", "PROXIMITY"}, "berserk", "bosskill"
+	}, {
+		[91303] = CL.phase:format(1),
+		[82630] = CL.phase:format(2),
+		orders = "general",
+	}
+end
+
 function mod:OnBossEnable()
 	--heroic
 	self:Log("SPELL_CAST_SUCCESS", "Orders", 81171, 81556)
 
 	--normal
-	self:Log("SPELL_AURA_APPLIED", "Worship", 91317, 93366)
+	self:Log("SPELL_AURA_APPLIED", "Worship", 91317, 93365, 93366, 93367)
 	self:Log("SPELL_CAST_START", "SummonCorruptingAdherent", 81628)
+	self:Log("SPELL_CAST_START", "FuryOfChogall", 82524)
 	self:Log("SPELL_CAST_START", "FesterBlood", 82299)
 	self:Log("SPELL_CAST_SUCCESS", "LastPhase", 82630)
-	self:Log("SPELL_CAST_SUCCESS", "DarkenedCreations", 82414)
+	self:Log("SPELL_CAST_SUCCESS", "DarkenedCreations", 82414, 93160, 93162)
+	self:Log("SPELL_CAST_SUCCESS", "CorruptingCrash", 93180)
+	self:Log("SPELL_DAMAGE", "Blaze", 81538, 93212, 93213, 93214)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Death("Win", 43324)
 end
 
-
-function mod:OnEngage()
+function mod:OnEngage(diff)
+	bigcount = 1
+	oozecount = 1
 	self:Bar(91303, L["worship_cooldown"], 11, 91303)
-	self:Bar(81628, (GetSpellInfo(81628)), 58, 81628)
+	-- self:Bar(81628, L["adherent_bar"]:format(bigcount), diff > 2 and 75 or 58, 81628)
+	-- Fury of Cho'gall bar
+	self:Bar(82524, L["fury_bar"], 100, 82524)
 	self:Berserk(600)
 	worshipCooldown = 24 -- its not 40 sec till the 1st add
+	sicknessWarned = nil
+	counter = 1
+
+	self:RegisterEvent("UNIT_POWER")
+	self:RegisterEvent("UNIT_HEALTH")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+do
+	local last = 0
+	function mod:Blaze(player, spellId, _, _, spellName)
+		local time = GetTime()
+		if (time - last) > 2 then
+			last = time
+			if UnitIsUnit(player, "player") then
+				self:LocalMessage(81538, spellName, "Personal", spellId, "Info")
+				self:FlashShake(81538)
+			end
+		end
+	end
+end
+
+local function checkTarget(sGUID)
+	local mobId = mod:GetUnitIdByGUID(sGUID)
+	if mobId then
+		local player = UnitName(mobId.."target")
+		if UnitIsUnit("player", player) then
+			mod:Say(93180, L["crash_say"])
+			mod:FlashShake(93180)
+		end
+		mod:TargetMessage(93180, corruptingCrash, player, "Urgent", 93180)
+		if counter == 1 then
+			mod:PrimaryIcon(93180, player)
+		else
+			mod:SecondaryIcon(93180, player)
+		end
+		if mod:GetInstanceDifficulty() == 4 then counter = counter + 1 end
+	end
+	if counter > 2 then counter = 1 end
+end
+
+function mod:CorruptingCrash(...)
+	local sGUID = select(11, ...)
+	self:ScheduleTimer(checkTarget, 0.01, sGUID)
+end
+
+function mod:UNIT_POWER(event, unit, powerType)
+	if sicknessWarned or unit ~= "player" or powerType ~= "ALTERNATE" then return end
+	local power = UnitPower("player", ALTERNATE_POWER_INDEX)
+	if power > 49 then
+		self:LocalMessage(82235, L["sickness_message"], "Personal", 81831, "Long")
+		self:OpenProximity(5, 82235)
+		self:FlashShake(82235)
+		sicknessWarned = true
+	end
+end
+
+function mod:FuryOfChogall(_, spellId, _, _, spellName)
+	self:Message(82524, L["fury_message"], "Attention", spellId)
+	self:Bar(82524, L["fury_bar"], 47, spellId)
+end
 
 function mod:Orders(_, spellId, _, _, spellName)
 	self:Message("orders", spellName, "Urgent", spellId)
@@ -74,27 +159,38 @@ end
 
 function mod:SummonCorruptingAdherent(_, spellId, _, _, spellName)
 	worshipCooldown = 40
-	self:Message(81628, spellName, "Attention", 81628)
-	self:Bar(81628, spellName, 91, 81628)
+	self:Message(81628, L["adherent_message"]:format(bigcount), "Important", spellId)
+	bigcount = bigcount + 1
+	self:Bar(81628, L["adherent_bar"]:format(bigcount), 91, spellId)
+
 	-- I assume its 40 sec from summon and the timer is not between two casts of Fester Blood
-	self:Bar(82299, (GetSpellInfo(82299)), 40, 82299)
+	self:Bar(82299, L["ooze_bar"]:format(oozecount), 40, 82299)
 end
 
 function mod:FesterBlood(_, spellId, _, _, spellName)
-	self:Message(82299, spellName, "Important", spellId, "Alert")
+	self:Message(82299, L["ooze_message"]:format(oozecount), "Attention", spellId, "Alert")
+	oozecount = oozecount + 1
 end
 
-function mod:LastPhase(_, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, (GetSpellInfo(81628)))
-	self:SendMessage("BigWigs_StopBar", self, (GetSpellInfo(82299)))
+function mod:UNIT_HEALTH()
+	local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
+	if hp < 30 then
+		self:Message(82630, L["phase2_soon"], "Attention", 82630, "Info")
+		self:UnregisterEvent("UNIT_HEALTH")
+	end
+end
+
+function mod:LastPhase(_, spellId)
+	self:SendMessage("BigWigs_StopBar", self, L["adherent_bar"])
+	self:SendMessage("BigWigs_StopBar", self, L["ooze_bar"])
 	self:SendMessage("BigWigs_StopBar", self, L["worship_cooldown"])
-	self:Message(82630, spellName, "Attention", spellId)
-	self:Bar(82414, (GetSpellInfo(82414)), 6, 82414)
+	self:Message(82630, L["phase2_message"], "Positive", spellId)
+	self:Bar(82414, L["tentacles_bar"], 6, 82414)
 end
 
-function mod:DarkenedCreations(_, spellId, _, _, spellName)
-	self:Message(82414, spellName, "Urgent", spellId)
-	self:Bar(82414, spellName, 40, 82414)
+function mod:DarkenedCreations(_, spellId)
+	self:Message(82414, L["tentacles_message"], "Urgent", spellId)
+	self:Bar(82414, L["tentacles_bar"], 40, 82414)
 end
 
 do

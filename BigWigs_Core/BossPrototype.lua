@@ -2,7 +2,7 @@
 -- Prototype
 --
 
-local debug = nil -- Set to true to get (very spammy) debug messages.
+local debug = false -- Set to true to get (very spammy) debug messages.
 local dbgStr = "[DBG:%s] %s"
 local function dbg(self, msg) print(dbgStr:format(self.displayName, msg)) end
 
@@ -21,6 +21,7 @@ function boss:IsBossModule() return true end
 function boss:OnInitialize() core:RegisterBossModule(self) end
 function boss:OnEnable()
 	if debug then dbg(self, "OnEnable()") end
+	if self.SetupOptions then self:SetupOptions() end
 	if type(self.OnBossEnable) == "function" then self:OnBossEnable() end
 	self:SendMessage("BigWigs_OnBossEnable", self)
 end
@@ -90,8 +91,8 @@ do
 		if emoteMap[self][msg] then
 			self[emoteMap[self][msg]](self, msg, ...)
 		else
-			for yell, func in pairs(emoteMap[self]) do
-				if msg:find(yell) then
+			for emote, func in pairs(emoteMap[self]) do
+				if msg:find(emote) then
 					self[func](self, msg, ...)
 				end
 			end
@@ -107,8 +108,8 @@ do
 			else self[d](self, numericId, dGUID, player, dFlags) end
 		else
 			local m = combatLogMap[self][event]
-			if m and m[spellId] then
-				local func = m[spellId]
+			if m and (m[spellId] or m["*"]) then
+				local func = m[spellId] or m["*"]
 				if type(func) == "function" then
 					func(player, spellId, source, secSpellId, spellName, buffStack, event, sFlags, dFlags, dGUID, sGUID)
 				else
@@ -159,25 +160,40 @@ end
 
 function boss:CheckBossStatus()
 	if debug then dbg(self, ":CheckBossStatus called.") end
-	--rough draft, subject to change
 	local guid = UnitGUID("boss1") or UnitGUID("boss2") or UnitGUID("boss3") or UnitGUID("boss4")
 	if not guid and self.isEngaged then
 		self:Reboot()
 	elseif not self.isEngaged and guid then
-		local enableMobs, id = core:GetEnableMobs(), tonumber(guid:sub(7, 10), 16)
-		if enableMobs[id] == self.moduleName then
-			self:Engage()
+		local module = core:GetEnableMobs()[tonumber(guid:sub(7, 10), 16)]
+		local modType = type(module)
+		if modType == "string" then
+			if module == self.moduleName then
+				self:Engage()
+			else
+				self:Disable()
+			end
+		elseif modType == "table" then
+			for i = 1, #module do
+				if module[i] == self.moduleName then
+					self:Engage()
+				end
+			end
+			if not self.isEngaged then self:Disable() end
 		end
 	end
 end
 
 do
-	local t = {"target", "targettarget", "focus", "focustarget", "mouseover", "mouseovertarget"}
-	for i = 1, 4 do t[#t+1] = fmt("boss%d", i) end
-	for i = 1, 4 do t[#t+1] = fmt("party%dtarget", i) end
-	for i = 1, 40 do t[#t+1] = fmt("raid%dtarget", i) end
+	local t = nil
+	local function buildTable()
+		t = {"target", "targettarget", "focus", "focustarget", "mouseover", "mouseovertarget"}
+		for i = 1, 4 do t[#t+1] = fmt("boss%d", i) end
+		for i = 1, 4 do t[#t+1] = fmt("party%dtarget", i) end
+		for i = 1, 40 do t[#t+1] = fmt("raid%dtarget", i) end
+	end
 	local function findTargetByGUID(id)
 		local idType = type(id)
+		if not t then buildTable() end
 		for i, unit in next, t do
 			if UnitExists(unit) and not UnitIsPlayer(unit) then
 				local unitId = UnitGUID(unit)
@@ -188,54 +204,19 @@ do
 	end
 	function boss:GetUnitIdByGUID(mob) return findTargetByGUID(mob) end
 
-	local scan = nil
-	if debug then
-		function scan(self)
-			local mobs = {}
-			local found = nil
-			for mobId, entry in pairs(core:GetEnableMobs()) do
-				if type(entry) == "table" then
-					for i, module in next, entry do
-						if module == self.moduleName then
-							local unit = findTargetByGUID(mobId)
-							if unit and UnitAffectingCombat(unit) then
-								mobs[#mobs + 1] = tostring(mobId) .. ":" .. unit
-								found = true
-							else
-								mobs[#mobs + 1] = tostring(mobId) .. ":no target"
-								mobs[mobId] = "no target"
-							end
-						end
-					end
-				elseif entry == self.moduleName then
-					local unit = findTargetByGUID(mobId)
-					if unit and UnitAffectingCombat(unit) then
-						mobs[#mobs + 1] = tostring(mobId) .. ":" .. unit
-						found = true
-					else
-						mobs[#mobs + 1] = tostring(mobId) .. ":no target"
+	local function scan(self)
+		for mobId, entry in pairs(core:GetEnableMobs()) do
+			if type(entry) == "table" then
+				for i, module in next, entry do
+					if module == self.moduleName then
+						local unit = findTargetByGUID(mobId)
+						if unit and UnitAffectingCombat(unit) then return unit end
+						break
 					end
 				end
-			end
-			dbg(self, "scan data: " .. table.concat(mobs, ","))
-			mobs = nil
-			return found
-		end
-	else
-		function scan(self)
-			for mobId, entry in pairs(core:GetEnableMobs()) do
-				if type(entry) == "table" then
-					for i, module in next, entry do
-						if module == self.moduleName then
-							local unit = findTargetByGUID(mobId)
-							if unit and UnitAffectingCombat(unit) then return unit end
-							break
-						end
-					end
-				elseif entry == self.moduleName then
-					local unit = findTargetByGUID(mobId)
-					if unit and UnitAffectingCombat(unit) then return unit end
-				end
+			elseif entry == self.moduleName then
+				local unit = findTargetByGUID(mobId)
+				if unit and UnitAffectingCombat(unit) then return unit end
 			end
 		end
 	end
@@ -276,6 +257,7 @@ do
 	function boss:GetInstanceDifficulty()
 		local _, instanceType, diff, _, _, heroic, dynamic = GetInstanceInfo()
 		if instanceType == "raid" and dynamic and heroic == 1 and diff <= 2 then
+			if debug then dbg(self, "Adjusting difficulty returned from GetInstanceInfo().") end
 			diff = diff + 2
 		end
 		return type(diff) == "number" and diff or 1
@@ -320,7 +302,7 @@ do
 
 	-- ... = color, icon, sound, noraidsay, broadcastonly
 	function boss:DelayedMessage(key, delay, text, ...)
-		if type(delay) ~= "number" then error(string.format("Module %s tried to schedule a delayed message with delay as type %q, but it must be a number.", module.name, type(delay))) end
+		if type(delay) ~= "number" then error(string.format("Module %s tried to schedule a delayed message with delay as type %q, but it must be a number.", self.name, type(delay))) end
 		self:CancelDelayedMessage(text)
 
 		local id = self:ScheduleTimer("ProcessDelayedMessage", delay, text)
@@ -363,29 +345,39 @@ do
 	end)
 end
 
-
-local function checkFlag(self, key, flag)
-	if silencedOptions[key] then
-		return
-	end
-	if type(key) == "number" then key = GetSpellInfo(key) end
-	if type(self.db.profile[key]) ~= "number" then
-		if debug then
-			dbg(self, ("Tried to access %q, but in the database it's a %s."):format(key, type(self.db.profile[key])))
-		else
+local checkFlag = nil
+do
+	local noDefaultError   = "Module %s uses %q as a toggle option, but it does not exist in the modules default values."
+	local notNumberError   = "Module %s tried to access %q, but in the database it's a %s."
+	local nilKeyError      = "Module %s tried to check the bitflags for a nil option key."
+	local invalidFlagError = "Module %s tried to check for an invalid flag type %q (%q). Flags must be bits."
+	checkFlag = function(self, key, flag)
+		if type(key) == "nil" then error(nilKeyError:format(self.name)) end
+		if type(flag) ~= "number" then error(invalidFlagError:format(self.name, type(flag), tostring(flag))) end
+		if silencedOptions[key] then return end
+		if type(key) == "number" then key = GetSpellInfo(key) end
+		if type(self.db.profile[key]) ~= "number" then
+			if not self.toggleDefaults[key] then
+				error(noDefaultError:format(self.name, key))
+			end
+			if debug then
+				error(notNumberError:format(self.name, key, type(self.db.profile[key])))
+			end
 			self.db.profile[key] = self.toggleDefaults[key]
 		end
+		return bit.band(self.db.profile[key], flag) == flag
 	end
-	return bit.band(self.db.profile[key], flag) == flag
 end
 
-function boss:OpenProximity(range)
-	if not checkFlag(self, "proximity", C.PROXIMITY) then return end
-	self:SendMessage("BigWigs_ShowProximity", self, range)
+-- XXX the monitor should probably also get a button to turn off the proximity bitflag
+-- XXX for the given key.
+function boss:OpenProximity(range, key)
+	if not checkFlag(self, key or "proximity", C.PROXIMITY) then return end
+	self:SendMessage("BigWigs_ShowProximity", self, range, key or "proximity")
 end
-function boss:CloseProximity()
-	if not checkFlag(self, "proximity", C.PROXIMITY) then return end
-	self:SendMessage("BigWigs_HideProximity")
+function boss:CloseProximity(key)
+	if not checkFlag(self, key or "proximity", C.PROXIMITY) then return end
+	self:SendMessage("BigWigs_HideProximity", self, key or "proximity")
 end
 
 function boss:Message(key, text, color, icon, sound, noraidsay, broadcastonly)
@@ -495,7 +487,7 @@ do
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", filter)
 
 	function boss:Whisper(key, player, spellName, noName)
-		self:SendMessage("BigWigs_Whisper", self, key, player, msg, spellName, noName)
+		self:SendMessage("BigWigs_Whisper", self, key, player, spellName, noName)
 		if not checkFlag(self, key, C.WHISPER) then return end
 		local msg = noName and spellName or fmt(L["you"], spellName)
 		sentWhispers[msg] = true

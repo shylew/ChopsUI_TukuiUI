@@ -5,15 +5,16 @@
 local mod = BigWigs:NewBoss("Maloriak", "Blackwing Descent")
 if not mod then return end
 mod:RegisterEnableMob(41378)
-mod.toggleOptions = {"darkSludge", {77699, "ICON"}, {77760, "FLASHSHAKE", "WHISPER"}, "proximity", {77786, "FLASHSHAKE", "WHISPER", "ICON"}, 92968, 77991, "phase", 77912, 77569, 77896, "berserk", "bosskill"}
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
+local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local aberrations = 18
 local phaseCounter = 0
 local warnedAlready = nil
+local maloriak = BigWigs:Translate("Maloriak")
 local chillTargets = mod:NewTargetList()
 
 --------------------------------------------------------------------------------
@@ -23,24 +24,23 @@ local chillTargets = mod:NewTargetList()
 local L = mod:NewLocale("enUS", true)
 if L then
 	--heroic
-	L.darkSludge = (GetSpellInfo(92987))
-	L.darkSludge_desc = ("Warning for when you stand in %s."):format((GetSpellInfo(92987)))
+	L.sludge = "Dark Sludge"
+	L.sludge_desc = "Warning for when you stand in Dark Sludge."
+	L.sludge_message = "Sludge on YOU!"
 
 	--normal
-	L.final_phase = "Final Phase"
+	L.final_phase = "Final phase"
 
-	L.release_aberration_message = "%s adds left!"
-	L.release_all = "%s adds released!"
-
-	L.bitingchill_say = "Biting Chill on ME!"
+	L.release_aberration_message = "%d adds left!"
+	L.release_all = "%d adds released!"
 
 	L.flashfreeze = "~Flash Freeze"
+	L.next_blast = "~Scorching Blast"
 
 	L.phase = "Phase"
-	L.phase_desc = "Warning for Phase changes."
-	L.next_phase = "Next Phase"
-
-	L.you = "%s on YOU!"
+	L.phase_desc = "Warning for phase changes."
+	L.next_phase = "Next phase"
+	L.green_phase_bar = "Green phase"
 
 	L.red_phase_trigger = "Mix and stir, apply heat..."
 	L.red_phase = "|cFFFF0000Red|r phase"
@@ -53,25 +53,34 @@ if L then
 end
 L = mod:GetLocale()
 
-mod.optionHeaders = {
-	[77699] = L["blue_phase"],
-	[77786] = L["red_phase"],
-	[92987] = L["dark_phase"],
-	[77991] = L["final_phase"],
-	darkSludge = "heroic",
-	phase = "general",
-}
-
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
+function mod:GetOptions(CL)
+	return {
+		{77699, "ICON"}, {77760, "FLASHSHAKE", "WHISPER", "SAY"}, "proximity",
+		{77786, "FLASHSHAKE", "WHISPER", "ICON"}, 92968,
+		77991,
+		"sludge",
+		"phase", 77912, 77569, 77896, "berserk", "bosskill"
+	}, {
+		[77699] = L["blue_phase"],
+		[77786] = L["red_phase"],
+		[77991] = L["final_phase"],
+		sludge = "heroic",
+		phase = "general"
+	}
+end
+
 function mod:OnBossEnable()
 	--heroic
-	self:Log("SPELL_AURA_APPLIED", "DarkSludge", 92987)
+	self:Log("SPELL_AURA_APPLIED", "DarkSludge", 92987, 92988)
 
 	--normal
 	self:Log("SPELL_CAST_START", "ReleaseAberrations", 77569)
+	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
+
 	self:Log("SPELL_CAST_SUCCESS", "FlashFreezeTimer", 77699, 92979, 92978, 92980)
 	self:Log("SPELL_AURA_APPLIED", "FlashFreeze", 77699, 92979, 92978, 92980)
 	self:Log("SPELL_AURA_APPLIED", "BitingChill", 77760)
@@ -98,10 +107,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage(diff)
-	-- XXX Berserk timers not confirmed
-	if diff > 2 then
-		self:Berserk(840)
-	end
+	self:Berserk(diff > 2 and 720 or 420)
 	aberrations = 18
 	phaseCounter = 0
 	warnedAlready = nil
@@ -111,33 +117,49 @@ end
 -- Event Handlers
 --
 
-local function nextPhase(phase)
-	if mod:GetInstanceDifficulty() > 2 then
-		if phaseCounter == 3 then
-			mod:SendMessage("BigWigs_StopBar", mod, L["next_phase"])
-			if phase == "dark" then
-				mod:Bar("phase", L["green_phase"], 100, "INV_POTION_162")
-			elseif phase == "green" then
-				phaseCounter = 0
-			else
-				mod:Bar("phase", L["green_phase"], 47, "INV_POTION_162")
-			end
-		end
-		phaseCounter = phaseCounter + 1
-	end
-end
-
 do
 	local last = 0
 	function mod:DarkSludge(player, spellId)
-		if mod:GetInstanceDifficulty() < 3 then return end
+		if not UnitIsUnit(player, "player") then return end
 		local time = GetTime()
 		if (time - last) > 2 then
 			last = time
-			if UnitIsUnit(player, "player") then
-				self:LocalMessage("darkSludge", L["you"]:format((GetSpellInfo(92987))), "Personal", spellId, "Info")
-			end
+			self:LocalMessage("sludge", L["sludge_message"], "Personal", spellId, "Info")
 		end
+	end
+end
+
+--[[
+NORMAL
+engage: 0
+red/blue: 1
+blue/red: 2 - start green phase bar
+green: 3 - set counter to 0
+red/blue: 1
+blue/red: 2 - start green phase bar
+green: 3
+
+HEROIC
+engage: 0
+dark: 1
+red/blue: 2
+blue/red: 3 - start green phase bar
+green: 4 - set counter to 0
+dark: 1
+red/blue: 2
+blue/red: 3 - start green phase bar
+green: 4 - set counter to 0
+]]
+
+-- XXX The phase counter is NOT working on normal, we get the "Green phase" bar when we should not.
+-- XXX Someone needs to add some debug messages around here before they pull.
+local function nextPhase(timeToNext)
+	phaseCounter = phaseCounter + 1
+	local diff = mod:GetInstanceDifficulty()
+	if (diff < 3 and phaseCounter == 2) or (diff > 2 and phaseCounter == 3) then
+		mod:Bar("phase", L["green_phase_bar"], timeToNext, "INV_POTION_162")
+	else
+		mod:Bar("phase", L["next_phase"], timeToNext, "INV_ALCHEMY_ELIXIR_EMPTY")
 	end
 end
 
@@ -150,13 +172,10 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	end
 	if potion == "POTION_20" then
 		self:Blue()
-		self:SendMessage("BigWigs_StopBar", self, "~"..(GetSpellInfo(92968)))
 	elseif potion == "POTION_24" then
 		self:Red()
-		self:Bar(92968, "~"..(GetSpellInfo(92968)), 25, 92968)
 	elseif potion == "POTION_162" then
 		self:Green()
-		self:SendMessage("BigWigs_StopBar", self, "~"..(GetSpellInfo(92968)))
 	elseif potion == "ELEMENTAL_PRIMAL_SHADOW" then
 		self:Dark()
 	end
@@ -165,38 +184,38 @@ end
 
 function mod:Red()
 	warnedAlready = true
-	self:Bar(92968, "~"..(GetSpellInfo(92968)), 25, 92968)
-	self:Bar("phase", L["next_phase"], 47, "INV_ALCHEMY_ELIXIR_EMPTY")
+	self:SendMessage("BigWigs_StopBar", self, L["flashfreeze"]) -- XXX untested, but seems logical
+	self:Bar(92968, L["next_blast"], 25, 92968)
 	self:Message("phase", L["red_phase"], "Positive", "Interface\\Icons\\INV_POTION_24", "Alarm")
 	self:CloseProximity()
-	nextPhase("red")
+	nextPhase(47)
 end
 
 function mod:Blue()
 	warnedAlready = true
-	self:SendMessage("BigWigs_StopBar", self, "~"..(GetSpellInfo(92968)))
-	self:Bar("phase", L["next_phase"], 47, "INV_ALCHEMY_ELIXIR_EMPTY")
+	self:SendMessage("BigWigs_StopBar", self, L["next_blast"])
 	self:Bar(77699, L["flashfreeze"], 28, 77699)
 	self:Message("phase", L["blue_phase"], "Positive", "Interface\\Icons\\INV_POTION_20", "Alarm")
 	self:OpenProximity(5)
-	nextPhase("blue")
+	nextPhase(47)
 end
 
 function mod:Green()
 	warnedAlready = true
-	self:SendMessage("BigWigs_StopBar", self, "~"..(GetSpellInfo(92968)))
-	self:Bar("phase", L["next_phase"], 47, "INV_ALCHEMY_ELIXIR_EMPTY")
+	self:SendMessage("BigWigs_StopBar", self, L["next_blast"])
+	self:SendMessage("BigWigs_StopBar", self, L["flashfreeze"])
 	self:Message("phase", L["green_phase"], "Positive", "Interface\\Icons\\INV_POTION_162", "Alarm")
 	self:CloseProximity()
-	nextPhase("green")
+	nextPhase(47)
+	-- Make sure to reset after the nextPhase() call, which increments it
+	phaseCounter = 0
 end
 
 function mod:Dark()
 	warnedAlready = true
-	self:Bar("phase", L["next_phase"], 100, "INV_ALCHEMY_ELIXIR_EMPTY")
 	self:Message("phase", L["dark_phase"], "Positive", "Interface\\Icons\\INV_ELEMENTAL_PRIMAL_SHADOW", "Alarm")
 	self:CloseProximity()
-	nextPhase("dark")
+	nextPhase(100)
 end
 
 function mod:FlashFreezeTimer(_, spellId, _, _, spellName)
@@ -209,33 +228,48 @@ function mod:FlashFreeze(player, spellId, _, _, spellName)
 end
 
 function mod:Remedy(unit, spellId, _, _, spellName)
-	if UnitIsUnit(unit, "boss1") then
+	if unit == maloriak then
 		self:Message(77912, spellName, "Important", spellId, "Alert")
 	end
 end
 
-function mod:ReleaseAberrations(_, spellId)
-	aberrations = aberrations - 3
-	self:Message(77569, L["release_aberration_message"]:format(aberrations), "Urgent", spellId)
+do
+	local handle = nil
+	local function release()
+		aberrations = aberrations - 3
+		mod:Message(77569, L["release_aberration_message"]:format(aberrations), "Urgent", 688)
+	end
+	function mod:ReleaseAberrations()
+		-- He keeps casting it even if there are no adds left to release...
+		if aberrations <= 0 then return end
+		handle = self:ScheduleTimer(release, 1.5)
+	end
+	function mod:Interrupt(_, _, _, secSpellId, _, _, _, _, _, dGUID)
+		if secSpellId ~= 77569 then return end
+		local guid = tonumber(dGUID:sub(7, 10), 16)
+		if guid ~= 41378 then return end
+		-- Someone interrupted release aberrations!
+		self:CancelTimer(handle, true)
+		handle = nil
+	end
 end
 
 function mod:ConsumingFlames(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
 		self:FlashShake(77786)
-		self:LocalMessage(77786, spellName, "Personal", spellId, "Info")
 	end
-	self:TargetMessage(77786, spellName, player, "Urgent", spellId) -- let the other know too so they can shout on the guy if he is slow
-	self:Whisper(77786, player, L["you"]:format((GetSpellInfo(77786))))
+	self:TargetMessage(77786, spellName, player, "Personal", spellId, "Info")
+	self:Whisper(77786, player, spellName)
 	self:PrimaryIcon(77786, player)
 end
 
 function mod:ScorchingBlast(_, spellId, _, _, spellName)
 	self:Message(92968, spellName, "Attention", spellId)
-	self:Bar(92968, "~"..spellName, 10, 92968)
+	self:Bar(92968, L["next_blast"], 10, 92968)
 end
 
 function mod:ReleaseAll(_, spellId)
-	self:Message(77991, L["release_all"]:format(aberrations), "Important", spellId, "Alert")
+	self:Message(77991, L["release_all"]:format(aberrations + 2), "Important", spellId, "Alert")
 end
 
 do
@@ -247,7 +281,7 @@ do
 	function mod:BitingChill(player, spellId, _, _, spellName)
 		chillTargets[#chillTargets + 1] = player
 		if UnitIsUnit(player, "player") then
-			self:Say(77760, L["bitingchill_say"])
+			self:Say(77760, CL["say"]:format((GetSpellInfo(77760))))
 			self:FlashShake(77760)
 		end
 		if not scheduled then

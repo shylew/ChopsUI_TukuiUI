@@ -8,21 +8,31 @@ if not plugin then return end
 plugin.defaultDB = {
 	posx = nil,
 	posy = nil,
-	showTitle = true,
-	showBackground = true,
-	showSound = true,
-	showClose = true,
+	objects = {
+		ability = true,
+		tooltip = true,
+		title = true,
+		background = true,
+		sound = true,
+		close = true,
+	},
 	lock = nil,
-	width = 100,
-	height = 80,
+	width = 140,
+	height = 120,
 	sound = true,
+	soundDelay = 1,
+	soundName = "BigWigs: Alarm",
 	disabled = nil,
 	proximity = true,
+	font = nil,
+	fontSize = nil,
 }
 
 -------------------------------------------------------------------------------
 -- Locals
 --
+
+local db = nil
 
 local L = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Plugins")
 
@@ -32,7 +42,15 @@ local mute = "Interface\\AddOns\\BigWigs\\Textures\\icons\\mute"
 local unmute = "Interface\\AddOns\\BigWigs\\Textures\\icons\\unmute"
 
 local inConfigMode = nil
+local configModeString = [[
+|cffaad372Legolasftw|r
+|cfff48cbaTirionman|r
+|cfffff468Sneakystab|r
+|cffc69b6dIamconanok|r
+]]
 local activeProximityFunction = nil
+local activeRange = nil
+local activeSpellID = nil
 local anchor = nil
 
 local OnOptionToggled = nil -- Function invoked when the proximity option is toggled on a module.
@@ -61,6 +79,9 @@ local coloredNames = setmetatable({}, {__index =
 --
 
 local bandages = {
+	53051, -- Dense Embersilk Bandage
+	53050, -- Heavy Embersilk Bandage
+	53049, -- Embersilk Bandage
 	34722, -- Heavy Frostweave Bandage
 	34721, -- Frostweave Bandage
 	21991, -- Heavy Netherweave Bandage
@@ -138,8 +159,27 @@ do
 		end
 	end
 end
-local function getClosestRangeFunction(toRange)
-	if ranges[toRange] then return ranges[toRange], toRange end
+
+-- Copied from LibMapData-1.0 (All Rights Reserved) with permission from kagaro
+local mapData = {
+	TheBastionofTwilight = {
+		{ 1078.33402252197, 718.889984130859 },
+		{ 778.343017578125, 518.894958496094 },
+		{ 1042.34202575684, 694.894958496094 },
+	},
+	BaradinHold = {
+		{ 585, 390 },
+	},
+	BlackwingDescent = {
+		{ 849.69401550293, 566.462341070175 },
+		{ 999.692977905273, 666.462005615234 },
+	},
+	ThroneoftheFourWinds = {
+		{ 1500, 1000 },
+	},
+}
+
+local function findClosest(toRange)
 	local closest = 15
 	local closestDiff = math.abs(toRange - 15)
 	for range, func in pairs(ranges) do
@@ -152,16 +192,35 @@ local function getClosestRangeFunction(toRange)
 	return ranges[closest], closest
 end
 
+local function getClosestRangeFunction(toRange)
+	if ranges[toRange] then return ranges[toRange], toRange end
+	SetMapToCurrentZone()
+	local floors = mapData[(GetMapInfo())]
+	if not floors then return findClosest(toRange) end
+	local currentFloor = GetCurrentMapDungeonLevel()
+	if currentFloor == 0 then currentFloor = 1 end
+	local id = floors[currentFloor]
+	if not ranges[id] then
+		ranges[id] = function(unit, srcX, srcY)
+			local dstX, dstY = GetPlayerMapPosition(unit)
+			local x = (dstX - srcX) * id[1]
+			local y = (dstY - srcY) * id[2]
+			return (x*x + y*y) ^ 0.5 < activeRange
+		end
+	end
+	return ranges[id], toRange
+end
+
 --------------------------------------------------------------------------------
 -- Options
 --
 
 local function updateSoundButton()
 	if not anchor then return end
-	anchor.sound:SetNormalTexture(plugin.db.profile.sound and unmute or mute)
+	anchor.sound:SetNormalTexture(db.sound and unmute or mute)
 end
 local function toggleSound()
-	plugin.db.profile.sound = not plugin.db.profile.sound
+	db.sound = not db.sound
 	updateSoundButton()
 end
 
@@ -173,14 +232,14 @@ local function onDragStart(self) self:StartMoving() end
 local function onDragStop(self)
 	self:StopMovingOrSizing()
 	local s = self:GetEffectiveScale()
-	plugin.db.profile.posx = self:GetLeft() * s
-	plugin.db.profile.posy = self:GetTop() * s
+	db.posx = self:GetLeft() * s
+	db.posy = self:GetTop() * s
 end
 local function OnDragHandleMouseDown(self) self.frame:StartSizing("BOTTOMRIGHT") end
 local function OnDragHandleMouseUp(self, button) self.frame:StopMovingOrSizing() end
 local function onResize(self, width, height)
-	plugin.db.profile.width = width
-	plugin.db.profile.height = height
+	db.width = width
+	db.height = height
 end
 
 local function setConfigureTarget(self, button)
@@ -188,10 +247,17 @@ local function setConfigureTarget(self, button)
 	plugin:SendMessage("BigWigs_SetConfigureTarget", plugin)
 end
 
+local function onDisplayEnter(self)
+	if not db.objects.tooltip then return end
+	if not activeSpellID and not inConfigMode then return end
+	GameTooltip:SetOwner(self, "ANCHOR_BOTTOM")
+	GameTooltip:SetHyperlink("spell:" .. (activeSpellID or 44318))
+	GameTooltip:Show()
+end
+
 local locked = nil
 local function lockDisplay()
 	if locked then return end
-	anchor:EnableMouse(false)
 	anchor:SetMovable(false)
 	anchor:SetResizable(false)
 	anchor:RegisterForDrag()
@@ -204,7 +270,6 @@ local function lockDisplay()
 end
 local function unlockDisplay()
 	if not locked then return end
-	anchor:EnableMouse(true)
 	anchor:SetMovable(true)
 	anchor:SetResizable(true)
 	anchor:RegisterForDrag("LeftButton")
@@ -226,9 +291,7 @@ end
 local function onControlLeave() GameTooltip:Hide() end
 
 local function onNormalClose()
-	if active then
-		BigWigs:Print(L["The proximity display will show next time. To disable it completely for this encounter, you need to toggle it off in the encounter options."])
-	end
+	BigWigs:Print(L["The proximity display will show next time. To disable it completely for this encounter, you need to toggle it off in the encounter options."])
 	plugin:Close()
 end
 
@@ -254,10 +317,13 @@ local function ensureDisplay()
 	if anchor then return end
 
 	local display = CreateFrame("Frame", "BigWigsProximityAnchor", UIParent)
-	display:SetWidth(plugin.db.profile.width)
-	display:SetHeight(plugin.db.profile.height)
+	display:SetWidth(db.width or plugin.defaultDB.width)
+	display:SetHeight(db.height or plugin.defaultDB.height)
 	display:SetMinResize(100, 30)
 	display:SetClampedToScreen(true)
+	display:EnableMouse(true)
+	display:SetScript("OnEnter", onDisplayEnter)
+	display:SetScript("OnLeave", onControlLeave)
 	local bg = display:CreateTexture(nil, "BACKGROUND")
 	bg:SetAllPoints(display)
 	bg:SetBlendMode("BLEND")
@@ -281,17 +347,27 @@ local function ensureDisplay()
 	sound.tooltipText = L["Toggle whether or not the proximity window should beep when you're too close to another player."]
 	display.sound = sound
 
-	local header = display:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-	header:SetText(L["Proximity"])
+	local header = display:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+	header:SetText(L["%d yards"]:format(0))
 	header:SetPoint("BOTTOM", display, "TOP", 0, 4)
-	display.header = header
+	display.title = header
 
-	local text = display:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-	text:SetFont(media:GetDefault("font"), 12)
+	local abilityName = display:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	abilityName:SetText(L["|T%s:20:20:-5|tAbility name"]:format("Interface\\Icons\\spell_nature_chainlightning"))
+	abilityName:SetPoint("BOTTOM", header, "TOP", 0, 4)
+	display.ability = abilityName
+
+	local text = display:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 	text:SetText("")
 	text:SetAllPoints(display)
 	display.text = text
-	display:SetScript("OnShow", function() text:SetText("|cff777777:-)|r") end)
+	display:SetScript("OnShow", function()
+		if inConfigMode then
+			text:SetText(configModeString)
+		else
+			text:SetText("|cff777777:-)|r")
+		end
+	end)
 
 	local drag = CreateFrame("Frame", nil, display)
 	drag.frame = display
@@ -314,8 +390,8 @@ local function ensureDisplay()
 
 	anchor = display
 
-	local x = plugin.db.profile.posx
-	local y = plugin.db.profile.posy
+	local x = db.posx
+	local y = db.posy
 	if x and y then
 		local s = display:GetEffectiveScale()
 		display:ClearAllPoints()
@@ -330,27 +406,17 @@ end
 
 function plugin:RestyleWindow()
 	updateSoundButton()
-	if self.db.profile.showTitle then
-		anchor.header:Show()
-	else
-		anchor.header:Hide()
+	for k, v in pairs(db.objects) do
+		if anchor[k] then
+			if v then
+				anchor[k]:Show()
+			else
+				anchor[k]:Hide()
+			end
+		end
 	end
-	if self.db.profile.showBackground then
-		anchor.background:Show()
-	else
-		anchor.background:Hide()
-	end
-	if self.db.profile.showSound then
-		anchor.sound:Show()
-	else
-		anchor.sound:Hide()
-	end
-	if self.db.profile.showClose then
-		anchor.close:Show()
-	else
-		anchor.close:Hide()
-	end
-	if self.db.profile.lock then
+	anchor.text:SetFont(media:Fetch("font", db.font), db.fontSize)
+	if db.lock then
 		locked = nil
 		lockDisplay()
 	else
@@ -369,25 +435,33 @@ do
 	local lastplayed = 0 -- When we last played an alarm sound for proximity.
 
 	local function updateProximity()
+		local srcX, srcY = GetPlayerMapPosition("player")
+		if srcX == 0 and srcY == 0 then
+			SetMapToCurrentZone()
+			srcX, srcY = GetPlayerMapPosition("player")
+		end
 		local num = GetNumRaidMembers()
 		for i = 1, num do
 			local n = GetRaidRosterInfo(i)
-			if n and UnitExists(n) and not UnitIsDeadOrGhost(n) and not UnitIsUnit(n, "player") and activeProximityFunction(n) then
-				tooClose[#tooClose + 1] = coloredNames[n]
+			if n and UnitExists(n) and not UnitIsDeadOrGhost(n) and not UnitIsUnit(n, "player") and activeProximityFunction(n, srcX, srcY) then
+				local nextIndex = #tooClose + 1
+				tooClose[nextIndex] = coloredNames[n]
+				if nextIndex > 4 then break end
 			end
-			if #tooClose > 4 or i > 25 then break end
+			if i > 25 then break end
 		end
 
 		if #tooClose == 0 then
 			anchor.text:SetText("|cff777777:-)|r")
+			lastplayed = 0
 		else
 			anchor.text:SetText(table.concat(tooClose, "\n"))
 			wipe(tooClose)
-			if not plugin.db.profile.sound then return end
+			if not db.sound then return end
 			local t = GetTime()
-			if t > lastplayed + 1 then
+			if t > (lastplayed + db.soundDelay) then
 				lastplayed = t
-				plugin:SendMessage("BigWigs_Sound", "Alarm")
+				plugin:SendMessage("BigWigs_Sound", db.soundName)
 			end
 		end
 	end
@@ -405,13 +479,15 @@ do
 end
 
 local function updateProfile()
+	db = plugin.db.profile
+
 	if not anchor then return end
 
-	anchor:SetWidth(plugin.db.profile.width)
-	anchor:SetHeight(plugin.db.profile.height)
+	anchor:SetWidth(db.width)
+	anchor:SetHeight(db.height)
 
-	local x = plugin.db.profile.posx
-	local y = plugin.db.profile.posy
+	local x = db.posx
+	local y = db.posy
 	if x and y then
 		local s = anchor:GetEffectiveScale()
 		anchor:ClearAllPoints()
@@ -427,17 +503,19 @@ local function resetAnchor()
 	anchor:SetPoint("CENTER", UIParent, "CENTER", 400, 0)
 	anchor:SetWidth(plugin.defaultDB.width)
 	anchor:SetHeight(plugin.defaultDB.height)
-	plugin.db.profile.posx = nil
-	plugin.db.profile.posy = nil
-	plugin.db.profile.width = nil
-	plugin.db.profile.height = nil
+	db.posx = nil
+	db.posy = nil
+	db.width = nil
+	db.height = nil
 end
 
 -------------------------------------------------------------------------------
---      Initialization
+-- Initialization
 --
 
 function plugin:OnRegister()
+	db = self.db.profile
+
 	BigWigs:RegisterBossOption("proximity", L["proximity"], L["proximity_desc"], OnOptionToggled)
 	if CUSTOM_CLASS_COLORS then
 		local function update()
@@ -450,6 +528,38 @@ function plugin:OnRegister()
 		update()
 	end
 	self:RegisterMessage("BigWigs_ProfileUpdate", updateProfile)
+
+	local function iterateFloors(map, ...)
+		for i = 1, select("#", ...), 2 do
+			local w, h = select(i, ...)
+			table.insert(mapData[map], { tonumber(w), tonumber(h) })
+		end
+	end
+	local function iterateMaps(addonIndex, ...)
+		for i = 1, select("#", ...) do
+			local map = select(i, ...)
+			local meta = GetAddOnMetadata(addonIndex, "X-BigWigs-MapSize-" .. map)
+			if meta then
+				if not mapData[map] then mapData[map] = {} end
+				iterateFloors(map, strsplit(",", meta))
+			end
+		end
+	end
+
+	for i = 1, GetNumAddOns() do
+		local meta = GetAddOnMetadata(i, "X-BigWigs-Maps")
+		if meta then
+			iterateMaps(i, strsplit(",", meta))
+		end
+	end
+
+	if not db.font then
+		db.font = media:GetDefault("font")
+	end
+	if not db.fontSize then
+		local _, size = GameFontNormalHuge:GetFont()
+		db.fontSize = size
+	end
 end
 
 function plugin:OnPluginEnable()
@@ -499,11 +609,27 @@ do
 				type = "group",
 				get = function(info)
 					local key = info[#info]
-					return plugin.db.profile[key]
+					if key == "font" then
+						for i, v in next, media:List("font") do
+							if v == db.font then return i end
+						end
+					elseif key == "soundName" then
+						for i, v in next, media:List("sound") do
+							if v == db.soundName then return i end
+						end
+					else
+						return db[key]
+					end
 				end,
 				set = function(info, value)
 					local key = info[#info]
-					plugin.db.profile[key] = value
+					if key == "font" then
+						db.font = media:List("font")[value]
+					elseif key == "soundName" then
+						db.soundName = media:List("sound")[value]
+					else
+						db[key] = value
+					end
 					plugin:RestyleWindow()
 				end,
 				args = {
@@ -512,42 +638,107 @@ do
 						name = L["Disabled"],
 						desc = L["Disable the proximity display for all modules that use it."],
 						order = 1,
+						width = "half",
 					},
 					lock = {
 						type = "toggle",
 						name = L["Lock"],
 						desc = L["Locks the display in place, preventing moving and resizing."],
 						order = 2,
+						width = "half",
+					},
+					font = {
+						type = "select",
+						name = L["Font"],
+						order = 3,
+						values = media:List("font"),
+						width = "full",
+						itemControl = "DDI-Font",
+					},
+					fontSize = {
+						type = "range",
+						name = L["Font size"],
+						order = 4,
+						max = 40,
+						min = 8,
+						step = 1,
+						width = "full",
+					},
+					soundName = {
+						type = "select",
+						name = L["Sound"],
+						order = 5,
+						values = media:List("sound"),
+						width = "full",
+						itemControl = "DDI-Sound"
+					},
+					soundDelay = {
+						type = "range",
+						name = "Sound delay",
+						desc = "Specify how long Big Wigs should wait between repeating the specified sound when someone is too close to you.",
+						order = 6,
+						max = 10,
+						min = 1,
+						step = 1,
+						width = "full",
 					},
 					showHide = {
 						type = "group",
 						name = L["Show/hide"],
 						inline = true,
+						order = 10,
+						get = function(info)
+							local key = info[#info]
+							return db.objects[key]
+						end,
+						set = function(info, value)
+							local key = info[#info]
+							db.objects[key] = value
+							plugin:RestyleWindow()
+						end,
 						args = {
-							showTitle = {
+							title = {
 								type = "toggle",
 								name = L["Title"],
 								desc = L["Shows or hides the title."],
 								order = 1,
+								width = "half",
 							},
-							showBackground = {
+							background = {
 								type = "toggle",
 								name = L["Background"],
 								desc = L["Shows or hides the background."],
 								order = 2,
+								width = "half",
 							},
-							showSound = {
+							sound = {
 								type = "toggle",
 								name = L["Sound button"],
 								desc = L["Shows or hides the sound button."],
 								order = 3,
+								width = "half",
 							},
-							showClose = {
+							close = {
 								type = "toggle",
 								name = L["Close button"],
 								desc = L["Shows or hides the close button."],
 								order = 4,
+								width = "half",
 							},
+							ability = {
+								type = "toggle",
+								name = L["Ability name"],
+								desc = L["Shows or hides the ability name above the window."],
+								order = 5,
+								width = "half",
+							},
+							tooltip = {
+								type = "toggle",
+								name = L["Tooltip"],
+								desc = L["Shows or hides a spell tooltip if the Proximity display is currently tied directly to a boss encounter ability."],
+								order = 6,
+								width = "half",
+							}
 						},
 					},
 				},
@@ -563,13 +754,13 @@ end
 
 do
 	local opener = nil
-	function plugin:BigWigs_ShowProximity(event, module, range)
-		if self.db.profile.disabled or type(range) ~= "number" then return end
+	function plugin:BigWigs_ShowProximity(event, module, range, optionKey)
+		if db.disabled or type(range) ~= "number" then return end
 		opener = module
-		self:Open(range)
+		self:Open(range, module, optionKey)
 	end
 
-	function plugin:BigWigs_OnBossDisable(event, module)
+	function plugin:BigWigs_OnBossDisable(event, module, optionKey)
 		if module ~= opener then return end
 		self:Close()
 	end
@@ -581,8 +772,11 @@ end
 
 function plugin:Close()
 	activeProximityFunction = nil
+	activeRange = nil
+	activeSpellID = nil
 	if anchor then
-		anchor.header:SetText(L["Proximity"])
+		anchor.title:SetText(L["%d yards"]:format(0))
+		anchor.ability:SetText(L["|T%s:20:20:-5|tAbility name"]:format("Interface\\Icons\\spell_nature_chainlightning"))
 		-- Just in case we were the last target of
 		-- configure mode, reset the background color.
 		anchor.background:SetTexture(0, 0, 0, 0.3)
@@ -591,15 +785,33 @@ function plugin:Close()
 	updater:Hide()
 end
 
-function plugin:Open(range)
+local abilityNameFormat = "|T%s:20:20:-5|t%s"
+function plugin:Open(range, module, key)
 	if type(range) ~= "number" then error("Range needs to be a number!") end
 	-- Make sure the anchor is there
 	ensureDisplay()
 	-- Get the best range function for the given range
 	local func, actualRange = getClosestRangeFunction(range)
 	activeProximityFunction = func
+	activeRange = actualRange
 	-- Update the header to reflect the actual range we're checking
-	anchor.header:SetText(L["%d yards"]:format(actualRange))
+	anchor.title:SetText(L["%d yards"]:format(actualRange))
+	-- Update the ability name display
+	if module and key then
+		local dbKey, name, desc, icon = BigWigs:GetBossOptionDetails(module, key)
+		if icon then
+			anchor.ability:SetText(abilityNameFormat:format(icon, name))
+		else
+			anchor.ability:SetText(name)
+		end
+	else
+		anchor.ability:SetText(L["Custom range indicator"])
+	end
+	if type(key) == "number" then
+		activeSpellID = key
+	else
+		activeSpellID = nil
+	end
 	-- Unbreak the sound+close buttons
 	makeThingsWork()
 	-- Start the show!
@@ -623,19 +835,17 @@ end
 
 SlashCmdList.BigWigs_Proximity = function(input)
 	if not plugin:IsEnabled() then BigWigs:Enable() end
-	input = input:trim()
-	if input == "" or input == "?" or input == "ranges" then
-		print("Available ranges (in yards) for the promixity display:")
-		local t = {}
-		for range in pairs(ranges) do t[#t + 1] = range end
-		print(table.concat(t, ", "))
-		print("Example: /proximity " .. tostring(t[1]))
+	local range = tonumber(input)
+	if not range then
+		print("Usage: /proximity 1-100")
 	else
-		local range = tonumber(input)
-		if not range then return end
 		plugin:Open(range)
 	end
 end
 SLASH_BigWigs_Proximity1 = "/proximity"
 SLASH_BigWigs_Proximity2 = "/bwproximity" -- In case some other addon already has /proximity
+
+-- Apparently some users (idiots?) don't read through the interface options before using
+-- a complicated addon such as BigWigs. Go figure.
+SLASH_BigWigs_Proximity3 = "/range"
 

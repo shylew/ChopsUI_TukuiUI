@@ -28,6 +28,8 @@ L["Up to date:"] = "최신 버전:"
 L["Out of date:"] = "구 버전"
 L["No Big Wigs 3.x:"] = "Big Wigs 3.x 미사용:"
 
+L.coreAddonDisabled = "%s 애드온 비활성화이기 때문에 Big Wigs가 제대로 작동하지 않습니다. 캐릭터 선택 화면에서 좌측하단의 '외부 인터페이스'에서 활성화/비활성화를 설정할 수 있습니다."
+
 -- Options.lua
 L["Big Wigs Encounters"] = "Big Wigs 교전 모듈"
 L["Customize ..."] = "사용자 설정 ..."
@@ -78,6 +80,8 @@ L["WHISPER_desc"] = "중요한 기술에 대하여 그 기술에 걸린 플레�
 L["SAY_desc"] = "당신이 기술에 걸렸을시 일반 대화로 알립니다. 말풍선으로 쉽게 구별하기 좋습니다."
 L["PING_desc"] = "Big Wigs에서 자신이 기술에 걸렸을시 그 위치를 미니맵에 표시합니다. 위치가 중요한 요소로 작용되는 전투에서 효과적입니다."
 L["EMPHASIZE_desc"] = "특수 강조 바를 통해 설정한 카운트와 번쩍임등 효과를 사용합니다."
+L["PROXIMITY"] = "근접 표시"
+L["PROXIMITY_desc"] = "스킬에 대한 거리 측정이 필요합니다. 근접 표시는 당신이 안전한지 여부에 한 눈에를 알수있도록 기능이 특별히 설정됩니다."
 L["Advanced options"] = "고급 옵션"
 L["<< Back"] = "<< 뒤로"
 

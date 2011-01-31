@@ -18,7 +18,6 @@ end
 local C = BigWigs.C
 
 local L = LibStub("AceLocale-3.0"):GetLocale("Big Wigs")
-local common = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 local icon = LibStub("LibDBIcon-1.0", true)
 local ac = LibStub("AceConfig-3.0")
@@ -435,51 +434,6 @@ do
 	end
 end
 
-local getSpellDescription
-do
-	local cache = {}
-	local scanner = CreateFrame("GameTooltip")
-	scanner:SetOwner(WorldFrame, "ANCHOR_NONE")
-	local lcache, rcache = {}, {}
-	for i = 1, 4 do
-		lcache[i], rcache[i] = scanner:CreateFontString(), scanner:CreateFontString()
-		lcache[i]:SetFontObject(GameFontNormal); rcache[i]:SetFontObject(GameFontNormal)
-		scanner:AddFontStrings(lcache[i], rcache[i])
-	end
-	function getSpellDescription(spellId)
-		if cache[spellId] then return cache[spellId] end
-		scanner:ClearLines()
-		scanner:SetHyperlink("spell:"..spellId)
-		for i = scanner:NumLines(), 1, -1  do
-			local desc = lcache[i] and lcache[i]:GetText()
-			if desc then
-				cache[spellId] = desc
-				return desc
-			end
-		end
-	end
-end
-
-local function getOptionDetails(module, bossOption)
-	local customBossOptions = BigWigs:GetCustomBossOptions()
-	local option = bossOption
-	local t = type(option)
-	if t == "table" then option = option[1]; t = type(option) end
-	local bf = module.toggleDefaults[option]
-	if t == "string" then
-		if customBossOptions[option] then
-			return option, customBossOptions[option][1], customBossOptions[option][2], bf
-		else
-			local L = module:GetLocale()
-			return option, L[option], L[option .. "_desc"], bf
-		end
-	elseif t == "number" then
-		local spellName = GetSpellInfo(option)
-		if not spellName then error(("Invalid option %d in module %s."):format(option, module.displayName)) end
-		return spellName, spellName, getSpellDescription(option), bf
-	end
-end
-
 local function getMasterOption(self)
 	local key = self:GetUserData("key")
 	local module = self:GetUserData("module")
@@ -594,7 +548,7 @@ local advancedTabs = {
 }
 
 local function getAdvancedToggleOption(scrollFrame, dropdown, module, bossOption)
-	local dbKey, name, desc = getOptionDetails(module, bossOption)
+	local dbKey, name, desc = BigWigs:GetBossOptionDetails(module, bossOption)
 	local back = AceGUI:Create("Button")
 	back:SetText(L["<< Back"])
 	back:SetFullWidth(true)
@@ -640,7 +594,8 @@ local function buttonClicked(widget)
 end
 
 local function getDefaultToggleOption(scrollFrame, dropdown, module, bossOption)
-	local dbKey, name, desc = getOptionDetails(module, bossOption)
+	local dbKey, name, desc, icon = BigWigs:GetBossOptionDetails(module, bossOption)
+
 	local check = AceGUI:Create("CheckBox")
 	check:SetLabel(colorize[name])
 	check:SetTriState(true)
@@ -651,6 +606,7 @@ local function getDefaultToggleOption(scrollFrame, dropdown, module, bossOption)
 	check:SetDescription(desc)
 	check:SetCallback("OnValueChanged", masterOptionToggled)
 	check:SetValue(getMasterOption(check))
+	if icon then check:SetImage(icon, 0.07, 0.93, 0.07, 0.93) end
 
 	local button = AceGUI:Create("Button")
 	button:SetText(">>")
@@ -667,17 +623,13 @@ end
 local function populateToggleOptions(widget, module)
 	local scrollFrame = widget:GetUserData("parent")
 	scrollFrame:ReleaseChildren()
+	if module.SetupOptions then module:SetupOptions() end
 	for i, option in next, module.toggleOptions do
 		local o = option
 		if type(o) == "table" then o = option[1] end
 		if module.optionHeaders and module.optionHeaders[o] then
-			local heading = module.optionHeaders[o]
-			local text = nil
-			if type(heading) == "number" then text = GetSpellInfo(heading)
-			elseif common[heading] then text = common[heading]
-			else text = BigWigs:Translate(heading) end
 			local header = AceGUI:Create("Heading")
-			header:SetText(text)
+			header:SetText(module.optionHeaders[o])
 			header:SetFullWidth(true)
 			scrollFrame:AddChild(header)
 		end
@@ -730,7 +682,6 @@ do
 			group:SetTitle(L["Select encounter"])
 			group:SetLayout("Flow")
 			group:SetCallback("OnGroupSelected", showToggleOptions)
-			table.sort(zoneModules[zone])
 			group:SetUserData("zone", zone)
 			group:SetGroupList(zoneModules[zone])
 		else
@@ -752,6 +703,7 @@ do
 			for name, module in BigWigs:IterateBossModules() do
 				if module:IsEnabled() then
 					enabledModule = module.moduleName
+					break
 				end
 			end
 			if enabledModule and zoneModules[zone][enabledModule] then
@@ -815,7 +767,7 @@ do
 	function options:Register(message, moduleName, module)
 		if registered[module.name] then return end
 		registered[module.name] = true
-		if module.toggleOptions then
+		if module.toggleOptions or module.GetOptions then
 			if module:IsBossModule() then
 				local zone = module.otherMenu or module.zoneName
 				if not zone then error(module.name .. " doesn't have any valid zone set!") end
@@ -842,3 +794,4 @@ do
 		end
 	end
 end
+
