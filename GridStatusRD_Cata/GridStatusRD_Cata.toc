@@ -5,14 +5,10 @@
 ## Version: 1.1
 ## Grid Author: Pastamancer & Maia
 ## Dependencies: GridStatusRaidDebuff
-## X-Curse-Packaged-Version: r4
+## X-Curse-Packaged-Version: r12
 ## X-Curse-Project-Name: GridStatusRD_Cata
 ## X-Curse-Project-ID: gridstatusrd_cata
 ## X-Curse-Repository-ID: wow/gridstatusrd_cata/mainline
-
-#@no-lib-strip@
-embeds.xml
-#@end-no-lib-strip@
 
 BaradinHold.lua
 BlackwingDescent.lua

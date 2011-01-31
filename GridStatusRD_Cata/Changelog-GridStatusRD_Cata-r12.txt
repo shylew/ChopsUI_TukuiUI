@@ -1,0 +1,91 @@
+------------------------------------------------------------------------
+r12 | stassart | 2011-01-06 09:46:30 +0000 (Thu, 06 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/GridStatusRD_Cata.toc
+
+No need to included LibBabble-Boss and LibBabble-Zone as they are included with GridStatusRaidDebuff and I have access to keep that updated.
+------------------------------------------------------------------------
+r11 | stassart | 2011-01-03 15:21:39 +0000 (Mon, 03 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/TheBastionOfTwilight.lua
+   M /trunk/ThroneOfTheFourWinds.lua
+
+Adding Squall Line and Twilight Meteorite to see if I can get them to show up.
+------------------------------------------------------------------------
+r10 | stassart | 2010-12-29 14:45:24 +0000 (Wed, 29 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/TheBastionOfTwilight.lua
+
+Added more Cho'gall debuffs.
+------------------------------------------------------------------------
+r9 | stassart | 2010-12-29 14:29:50 +0000 (Wed, 29 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/BlackwingDescent.lua
+   M /trunk/TheBastionOfTwilight.lua
+
+Added more debuffs. Marked Corrupted Blood as stackable.
+------------------------------------------------------------------------
+r8 | stassart | 2010-12-23 14:38:31 +0000 (Thu, 23 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/BlackwingDescent.lua
+
+Enabled more timers/stacks on debuffs.
+------------------------------------------------------------------------
+r7 | stassart | 2010-12-23 14:23:38 +0000 (Thu, 23 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/BaradinHold.lua
+   M /trunk/BlackwingDescent.lua
+   M /trunk/TheBastionOfTwilight.lua
+   M /trunk/ThroneOfTheFourWinds.lua
+
+Turned on stacking for appropriate debuffs.
+------------------------------------------------------------------------
+r6 | stassart | 2010-12-22 13:15:53 +0000 (Wed, 22 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/BaradinHold.lua
+   M /trunk/BlackwingDescent.lua
+   M /trunk/TheBastionOfTwilight.lua
+
+Added more trash debuffs.
+------------------------------------------------------------------------
+r5 | stassart | 2010-12-21 07:05:43 +0000 (Tue, 21 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/BlackwingDescent.lua
+
+Updated Blackwing Descent and added more debuffs for Omnitron Defense System.
+------------------------------------------------------------------------
+r4 | stassart | 2010-12-16 16:25:27 +0000 (Thu, 16 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/TheBastionOfTwilight.lua
+
+Added some Bastion of Twilight trash debuffs.
+------------------------------------------------------------------------
+r3 | stassart | 2010-12-16 15:38:30 +0000 (Thu, 16 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/GridStatusRD_Cata.toc
+   M /trunk/ThroneOfTheFourWinds.lua
+   A /trunk/embeds.xml
+
+Fixed Conclave of Wind.  Added LibBabble-Zone and LibBabble-Boss libraries so that the new ones are used rather than the old ones shipping with GridStatusRaidDebuff.
+------------------------------------------------------------------------
+r2 | stassart | 2010-12-16 15:15:07 +0000 (Thu, 16 Dec 2010) | 1 line
+Changed paths:
+   A /trunk/.pkgmeta
+   A /trunk/BaradinHold.lua
+   A /trunk/BlackwingDescent.lua
+   A /trunk/GridStatusRD_Cata.toc
+   A /trunk/TheBastionOfTwilight.lua
+   A /trunk/ThroneOfTheFourWinds.lua
+
+Initial check-in.
+------------------------------------------------------------------------
+r1 | root | 2010-12-16 15:12:08 +0000 (Thu, 16 Dec 2010) | 1 line
+Changed paths:
+   A /branches
+   A /tags
+   A /trunk
+
+"gridstatusrd_cata/mainline: Initial Import"
+------------------------------------------------------------------------

@@ -33,11 +33,13 @@ do
 		L["Load"] = "불러오기"
 		L["Detected debuff"] = "추적된 디버프"
 		L["Remove detected debuff"] = "추적된 디버프 제거"
-		L.msgAct = "현재 세션동안 새로운 디버프를 추적을 합니다."
+		L.msgAct = "지금부터 새로운 디버프를 추적합니다."
 		L.msgDeact = "새로운 디버프를 추적하지 않습니다."
 		L["Aura Refresh Frequency"] = "디버프 재확인 주기"
 		L["Border"] = "테두리"
 		L["Center Icon"] = "중앙 아이콘"
+		L["Import Debuff"] = "디버프 추가"
+    L["Import Debuff Desc"] = "현재 지역에 새 레이드 디버프 추가"
 	elseif loc == "ruRU" then
 		L["Raid Debuff"] = "Дебаффы рейда"
 		L["Option for %s"] = "Опции %s"
@@ -63,56 +65,62 @@ do
 		L["Aura Refresh Frequency"] = "Частота обновления ауры"
 		L["Border"] = "Граница"
 		L["Center Icon"] = "Иконка в центре"
+		L["Import Debuff"] = "Import Debuff"
+    L["Import Debuff Desc"] = "Import a new raid debuff for this zone"
 	elseif loc == "zhCN" then
-		L["Raid Debuff"] = "团队减益状态"
-		L["Option for %s"] = "%s 设置"
-		L["Enable"] = "开启"
-		L["Enable %s"] = "开启 %s"
-		L["Icon Priority"] = "图标属性"
-		L["Color Priority"] = "颜色属性"
-		L["Custom Color"] = "自订颜色"
-		L["Color"] = "颜色"
-		L.colorDesc = "修改颜色"
-		L["Ignore dispellable debuff"] = "忽略可驱散的减益状态"
-		L["Ignore undispellable debuff"] = "忽略不可驱散的减益状态"
-		L["Remained time"] = "剩余时间"
-		L["Stackable debuff"] = "可堆叠的减益状态"
-		L["Only color"] = "忽略图示而只显示颜色"
-		L.detector = "侦测新的减益状态"
+		L["Raid Debuff"] = "???益??"
+		L["Option for %s"] = "%s ?置"
+		L["Enable"] = "??"
+		L["Enable %s"] = "?? %s"
+		L["Icon Priority"] = "???性"
+		L["Color Priority"] = "?色?性"
+		L["Custom Color"] = "自??色"
+		L["Color"] = "?色"
+		L.colorDesc = "修改?色"
+		L["Ignore dispellable debuff"] = "忽略可?散的?益??"
+		L["Ignore undispellable debuff"] = "忽略不可?散的?益??"
+		L["Remained time"] = "剩余??"
+		L["Stackable debuff"] = "可堆?的?益??"
+		L["Only color"] = "忽略?示而只?示?色"
+		L.detector = "??新的?益??"
 		L["Remove"] = "移除"
-		L["Load"] = "载入"
-		L["Detected debuff"] = "已侦测的减益状态"
-		L["Remove detected debuff"] = "移除已侦测的减益状态"
-		L.msgAct = "减益状态侦测器已开启在目前的战斗期间。"
-		L.msgDeact = "减益状态侦测器已关闭。"
-		L["Aura Refresh Frequency"] = "光环刷新频率"
-		L["Border"] = "外框"
-		L["Center Icon"] = "中心图标"
+		L["Load"] = "?入"
+		L["Detected debuff"] = "已??的?益??"
+		L["Remove detected debuff"] = "移除已??的?益??"
+		L.msgAct = "?益????器已??在目前的?斗期?。"
+		L.msgDeact = "?益????器已??。"
+		L["Aura Refresh Frequency"] = "光?刷新?率"
+		L["Border"] = "外?"
+		L["Center Icon"] = "中心??"
+		L["Import Debuff"] = "Import Debuff"
+    L["Import Debuff Desc"] = "Import a new raid debuff for this zone"
 	elseif loc == "zhTW" then
 		L["Raid Debuff"] = "團隊減益狀態"
 		L["Option for %s"] = "%s 選項"
-		L["Enable"] = "啟用"
-		L["Enable %s"] = "啟用%s"
+		L["Enable"] = "?用"
+		L["Enable %s"] = "?用%s"
 		L["Icon Priority"] = "圖示屬性"
-		L["Color Priority"] = "顏色屬性"
-		L["Custom Color"] = "自訂顏色"
-		L["Color"] = "顏色"
-		L.colorDesc = "修改顏色"
+		L["Color Priority"] = "?色屬性"
+		L["Custom Color"] = "自訂?色"
+		L["Color"] = "?色"
+		L.colorDesc = "修改?色"
 		L["Ignore dispellable debuff"] = "忽略可驅散的減益狀態"
 		L["Ignore undispellable debuff"] = "忽略不可驅散的減益狀態"
 		L["Remained time"] = "剩餘時間"
 		L["Stackable debuff"] = "可堆疊的減益狀態"
-		L["Only color"] = "忽略圖示而只顯示顏色"
+		L["Only color"] = "忽略圖示而只顯示?色"
 		L.detector = "偵測新的減益狀態"
 		L["Remove"] = "移除"
 		L["Load"] = "載入"
 		L["Detected debuff"] = "已偵測的減益狀態"
 		L["Remove detected debuff"] = "移除已偵測的減益狀態"
-		L.msgAct = "減益狀態偵測器已啟動在目前的戰鬥期間。"
+		L.msgAct = "減益狀態偵測器已?動在目前的戰?期間。"
 		L.msgDeact = "減益狀態偵測器已停用。"
 		L["Aura Refresh Frequency"] = "光環更新頻率"
-		L["Border"] = "邊框"
+		L["Border"] = "邊?"
 		L["Center Icon"] = "中央圖示"
+		L["Import Debuff"] = "Import Debuff"
+    L["Import Debuff Desc"] = "Import a new raid debuff for this zone"
 	else
 		L["Raid Debuff"] = "Raid Debuff"
 		L["Option for %s"] = "Option for %s"
@@ -133,18 +141,20 @@ do
 		L["Load"] = "Load"
 		L["Detected debuff"] = "Detected debuff"
 		L["Remove detected debuff"] = "Remove detected debuff"
-		L.msgAct = "Debuff detector is activated during current session."
+		L.msgAct = "Debuff detector is activated."
 		L.msgDeact = "Debuff detector is deactivated."
 		L["Aura Refresh Frequency"] = "Aura Refresh Frequency"
 		L["Border"] = "Border"
 		L["Center Icon"] = "Center Icon"
+		L["Import Debuff"] = "Import Debuff"
+    L["Import Debuff Desc"] = "Import a new raid debuff for this zone"
 	end
 end
 
 ---------------------------------------------------------
 --	local
 ---------------------------------------------------------
-local realzone, detectStatus, enzone, zonetype, detectSessionEnable
+local realzone, detectStatus, enzone, zonetype
 local db, myClass, myDispellable
 local debuff_list = {}
 local refreshEventScheduled = false
@@ -239,7 +249,7 @@ function GridStatusRaidDebuff:PLAYER_ENTERING_WORLD()
 end
 
 function GridStatusRaidDebuff:CheckDetectZone()
-	detectStatus = detectSessionEnable and not (zonetype == "none" or zonetype == "pvp") --check db Enable
+	detectStatus = self.db.profile.detect and not (zonetype == "none" or zonetype == "pvp") --check db Enable
 	self:Debug("CheckDetectZone", realzone, enzone, detectStatus and "Detector On")
 
 	if detectStatus then
@@ -254,6 +264,17 @@ end
 function GridStatusRaidDebuff:ZoneCheck()
 	realzone, zonetype = GetInstanceInfo()
 	enzone = bzoneRev[realzone]
+
+	-- Fall back on GetRealZoneText if GetInstanceInfo does not return a valid zone
+	if (not enzone) then
+		realzone = GetRealZoneText();
+		enzone = bzoneRev[realzone]
+	end
+
+	if (not enzone) then
+		self:Debug("ZoneCheck", realzone, enzone, "No enzone")
+		return
+	end
 
 	self:UpdateAllUnit()
 	self:CheckDetectZone()
@@ -660,15 +681,26 @@ function GridStatusRaidDebuff:LoadZoneDebuff(zone, name)
 					name = L["Remove"],
 					desc = L["Remove"],
 					order = 9,
-					guiHidden = function() return not k.detected end,
-                                        hidden = function() return not k.detected end,
+					disabled = not k.detected,
 					func = function()
 									self.db.profile.detected_debuff[zone][name] = nil
 									debuff_list[zone][name] = nil
 									args[name] = nil
 									self:UpdateAllUnit()
 								end,
-				}
+				},
+				["link"] = {
+				  type = "execute",
+					name = "Link",
+					desc = "Link",
+					order = 10,
+					func = function()
+									local chatWindow = ChatEdit_GetActiveWindow()
+            			if chatWindow then
+            				chatWindow:Insert(GetSpellLink(k.debuffId))
+            			end
+								end,
+				},
 			},
 		}
 	end
@@ -709,6 +741,25 @@ function GridStatusRaidDebuff:CreateZoneMenu(zone)
 											self:UpdateAllUnit()
 										end
 									end
+					end,
+				},
+				["import debuff"] = {
+					type = "input",
+					name = L["Import Debuff"],
+					desc = L["Import Debuff Desc"],
+					get = false,
+					usage = "SpellID",
+					set = function(_, v)
+						local name = GetSpellInfo(v)
+						local enzone = bzoneRev[zone]
+						if name then						  
+        			self:Debuff(enzone, name, v, 5, 5, true, true)
+							if not self.db.profile.detected_debuff[zone][name] then 
+								self.db.profile.detected_debuff[zone][name] = v
+								self:LoadZoneDebuff(zone, name)
+								self:UpdateAllUnit() 
+							end
+						end
 					end,
 				},
 			},
@@ -788,13 +839,15 @@ function GridStatusRaidDebuff:CreateMainMenu()
 					end,
 	}
 	args["Detect"] = {
-		type = "execute",
+		type = "toggle",
 		name = L["detector"],
 		desc = L["Enable %s"]:format(L["detector"]),
 		order = 103,
-		func = function()
-						detectSessionEnable = not detectSessionEnable
-						if detectSessionEnable then
+		get = function() return self.db.profile.detect end,
+		set = function()		        
+						self.db.profile.detect = not self.db.profile.detect
+		        local detectEnable = self.db.profile.detect
+						if detectEnable then
 							ChatFrame1:AddMessage(L.msgAct)
 						else
 							ChatFrame1:AddMessage(L.msgDeact)
