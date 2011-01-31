@@ -180,7 +180,6 @@ function TukuiDB.TukuiShiftBarResize(buttonCount)
   -- increase the width of the anchor frame to make it properly centered
   local frameWidth = TukuiDB.buttonsize * buttonCount
   frameWidth = frameWidth + (TukuiDB.buttonspacing * buttonCount)
-  print("Determined width to be " .. frameWidth)
   _G["TukuiShiftBar"]:SetWidth(frameWidth)
   
 end
@@ -1041,7 +1040,6 @@ local function GetPlayerSpec()
   if talentTree then
     return classTalentMap[TukuiDB.myclass][talentTree]
   else
-    print("WARNING: Unable to detect primary talent tree")
     return "NONE"
   end
 end
@@ -1067,16 +1065,6 @@ local function GetPlayerRole()
   end
 end
 
-local specFrame = CreateFrame("Frame")
-specFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-specFrame:SetScript("OnEvent", function()
-  TukuiDB.myspec = GetPlayerSpec()
-  specFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
-end)
-
--- Set the current players role
-TukuiDB.myrole = GetPlayerRole()
-
 -- Reload the UI to make it fit the current role
 local function ReloadRoleUI()
   ChopsuiReset()
@@ -1097,20 +1085,35 @@ StaticPopupDialogs["RELOAD_ROLE_UI"] = {
 -- Add an event for handling talent group changes
 local TalentGroupMonitor = CreateFrame("Frame")
 local function UpdatePlayerRole(self, event, unit)
-  
+
   local oldRole = TukuiDB.myrole
   local oldSpec = TukuiDB.myspec
+  local newRole = GetPlayerRole()
+  local newSpec = GetPlayerSpec()
 
-  -- Set the new role and spec
-  TukuiDB.myrole = GetPlayerRole()
-  TukuiDB.myspec = GetPlayerSpec()
+  if newSpec ~= "NONE" then
 
-  -- If the new role is different from the previous one, ask the user if they want to modify the UI
-  if (oldRole ~= TukuiDB.myrole or oldSpec ~= TukuiDB.myspec) then
-    StaticPopup_Show("RELOAD_ROLE_UI")
+    -- Set the new role and spec
+    TukuiDB.myrole = newRole
+    TukuiDB.myspec = newSpec
+
+    -- Save the role and spec in our DB
+    ChopsUI = {
+      ["spec"] = newSpec,
+      ["role"] = newRole
+    }
+
+    -- If the new role is different from the previous one, ask the user if they want to modify the UI
+    if (oldRole ~= TukuiDB.myrole or oldSpec ~= TukuiDB.myspec) then
+      print("Detected new spec: " .. TukuiDB.myspec)
+      print("Old spec was: " .. oldSpec)
+      StaticPopup_Show("RELOAD_ROLE_UI")
+    end
+
   end
 
 end
+TalentGroupMonitor:RegisterEvent("PLAYER_TALENT_UPDATE")
 TalentGroupMonitor:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 TalentGroupMonitor:SetScript("OnEvent", UpdatePlayerRole)
 

@@ -6,7 +6,7 @@
 ## Title: |cffC495DDTukui|r
 ## Notes: UI of awesomeness!
 ## SavedVariables: TukuiData, TukuiArena
-## SavedVariablesPerCharacter: TukuiInstallv1200, TukuiUFpos
+## SavedVariablesPerCharacter: TukuiInstallv1200, TukuiUFpos, ChopsUI
 ## RequiredDeps: Skada, Grid, GridIndicatorCornerIcons, GridStatusRaidDebuff, GridStatusShield, TelUI_AddonSkins, NeedToKnow, BigWigs, MikScrollingBattleText
 ## OptionalDeps: Tukui_ConfigUI, !ClassColors, Clique
 ## X-oUF: oUF

@@ -2,6 +2,51 @@
 -- CONFIGURE GRID
 ------------------------------------------------------------------------------
 function ChopsuiGridConfigure()
+
+  local GridFrame = Grid:GetModule("GridFrame")
+
+  --------------------------------------------------------------------------
+  -- GRID INDICATOR SETUP
+  --------------------------------------------------------------------------
+  if TukuiDB.myclass == "PALADIN" then
+
+    if TukuiDB.myspec == "HOLY" then
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_curse"] = false
+      GridFrame.db.profile["statusmap"]["corner1"]["alert_beacon"] = true
+    end
+
+  elseif TukuiDB.myclass == "PRIEST" then
+
+    -- Common stuff between Discipline and Holy
+    if TukuiDB.myspec == "DISCIPLINE" or TukuiDB.myspec == "HOLY" then
+      GridFrame.db.profile["statusmap"]["text2"]["unitShieldLeft"] = true
+      GridFrame.db.profile["statusmap"]["corner1"]["debuff_WeakenedSoul"] = true
+      GridFrame.db.profile["statusmap"]["corner2"]["alert_pom"] = true
+      GridFrame.db.profile["statusmap"]["corner4"]["alert_renew"] = true
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_curse"] = false
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_poison"] = false
+    end
+
+    if TukuiDB.myspec == "DISCIPLINE" then
+      GridFrame.db.profile["statusmap"]["corner3"]["alert_gracestack"] = true
+    end
+
+  elseif TukuiDB.myclass == "SHAMAN" then
+
+    if TukuiDB.myspec == "RESTORATION" then
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_poison"] = false
+      GridFrame.db.profile["statusmap"]["icon"]["debuff_disease"] = false
+      GridFrame.db.profile["statusmap"]["corner1"]["alert_earthshield"] = true
+      GridFrame.db.profile["statusmap"]["corner3"]["alert_earthliving"] = true
+      GridFrame.db.profile["statusmap"]["corner4"]["alert_riptide"] = true
+    end
+
+  elseif TukuiDB.myclass == "WARRIOR" then
+    if TukuiDB.myspec == "PROTECTION" then
+      GridFrame.db.profile["statusmap"]["iconBRcornerright"] = { ["buff_Vigilance"] = true }
+    end
+  end
+  
 end
 
 ------------------------------------------------------------------------------
@@ -15,6 +60,9 @@ function ChopsuiGridReset()
   local GridIndicatorCornerIcons = GridFrame:GetModule("GridIndicatorCornerIcons")
   local GridStatusAuras = GridStatus:GetModule("GridStatusAuras")
   local GridStatusAurasExt = GridStatus:GetModule("GridStatusAurasExt")
+
+  local GridStatusChimaeron = GridStatus:GetModule("GridStatusChimaeron")
+  local GridStatusTankCooldown = GridStatus:GetModule("GridStatusTankCooldown")
 
   -- Disabled for now, doesn't work properly
   --local buffAuras = {
@@ -54,6 +102,7 @@ function ChopsuiGridReset()
     ["solo"] = "None"
   }
   GridLayout.db.profile["layout"] = "None"
+  GridFrame.db.profile["enableBarColor"] = true
 
   -- Anchor the groups to the bottom left
   GridLayout.db.profile["groupAnchor"] = "BOTTOMLEFT"
@@ -141,7 +190,8 @@ function ChopsuiGridReset()
     ["icon"] = {},
     ["iconBRcornerright"] = {},
     ["text"] = {},
-    ["text2"] = {}
+    ["text2"] = {},
+    ["barcolor"] = {},
   }
   GridFrame.db.profile["statusmap"]["border"]["alert_lowMana"] = false
   GridFrame.db.profile["statusmap"]["border"]["alert_lowHealth"] = false
@@ -164,6 +214,8 @@ function ChopsuiGridReset()
   GridFrame.db.profile["statusmap"]["text"]["alert_heals"] = false
   GridFrame.db.profile["statusmap"]["text"]["alert_death"] = false
   GridFrame.db.profile["statusmap"]["text"]["alert_feignDeath"] = false
+  GridFrame.db.profile["statusmap"]["barcolor"]["unitChimaeron"] = true
+  GridFrame.db.profile["statusmap"]["barcolor"]["alert_tankcd"] = true
 
   -- Set up corner icons
   GridIndicatorCornerIcons.db.profile["iconSizeTopLeftCorner"] = 16
@@ -172,6 +224,38 @@ function ChopsuiGridReset()
   GridIndicatorCornerIcons.db.profile["iconSizeBottomRightCorner"] = 16
   GridIndicatorCornerIcons.db.profile["xoffset"] = 2
   GridIndicatorCornerIcons.db.profile["yoffset"] = -1
+
+  -- Set up the Chimaeron addon
+  GridStatusChimaeron.db.profile["unitChimaeron"] = {
+    ["threshold"] = 10000
+  }
+  
+  -- Set up the Tank Cooldown addon
+  GridStatusTankCooldown.db.profile["alert_tankcd"] = {
+    ["color"] = {
+      ["g"] = 0,
+      ["b"] = 0.95
+    },
+    ["active_spellids"] = {
+      nil,
+      nil,
+      nil,
+      48792,
+      33206,
+      871,
+      61336,
+      498,
+      12975,
+      55233,
+      49222,
+      48707,
+      22812,
+    },
+    ["inactive_spellids"] = {
+      [6940] = 4
+    },
+    ["showtextas"] = "spell"
+  }
 
   -- Disabled for now, doesn't work properly
   ---- Remove any old aura groups
@@ -206,47 +290,17 @@ function ChopsuiGridReset()
   --end
 
   --------------------------------------------------------------------------
-  -- PRIEST HEALING GRID SETUP
+  -- GRID AURA SETUP
   --------------------------------------------------------------------------
-  if TukuiDB.myclass == "PALADIN" then
+  if TukuiDB.myclass == "PRIEST" then
 
-    if TukuiDB.myspec == "HOLY" then
-      GridFrame.db.profile["statusmap"]["icon"]["debuff_curse"] = false
-      GridFrame.db.profile["statusmap"]["corner1"]["alert_beacon"] = true
-    end
-
-  elseif TukuiDB.myclass == "PRIEST" then
-
-    -- Common stuff between Discipline and Holy
-    if TukuiDB.myspec == "DISCIPLINE" or TukuiDB.myspec == "HOLY" then
-      GridFrame.db.profile["statusmap"]["text2"]["unitShieldLeft"] = true
-      GridFrame.db.profile["statusmap"]["corner1"]["debuff_WeakenedSoul"] = true
-      GridFrame.db.profile["statusmap"]["corner2"]["alert_pom"] = true
-      GridFrame.db.profile["statusmap"]["corner4"]["alert_renew"] = true
-      GridFrame.db.profile["statusmap"]["icon"]["debuff_curse"] = false
-      GridFrame.db.profile["statusmap"]["icon"]["debuff_poison"] = false
-      GridStatusAuras.db.profile["debuff_WeakenedSoul"] = {
-        ["color"] = {
-          ["b"] = 0,
-          ["g"] = 0.4470588235294117,
-          ["r"] = 0.8470588235294118
-        }
+    GridStatusAuras.db.profile["debuff_WeakenedSoul"] = {
+      ["color"] = {
+        ["b"] = 0,
+        ["g"] = 0.4470588235294117,
+        ["r"] = 0.8470588235294118
       }
-    end
-
-    if TukuiDB.myspec == "DISCIPLINE" then
-      GridFrame.db.profile["statusmap"]["corner3"]["alert_gracestack"] = true
-    end
-
-  elseif TukuiDB.myclass == "SHAMAN" then
-
-    if TukuiDB.myspec == "RESTORATION" then
-      GridFrame.db.profile["statusmap"]["icon"]["debuff_poison"] = false
-      GridFrame.db.profile["statusmap"]["icon"]["debuff_disease"] = false
-      GridFrame.db.profile["statusmap"]["corner1"]["alert_earthshield"] = true
-      GridFrame.db.profile["statusmap"]["corner3"]["alert_earthliving"] = true
-      GridFrame.db.profile["statusmap"]["corner4"]["alert_riptide"] = true
-    end
+    }
 
   elseif TukuiDB.myclass == "WARRIOR" then
 
@@ -262,7 +316,6 @@ function ChopsuiGridReset()
         ["range"] = false,
         ["desc"] = "Buff: Vigilance"
       }
-      GridFrame.db.profile["statusmap"]["iconBRcornerright"] = { ["buff_Vigilance"] = true }
 
     end
 
