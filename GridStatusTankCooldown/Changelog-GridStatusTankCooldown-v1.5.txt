@@ -1,0 +1,30 @@
+------------------------------------------------------------------------
+r28 | slaren | 2011-01-04 13:28:54 +0000 (Tue, 04 Jan 2011) | 1 line
+Changed paths:
+   A /tags/v1.5 (from /trunk:27)
+
+Tagging as v1.5
+------------------------------------------------------------------------
+r27 | slaren | 2011-01-04 13:28:03 +0000 (Tue, 04 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/GridStatusTankCooldown.lua
+
+- Added Anti-Magic Zone
+------------------------------------------------------------------------
+r26 | slaren | 2011-01-04 12:10:23 +0000 (Tue, 04 Jan 2011) | 3 lines
+Changed paths:
+   M /trunk/.pkgmeta
+   M /trunk/GridStatusTankCooldown.lua
+   M /trunk/GridStatusTankCooldown.toc
+   A /trunk/SpellsWidget.lua
+
+- Reworked configuration UI
+- Added Power Word: Barrier
+- Removed T10 bonus spells
+------------------------------------------------------------------------
+r24 | slaren | 2010-12-19 06:40:10 +0000 (Sun, 19 Dec 2010) | 1 line
+Changed paths:
+   M /trunk/GridStatusTankCooldown.lua
+
+- Added Guardian of the Ancient Kings
+------------------------------------------------------------------------
