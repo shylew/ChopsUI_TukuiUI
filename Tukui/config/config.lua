@@ -147,9 +147,16 @@ TukuiCF["merchant"] = {
 }
 
 TukuiCF["error"] = {
-	["enable"] = false,                    -- true to enable this mod, false to disable
-	filter = {                             -- what messages to not hide
-		["Inventory is full."] = true,     -- inventory is full will not be hidden by default
+	["enable"] = true,                    -- true to enable this mod, false to disable
+	filter = {                             -- what messages to hide
+		["Another action is in progress"] = true,
+    ["You are mounted."] = true,
+    ["Can't attack while mounted."] = true,
+    ["You have no target."] = true,
+    ["You are too far away!"] = true,
+    ["Out of range."] = true,
+    ["Not enough rage"] = true,
+    ["Ability is not ready yet."] = true,
 	},
 }
 
