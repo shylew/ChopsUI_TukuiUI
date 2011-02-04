@@ -157,6 +157,7 @@ TukuiCF["error"] = {
     ["Out of range."] = true,
     ["Not enough rage"] = true,
     ["Ability is not ready yet."] = true,
+    ["You are busy looting"] = true,
 	},
 }
 
