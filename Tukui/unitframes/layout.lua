@@ -21,6 +21,7 @@ local backdrop = {
 ------------------------------------------------------------------------
 
 local function Shared(self, unit)
+
 	-- set our own colors
 	self.colors = TukuiDB.oUF_colors
 	
@@ -1303,166 +1304,175 @@ end
 --	Default position of Tukui unitframes
 ------------------------------------------------------------------------
 
--- for lower reso
-local adjustXY = 0
-local totdebuffs = 0
-local healerOffset = 85
-if TukuiCF["actionbar"].bottomrows < 2 then
-  healerOffset = TukuiDB.Scale(119)
-end
+-- Set up the ChopsUI related addons
+local f = CreateFrame("FRAME")
+f:RegisterEvent("ADDON_LOADED")
+f:SetScript("OnEvent", function(_, _, name)
 
-if TukuiDB.lowversion then adjustXY = 24 end
-if db.totdebuffs then totdebuffs = 24 end
+  if name ~= "Tukui" then return end
 
-oUF:RegisterStyle('Tukz', Shared)
-
--- player
-local player = oUF:Spawn('player', "oUF_Tukz_player")
-
-if TukuiDB.myrole == "healer" then
-  player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", -150, healerOffset)
-else
-  player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8+adjustXY)
-end
-
-if TukuiDB.lowversion then
-  player:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(51))
-else
-  player:SetSize(TukuiDB.Scale(250), TukuiDB.Scale(57))
-end
-
--- focus
-local focus = oUF:Spawn('focus', "oUF_Tukz_focus")
-focus:SetPoint("CENTER", TukuiInfoRight, "CENTER")
-focus:SetSize(TukuiInfoRight:GetWidth() - TukuiDB.Scale(4), TukuiInfoRight:GetHeight() - TukuiDB.Scale(4))
-
--- target
-local target = oUF:Spawn('target', "oUF_Tukz_target")
-if TukuiDB.myrole == "healer" then
-  target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 150, healerOffset)
-else
-  target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8+adjustXY)
-end
-
-if TukuiDB.lowversion then
-	target:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(51))
-else
-	target:SetSize(TukuiDB.Scale(250), TukuiDB.Scale(57))
-end
-
--- tot
-local tot = oUF:Spawn('targettarget', "oUF_Tukz_targettarget")
-if TukuiDB.myrole == "healer" then
-  tot:SetPoint("BOTTOMLEFT", oUF_Tukz_target, "BOTTOMLEFT", 0, -45)
-  tot:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
-else
-  if TukuiDB.lowversion then
-    tot:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8)
-    tot:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(18))
-  else
-    tot:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,8)
-    tot:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+  -- for lower reso
+  local adjustXY = 0
+  local totdebuffs = 0
+  local healerOffset = 85
+  if TukuiCF["actionbar"].bottomrows < 2 then
+    healerOffset = TukuiDB.Scale(119)
   end
-end
 
--- pet
-local pet = oUF:Spawn('pet', "oUF_Tukz_pet")
-if TukuiDB.myrole == "healer" then
-  pet:SetPoint("BOTTOMRIGHT", oUF_Tukz_player, "BOTTOMRIGHT", 0, -45)
-  pet:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
-else
-  if TukuiDB.lowversion then
-    pet:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8)
-    pet:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(18))
-  else
-    pet:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,49+totdebuffs)
-    pet:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
-  end
-end
+  if TukuiDB.lowversion then adjustXY = 24 end
+  if db.totdebuffs then totdebuffs = 24 end
 
-if db.showfocustarget then 
-	local focustarget = oUF:Spawn("focustarget", "oUF_Tukz_focustarget")
+  oUF:RegisterStyle('Tukz', Shared)
+
+  -- player
+  local player = oUF:Spawn('player', "oUF_Tukz_player")
+
   if TukuiDB.myrole == "healer" then
-    focustarget:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 220)
+    player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", -150, healerOffset)
   else
-    focustarget:SetPoint("BOTTOM", 0, 224)
+    player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8+adjustXY)
   end
-	focustarget:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
-end
 
-if TukuiCF.arena.unitframes then
-	local arena = {}
-	for i = 1, 5 do
-		arena[i] = oUF:Spawn("arena"..i, "oUF_Arena"..i)
-		if i == 1 then
-			arena[i]:SetPoint("BOTTOM", UIParent, "BOTTOM", 252, 260)
-		else
-			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 10)
-		end
-		arena[i]:SetSize(TukuiDB.Scale(200), TukuiDB.Scale(29))
-	end
-end
+  if TukuiDB.lowversion then
+    player:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(51))
+  else
+    player:SetSize(TukuiDB.Scale(250), TukuiDB.Scale(57))
+  end
 
-if db.showboss then
-	for i = 1,MAX_BOSS_FRAMES do
-		local t_boss = _G["Boss"..i.."TargetFrame"]
-		t_boss:UnregisterAllEvents()
-		t_boss.Show = TukuiDB.dummy
-		t_boss:Hide()
-		_G["Boss"..i.."TargetFrame".."HealthBar"]:UnregisterAllEvents()
-		_G["Boss"..i.."TargetFrame".."ManaBar"]:UnregisterAllEvents()
-	end
+  -- focus
+  local focus = oUF:Spawn('focus', "oUF_Tukz_focus")
+  focus:SetPoint("CENTER", TukuiInfoRight, "CENTER")
+  focus:SetSize(TukuiInfoRight:GetWidth() - TukuiDB.Scale(4), TukuiInfoRight:GetHeight() - TukuiDB.Scale(4))
 
-	local boss = {}
-	for i = 1, MAX_BOSS_FRAMES do
-    boss[i] = oUF:Spawn("boss"..i, "oUF_Boss"..i)
-    if i == 1 then
-      boss[i]:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -22, -200)
+  -- target
+  local target = oUF:Spawn('target', "oUF_Tukz_target")
+  if TukuiDB.myrole == "healer" then
+    target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 150, healerOffset)
+  else
+    target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8+adjustXY)
+  end
+
+  if TukuiDB.lowversion then
+    target:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(51))
+  else
+    target:SetSize(TukuiDB.Scale(250), TukuiDB.Scale(57))
+  end
+
+  -- tot
+  local tot = oUF:Spawn('targettarget', "oUF_Tukz_targettarget")
+  if TukuiDB.myrole == "healer" then
+    tot:SetPoint("BOTTOMLEFT", oUF_Tukz_target, "BOTTOMLEFT", 0, -45)
+    tot:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+  else
+    if TukuiDB.lowversion then
+      tot:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8)
+      tot:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(18))
     else
-      boss[i]:SetPoint('BOTTOM', boss[i-1], 'BOTTOM', 0, -39)
+      tot:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,8)
+      tot:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
     end
-    boss[i]:SetSize(TukuiDB.Scale(200), TukuiDB.Scale(29))
-	end
-end
+  end
 
-local assisttank_width  = 100
-local assisttank_height  = 20
-if TukuiCF["unitframes"].maintank == true then
-	local tank = oUF:SpawnHeader('oUF_MainTank', nil, 'raid',
-		'oUF-initialConfigFunction', ([[
-			self:SetWidth(%d)
-			self:SetHeight(%d)
-		]]):format(assisttank_width, assisttank_height),
-		'showRaid', true,
-		'groupFilter', 'MAINTANK',
-		'yOffset', 7,
-		'point' , 'BOTTOM',
-		'template', 'oUF_tukzMtt'
-	)
-	tank:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-end
- 
-if TukuiCF["unitframes"].mainassist == true then
-	local assist = oUF:SpawnHeader("oUF_MainAssist", nil, 'raid',
-		'oUF-initialConfigFunction', ([[
-			self:SetWidth(%d)
-			self:SetHeight(%d)
-		]]):format(assisttank_width, assisttank_height),
-		'showRaid', true,
-		'groupFilter', 'MAINASSIST',
-		'yOffset', 7,
-		'point' , 'BOTTOM',
-		'template', 'oUF_tukzMtt'
-	)
-	if TukuiCF["unitframes"].maintank == true then
-		assist:SetPoint("TOPLEFT", oUF_MainTank, "BOTTOMLEFT", 2, -50)
-	else
-		assist:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-	end
-end
+  -- pet
+  local pet = oUF:Spawn('pet', "oUF_Tukz_pet")
+  if TukuiDB.myrole == "healer" then
+    pet:SetPoint("BOTTOMRIGHT", oUF_Tukz_player, "BOTTOMRIGHT", 0, -45)
+    pet:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+  else
+    if TukuiDB.lowversion then
+      pet:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8)
+      pet:SetSize(TukuiDB.Scale(186), TukuiDB.Scale(18))
+    else
+      pet:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,49+totdebuffs)
+      pet:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+    end
+  end
 
--- this is just a fake party to hide Blizzard frame if no Tukui raid layout are loaded.
-local party = oUF:SpawnHeader("oUF_noParty", nil, "party", "showParty", true)
+  if db.showfocustarget then 
+    local focustarget = oUF:Spawn("focustarget", "oUF_Tukz_focustarget")
+    if TukuiDB.myrole == "healer" then
+      focustarget:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 220)
+    else
+      focustarget:SetPoint("BOTTOM", 0, 224)
+    end
+    focustarget:SetSize(TukuiDB.Scale(129), TukuiDB.Scale(36))
+  end
+
+  if TukuiCF.arena.unitframes then
+    local arena = {}
+    for i = 1, 5 do
+      arena[i] = oUF:Spawn("arena"..i, "oUF_Arena"..i)
+      if i == 1 then
+        arena[i]:SetPoint("BOTTOM", UIParent, "BOTTOM", 252, 260)
+      else
+        arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 10)
+      end
+      arena[i]:SetSize(TukuiDB.Scale(200), TukuiDB.Scale(29))
+    end
+  end
+
+  if db.showboss then
+    for i = 1,MAX_BOSS_FRAMES do
+      local t_boss = _G["Boss"..i.."TargetFrame"]
+      t_boss:UnregisterAllEvents()
+      t_boss.Show = TukuiDB.dummy
+      t_boss:Hide()
+      _G["Boss"..i.."TargetFrame".."HealthBar"]:UnregisterAllEvents()
+      _G["Boss"..i.."TargetFrame".."ManaBar"]:UnregisterAllEvents()
+    end
+
+    local boss = {}
+    for i = 1, MAX_BOSS_FRAMES do
+      boss[i] = oUF:Spawn("boss"..i, "oUF_Boss"..i)
+      if i == 1 then
+        boss[i]:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -22, -200)
+      else
+        boss[i]:SetPoint('BOTTOM', boss[i-1], 'BOTTOM', 0, -39)
+      end
+      boss[i]:SetSize(TukuiDB.Scale(200), TukuiDB.Scale(29))
+    end
+  end
+
+  local assisttank_width  = 100
+  local assisttank_height  = 20
+  if TukuiCF["unitframes"].maintank == true then
+    local tank = oUF:SpawnHeader('oUF_MainTank', nil, 'raid',
+      'oUF-initialConfigFunction', ([[
+        self:SetWidth(%d)
+        self:SetHeight(%d)
+      ]]):format(assisttank_width, assisttank_height),
+      'showRaid', true,
+      'groupFilter', 'MAINTANK',
+      'yOffset', 7,
+      'point' , 'BOTTOM',
+      'template', 'oUF_tukzMtt'
+    )
+    tank:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+  end
+   
+  if TukuiCF["unitframes"].mainassist == true then
+    local assist = oUF:SpawnHeader("oUF_MainAssist", nil, 'raid',
+      'oUF-initialConfigFunction', ([[
+        self:SetWidth(%d)
+        self:SetHeight(%d)
+      ]]):format(assisttank_width, assisttank_height),
+      'showRaid', true,
+      'groupFilter', 'MAINASSIST',
+      'yOffset', 7,
+      'point' , 'BOTTOM',
+      'template', 'oUF_tukzMtt'
+    )
+    if TukuiCF["unitframes"].maintank == true then
+      assist:SetPoint("TOPLEFT", oUF_MainTank, "BOTTOMLEFT", 2, -50)
+    else
+      assist:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+    end
+  end
+
+  -- this is just a fake party to hide Blizzard frame if no Tukui raid layout are loaded.
+  local party = oUF:SpawnHeader("oUF_noParty", nil, "party", "showParty", true)
+
+end)
 
 ------------------------------------------------------------------------
 --	Just a command to test buffs/debuffs alignment
