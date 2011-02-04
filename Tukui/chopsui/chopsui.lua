@@ -1,5 +1,3 @@
-print("Welcome to |cffC495DDChopsUI|r, using role " .. TukuiDB.myrole)
-
 function ChopsuiReset()
   ChopsuiSkadaReset()
   ChopsuiAuditorReset()
@@ -16,11 +14,7 @@ f:SetScript("OnEvent", function(_, _, name)
 
   if name ~= "Tukui" then return end
 
-  -- Assign role and spec from the DB
-  if ChopsUI then
-    TukuiDB.myrole = ChopsUI.role
-    TukuiDB.myspec = ChopsUI.spec
-  end
+  print("Welcome to |cffC495DDChopsUI|r, using role " .. TukuiDB.myrole)
 
   -- Configure the ChopsUI specific addons
   ChopsuiSkadaConfigure()

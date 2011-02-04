@@ -182,10 +182,10 @@ local function install()
 	end
 
   ChopsuiReset()
-  ChopsUI = {
-    ["spec"] = "",
-    ["role"] = "",
-  }
+  --ChopsUI = {
+  --  ["spec"] = "",
+  --  ["role"] = "",
+  --}
 
 	TukuiInstallv1200 = true
 	

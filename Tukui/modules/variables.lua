@@ -20,3 +20,21 @@ TukuiDB.patch = GetBuildInfo()
 TukuiDB.level = UnitLevel("player")
 TukuiDB.myrole = ""
 TukuiDB.myspec = ""
+
+-- Set the role and spec from the ChopsUI configuration
+local f = CreateFrame("FRAME")
+f:RegisterEvent("ADDON_LOADED")
+f:SetScript("OnEvent", function(_, _, name)
+
+  if name ~= "Tukui" then return end
+
+  -- Assign role and spec from the DB
+  if ChopsUI then
+    TukuiDB.myrole = ChopsUI.role
+    TukuiDB.myspec = ChopsUI.spec
+  end
+
+  f:UnregisterEvent("ADDON_LOADED")
+  f:SetScript("OnEvent", nil)
+
+end)
