@@ -158,6 +158,7 @@ TukuiCF["error"] = {
     ["Not enough rage"] = true,
     ["Ability is not ready yet."] = true,
     ["You are busy looting"] = true,
+    ["Spell is not ready yet."] = true,
 	},
 }
 
@@ -186,8 +187,6 @@ TukuiCF["others"] = {
 -- Per Character Name Config (overwrite general and class)
 -- Name need to be case sensitive
 ----------------------------------------------------------------------------
-if TukuiDB.myname == "Popesuey" then
-  TukuiCF.actionbar.bottomrows = 1
-elseif TukuiDB.myname == "Shocksuey" then
-  TukuiCF.actionbar.bottomrows = 1
-end
+--if TukuiDB.myname == "CharacterName" then
+--  do some config!
+--end
