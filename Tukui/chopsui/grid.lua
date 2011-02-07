@@ -37,7 +37,8 @@ function ChopsuiGridConfigure()
       GridFrame.db.profile["statusmap"]["icon"]["debuff_poison"] = false
       GridFrame.db.profile["statusmap"]["icon"]["debuff_disease"] = false
       GridFrame.db.profile["statusmap"]["corner1"]["alert_earthshield"] = true
-      GridFrame.db.profile["statusmap"]["corner3"]["alert_earthliving"] = true
+      GridFrame.db.profile["statusmap"]["corner2"]["alert_earthliving"] = true
+      GridFrame.db.profile["statusmap"]["corner3"]["buff_AncestralFortitude"] = true
       GridFrame.db.profile["statusmap"]["corner4"]["alert_riptide"] = true
     end
 
@@ -60,6 +61,7 @@ function ChopsuiGridReset()
   local GridIndicatorCornerIcons = GridFrame:GetModule("GridIndicatorCornerIcons")
   local GridStatusAuras = GridStatus:GetModule("GridStatusAuras")
   local GridStatusAurasExt = GridStatus:GetModule("GridStatusAurasExt")
+  local GridStatusHots = GridStatus:GetModule("GridStatusHots")
 
   local GridStatusChimaeron = GridStatus:GetModule("GridStatusChimaeron")
   local GridStatusTankCooldown = GridStatus:GetModule("GridStatusTankCooldown")
@@ -302,6 +304,31 @@ function ChopsuiGridReset()
       }
     }
 
+  elseif TukuiDB.myclass == "SHAMAN" then
+
+    if TukuiDB.myspec == "RESTORATION" then
+
+      GridStatusHots.db.profile["alert_earthliving"] = {
+        ["color"] = { ["r"] = 1, ["g"] = 0.99 },
+        ["color2"] = { ["g"] = 0.78 }
+      }
+      GridStatusHots.db.profile["alert_riptide"] = {
+        ["color"] = { ["b"] = 1 }
+      }
+
+      GridStatusAuras.db.profile["buff_AncestralFortitude"] = {
+        ["missing"] = false,
+        ["priority"] = 90,
+        ["text"] = "Ancestral Fortitude",
+        ["enable"] = true,
+        ["color"] = { ["r"] = 0.75, ["g"] = 0.06, ["b"] = 0.56, ["a"] = 1 },
+        ["duration"] = false,
+        ["range"] = false,
+        ["desc"] = "Buff: Ancestral Fortitude"
+      }
+      
+    end
+
   elseif TukuiDB.myclass == "WARRIOR" then
 
     if TukuiDB.myspec == "PROTECTION" then
@@ -311,7 +338,7 @@ function ChopsuiGridReset()
         ["priority"] = 90,
         ["text"] = "Vigilance",
         ["enable"] = true,
-        ["color"] = { ["r"] = 1, ["g"] = "0.73", ["b"] = "0.03", ["a"] = 1 },
+        ["color"] = { ["r"] = 1, ["g"] = 0.73, ["b"] = 0.03, ["a"] = 1 },
         ["duration"] = false,
         ["range"] = false,
         ["desc"] = "Buff: Vigilance"
