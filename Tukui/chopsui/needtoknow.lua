@@ -138,6 +138,15 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
       ChopsuiNeedToKnowPlayerBuff(5, "Fade", 0, 0.37, 1, true)
     end
 
+  elseif TukuiDB.myclass == "SHAMAN" then
+
+    if TukuiDB.myspec == "RESTORATION" then
+      ChopsuiNeedToKnowPlayerBuff(3, "Stoneclaw Totem", 0.6, 0.10, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Tidal Waves", 0.03, 0.88, 1, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Water Shield", 0, 0.60, 0.74, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Earthliving", 0, 0.81, 0.4, true, "mhand")
+    end
+
   elseif TukuiDB.myclass == "WARLOCK" then
 
   elseif TukuiDB.myclass == "WARRIOR" then
@@ -196,6 +205,14 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
       ChopsuiNeedToKnowTargetDebuff(2, "Shadow Word: Pain", 0.86, 0.41, 0, true)
       ChopsuiNeedToKnowTargetDebuff(3, "Devouring Plague", 0.62, 0, 0.75, true)
       ChopsuiNeedToKnowTargetDebuff(4, "Mind Flay, Mind Sear", 0.38, 0.76, 0.81, true)
+    end
+
+  elseif TukuiDB.myclass == "SHAMAN" then
+
+    if TukuiDB.myspec == "ELEMENTAL" then
+      ChopsuiNeedToKnowTargetDebuff(6, "Flame Shock", 0.91, 0.54, 0, true)
+    elseif TukuiDB.myspec == "RESTORATION" then
+      ChopsuiNeedToKnowTargetDebuff(6, "Flame Shock", 0.91, 0.54, 0, true)
     end
 
   elseif TukuiDB.myclass == "WARLOCK" then
