@@ -141,7 +141,7 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
   elseif TukuiDB.myclass == "SHAMAN" then
 
     if TukuiDB.myspec == "RESTORATION" then
-      ChopsuiNeedToKnowPlayerNuff(2, "Spiritwalker's Grace", 0.41, 1, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Spiritwalker's Grace", 0.41, 1, 0, true)
       ChopsuiNeedToKnowPlayerBuff(3, "Stoneclaw Totem", 0.6, 0.10, 0, true)
       ChopsuiNeedToKnowPlayerBuff(4, "Tidal Waves", 0.03, 0.88, 1, true)
       ChopsuiNeedToKnowPlayerBuff(5, "Water Shield", 0, 0.60, 0.74, true)
