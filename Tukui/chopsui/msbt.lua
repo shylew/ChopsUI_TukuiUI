@@ -35,6 +35,12 @@ function ChopsuiMSBTReset()
   -- Set some general settings
   mikProfile.SetOption(nil, "hideFullHoTOverheals", false)
 
+  -- Disable outgoing heals (we show those using the built in combat text)
+  mikProfile.SetOption("events.OUTGOING_HOT", "disabled", true)
+  mikProfile.SetOption("events.OUTGOING_HOT_CRIT", "disabled", true)
+  mikProfile.SetOption("events.OUTGOING_HEAL", "disabled", true)
+  mikProfile.SetOption("events.OUTGOING_HEAL_CRIT", "disabled", true)
+
   -- Set up the scroll areas
   mikProfile.SetOption("scrollAreas.Static", "disabled", true)
   mikProfile.SetOption("scrollAreas.Notification", "disabled", true)
