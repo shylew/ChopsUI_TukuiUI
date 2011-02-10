@@ -118,7 +118,9 @@ function TukuiDB.StyleShift()
 		local button  = _G[name]
 		local icon  = _G[name.."Icon"]
 		local normal  = _G[name.."NormalTexture"]
-		stylesmallbutton(normal, button, icon, name)
+    if normal and button and icon and name then
+      stylesmallbutton(normal, button, icon, name)
+    end
 	end
 end
 

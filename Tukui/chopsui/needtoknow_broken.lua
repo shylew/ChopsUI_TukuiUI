@@ -103,16 +103,16 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
 
   elseif TukuiDB.myclass == "DRUID" then
 
-    if TukuiDB.myspec == "FERALCOMBAT" then
-      if TukuiDB.myrole == "dps" then
-        ChopsuiNeedToKnowPlayerBuff(1, "Predator's Swiftness", 0.6, 0.38, 0, true)
-        ChopsuiNeedToKnowPlayerBuff(2, "Barkskin", 0.70, 0.68, 0, true)
-        ChopsuiNeedToKnowPlayerBuff(3, "Survival Instincts", 0.25, 0.6, 0.45, true)
-        ChopsuiNeedToKnowPlayerBuff(4, "Berserk", 0.71, 0, 1, true)
-        ChopsuiNeedToKnowPlayerBuff(5, "Stampede", 0.74, 0.33, 0, true)
-        ChopsuiNeedToKnowPlayerBuff(6, "Savage Roar", 0.92, 0.76, 0, true)
-      end
-    end
+    --if TukuiDB.myspec == "FERALCOMBAT" then
+    --  if TukuiDB.myrole == "DPS" then
+    --    ChopsuiNeedToKnowPlayerBuff(1, "Predator's Swiftness", 0.6, 0.38, 0, true)
+    --    ChopsuiNeedToKnowPlayerBuff(2, "Barkskin", 0.70, 0.68, 0, true)
+    --    ChopsuiNeedToKnowPlayerBuff(3, "Survival Instincts", 0.25, 0.6, 0.45, true)
+    --    ChopsuiNeedToKnowPlayerBuff(4, "Berserk", 0.71, 0, 1, true)
+    --    ChopsuiNeedToKnowPlayerBuff(5, "Stampede", 0.74, 0.33, 0, true)
+    --    ChopsuiNeedToKnowPlayerBuff(6, "Savage Roar", 0.92, 0.76, 0, true)
+    --  end
+    --end
 
   elseif TukuiDB.myclass == "PALADIN" then
 
@@ -199,15 +199,15 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
 
   elseif TukuiDB.myclass == "DRUID" then
 
-    if TukuiDB.myspec == "FERALCOMBAT" then
-      if TukuiDB.myrole == "dps" then
-        ChopsuiNeedToKnowTargetDebuff(2, "Pounce", 0, 0.44, 0.6, true)
-        ChopsuiNeedToKnowTargetDebuff(3, "Rip", 0.89, 0.38, 0, true)
-        ChopsuiNeedToKnowTargetDebuff(4, "Rake", 0.6, 0.02, 0, true)
-        ChopsuiNeedToKnowTargetDebuff(5, "Faerie Fire, Expose Armor, Sunder Armor", 0.6, 0, 0.55, false)
-        ChopsuiNeedToKnowTargetDebuff(6, "Mangle, Trauma", 0.6, 0.34, 0, false)
-      end
-    end
+    --if TukuiDB.myspec == "FERALCOMBAT" then
+    --  if TukuiDB.myrole == "DPS" then
+    --    ChopsuiNeedToKnowTargetDebuff(2, "Pounce", 0, 0.44, 0.6, true)
+    --    ChopsuiNeedToKnowTargetDebuff(3, "Rip", 0.89, 0.38, 0, true)
+    --    ChopsuiNeedToKnowTargetDebuff(4, "Rake", 0.6, 0.02, 0, true)
+    --    ChopsuiNeedToKnowTargetDebuff(5, "Faerie Fire, Expose Armor, Sunder Armor", 0.6, 0, 0.55, false)
+    --    ChopsuiNeedToKnowTargetDebuff(6, "Mangle, Trauma", 0.6, 0.34, 0, false)
+    --  end
+    --end
 
   elseif TukuiDB.myclass == "PALADIN" then
 
