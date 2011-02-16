@@ -179,6 +179,9 @@ TukuiCF["others"] = {
 -- Per Class Config (overwrite general)
 -- Class need to be UPPERCASE
 ----------------------------------------------------------------------------
+if TukuiDB.myclass == "MAGE" then
+  TukuiCF.actionbar.bottomrows = 1
+end
 --if TukuiDB.myclass == "PRIEST" then
 --	do some config!
 --end
