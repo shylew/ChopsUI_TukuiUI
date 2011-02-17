@@ -181,6 +181,8 @@ TukuiCF["others"] = {
 ----------------------------------------------------------------------------
 if TukuiDB.myclass == "MAGE" then
   TukuiCF.actionbar.bottomrows = 1
+elseif TukuiDB.myclass == "ROGUE" then
+  TukuiCF.actionbar.bottomrows = 1
 end
 --if TukuiDB.myclass == "PRIEST" then
 --	do some config!
