@@ -114,6 +114,15 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
       end
     end
 
+  elseif TukuiDB.myclass == "MAGE" then
+
+    if TukuiDB.myspec == "FROST" then
+      ChopsuiNeedToKnowPlayerBuff(3, "Icy Veins", 0, 1, 0.81, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Ice Barrier", 0, 0.41, 0.67, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Fingers of Frost", 0, 0.52, 0.6, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Brain Freeze", 0.87, 0.48, 0, true)
+    end
+
   elseif TukuiDB.myclass == "PALADIN" then
 
     ChopsuiNeedToKnowPlayerBuff(1, "Divine Shield, Divine Protection", 0.78, 0, 0.06, true)
@@ -153,7 +162,13 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
 
   elseif TukuiDB.myclass == "SHAMAN" then
 
-    if TukuiDB.myspec == "RESTORATION" then
+    if TukuiDB.myspec == "ELEMENTAL" then
+      ChopsuiNeedToKnowPlayerBuff(2, "Spiritwalker's Grace", 0.41, 1, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Unleash Flame", 0.6, 0.03, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Elemental Mastery", 0, 0.38, 0.86, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Lightning Shield", 0, 0.60, 0.74, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Flametongue", 0.69, 0.42, 0, true, "mhand")
+    elseif TukuiDB.myspec == "RESTORATION" then
       ChopsuiNeedToKnowPlayerBuff(2, "Spiritwalker's Grace", 0.41, 1, 0, true)
       ChopsuiNeedToKnowPlayerBuff(3, "Stoneclaw Totem", 0.6, 0.10, 0, true)
       ChopsuiNeedToKnowPlayerBuff(4, "Tidal Waves", 0.03, 0.88, 1, true)
@@ -209,6 +224,16 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
       end
     end
 
+  elseif TukuiDB.myclass == "MAGE" then
+
+    if TukuiDB.myspec == "FROST" then
+      ChopsuiNeedToKnowTargetDebuff(2, "Frost Nova", 0, 0.52, 0.88, true)
+      ChopsuiNeedToKnowTargetDebuff(3, "Cone of Cold", 0, 0.73, 0.67, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Deep Freeze", 0, 0.29, 0.6, true)
+      ChopsuiNeedToKnowTargetDebuff(5, "Frostfire Bolt", 0.76, 0.46, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(6, "Frostbolt", 0, 0.45, 0.6, true)
+    end
+
   elseif TukuiDB.myclass == "PALADIN" then
 
     if TukuiDB.myspec == "HOLY" then
@@ -236,7 +261,8 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
   elseif TukuiDB.myclass == "SHAMAN" then
 
     if TukuiDB.myspec == "ELEMENTAL" then
-      ChopsuiNeedToKnowTargetDebuff(6, "Flame Shock", 0.91, 0.54, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(5, "Hex", 0, 0.53, 0.02, true)
+      ChopsuiNeedToKnowTargetDebuff(6, "Flame Shock", 0.91, 0.54, 0, true, 1, 1, 0, "Lava Burst")
     elseif TukuiDB.myspec == "RESTORATION" then
       ChopsuiNeedToKnowTargetDebuff(6, "Flame Shock", 0.91, 0.54, 0, true)
     end
@@ -293,7 +319,7 @@ end
 ------------------------------------------------------------------------------
 -- SET A NEEDTOKNOW TARGET DEBUFF
 ------------------------------------------------------------------------------
-function ChopsuiNeedToKnowTargetDebuff(barID, debuffName, red, green, blue)
+function ChopsuiNeedToKnowTargetDebuff(barID, debuffName, red, green, blue, onlyMine, vctRed, vctGreen, vctBlue, vctSpell)
 
   NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["BuffOrDebuff"] = "HARMFUL"
   NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["Enabled"] = true
@@ -306,6 +332,19 @@ function ChopsuiNeedToKnowTargetDebuff(barID, debuffName, red, green, blue)
     ["b"] = blue,
     ["a"] = 1
   }
+
+  if vctRed and vctGreen and vctBlue then
+    NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["vtc_color"] = {
+      ["r"] = vctRed,
+      ["g"] = vctGreen,
+      ["b"] = vctBlue,
+      ["a"] = 0.5
+    }
+  end
+
+  if vctSpell then
+    NeedToKnow_Settings["Spec"][1]["Groups"][2]["Bars"][barID]["vct_spell"] = vctSpell
+  end
   
 end
 
