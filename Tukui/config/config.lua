@@ -159,6 +159,7 @@ TukuiCF["error"] = {
     ["Ability is not ready yet."] = true,
     ["You are busy looting"] = true,
     ["Spell is not ready yet."] = true,
+    ["Not enough energy"] = true,
 	},
 }
 
