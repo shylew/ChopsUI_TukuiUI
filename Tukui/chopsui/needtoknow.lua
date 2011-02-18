@@ -86,6 +86,8 @@ end
 ------------------------------------------------------------------------------
 function ChopsuiNeedToKnowConfigurePlayerBuffs()
 
+  print("Setting up NTK buffs for " .. TukuiDB.myclass .. "/" .. TukuiDB.myspec)
+
   if TukuiDB.myclass == "DEATHKNIGHT" then
 
     if TukuiDB.myspec == "BLOOD" then
@@ -158,6 +160,23 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
       ChopsuiNeedToKnowPlayerBuff(3, "Dark Archangel", 1, 0.25, 0, true)
       ChopsuiNeedToKnowPlayerBuff(4, "Dispersion", 0.02, 0.64, 0.13, true)
       ChopsuiNeedToKnowPlayerBuff(5, "Fade", 0, 0.37, 1, true)
+    end
+
+  elseif TukuiDB.myclass == "ROGUE" then
+
+    if TukuiDB.myspec == "ASSASSINATION" then
+      ChopsuiNeedToKnowPlayerBuff(2, "Cloak of Shadows", 0.6, 0, 0.49, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Feint", 0, 0.57, 6, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Overkill", 0.80, 0.01, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Envenom", 0.01, 0.53, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Slice and Dice", 0.86, 0.67, 0, true)
+    elseif TukuiDB.myspec == "COMBAT" then
+      ChopsuiNeedToKnowPlayerBuff(1, "Shallow Insight, Moderate Insight, Deep Insight", 0.6, 0, 0.49, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Cloak of Shadows", 0.6, 0, 0.49, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Feint", 0, 0.57, 6, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Adrenaline Rush", 0.80, 0.01, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Blade Flurry", 0.01, 0.53, 0, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Slice and Dice", 0.86, 0.67, 0, true)
     end
 
   elseif TukuiDB.myclass == "SHAMAN" then
@@ -256,6 +275,22 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
       ChopsuiNeedToKnowTargetDebuff(2, "Shadow Word: Pain", 0.86, 0.41, 0, true)
       ChopsuiNeedToKnowTargetDebuff(3, "Devouring Plague", 0.62, 0, 0.75, true)
       ChopsuiNeedToKnowTargetDebuff(4, "Mind Flay, Mind Sear", 0.38, 0.76, 0.81, true)
+    end
+
+  elseif TukuiDB.myclass == "ROGUE" then
+
+    if TukuiDB.myspec == "ASSASSINATION" then
+      ChopsuiNeedToKnowTargetDebuff(2, "Cheap Shot, Kidney Shot", 1, 0.94, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(3, "Garrote", 0.92, 0.39, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Vendetta", 0.64, 1, 0.94, true)
+      ChopsuiNeedToKnowTargetDebuff(5, "Rupture", 0.68, 0.04, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(6, "Deadly Poison", 0.01, 0.53, 0, true)
+    elseif TukuiDB.myspec == "COMBAT" then
+      ChopsuiNeedToKnowTargetDebuff(2, "Cheap Shot, Kidney Shot", 1, 0.94, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(3, "Garrote", 0.92, 0.39, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Revealing Strike", 0.64, 1, 0.94, true)
+      ChopsuiNeedToKnowTargetDebuff(5, "Rupture", 0.68, 0.04, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(6, "Deadly Poison", 0.01, 0.53, 0, true)
     end
 
   elseif TukuiDB.myclass == "SHAMAN" then
