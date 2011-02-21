@@ -44,6 +44,7 @@ function ChopsuiMSBTReset()
   -- Set up the scroll areas
   mikProfile.SetOption("scrollAreas.Static", "disabled", true)
   mikProfile.SetOption("scrollAreas.Notification", "disabled", true)
+  mikProfile.SetOption("scrollAreas.Outgoing", "disabled", true)
   mikProfile.SetOption("scrollAreas.Incoming", "behavior", "MSBT_NORMAL")
   mikProfile.SetOption("scrollAreas.Incoming", "animationStyle", "Straight")
   mikProfile.SetOption("scrollAreas.Incoming", "offsetX", (TukuiDB.Scale(340) * -1))
