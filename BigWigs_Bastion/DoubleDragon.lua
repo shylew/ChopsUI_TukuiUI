@@ -12,10 +12,10 @@ mod:RegisterEnableMob(45992, 45993)
 
 local phaseCount = 0
 local marked, blackout, deepBreath = GetSpellInfo(88518), GetSpellInfo(86788), GetSpellInfo(86059)
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local theralion, valiona = BigWigs:Translate("Theralion"), BigWigs:Translate("Valiona")
 local emTargets = mod:NewTargetList()
 local markWarned = false
+local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -30,6 +30,7 @@ if L then
 	L.breath_message = "Deep Breaths incoming!"
 	L.dazzling_message = "Swirly zones incoming!"
 
+	L.blast_message = "Falling Blast" --Sounds better and makes more sense than Twilight Blast (the user instantly knows something is coming from the sky at them)
 	L.engulfingmagic_say = "Engulf on ME!"
 	L.engulfingmagic_cooldown = "~Engulfing Magic"
 
@@ -46,12 +47,11 @@ L = mod:GetLocale()
 -- Initialization
 --
 
-function mod:GetOptions(CL)
+function mod:GetOptions()
 	return {
 		{86788, "ICON", "FLASHSHAKE", "WHISPER"}, {88518, "FLASHSHAKE"}, 86059, 86840,
-		{86622, "FLASHSHAKE", "SAY", "WHISPER"}, 86408,
-		93051,
-		"proximity", "phase_switch", "bosskill"
+		{86622, "FLASHSHAKE", "SAY", "WHISPER"}, 86408, 92898, 93051,
+		"proximity", "phase_switch", "berserk", "bosskill"
 	}, {
 		[86788] = "Valiona",
 		[86622] = "Theralion",
@@ -76,12 +76,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EngulfingMagicApplied", 86622, 95640, 95639, 95641)
 	self:Log("SPELL_AURA_REMOVED", "EngulfingMagicRemoved", 86622, 95640, 95639, 95641)
 
+	self:Log("SPELL_CAST_START", "TwilightBlast", 86369, 95416, 92898, 92899, 92900)
+
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:RegisterEvent("UNIT_AURA")
 
-	self:Death("Win", 45992, 45993)
-	self:Yell("Win", L["win_trigger"])
+	self:Death("Deaths", 45992, 45993)
 end
 
 function mod:OnEngage(diff)
@@ -90,12 +91,27 @@ function mod:OnEngage(diff)
 	self:Bar(86788, blackout, 11, 86788)
 	self:Bar("phase_switch", L["phase_bar"]:format(theralion), 103, 60639)
 	self:OpenProximity(8)
+	self:Berserk(600)
 	phaseCount = 0
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+do
+	local function checkTarget(sGUID)
+		local bossId = UnitGUID("boss2") == sGUID and "boss2target" or "boss1target"
+		if not UnitName(bossId) then return end --The first is sometimes delayed longer than 0.3
+		if UnitIsUnit(bossId, "player") then
+			mod:LocalMessage(92898, CL["you"]:format(L["blast_message"]), "Personal", 92898, "Long")
+		end
+	end
+	function mod:TwilightBlast(...)
+		local sGUID = select(11, ...)
+		self:ScheduleTimer(checkTarget, 0.3, sGUID)
+	end
+end
 
 local function valionaHasLanded()
 	mod:SendMessage("BigWigs_StopBar", mod, L["engulfingmagic_cooldown"])
@@ -151,6 +167,8 @@ end
 function mod:BlackoutApplied(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
 		self:FlashShake(86788)
+	else
+		self:PlaySound(86788, "Alert")
 	end
 	self:TargetMessage(86788, spellName, player, "Personal", spellId, "Alert")
 	self:Bar(86788, spellName, 45, spellId)
@@ -207,6 +225,17 @@ end
 function mod:EngulfingMagicRemoved(player)
 	if UnitIsUnit(player, "player") then
 		self:CloseProximity()
+	end
+end
+
+do
+	local count = 0
+	function mod:Deaths()
+		--Prevent the module from re-enabling in the second or so after 1 boss dies
+		count = count + 1
+		if count == 2 then
+			self:Win()
+		end
 	end
 end
 

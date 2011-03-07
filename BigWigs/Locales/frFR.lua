@@ -61,6 +61,7 @@ L["Reset positions"] = "Réinitialiser les positions"
 L["Options for %s."] = "Options concernant %s."
 L["Colors"] = "Couleurs"
 L["Select encounter"] = "Sélectionnez une rencontre"
+L["List abilities in group chat"] = "Lister les techniques dans la discussion de groupe"
 
 L["BAR"] = "Barres"
 L["MESSAGE"] = "Messages"
@@ -93,3 +94,4 @@ L["Contact"] = "Contact"
 L["See license.txt in the main Big Wigs folder."] = "Voir license.txt dans le dossier BigWigs"
 L["irc.freenode.net in the #wowace channel"] = "irc.freenode.net sur le canal #wowace"
 L["Thanks to the following for all their help in various fields of development"] = "Merci aux personnes suivantes pour leur aide :"
+

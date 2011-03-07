@@ -4,7 +4,7 @@
 
 local mod = BigWigs:NewBoss("Chimaeron", "Blackwing Descent")
 if not mod then return end
-mod:RegisterEnableMob(43296, 44418, 44202) -- Chimaeron, Bile-O-Tron 800, Finkle Einhorn
+mod:RegisterEnableMob(43296)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -13,7 +13,6 @@ mod:RegisterEnableMob(43296, 44418, 44202) -- Chimaeron, Bile-O-Tron 800, Finkle
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.bileotron_engage = "The Bile-O-Tron springs to life and begins to emit a foul smelling substance."
-	L.win_trigger = "A shame to lose that experiment..."
 
 	L.next_system_failure = "~Next System Failure"
 	L.break_message = "%2$dx Break on %1$s"
@@ -31,7 +30,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"warmup", 82848, 88826, 82881, {88853, "FLASHSHAKE"}, 82890,
+		"warmup", 82848, 88826, 82881, {88853, "FLASHSHAKE"}, 88917, 82890,
 		"proximity", "berserk", "bosskill"
 	}, {
 		warmup = "normal",
@@ -51,7 +50,6 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "Warmup")
 
 	self:Death("Win", 43296)
-	self:Yell("Win", L["win_trigger"])
 end
 
 function mod:Warmup(_, msg)
@@ -62,10 +60,10 @@ function mod:Warmup(_, msg)
 end
 
 function mod:OnEngage(diff)
-	self:Bar(88853, L["next_system_failure"], 90, 88853)
 	self:SendMessage("BigWigs_StopBar", self, self.displayName)
-	if diff > 2 then
-		self:Berserk(420)
+	self:Berserk(450)
+	if diff < 3 then
+		self:Bar(88853, L["next_system_failure"], 90, 88853) --typically happens at 60 or 90 on heroic, but random
 	end
 	self:RegisterEvent("UNIT_HEALTH")
 end
@@ -83,8 +81,10 @@ function mod:SystemFailureStart(_, spellId, _, _, spellName)
 end
 
 function mod:SystemFailureEnd(_, spellId)
-	if self.isEngaged then
-		self:Bar(88853, L["next_system_failure"], 65, spellId)
+	if self.isEngaged then --To prevent firing after a wipe
+		if self:GetInstanceDifficulty() < 3 then
+			self:Bar(88853, L["next_system_failure"], 65, spellId)
+		end
 		self:FlashShake(88853)
 		self:OpenProximity(6)
 	end
@@ -93,6 +93,8 @@ end
 function mod:Massacre(_, spellId, _, _, spellName)
 	self:Message(82848, spellName, "Attention", spellId)
 	self:Bar(82848, spellName, 30, spellId)
+	--Caustic Slime
+	self:Bar(88917, GetSpellInfo(88917), 19, 88917)
 end
 
 function mod:Mortality(_, spellId, _, _, spellName)
@@ -110,7 +112,7 @@ end
 
 function mod:UNIT_HEALTH()
 	local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
-	if hp < 25 then
+	if hp < 23 then
 		self:Message(82890, L["phase2_message"], "Positive", 82890, "Info")
 		self:UnregisterEvent("UNIT_HEALTH")
 	end

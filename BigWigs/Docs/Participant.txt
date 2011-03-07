@@ -1,7 +1,6 @@
-$Id: Participant.txt 1886 2006-12-19 17:27:33Z rabbit $
+$Id: Participant.txt 8025 2011-01-28 00:06:35Z rabbit $
 
 This document is intended for raid participants.
-
 
     When the fight begings
 

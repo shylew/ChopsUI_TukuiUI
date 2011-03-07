@@ -1,7 +1,6 @@
-$Id: Leader.txt 1886 2006-12-19 17:27:33Z rabbit $
+$Id: Leader.txt 8025 2011-01-28 00:06:35Z rabbit $
 
 This document is intended for raid leaders.
-
 
     How to set up Big Wigs for boss announcements
 
@@ -34,14 +33,7 @@ has expired.
 
     How to check what version other people have
 
-Using the VersionQuery plugin, you can query the raid for what version of
-BigWigs your members have. This is queried on a per-zone basis, so for example
-querying for "Molten Core" will make everyone respond with the highest revision
-of any bossmod they have that is registered with that zone. You can also query
-for core revision with the BigWigs command.
-
-If you do not specify any zone, the zone you're currently in will be queried
-for.
+Using /bwv, you can query the raid for what version of BigWigs your members have.
 
 Remember that people do not always have to have the latest revision for things
 to work, please do not abuse the version query as most people do not enjoy

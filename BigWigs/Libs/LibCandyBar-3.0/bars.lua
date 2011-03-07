@@ -5,12 +5,17 @@
 -- Creating a new timerbar using the ':New' function will return a new timerbar object. This timerbar object inherits all of the barPrototype functions listed here. \\
 --
 -- @usage
--- mybar = Libstub("LibCandyBar-3.0"):New("Interface\\AddOns\\MyAddOn\\media\\statusbar.tga", 100, 16)
+-- local candy = LibStub("LibCandyBar-3.0")
+-- local texture = "Interface\\AddOns\\MyAddOn\\statusbar"
+-- local mybar = candy:New(texture, 100, 16)
+-- mybar:SetLabel("Yay!")
+-- mybar:SetDuration(60)
+-- mybar:Start()
 -- @class file
 -- @name LibCandyBar-3.0
 
 local major = "LibCandyBar-3.0"
-local minor = tonumber(("$Rev: 33 $"):match("(%d+)")) or 1
+local minor = tonumber(("$Rev: 37 $"):match("(%d+)")) or 1
 if not LibStub then error("LibCandyBar-3.0 requires LibStub.") end
 local cbh = LibStub:GetLibrary("CallbackHandler-1.0")
 if not cbh then error("LibCandyBar-3.0 requires CallbackHandler-1.0") end
@@ -73,6 +78,7 @@ local function resetBar(bar)
 		bar:SetScript(script, nil)
 	end
 
+	bar.candyBarBar:GetStatusBarTexture():SetHorizTile(false)
 	bar.candyBarBackground:SetVertexColor(0.5, 0.5, 0.5, 0.3)
 	bar:ClearAllPoints()
 	bar:SetWidth(bar.width)
@@ -144,47 +150,49 @@ function barPrototype:SetFill(fill)
 	self.fill = fill
 end
 --- Adds a function to the timerbar. The function will run every update and will receive the bar as a parameter.
--- @param func Function to run every update
+-- @param func Function to run every update.
 -- @usage
 -- -- The example below will print the time remaining to the chatframe every update. Yes, that's a whole lot of spam
 -- mybar:AddUpdateFunction( function(bar) print(bar.remaining) end )
 function barPrototype:AddUpdateFunction(func) if not self.funcs then self.funcs = {} end; tinsert(self.funcs, func) end
---- Sets user data in the timerbar object. 
--- @param key Key to use for the data storage
--- @param data Data to store
+--- Sets user data in the timerbar object.
+-- @param key Key to use for the data storage.
+-- @param data Data to store.
 function barPrototype:Set(key, data) if not self.data then self.data = {} end; self.data[key] = data end
 --- Retrieves user data from the timerbar object.
 -- @param key Key to retrieve
 function barPrototype:Get(key) return self.data[key] end
---- Sets the color of the bar
--- This is basically a direct call to SetStatusBarColor and
--- @param r Red component 0-1
--- @param g Green component 0-1
--- @param b Blue component 0-1
--- @param a Alpha 0-1
-function barPrototype:SetColor(r, g, b, a) self.candyBarBar:SetStatusBarColor(r, g, b, a) end
---- Sets the texture of the bar
--- This should only be needed on running bars that get changed on the fly
--- @param texture Path to the bar texture
+--- Sets the color of the bar.
+-- This is basically a wrapper to SetStatusBarColor.
+-- @paramsig r, g, b, a
+-- @param r Red component (0-1)
+-- @param g Green component (0-1)
+-- @param b Blue component (0-1)
+-- @param a Alpha (0-1)
+function barPrototype:SetColor(...) self.candyBarBar:SetStatusBarColor(...) end
+--- Sets the texture of the bar.
+-- This should only be needed on running bars that get changed on the fly.
+-- @param texture Path to the bar texture.
 function barPrototype:SetTexture(texture)
 	self.candyBarBar:SetStatusBarTexture(texture)
+	self.candyBarBar:GetStatusBarTexture():SetHorizTile(false)
 	self.candyBarBackground:SetTexture(texture)
 end
---- Sets the label on the bar
--- @param text Label text
+--- Sets the label on the bar.
+-- @param text Label text.
 function barPrototype:SetLabel(text) self.candyBarLabel:SetText(text); restyleBar(self) end
---- Sets the icon next to the bar
--- @param icon Path to the icon texture or nil to not display an icon
+--- Sets the icon next to the bar.
+-- @param icon Path to the icon texture or nil to not display an icon.
 function barPrototype:SetIcon(icon) self.candyBarIconFrame:SetTexture(icon); restyleBar(self) end
---- Sets wether or not the time indicator on the right of the bar should be shown
--- Time is shown by default
+--- Sets wether or not the time indicator on the right of the bar should be shown.
+-- Time is shown by default.
 -- @param bool true to show the time, false/nil to hide the time.
 function barPrototype:SetTimeVisibility(bool) self.showTime = bool; restyleBar(self) end
---- Sets the duration of the bar
+--- Sets the duration of the bar.
 -- This can also be used while the bar is running to adjust the time remaining, within the bounds of the original duration.
--- @param duration Duration of the bar in seconds
+-- @param duration Duration of the bar in seconds.
 function barPrototype:SetDuration(duration) self.remaining = duration end
---- Shows the bar and starts it off
+--- Shows the bar and starts it.
 function barPrototype:Start()
 	self.running = true
 	restyleBar(self)
@@ -198,9 +206,9 @@ function barPrototype:Start()
 	self:SetScript("OnUpdate", onUpdate)
 	self:Show()
 end
---- Stops the bar
--- This will stop the timerbar running fire the LibCandyBar_Stop callback and then recycle the bar into the candybar barpool
--- Note: make sure you remove all references to the bar in your addon upon receiving the LibCandyBar_Stop callback for that bar
+--- Stops the bar.
+-- This will stop the bar, fire the LibCandyBar_Stop callback, and recycle the bar into the candybar pool.
+-- Note: make sure you remove all references to the bar in your addon upon receiving the LibCandyBar_Stop callback.
 -- @usage
 -- -- The example below shows the use of the LibCandyBar_Stop callback by printing the contents of the label in the chatframe
 -- local function barstopped( callback, bar )
@@ -217,15 +225,18 @@ end
 -- Library functions
 --
 
---- Creates a new timerbar object
---
+local function setValue(self, value)
+	local min, max = self:GetMinMaxValues()
+	self:GetStatusBarTexture():SetTexCoord(0, (value - min) / (max - min), 0, 1)
+end
+
+--- Creates a new timerbar object and returns it. Don't forget to set the duration, label and :Start the timer bar after you get a hold of it!
 -- @paramsig texture, width, height
--- @param texture Path to the texture used for the bar
--- @param width Width of the bar
--- @param height Height of the bar
+-- @param texture Path to the texture used for the bar.
+-- @param width Width of the bar.
+-- @param height Height of the bar.
 -- @usage
--- -- Create a simple bar using a custom texture
--- mybar = Libstub("LibCandyBar-3.0"):New("Interface\\AddOns\\MyAddOn\\media\\statusbar.tga", 100, 16)
+-- mybar = LibStub("LibCandyBar-3.0"):New("Interface\\AddOns\\MyAddOn\\media\\statusbar", 100, 16)
 function lib:New(texture, width, height)
 	local bar = tremove(availableBars)
 	if not bar then
@@ -240,6 +251,7 @@ function lib:New(texture, width, height)
 		local statusbar = CreateFrame("StatusBar", nil, bar)
 		statusbar:SetPoint("TOPRIGHT")
 		statusbar:SetPoint("BOTTOMRIGHT")
+		hooksecurefunc(statusbar, "SetValue", setValue)
 		bar.candyBarBar = statusbar
 		local bg = statusbar:CreateTexture(nil, "BACKGROUND")
 		bg:SetAllPoints()

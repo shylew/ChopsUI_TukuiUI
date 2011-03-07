@@ -155,7 +155,7 @@ do
 	local widgetType = "DDI-Sound"
 	local function onClick(self)
 		local snd = media:Fetch("sound", self.sound:GetText())
-		if snd then PlaySoundFile(snd) end
+		if snd then PlaySoundFile(snd, "Master") end
 	end
 	local function constructor()
 		local self = commonConstructor(widgetType)

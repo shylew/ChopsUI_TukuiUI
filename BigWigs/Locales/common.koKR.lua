@@ -5,7 +5,7 @@ if not L then return end
 -- Prototype.lua common words
 L.you = "당신은 %s!"
 L.other = "%s: %s"
-L.say = "%s on ME!"
+L.say = "나에게 %s!"
 
 L.phase = "%d 단계"
 L.normal = "일반 모드"
@@ -18,3 +18,4 @@ L.berserk_end = "%s 광폭화!"
 L.berserk_min = "%d분 후 광폭화"
 L.berserk_sec = "%d초 후 광폭화!"
 L.berserk = "광폭화"
+

@@ -1,5 +1,15 @@
+
 local L = BigWigs:NewBossLocale("Al'Akir", "frFR")
+if not L then return end
 if L then
+	L.stormling = "Tourmentin"
+	L.stormling_desc = "Prévient quand un Tourmentin est invoqué."
+	L.stormling_message = "Arrivée d'un Tourmentin !"
+	L.stormling_bar = "Prochain Tourmentin"
+	L.stormling_yell = "Tempêtes ! Je vous invoque à moi !" -- à vérifier
+
+	L.acid_rain = "Pluie acide (%d)"
+
 	L.phase3_yell = "Assez ! Je ne serais pas contenu plus longtemps !" -- à vérifier
 
 	L.phase = "Changement de phase"
@@ -9,7 +19,7 @@ if L then
 	L.feedback_message = "%dx Réaction"
 end
 
-local L = BigWigs:NewBossLocale("Conclave of Wind", "frFR")
+L = BigWigs:NewBossLocale("Conclave of Wind", "frFR")
 if L then
 	L.gather_strength = "%s rassemble ses forces"
 
@@ -22,3 +32,4 @@ if L then
 
 	L.wind_chill = "%sx Frisson du vent sur vous !"
 end
+

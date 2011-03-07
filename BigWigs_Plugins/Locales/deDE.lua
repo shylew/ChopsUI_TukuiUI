@@ -143,7 +143,7 @@ L["|cffff0000Disable|r"] = "|cffff0000Deaktiviert|r"
 
 L.soundDefaultDescription = "Falls diese Option aktiviert ist, wird Big Wigs nur die Standard-Raidsounds von Blizzard für Nachrichten benutzen. Beachte, dass nicht alle Nachrichten einer Begegnung einen Sound auslösen."
 
-L["Sounds"] = "Sounds" 
+L["Sounds"] = "Sounds"
 
 L["Alarm"] = "Alarm"
 L["Info"] = "Info"
@@ -166,6 +166,10 @@ L["Sound"] = "Sound"
 L["Disabled"] = "Deaktivieren"
 L["Disable the proximity display for all modules that use it."] = "Deaktiviert die Anzeige naher Spieler für alle Module, die sie benutzen."
 L["The proximity display will show next time. To disable it completely for this encounter, you need to toggle it off in the encounter options."] = "Die Anzeige naher Spieler wird beim nächsten Mal angezeigt werden. Um sie für diesen Boss vollständig zu deaktivieren, musst du die Option 'Nähe' im Bossmodul ausschalten."
+L["Let the Proximity monitor display a graphical representation of people who might be too close to you instead of just a list of names. This only works for zones where Big Wigs has access to actual size information; for other zones it will fall back to the list of names."] = "Lässt die Näheanzeige eine grafische Darstellung der Spieler anzeigen, die dir zu nahe stehen könnten. Diese Version funktioniert nur bei Zonen, für die Big Wigs Größeninformationen besitzt; für andere Zonen wird die normale Namesliste verwendet."
+L["Graphical display"] = "Grafische Anzeige"
+L["Sound delay"] = "Soundverzögerung"
+L["Specify how long Big Wigs should wait between repeating the specified sound when someone is too close to you."] = "Gibt an, wie lange Big Wigs zwischen den Soundwiederholungen wartet, wenn jemand zu nahe steht."
 
 L.proximity = "Nähe"
 L.proximity_desc = "Zeigt das Fenster für nahe Spieler an. Es listet alle Spieler auf, die dir zu nahe stehen."

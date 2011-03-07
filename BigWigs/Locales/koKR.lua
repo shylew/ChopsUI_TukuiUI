@@ -63,6 +63,7 @@ L["Reset positions"] = "위치 초기화"
 L["Options for %s."] = "%s 대한 설정입니다."
 L["Colors"] = "색상"
 L["Select encounter"] = "교전 선택"
+L["List abilities in group chat"] = "대화창에 스킬 목록 표시"
 
 L["BAR"] = "바"
 L["MESSAGE"] = "메세지"
@@ -95,3 +96,4 @@ L["Contact"] = "연락처"
 L["See license.txt in the main Big Wigs folder."] = "메인 Big Wigs 폴더의 license.txt를 참조하세요."
 L["irc.freenode.net in the #wowace channel"] = "irc.freenode.net의 #wowace 채널"
 L["Thanks to the following for all their help in various fields of development"] = "다양한 분야에서 개발을 위해 다음과 같은 사람들의 도움이 있었습니다."
+

@@ -1,19 +1,30 @@
+
 local L = BigWigs:NewBossLocale("Cho'gall", "frFR")
+if not L then return end
 if L then
 	L.orders = "Changements de posture"
 	L.orders_desc = "Prévient quand Cho'gall passe en posture Ordres de l'ombre/de la flamme."
 
-	L.crash_say = "Déferlante sur moi !"
 	L.worship_cooldown = "~Vénération"
-	L.adherent_bar = "Adhérent(s) #%d"
-	L.adherent_message = "Adhérent(s) invoqué(s) (%d) !"
-	L.ooze_bar = "Nuée de Sangs %d"
+
+	L.adherent_bar = "Adhérent #%d"
+	L.adherent_message = "Arrivée d'un Adhérent (%d) !"
+	L.ooze_bar = "Nuée de Sangs #%d"
 	L.ooze_message = "Arrivée d'une nuée de Sangs (%d) !"
+
 	L.tentacles_bar = "Apparition de Créations"
 	L.tentacles_message = "Créations assombries !"
+
 	L.sickness_message = "Vous ne vous sentez pas bien !"
+	L.blaze_message = "Brasier sur vous !"
+	L.crash_say = "Déferlante sur moi !"
+
 	L.fury_bar = "Prochaine Fureur"
 	L.fury_message = "Fureur !"
+	L.first_fury_soon = "Fureur imminente !"
+	L.first_fury_message = "85% - Fureur commence !"
+
+	L.unleashed_shadows = "Ombre vibrante"
 
 	L.phase2_message = "Phase 2 !"
 	L.phase2_soon = "Phase 2 imminente !"
@@ -28,25 +39,35 @@ if L then
 	L.breath_message = "Arrivée des Souffles profonds !"
 	L.dazzling_message = "Arrivée des zones tourbillonnantes !"
 
-	L.engulfingmagic_say = "Magie enveloppante sur moi !"
+	L.blast_message = "Déflagration"
+	L.engulfingmagic_say = "Magie sur moi !"
 	L.engulfingmagic_cooldown = "~Magie enveloppante"
 
 	L.devouringflames_cooldown = "~Flammes dévorantes"
 
 	L.valiona_trigger = "Theralion, je m'occupe du vestibule. Couvre leur fuite !" -- à vérifier
+	L.win_trigger = "Au moins... Theralion meurt avec moi..." -- à vérifier
 
 	L.twilight_shift = "%2$dx Transferts sur %1$s"
 end
 
 L = BigWigs:NewBossLocale("Halfus Wyrmbreaker", "frFR")
 if L then
+	L.paralysis_bar = "Prochaine paralysie"
 	L.strikes_message = "%2$dx Frappes sur %1$s"
+
+	L.breath_message = "Arrivée d'un Souffle !"
+	L.breath_bar = "~Souffle"
 end
 
 L = BigWigs:NewBossLocale("Sinestra", "frFR")
 if L then
+	L.whelps = "Dragonnets"
+	L.whelps_desc = "Prévient de l'arrivée des vagues de dragonnets."
+
 	L.egg_vulnerable = "C'est l'heure de l'omelette !"
 
+	L.whelps_trigger = "Mangez, mes enfants !" -- à vérifier/compléter
 	L.omelet_trigger = "Vous avez cru à une marque de faiblesse ?" -- à vérifier
 
 	L.phase13 = "Phase 1 et 3"
@@ -56,16 +77,14 @@ end
 
 L = BigWigs:NewBossLocale("Ascendant Council", "frFR")
 if L then
-	L.static_overload_say = "Surcharge statique sur moi !"
-	L.gravity_core_say = "Noyau de gravité sur moi !"
+	L.static_overload_say = "Surcharge sur moi !"
+	L.gravity_core_say = "Gravité sur moi !"
 	L.health_report = "%s est à %d%%, changement de phase imminent !"
 	L.switch = "Changement"
 	L.switch_desc = "Prévient quand les boss échangent leurs places."
 
 	L.shield_up_message = "Bouclier en place !"
 	L.shield_bar = "Prochain Bouclier"
-
-	L.lightning_rod_say = "Bâtonnet d'éclair sur moi !"
 
 	L.switch_trigger = "Nous allons nous occuper d'eux !" -- à vérifier
 
@@ -74,8 +93,8 @@ if L then
 	L.quake_trigger = "Le sol sous vos pieds gronde avec menace..." -- à vérifier
 	L.thundershock_trigger = "L'air qui vous entoure crépite d'énergie..." -- à vérifier
 
-	L.searing_winds_message = "Arrivée d'un Coup de tonnerre !"
-	L.grounded_message = "Arrivée d'une Secousse !"
+	L.thundershock_quake_spam = "%s dans %d"
 
 	L.last_phase_trigger = "Quelle démonstration impressionnante" -- "CONTEMPLEZ VOTRE DESTIN !" -- à vérifier
 end
+

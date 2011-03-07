@@ -63,7 +63,6 @@ function boss:RegisterEnableYell(...) core:RegisterEnableYell(self, ...) end
 local L = AL:GetLocale("Big Wigs: Common")
 local UnitExists = UnitExists
 local UnitAffectingCombat = UnitAffectingCombat
-local UnitName = UnitName
 local GetSpellInfo = GetSpellInfo
 local fmt = string.format
 
@@ -160,10 +159,11 @@ end
 
 function boss:CheckBossStatus()
 	if debug then dbg(self, ":CheckBossStatus called.") end
-	local guid = UnitGUID("boss1") or UnitGUID("boss2") or UnitGUID("boss3") or UnitGUID("boss4")
-	if not guid and self.isEngaged then
+	local hasBoss = UnitHealth("boss1") > 100 or UnitHealth("boss2") > 100 or UnitHealth("boss3") > 100 or UnitHealth("boss4") > 100
+	if not hasBoss and self.isEngaged then
 		self:Reboot()
-	elseif not self.isEngaged and guid then
+	elseif not self.isEngaged and hasBoss then
+		local guid = UnitGUID("boss1") or UnitGUID("boss2") or UnitGUID("boss3") or UnitGUID("boss4")
 		local module = core:GetEnableMobs()[tonumber(guid:sub(7, 10), 16)]
 		local modType = type(module)
 		if modType == "string" then
@@ -176,6 +176,7 @@ function boss:CheckBossStatus()
 			for i = 1, #module do
 				if module[i] == self.moduleName then
 					self:Engage()
+					break
 				end
 			end
 			if not self.isEngaged then self:Disable() end
@@ -186,10 +187,14 @@ end
 do
 	local t = nil
 	local function buildTable()
-		t = {"target", "targettarget", "focus", "focustarget", "mouseover", "mouseovertarget"}
-		for i = 1, 4 do t[#t+1] = fmt("boss%d", i) end
-		for i = 1, 4 do t[#t+1] = fmt("party%dtarget", i) end
-		for i = 1, 40 do t[#t+1] = fmt("raid%dtarget", i) end
+		t = {
+			"boss1", "boss2", "boss3", "boss4",
+			"target", "targettarget",
+			"focus", "focustarget",
+			"mouseover", "mouseovertarget",
+			"party1target", "party2target", "party3target", "party4target"
+		}
+		for i = 1, 25 do t[#t+1] = fmt("raid%dtarget", i) end
 	end
 	local function findTargetByGUID(id)
 		local idType = type(id)
@@ -421,9 +426,11 @@ do
 	function boss:TargetMessage(key, spellName, player, color, icon, sound, ...)
 		if not checkFlag(self, key, C.MESSAGE) then return end
 		if type(player) == "table" then
-			local text = fmt(L["other"], spellName, table.concat(player, ", "))
-			wipe(player)
+			local list = table.concat(player, ", ")
+			if not (list):find(UnitName("player")) then sound = nil end
+			local text = fmt(L["other"], spellName, list)
 			self:SendMessage("BigWigs_Message", self, key, text, color, nil, sound, nil, icon)
+			wipe(player)
 		else
 			if UnitIsUnit(player, "player") then
 				if ... then
@@ -431,7 +438,7 @@ do
 					self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icon)
 					self:SendMessage("BigWigs_Message", self, key, text, nil, nil, nil, true)
 				else
-					self:SendMessage("BigWigs_Message", self, key, fmt(L["you"], spellName), color, true, sound, nil, icon)
+					self:SendMessage("BigWigs_Message", self, key, fmt(L["you"], spellName), "Personal", true, sound, nil, icon)
 					self:SendMessage("BigWigs_Message", self, key, fmt(L["other"], spellName, player), nil, nil, nil, true)
 				end
 			else
@@ -457,6 +464,11 @@ end
 function boss:Say(key, msg)
 	if not checkFlag(self, key, C.SAY) then return end
 	SendChatMessage(msg, "SAY")
+end
+
+function boss:PlaySound(key, sound)
+	if not checkFlag(self, key, C.MESSAGE) then return end
+	self:SendMessage("BigWigs_Sound", sound)
 end
 
 do

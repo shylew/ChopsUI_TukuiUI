@@ -1,3 +1,8 @@
+--[[
+See BigWigs/Docs/BarStyles.txt for in-depth information on how to register new
+bar styles from 3rd party addons.
+]]
+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -151,7 +156,7 @@ do
 	local backdrop = {
 		bgFile = "Interface\\Buttons\\WHITE8X8",
 		edgeFile = "Interface\\Buttons\\WHITE8X8",
-		tile = false, tileSize = 0, edgeSize = 0.64, 
+		tile = false, tileSize = 0, edgeSize = 0.64,
 		insets = { left = -0.64, right = -0.64, top = -0.64, bottom = -0.64}
 	}
 	local function createBackground()
@@ -571,9 +576,9 @@ local function rearrangeBars(anchor)
 end
 
 local function barStopped(event, bar)
-	currentBarStyler.BarStopped(bar)
 	local a = bar:Get("bigwigs:anchor")
 	if a and a.bars and a.bars[bar] then
+		currentBarStyler.BarStopped(bar)
 		a.bars[bar] = nil
 		rearrangeBars(a)
 	end
@@ -732,8 +737,6 @@ function plugin:OnRegister()
 	for k, v in pairs(barStyles) do
 		barStyleRegister[k] = v:GetStyleName()
 	end
-
-	self:SetBarStyle(db.barStyle)
 end
 
 function plugin:OnPluginEnable()
@@ -762,6 +765,8 @@ function plugin:OnPluginEnable()
 
 	self:RefixClickIntercepts()
 	self:RegisterEvent("MODIFIER_STATE_CHANGED", "RefixClickIntercepts")
+
+	self:SetBarStyle(db.barStyle)
 end
 
 function plugin:BigWigs_SetConfigureTarget(event, module)
@@ -788,10 +793,12 @@ do
 		if type(styleData) ~= "table" then error(errorMismatchedData) end
 		if type(styleData.version) ~= "number" then error(errorMismatchedData) end
 		if type(styleData.apiVersion) ~= "number" then error(errorMismatchedData) end
+		if type(styleData.GetStyleName) ~= "function" then error(errorMismatchedData) end
 		if styleData.apiVersion ~= currentAPIVersion then error(errorWrongAPI:format(currentAPIVersion, key)) end
 		if barStyles[key] and barStyles[key].version == styleData.version then error(errorAlreadyExist:format(key)) end
 		if not barStyles[key] or barStyles[key].version < styleData.version then
 			barStyles[key] = styleData
+			barStyleRegister[key] = styleData:GetStyleName()
 		end
 	end
 end
@@ -1022,7 +1029,7 @@ local function countdown(bar)
 	if bar.remaining <= bar:Get("bigwigs:count") then
 		local count = bar:Get("bigwigs:count")
 		bar:Set("bigwigs:count", count - 1)
-		PlaySoundFile("Interface\\AddOns\\BigWigs\\Sounds\\"..floor(count)..".mp3")
+		PlaySoundFile("Interface\\AddOns\\BigWigs\\Sounds\\"..floor(count)..".mp3", "Master")
 		if count > 0.9 then
 			plugin:SendMessage("BigWigs_EmphasizedMessage", floor(count), 1, 0, 0)
 		end

@@ -23,7 +23,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("8014")
+	releaseRevision = tonumber("8191")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -626,7 +626,6 @@ do
 	InterfaceOptions_AddCategory(frame)
 	loader.RemoveInterfaceOptions = removeFrame
 end
-
 
 -- ChopsUI hack to allow external initialization of BigWigs
 function BigWigs_LoadAndEnableCore()

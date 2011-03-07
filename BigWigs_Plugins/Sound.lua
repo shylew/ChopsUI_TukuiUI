@@ -61,7 +61,7 @@ plugin.pluginOptions = {
 	end,
 	set = function(info, value)
 		local sound = info[#info]
-		PlaySoundFile(media:Fetch(mType, soundList[value]))
+		PlaySoundFile(media:Fetch(mType, soundList[value]), "Master")
 		plugin.db.profile.media[sound] = soundList[value]
 	end,
 	args = {
@@ -115,14 +115,14 @@ function plugin:OnPluginEnable()
 end
 
 local function play(sound)
-	if type(sound) == "string" and not plugin.db.profile.defaultonly then
+	if plugin.db.profile.defaultonly then
+		PlaySound("RaidWarning", "Master")
+	elseif type(sound) == "string" then
 		local s = plugin.db.profile.media[sound] and media:Fetch(mType, plugin.db.profile.media[sound]) or media:Fetch(mType, sound)
 		if type(s) == "string" then
-			PlaySoundFile(s)
-			return
+			PlaySoundFile(s, "Master")
 		end
 	end
-	PlaySound("RaidWarning")
 end
 
 -------------------------------------------------------------------------------
@@ -130,12 +130,12 @@ end
 --
 
 function plugin:BigWigs_Message(event, module, key, text, color, noraidsay, sound, broadcastonly)
-	if not text or sound == false or broadcastonly or not BigWigs.db.profile.sound then return end
+	if not text or not sound or broadcastonly or not BigWigs.db.profile.sound then return end
 	play(sound)
 end
 
 function plugin:BigWigs_Sound(event, sound)
-	if not BigWigs.db.profile.sound or sound == false then return end
+	if not BigWigs.db.profile.sound or not sound then return end
 	play(sound)
 end
 

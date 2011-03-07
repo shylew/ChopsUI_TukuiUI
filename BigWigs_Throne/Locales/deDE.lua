@@ -1,5 +1,15 @@
+
 local L = BigWigs:NewBossLocale("Al'Akir", "deDE")
+if not L then return end
 if L then
+	L.stormling = "Sturmling"
+	L.stormling_desc = "Warnt vor dem Beschwören der Sturmlinge."
+	L.stormling_message = "Sturmling kommt!"
+	L.stormling_bar = "Nächster Sturmling"
+	L.stormling_yell = "Stürme! Ich rufe euch an meine Seite!" -- check
+
+	L.acid_rain = "Säureregen (%d)"
+
 	L.phase3_yell = "Genug! Ich werde mich nicht länger zurückhalten!" -- check
 
 	L.phase = "Phasenwechsel"
@@ -22,3 +32,4 @@ if L then
 
 	L.wind_chill = "%sx Windkühle auf DIR!"
 end
+

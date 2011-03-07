@@ -6,6 +6,10 @@ if not L then return end
 -- Bars.lua
 --
 
+L["Style"] = "风格"
+L.bigWigsBarStyleName_Default = "默认"
+L.bigWigsBarStyleName_BeautyCase = "美化"
+
 L["Clickable Bars"] = "可点击计时条"
 L.clickableBarsDesc = "Big Wigs 计时条预设是点击穿越的。这样可以选择目标或使用 AoE 法术攻击物体，更改镜头角度等等，当滑鼠指针划过计时条。|cffff4411如果启用可点击计时条，这些将不能实现。|r计时条将拦截任何鼠标点击并阻止相应功能。\n"
 L["Enables bars to receive mouse clicks."] = "启用计时条接受点击。"
@@ -22,7 +26,7 @@ L["Temporarily removes the bar and all associated messages."] = "临时移除计
 L["Remove other"] = "移除其它"
 L["Temporarily removes all other bars (except this one) and associated messages."] = "临时移除所有计时条（除此之外）和全部相关信息。"
 L["Disable"] = "禁用"
-L["Permanently disables the boss encounter ability option that spawned this bar."] = "永久禁用此首领战斗技能计时条选项。" 
+L["Permanently disables the boss encounter ability option that spawned this bar."] = "永久禁用此首领战斗技能计时条选项。"
 
 L["Scale"] = "缩放"
 L["Grow upwards"] = "向上成长"
@@ -45,6 +49,10 @@ L["Whether to show or hide the time left on the bars."] = "在计时条上显示
 L["Icon"] = "图标"
 L["Shows or hides the bar icons."] = "显示或隐藏计时条图标。"
 L["Font"] = "字体"
+L["Restart"] = "重新加载"
+L["Restarts emphasized bars so they start from the beginning and count from 10."] = "重新加载醒目计时条并从10开始倒数。"
+L["Fill"] = "填充"
+L["Fills the bars up instead of draining them."] = "填充计时条而不是显示为空。"
 
 L["Local"] = "本地"
 L["%s: Timer [%s] finished."] = "%s：计时条[%s]到时间。"
@@ -150,12 +158,18 @@ L["Default only"] = "只用预设"
 -- Proximity.lua
 --
 
+L["|T%s:20:20:-5|tAbility name"] = "|T%s:20:20:-5|t技能名称"
+L["Custom range indicator"] = "自定义距离指示器"
 L["%d yards"] = "%d码"
 L["Proximity"] = "近距离"
 L["Sound"] = "音效"
 L["Disabled"] = "禁用"
 L["Disable the proximity display for all modules that use it."] = "禁止所有首领模块使用近距离。"
 L["The proximity display will show next time. To disable it completely for this encounter, you need to toggle it off in the encounter options."] = "近距离显示将在下次显示。要完全禁用此功能，需要关闭此功能选项。"
+L["Let the Proximity monitor display a graphical representation of people who might be too close to you instead of just a list of names. This only works for zones where Big Wigs has access to actual size information; for other zones it will fall back to the list of names."] = "近距离监视器以图形化方式显示谁可能过于接近你，而不是仅仅是名称的列表。Big Wigs 只在区域符合实际大小信息时显示名称列表。"
+L["Graphical display"] = "图形化显示"
+L["Sound delay"] = "音效延迟"
+L["Specify how long Big Wigs should wait between repeating the specified sound when someone is too close to you."] = "当有人太靠近你时指定多长时间 Big Wigs 重复间隔等待指定的音效。"
 
 L.proximity = "近距离显示"
 L.proximity_desc = "显示近距离显示窗口，列出距离你很近的玩家。"
@@ -175,6 +189,10 @@ L["Shows or hides the sound button."] = "显示或隐藏音效按钮。"
 L["Close button"] = "关闭按钮"
 L["Shows or hides the close button."] = "显示或隐藏关闭按钮。"
 L["Show/hide"] = "显示/隐藏"
+L["Ability name"] = "技能名称"
+L["Shows or hides the ability name above the window."] = "在窗口上面显示或隐藏技能名称。"
+L["Tooltip"] = "提示"
+L["Shows or hides a spell tooltip if the Proximity display is currently tied directly to a boss encounter ability."] = "显示或隐藏近距离显示从首领战斗技能获取的法术提示。"
 
 -----------------------------------------------------------------------
 -- Tips.lua

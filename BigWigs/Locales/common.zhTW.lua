@@ -1,11 +1,11 @@
-﻿local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs: Common", "zhTW")
+local L = LibStub("AceLocale-3.0"):NewLocale("Big Wigs: Common", "zhTW")
 
 if not L then return end
 
 -- Prototype.lua common words
 L.you = ">你< %s！"
 L.other = "%s：>%s<！"
-L.say = "%s on ME!"
+L.say = ">我< %s！"
 
 L.phase = "階段%d"
 L.normal = "普通模式"
@@ -18,3 +18,4 @@ L.berserk_end = "%s已狂暴！"
 L.berserk_min = "%d分後狂暴！"
 L.berserk_sec = "%d秒後狂暴！"
 L.berserk = "狂暴"
+

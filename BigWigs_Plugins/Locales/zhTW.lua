@@ -6,6 +6,10 @@ if not L then return end
 -- Bars.lua
 --
 
+L["Style"] = "風格"
+L.bigWigsBarStyleName_Default = "預設"
+L.bigWigsBarStyleName_BeautyCase = "美化"
+
 L["Clickable Bars"] = "可點擊計時條"
 L.clickableBarsDesc = "Big Wigs 計時條預設是點擊穿越的。這樣可以選擇目標或使用 AoE 法術攻擊物體，更改鏡頭角度等等，當滑鼠指針劃過計時條。|cffff4411如果啟用可點擊計時條，這些將不能實現。|r計時條將攔截任何滑鼠點擊并阻止相應功能。\n"
 L["Enables bars to receive mouse clicks."] = "啟用計時條接受點擊。"
@@ -45,6 +49,10 @@ L["Whether to show or hide the time left on the bars."] = "在計時條上顯示
 L["Icon"] = "圖示"
 L["Shows or hides the bar icons."] = "顯示或隱藏計時條圖示。"
 L["Font"] = "字型"
+L["Restart"] = "重新加載"
+L["Restarts emphasized bars so they start from the beginning and count from 10."] = "重新加載強調計時條並從10開始倒數。"
+L["Fill"] = "填充"
+L["Fills the bars up instead of draining them."] = "填充計時條而不是顯示為空。"
 
 L["Local"] = "區域"
 L["%s: Timer [%s] finished."] = "%s: 計時器 [%s] 終了。"
@@ -150,12 +158,18 @@ L["Default only"] = "僅用預設"
 -- Proximity.lua
 --
 
+L["|T%s:20:20:-5|tAbility name"] = "|T%s:20:20:-5|t技能名稱"
+L["Custom range indicator"] = "自訂距離指示器"
 L["%d yards"] = "%d碼"
 L["Proximity"] = "近距離顯"
 L["Sound"] = "音效"
 L["Disabled"] = "禁用"
 L["Disable the proximity display for all modules that use it."] = "禁止所有首領模组使用近距離。"
 L["The proximity display will show next time. To disable it completely for this encounter, you need to toggle it off in the encounter options."] = "近距離顯示將在下次顯示。要完全禁用此功能，需要關閉此功能選項。"
+L["Let the Proximity monitor display a graphical representation of people who might be too close to you instead of just a list of names. This only works for zones where Big Wigs has access to actual size information; for other zones it will fall back to the list of names."] = "近距離監視器以圖形化方式顯示誰可能過於接近你，而不是僅僅是名稱的列表。Big Wigs 只在區域符合實際大小訊息時顯示名稱列表。"
+L["Graphical display"] = "圖形化顯示"
+L["Sound delay"] = "音效延遲"
+L["Specify how long Big Wigs should wait between repeating the specified sound when someone is too close to you."] = "當有人太靠近你時指定多長時間 Big Wigs 重複間隔等待指定的音效。"
 
 L.proximity = "近距離顯示"
 L.proximity_desc = "顯示近距離顯示視窗，列出距離你很近的玩家。"
@@ -175,6 +189,10 @@ L["Shows or hides the sound button."] = "顯示或隱藏音效按鈕。"
 L["Close button"] = "關閉按鈕"
 L["Shows or hides the close button."] = "顯示或隱藏關閉按鈕。"
 L["Show/hide"] = "顯示/隱藏"
+L["Ability name"] = "技能名稱"
+L["Shows or hides the ability name above the window."] = "在視窗上面顯示或隱藏技能名稱。"
+L["Tooltip"] = "提示"
+L["Shows or hides a spell tooltip if the Proximity display is currently tied directly to a boss encounter ability."] = "顯示或隱藏近距離顯示從首領戰鬥技能獲取的法術提示。"
 
 -----------------------------------------------------------------------
 -- Tips.lua

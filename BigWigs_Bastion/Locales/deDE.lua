@@ -1,19 +1,30 @@
+
 local L = BigWigs:NewBossLocale("Cho'gall", "deDE")
+if not L then return end
 if L then
 	L.orders = "Schatten- / Flammenbefehl"
 	L.orders_desc = "Warnt, wenn Cho'gall zwischen Befehle des Schattens und Flammenbefehl wechselt."
 
-	L.crash_say = "Schmettern auf MIR!"
 	L.worship_cooldown = "~Verehren"
+
 	L.adherent_bar = "Kultist %d"
 	L.adherent_message = "Kultist %d kommt!"
 	L.ooze_bar = "Schleime %d"
 	L.ooze_message = "Schleime %d kommen!"
+
 	L.tentacles_bar = "Nächste Tentakel"
 	L.tentacles_message = "Tentakel Disco Party!"
+
 	L.sickness_message = "Krankheit auf DIR!"
+	L.blaze_message = "Lohe auf DIR!"
+	L.crash_say = "Schmettern auf MIR!"
+
 	L.fury_bar = "Nächster Furor"
 	L.fury_message = "Furor!"
+	L.first_fury_soon = "Furor bald!"
+	L.first_fury_message = "85% - Furor kommt!"
+
+	L.unleashed_shadows = "Schatten"
 
 	L.phase2_message = "Phase 2!"
 	L.phase2_soon = "Phase 2 bald!"
@@ -28,6 +39,7 @@ if L then
 	L.breath_message = "Tiefer Atem kommt!"
 	L.dazzling_message = "Wirbelzonen kommen!"
 
+	L.blast_message = "Druckwelle"
 	L.engulfingmagic_say = "Einhüllende Magie auf MIR!"
 	L.engulfingmagic_cooldown = "~Einhüllende Magie"
 
@@ -40,13 +52,21 @@ end
 
 L = BigWigs:NewBossLocale("Halfus Wyrmbreaker", "deDE")
 if L then
+	L.paralysis_bar = "Nächste Paralyse"
 	L.strikes_message = "%2$dx Stöße auf %1$s"
+
+	L.breath_message = "Atem kommt!"
+	L.breath_bar = "~Atem"
 end
 
 L = BigWigs:NewBossLocale("Sinestra", "deDE")
 if L then
+	L.whelps = "Welpen"
+	L.whelps_desc = "Warnt vor den Wellen der Welpen."
+
 	L.egg_vulnerable = "Zeit für Omelett!"
 
+	--L.whelps_trigger = "Feed, children!  Take your fill from their meaty husks!"
 	--L.omelet_trigger = "You mistake this for weakness?  Fool!"
 
 	L.phase13 = "Phase 1 und 3"
@@ -72,8 +92,7 @@ if L then
 	L.quake_trigger = "Der Boden unter Euch grollt unheilvoll..."
 	L.thundershock_trigger = "Die Luft beginnt, vor Energie zu knistern..."
 
-	L.searing_winds_message = "Donnerschock kommt!"
-	L.grounded_message = "Erdbeben kommt!"
+	L.thundershock_quake_spam = "%s in %d"
 
 	L.last_phase_trigger = "Beeindruckende Leistung…" -- what the heck Blizz??
 end

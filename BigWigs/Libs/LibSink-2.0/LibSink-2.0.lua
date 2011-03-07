@@ -1,38 +1,27 @@
 ﻿--[[
 Name: Sink-2.0
-Revision: $Rev: 72 $
+Revision: $Rev: 74 $
 Author(s): Rabbit (rabbit.magtheridon@gmail.com), Antiarc (cheal@gmail.com)
 Website: http://rabbit.nihilum.eu
 Documentation: http://wiki.wowace.com/index.php/Sink-2.0
 SVN: http://svn.wowace.com/wowace/trunk/SinkLib/Sink-2.0
 Description: Library that handles chat output.
 Dependencies: LibStub, SharedMedia-3.0 (optional)
-License: GPL v2 or later.
+License: CC-BY-NC-SA 3.0
 ]]
 
 --[[
-Copyright (C) 2008 Rabbit
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+Copyright (C) 2008-2011 Rabbit
+For the attribution bit of the license, as long as you distribute the library unmodified,
+no attribution is required.
+If you derive from the library or change it in any way, you are required to contact me.
 ]]
 
 -----------------------------------------------------------------------
 -- Sink-2.0
 
 local SINK20 = "LibSink-2.0"
-local SINK20_MINOR = 90000 + tonumber(("$Revision: 72 $"):match("(%d+)"))
+local SINK20_MINOR = 90000 + tonumber(("$Revision: 74 $"):match("(%d+)"))
 
 local sink = LibStub:NewLibrary(SINK20, SINK20_MINOR)
 if not sink then return end
@@ -207,11 +196,31 @@ elseif l == "ruRU" then
 	L_STICKY_DESC = "Сделать сообщения данного аддона клейкими.\n\nДоступно только для Blizzard FCT, Parrot, SCT или MikSBT."
 	L_NONE = "Нету"
 	L_NONE_DESC = "Скрыть все сообщения данного аддона."
+elseif l == "esES" or l == "esMX" then
+	L_DEFAULT = "Por defecto"
+	L_DEFAULT_DESC = "Envía los mensajes de este addon al primer canal disponible, preferiblemente a addons SCT si los hay."
+	L_ROUTE = "Envía los mensajes de este addon a %s."
+	L_SCT = "Scrolling Combat Text"
+	L_MSBT = "MikSBT"
+	L_BIGWIGS = "BigWigs"
+	L_BCF = "BlinkCombatFeedback"
+	L_UIERROR = "Marco de errores de Blizzard"
+	L_CHAT = "Chat"
+	L_BLIZZARD = "Texto flotante de Blizzard"
+	L_RW = "Aviso de la banda"
+	L_PARROT = "Parrot"
+	L_CHANNEL = "Canal específico"
+	L_OUTPUT = "Salida"
+	L_OUTPUT_DESC = "Dónde enviar los mensajes de este addon."
+	L_SCROLL = "Sub seción"
+	L_SCROLL_DESC = "Especifica dónde deberán mostrarse los mensajes.\n\nSólo disponible en algunas opciones de salida."
+	L_STICKY = "Destacar"
+	L_STICKY_DESC = "Especifica que los mensajes deberán mostrarse de forma destacada.\n\nSólo disponible en algunas opciones de salida."
+	L_NONE = "Ninguno"
+	L_NONE_DESC = "Oculta todos los mensajes de este addon."
 end
 
 local SML = LibStub("LibSharedMedia-3.0", true)
-
-local _G = getfenv(0)
 
 local function getSticky(addon)
 	return sink.storageForAddon[addon] and sink.storageForAddon[addon].sink20Sticky or nil
@@ -279,6 +288,7 @@ sink.channelMapping = sink.channelMapping or {
 	[GROUP] = "GROUP",
 }
 sink.frame = sink.frame or CreateFrame("Frame")
+sink.frame:UnregisterAllEvents()
 sink.frame:RegisterEvent("CHANNEL_UI_UPDATE")
 sink.frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 do

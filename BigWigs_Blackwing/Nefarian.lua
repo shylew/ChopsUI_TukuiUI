@@ -10,7 +10,6 @@ mod:RegisterEnableMob(41270, 41376)
 -- Locals
 --
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local phase, deadAdds, shadowBlazeTimer = 1, 0, 30
 local cinderTargets = mod:NewTargetList()
 local powerTargets = mod:NewTargetList()
@@ -34,6 +33,8 @@ if L then
 	L.crackle_trigger = "The air crackles with electricity!"
 	L.crackle_message = "Electrocute soon!"
 
+	L.shadowblaze_message = "Fire"
+
 	L.onyxia_power_message = "Explosion soon!"
 
 	L.chromatic_prototype = "Chromatic Prototype" -- 3 adds name
@@ -46,7 +47,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions(CL)
 	return {
-		78999, 81272, 94085,
+		78999, 81272, {94085, "FLASHSHAKE"},
 		{79339, "FLASHSHAKE", "SAY", "PROXIMITY"}, { 80626, "FLASHSHAKE"}, "berserk",
 		"phase", "bosskill"
 	}, {
@@ -64,6 +65,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ExplosiveCindersRemoved", 79339)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "StolenPower", 80626)
 	self:Log("SPELL_AURA_APPLIED", "InitialStolenPower", 80573, 80591, 80592, 80621, 80622, 80623, 80624, 80625, 80626, 80627)
+	self:Log("SPELL_DAMAGE", "PersonalShadowBlaze", 81007, 94085, 94086, 94087)
 
 	self:Emote("Electrocute", L["crackle_trigger"])
 
@@ -74,9 +76,7 @@ end
 
 
 function mod:OnEngage(diff)
-	if diff > 2 then
-		self:Berserk(600) -- is it really?
-	end
+	self:Berserk(630) -- is it really?
 	phase, deadAdds, shadowBlazeTimer = 1, 0, 35
 	phase3warned = false
 	self:RegisterEvent("UNIT_POWER")
@@ -86,8 +86,25 @@ end
 -- Event Handlers
 --
 
+do
+	local last = 0
+	function mod:PersonalShadowBlaze(player, spellId)
+		local time = GetTime()
+		if (time - last) > 2 then
+			last = time
+			if UnitIsUnit(player, "player") then
+				self:LocalMessage(94085, CL["you"]:format(L["shadowblaze_message"]), "Personal", spellId, "Info")
+				self:FlashShake(94085)
+			end
+		end
+	end
+end
+
 function mod:Electrocute()
-	self:Message(81272, L["crackle_message"], "Urgent", 81272, "Alert")
+	if UnitExists("boss1") then
+		self:Message(81272, L["crackle_message"], "Urgent", 81272, "Alert")
+		self:Bar(81272, (GetSpellInfo(81272)), 5, 81272)
+	end
 end
 
 function mod:Deaths(mobId)
@@ -114,13 +131,15 @@ function mod:PhaseTwo()
 	phase = 2
 	self:Message("phase", CL["phase"]:format(phase), "Attention", 78621)
 	local d = self:GetInstanceDifficulty()
-	if d == 2 then
-		self:Bar("phase", CL["phase"]:format(phase), 127, 78621)
-	elseif d == 4 then
+	if d == 4 then
+		-- Heroic 25man (diff 4) probably 4 minutes
 		self:Bar("phase", CL["phase"]:format(phase), 240, 78621) -- random guessed number
 	else
+		-- Normal 10man (diff 1) probably 3 minutes
+		-- Normal 25man (diff 2) confirmed 3 minutes
 		self:Bar("phase", CL["phase"]:format(phase), 180, 78621)
 	end
+	-- XXX Heroic 10man (diff 3) - no idea.
 end
 
 local function nextBlaze()
@@ -133,7 +152,9 @@ local function nextBlaze()
 			shadowBlazeTimer = shadowBlazeTimer - 5
 		end
 	end
-	mod:Message(94085, shadowblaze, "Important", 94085, "Alarm")
+	if shadowBlazeTimer > 5 then
+		mod:Message(94085, shadowblaze, "Important", 94085, "Alarm")
+	end
 	mod:Bar(94085, shadowblaze, shadowBlazeTimer, 94085)
 	mod:ScheduleTimer(nextBlaze, shadowBlazeTimer)
 end
@@ -159,8 +180,8 @@ do
 		cinderTargets[#cinderTargets + 1] = player
 		if UnitIsUnit(player, "player") then
 			self:FlashShake(79339)
-			self:Say(79339, CL["say"]:format((GetSpellInfo(79339))))
-			self:Bar(79339, spellName, 8, 79339)
+			self:Say(79339, CL["say"]:format(spellName))
+			self:Bar(79339, spellName, 8, spellId)
 			self:OpenProximity(10, 79339) -- assumed
 		end
 		if not scheduled then
@@ -186,6 +207,7 @@ do
 end
 
 function mod:StolenPower(player, spellId, _, _, spellName, stack)
+	-- XXX this needs a new stack value
 	if UnitIsUnit(player, "player") and stack == 150 then
 		self:FlashShake(80626)
 		self:LocalMessage(80626, spellName, "Personal", spellId, "Info")

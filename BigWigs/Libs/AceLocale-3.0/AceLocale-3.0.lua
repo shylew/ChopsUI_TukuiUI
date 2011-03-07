@@ -1,8 +1,8 @@
 --- **AceLocale-3.0** manages localization in addons, allowing for multiple locale to be registered with fallback to the base locale for untranslated strings.
 -- @class file
 -- @name AceLocale-3.0
--- @release $Id: AceLocale-3.0.lua 1004 2011-01-26 18:44:07Z mikk $
-local MAJOR,MINOR = "AceLocale-3.0", 4
+-- @release $Id: AceLocale-3.0.lua 1005 2011-01-29 14:19:43Z mikk $
+local MAJOR,MINOR = "AceLocale-3.0", 5
 
 local AceLocale, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
 
@@ -98,7 +98,7 @@ function AceLocale:NewLocale(application, locale, isDefault, silent)
 	local app = AceLocale.apps[application]
 	
 	if silent and app then
-		geterrorhandler()("Usage: NewLocale(application, locale[, isDefault[, silent]]): 'silent' must be specified for the first locale registered", 2)
+		geterrorhandler()("Usage: NewLocale(application, locale[, isDefault[, silent]]): 'silent' must be specified for the first locale registered")
 	end
 	
 	if not app then

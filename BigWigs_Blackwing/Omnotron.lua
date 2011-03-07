@@ -15,14 +15,18 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.nef = "Lord Victor Nefarius"
 	L.nef_desc = "Warnings for Lord Victor Nefarius abilities."
+
+	L.pool = "Pool Explosion"
+
 	L.switch = "Switch"
 	L.switch_desc = "Warning for Switches."
 	L.switch_message = "%s %s"
 
 	L.next_switch = "Next activation"
 
-	L.nef_trigger1 = "Were you planning on using Toxitron's chemicals to damage the other constructs? Clever plan, let me ruin that for you."
-	L.nef_trigger2 = "Stupid Dwarves and your fascination with runes! Why would you create something that would help your enemy?"
+	-- not using these but lets not just remove them yet who knows what will 4.0.6 break
+	--L.nef_trigger1 = "Were you planning on using Toxitron's chemicals to damage the other constructs? Clever plan, let me ruin that for you."
+	--L.nef_trigger2 = "Stupid Dwarves and your fascination with runes! Why would you create something that would help your enemy?"
 
 	L.nef_next = "~Next ability buff"
 
@@ -46,8 +50,8 @@ function mod:GetOptions(CL)
 		{79501, "ICON", "FLASHSHAKE"},
 		{79888, "ICON", "FLASHSHAKE", "PROXIMITY"},
 		{80161, "FLASHSHAKE"}, {80157, "FLASHSHAKE", "SAY"}, 91513, {80094, "FLASHSHAKE", "WHISPER"},
-		"nef", {92048, "ICON"}, 92023, --XXX "berserk",
-		{"switch", "ICON"}, "bosskill"
+		"nef", 91849, 91880, {92048, "ICON"}, 92023, {"switch", "ICON"},
+		"berserk", "bosskill"
 	}, {
 		[79501] = "Magmatron",
 		[79888] = "Electron",
@@ -60,8 +64,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "AcquiringTarget", 79501, 92035, 92036, 92037)
 
-	self:Yell("NefAbilties", L["nef_trigger1"])
-	self:Yell("NefAbilties", L["nef_trigger2"])
+	self:Log("SPELL_CAST_START", "Grip", 91849)
+	self:Log("SPELL_CAST_SUCCESS", "PoolExplosion", 91857)
 
 	self:Log("SPELL_CAST_SUCCESS", "PoisonProtocol", 91513, 91499, 91514, 91515)
 	self:Log("SPELL_AURA_APPLIED", "Fixate", 80094)
@@ -76,13 +80,13 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Death("Win", 42166, 42179, 42178, 42180)
+	self:Death("Deaths", 42166, 42179, 42178, 42180)
 end
 
 function mod:OnEngage(diff)
-	--[[if diff > 2 then
-		self:Berserk(600) --XXX v4.0.6
-	end]]
+	if diff > 2 then
+		self:Berserk(600)
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -107,9 +111,10 @@ do
 	end
 end
 
-function mod:NefAbilties()
-	self:Message("nef", L["nef_next"], "Attention", 92048)
-	self:Bar("nef", L["nef_next"], 35, 92048)
+function mod:PoolExplosion()
+	self:Message(91880, L["pool"], "Urgent", 91880)
+	self:Bar("nef", L["nef_next"], 35, 69005)
+	self:Bar(91880, L["pool"], 8, 91880)
 end
 
 function mod:Switch(unit, spellId, _, _, spellName, _, _, _, _, dGUID)
@@ -125,18 +130,23 @@ function mod:Switch(unit, spellId, _, _, spellName, _, _, _, _, dGUID)
 	end
 end
 
+function mod:Grip(_, spellId, _, _, spellName)
+	self:Message(91849, spellName, "Urgent", 91849)
+	self:Bar("nef", L["nef_next"], 35, 69005)
+end
+
 function mod:ShadowInfusion(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
 		self:FlashShake(92048)
 	end
 	self:TargetMessage(92048, spellName, player, "Urgent", spellId)
-	self:Bar("nef", L["nef_next"], 35, 92048)
+	self:Bar("nef", L["nef_next"], 35, 69005)
 	self:SecondaryIcon(92048, player)
 end
 
 function mod:EncasingShadows(player, spellId, _, _, spellName)
 	self:TargetMessage(92023, spellName, player, "Urgent", spellId)
-	self:Bar("nef", L["nef_next"], 35, 92048)
+	self:Bar("nef", L["nef_next"], 35, 69005)
 end
 
 function mod:AcquiringTarget(player, spellId)
@@ -185,6 +195,17 @@ do
 				self:LocalMessage(80161, L["cloud_message"], "Personal", spellId, "Info")
 				self:FlashShake(80161)
 			end
+		end
+	end
+end
+
+do
+	local deaths = 0
+	function mod:Deaths()
+		--Prevent the module from re-enabling in the second or so after 1 boss dies
+		deaths = deaths + 1
+		if deaths == 4 then
+			self:Win()
 		end
 	end
 end
