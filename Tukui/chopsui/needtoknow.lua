@@ -118,7 +118,17 @@ function ChopsuiNeedToKnowConfigurePlayerBuffs()
 
   elseif TukuiDB.myclass == "MAGE" then
 
-    if TukuiDB.myspec == "FROST" then
+    if TukuiDB.myspec == "ARCANE" then
+      ChopsuiNeedToKnowPlayerBuff(1, "Invisibility", 0, 1, 0.86, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Mage Ward", 0.74, 0, 0.83, true)
+      ChopsuiNeedToKnowPlayerBuff(3, "Arcane Power", 0.76, 0.43, 0.21, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Presence of Mind", 0, 0.59, 1, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Arcane Missiles!", 0, 0.34, 0.6, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Arcane Potency", 0, 1, 0.91, true)
+    elseif TukuiDB.myspec == "FIRE" then
+      ChopsuiNeedToKnowPlayerBuff(1, "Invisibility", 0, 1, 0.86, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Mage Ward", 0.74, 0, 0.83, true)
+    elseif TukuiDB.myspec == "FROST" then
       ChopsuiNeedToKnowPlayerBuff(3, "Icy Veins", 0, 1, 0.81, true)
       ChopsuiNeedToKnowPlayerBuff(4, "Ice Barrier", 0, 0.41, 0.67, true)
       ChopsuiNeedToKnowPlayerBuff(5, "Fingers of Frost", 0, 0.52, 0.6, true)
@@ -245,7 +255,14 @@ function ChopsuiNeedToKnowConfigureTargetDebuffs()
 
   elseif TukuiDB.myclass == "MAGE" then
 
-    if TukuiDB.myspec == "FROST" then
+    if TukuiDB.myspec == "ARCANE" then
+    elseif TukuiDB.myspec == "FIRE" then
+      ChopsuiNeedToKnowTargetDebuff(2, "Combustion", 0.68, 0, 0.01, true)
+      ChopsuiNeedToKnowTargetDebuff(3, "Pyroblast!", 1, 0.76, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(4, "Ignite", 1, 0.18, 0, true)
+      ChopsuiNeedToKnowTargetDebuff(5, "Critical Mass", 0, 0.55, 0.69, true)
+      ChopsuiNeedToKnowTargetDebuff(6, "Living Bomb", 1, 0.57, 0, true)
+    elseif TukuiDB.myspec == "FROST" then
       ChopsuiNeedToKnowTargetDebuff(2, "Frost Nova", 0, 0.52, 0.88, true)
       ChopsuiNeedToKnowTargetDebuff(3, "Cone of Cold", 0, 0.73, 0.67, true)
       ChopsuiNeedToKnowTargetDebuff(4, "Deep Freeze", 0, 0.29, 0.6, true)
