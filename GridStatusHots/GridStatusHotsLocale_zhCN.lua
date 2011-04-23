@@ -20,6 +20,7 @@ GridStatusHots.L = {
 	["Hots: My Earth Shield"] = "Hots: My Earth Shield", -- missing translation
 	["Hots: My Gift of the Naaru"] = "Hots: My Gift of the Naaru", -- missing translation
 	["Hots: My Prayer of Mending"] = "Hots: My Prayer of Mending", -- missing translation
+	["Hots: My Prayer of Mending - duration colored"] = "Hots: My Prayer of Mending - duration colored", -- missing translation
 	["Hots: Power Word: Shield"] = "Hots: Power Word: Shield", -- missing translation
 	["Hots: Weakened Soul"] = "Hots: Weakened Soul",  -- missing translation
 	["Hots: My Beacon of Light"] = "Hots: My Beacon of Light", -- missing translation
@@ -51,4 +52,8 @@ GridStatusHots.L = {
 	["Check, if you want to see the total of HoTs behind the countdown of your HoT(i.e. 13-5)"]= "勾选后,在你的Hot冷却计数后可以看到总的Hot数量",
 	["Combine Timers"] = "Combine Timers", -- missing translation
 	["Check, if you want to see the Weakened Soul Timer behind the Pw: Shield Timer(i.e. 13-5)"]= "Check, if you want to see the Weakened Soul Timer behind the Pw: Shield Timer(i.e. 13-5)", -- missing translation
+	["Show decimals"] = "Show decimals", -- missing translation
+	["Check, if you want to see one decimal place for your Lifebloom(i.e. 7.1)"] = "Check, if you want to see one decimal place for your Lifebloom(i.e. 7.1)", -- missing translation
+	["Only mine"] = "Only mine", -- missing translation
+	["Only show my PoM"] = "Only show my PoM", -- missing translation
 }

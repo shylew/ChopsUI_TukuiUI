@@ -32,9 +32,9 @@ if L then
 
 	L.acquiring_target = "Acquiring target"
 
-	L.bomb_message = "Ooze chasing YOU!"
-	L.cloud_message = "Cloud on YOU!"
-	L.protocol_message = "Poison Bombs incoming!"
+	L.bomb_message = "Blob chasing YOU!"
+	L.cloud_message = "Cloud under YOU!"
+	L.protocol_message = "Blobs incoming!"
 
 	L.iconomnotron = "Icon on active boss"
 	L.iconomnotron_desc = "Place the primary raid icon on the active boss (requires promoted or leader)."
@@ -94,20 +94,19 @@ end
 --
 
 do
-	local function checkTarget(source)
+	local function checkTarget(sGUID)
 		for i = 1, 4 do
 			local bossId = ("boss%d"):format(i)
-			if UnitName(bossId) == source then
-				if UnitIsUnit(bossId.."target", "player") then
-					mod:FlashShake(80157)
-					mod:Say(80157, CL["say"]:format((GetSpellInfo(80157))))
-				end
+			if UnitGUID(bossId) == sGUID and UnitIsUnit(bossId.."target", "player") then
+				mod:FlashShake(80157)
+				mod:Say(80157, CL["say"]:format((GetSpellInfo(80157))))
 				break
 			end
 		end
 	end
-	function mod:ChemicalCloudCast(_, _, source)
-		self:ScheduleTimer(checkTarget, 0.1, source)
+	function mod:ChemicalCloudCast(...)
+		local sGUID = select(11, ...)
+		self:ScheduleTimer(checkTarget, 0.1, sGUID)
 	end
 end
 
@@ -169,7 +168,7 @@ end
 function mod:LightningConductor(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
 		self:FlashShake(79888)
-		self:OpenProximity(15, 79888) --assumed
+		self:OpenProximity(10, 79888) --assumed
 	end
 	self:TargetMessage(79888, spellName, player, "Attention", spellId, "Alarm")
 	self:SecondaryIcon(79888, player)

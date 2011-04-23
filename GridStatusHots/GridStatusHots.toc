@@ -1,6 +1,6 @@
 ﻿## Interface: 40000
-## Version: 4.0.1.1b
-## X-Curse-Packaged-Version: 4.0.1.1b
+## Version: 4.0.1.2b
+## X-Curse-Packaged-Version: 4.0.1.2b
 ## X-Curse-Project-Name: GridStatusHots
 ## X-Curse-Project-ID: grid-status-hots
 ## X-Curse-Repository-ID: wow/grid-status-hots/mainline

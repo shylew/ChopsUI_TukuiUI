@@ -1,6 +1,6 @@
 --[[
 Name: LibBabble-Zone-3.0
-Revision: $Rev: 313 $
+Revision: $Rev: 317 $
 Maintainers: ckknight, nevcairiel, Ackis
 Website: http://www.wowace.com/projects/libbabble-zone-3-0/
 Dependencies: None
@@ -8,7 +8,7 @@ License: MIT
 ]]
 
 local MAJOR_VERSION = "LibBabble-Zone-3.0"
-local MINOR_VERSION = 90000 + tonumber(("$Rev: 313 $"):match("%d+"))
+local MINOR_VERSION = 90000 + tonumber(("$Rev: 317 $"):match("%d+"))
 
 if not LibStub then error(MAJOR_VERSION .. " requires LibStub.") end
 local lib = LibStub("LibBabble-3.0"):New(MAJOR_VERSION, MINOR_VERSION)
@@ -1107,7 +1107,7 @@ elseif GAME_LOCALE == "koKR" then
 	["The Blood Furnace"] = "피의 용광로",
 	["The Bone Wastes"] = "해골 무덤",
 	["The Botanica"] = "신록의 정원",
-	["The Cape of Stranglethorn"] = "가시덤불 봉우리",
+	["The Cape of Stranglethorn"] = "가시덤불 곶",
 	["The Construct Quarter"] = "피조물 지구",
 	["The Culling of Stratholme"] = "옛 스트라솔름",
 	["The Dark Portal"] = "어둠의 문",
@@ -1826,7 +1826,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Darkmoon Faire"] = "Ярмарка Новолуния",
 	Darkshore = "Темные берега",
 	Darnassus = "Дарнас",
-	-- Deadmines = "",
+	Deadmines = "Deadmines", -- Needs review
 	["Deadwind Pass"] = "Перевал Мертвого Ветра",
 	Deepholm = "Подземье",
 	["Deeprun Tram"] = "Подземный поезд",
@@ -2085,7 +2085,7 @@ elseif GAME_LOCALE == "zhCN" then
 	Azshara = "艾萨拉",
 	["Azuremyst Isle"] = "秘蓝岛",
 	Badlands = "荒芜之地",
-	["Baradin Hold"] = "Baradin Hold", -- Needs review
+	["Baradin Hold"] = "巴拉丁监狱",
 	["Bash'ir Landing"] = "巴什伊尔码头",
 	["Battle for Gilneas"] = "吉尔尼斯之战",
 	["Black Temple"] = "黑暗神殿",
@@ -2195,7 +2195,7 @@ elseif GAME_LOCALE == "zhCN" then
 	["Menethil Harbor"] = "米奈希尔港",
 	["Molten Core"] = "熔火之心",
 	Moonglade = "月光林地",
-	["Mount Hyjal"] = "海加尔", -- Needs review
+	["Mount Hyjal"] = "海加尔",
 	Mulgore = "莫高雷",
 	Nagrand = "纳格兰",
 	["Nagrand Arena"] = "纳格兰竞技场",

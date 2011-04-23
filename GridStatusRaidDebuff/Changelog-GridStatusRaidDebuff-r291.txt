@@ -1,0 +1,13 @@
+------------------------------------------------------------------------
+r291 | stassart | 2011-04-08 05:58:02 +0000 (Fri, 08 Apr 2011) | 1 line
+Changed paths:
+   M /trunk/Core.lua
+
+BUGFIX: Fixed LUA with new spell detection for classes that can't dispell when not detecting dispellable debuffs.
+------------------------------------------------------------------------
+r290 | stassart | 2011-01-12 14:10:13 +0000 (Wed, 12 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/Core.lua
+
+Fix for Deadmines debuff detection: Falls back on GetRealZoneText if GetInstanceInfo does not exist in libbabble-zone. Fixes LUA error if zone does not exist in libbabble-zone.
+------------------------------------------------------------------------

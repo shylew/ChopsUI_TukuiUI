@@ -98,7 +98,7 @@ do
 		end
 	end
 
-	function boss:COMBAT_LOG_EVENT_UNFILTERED(_, _, event, sGUID, source, sFlags, dGUID, player, dFlags, spellId, spellName, _, secSpellId, buffStack)
+	local function cleuHandler(self, event, sGUID, source, sFlags, dGUID, player, dFlags, spellId, spellName, _, secSpellId, buffStack)
 		if event == "UNIT_DIED" then
 			local numericId = tonumber(dGUID:sub(7, 10), 16)
 			local d = deathMap[self][numericId]
@@ -115,6 +115,16 @@ do
 					self[func](self, player, spellId, source, secSpellId, spellName, buffStack, event, sFlags, dFlags, dGUID, sGUID)
 				end
 			end
+		end
+	end
+	local is41 = tonumber((select(2, GetBuildInfo()))) > 13681
+	if is41 then
+		function boss:COMBAT_LOG_EVENT_UNFILTERED(_, _, event, _, ...)
+			cleuHandler(self, event, ...)
+		end
+	else
+		function boss:COMBAT_LOG_EVENT_UNFILTERED(_, _, event, ...)
+			cleuHandler(self, event, ...)
 		end
 	end
 
@@ -158,11 +168,12 @@ end
 --
 
 function boss:CheckBossStatus()
-	if debug then dbg(self, ":CheckBossStatus called.") end
 	local hasBoss = UnitHealth("boss1") > 100 or UnitHealth("boss2") > 100 or UnitHealth("boss3") > 100 or UnitHealth("boss4") > 100
 	if not hasBoss and self.isEngaged then
+		if debug then dbg(self, ":CheckBossStatus Reboot called.") end
 		self:Reboot()
 	elseif not self.isEngaged and hasBoss then
+		if debug then dbg(self, ":CheckBossStatus Engage called.") end
 		local guid = UnitGUID("boss1") or UnitGUID("boss2") or UnitGUID("boss3") or UnitGUID("boss4")
 		local module = core:GetEnableMobs()[tonumber(guid:sub(7, 10), 16)]
 		local modType = type(module)
@@ -182,6 +193,7 @@ function boss:CheckBossStatus()
 			if not self.isEngaged then self:Disable() end
 		end
 	end
+	if debug then dbg(self, ":CheckBossStatus called with no result. Engaged = "..tostring(self.isEngaged).." hasBoss = "..tostring(hasBoss)) end
 end
 
 do
@@ -257,15 +269,9 @@ do
 		end
 	end
 
-	--XXX BIG ASS HACK BECAUSE BLIZZ SCREWED UP
-	--XXX GetRaidDifficulty() doesn't update when changing difficulty whilst inside the zone
 	function boss:GetInstanceDifficulty()
-		local _, instanceType, diff, _, _, heroic, dynamic = GetInstanceInfo()
-		if instanceType == "raid" and dynamic and heroic == 1 and diff <= 2 then
-			if debug then dbg(self, "Adjusting difficulty returned from GetInstanceInfo().") end
-			diff = diff + 2
-		end
-		return type(diff) == "number" and diff or 1
+		local diff = select(3, GetInstanceInfo())
+		return diff
 	end
 
 	function boss:Engage()

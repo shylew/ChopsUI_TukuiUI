@@ -225,6 +225,11 @@ function GridStatusRaidDebuff:OnEnable()
 	myClass = select(2, UnitClass("player"))
 	myDispellable = dispelMap[myClass]
 
+	-- For classes that don't have a dispelMap
+	-- Create an empty array
+	if (myDispellable == nil) then
+		myDispellable = {}
+	end
 
 	if self.db.profile.isFirst then
 		GridFrame.db.profile.statusmap["icon"].alert_RaidDebuff  =  true,
@@ -267,7 +272,7 @@ function GridStatusRaidDebuff:ZoneCheck()
 
 	-- Fall back on GetRealZoneText if GetInstanceInfo does not return a valid zone
 	if (not enzone) then
-		realzone = GetRealZoneText();
+		realzone = GetRealZoneText()
 		enzone = bzoneRev[realzone]
 	end
 

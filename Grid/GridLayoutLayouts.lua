@@ -3,8 +3,8 @@
 	Registers some layouts with GridLayout.
 ----------------------------------------------------------------------]]
 
-local _, ns = ...
-local L = ns.L
+local GRID, Grid = ...
+local L = Grid.L
 
 local GridLayout = Grid:GetModule("GridLayout")
 

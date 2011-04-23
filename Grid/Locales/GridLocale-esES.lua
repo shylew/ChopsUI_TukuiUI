@@ -1,383 +1,378 @@
 --[[--------------------------------------------------------------------
-	GridLocale-esES.lua
-	Spanish (Español - EU) localization for Grid.
+	Grid Localization
+	esES/esMX | Spanish (Europe/Latin America) | Español (Europa/America Latina)
 ----------------------------------------------------------------------]]
 
-if GetLocale() ~= "esES" then return end
+if GetLocale() ~= "esES" and GetLocale() ~= "esMX" then return end
+
 local _, Grid = ...
-Grid.L = {
+local L = { }
+Grid.L = L
 
---{{{ GridCore
-	["Debugging"] = "Debugging",
-	["Module debugging menu."] = "Menú de debugging del módulo",
-	["Debug"] = "Debug",
-	["Toggle debugging for %s."] = "Activar debugging para %s",
-	["Hide minimap icon"] = "Ocultar icono del minimapa",
---}}}
+------------------------------------------------------------------------
+--	GridCore
 
---{{{ GridFrame
-	["Frame"] = "Celda",
-	["Options for GridFrame."] = "Opciones para celdas de Grid",
+L["Debug"] = "Depurar"
+L["Debugging"] = "Depuración"
+L["Hide minimap icon"] = "Ocultar icono del minimapa"
+L["Module debugging menu."] = "Depuración por los módulos"
+L["Toggle debugging for %s."] = "Activar mensajes de depuración por %s"
 
-	["Show Tooltip"] = "Mostrar tooltip",
-	["Show unit tooltip.  Choose 'Always', 'Never', or 'OOC'."] = "Mostrar tooltip de unidad. Elige 'Siempre', 'Nunca' o 'FDC'.",
-	["Always"] = "Siempre",
-	["Never"] = "Nunca",
-	["OOC"] = "FDC",
-	["Center Text Length"] = "Longitud de texto central",
-	["Number of characters to show on Center Text indicator."] = "Número de caracteres para mostrar en el indicador de texto central",
-	["Invert Bar Color"] = "Invertir el color de la barra",
-	["Swap foreground/background colors on bars."] = "Cambia los colores de primer plano y fondo",
-	["Healing Bar Opacity"] = "Opacidad de la barra de sanación",
-	["Sets the opacity of the healing bar."] = "Establece la opacidad de la barra de sanación.",
+------------------------------------------------------------------------
+--	GridFrame
 
-	["Border"] = "Borde",
-	["Health Bar"] = "Barra de salud",
-	["Health Bar Color"] = "Color de la barra de salud",
-	["Healing Bar"] = "Barra de sanación",
-	["Center Text"] = "Texto central",
-	["Center Text 2"] = "Texto central 2",
-	["Center Icon"] = "Icono central",
-	["Top Left Corner"] = "Esquina superior izquierda",
-	["Top Right Corner"] = "Esquina superior derecha",
-	["Bottom Left Corner"] = "Esquina inferior izquierda",
-	["Bottom Right Corner"] = "Esquina inferior derecha",
-	["Frame Alpha"] = "Transparencia de celda",
+L["Adjust the font outline."] = "Ajustar el perfil de la fuente."
+L["Adjust the font settings"] = "Ajustar la configuración de la fuente."
+L["Adjust the font size."] = "Ajustar el tamaño de la fuente."
+L["Adjust the height of each unit's frame."] = "Ajustar la altura de cada marco."
+L["Adjust the size of the border indicators."] = "Ajustar el tamaño del borde del marco."
+L["Adjust the size of the center icon's border."] = "Ajustar el tamaño del borde del icono central."
+L["Adjust the size of the center icon."] = "Ajustar el tamaño del icono central."
+L["Adjust the size of the corner indicators."] = "Ajustar el tamaño de los indicadores de la esquina."
+L["Adjust the texture of each unit's frame."] = "Establecer la textura de las barras."
+L["Adjust the width of each unit's frame."] = "Ajustar el ancho de cada marco."
+L["Always"] = "Siempre"
+L["Bar Options"] = "Opciones para las barras"
+L["Border"] = "Borde"
+L["Border Size"] = "Tamaño de borde"
+L["Bottom Left Corner"] = "Esquina inferior izquierda"
+L["Bottom Right Corner"] = "Esquina inferior derecha"
+L["Center Icon"] = "Icono central"
+L["Center Text"] = "Texto central"
+L["Center Text 2"] = "Texto central 2"
+L["Center Text Length"] = "Longitud de texto central"
+L["Corner Size"] = "Tamaño de esquina"
+L["Enable %s"] = "Activar %s"
+L["Enable %s indicator"] = "Activar el indicador %s"
+L["Enable Mouseover Highlight"] = "Activar resaltar con ratón"
+L["Font"] = "Fuente"
+L["Font Outline"] = "Perfil de fuente"
+L["Font Shadow"] = "Sombra de fuente"
+L["Font Size"] = "Tamaño de fuente"
+L["Frame"] = "Marcos"
+L["Frame Alpha"] = "Opacidad de marco"
+L["Frame Height"] = "Altura de marco"
+L["Frame Texture"] = "Textura de barra"
+L["Frame Width"] = "Ancho de marco"
+L["Healing Bar"] = "Barra de sanación"
+L["Healing Bar Opacity"] = "Opacidad de la barra de sanación"
+L["Health Bar"] = "Barra de salud"
+L["Health Bar Color"] = "Color de la barra de salud"
+L["Horizontal"] = "Horizontal"
+L["Icon Border Size"] = "Tamaño del borde del icono"
+L["Icon Cooldown Frame"] = "Cooldown en icono central"
+L["Icon Options"] = "Opciones para los iconos"
+L["Icon Size"] = "Tamaño de icono"
+L["Icon Stack Text"] = "Texto de dosis en icono"
+L["Indicators"] = "Indicadores"
+L["Invert Bar Color"] = "Invertir colores de barra"
+L["Never"] = "Nunca"
+L["None"] = "Ninguno"
+L["Number of characters to show on Center Text indicator."] = "Mostrar este número de caracteres en el indicador de texto central."
+L["OOC"] = "FDC"
+L["Options for %s indicator."] = "Opciones para el indicador %s"
+L["Options for GridFrame."] = "Opciones para los marcos de Grid"
+L["Options for assigning statuses to indicators."] = "Opciones para la asignación de estados a los indicadores."
+L["Options related to bar indicators."] = "Opciones para los indicadores de tipo barra."
+L["Options related to icon indicators."] = "Opciones para los indicadores de tipo icono."
+L["Options related to text indicators."] = "Opciones para los indicadores de tipo texto."
+L["Orientation of Frame"] = "Orientación de marco"
+L["Orientation of Text"] = "Orientación de texto"
+L["Set frame orientation."] = "Establecer la orientación de los marcos."
+L["Set frame text orientation."] = "Establecer la orientación del texto."
+L["Sets the opacity of the healing bar."] = "Ajustar la opacidad de la barra de sanación."
+L["Show Tooltip"] = "Mostrar tooltip"
+L["Show unit tooltip.  Choose 'Always', 'Never', or 'OOC'."] = "Mostrar tooltip de unidad. Eligir 'Siempre', 'Nunca' o 'FDC'."
+L["Statuses"] = "Estados"
+L["Swap foreground/background colors on bars."] = "Cambiar los colores de primer plano y fondo de la barra de salud."
+L["Text Options"] = "Opciones para el texto"
+L["Thick"] = "Grueso"
+L["Thin"] = "Fino"
+L["Throttle Updates"] = "Limitar actualizaciones"
+L["Throttle updates on group changes. This option may cause delays in updating frames, so you should only enable it if you're experiencing temporary freezes or lockups when people join or leave your group."] = "Limitar actualizaciones para cambios de grupo. Esta opción puede causar retrasos en la actualización de los marcos; sólo se activará si tienes problems con tu FPS cuando personages entran o salen de tu grupo."
+L["Toggle center icon's cooldown frame."] = "Activar/desactivar el cooldown en el icono central."
+L["Toggle center icon's stack count text."] = "Activar/desactivar el texto de contador del icono central."
+L["Toggle mouseover highlight."] = "Activar/desactivar resaltado con ratón"
+L["Toggle status display."] = "Activar visualización de estado"
+L["Toggle the %s indicator."] = "Activar/desactivar el indicador %s"
+L["Toggle the font drop shadow effect."] = "Mostrar la sombra de la fuente."
+L["Top Left Corner"] = "Esquina superior izquierda"
+L["Top Right Corner"] = "Esquina superior derecha"
+L["Vertical"] = "Vertical"
 
-	["Options for %s indicator."] = "Opciones para el indicador %s",
-	["Statuses"] = "Estados",
-	["Toggle status display."] = "Activar visualización de estado",
+------------------------------------------------------------------------
+--	GridLayout
 
-	["Enable %s indicator"] = "Activar indicador %s",
-	["Toggle the %s indicator."] = "Activa/desactiva el indicador %s",
-	["Frame Width"] = "Ancho de celda",
-	["Adjust the width of each unit's frame."] = "Ajusta el ancho de cada celda de unidad",
-	["Frame Height"] = "Altura de celda",
-	["Adjust the height of each unit's frame."] = "Ajusta la altura de cada celdad de unidad",
-	["Frame Texture"] = "Textura de celda",
-	["Adjust the texture of each unit's frame."] = "Ajusta la textura de cada celda de unidad",
-	["Border Size"] = "Tamaño en borde",
-	["Adjust the size of the border indicators."] = "Ajusta el tamaño de los indicadores del borde.",
-	["Corner Size"] = "Tamaño en esquina",
-	["Adjust the size of the corner indicators."] = "Ajusta el tamaño de los indicadores de la esquina.",
-	["Enable Mouseover Highlight"] = "Activar resaltar con ratón",
-	["Toggle mouseover highlight."] = "Activa/desactiva resaltado con ratón",
-	["Font"] = "Fuente",
-	["Adjust the font settings"] = "Ajusta la configuración de fuente",
-	["Font Size"] = "Tamaño de fuente",
-	["Adjust the font size."] = "Ajusta el tamaño de la fuente.",
-	["Font Outline"] = "Perfil de fuente",
-	["Adjust the font outline."] = "Ajusta el perfil de fuente.",
-	["None"] = "Ninguno",
-	["Thin"] = "Fino",
-	["Thick"] = "Grueso",
---	["Font Shadow"] = "",
---	["Toggle the font drop shadow effect."] = "",
-	["Orientation of Frame"] = "Orientación de la fuente",
-	["Set frame orientation."] = "Establece la orientación de la fuente.",
-	["Orientation of Text"] = "Orientación del texto",
-	["Set frame text orientation."] = "Establece la orientación del texto.",
-	["Vertical"] = "Vertical",
-	["Horizontal"] = "Horizontal",
-	["Icon Size"] = "Tamaño de icono",
-	["Adjust the size of the center icon."] = "Ajusta el tamaño del icono central.",
-	["Icon Border Size"] = "Tamaño del borde del icono",
-	["Adjust the size of the center icon's border."] = "Ajusta el tamaño del borde del icono central.",
-	["Icon Stack Text"] = "Texto de dosis en icono",
-	["Toggle center icon's stack count text."] = "Activa/desactiva el texto de contador del icono central.",
-	["Icon Cooldown Frame"] = "Cooldown en icono central",
-	["Toggle center icon's cooldown frame."] = "Activa/desactiva el cooldown en el icono central.",
+L["10 Player Raid Layout"] = "Diseño - Banda de 10"
+L["25 Player Raid Layout"] = "Diseño - Banda de 25"
+L["Adjust Grid scale."] = "Ajustar la escala de Grid."
+L["Adjust background color and alpha."] = "Ajustar el color y la opacidad del fondo."
+L["Adjust border color and alpha."] = "Ajustar el color y la opacidad del borde."
+L["Adjust frame padding."] = "Ajustar la separación entre los marcos y la ventana que los contiene."
+L["Adjust frame spacing."] = "Ajustar la separación de un marco de otro."
+L["Advanced"] = "Avanzado"
+L["Advanced options."] = "Opciones avanzadas"
+L["Allows mouse click through the Grid Frame."] = "Permiter hacer clic a través de la ventana de Grid."
+L["Alt-Click to permanantly hide this tab."] = "Alt + clic para ocultar permanentemente esta pestaña."
+L["Arena Layout"] = "Diseño - Arena"
+L["Background color"] = "Color de fondo"
+L["Battleground Layout"] = "Diseño - Campo de Batalla"
+L["Beast"] = "Bestia"
+L["Border Texture"] = "Textura del borde"
+L["Border color"] = "Color de borde"
+L["Bottom"] = "Abajo"
+L["Bottom Left"] = "Inferior-Izquierda"
+L["Bottom Right"] = "Inferior-Derecha"
+L["By Creature Type"] = "Por tipo de criatura"
+L["By Owner Class"] = "Por clase del dueño"
+L["Center"] = "Centro"
+L["Choose the layout border texture."] = "Selecciona la textura del borde de la ventana de Grid."
+L["Clamped to screen"] = "Bloqueado a la pantalla"
+L["Class colors"] = "Colores de clases"
+L["Click through the Grid Frame"] = "Clic a través de Grid"
+L["Color for %s."] = "Color de %s"
+L["Color of pet unit creature types."] = "Color del tipo de criatura de la mascota."
+L["Color of player unit classes."] = "Color de las clases del jugador."
+L["Color of unknown units or pets."] = "Color de mascotas o unidades desconocidas."
+L["Color options for class and pets."] = "Opciones para los colores de clases y mascotas."
+L["Colors"] = "Colores"
+L["Creature type colors"] = "Color de tipo de criatura"
+L["Demon"] = "Demonio"
+L["Do not show the tab when Grid is unlocked."] = "No mostrar la pestaña cuando Grid está desbloqueado."
+L["Drag this tab to move Grid."] = "Arrastrar esta pestaña para mover Grid."
+L["Dragonkin"] = "Dragonante"
+L["Elemental"] = "Elemental"
+L["Fallback colors"] = "Colores alternativos"
+L["Frame lock"] = "Bloquear ventana"
+L["Group Anchor"] = "Ancla de grupo"
+L["Hide tab"] = "Ocultar pestaña"
+L["Horizontal groups"] = "Grupos horizontales"
+L["Humanoid"] = "Humanoide"
+L["Layout"] = "Diseño"
+L["Layout Anchor"] = "Ancla de ventana"
+L["Left"] = "Izquierda"
+L["Lock Grid to hide this tab."] = "Bloquear Grid para ocultar esta pestaña."
+L["Locks/unlocks the grid for movement."] = "Bloquear/desbloquear el movimiento de Grid."
+L["Not specified"] = "No especificado"
+L["Options for GridLayout."] = "Opciones para el diseño de Grid."
+L["Padding"] = "Relleno"
+L["Party Layout"] = "Diseño - Grupo"
+L["Pet color"] = "Color de mascota"
+L["Pet coloring"] = "Coloreado de mascotas"
+L["Reset Position"] = "Restaurar posición"
+L["Resets the layout frame's position and anchor."] = "Restaurar la posición y el ancla de la ventana."
+L["Right"] = "Derecha"
+L["Scale"] = "Escala"
+L["Select which layout to use when in a 10 player raid."] = "Seleccionar qué diseño quieres usar cuando estás en banda de 10 jugadores."
+L["Select which layout to use when in a 25 player raid."] = "Seleccionar qué diseño quieres usar cuando estás en banda de 25 jugadores."
+L["Select which layout to use when in a battleground."] = "Seleccionar qué diseño quieres usar cuando estás en campo de batalla."
+L["Select which layout to use when in a party."] = "Seleccionar qué diseño quieres usar cuando estás en grupo."
+L["Select which layout to use when in an arena."] = "Seleccionar qué diseño quieres usar cuando estás en arena."
+L["Select which layout to use when not in a party."] = "Seleccionar qué diseño quieres usar cuando no estás en grupo."
+L["Set the color of pet units."] = "Establecer el color oara mascotas."
+L["Set the coloring strategy of pet units."] = "Establecer la regla de coloreado de mascotas."
+L["Sets where Grid is anchored relative to the screen."] = "Establecer dónde se ancla grid relativo a la pantalla."
+L["Sets where groups are anchored relative to the layout frame."] = "Establecer donde se anclan los grupos relativos a la ventana de Grid."
+L["Show Frame"] = "Mostrar marco"
+L["Solo Layout"] = "Diseño - Solo"
+L["Spacing"] = "Espaciamiento"
+L["Switch between horizontal/vertical groups."] = "Cambiar entre grupos horizontales/verticales."
+L["The color of unknown pets."] = "El color de mascotas desconocidas."
+L["The color of unknown units."] = "El color de unidades desconocidas."
+L["Toggle whether to permit movement out of screen."] = "Permitir o no, moverlo fuera de la pantalla."
+L["Top"] = "Arriba"
+L["Top Left"] = "Superior-Izquierda"
+L["Top Right"] = "Superior-Derecha"
+L["Undead"] = "No muerto"
+L["Unknown Pet"] = "Mascota desconocida"
+L["Unknown Unit"] = "Unidad desconocida"
+L["Using Fallback color"] = "Usando el color alternativo"
 
---	["Throttle Updates"] = "",
---	["Throttle updates on group changes. This option may cause delays in updating frames, so you should only enable it if you're experiencing temporary freezes or lockups when people join or leave your group."] = "",
+------------------------------------------------------------------------
+--	GridLayoutLayouts
 
---	["Bar Options"] = "Leistenoptionen",
---	["Options related to bar indicators."] = "",
---	["Icon Options"] = "",
---	["Options related to icon indicators."] = "",
---	["Text Options"] = "",
---	["Options related to text indicators."] = "",
---}}}
+L["By Class 10"] = "Grupo de 10 por clases"
+L["By Class 10 w/Pets"] = "Grupo de 10 por clases con mascotas"
+L["By Class 25"] = "Grupo de 25 por clases"
+L["By Class 25 w/Pets"] = "Grupo de 25 por clases con mascotas"
+L["By Group 10"] = "Grupo de 10"
+L["By Group 10 w/Pets"] = "Grupo de 10 con mascotas"
+L["By Group 15"] = "Grupo de 15"
+L["By Group 15 w/Pets"] = "Grupo de 15 con mascotas"
+L["By Group 25"] = "Grupo de 25"
+L["By Group 25 w/Pets"] = "Grupo de 25 con mascotas"
+L["By Group 25 w/Tanks"] = "Grupo de 25 con tanques"
+L["By Group 40"] = "Grupo de 40"
+L["By Group 40 w/Pets"] = "Grupo de 40 con mascotas"
+L["By Group 5"] = "Grupo de 5"
+L["By Group 5 w/Pets"] = "Grupo de 5 con mascotas"
+L["None"] = "Ninguno"
 
---{{{ GridLayout
-	["Layout"] = "Diseño",
-	["Options for GridLayout."] = "Opciones de Diseño de Grid.",
+------------------------------------------------------------------------
+--	GridLDB
 
-	["Drag this tab to move Grid."] = "Arrastra esta pestaña para mover Grid.",
-	["Lock Grid to hide this tab."] = "Bloquea Grid para ocultar esta pestaña.",
-	["Alt-Click to permanantly hide this tab."] = "Alt-Click para ocultar permanentemente esta ventana.",
+L["Click to toggle the frame lock."] = "Haz clic para bloquear/desbloquear el movimiento de Grid."
+L["Right-Click to open the options menu."] = "Haz clic derecho para ver más opciones."
 
-	-- Layout options
-	["Show Frame"] = "Mostrar celda",
+------------------------------------------------------------------------
+--	GridRoster
 
-	["Solo Layout"] = "Diseño - Solo",
-	["Select which layout to use when not in a party."] = "Selecciona qué diseño quieres usar cuando no estás en grupo.",
-	["Party Layout"] = "Diseño - Grupo",
-	["Select which layout to use when in a party."] = "Selecciona qué diseño quieres usar cuando estás en grupo.",
-	["25 Player Raid Layout"] = "Diseño - Banda 25 jugadores",
-	["Select which layout to use when in a 25 player raid."] = "Selecciona qué diseño quieres usar cuando estás en banda de 25 jugadores.",
-	["10 Player Raid Layout"] = "Diseño - Banda 10 jugadores",
-	["Select which layout to use when in a 10 player raid."] = "Selecciona qué diseño quieres usar cuando estás en banda de 10 jugadores.",
-	["Battleground Layout"] = "Diseño - Campo de Batalla",
-	["Select which layout to use when in a battleground."] = "Selecciona qué diseño quieres usar cuando estás en campo de batalla.",
-	["Arena Layout"] = "Diseño - Arena",
-	["Select which layout to use when in an arena."] = "Selecciona qué diseño quieres usar cuando estás en arena.",
-	["Horizontal groups"] = "Grupos horizontales",
-	["Switch between horizontal/vertical groups."] = "Cambia entre grupos horizontales/verticales",
-	["Clamped to screen"] = "Bloqueado a la pantalla",
-	["Toggle whether to permit movement out of screen."] = "Permite o no, moverlo fuera de la pantalla.",
-	["Frame lock"] = "Bloquear celdas",
-	["Locks/unlocks the grid for movement."] = "Bloquea/desbloquea el movimiento de Grid.",
-	["Click through the Grid Frame"] = "Click a través de Grid",
-	["Allows mouse click through the Grid Frame."] = "Permite hacer click a través de la ventana de Grid.",
 
-	["Center"] = "Centro",
-	["Top"] = "Arriba",
-	["Bottom"] = "Abajo",
-	["Left"] = "Izquierda",
-	["Right"] = "Derecha",
-	["Top Left"] = "Superior-Izquierda",
-	["Top Right"] = "Superior-Derecha",
-	["Bottom Left"] = "Inferior-Izquierda",
-	["Bottom Right"] = "Inferior-Derecha",
+------------------------------------------------------------------------
+--	GridStatus
 
-	-- Display options
-	["Padding"] = "Relleno",
-	["Adjust frame padding."] = "Ajusta el relleno de celdas.",
-	["Spacing"] = "Espaciamiento",
-	["Adjust frame spacing."] = "Ajusta el espaciamiento de celdas.",
-	["Scale"] = "Escala",
-	["Adjust Grid scale."] = "Ajusta la escala de Grid.",
-	["Border"] = "Borde",
-	["Adjust border color and alpha."] = "Ajusta el color de borde y la transparencia.",
-	["Border Texture"] = "Textura del borde",
-	["Choose the layout border texture."] = "Escoge el diseño de textura del borde.",
-	["Background"] = "Fondo",
-	["Adjust background color and alpha."] = "Ajusta el color de fondo y el Alfa",
-	["Pet color"] = "Color de mascota",
-	["Set the color of pet units."] = "Establece el color de las celdas de mascota.",
-	["Pet coloring"] = "Coloreado de mascotas",
-	["Set the coloring strategy of pet units."] = "Establece la regla de coloreado de mascotas:",
-	["By Owner Class"] = "Por clase del propietario",
-	["By Creature Type"] = "Por tipo de criatura",
-	["Using Fallback color"] = "Usando el color alternativo",
-	["Beast"] = "Bestia",
-	["Demon"] = "Demonio",
-	["Humanoid"] = "Humanoide",
-	["Undead"] = "No muerto",
-	["Dragonkin"] = "Dragonante",
-	["Elemental"] = "Elemental",
-	["Not specified"] = "No especificado",
-	["Colors"] = "Colores",
-	["Color options for class and pets."] = "Opciones de color para clases y mascotas.",
-	["Fallback colors"] = "Colores alternativos",
-	["Color of unknown units or pets."] = "Color de mascotas o unidades desconocidas.",
-	["Unknown Unit"] = "Unidad desconocida",
-	["The color of unknown units."] = "El color de unidades desconocidas.",
-	["Unknown Pet"] = "Mascota desconocida",
-	["The color of unknown pets."] = "El color de mascotas desconocidas.",
-	["Class colors"] = "Colores de clases",
-	["Color of player unit classes."] = "Color de las clases del jugador.",
-	["Creature type colors"] = "Color de tipo de criatura",
-	["Color of pet unit creature types."] = "Color del tipo de criatura de la mascota.",
-	["Color for %s."] = "Color para %s",
+L["Color"] = "Color"
+L["Color for %s"] = "Color de %s"
+L["Enable"] = "Activar"
+L["Options for %s."] = "Opciones para %s"
+L["Priority"] = "Prioridad"
+L["Priority for %s"] = "Prioridad de %s"
+L["Range filter"] = "Filtro de rango"
+L["Range filter for %s"] = "Filtro de rango de %s"
+L["Reset class colors"] = "Restaurar colores de clase"
+L["Reset class colors to defaults."] = "Restaurar los colores de clase por defecto."
+L["Status"] = "Estado"
+L["Status: %s"] = "Estado: %s"
+L["Text"] = "Texto"
+L["Text to display on text indicators"] = "Texto para mostrar en el indicador de texto"
 
-	-- Advanced options
-	["Advanced"] = "Avanzado",
-	["Advanced options."] = "Opciones avanzadas",
-	["Layout Anchor"] = "Ancla de ventana",
-	["Sets where Grid is anchored relative to the screen."] = "Establece dónde se ancla grid relativo a la pantalla",
-	["Group Anchor"] = "Ancla de grupo",
-	["Sets where groups are anchored relative to the layout frame."] = "Establece donde se anclan los grupos relativos a la ventana",
-	["Reset Position"] = "Restaurar posición",
-	["Resets the layout frame's position and anchor."] = "Restaura la posición y el ancla de la ventana.",
-	["Hide tab"] = "Ocultar pestaña",
-	["Do not show the tab when Grid is unlocked."] = "No mostrar la pestaña cuando Grid está desbloqueado",
---}}}
+------------------------------------------------------------------------
+--	GridStatusAggro
 
---{{{ GridLayoutLayouts
-	["None"] = "Ninguno",
-	["By Class 10"] = "Grupo de 10 por clases",
-	["By Class 10 w/Pets"] = "Grupo de 10 por clases con mascotas",
-	["By Class 25"] = "Grupo de 25 por clases",
-	["By Class 25 w/Pets"] = "Grupo de 25 por clases con mascotas",
-	["By Group 5"] = "Grupo de 5",
-	["By Group 5 w/Pets"] = "Grupo de 5 con mascotas",
-	["By Group 10"] = "Grupo de 10",
-	["By Group 10 w/Pets"] = "Grupo de 10 con mascotas",
-	["By Group 15"] = "Grupo de 15",
-	["By Group 15 w/Pets"] = "Grupo de 15 con mascotas",
-	["By Group 25"] = "Grupo de 25",
-	["By Group 25 w/Pets"] = "Grupo de 25 con mascotas",
-	["By Group 25 w/Tanks"] = "Grupo de 25 con tanques",
-	["By Group 40"] = "Grupo de 40",
-	["By Group 40 w/Pets"] = "Grupo de 40 con mascotas",
---}}}
+L["Aggro"] = "Amenaza"
+L["Aggro alert"] = "Alerta de amenaza"
+L["Aggro color"] = "Color de amenaza"
+L["Color for Aggro."] = "Color de amenaza"
+L["Color for High Threat."] = "Color de gran amenaza"
+L["Color for Tanking."] = "Color de tanque"
+L["High"] = "Alto"
+L["High Threat color"] = "Color de gran amenaza"
+L["Show more detailed threat levels."] = "Mostrar niveles de amenaza más detallados"
+L["Tank"] = "Tanque"
+L["Tanking color"] = "Color de tanque"
+L["Threat"] = "Amenaza"
 
---{{{ GridLDB
-	["Click to toggle the frame lock."] = "Click para bloquear/desbloquear el movimiento de Grid.",
-	["Right-Click to open the options menu."] = "Click derecho para abrir las opciones.",
---}}}
+------------------------------------------------------------------------
+--	GridStatusAuras
 
---{{{ GridRange
-	-- used for getting spell range from tooltip
-	["(%d+) yd range"] = "Alcance de (%d+) m",
---}}}
+L["<buff name>"] = "<nombre del beneficio>"
+L["<debuff name>"] = "<nombre del perjuicio>"
+L["Add new Buff"] = "Añadir beneficio"
+L["Add new Debuff"] = "Añadir un nuevo perjuicio"
+L["Adds a new buff to the status module"] = "Añadir un otro beneficio al módulo de estado"
+L["Adds a new debuff to the status module"] = "Añadir un nuevo perjuicio al módulo de estado"
+L["Auras"] = "Auras"
+L["Buff: %s"] = "Beneficio: %s"
+L["Class Filter"] = "Filtro de Clases"
+L["Curse"] = "Maldición"
+L["Debuff type: %s"] = "Tipo de perjuicio: %s"
+L["Debuff: %s"] = "Perjuicio: %s"
+L["Delete (De)buff"] = "Borrar beneficio o perjuicio"
+L["Deletes an existing debuff from the status module"] = "Borrar un beneficio o perjuicio del módulo de estado"
+L["Disease"] = "Enfermedad"
+L["Display status only if the buff is not active."] = "Mostrar el estado sólo si el beneficio no está activo"
+L["Display status only if the buff was cast by you."] = "Mostrar el estado sólo si el beneficio fue lanzado por ti"
+L["Ghost"] = "Fantasma"
+L["Magic"] = "Magia"
+L["Poison"] = "Veneno"
+L["Remove %s from the menu"] = "Eliminar %s del menú"
+L["Show duration"] = "Mostrar duración"
+L["Show if mine"] = "Mostrar si es mío"
+L["Show if missing"] = "Mostrar si falta"
+L["Show on %s."] = "Mostrar en %s."
+L["Show status for the selected classes."] = "Mostrar el estado para las clases seleccionadas."
+L["Show the time remaining, for use with the center icon cooldown."] = "Mostrar el tiempo restante, para usar con el cooldown del icono central"
 
---{{{ GridStatus
-	["Indicators"] = "Indicadores",
---	["Options for assigning statuses to indicators."] = "",
-	["Status"] = "Estado",
-	["Options for %s."] = "Opciones para %s",
-	["Reset class colors"] = "Restaurar colores de clase",
-	["Reset class colors to defaults."] = "Restaura los colores de clase a unos por defecto.",
+------------------------------------------------------------------------
+--	GridStatusHeals
 
-	-- module prototype
-	["Status: %s"] = "Estado: %s",
-	["Color"] = "Color",
-	["Color for %s"] = "Color para %s",
-	["Priority"] = "Prioridad",
-	["Priority for %s"] = "Prioridad para %s",
-	["Range filter"] = "Filtro de rango",
-	["Range filter for %s"] = "Filtro de rango para %s",
-	["Enable"] = "Activar",
-	["Enable %s"] = "Activar %s",
---}}}
+L["Heals"] = "Sanaciones"
+L["Ignore Self"] = "Ignorar las propias"
+L["Ignore heals cast by you."] = "Ignorar las sanaciones en curso de lanzamiento por tu mismo."
+L["Incoming heals"] = "Próximas sanaciones"
+L["Minimum Value"] = "Cantidad mínima"
+L["Only show incoming heals greater than this amount."] = "Mostrar sólo las sanaciones en curso de lanzamiento superior a esta candidad."
 
---{{{ GridStatusAggro
-	["Aggro"] = "Amenaza",
-	["Aggro alert"] = "Alerta de amenaza",
-	["High Threat color"] = "Color de gran amenaza",
-	["Color for High Threat."] = "Color para gran amenaza.",
-	["Aggro color"] = "Color de amenaza",
-	["Color for Aggro."] = "Color para amenaza.",
-	["Tanking color"] = "Color de tanque",
-	["Color for Tanking."] = "Color para tanques",
-	["Threat"] = "Amenaza",
-	["Show more detailed threat levels."] = "Muestra niveles de amenaza más detallados",
-	["High"] = "Alto",
-	["Tank"] = "Tanque",
---}}}
+------------------------------------------------------------------------
+--	GridStatusHealth
 
---{{{ GridStatusAuras
-	["Auras"] = "Aura",
-	["Debuff type: %s"] = "Tipo de debuff: %s",
-	["Poison"] = "Veneno",
-	["Disease"] = "Enfermedad",
-	["Magic"] = "Magia",
-	["Curse"] = "Maldición",
-	["Ghost"] = "Fantasma",
-	["Add new Buff"] = "Añadir nuevo bufo",
-	["Adds a new buff to the status module"] = "Añade un nuevo bufo al módulo de estado",
-	["<buff name>"] = "<nombre del bufo>",
-	["Add new Debuff"] = "Añade un nuevo debuff",
-	["Adds a new debuff to the status module"] = "Añade un nuevo bufo al módulo de estado",
-	["<debuff name>"] = "<nombre del debuff>",
-	["Delete (De)buff"] = "Borrar (De)buff",
-	["Deletes an existing debuff from the status module"] = "Borra un debuff existente del módulo de estado",
-	["Remove %s from the menu"] = "Elimina %s del menú",
-	["Debuff: %s"] = "Debuff: %s",
-	["Buff: %s"] = "Bufo: %s",
-	["Class Filter"] = "Filtro de Clases",
-	["Show status for the selected classes."] = "Muestra el estado para las clases seleccionadas.",
-	["Show on %s."] = "Mostrar en %s.",
-	["Show if mine"] = "Mostrar si es mío",
-	["Display status only if the buff was cast by you."] = "Muestra el estado sólo si el bufo fue lanzado por ti",
-	["Show if missing"] = "Mostrar si falta",
-	["Display status only if the buff is not active."] = "Mostrar estado sólo si el bufo no está activo",
-	["Filter Abolished units"] = "Filtrar unidades eliminadas",
-	["Skip units that have an active Abolish buff."] = "Se salta las unidades que tienen un bufo activo de Suprimir",
-	["Show duration"] = "Mostrar duración",
-	["Show the time remaining, for use with the center icon cooldown."] = "Muestra el tiempo restante, para usar con el icono de cooldown central",
---}}}
+L["Color deficit based on class."] = "Mostrar déficit basado en clase"
+L["Color health based on class."] = "Color de la vida basado en la clase"
+L["DEAD"] = "Muerto"
+L["Death warning"] = "Alerta de muerte"
+L["FD"] = "FM"
+L["Feign Death warning"] = "Alerta de Fingir Muerte"
+L["Health"] = "Salud"
+L["Health deficit"] = "Falta de salud"
+L["Health threshold"] = "Límite de salud"
+L["Low HP"] = "Poca vida"
+L["Low HP threshold"] = "Límite de salud baja"
+L["Low HP warning"] = "Alerta de salud baja"
+L["Offline"] = "Desconectado"
+L["Offline warning"] = "Alerta de desconectado"
+L["Only show deficit above % damage."] = "Mostrar déficit sobre % de daño"
+L["Set the HP % for the low HP warning."] = "Establece el % límite para la alerta de salud baja"
+L["Show dead as full health"] = "Mostrar muerto como vida completa"
+L["Treat dead units as being full health."] = "Trata las unidades muertas como si tuvieran la salud al completo"
+L["Unit health"] = "Salud de la unidad"
+L["Use class color"] = "Usar color de clase"
 
---{{{ GridStatusHeals
-	["Heals"] = "Sanación",
-	["Incoming heals"] = "Sanaciones entrantes",
-	["Ignore Self"] = "Ignorar las propias",
-	["Ignore heals cast by you."] = "Ignora las sanaciones lanzadas por ti.",
---	["Minimum Value"] = "",
---	["Only show incoming heals greater than this amount."] = "",
---}}}
+------------------------------------------------------------------------
+--	GridStatusMana
 
---{{{ GridStatusHealth
-	["Low HP"] = "Poca vida",
-	["DEAD"] = "Muerto",
-	["FD"] = "FM",
-	["Offline"] = "Desconectado",
-	["Unit health"] = "Salud de la unidad",
-	["Health deficit"] = "Falta de salud",
-	["Low HP warning"] = "Alerta de salud baja",
-	["Feign Death warning"] = "Alerta de Fingir Muerte",
-	["Death warning"] = "Alerta de muerte",
-	["Offline warning"] = "Alerta de desconectado",
-	["Health"] = "Salud",
-	["Show dead as full health"] = "Mostrar muerto como vida completa",
-	["Treat dead units as being full health."] = "Trata las unidades muertas como si tuvieran la salud al completo",
-	["Use class color"] = "Usar color de clase",
-	["Color health based on class."] = "Color de la vida basado en la clase",
-	["Health threshold"] = "Límite de salud",
-	["Only show deficit above % damage."] = "Mostrar déficit sobre % de daño",
-	["Color deficit based on class."] = "Mostrar déficit basado en clase",
-	["Low HP threshold"] = "Límite de salud baja",
-	["Set the HP % for the low HP warning."] = "Establece el % límite para la alerta de salud baja",
---}}}
+L["Low Mana"] = "Poco maná"
+L["Low Mana warning"] = "Alerta de maná bajo"
+L["Mana"] = "Maná"
+L["Mana threshold"] = "Límite de maná"
+L["Set the percentage for the low mana warning."] = "Establece el porcentaje para la alerta de maná bajo"
 
---{{{ GridStatusMana
-	["Mana"] = "Maná",
-	["Low Mana"] = "Poco maná",
-	["Mana threshold"] = "Límite de maná",
-	["Set the percentage for the low mana warning."] = "Establece el porcentaje para la alerta de maná bajo",
-	["Low Mana warning"] = "Alerta de maná bajo",
---}}}
+------------------------------------------------------------------------
+--	GridStatusName
 
---{{{ GridStatusName
-	["Unit Name"] = "Nombre de unidad",
-	["Color by class"] = "Color por clase",
---}}}
+L["Color by class"] = "Color por clase"
+L["Unit Name"] = "Nombre de unidad"
 
---{{{ GridStatusRange
-	["Range"] = "Rango",
-	["Range check frequency"] = "Frecuencia de revisión de rango",
-	["Seconds between range checks"] = "Segundos entre revisión de rango",
-	["More than %d yards away"] = "Más de %d metros",
-	["%d yards"] = "%d metros",
-	["Text"] = "Texto",
-	["Text to display on text indicators"] = "Texto para mostrar en el indicador de texto",
-	["<range>"] = "<rango>",
---}}}
+------------------------------------------------------------------------
+--	GridStatusRange
 
---{{{ GridStatusReadyCheck
-	["Ready Check"] = "Ready Check",
-	["Set the delay until ready check results are cleared."] = "Establece el retraso hasta que los resultados del Ready Check se limpien",
-	["Delay"] = "Retraso",
-	["?"] = "?",
-	["R"] = "R",
-	["X"] = "X",
-	["AFK"] = "AFK",
-	["Waiting color"] = "Color de espera",
-	["Color for Waiting."] = "Color para la espera.",
-	["Ready color"] = "Color de preparado",
-	["Color for Ready."] = "Color para el que está preparado.",
-	["Not Ready color"] = "Color de no preparado",
-	["Color for Not Ready."] = "Color para el que no está preparado.",
-	["AFK color"] = "Color de AFK",
-	["Color for AFK."] = "Color para AFK.",
---}}}
+L["Out of Range"] = "Fuera de alcance"
+L["Range"] = "Rango"
+L["Range check frequency"] = "Frecuencia"
+L["Seconds between range checks"] = "Segundos entre revisión de rango"
 
---{{{ GridStatusTarget
-	["Target"] = "Objetivo",
-	["Your Target"] = "Tu objetivo",
---}}}
+------------------------------------------------------------------------
+--	GridStatusReadyCheck
 
---{{{ GridStatusVehicle
-	["In Vehicle"] = "En vehículo",
-	["Driving"] = "Conduciendo",
---}}}
+L["?"] = "?"
+L["AFK"] = "AFK"
+L["AFK color"] = "Color de AFK"
+L["Color for AFK."] = "Color de AFK."
+L["Color for Not Ready."] = "Color para el que no está preparado."
+L["Color for Ready."] = "Color para el que está preparado."
+L["Color for Waiting."] = "Color para la espera."
+L["Delay"] = "Retraso"
+L["Not Ready color"] = "Color para el que no está preparado"
+L["R"] = "R"
+L["Ready Check"] = "Ready Check"
+L["Ready color"] = "Color de preparado"
+L["Set the delay until ready check results are cleared."] = "Establece el retraso hasta que los resultados del Ready Check se limpien"
+L["Waiting color"] = "Color de espera"
+L["X"] = "X"
 
---{{{ GridStatusVoiceComm
-	["Voice Chat"] = "Chat de voz",
-	["Talking"] = "Hablando",
---}}}
+------------------------------------------------------------------------
+--	GridStatusTarget
 
-}
+L["Target"] = "Objetivo"
+L["Your Target"] = "Tu objetivo"
+
+------------------------------------------------------------------------
+--	GridStatusVehicle
+
+L["Driving"] = "Conduciendo"
+L["In Vehicle"] = "En vehículo"
+
+------------------------------------------------------------------------
+--	GridStatusVoiceComm
+
+L["Talking"] = "Hablando"
+L["Voice Chat"] = "Chat de voz"

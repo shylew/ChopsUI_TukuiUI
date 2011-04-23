@@ -1,6 +1,6 @@
 --[[
 Name: LibBabble-Boss-3.0
-Revision: $Rev: 333 $
+Revision: $Rev: 335 $
 Maintainers: ckknight, nevcairiel, Ackis
 Website: http://www.wowace.com/projects/libbabble-boss-3-0/
 Dependencies: None
@@ -8,7 +8,7 @@ License: MIT
 ]]
 
 local MAJOR_VERSION = "LibBabble-Boss-3.0"
-local MINOR_VERSION = 90000 + tonumber(("$Rev: 333 $"):match("%d+"))
+local MINOR_VERSION = 90000 + tonumber(("$Rev: 335 $"):match("%d+"))
 
 if not LibStub then error(MAJOR_VERSION .. " requires LibStub.") end
 local lib = LibStub("LibBabble-3.0"):New(MAJOR_VERSION, MINOR_VERSION)
@@ -5841,7 +5841,7 @@ elseif GAME_LOCALE == "zhCN" then
 	["Elder Stonebark"] = "石树长老",
 	["Electrocutioner 6000"] = "电刑器6000型",
 	Electron = "Electron", -- Needs review
-	["Elementium Monstrosity"] = "Elementium Monstrosity", -- Needs review
+	["Elementium Monstrosity"] = "源质畸体", -- Needs review
 	["Emalon the Storm Watcher"] = "风暴看守者埃玛尔隆",
 	Emeriss = "艾莫莉丝",
 	["Emperor Dagran Thaurissan"] = "达格兰·索瑞森大帝",
@@ -7002,7 +7002,7 @@ elseif GAME_LOCALE == "zhTW" then
 	["Omnitron Defense System"] = "全能魔像防禦系統",
 	Omnotron = "全能魔像",
 	["Omnotron Defense System"] = "全能魔像防禦系統",
-	["Omor the Unscarred"] = "無疤者歐瑪爾",
+	["Omor the Unscarred"] = "『無疤者』歐瑪爾",
 	Onyxia = "奧妮克希亞",
 	["Opera Event"] = "歌劇院",
 	["Orgrim's Hammer"] = "奧格林之錘",
@@ -7230,7 +7230,7 @@ elseif GAME_LOCALE == "zhTW" then
 	["Void Reaver"] = "虛無搶奪者",
 	Volkhan = "渥克瀚",
 	["War Master Voone"] = "將領沃恩",
-	["Warbringer O'mrogg"] = "戰爭製造者·歐姆拉格",
+	["Warbringer O'mrogg"] = "戰爭使者歐姆拉格",
 	["Warchief Blackhand Piece"] = "黑手大酋長棋子",
 	["Warchief Kargath Bladefist"] = "大酋長卡加斯·刃拳",
 	["Warchief Rend Blackhand"] = "大酋長雷德·黑手",

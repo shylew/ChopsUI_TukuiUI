@@ -1,14 +1,15 @@
 ﻿## Interface: 40000
 ## Author: Tukz
+## Project Collaborators: Elv22, Nightcracker
 ## Credits to: Caith, Caellian, Shestak, Haste, Tekkub, Alza, Roth, P3lim, Tulla, Hungtar, hankthetank, Ishtara and others...
 ## Special Thanks to: Admins, Moderator and VIP's from tukui.org
-## Version: 12.50
+## Version: 13.07
 ## Title: |cffC495DDTukui|r
 ## Notes: UI of awesomeness!
-## SavedVariables: TukuiData, TukuiArena
-## SavedVariablesPerCharacter: TukuiInstallv1200, TukuiUFpos, ChopsUI
-## RequiredDeps: Skada, Grid, GridIndicatorCornerIcons, GridStatusRaidDebuff, GridStatusShield, TelUI_AddonSkins, NeedToKnow, BigWigs, MikScrollingBattleText
+## SavedVariables: TukuiData
+## SavedVariablesPerCharacter: TukuiDataPerChar
 ## OptionalDeps: Tukui_ConfigUI, !ClassColors, Clique
-## X-oUF: oUF
+## X-oUF: oUFTukui
 
-Tukui.xml
+Tukui.xml 
+Chopsui.xml

@@ -9,6 +9,8 @@ if L then
 
 	L.air_phase_trigger = "Ja, lauft! Jeder Schritt lässt Euer Herz stärker klopfen. Laut und heftig... ohrenbetäubend. Es gibt kein Entkommen!" -- check
 
+	L.obnoxious_soon = "Nerviges Scheusal bald!"
+
 	L.searing_soon = "Sengende Flamme in 10 sek!"
 	L.sonicbreath_cooldown = "~Schallatem"
 end
@@ -55,6 +57,9 @@ if L then
 
 	L.spew_bar = "~Lavafontäne"
 	L.spew_warning = "Lavafontäne bald!"
+
+	L.mangle_bar = "Zerfleischen: %s"
+	L.mangle_cooldown = "~Zerfleischen"
 end
 
 L = BigWigs:NewBossLocale("Maloriak", "deDE")
@@ -66,6 +71,7 @@ if L then
 
 	--normal
 	L.final_phase = "Finale Phase"
+	L.final_phase_soon = "Finale Phase bald!"
 
 	L.release_aberration_message = "%s Adds noch!"
 	L.release_all = "%s Adds freigelassen!"
@@ -98,9 +104,11 @@ if L then
 	L.phase = "Phasen"
 	L.phase_desc = "Warnt vor Phasenwechsel."
 
+	L.discharge_bar = "~Blitzentladung"
+
 	L.phase_two_trigger = "Verfluchte Sterbliche! Ein solcher Umgang mit dem Eigentum anderer verlangt nach Gewalt!" -- check
 
-	L.phase_three_trigger = "Ich habe versucht, ein guter Gastgeber zu sein, aber ihr wollt einfach nicht sterben! Genug der Spielchen! Ich werde euch einfach... ALLE TÖTEN!" -- check
+	L.phase_three_trigger = "Ich habe versucht, ein guter Gastgeber zu sein" -- check
 
 	L.crackle_trigger = "Elektrizität lässt die Luft knistern!" -- check
 	L.crackle_message = "Stromschlag bald!"
@@ -133,9 +141,9 @@ if L then
 
 	L.acquiring_target = "Zielerfassung"
 
-	L.bomb_message = "Giftbombe verfolgt DICH!"
-	L.cloud_message = "Wolke auf DIR!"
-	L.protocol_message = "Giftbomben kommen!"
+	L.bomb_message = "Blob verfolgt DICH!"
+	L.cloud_message = "Wolke unter DIR!"
+	L.protocol_message = "Blobs kommen!"
 
 	L.iconomnotron = "Symbol auf aktivem Boss"
 	L.iconomnotron_desc = "Plaziert das primäre Schlachtzugssymbol auf dem aktiven Boss (benötigt Assistent oder höher)."

@@ -20,6 +20,7 @@ GridStatusHots.L = {
 	["Hots: My Earth Shield"] = "Hots: Mein Erdschild",
 	["Hots: My Gift of the Naaru"] = "Hots: Meine Gabe der Naaru",
 	["Hots: My Prayer of Mending"] = "Hots: Mein Gebet der Besserung",
+	["Hots: My Prayer of Mending - duration colored"] = "Hots: Mein Gebet der Besserung - Farbe abhängig von Anzahl Stapel",
 	["Hots: Power Word: Shield"] = "Hots: Machtwort: Schild",
 	["Hots: Weakened Soul"] = "Hots: Geschwächte Seele",
 	["Hots: My Beacon of Light"] = "Hots: Meine Flamme des Glaubens",
@@ -51,4 +52,8 @@ GridStatusHots.L = {
 	["Check, if you want to see the total of HoTs behind the countdown of your HoT(i.e. 13-5)"] = "Auswählen, falls die Gesamtzahl HoTs hinter dem Countdown angezeigt werden soll (z.B. 13-5)",
 	["Combine Timers"] = "Kombiniere Timer",
 	["Check, if you want to see the Weakened Soul Timer behind the Pw: Shield Timer(i.e. 13-5)"]= "Auswählen, falls der Timer für Geschwächte Seele hinter dem Schild-Timer angezeigt werden soll (z.B. 13-5)",
+	["Show decimals"] = "Zeige Dezimalstelle",
+	["Check, if you want to see one decimal place for your Lifebloom(i.e. 7.1)"] = "Auswählen, falls eine Dezimalstelle für Blühendes Leben angezeigt werden soll (z.B. 7.1)",
+	["Only mine"] = "Nur meins",
+	["Only show my PoM"] = "Zeige nur mein Gebet der Besserung",
 }

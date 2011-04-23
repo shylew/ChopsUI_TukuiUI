@@ -64,6 +64,8 @@ if L then
 	L.whelps = "Welpen"
 	L.whelps_desc = "Warnt vor den Wellen der Welpen."
 
+	L.slicer_message = "~Orb Ziele"
+
 	L.egg_vulnerable = "Zeit für Omelett!"
 
 	--L.whelps_trigger = "Feed, children!  Take your fill from their meaty husks!"
@@ -82,7 +84,8 @@ if L then
 	L.switch = "Wechsel"
 	L.switch_desc = "Warnt, wenn die Bosse wechseln."
 
-	L.shield_up_message = "Schild ist oben!"
+	L.shield_up_message = "Schild ist OBEN!"
+	L.shield_down_message = "Schild ist UNTEN!"
 	L.shield_bar = "Nächstes Schild"
 
 	L.switch_trigger = "Wir kümmern uns um sie!"

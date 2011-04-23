@@ -3,6 +3,9 @@
 	Keeps track of GUID <-> name <-> unitID mappings for party/raid members.
 ----------------------------------------------------------------------]]
 
+local GRID, Grid = ...
+local L = Grid.L
+
 local GridRoster = Grid:NewModule("GridRoster")
 
 GridRoster.defaultDB = {

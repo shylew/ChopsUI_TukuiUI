@@ -22,7 +22,7 @@ if L then
 	L.fury_bar = "다음 격노"
 	L.fury_message = "격노!"
 	L.first_fury_soon = "곧 격노!"
-	L.first_fury_message = "85% - 격노, 코끼리 시작!"
+	L.first_fury_message = "85% - 격노 시작 & 곧 코끼리!"
 
 	L.unleashed_shadows = "해방된 어둠"
 
@@ -53,7 +53,7 @@ end
 L = BigWigs:NewBossLocale("Halfus Wyrmbreaker", "koKR")
 if L then
 	L.paralysis_bar = "다음 마비"
-	L.strikes_message = "악의의 일격 %2$dx : %1$s"
+	L.strikes_message = "악의의 일격 x%2$d : %1$s"
 
 	L.breath_message = "곧 숨결!"
 	L.breath_bar = "~숨결"
@@ -64,10 +64,12 @@ if L then
 	L.whelps = "새끼용"
 	L.whelps_desc = "새끼용 웨이브를 알립니다."
 
+	L.slicer_message = "예상되는 구슬 대상"
+
 	L.egg_vulnerable = "알 요리 시간!"
 
-	L.whelps_trigger = "얘들아, 먹어치워라" --check
-	L.omelet_trigger = "이게 약해진 걸로 보이느냐" --check
+	L.whelps_trigger = "얘들아, 먹어치워라"
+	L.omelet_trigger = "이게 약해진 걸로 보이느냐"
 
 	L.phase13 = "1 & 3 단계"
 	L.phase = "단계"
@@ -78,14 +80,13 @@ L = BigWigs:NewBossLocale("Ascendant Council", "koKR")
 if L then
 	L.static_overload_say = "나에게 전화 과부하!"
 	L.gravity_core_say = "나에게 중력 핵!"
-	L.health_report = "%s의 체력 -%d%%-, 곧 단계 변화!"
+	L.health_report = "%s 체력 -%d%%-, 곧 단계 변화!"
 	L.switch = "전환"
 	L.switch_desc = "보스의 전환을 알립니다."
 
 	L.shield_up_message = "방패 사용!"
+	L.shield_down_message = "방패 사라짐!"
 	L.shield_bar = "다음 방패"
-
-	L.lightning_rod_say = "나아게 벼락 막대!"
 
 	L.switch_trigger = "우리가 상대하겠다!"
 
@@ -94,7 +95,7 @@ if L then
 	L.quake_trigger = "발밑의 땅이 불길하게 우르릉거립니다..."
 	L.thundershock_trigger = "주변의 공기가 에너지로 진동합니다..."
 
-	L.thundershock_quake_spam = "x%2$d초 후 %1$s"
+	L.thundershock_quake_spam = "%2$d초 후 %1$s"
 
 	L.last_phase_trigger = "꽤나 인상적이었다만..."
 end

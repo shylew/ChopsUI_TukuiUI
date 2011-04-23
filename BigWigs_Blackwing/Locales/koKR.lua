@@ -8,7 +8,9 @@ if L then
 	L.air_phase_desc = "아트라메데스의 이륙을 알립니다."
 
 	L.air_phase_trigger = "그래, 도망가라! 발을 디딜 때마다 맥박은 빨라지지. 점점 더 크게 울리는구나... 귀청이 터질 것만 같군! 넌 달아날 수 없다!"
-	
+
+	L.obnoxious_soon = "곧 불쾌한 마귀!"
+
 	L.searing_soon = "10초 후 이글거리는 불길!"
 	L.sonicbreath_cooldown = "~음파 숨결"
 end
@@ -55,6 +57,9 @@ if L then
 
 	L.spew_bar = "~다음 용암 내뿜기"
 	L.spew_warning = "곧 용암 내뿜기!"
+
+	L.mangle_bar = "짓이기기: %s"
+	L.mangle_cooldown = "~다음 짓이기기"
 end
 
 L = BigWigs:NewBossLocale("Maloriak", "koKR")
@@ -66,6 +71,7 @@ if L then
 
 	--normal
 	L.final_phase = "마지막 단계"
+	L.final_phase_soon = "곧 마지막 단계!"
 
 	L.release_aberration_message = "돌연변이 %d 남음"
 	L.release_all = "모든 실험체 %d!"
@@ -98,14 +104,16 @@ if L then
 	L.phase = "단계"
 	L.phase_desc = "단계 변화를 알립니다."
 
-	L.phase_two_trigger = "저주받을 필멸자들!"	--check
+	L.discharge_bar = "~번개 방출 대기시간"
 
-	L.phase_three_trigger = "품위있는"	--check
+	L.phase_two_trigger = "저주받을 필멸자들!"
 
-	L.crackle_trigger = "전기가"	--check
+	L.phase_three_trigger = "품위있는"
+
+	L.crackle_trigger = "전기가"
 	L.crackle_message = "곧 감전!"
 
-	L.shadowblaze_message = "당신은 암흑 화로!"
+	L.shadowblaze_message = "당신은 타오르는중!"
 
 	L.onyxia_power_message = "곧 폭발!"
 

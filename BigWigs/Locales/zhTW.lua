@@ -16,7 +16,8 @@ L.already_registered = "|cffff0000警告：|r |cff00ff00%s|r（|cffffff00%s|r）
 L["You are running an official release of Big Wigs %s (revision %d)"] = "你所使用的 Big Wigs %s 為官方正式版（修訂號%d）"
 L["You are running an ALPHA RELEASE of Big Wigs %s (revision %d)"] = "你所使用的 Big Wigs %s 為“α測試版”（修訂號%d）"
 L["You are running a source checkout of Big Wigs %s directly from the repository."] = "你所使用的 Big Wigs %s 為從源直接檢出的。"
-L["There is a new release of Big Wigs available. You can visit curse.com, wowinterface.com, wowace.com or use the Curse Updater to get the new release."] = "有新的 Big Wigs 正式版可用。你可以訪問 Curse.com，wowinterface.com，wowace.com 或使用 Curse 更新器來更新到新的正式版。"
+L["There is a new release of Big Wigs available(/bwv). You can visit curse.com, wowinterface.com, wowace.com or use the Curse Updater to get the new release."] = "有新的 Big Wigs 正式版可用。你可以訪問 Curse.com，wowinterface.com，wowace.com 或使用 Curse 更新器來更新到新的正式版。"
+L["Your alpha version of Big Wigs is out of date(/bwv)."] = "Your alpha version of Big Wigs is out of date(/bwv)."
 
 L.tooltipHint = "|cffeda55f點擊|r圖示重置所有運作中的模組。|cffeda55fAlt-點擊|r可以禁用所有首領模組。"
 L["Active boss modules:"] = "啟動首領模組："
@@ -60,7 +61,6 @@ L["Toggle show/hide of the minimap icon."] = "打開或關閉小地圖圖示。"
 L["Configure"] = "配置"
 L["Test"] = "測試"
 L["Reset positions"] = "重置位置"
-L["Options for %s."] = "%s選項。"
 L["Colors"] = "顏色"
 L["Select encounter"] = "選擇戰鬥"
 

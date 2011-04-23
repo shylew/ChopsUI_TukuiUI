@@ -9,7 +9,7 @@
 ## Author: Zarnivoop/kryptik
 ## Version: 1.2-31
 ## SavedVariables: SkadaDB
-## X-Curse-Packaged-Version: 1.2-31
+## X-Curse-Packaged-Version: 1.2-31.1
 ## X-Curse-Project-Name: Skada Damage Meter
 ## X-Curse-Project-ID: skada
 ## X-Curse-Repository-ID: wow/skada/mainline
@@ -54,3 +54,5 @@ modules\SkadaEnemies\Enemies.lua
 modules\SkadaPower\Power.lua
 modules\SkadaAbsorbs\Absorbs.lua
 modules\SkadaCC\CC.lua
+
+SkadaWindowButtons\SkadaWindowButtons.lua

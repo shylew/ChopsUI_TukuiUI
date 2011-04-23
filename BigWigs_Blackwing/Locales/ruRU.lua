@@ -9,6 +9,9 @@ if L then
 
 	L.air_phase_trigger = "Да, беги! С каждым шагом твое сердце бьется все быстрее. Эти громкие, оглушительные удары... Тебе некуда бежать!"
 
+	L.obnoxious_soon = "Скоро Несносность Беса!"
+
+	L.searing_soon = "Жгучее пламя через 10сек!"
 	L.sonicbreath_cooldown = "~Волновое дыхание"
 end
 
@@ -54,6 +57,9 @@ if L then
 
 	L.spew_bar = "~Изрыгание лавы"
 	L.spew_warning = "Скоро Изрыгание лавы!"
+
+	L.mangle_bar = "Увечье: %s"
+	L.mangle_cooldown = "~Увечье"
 end
 
 L = BigWigs:NewBossLocale("Maloriak", "ruRU")
@@ -65,6 +71,7 @@ if L then
 
 	--normal
 	L.final_phase = "Финальная фаза"
+	L.final_phase_soon = "Final phase soon!"
 
 	L.release_aberration_message = "%s осталось аберрации!"
 	L.release_all = "%s аберрации!"
@@ -97,9 +104,11 @@ if L then
 	L.phase = "Фазы"
 	L.phase_desc = "Сообщать о смене фаз."
 
+	L.discharge_bar = "~Искровой разряд"
+
 	L.phase_two_trigger = "Дерзкие смертные! Неуважение к чужой собственности нужно пресекать самым жестоким образом!"
 
-	L.phase_three_trigger = "Я пытался следовать законам гостеприимства, но вы все никак не умрете! Придется отбросить условности и просто... УБИТЬ ВАС ВСЕХ!"
+	L.phase_three_trigger = "Я пытался следовать законам гостеприимства"
 
 	L.crackle_trigger = "В воздухе трещат электрические разряды!"
 	L.crackle_message = "Скоро Электрический удар!"

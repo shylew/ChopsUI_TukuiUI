@@ -8,6 +8,7 @@ _G.BIGWIGS_LOADER_TIME = GetTime()
 -- Generate our version variables
 --
 
+local REPO = "REPO"
 local ALPHA = "ALPHA"
 local RELEASE = "RELEASE"
 local UNKNOWN = "UNKNOWN"
@@ -23,16 +24,17 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("8191")
+	releaseRevision = tonumber("8313")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
 		releaseRevision = -1
+		releaseType = REPO
 	end
 
 	-- Then build the release string, which we can add to the interface option panel.
 	local majorVersion = GetAddOnMetadata("BigWigs", "Version") or "3.?"
-	if releaseRevision == -1 then
+	if releaseType == REPO then
 		releaseString = L["You are running a source checkout of Big Wigs %s directly from the repository."]:format(majorVersion)
 	elseif releaseType == RELEASE then
 		releaseString = L["You are running an official release of Big Wigs %s (revision %d)"]:format(majorVersion, releaseRevision)
@@ -74,7 +76,15 @@ local grouped = nil
 local usersAlpha = {}
 local usersRelease = {}
 local usersUnknown = {}
-local highestReleaseRevision = _G.BIGWIGS_RELEASE_REVISION
+-- Only set highestReleaseRevision if we're actually using a release of BigWigs.
+-- If we set this as an alpha user we will alert release users with out-of-date warnings
+-- and class them as out-of-date in /bwv (if our alpha version is higher). But they may be
+-- using the latest available release version of BigWigs. This method ensures they are
+-- classed as up-to-date in /bwv if they use the latest available release of BigWigs
+-- even if our alpha is revisions ahead.
+local highestReleaseRevision = _G.BIGWIGS_RELEASE_TYPE == RELEASE and _G.BIGWIGS_RELEASE_REVISION or -1
+-- The highestAlphaRevision is so we can alert old alpha users (we didn't previously)
+local highestAlphaRevision = _G.BIGWIGS_RELEASE_TYPE == ALPHA and _G.BIGWIGS_RELEASE_REVISION or -1
 local warnedOutOfDate = nil
 
 -- Loading
@@ -209,7 +219,9 @@ local function versionTooltipFunc(tt)
 	end
 	if not add then
 		for player, version in pairs(usersAlpha) do
-			if version ~= -1 and version < (highestReleaseRevision - 1) then
+			-- If this person's alpha version isn't SVN (-1) and it's lower than the highest found release version minus 1 because
+			-- of tagging, or it's lower than the highest found alpha version (with a 10 revision leeway) then that person is out-of-date
+			if version ~= -1 and (version < (highestReleaseRevision - 1) or version < (highestAlphaRevision - 10)) then
 				add = true
 				break
 			end
@@ -334,10 +346,10 @@ do
 		self.elapsed = self.elapsed + elapsed
 		if self.elapsed > 5 then
 			self:Hide()
-			if BIGWIGS_RELEASE_TYPE == ALPHA then
-				SendAddonMessage("BWVRA3", BIGWIGS_RELEASE_REVISION, "RAID")
-			else
+			if BIGWIGS_RELEASE_TYPE == RELEASE then
 				SendAddonMessage("BWVR3", BIGWIGS_RELEASE_REVISION, "RAID")
+			else
+				SendAddonMessage("BWVRA3", BIGWIGS_RELEASE_REVISION, "RAID")
 			end
 		end
 	end)
@@ -353,7 +365,12 @@ do
 			if not tonumber(message) or warnedOutOfDate then return end
 			if tonumber(message) > BIGWIGS_RELEASE_REVISION then
 				warnedOutOfDate = true
-				sysprint(L["There is a new release of Big Wigs available. You can visit curse.com, wowinterface.com, wowace.com or use the Curse Updater to get the new release."])
+				-- Adapt the out-of-date nag according to release type
+				if BIGWIGS_RELEASE_TYPE == RELEASE then
+					sysprint(L["There is a new release of Big Wigs available(/bwv). You can visit curse.com, wowinterface.com, wowace.com or use the Curse Updater to get the new release."])
+				elseif BIGWIGS_RELEASE_TYPE == ALPHA then
+					sysprint(L["Your alpha version of Big Wigs is out of date(/bwv)."])
+				end
 			end
 		elseif prefix == "BWVR3" then
 			message = tonumber(message)
@@ -361,6 +378,10 @@ do
 			usersRelease[sender] = message
 			usersAlpha[sender] = nil
 			usersUnknown[sender] = nil
+			-- Harvest the highest release version we can find then use that
+			-- to make sure others are up-to-date. Since releases are generally
+			-- many revisions apart, we just warn anyone under the highest revision found
+			-- instead of leaving any leeway (e.g. 10 revisions for alpha)
 			if message > highestReleaseRevision then highestReleaseRevision = message end
 			if sender ~= pName and highestReleaseRevision > message then
 				SendAddonMessage("BWOOD3", highestReleaseRevision, "WHISPER", sender)
@@ -371,6 +392,14 @@ do
 			usersAlpha[sender] = message
 			usersRelease[sender] = nil
 			usersUnknown[sender] = nil
+			-- Harvest the highest alpha version we can find then use that to make sure
+			-- others are up-to-date. We allow upto a 10 revision leeway before sending a nag
+			-- Also compare that alpha version against the highest release version for a situation
+			-- where there is only 1 alpha in the raid and it is majorly out-of-date
+			if message > highestAlphaRevision then highestAlphaRevision = message end
+			if sender ~= pName and message ~= -1 and ((highestAlphaRevision - 10) > message or (highestReleaseRevision - 10) > message) then
+				SendAddonMessage("BWOOD3", highestAlphaRevision, "WHISPER", sender)
+			end
 		end
 	end
 end
@@ -554,9 +583,9 @@ do
 			return self[key]
 		end
 	})
-	local function coloredNameVersion(name, version)
-		if version == -1 then version = "svn" end
-		return string.format("%s|cffcccccc(%s)|r", coloredNames[name], version or "unknown")
+	local function coloredNameVersion(name, version, alpha)
+		if version == -1 then version = "svn" alpha = nil end
+		return string.format("%s|cffcccccc(%s%s)|r", coloredNames[name], version or "unknown", alpha and "-alpha" or "")
 	end
 	local function showVersions()
 		local m = getGroupMembers()
@@ -580,11 +609,12 @@ do
 			elseif usersUnknown[player] then
 				ugly[#ugly + 1] = coloredNames[player]
 			elseif usersAlpha[player] then
-				-- release revision -1 because of tagging
-				if usersAlpha[player] >= (highestReleaseRevision - 1) or usersAlpha[player] == -1 then
-					good[#good + 1] = coloredNameVersion(player, usersAlpha[player])
+				-- If this person's alpha version isn't SVN (-1) and it's higher or the same as the highest found release version minus 1 because
+				-- of tagging, or it's higher or the same as the highest found alpha version (with a 10 revision leeway) then that person's good
+				if (usersAlpha[player] >= (highestReleaseRevision - 1) and usersAlpha[player] >= (highestAlphaRevision - 10)) or usersAlpha[player] == -1 then
+					good[#good + 1] = coloredNameVersion(player, usersAlpha[player], ALPHA)
 				else
-					ugly[#ugly + 1] = coloredNameVersion(player, usersAlpha[player])
+					ugly[#ugly + 1] = coloredNameVersion(player, usersAlpha[player], ALPHA)
 				end
 			else
 				bad[#bad + 1] = coloredNames[player]

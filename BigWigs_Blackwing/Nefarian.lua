@@ -10,7 +10,7 @@ mod:RegisterEnableMob(41270, 41376)
 -- Locals
 --
 
-local phase, deadAdds, shadowBlazeTimer = 1, 0, 30
+local phase, deadAdds, shadowBlazeTimer = 1, 0, 35
 local cinderTargets = mod:NewTargetList()
 local powerTargets = mod:NewTargetList()
 local shadowblaze = GetSpellInfo(94085)
@@ -26,14 +26,16 @@ if L then
 	L.phase = "Phases"
 	L.phase_desc = "Warnings for the Phase changes."
 
+	L.discharge_bar = "~Discharge CD"
+
 	L.phase_two_trigger = "Curse you, mortals! Such a callous disregard for one's possessions must be met with extreme force!"
 
-	L.phase_three_trigger = "I have tried to be an accommodating host, but you simply will not die! Time to throw all pretense aside and just... KILL YOU ALL!"
+	L.phase_three_trigger = "I have tried to be an accommodating host"
 
 	L.crackle_trigger = "The air crackles with electricity!"
 	L.crackle_message = "Electrocute soon!"
 
-	L.shadowblaze_message = "Fire"
+	L.shadowblaze_message = "Fire under YOU!"
 
 	L.onyxia_power_message = "Explosion soon!"
 
@@ -45,12 +47,13 @@ L = mod:GetLocale()
 -- Initialization
 --
 
-function mod:GetOptions(CL)
+function mod:GetOptions()
 	return {
-		78999, 81272, {94085, "FLASHSHAKE"},
-		{79339, "FLASHSHAKE", "SAY", "PROXIMITY"}, { 80626, "FLASHSHAKE"}, "berserk",
+		94115, 78999, 81272, {94085, "FLASHSHAKE"},
+		{79339, "FLASHSHAKE", "SAY", "PROXIMITY"}, {80626, "FLASHSHAKE"}, "berserk",
 		"phase", "bosskill"
 	}, {
+		[94115] = "Onyxia",
 		[78999] = "normal",
 		[79339] = "heroic",
 		phase = "general"
@@ -61,9 +64,13 @@ function mod:OnBossEnable()
 	self:Yell("PhaseTwo", L["phase_two_trigger"])
 	self:Yell("PhaseThree", L["phase_three_trigger"])
 
+	--Not bad enough that there is no cast trigger, there's also over 9 thousand Id's
+	self:Log("SPELL_DAMAGE", "LightningDischarge", "*")
+	self:Log("SPELL_MISSED", "LightningDischarge", "*")
+
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveCindersApplied", 79339)
 	self:Log("SPELL_AURA_REMOVED", "ExplosiveCindersRemoved", 79339)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "StolenPower", 80626)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "StolenPower", 80626, 80627)
 	self:Log("SPELL_AURA_APPLIED", "InitialStolenPower", 80573, 80591, 80592, 80621, 80622, 80623, 80624, 80625, 80626, 80627)
 	self:Log("SPELL_DAMAGE", "PersonalShadowBlaze", 81007, 94085, 94086, 94087)
 
@@ -74,9 +81,9 @@ function mod:OnBossEnable()
 	self:Death("Deaths", 41376, 41948)
 end
 
-
 function mod:OnEngage(diff)
 	self:Berserk(630) -- is it really?
+	self:Bar(94115, L["discharge_bar"], 30, 94115)
 	phase, deadAdds, shadowBlazeTimer = 1, 0, 35
 	phase3warned = false
 	self:RegisterEvent("UNIT_POWER")
@@ -87,24 +94,33 @@ end
 --
 
 do
-	local last = 0
+	local prev = 0
+	local discharge = GetSpellInfo(94115)
+	function mod:LightningDischarge(_, spellId, _, _, spellName)
+		if spellName ~= discharge then return end
+		local t = GetTime()
+		if (t - prev) > 10 then
+			prev = t
+			self:Bar(94115, L["discharge_bar"], 21, spellId)
+		end
+	end
+end
+
+do
+	local prev = 0
 	function mod:PersonalShadowBlaze(player, spellId)
-		local time = GetTime()
-		if (time - last) > 2 then
-			last = time
-			if UnitIsUnit(player, "player") then
-				self:LocalMessage(94085, CL["you"]:format(L["shadowblaze_message"]), "Personal", spellId, "Info")
-				self:FlashShake(94085)
-			end
+		local t = GetTime()
+		if (t - prev) > 1 and UnitIsUnit(player, "player") then
+			prev = t
+			self:LocalMessage(94085, L["shadowblaze_message"], "Personal", spellId, "Info")
+			self:FlashShake(94085)
 		end
 	end
 end
 
 function mod:Electrocute()
-	if UnitExists("boss1") then
-		self:Message(81272, L["crackle_message"], "Urgent", 81272, "Alert")
-		self:Bar(81272, (GetSpellInfo(81272)), 5, 81272)
-	end
+	self:Message(81272, L["crackle_message"], "Urgent", 81272, "Alert")
+	self:Bar(81272, (GetSpellInfo(81272)), 5, 81272)
 end
 
 function mod:Deaths(mobId)
@@ -143,18 +159,10 @@ function mod:PhaseTwo()
 end
 
 local function nextBlaze()
-	if mod:GetInstanceDifficulty() > 2 then
-		if shadowBlazeTimer > 5 then
-			shadowBlazeTimer = shadowBlazeTimer - 5
-		end
-	else
-		if shadowBlazeTimer > 10 then
-			shadowBlazeTimer = shadowBlazeTimer - 5
-		end
+	if shadowBlazeTimer > 10 then
+		shadowBlazeTimer = shadowBlazeTimer - 5
 	end
-	if shadowBlazeTimer > 5 then
-		mod:Message(94085, shadowblaze, "Important", 94085, "Alarm")
-	end
+	mod:Message(94085, shadowblaze, "Important", 94085, "Alarm")
 	mod:Bar(94085, shadowblaze, shadowBlazeTimer, 94085)
 	mod:ScheduleTimer(nextBlaze, shadowBlazeTimer)
 end
@@ -166,8 +174,8 @@ function mod:PhaseThree()
 		self:Message("phase", CL["phase"]:format(phase), "Attention", 78621)
 		phase3warned = true
 	end
-	self:Bar(94085, shadowblaze, 10, 94085)
-	self:ScheduleTimer(nextBlaze, 10)
+	self:Bar(94085, shadowblaze, 12, 94085)
+	self:ScheduleTimer(nextBlaze, 12)
 end
 
 do
@@ -207,7 +215,6 @@ do
 end
 
 function mod:StolenPower(player, spellId, _, _, spellName, stack)
-	-- XXX this needs a new stack value
 	if UnitIsUnit(player, "player") and stack == 150 then
 		self:FlashShake(80626)
 		self:LocalMessage(80626, spellName, "Personal", spellId, "Info")

@@ -1,0 +1,16 @@
+## Interface: 40000
+## Title: GridAbsorbsMonitor
+## Notes: Grid status module that shows the remaining value of any effect tracked by AbsorbsMonitor
+## Author: eyogar
+## Version: 1.6b
+## OptionalDeps: Grid, LibAbsorbsMonitor
+## X-Curse-Packaged-Version: 1.6b
+## X-Curse-Project-Name: GridStatusAbsorbsMonitor
+## X-Curse-Project-ID: grid-status-absorbsmonitor
+## X-Curse-Repository-ID: wow/grid-status-absorbsmonitor/mainline
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+GridStatusAbsorbsMonitor.lua

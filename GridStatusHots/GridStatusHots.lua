@@ -61,7 +61,6 @@ GridStatusHots.extraOptions = {
 GridStatusHots.defaultDB = {
 	alert_tothots = {
 		text = L["Hots: Hot Count"],
-		desc = L["Hots: Hot Count"],
 		enable = true,
 		lbeach = false,
 		priority = 95,
@@ -72,9 +71,9 @@ GridStatusHots.defaultDB = {
 	--Druid
 	alert_lifebl = {
 		text = L["Hots: My Lifebloom"],
-		desc = L["Hots: My Lifebloom"],
 		enable = true,
 		totshow = true,
+		decshow = true,
 		priority = 99,
 		range = false,
 		threshold2 = 4,
@@ -85,9 +84,9 @@ GridStatusHots.defaultDB = {
 	},
 	alert_lifebl_stack = {
 		text = L["Hots: My Lifebloom Stack Colored"],
-		desc = L["Hots: My Lifebloom Stack Colored"],
 		enable = true,
 		totshow = true,
+		decshow = true,
 		priority = 99,
 		range = false,
 		threshold2 = 4,
@@ -98,7 +97,6 @@ GridStatusHots.defaultDB = {
 	},
 	alert_regrow = {
 		text = L["Hots: My Regrowth"],
-		desc = L["Hots: My Regrowth"],
 		enable = true,
 		totshow = true,
 		priority = 97,
@@ -111,7 +109,6 @@ GridStatusHots.defaultDB = {
 	},
 	alert_rejuv = {
 		text = L["Hots: My Rejuvenation"],
-		desc = L["Hots: My Rejuvenation"],
 		enable = true,
 		totshow = true,
 		priority = 98,
@@ -124,7 +121,6 @@ GridStatusHots.defaultDB = {
 	},
 	alert_wgrowth = {
 		text = L["Hots: My Wild Growth"],
-		desc = L["Hots: My Wild Growth"],
 		enable = true,
 		totshow = true,
 		priority = 96,
@@ -139,7 +135,6 @@ GridStatusHots.defaultDB = {
 	--Paladin
 	alert_beacon = {
 		text = L["Hots: My Beacon of Light"],
-		desc = L["Hots: My Beacon of Light"],
 		enable = true,
 		priority = 96,
 		range = false,
@@ -156,9 +151,9 @@ GridStatusHots.defaultDB = {
 		enable = true,
 		priority = 90,
 		range = false,
-		color = { r = 1, g = .41, b = .28, a = 1 },
-		color2 = { r = 1, g = 1, b = .52, a = 1 },
-		color3 = { r = .5, g = 1, b = .23, a = 1 },
+		color = { r = 1, g = 0, b = 0, a = 1 },
+		color2 = { r = 1, g = 1, b = 0, a = 1 },
+		color3 = { r = 0, g = 1, b = 0, a = 1 },
 	},
 	alert_gracedurstack = {
 		text = L["Hots: My Grace Duration + Stack"],
@@ -167,16 +162,16 @@ GridStatusHots.defaultDB = {
 		range = false,
 		threshold2 = 5.5,
 		threshold3 = 3,
-		color = { r = .5, g = 1, b = .23, a = 1 },
-		color2 = { r = 1, g = 1, b = .52, a = 1 },
-		color3 = { r = 1, g = .41, b = .28, a = 1 },
+		color = { r = 0, g = 1, b = 0, a = 1 },
+		color2 = { r = 1, g = 1, b = 0, a = 1 },
+		color3 = { r = 1, g = 0, b = 0, a = 1 },
 	},
 	alert_pom = {
 		text = L["Hots: My Prayer of Mending"],
-		desc = L["Hots: My Prayer of Mending"],
 		enable = true,
 		priority = 70,
 		range = false,
+		mine = false,
 		color = { r = 1, g = 0, b = 0, a = 1 },
 		color2 = { r = 1, g = .5, b = 0, a = 1 },
 		color3 = { r = 1, g = 1, b = 0, a = 1 },
@@ -184,9 +179,20 @@ GridStatusHots.defaultDB = {
 		color5 = { r = .5, g = 1, b = 0, a = 1 },
 		color6 = { r = 0, g = 1, b = 0, a = 1 },
 	},
+	alert_pomdur = {
+		text = L["Hots: My Prayer of Mending - duration colored"],
+		enable = true,
+		priority = 70,
+		range = false,
+		mine = false,
+		threshold2 = 6,
+		threshold3 = 3,
+		color = { r = 0, g = 1, b = 0, a = 1 },
+		color2 = { r = 1, g = 1, b = 0, a = 1 },
+		color3 = { r = 1, g = 0, b = 0, a = 1 },
+	},
 	alert_pws = {
 		text = L["Hots: Power Word: Shield"],
-		desc = L["Hots: Power Word: Shield"],
 		enable = true,
 		wsshow = false,
 		priority = 91,
@@ -199,7 +205,6 @@ GridStatusHots.defaultDB = {
 	},
 	alert_weakenedsoul = {
 		text = L["Hots: Weakened Soul"],
-		desc = L["Hots: Weakened Soul"],
 		enable = true,
 		priority = 92,
 		range = false,
@@ -211,7 +216,6 @@ GridStatusHots.defaultDB = {
 	},
 	alert_renew = {
 		text = L["Hots: My Renew"],
-		desc = L["Hots: My Renew"],
 		enable = true,
 		totshow = true,
 		priority = 99,
@@ -224,7 +228,6 @@ GridStatusHots.defaultDB = {
 	},
 	alert_aspire = {
 		text = L["Hots: My Holy Word: Aspire"],
-		desc = L["Hots: My Holy Word: Aspire"],
 		enable = true,
 		totshow = true,
 		priority = 99,
@@ -239,7 +242,6 @@ GridStatusHots.defaultDB = {
 	--Shaman
 	alert_earthliving = {
 		text = L["Hots: My Earthliving"],
-		desc = L["Hots: My Earthliving"],
 		enable = true,
 		totshow = true,
 		priority = 98,
@@ -252,7 +254,6 @@ GridStatusHots.defaultDB = {
 	},
 	alert_earthshield = {
 		text = L["Hots: My Earth Shield"],
-		desc = L["Hots: My Earth Shield"],
 		enable = true,
 		priority = 91,
 		range = false,
@@ -266,7 +267,6 @@ GridStatusHots.defaultDB = {
 	},
 	alert_riptide = {
 		text = L["Hots: My Riptide"],
-		desc = L["Hots: My Riptide"],
 		enable = true,
 		totshow = true,
 		priority = 99,
@@ -281,7 +281,6 @@ GridStatusHots.defaultDB = {
 	--Draenei
 	alert_gift = {
 		text = L["Hots: My Gift of the Naaru"],
-		desc = L["Hots: My Gift of the Naaru"],
 		enable = true,
 		totshow = true,
 		priority = 91,
@@ -310,7 +309,6 @@ local renew_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -324,7 +322,6 @@ local renew_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_renew.color2
@@ -341,7 +338,6 @@ local renew_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -355,7 +351,6 @@ local renew_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_renew.color3
@@ -384,7 +379,6 @@ local aspire_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -398,7 +392,6 @@ local aspire_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_aspire.color2
@@ -415,7 +408,6 @@ local aspire_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -429,7 +421,6 @@ local aspire_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_aspire.color3
@@ -458,7 +449,6 @@ local rejuv_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -472,7 +462,6 @@ local rejuv_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_rejuv.color2
@@ -489,7 +478,6 @@ local rejuv_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -503,7 +491,6 @@ local rejuv_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_rejuv.color3
@@ -532,7 +519,6 @@ local regrow_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -563,7 +549,6 @@ local regrow_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -577,7 +562,6 @@ local regrow_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_regrow.color3
@@ -606,7 +590,6 @@ local lifebl_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -620,7 +603,6 @@ local lifebl_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_lifebl.color2
@@ -637,7 +619,6 @@ local lifebl_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -651,7 +632,6 @@ local lifebl_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_lifebl.color3
@@ -674,13 +654,21 @@ local lifebl_hotcolors = {
 			GridStatusHots.db.profile.alert_lifebl.totshow = arg
 		end,
 	},
+	["decshow"] = {
+		type = "toggle",
+		name = L["Show decimals"],
+		desc = L["Check, if you want to see one decimal place for your Lifebloom(i.e. 7.1)"],
+		get = function () return GridStatusHots.db.profile.alert_lifebl.decshow end,
+		set = function (_, arg)
+			GridStatusHots.db.profile.alert_lifebl.decshow = arg
+		end,
+	},
 }
 
 local lifebl_stack_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_lifebl_stack.color2
@@ -697,7 +685,6 @@ local lifebl_stack_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_lifebl_stack.color3
@@ -720,13 +707,21 @@ local lifebl_stack_hotcolors = {
 			GridStatusHots.db.profile.alert_lifebl_stack.totshow = arg
 		end,
 	},
+	["decshow"] = {
+		type = "toggle",
+		name = L["Show decimals"],
+		desc = L["Check, if you want to see one decimal place for your Lifebloom(i.e. 7.1)"],
+		get = function () return GridStatusHots.db.profile.alert_lifebl_stack.decshow end,
+		set = function (_, arg)
+			GridStatusHots.db.profile.alert_lifebl_stack.decshow = arg
+		end,
+	},
 }
 
 local wgrowth_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -740,7 +735,6 @@ local wgrowth_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_wgrowth.color2
@@ -757,7 +751,6 @@ local wgrowth_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -771,7 +764,6 @@ local wgrowth_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_wgrowth.color3
@@ -800,7 +792,6 @@ local riptide_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -814,7 +805,6 @@ local riptide_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_riptide.color2
@@ -831,7 +821,6 @@ local riptide_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -845,7 +834,6 @@ local riptide_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_riptide.color3
@@ -956,14 +944,94 @@ local pom_hotcolors = {
 			color.a = a or 1
 		end,
 	},
+	["mine"] = {
+		type = "toggle",
+		name = L["Only mine"],
+		desc = L["Only show my PoM"],
+		order = 102,
+		get = function () return GridStatusHots.db.profile.alert_pom.mine end,
+		set = function (_, arg)
+			GridStatusHots.db.profile.alert_pom.mine = arg
+		end,
+	},
+}
+
+local pomdur_hotcolors = {
+	["threshold2"] = {
+		type = "range",
+		name = L["Threshold to activate color 2"],
+		max = 20,
+		min = 1,
+		step = .5,
+		get = function ()
+			      return GridStatusHots.db.profile.alert_pomdur.threshold2
+		      end,
+		set = function (_, v)
+			       GridStatusHots.db.profile.alert_pomdur.threshold2 = v
+		end,
+	},
+	["color2"] = {
+		type = "color",
+		name = L["Color 2"],
+		hasAlpha = true,
+		get = function ()
+			local color = GridStatusHots.db.profile.alert_pomdur.color2
+			return color.r, color.g, color.b, color.a
+		end,
+		set = function (_, r, g, b, a)
+			local color = GridStatusHots.db.profile.alert_pomdur.color2
+			color.r = r
+			color.g = g
+			color.b = b
+			color.a = a or 1
+		end,
+	},
+	["threshold3"] = {
+		type = "range",
+		name = L["Threshold to activate color 3"],
+		max = 20,
+		min = 1,
+		step = .5,
+		get = function ()
+			      return GridStatusHots.db.profile.alert_pomdur.threshold3
+		      end,
+		set = function (_, v)
+			       GridStatusHots.db.profile.alert_pomdur.threshold3 = v
+		end,
+	},
+	["color3"] = {
+		type = "color",
+		name = L["Color 3"],
+		hasAlpha = true,
+		get = function ()
+			local color = GridStatusHots.db.profile.alert_pomdur.color3
+			return color.r, color.g, color.b, color.a
+		end,
+		set = function (_, r, g, b, a)
+			local color = GridStatusHots.db.profile.alert_pomdur.color3
+			color.r = r
+			color.g = g
+			color.b = b
+			color.a = a or 1
+		end,
+	},
+	["mine"] = {
+		type = "toggle",
+		name = L["Only mine"],
+		desc = L["Only show my PoM"],
+		order = 102,
+		get = function () return GridStatusHots.db.profile.alert_pom.mine end,
+		set = function (_, arg)
+			GridStatusHots.db.profile.alert_pom.mine = arg
+		end,
+	},
 }
 
 local pws_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
-		max = 30,
+		max = 20,
 		min = 1,
 		step = .5,
 		get = function ()
@@ -976,8 +1044,7 @@ local pws_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
-		max = 30,
+		max = 20,
 		min = 1,
 		step = .5,
 		get = function ()
@@ -990,7 +1057,6 @@ local pws_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_pws.color2
@@ -1007,7 +1073,6 @@ local pws_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_pws.color3
@@ -1037,7 +1102,6 @@ local weakenedsoul_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -1051,7 +1115,6 @@ local weakenedsoul_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_weakenedsoul.color2
@@ -1068,7 +1131,6 @@ local weakenedsoul_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -1082,7 +1144,6 @@ local weakenedsoul_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_weakenedsoul.color3
@@ -1103,8 +1164,7 @@ local beacon_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
-		max = 10,
+		max = 30,
 		min = 1,
 		step = .5,
 		get = function ()
@@ -1117,7 +1177,6 @@ local beacon_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_beacon.color2
@@ -1134,8 +1193,7 @@ local beacon_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
-		max = 10,
+		max = 30,
 		min = 1,
 		step = .5,
 		get = function ()
@@ -1148,7 +1206,6 @@ local beacon_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_beacon.color3
@@ -1168,7 +1225,6 @@ local earthliving_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -1182,7 +1238,6 @@ local earthliving_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_earthliving.color2
@@ -1199,7 +1254,6 @@ local earthliving_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -1213,7 +1267,6 @@ local earthliving_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_earthliving.color3
@@ -1350,8 +1403,7 @@ local gracedurstack_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
-		max = 7,
+		max = 10,
 		min = 1,
 		step = .5,
 		get = function ()
@@ -1364,7 +1416,6 @@ local gracedurstack_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_gracedurstack.color2
@@ -1381,8 +1432,7 @@ local gracedurstack_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
-		max = 7,
+		max = 10,
 		min = 1,
 		step = .5,
 		get = function ()
@@ -1395,7 +1445,6 @@ local gracedurstack_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_gracedurstack.color3
@@ -1415,7 +1464,6 @@ local gift_hotcolors = {
 	["threshold2"] = {
 		type = "range",
 		name = L["Threshold to activate color 2"],
-		desc = L["Threshold to activate color 2"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -1429,7 +1477,6 @@ local gift_hotcolors = {
 	["color2"] = {
 		type = "color",
 		name = L["Color 2"],
-		desc = L["Color 2"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_gift.color2
@@ -1446,7 +1493,6 @@ local gift_hotcolors = {
 	["threshold3"] = {
 		type = "range",
 		name = L["Threshold to activate color 3"],
-		desc = L["Threshold to activate color 3"],
 		max = 10,
 		min = 1,
 		step = .5,
@@ -1460,7 +1506,6 @@ local gift_hotcolors = {
 	["color3"] = {
 		type = "color",
 		name = L["Color 3"],
-		desc = L["Color 3"],
 		hasAlpha = true,
 		get = function ()
 			local color = GridStatusHots.db.profile.alert_gift.color3
@@ -1512,6 +1557,7 @@ function GridStatusHots:RegisterStatuses()
 		self:RegisterStatus("alert_renew", L["Hots: My Renew"], renew_hotcolors)
 		self:RegisterStatus("alert_aspire", L["Hots: My Holy Word: Aspire"], aspire_hotcolors)
         self:RegisterStatus("alert_pom", L["Hots: My Prayer of Mending"], pom_hotcolors)
+        self:RegisterStatus("alert_pomdur", L["Hots: My Prayer of Mending - duration colored"], pomdur_hotcolors)
 		self:RegisterStatus("alert_gracestack", L["Hots: My Grace Stack"], gracestack_hotcolors)
 		self:RegisterStatus("alert_gracedurstack", L["Hots: My Grace Duration + Stack"], gracedurstack_hotcolors)
 		self:RegisterStatus("alert_pws", L["Hots: Power Word: Shield"], pws_hotcolors)
@@ -1543,6 +1589,7 @@ function GridStatusHots:UnregisterStatuses()
 		self:UnregisterStatus("alert_renew")
 		self:UnregisterStatus("alert_aspire")
         self:UnregisterStatus("alert_pom")
+        self:UnregisterStatus("alert_pomdur")
 		self:UnregisterStatus("alert_gracestack")
 		self:UnregisterStatus("alert_gracedurstack")
 		self:UnregisterStatus("alert_pws")
@@ -1579,8 +1626,8 @@ function GridStatusHots:UpdateAllUnits()
 end
 
 function UpdateUnit(self, guid, unitid)
-	local total_hots, lbstack, pomstack, grastack, esstack = 0, 0, 0, 0, 0;
-	local asptime,retime,rjtime,rgtime,lbtime,wgtime,sltime,sstime,ritime,pomtime,pwstime,boltime,eltime,estime,gratime,gifttime
+	local total_hots, lbstack, pomstack, mypomstack, grastack, esstack = 0, 0, 0, 0, 0, 0;
+	local asptime,retime,rjtime,rgtime,lbtime,wgtime,sltime,sstime,ritime,pomtime,mypomtime,pwstime,boltime,eltime,estime,gratime,gifttime
 	local wstime
 
 	local now = GetTime()
@@ -1619,9 +1666,11 @@ function UpdateUnit(self, guid, unitid)
 			total_hots = total_hots + 1;
 			if (bismine == "player" and btime) then ritime = btime end
 		elseif bname == spellNameCache["PrayerofMending"] then
-			if btime then
 				pomtime = btime
 				pomstack = bcount
+			if bismine == "player"then
+				mypomtime = btime
+				mypomstack = bcount
 			end
 		elseif bname == spellNameCache["PowerWordShield"] then
 			if btime then
@@ -1686,14 +1735,14 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(retime).."-"..tostring(total_hots))
+				string.format("%d-%d", retime, total_hots)
 			)
 		else
 			self.core:SendStatusGained(guid, "alert_renew",
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(retime))
+				string.format("%d", retime)
 			)
 		end
 	else
@@ -1712,14 +1761,14 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(asptime).."-"..tostring(total_hots))
+				string.format("%d-%d", asptime, total_hots)
 			)
 		else
 			self.core:SendStatusGained(guid, "alert_aspire",
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(asptime))
+				string.format("%d", asptime)
 			)
 		end
 	else
@@ -1738,14 +1787,14 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(rgtime).."-"..tostring(total_hots))
+				string.format("%d-%d", rgtime, total_hots)
 			)
 		else
 			self.core:SendStatusGained(guid, "alert_regrow",
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(rgtime))
+				string.format("%d", rgtime)
 			)
 		end
 	else
@@ -1764,14 +1813,14 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(rjtime).."-"..tostring(total_hots))
+				string.format("%d-%d", rjtime, total_hots)
 			)
 		else
 			self.core:SendStatusGained(guid, "alert_rejuv",
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(rjtime))
+				string.format("%d", rjtime)
 			)
 		end
 	else
@@ -1779,58 +1828,95 @@ function UpdateUnit(self, guid, unitid)
 	end
 
 	--Lifebloom
-	if lbtime and (self.db.profile.alert_lifebl_stack.enable or self.db.profile.alert_lifebl.enable) then
+	if lbtime and self.db.profile.alert_lifebl_stack.enable then
 		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_lifebl_stack
 		local hotcolor = settings.color
 		if lbstack == 2 then hotcolor = settings.color2 end
 		if lbstack == 3 then hotcolor = settings.color3 end
 		if settings.totshow then
-			self.core:SendStatusGained(guid, "alert_lifebl_stack",
-				settings.priority,
-				(settings.range and 40),
-				hotcolor,
-				string.format("%.1f-%d", lbtime, total_hots)
-			)
+			if settings.decshow then
+				self.core:SendStatusGained(guid, "alert_lifebl_stack",
+					settings.priority,
+					(settings.range and 40),
+					hotcolor,
+					string.format("%.1f-%d", lbtime, total_hots)
+				)
+			else
+				self.core:SendStatusGained(guid, "alert_lifebl_stack",
+					settings.priority,
+					(settings.range and 40),
+					hotcolor,
+					string.format("%d-%d", lbtime, total_hots)
+				)
+			end
 		else
-			self.core:SendStatusGained(guid, "alert_lifebl_stack",
-				settings.priority,
-				(settings.range and 40),
-				hotcolor,
-				string.format("%.1f", lbtime)
-			)
+			if settings.decshow then
+				self.core:SendStatusGained(guid, "alert_lifebl_stack",
+					settings.priority,
+					(settings.range and 40),
+					hotcolor,
+					string.format("%.1f", lbtime)
+				)
+			else
+				self.core:SendStatusGained(guid, "alert_lifebl_stack",
+					settings.priority,
+					(settings.range and 40),
+					hotcolor,
+					string.format("%d", lbtime)
+				)
+			end
 		end
+	else
+		if self.core:GetCachedStatus(guid, "alert_lifebl_stack") then self.core:SendStatusLost(guid, "alert_lifebl_stack") end
+	end
 
+	if lbtime and self.db.profile.alert_lifebl.enable then
+		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_lifebl
 		local hotcolor = settings.color
 		if lbtime <= settings.threshold2 then hotcolor = settings.color2 end
 		if lbtime <= settings.threshold3 then hotcolor = settings.color3 end
 		if settings.totshow then
-			self.core:SendStatusGained(guid, "alert_lifebl",
-				settings.priority,
-				(settings.range and 40),
-				hotcolor,
-				string.format("%d-%.1f-%d", lbstack, lbtime, total_hots)
-			)
+			if settings.decshow then
+				self.core:SendStatusGained(guid, "alert_lifebl",
+					settings.priority,
+					(settings.range and 40),
+					hotcolor,
+					string.format("%d-%.1f-%d", lbstack, lbtime, total_hots)
+				)
+			else
+				self.core:SendStatusGained(guid, "alert_lifebl",
+					settings.priority,
+					(settings.range and 40),
+					hotcolor,
+					string.format("%d-%d-%d", lbstack, lbtime, total_hots)
+				)
+			end
 		else
-			local settings = self.db.profile.alert_lifebl
-			local hotcolor = settings.color
-			if lbtime <= settings.threshold2 then hotcolor = settings.color2 end
-			if lbtime <= settings.threshold3 then hotcolor = settings.color3 end
-			self.core:SendStatusGained(guid, "alert_lifebl",
-				settings.priority,
-				(settings.range and 40),
-				hotcolor,
-				string.format("%d-%.1f", lbstack, lbtime)
-			)
+			if settings.decshow then
+				self.core:SendStatusGained(guid, "alert_lifebl",
+					settings.priority,
+					(settings.range and 40),
+					hotcolor,
+					string.format("%d-%.1f", lbstack, lbtime)
+				)
+			else
+				self.core:SendStatusGained(guid, "alert_lifebl",
+					settings.priority,
+					(settings.range and 40),
+					hotcolor,
+					string.format("%d-%d", lbstack, lbtime)
+				)
+			end
 		end
 	else
 		if self.core:GetCachedStatus(guid, "alert_lifebl") then self.core:SendStatusLost(guid, "alert_lifebl") end
-		if self.core:GetCachedStatus(guid, "alert_lifebl_stack") then self.core:SendStatusLost(guid, "alert_lifebl_stack") end
 	end
 
 	--Wild Growth
 	if wgtime and self.db.profile.alert_wgrowth.enable then
+		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_wgrowth
 		local hotcolor = settings.color
 		if wgtime <= settings.threshold2 then hotcolor = settings.color2 end
@@ -1840,14 +1926,14 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(wgtime).."-"..tostring(total_hots))
+				string.format("%d-%d", wgtime, total_hots)
 			)
 		else
 			self.core:SendStatusGained(guid, "alert_wgrowth",
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(wgtime))
+				string.format("%d", wgtime)
 			)
 		end
 	else
@@ -1856,6 +1942,7 @@ function UpdateUnit(self, guid, unitid)
 
 	--Riptide
 	if ritime and self.db.profile.alert_riptide.enable then
+		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_riptide
 		local hotcolor = settings.color
 		if ritime <= settings.threshold2 then hotcolor = settings.color2 end
@@ -1865,14 +1952,14 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(ritime).."-"..tostring(total_hots))
+				string.format("%d-%d", ritime, total_hots)
 			)
 		else
 			self.core:SendStatusGained(guid, "alert_riptide",
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(ritime))
+				string.format("%d", ritime)
 			)
 		end
 	else
@@ -1899,7 +1986,8 @@ function UpdateUnit(self, guid, unitid)
 	end
 
 	--Prayer of Mending
-	if pomtime and self.db.profile.alert_pom.enable then
+	if pomtime or mypomtime and self.db.profile.alert_pom.enable then
+		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_pom
 		local hotcolor = settings.color
 		if pomstack == 2 then hotcolor = settings.color2 end
@@ -1907,18 +1995,58 @@ function UpdateUnit(self, guid, unitid)
 		if pomstack == 4 then hotcolor = settings.color4 end
 		if pomstack == 5 then hotcolor = settings.color5 end
 		if pomstack == 6 then hotcolor = settings.color6 end
-		self.core:SendStatusGained(guid, "alert_pom",
-			settings.priority,
-			(settings.range and 40),
-			hotcolor,
-			tostring(math.floor(pomtime))
-		)
+		if mypomtime and self.db.profile.alert_pom.mine then
+			self.core:SendStatusGained(guid, "alert_pom",
+				settings.priority,
+				(settings.range and 40),
+				hotcolor,
+				string.format("%d", mypomtime)
+			)
+		elseif pomtime and not self.db.profile.alert_pom.mine then
+			self.core:SendStatusGained(guid, "alert_pom",
+				settings.priority,
+				(settings.range and 40),
+				hotcolor,
+				string.format("%d", pomtime)
+			)
+		else
+			if self.core:GetCachedStatus(guid, "alert_pom") then self.core:SendStatusLost(guid, "alert_pom") end
+		end
 	else
 		if self.core:GetCachedStatus(guid, "alert_pom") then self.core:SendStatusLost(guid, "alert_pom") end
 	end
 
+	if pomtime or mypomtime and self.db.profile.alert_pomdur.enable then
+		-- Add self thrown countdown and status
+		local settings = self.db.profile.alert_pomdur
+		local hotcolor = settings.color
+		if pomtime <= settings.threshold2 then hotcolor = settings.color2 end
+		if pomtime <= settings.threshold3 then hotcolor = settings.color3 end
+		if mypomtime and self.db.profile.alert_pom.mine then
+			self.core:SendStatusGained(guid, "alert_pomdur",
+				settings.priority,
+				(settings.range and 40),
+				hotcolor,
+				tostring(mypomstack)
+			)
+		elseif pomtime and not self.db.profile.alert_pom.mine then
+			self.core:SendStatusGained(guid, "alert_pomdur",
+				settings.priority,
+				(settings.range and 40),
+				hotcolor,
+				tostring(pomstack)
+			)
+		else
+			if self.core:GetCachedStatus(guid, "alert_pomdur") then self.core:SendStatusLost(guid, "alert_pomdur") end
+		end
+	else
+		if self.core:GetCachedStatus(guid, "alert_pomdur") then self.core:SendStatusLost(guid, "alert_pomdur") end
+	end
+
+	--Power Word: Shield
 	if pwstime or wstime and self.db.profile.alert_pws.enable then
 		if pwstime then
+			-- Add self thrown countdown and status
 			local settings = self.db.profile.alert_pws
 			local hotcolor = settings.color
 			if pwstime <= settings.threshold2 then hotcolor = settings.color2 end
@@ -1928,17 +2056,18 @@ function UpdateUnit(self, guid, unitid)
 					settings.priority,
 					(settings.range and 40),
 					hotcolor,
-					tostring(math.floor(pwstime).."-"..tostring(math.floor(wstime)))
+					string.format("%d-%d", pwstime, wstime)
 				)
 			else
 				self.core:SendStatusGained(guid, "alert_pws",
 					settings.priority,
 					(settings.range and 40),
 					hotcolor,
-					tostring(math.floor(pwstime))
+					string.format("%d", pwstime)
 				)
 			end
 		elseif self.db.profile.alert_pws.wsshow and wstime then
+			-- Add self thrown countdown and status
 			local settings = self.db.profile.alert_weakenedsoul
 			local hotcolor = settings.color
 			if wstime <= settings.threshold2 then hotcolor = settings.color2 end
@@ -1947,7 +2076,7 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(wstime))
+				string.format("%d", wstime)
 			)
 		else
 			if self.core:GetCachedStatus(guid, "alert_pws") then self.core:SendStatusLost(guid, "alert_pws") end
@@ -1967,7 +2096,7 @@ function UpdateUnit(self, guid, unitid)
 			settings.priority,
 			(settings.range and 40),
 			hotcolor,
-			tostring(math.floor(wstime))
+			string.format("%d", wstime)
 		)
 	else
 		if self.core:GetCachedStatus(guid, "alert_weakenedsoul") then self.core:SendStatusLost(guid, "alert_weakenedsoul") end
@@ -1975,6 +2104,7 @@ function UpdateUnit(self, guid, unitid)
 
 	--Beacon of Light
 	if boltime and self.db.profile.alert_beacon.enable then
+		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_beacon
 		local hotcolor = settings.color
 		if boltime <= settings.threshold2 then hotcolor = settings.color2 end
@@ -1983,7 +2113,7 @@ function UpdateUnit(self, guid, unitid)
 			settings.priority,
 			(settings.range and 40),
 			hotcolor,
-			tostring(math.floor(boltime))
+			string.format("%d", boltime)
 		)
 	else
 		if self.core:GetCachedStatus(guid, "alert_beacon") then self.core:SendStatusLost(guid, "alert_beacon") end
@@ -1991,6 +2121,7 @@ function UpdateUnit(self, guid, unitid)
 
 	--Earthliving
 	if eltime and self.db.profile.alert_earthliving.enable then
+		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_earthliving
 		local hotcolor = settings.color
 		if eltime <= settings.threshold2 then hotcolor = settings.color2 end
@@ -2000,14 +2131,14 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(eltime).."-"..tostring(total_hots))
+				string.format("%d-%d", eltime, total_hots)
 			)
 		else
 			self.core:SendStatusGained(guid, "alert_earthliving",
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(eltime))
+				string.format("%d", eltime)
 			)
 		end
 	else
@@ -2016,6 +2147,7 @@ function UpdateUnit(self, guid, unitid)
 
 	--Grace
 	if gratime and (self.db.profile.alert_gracestack.enable or self.db.profile.alert_gracedurstack.enable) then
+		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_gracestack
 		local hotcolor = settings.color
 		if grastack == 2 then hotcolor = settings.color2 end
@@ -2024,9 +2156,10 @@ function UpdateUnit(self, guid, unitid)
 			settings.priority,
 			(settings.range and 40),
 			hotcolor,
-			tostring(math.floor(gratime))
+			string.format("%d", gratime)
 		)
 
+		-- Add self thrown countdown and status
 		local settings = self.db.profile.alert_gracedurstack
 		local hotcolor = settings.color
 		if gratime <= settings.threshold2 then hotcolor = settings.color2 end
@@ -2035,7 +2168,7 @@ function UpdateUnit(self, guid, unitid)
 			settings.priority,
 			(settings.range and 40),
 			hotcolor,
-			tostring(math.floor(gratime).."-"..tostring(grastack))
+			string.format("%d-%d", gratime, grastack)
 		)
 	else
 		if self.core:GetCachedStatus(guid, "alert_gracestack") then self.core:SendStatusLost(guid, "alert_gracestack") end
@@ -2054,14 +2187,14 @@ function UpdateUnit(self, guid, unitid)
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(gifttime).."-"..tostring(total_hots))
+				string.format("%d-%d", gifttime, total_hots)
 			)
 		else
 			self.core:SendStatusGained(guid, "alert_gift",
 				settings.priority,
 				(settings.range and 40),
 				hotcolor,
-				tostring(math.floor(gifttime))
+				string.format("%d", gifttime)
 			)
 		end
 	else

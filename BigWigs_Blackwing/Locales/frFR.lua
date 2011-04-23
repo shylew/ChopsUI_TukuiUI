@@ -9,6 +9,9 @@ if L then
 
 	L.air_phase_trigger = "Oui, fuyez ! Chaque foulée accélère votre cœur. Les battements résonnent comme le tonnerre... Assourdissant. Vous ne vous échapperez pas !" -- à vérifier
 
+	L.obnoxious_soon = "Démon odieux imminent !"
+
+	L.searing_soon = "Flamme incendiaire dans 10 sec. !"
 	L.sonicbreath_cooldown = "~Souffle sonique"
 end
 
@@ -54,6 +57,9 @@ if L then
 
 	L.spew_bar = "~Prochain Crachement"
 	L.spew_warning = "Crachement de magma imminent !"
+
+	L.mangle_bar = "Mutilation : %s"
+	L.mangle_cooldown = "~Prochain Mutilation"
 end
 
 L = BigWigs:NewBossLocale("Maloriak", "frFR")
@@ -65,6 +71,7 @@ if L then
 
 	--normal
 	L.final_phase = "Phase finale"
+	L.final_phase_soon = "Phase finale imminente !"
 
 	L.release_aberration_message = "%d aberrations restantes !"
 	L.release_all = "%d aberrations libérées !"
@@ -97,14 +104,16 @@ if L then
 	L.phase = "Phases"
 	L.phase_desc = "Prévient quand la rencontre entre dans une nouvelle phase."
 
+	L.discharge_bar = "~Recharge Décharge"
+
 	L.phase_two_trigger = "Soyez maudits, mortels ! Un tel mépris pour les possessions d'autrui doit être traité avec une extrême fermeté !" -- à vérifier
 
-	L.phase_three_trigger = "J'ai tout fait pour être un hôte accomodant, mais vous ne daignez pas mourir ! Oublions les bonnes manières et passons aux choses sérieuses... VOUS TUER TOUS !" -- à vérifier
+	L.phase_three_trigger = "J'ai tout fait pour être un hôte accommodant" -- à vérifier
 
 	L.crackle_trigger = "L'électricité crépite dans l'air !"
 	L.crackle_message = "Electrocuter imminent !"
 
-	L.shadowblaze_message = "Feu"
+	L.shadowblaze_message = "Ombrase sur vous !"
 
 	L.onyxia_power_message = "Explosion imminente !"
 
@@ -138,4 +147,3 @@ if L then
 	L.iconomnotron = "Icône sur le boss actif"
 	L.iconomnotron_desc = "Place l'icône de raid primaire sur le boss actif (nécessite d'être assistant ou mieux)."
 end
-

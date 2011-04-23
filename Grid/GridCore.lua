@@ -4,18 +4,13 @@
 
 local _, Grid = ...
 
-------------------------------------------------------------------------
-
 if not Grid.L then Grid.L = { } end
-
-local L = setmetatable(Grid.L, {
+local L = setmetatable( Grid.L, {
 	__index = function(t, k)
 		t[k] = k
 		return k
 	end
 })
-
-------------------------------------------------------------------------
 
 _G.Grid = LibStub("AceAddon-3.0"):NewAddon(Grid, "Grid", "AceConsole-3.0", "AceEvent-3.0")
 

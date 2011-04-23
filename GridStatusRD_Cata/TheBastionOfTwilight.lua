@@ -26,6 +26,8 @@ GridStatusRaidDebuff:Debuff(zone, 84832, 1, 5, 5) --Dismantle
 GridStatusRaidDebuff:Debuff(zone, 84856, 1, 6, 5) --Hungering Shadows
 --Twilight Shadow Mender
 GridStatusRaidDebuff:Debuff(zone, 85643, 1, 6, 5) --Mind Sear
+--Twilight-shifter
+GridStatusRaidDebuff:Debuff(zone, 85564, 1, 5, 5, true, true) --Shifted Reality
 --Bound Zephyr
 GridStatusRaidDebuff:Debuff(zone, 93277, 1, 6, 5, true, true) --Rending Gale
 -- More important to show Rending Gale stack imo, but user can adjust priority
@@ -72,25 +74,14 @@ GridStatusRaidDebuff:BossName(zone, 10, "Halfus Wyrmbreaker")
 GridStatusRaidDebuff:Debuff(zone, 83710, 11, 5, 5) --Furious Roar
 GridStatusRaidDebuff:Debuff(zone, 83908, 12, 5, 5, true, true) --Malevolent Strikes
 GridStatusRaidDebuff:Debuff(zone, 83603, 13, 5, 5) --Stone Touch
---GridStatusRaidDebuff:Debuff(zone, 86157, 13, 5, 5) --Malevolent Strikes
---GridStatusRaidDebuff:Debuff(zone, 86158, 14, 5, 5) --Malevolent Strikes
---GridStatusRaidDebuff:Debuff(zone, 86159, 15, 5, 5) --Malevolent Strikes
 
 -- Valiona and Theralion
 GridStatusRaidDebuff:BossName(zone, 20, "Valiona and Theralion")
 GridStatusRaidDebuff:Debuff(zone, 86788, 21, 5, 5) --Blackout 10-normal
 GridStatusRaidDebuff:Debuff(zone, 86622, 22, 5, 5) --Engulfing Magic 10-normal
-GridStatusRaidDebuff:Debuff(zone, 86202, 23, 5, 5) --Twilight Shift 10-normal
+GridStatusRaidDebuff:Debuff(zone, 86202, 23, 5, 5, true, true) --Twilight Shift 10-normal
 GridStatusRaidDebuff:Debuff(zone, 86014, 24, 5, 5) --Twilight Meteorite
---GridStatusRaidDebuff:Debuff(zone, 92876, 22, 5, 5) --Blackout 25-normal
---GridStatusRaidDebuff:Debuff(zone, 92877, 23, 5, 5) --Blackout
---GridStatusRaidDebuff:Debuff(zone, 92878, 24, 5, 5) --Blackout
---GridStatusRaidDebuff:Debuff(zone, 95639, 26, 5, 5) --Engulfing Magic 25-normal
---GridStatusRaidDebuff:Debuff(zone, 95640, 27, 5, 5) --Engulfing Magic
---GridStatusRaidDebuff:Debuff(zone, 95641, 28, 5, 5) --Engulfing Magic
---GridStatusRaidDebuff:Debuff(zone, 92889, 30, 5, 5) --Twilight Shift 25-normal
---GridStatusRaidDebuff:Debuff(zone, 92890, 31, 5, 5) --Twilight Shift
---GridStatusRaidDebuff:Debuff(zone, 92891, 32, 5, 5) --Twilight Shift
+GridStatusRaidDebuff:Debuff(zone, 92886, 25, 6, 6, true, true) --Twilight Zone
 
 -- Twilight Ascendant Council
 GridStatusRaidDebuff:BossName(zone, 30, "Ascendant Council")
@@ -102,9 +93,14 @@ GridStatusRaidDebuff:Debuff(zone, 82665, 35, 6, 6) --Heart of Ice
 GridStatusRaidDebuff:Debuff(zone, 82772, 36, 7, 7) --Frozen
 GridStatusRaidDebuff:Debuff(zone, 84948, 37, 6, 6) --Gravity Crush
 GridStatusRaidDebuff:Debuff(zone, 83500, 38, 4, 4) --Swirling Winds
-GridStatusRaidDebuff:Debuff(zone, 83581, 39, 4, 4) --Grounded
+GridStatusRaidDebuff:Debuff(zone, 83581, 38, 4, 4) --Grounded
+GridStatusRaidDebuff:Debuff(zone, 82285, 38, 4, 4) --Elemental Stasis
 -- Debuffs we don't care about seeing:
 -- GridStatusRaidDebuff:Debuff(zone, 83587, 39, 4, 4) --Magnetic Pull
+-- Heroic
+GridStatusRaidDebuff:Debuff(zone, 92307, 39, 7, 7) --Frost Beacon
+GridStatusRaidDebuff:Debuff(zone, 92467, 39, 7, 7) --Static Overload
+GridStatusRaidDebuff:Debuff(zone, 92538, 39, 7, 7) --Gravity Core
 
 -- Cho'gall
 GridStatusRaidDebuff:BossName(zone, 40, "Cho'gall")

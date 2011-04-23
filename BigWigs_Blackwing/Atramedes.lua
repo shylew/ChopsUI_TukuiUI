@@ -26,6 +26,8 @@ if L then
 
 	L.air_phase_trigger = "Yes, run! With every step your heart quickens. The beating, loud and thunderous... Almost deafening. You cannot escape!"
 
+	L.obnoxious_soon = "Obnoxious Fiend soon!"
+
 	L.searing_soon = "Searing Flame in 10sec!"
 	L.sonicbreath_cooldown = "~Sonic Breath"
 end
@@ -38,11 +40,13 @@ L = mod:GetLocale()
 function mod:GetOptions(CL)
 	return {
 		"ground_phase", 78075, 77840,
-		"air_phase", {78092, "FLASHSHAKE", "ICON", "SAY"},
-		"berserk", "bosskill"
+		"air_phase",
+		{92702, "ICON", "SAY"},
+		{78092, "FLASHSHAKE", "ICON", "SAY"}, "berserk", "bosskill"
 	}, {
 		ground_phase = L["ground_phase"],
 		air_phase = L["air_phase"],
+		[92702] = "heroic",
 		[78092] = "general"
 	}
 end
@@ -52,6 +56,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Tracking", 78092)
 	self:Log("SPELL_AURA_APPLIED", "SearingFlame", 77840)
 	self:Yell("AirPhase", L["air_phase_trigger"])
+
+	self:Log("SPELL_AURA_APPLIED", "ObnoxiousPhaseShift", 92681)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -64,6 +70,7 @@ function mod:OnEngage(diff)
 	self:DelayedMessage(77840, 35, L["searing_soon"], "Attention", 77840)
 	self:Bar("air_phase", L["air_phase"], 92, 5740) -- Rain of Fire Icon
 	if diff > 2 then
+		self:RegisterEvent("UNIT_AURA")
 		self:Berserk(600)
 	end
 end
@@ -71,6 +78,36 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+local function FiendCheck(dGUID)
+	local fiend = mod:GetUnitIdByGUID(dGUID)
+	if not fiend then
+		mod:ScheduleTimer(FiendCheck, 0.1, dGUID)
+	else
+		mod:SecondaryIcon(92702, fiend)
+	end
+end
+
+function mod:ObnoxiousPhaseShift(...)
+	self:Message(92677, L["obnoxious_soon"], "Attention", 92677) -- do we really need this?
+	local dGUID = select(10, ...)
+	FiendCheck(dGUID)
+	self:RegisterEvent("UNIT_AURA")
+end
+
+do
+	local pestered = GetSpellInfo(92685)
+	local obnoxious = GetSpellInfo(92702)
+	function mod:UNIT_AURA(_, unit)
+		if UnitDebuff(unit, pestered) then
+			if unit == "player" then
+				self:Say(92677, CL["say"]:format(obnoxious))
+			end
+			self:TargetMessage(92677, obnoxious, UnitName(unit), "Attention", 92677, "Long")
+			self:UnregisterEvent("UNIT_AURA")
+		end
+	end
+end
 
 function mod:Tracking(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then

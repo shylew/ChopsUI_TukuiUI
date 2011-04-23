@@ -1,9 +1,0 @@
-## Interface: 40000
-## Title: GridStatusChimaeron
-## Notes: Health status indicator that shows up below a certain threshold, useful on Chimaeron
-## Author: Sepha
-## Version: 0.1
-## X-Category: UnitFrame
-## Dependencies: Grid
-
-GridStatusChimaeron.lua

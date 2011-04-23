@@ -1,0 +1,13 @@
+tag 1.6b
+bb9fdd464985e91e482454b3c3bf48d6fd79409e
+root <root@db06.curselive.local>
+2010-10-17 19:31:49 +0000
+
+Tagging as 1.6b
+
+Also imported fixes for LibAM
+
+
+--------------------
+
+No changelog

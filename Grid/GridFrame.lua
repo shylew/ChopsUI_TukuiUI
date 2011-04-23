@@ -2,21 +2,19 @@
 	GridFrame.lua
 ----------------------------------------------------------------------]]
 
-local _, Grid = ...
+local GRID, Grid = ...
 local L = Grid.L
 
-local GridRange = Grid:GetModule("GridRange")
+local GridStatus
 
 local media = LibStub("LibSharedMedia-3.0", true)
 if media then media:Register("statusbar", "Gradient", "Interface\\Addons\\Grid\\gradient32x32") end
 
-local hasMediaWidgets = media and LibStub("AceGUISharedMediaWidgets-1.0", true)
-
 local GridFrame = Grid:NewModule("GridFrame", "AceBucket-3.0", "AceTimer-3.0")
 
-local SecureButton_GetModifiedUnit = SecureButton_GetModifiedUnit
-
 ------------------------------------------------------------------------
+
+local SecureButton_GetModifiedUnit = SecureButton_GetModifiedUnit
 
 local function GridFrame_OnShow(self)
 	GridFrame:SendMessage("UpdateFrameUnits")
@@ -391,17 +389,16 @@ function GridFrame.prototype:SetIconSize(size, borderSize)
 		borderSize = GridFrame.db.profile.iconBorderSize
 	end
 
-	local backdrop = self.IconBG:GetBackdrop()
+	local r, g, b, a = self.IconBG:GetBackdropBorderColor()
 
+	local backdrop = self.IconBG:GetBackdrop()
 	backdrop.edgeSize = borderSize
 	backdrop.insets.left = borderSize
 	backdrop.insets.right = borderSize
 	backdrop.insets.top = borderSize
 	backdrop.insets.bottom = borderSize
-
-	local r, g, b, a = self.IconBG:GetBackdropBorderColor()
-
 	self.IconBG:SetBackdrop(backdrop)
+
 	if borderSize == 0 then
 		self.IconBG:SetBackdropBorderColor(0, 0, 0, 0)
 	else
@@ -612,9 +609,14 @@ function GridFrame.prototype:PositionAllIndicators()
 end
 
 local COLOR_WHITE = { r = 1, g = 1, b = 1, a = 1 }
-function GridFrame.prototype:SetIndicator(indicator, color, text, value, maxValue, texture, start, duration, stack)
+local COORDS_FULL = { left = 0, right = 1, top = 0, bottom = 1 }
+
+function GridFrame.prototype:SetIndicator(indicator, color, text, value, maxValue, texture, start, duration, stack, texCoords)
 	if not color then
 		color = COLOR_WHITE
+	end
+	if texture and not texCoords then
+		texCoords = COORDS_FULL
 	end
 
 	if indicator == "border" then
@@ -660,6 +662,8 @@ function GridFrame.prototype:SetIndicator(indicator, color, text, value, maxValu
 			else
 				self.Icon:SetTexture(texture)
 			end
+
+			self.Icon:SetTexCoord(texCoords.left, texCoords.right, texCoords.top, texCoords.bottom)
 
 			if type(color) == "table" then
 				if not color.ignore then
@@ -730,7 +734,8 @@ function GridFrame.prototype:ClearIndicator(indicator)
 	elseif indicator == "healingBar" then
 		self:SetHealingBar(0)
 	elseif indicator == "icon" then
-		self.Icon:SetTexture(1,1,1,0)
+		self.Icon:SetTexture(1, 1, 1, 0)
+		self.Icon:SetTexCoord(0, 1, 0, 1)
 		self.IconText:SetText("")
 		self.IconText:SetTextColor(1, 1, 1, 1)
 		self.IconBG:Hide()
@@ -808,11 +813,7 @@ GridFrame.defaultDB = {
 		["frameAlpha"] = {
 			alert_death = true,
 			alert_offline = true,
-			alert_range_10 = true,
-			alert_range_28 = true,
-			alert_range_30 = true,
-			alert_range_40 = true,
-			alert_range_100 = true,
+			alert_range = true,
 		},
 		["bar"] = {
 			alert_death = true,
@@ -1075,6 +1076,7 @@ GridFrame.options = {
 						GridFrame.db.profile.iconBorderSize = v
 						local iconSize = GridFrame.db.profile.iconSize
 						GridFrame:WithAllFrames(function(f) f:SetIconSize(iconSize, v) end)
+						GridFrame:UpdateAllFrames()
 					end,
 				},
 				["cooldown"] = {
@@ -1171,13 +1173,15 @@ GridFrame.options = {
 }
 
 if media then
+	local mediaWidgets = media and LibStub("AceGUISharedMediaWidgets-1.0", true)
+
 	GridFrame.options.args.text.args.font = {
 		name = L["Font"],
 		desc = L["Adjust the font settings"],
 		order = 10, width = "double",
 		type = "select",
 		values = media:HashTable("font"),
-		dialogControl = hasMediaWidgets and "LSM30_Font" or nil,
+		dialogControl = mediaWidgets and "LSM30_Font" or nil,
 		get = function()
 			return GridFrame.db.profile.font
 		end,
@@ -1193,7 +1197,7 @@ if media then
 		order = 10, width = "double",
 		type = "select",
 		values = media:HashTable("statusbar"),
-		dialogControl = hasMediaWidgets and "LSM30_Statusbar" or nil,
+		dialogControl = mediaWidgets and "LSM30_Statusbar" or nil,
 		get = function()
 			return GridFrame.db.profile.texture
 		end,
@@ -1216,6 +1220,8 @@ Grid.options.args["Indicators"] = {
 ------------------------------------------------------------------------
 
 function GridFrame:PostInitialize()
+	GridStatus = Grid:GetModule("GridStatus")
+
 	self.debugging = self.db.profile.debug
 
 	self.frames = {}
@@ -1401,7 +1407,8 @@ function GridFrame:UpdateIndicator(frame, indicator)
 			status.texture,
 			status.start,
 			status.duration,
-			status.stack)
+			status.stack,
+			status.texCoords)
 	else
 		-- self:Debug("Clearing indicator", indicator, "for", name)
 		frame:ClearIndicator(indicator)
@@ -1415,7 +1422,7 @@ function GridFrame:StatusForIndicator(unitid, guid, indicator)
 
 	-- self.statusmap[indicator][status]
 	for statusName, enabled in pairs(statusmap) do
-		local status = enabled and Grid:GetModule("GridStatus"):GetCachedStatus(guid, statusName)
+		local status = enabled and GridStatus:GetCachedStatus(guid, statusName)
 		if status then
 			local valid = true
 
@@ -1454,11 +1461,15 @@ function GridFrame:StatusForIndicator(unitid, guid, indicator)
 	return topStatus
 end
 
+local GridStatusRange
 function GridFrame:UnitInRange(id, yrds)
 	if not id or not UnitExists(id) then return false end
 
-	local range = GridRange:GetUnitRange(id)
-	return range and yrds >= range
+	if not GridStatusRange then
+		GridStatusRange = Grid:GetModule("GridStatus"):GetModule("GridStatusRange")
+	end
+
+	return GridStatusRange and GridStatusRange:UnitInRange(id) or UnitInRange(id)
 end
 
 ------------------------------------------------------------------------

@@ -38,7 +38,7 @@ if L then
 	L.tentacles_message = "Tentacle disco party!"
 
 	L.sickness_message = "You feel terrible!"
-	L.blaze_message = "Blaze on YOU!"
+	L.blaze_message = "Fire under YOU!"
 	L.crash_say = "Crash on ME!"
 
 	L.fury_bar = "Next Fury"
@@ -118,29 +118,30 @@ do
 	end
 end
 
-local function checkTarget(sGUID)
-	local mobId = mod:GetUnitIdByGUID(sGUID)
-	if mobId then
-		local player = UnitName(mobId.."target")
-		if not player then return end
-		if UnitIsUnit("player", player) then
-			mod:Say(93180, L["crash_say"])
-			mod:FlashShake(93180)
+do
+	local function checkTarget(sGUID)
+		local mobId = mod:GetUnitIdByGUID(sGUID)
+		if mobId then
+			local player = UnitName(mobId.."target")
+			if not player then return end
+			if UnitIsUnit("player", player) then
+				mod:Say(93180, L["crash_say"])
+				mod:FlashShake(93180)
+			end
+			mod:TargetMessage(93180, corruptingCrash, player, "Urgent", 93180, "Long")
+			if counter == 1 then
+				mod:PrimaryIcon(93180, player)
+			else
+				mod:SecondaryIcon(93180, player)
+			end
+			if mod:GetInstanceDifficulty() == 4 then counter = counter + 1 end
 		end
-		mod:TargetMessage(93180, corruptingCrash, player, "Urgent", 93180, "Long")
-		if counter == 1 then
-			mod:PrimaryIcon(93180, player)
-		else
-			mod:SecondaryIcon(93180, player)
-		end
-		if mod:GetInstanceDifficulty() == 4 then counter = counter + 1 end
+		if counter > 2 then counter = 1 end
 	end
-	if counter > 2 then counter = 1 end
-end
-
-function mod:CorruptingCrash(...)
-	local sGUID = select(11, ...)
-	self:ScheduleTimer(checkTarget, 0.2, sGUID)
+	function mod:CorruptingCrash(...)
+		local sGUID = select(11, ...)
+		self:ScheduleTimer(checkTarget, 0.2, sGUID)
+	end
 end
 
 do
@@ -173,8 +174,12 @@ end
 
 function mod:Orders(_, spellId, _, _, spellName)
 	self:Message("orders", spellName, "Urgent", spellId)
-	if spellId == 81171 then
-		self:Bar(93223, L["unleashed_shadows"], 24, 93223) -- verified for 25man heroic
+	if spellId == 81556 then
+		if self:GetInstanceDifficulty() > 2 then
+			self:Bar(93223, L["unleashed_shadows"], 24, 93223) -- verified for 25man heroic
+		else
+			self:Bar(93223, L["unleashed_shadows"], 15, 93223) -- verified for 10man normal
+		end
 	end
 end
 
@@ -219,7 +224,7 @@ end
 
 function mod:DarkenedCreations(_, spellId)
 	self:Message(82414, L["tentacles_message"], "Urgent", spellId)
-	self:Bar(82414, L["tentacles_bar"], 40, 82414)
+	self:Bar(82414, L["tentacles_bar"], 30, 82414)
 end
 
 do

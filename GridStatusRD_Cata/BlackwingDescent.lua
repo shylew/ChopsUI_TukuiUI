@@ -8,6 +8,7 @@ local zone = "Blackwing Descent"
 -- Trash
 --Drakonid Slayer
 GridStatusRaidDebuff:Debuff(zone, 80390, 1, 6, 5) --Mortal Strike
+-- Don't care about Blast Wave, it's just a slow
 --Maimgor/Ivoroc
 GridStatusRaidDebuff:Debuff(zone, 80270, 1, 6, 5) --Shadowflame
 GridStatusRaidDebuff:Debuff(zone, 80145, 1, 6, 5) --Piercing Grip
@@ -27,6 +28,8 @@ GridStatusRaidDebuff:Debuff(zone, 91910, 1, 7, 6) --Grievous Wound
 GridStatusRaidDebuff:Debuff(zone, 81060, 1, 6, 5) --Flash Bomb
 --Pyrecraw
 GridStatusRaidDebuff:Debuff(zone, 80127, 1, 4, 4, true, true) --Flame Buffet
+--Nefarian
+GridStatusRaidDebuff:Debuff(zone, 79353, 1, 4, 4, true, true) --Shadow of Cowardice
 
 --Curse of Mending shows up as a Curse (dispellable)
 --Stormbolt shows up as Magic (dispellable)
@@ -36,7 +39,8 @@ GridStatusRaidDebuff:Debuff(zone, 80127, 1, 4, 4, true, true) --Flame Buffet
 GridStatusRaidDebuff:BossName(zone, 10, "Magmaw")
 GridStatusRaidDebuff:Debuff(zone, 89773, 11, 5, 5) --Mangle
 GridStatusRaidDebuff:Debuff(zone, 78941, 12, 5, 5) --Parasitic Infection
-GridStatusRaidDebuff:Debuff(zone, 88287, 12, 5, 5) --Massive Crash
+GridStatusRaidDebuff:Debuff(zone, 88287, 13, 5, 5) --Massive Crash
+GridStatusRaidDebuff:Debuff(zone, 78199, 14, 4, 4) --Sweltering Armor
 
 --Omnitron Defense System
 GridStatusRaidDebuff:BossName(zone, 20, "Omnitron Defense System")
@@ -46,21 +50,22 @@ GridStatusRaidDebuff:Debuff(zone, 80011, 23, 5, 5) --Soaked in Poison
 GridStatusRaidDebuff:Debuff(zone, 79505, 24, 5, 5) --Flamethrower
 GridStatusRaidDebuff:Debuff(zone, 80094, 25, 5, 5) --Fixate
 GridStatusRaidDebuff:Debuff(zone, 79501, 26, 5, 5) --Acquiring Target
+-- Heroic
+GridStatusRaidDebuff:Debuff(zone, 92053, 27, 5, 5) --Shadow Conductor
+GridStatusRaidDebuff:Debuff(zone, 92048, 28, 5, 5) --Shadow Infusion
+GridStatusRaidDebuff:Debuff(zone, 92023, 29, 6, 6) --Encasing Shadows
 -- Power Generator is good, don't need to watch it
---GridStatusRaidDebuff:Debuff(zone, 91431, 22, 5, 5) --Lightning Conductor
---GridStatusRaidDebuff:Debuff(zone, 91504, 25, 5, 5) --Soaked in Poison
---GridStatusRaidDebuff:Debuff(zone, 91505, 26, 5, 5) --Soaked in Poison
---GridStatusRaidDebuff:Debuff(zone, 91506, 27, 5, 5) --Soaked in Poison
+-- Overcharged Power Generator is good, don't need to watch it
 
 --Chimaeron
 GridStatusRaidDebuff:BossName(zone, 30, "Chimaeron")
 GridStatusRaidDebuff:Debuff(zone, 89084, 31, 8, 8) --Low Health
 GridStatusRaidDebuff:Debuff(zone, 82890, 32, 5, 5) --Mortality
 GridStatusRaidDebuff:Debuff(zone, 82935, 33, 6, 6) --Caustic Slime
+-- Heroic
 GridStatusRaidDebuff:Debuff(zone, 82881, 34, 7, 7, true, true) --Break
---GridStatusRaidDebuff:Debuff(zone, 88915, 34, 6, 6) --Caustic Slime
---GridStatusRaidDebuff:Debuff(zone, 88916, 35, 6, 6) --Caustic Slime
---GridStatusRaidDebuff:Debuff(zone, 88917, 36, 6, 6) --Caustic Slime
+GridStatusRaidDebuff:Debuff(zone, 91307, 35, 4, 4) --Mocking Shadows
+-- Don't care about Finkle's Mixture
 
 --Atramedes
 GridStatusRaidDebuff:BossName(zone, 40, "Atramedes")
@@ -68,43 +73,25 @@ GridStatusRaidDebuff:Debuff(zone, 78092, 41, 5, 5) --Tracking
 GridStatusRaidDebuff:Debuff(zone, 77982, 42, 6, 6, true, true) --Searing Flame
 GridStatusRaidDebuff:Debuff(zone, 78023, 43, 6, 6) --Roaring Flame
 GridStatusRaidDebuff:Debuff(zone, 78897, 43, 6, 6) --Noisy!
---GridStatusRaidDebuff:Debuff(zone, 92421, 43, 6, 6) --Searing Flame
---GridStatusRaidDebuff:Debuff(zone, 92422, 44, 6, 6) --Searing Flame
---GridStatusRaidDebuff:Debuff(zone, 92423, 45, 6, 6) --Searing Flame
---GridStatusRaidDebuff:Debuff(zone, 92483, 47, 6, 6) --Roaring Flame
---GridStatusRaidDebuff:Debuff(zone, 92484, 48, 6, 6) --Roaring Flame
---GridStatusRaidDebuff:Debuff(zone, 92485, 49, 6, 6) --Roaring Flame
 
 --Maloriak
 GridStatusRaidDebuff:BossName(zone, 50, "Maloriak")
 GridStatusRaidDebuff:Debuff(zone, 78034, 51, 5, 5, true, true) --Rend 10-normal
--- Not sure what rend ids are used on other difficulties
 GridStatusRaidDebuff:Debuff(zone, 78225, 52, 6, 6) --Acid Nova 10-normal
 GridStatusRaidDebuff:Debuff(zone, 77615, 53, 5, 5) --Debilitating Slime 10-normal/25-normal
 GridStatusRaidDebuff:Debuff(zone, 77786, 54, 6, 6) --Consuming Flames 10-normal
 GridStatusRaidDebuff:Debuff(zone, 78617, 55, 6, 6) --Fixate
 GridStatusRaidDebuff:Debuff(zone, 77760, 56, 6, 6) --Biting Chill
 GridStatusRaidDebuff:Debuff(zone, 77699, 57, 6, 6) --Flash Freeze 10-normal
---GridStatusRaidDebuff:Debuff(zone, 92989, 52, 5, 5) --Rend 25-normal
---GridStatusRaidDebuff:Debuff(zone, 93011, 54, 6, 6) --Acid Nova 25-normal
---GridStatusRaidDebuff:Debuff(zone, 93012, 55, 6, 6) --Acid Nova
---GridStatusRaidDebuff:Debuff(zone, 93013, 56, 6, 6) --Acid Nova
---GridStatusRaidDebuff:Debuff(zone, 92910, 58, 5, 5) --Debilitating Slime
---GridStatusRaidDebuff:Debuff(zone, 92971, 60, 6, 6) --Consuming Flames 25-normal
---GridStatusRaidDebuff:Debuff(zone, 92972, 61, 6, 6) --Consuming Flames
---GridStatusRaidDebuff:Debuff(zone, 92973, 62, 6, 6) --Consuming Flames
---GridStatusRaidDebuff:Debuff(zone, 92978, 66, 6, 6) --Flash Freeze 25-normal
---GridStatusRaidDebuff:Debuff(zone, 92979, 67, 6, 6) --Flash Freeze
---GridStatusRaidDebuff:Debuff(zone, 92980, 68, 6, 6) --Flash Freeze
+-- Heroic
+GridStatusRaidDebuff:Debuff(zone, 92987, 58, 5, 5) --Dark Sludge 
+GridStatusRaidDebuff:Debuff(zone, 92982, 59, 7, 7) --Engulfing Darkness
 
 --Nefarian
 GridStatusRaidDebuff:BossName(zone, 80, "Nefarian")
 GridStatusRaidDebuff:Debuff(zone, 81118, 81, 5, 5, true, true) --Magma 10-normal
 GridStatusRaidDebuff:Debuff(zone, 77827, 82, 5, 5) --Tail Lash 10-normal
---GridStatusRaidDebuff:Debuff(zone, 94073, 82, 5, 5) --Magma
---GridStatusRaidDebuff:Debuff(zone, 94074, 83, 5, 5) --Magma
---GridStatusRaidDebuff:Debuff(zone, 94075, 84, 5, 5) --Magma
---GridStatusRaidDebuff:Debuff(zone, 94128, 86, 5, 5) --Tail Lash
---GridStatusRaidDebuff:Debuff(zone, 94129, 87, 5, 5) --Tail Lash
---GridStatusRaidDebuff:Debuff(zone, 94130, 88, 5, 5) --Tail Lash
+-- Heroic
+GridStatusRaidDebuff:Debuff(zone, 79339, 83, 6, 6) --Explosive Cinders
+GridStatusRaidDebuff:Debuff(zone, 79318, 84, 6, 6) --Dominion
 

@@ -43,16 +43,12 @@ local mute = "Interface\\AddOns\\BigWigs\\Textures\\icons\\mute"
 local unmute = "Interface\\AddOns\\BigWigs\\Textures\\icons\\unmute"
 
 local inConfigMode = nil
-local configModeString = [[
-|cffaad372Legolasftw|r
-|cfff48cbaTirionman|r
-|cfffff468Sneakystab|r
-|cffc69b6dIamconanok|r
-]]
 local activeProximityFunction = nil
 local activeRange = nil
 local activeSpellID = nil
 local activeMap = nil
+local maxPlayers = 0
+local classCache = nil
 local anchor = nil
 
 local OnOptionToggled = nil -- Function invoked when the proximity option is toggled on a module.
@@ -79,6 +75,21 @@ local coloredNames = setmetatable({}, {__index =
 		end
 	end
 })
+
+--Radial upvalues
+local GetPlayerMapPosition = GetPlayerMapPosition
+local GetPlayerFacing = GetPlayerFacing
+local format = string.format
+local UnitInRange = UnitInRange
+local UnitIsDead = UnitIsDead
+local UnitIsUnit = UnitIsUnit
+local GetTime = GetTime
+local min = math.min
+local pi = math.pi
+local cos = math.cos
+local sin = math.sin
+local tremove = table.remove
+local unpack = unpack
 
 -------------------------------------------------------------------------------
 -- Range functions
@@ -258,8 +269,8 @@ local function onResize(self, width, height)
 	else
 		local width, height = anchor:GetWidth(), anchor:GetHeight()
 		local range = activeRange and activeRange or 10
-		local pixperyard = math.min(width, height) / (range*3)
-		anchor.rangeCircle:SetSize( range*2*pixperyard, range*2*pixperyard)
+		local pixperyard = min(width, height) / (range*3)
+		anchor.rangeCircle:SetSize(range*2*pixperyard, range*2*pixperyard)
 	end
 end
 
@@ -384,7 +395,7 @@ local function ensureDisplay()
 	display.text = text
 	display:SetScript("OnShow", function()
 		if inConfigMode then
-			text:SetText(configModeString)
+			text:SetText("|cffaad372Legolasftw|r\n|cfff48cbaTirionman|r\n|cfffff468Sneakystab|r\n|cffc69b6dIamconanok|r")
 		else
 			text:SetText("|cff777777:-)|r")
 		end
@@ -473,28 +484,24 @@ do
 	-- dx and dy are in yards
 	-- class is player class
 	-- facing is radians with 0 being north, counting up clockwise
-	setDot = function(dx, dy, class, facing)
+	setDot = function(dx, dy, class)
 		local width, height = anchor:GetWidth(), anchor:GetHeight()
 		local range = activeRange and activeRange or 10
 		-- range * 3, so we have 3x radius space
-		local pixperyard = math.min(width, height) / (range * 3)
+		local pixperyard = min(width, height) / (range * 3)
 
 		-- rotate relative to player facing
-		local rotangle = (2 * math.pi) - facing
-		local x = (dx * math.cos(rotangle)) - (-1 * dy * math.sin(rotangle))
-		local y = (dx * math.sin(rotangle)) + (-1 * dy * math.cos(rotangle))
+		local rotangle = (2 * pi) - GetPlayerFacing()
+		local x = (dx * cos(rotangle)) - (-1 * dy * sin(rotangle))
+		local y = (dx * sin(rotangle)) + (-1 * dy * cos(rotangle))
 
 		x = x * pixperyard
 		y = y * pixperyard
 
 		local dot = nil
 		if #cacheDots > 0 then
-			dot = table.remove(cacheDots)
+			dot = tremove(cacheDots)
 		else
-			-- XXX Investigate making dots actual frames, so we can have a mouseover tooltip?
-			-- XXX It's either that, or we show some label next to them, I guess. You should
-			-- XXX be able to yell like "Hey, Nubwarlock, get away from me!".
-			-- Problems include click-through and bloat, I guess.
 			dot = anchor:CreateTexture(nil, "OVERLAY")
 			dot:SetSize(16, 16)
 			dot:SetTexture([[Interface\AddOns\BigWigs\Textures\blip]])
@@ -512,23 +519,19 @@ do
 		-- hide those cacheDots
 		while #proxDots > 0 do
 			proxDots[1]:Hide()
-			cacheDots[#cacheDots + 1] = table.remove(proxDots, 1)
+			cacheDots[#cacheDots + 1] = tremove(proxDots, 1)
 		end
 	end
 
 	testDots = function()
 		hideDots()
-		-- XXX These values could be randomized a bit
-		-- XXX And if we're grouped with anyone, they should probably be
-		-- XXX shown even if we're using a graphical or textual display.
 		setDot(10, 10, "WARLOCK", 0)
 		setDot(5, 0, "HUNTER", 0)
 		setDot(3, 10, "MAGE", 0)
 		setDot(-9, -7, "PRIEST", 0)
 		setDot(0, 10, "WARLOCK", 0)
-		setDot(0, 20, "WARLOCK", 2.25)
 		local width, height = anchor:GetWidth(), anchor:GetHeight()
-		local pixperyard = math.min(width, height) / 30
+		local pixperyard = min(width, height) / 30
 		anchor.rangeCircle:SetSize(pixperyard * 20,  pixperyard * 20)
 		anchor.rangeCircle:SetVertexColor(1,0,0)
 		anchor.rangeCircle:Show()
@@ -542,15 +545,13 @@ do
 			SetMapToCurrentZone()
 			srcX, srcY = GetPlayerMapPosition("player")
 		end
-		local num = GetNumRaidMembers()
-		for i = 1, num do
-			local n = GetRaidRosterInfo(i)
-			if n and UnitExists(n) and not UnitIsDeadOrGhost(n) and not UnitIsUnit(n, "player") and activeProximityFunction(n, srcX, srcY) then
+		for i = 1, maxPlayers do
+			local n = format("raid%d", i)
+			if UnitInRange(n) and not UnitIsDead(n) and not UnitIsUnit(n, "player") and activeProximityFunction(n, srcX, srcY) then
 				local nextIndex = #tooClose + 1
-				tooClose[nextIndex] = coloredNames[n]
+				tooClose[nextIndex] = coloredNames[UnitName(n)]
 				if nextIndex > 4 then break end
 			end
-			if i > 25 then break end
 		end
 
 		if #tooClose == 0 then
@@ -561,7 +562,7 @@ do
 			wipe(tooClose)
 			if not db.sound then return end
 			local t = GetTime()
-			if t > (lastplayed + db.soundDelay) then
+			if t > (lastplayed + db.soundDelay) and not UnitIsDead("player") then
 				lastplayed = t
 				plugin:SendMessage("BigWigs_Sound", db.soundName)
 			end
@@ -598,22 +599,20 @@ do
 
 		-- XXX We can't show/hide dots every update, that seems excessive.
 		hideDots()
-		local facing = GetPlayerFacing()
-		for i = 1, GetNumRaidMembers() do
-			local n, _, _, _, _, class = GetRaidRosterInfo(i)
-			if n and UnitExists(n) and not UnitIsDeadOrGhost(n) and not UnitIsUnit(n, "player") then
+		for i = 1, maxPlayers do
+			local n = format("raid%d", i)
+			if UnitInRange(n) and not UnitIsDead(n) and not UnitIsUnit(n, "player") then
 				local unitX, unitY = GetPlayerMapPosition(n)
 				local dx = (unitX - srcX) * id[1]
 				local dy = (unitY - srcY) * id[2]
 				local range = (dx * dx + dy * dy) ^ 0.5
 				if range < (activeRange * 1.5) then
-					setDot(dx, dy, class, facing)
+					setDot(dx, dy, classCache[i])
 					if range <= activeRange then
 						anyoneClose = true
 					end
 				end
 			end
-			if i > 25 then break end
 		end
 
 		if not anyoneClose then
@@ -623,7 +622,7 @@ do
 			anchor.rangeCircle:SetVertexColor(1, 0, 0)
 			if not db.sound then return end
 			local t = GetTime()
-			if t > (lastplayed + db.soundDelay) then
+			if t > (lastplayed + db.soundDelay) and not UnitIsDead("player") then
 				lastplayed = t
 				plugin:SendMessage("BigWigs_Sound", db.soundName)
 			end
@@ -957,10 +956,11 @@ function plugin:Close()
 	activeRange = nil
 	activeSpellID = nil
 	activeMap = nil
+	if classCache then
+		wipe(classCache)
+		classCache = nil
+	end
 	if anchor then
-		-- FIXME
-		-- hide circle
-		-- hide playerdot
 		anchor.title:SetText(L["%d yards"]:format(0))
 		anchor.ability:SetText(L["|T%s:20:20:-5|tAbility name"]:format("Interface\\Icons\\spell_nature_chainlightning"))
 		-- Just in case we were the last target of
@@ -981,6 +981,13 @@ function plugin:Open(range, module, key)
 	local func, actualRange = getClosestRangeFunction(range)
 	activeProximityFunction = func
 	activeRange = actualRange
+	maxPlayers = select(5, GetInstanceInfo())
+
+	if not classCache then classCache = {} end
+	for i=1, maxPlayers do
+		local _, class = UnitClass(format("raid%d", i))
+		classCache[i] = class
+	end
 
 	SetMapToCurrentZone()
 	activeMap = mapData[(GetMapInfo())]
@@ -988,7 +995,7 @@ function plugin:Open(range, module, key)
 
 	if activeMap and db.graphical then
 		local width, height = anchor:GetWidth(), anchor:GetHeight()
-		local ppy = math.min(width, height) / (actualRange * 3)
+		local ppy = min(width, height) / (actualRange * 3)
 		anchor.rangeCircle:SetSize(ppy * actualRange * 2, ppy * actualRange * 2)
 		anchor.playerDot:Show()
 		anchor.rangeCircle:Show()
@@ -1033,10 +1040,15 @@ function plugin:Test()
 	self:Close()
 	-- Break the sound+close buttons
 	breakThings()
-	-- XXX Dots should be shown/hidden based on the option in config mode.
-	-- XXX And so should the text, I guess. People can just toggle it while configuring.
-	anchor.text:Show()
-	testDots()
+	if db.graphical then
+		testDots()
+		anchor.text:Hide()
+	else
+		hideDots()
+		anchor.rangeCircle:Hide()
+		anchor.playerDot:Hide()
+		anchor.text:Show()
+	end
 	anchor:Show()
 end
 
@@ -1050,7 +1062,11 @@ SlashCmdList.BigWigs_Proximity = function(input)
 	if not range then
 		print("Usage: /proximity 1-100")
 	else
-		plugin:Open(range)
+		if range > 0 then
+			plugin:Open(range)
+		else
+			plugin:Close()
+		end
 	end
 end
 SLASH_BigWigs_Proximity1 = "/proximity"

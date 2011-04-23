@@ -11,6 +11,7 @@ mod:RegisterEnableMob(46753)
 --
 
 local phase, lastWindburst = 1, 0
+local cloud = GetSpellInfo(89588)
 local windburst = GetSpellInfo(87770)
 local shock = nil
 local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
@@ -140,10 +141,18 @@ function mod:Phase2(_, spellId)
 	phase = 2
 end
 
+local function CloudSpawn()
+	mod:Bar(89588, cloud, 10, 89588)
+	mod:Message(89588, cloud, "Important", 89588, "Info")
+	mod:ScheduleTimer(CloudSpawn, 10)
+end
+
 function mod:Phase3()
 	if phase >= 3 then return end
 	self:Message("phase", CL["phase"]:format(3), "Positive", 93279)
 	self:Bar(93286, windburst, 24, 93286)
+	self:Bar(89588, cloud, 16, 89588)
+	self:ScheduleTimer(CloudSpawn, 16)
 	self:SendMessage("BigWigs_StopBar", self, L["stormling_bar"])
 	self:SendMessage("BigWigs_StopBar", self, (GetSpellInfo(87904))) -- Feedback
 	self:SendMessage("BigWigs_StopBar", self, L["acid_rain"]:format(acidRainCounter))
@@ -151,8 +160,12 @@ function mod:Phase3()
 end
 
 function mod:Feedback(_, spellId, _, _, spellName, stack)
-	self:Bar(87904, spellName, 20, spellId)
-	if not stack then stack = 1 end
+	if not stack then
+		stack = 1
+	else
+		self:SendMessage("BigWigs_StopBar", self, L["feedback_message"]:format(stack-1))
+	end
+	self:Bar(87904, L["feedback_message"]:format(stack), 20, spellId)
 	self:Message(87904, L["feedback_message"]:format(stack), "Positive", spellId)
 end
 

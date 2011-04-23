@@ -2,13 +2,11 @@
 	GridStatus.lua
 ----------------------------------------------------------------------]]
 
-local _, Grid = ...
+local GRID, Grid = ...
 local L = Grid.L
 local GridRoster = Grid:GetModule("GridRoster")
 
 local GridStatus = Grid:NewModule("GridStatus")
-
-------------------------------------------------------------------------
 
 GridStatus.modulePrototype = {
 	core = GridStatus,
@@ -108,6 +106,7 @@ function GridStatus.modulePrototype:RegisterStatus(status, desc, options, inMain
 					name = L["Enable"],
 					desc = string.format(L["Enable %s"], desc),
 					order = 10,
+					width = "full",
 					type = "toggle",
 					get = function()
 						return module.db.profile[status].enable
@@ -125,20 +124,10 @@ function GridStatus.modulePrototype:RegisterStatus(status, desc, options, inMain
 							end
 					end,
 				},
-				["range"] = {
-					name = L["Range filter"],
-					desc = string.format(L["Range filter for %s"], desc),
-					order = 20,
-					type = "toggle",
-					get = function() return module.db.profile[status].range end,
-					set = function()
-						module.db.profile[status].range = not module.db.profile[status].range
-					end,
-				},
 				["color"] = {
 					name = L["Color"],
 					desc = string.format(L["Color for %s"], desc),
-					order = 30,
+					order = 20,
 					type = "color",
 					hasAlpha = true,
 					get = function()
@@ -156,13 +145,23 @@ function GridStatus.modulePrototype:RegisterStatus(status, desc, options, inMain
 				["priority"] = {
 					name = L["Priority"],
 					desc = string.format(L["Priority for %s"], desc),
-					order = 40,
+					order = 30,
 					type = "range", max = 99, min = 0, step = 1,
 					get = function()
 						return module.db.profile[status].priority
 					end,
 					set = function(_, v)
 						module.db.profile[status].priority = v
+					end,
+				},
+				["range"] = {
+					name = L["Range filter"],
+					desc = string.format(L["Range filter for %s"], desc),
+					order = 40,
+					type = "toggle",
+					get = function() return module.db.profile[status].range end,
+					set = function()
+						module.db.profile[status].range = not module.db.profile[status].range
 					end,
 				},
 			},
@@ -229,7 +228,7 @@ GridStatus.defaultDB = {
 GridStatus.options = {
 	type = "group",
 	name = L["Status"],
-	desc = string.format(L["Options for %s."], GridStatus.moduleName),
+	desc = L["Options for GridStatus."],
 	args = {
 		["color"] = {
 			type = "group",
@@ -462,7 +461,7 @@ end
 
 ------------------------------------------------------------------------
 
-function GridStatus:SendStatusGained(guid, status, priority, range, color, text, value, maxValue, texture, start, duration, stack)
+function GridStatus:SendStatusGained(guid, status, priority, range, color, text, value, maxValue, texture, start, duration, stack, texCoords)
 	self:Debug("GridStatus", "SendStatusGained", guid, status, text, value, maxValue)
 	if not guid then return end
 
@@ -474,7 +473,12 @@ function GridStatus:SendStatusGained(guid, status, priority, range, color, text,
 	end
 
 	if range and type(range) ~= "number" then
-		self:Debug("Range is not a number for", status)
+		self:Debug("range is not a number for", status)
+	end
+
+	if type(texture) == "string" and type(texCoords) ~= "table" then
+		self:Debug("texCoords is not a table for", status)
+		texCoords = nil
 	end
 
 	if text == nil then
@@ -493,18 +497,19 @@ function GridStatus:SendStatusGained(guid, status, priority, range, color, text,
 	cached = cache[guid][status]
 
 	-- if no changes were made, return rather than triggering an event
-	if cached and
-		cached.priority == priority and
-		cached.range == range and
-		cached.color == color and
-		cached.text == text and
-		cached.value == value and
-		cached.maxValue == maxValue and
-		cached.texture == texture and
-		cached.start == start and
-		cached.duration == duration and
-		cached.stack == stack then
-
+	if cached
+		and cached.priority == priority
+		and cached.range == range
+		and cached.color == color
+		and cached.text == text
+		and cached.value == value
+		and cached.maxValue == maxValue
+		and cached.texture == texture
+		and cached.start == start
+		and cached.duration == duration
+		and cached.stack == stack
+		and cached.texCoords == texCoords
+	then
 		return
 	end
 
@@ -519,8 +524,9 @@ function GridStatus:SendStatusGained(guid, status, priority, range, color, text,
 	cached.start = start
 	cached.duration = duration
 	cached.stack = stack
+	cached.texCoords = texCoords
 
-	self:SendMessage("Grid_StatusGained", guid, status, priority, range, color, text, value, maxValue, texture, start, duration, stack)
+	self:SendMessage("Grid_StatusGained", guid, status, priority, range, color, text, value, maxValue, texture, start, duration, stack, texCoords)
 end
 
 function GridStatus:SendStatusLost(guid, status)

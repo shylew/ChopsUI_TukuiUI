@@ -20,6 +20,7 @@ GridStatusHots.L = {
 	["Hots: My Riptide"] = "Hots: Mon Remous",
 	["Hots: My Earthliving"] = "Hots: Ma Viveterre",
 	["Hots: My Prayer of Mending"] = "Hots: Ma Prière de guérison",
+	["Hots: My Prayer of Mending - duration colored"] = "Hots: My Prayer of Mending - duration colored", -- missing translation
 	["Hots: Power Word: Shield"] = "Hots: Power Word: Shield", -- missing translation
 	["Hots: Weakened Soul"] = "Hots: Weakened Soul",  -- missing translation
 	["Hots: My Beacon of Light"] = "Hots: Mon Guide de lumière",
@@ -51,4 +52,8 @@ GridStatusHots.L = {
 	["Check, if you want to see the total of HoTs behind the countdown of your HoT(i.e. 13-5)"]= "Cocher pour afficher le total des HoTs derrière le compteur de vos HoT(i.e. 13-5)",
 	["Combine Timers"] = "Combine Timers", -- missing translation
 	["Check, if you want to see the Weakened Soul Timer behind the Pw: Shield Timer(i.e. 13-5)"]= "Check, if you want to see the Weakened Soul Timer behind the Pw: Shield Timer(i.e. 13-5)", -- missing translation
+	["Show decimals"] = "Show decimals", -- missing translation
+	["Check, if you want to see one decimal place for your Lifebloom(i.e. 7.1)"] = "Check, if you want to see one decimal place for your Lifebloom(i.e. 7.1)", -- missing translation
+	["Only mine"] = "Only mine", -- missing translation
+	["Only show my PoM"] = "Only show my PoM", -- missing translation
 }

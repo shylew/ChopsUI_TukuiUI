@@ -7,7 +7,6 @@ if not L then return end
 --
 L["Style"] = "Стиль"
 L.bigWigsBarStyleName_Default = "По умолчанию"
-L.bigWigsBarStyleName_BeautyCase = "Beauty Case"
 
 L["Clickable Bars"] = "Полосы активизируемые щелчком мыши"
 L.clickableBarsDesc = "Полосы Big Wigs по умолчанию не реагируют на щелчки мыши в их области. Таким образом, можно целится в объекты или запустить массовое, целенаправленное заклинаний за ними, изменить ракурс камеры, и так далее, в то время как курсор находится в области полос.|cffff4411Если вы включите полосы активизируемые щелчком мыши, это больше работать не будет.|r Полосы будут перехватывать любые щелчки мыши выполняемые в их области.\n"
@@ -165,6 +164,10 @@ L["Sound"] = "Звук"
 L["Disabled"] = "Отключить"
 L["Disable the proximity display for all modules that use it."] = "Отключить отображение окна близости для всех модулей использующих его."
 L["The proximity display will show next time. To disable it completely for this encounter, you need to toggle it off in the encounter options."] = "Модуль близости будет показан в следующий раз. Чтобы полностью его отключить для данного боя, вам нужно зайти в опции этого боя и отключить его там."
+L["Let the Proximity monitor display a graphical representation of people who might be too close to you instead of just a list of names. This only works for zones where Big Wigs has access to actual size information; for other zones it will fall back to the list of names."] = "Let the Proximity monitor display a graphical representation of people who might be too close to you instead of just a list of names. This only works for zones where Big Wigs has access to actual size information; for other zones it will fall back to the list of names."
+L["Graphical display"] = "Графическое отображение"
+L["Sound delay"] = "Задержка звука"
+L["Specify how long Big Wigs should wait between repeating the specified sound when someone is too close to you."] = "Определяет как долго Big Wigs должен подождать между повторением заданного звука, когда кто-то слишком близко к вам."
 
 L.proximity = "Отображение близости"
 L.proximity_desc = "Показывать окно близости при соответствующей схватке, выводя список игроков которые стоят слишком близко к вам."
