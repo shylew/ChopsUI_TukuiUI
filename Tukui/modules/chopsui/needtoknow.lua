@@ -25,6 +25,10 @@ end
 -- Configure the NeedToKnow player buff bars
 function ChopsuiConfigureNeedToKnowPlayerBuffs()
 
+  for i = 1, NEEDTOKNOW.MAXBARS do
+    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Bars"][i]["Enabled"] = false
+  end
+
   if T.myclass == "DEATHKNIGHT" then
 
     if T.Spec == "BLOOD" then
@@ -144,6 +148,21 @@ function ChopsuiConfigureNeedToKnowPlayerBuffs()
 
   elseif T.myclass == "WARLOCK" then
 
+    if T.Spec == "AFFLICTION" then
+
+      ChopsuiNeedToKnowPlayerBuff(6, "Eradication", { 0.53, 0, 0.78 }, true)
+
+    elseif T.Spec == "DEMONOLOGY" then
+
+      ChopsuiNeedToKnowPlayerBuff(6, "Metamorphosis", { 0.53, 0, 0.78 }, true)
+      ChopsuiNeedToKnowPlayerBuff(6, "Molten Core", { 0.91, 0.54, 0 }, true)
+
+    elseif T.Spec == "DESTRUCTION" then
+
+      ChopsuiNeedToKnowPlayerBuff(6, "Improved Soul Fire", { 0.91, 0.54, 0 }, true)
+
+    end
+
   elseif T.myclass == "WARRIOR" then
 
     if T.Spec == "PROTECTION" then
@@ -162,6 +181,10 @@ end
 -- Configure the NeedToKnow target debuff bars
 function ChopsuiConfigureNeedToKnowTargetDebuffs()
 
+  for i = 1, NEEDTOKNOW.MAXBARS do
+    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Bars"][i]["Enabled"] = false
+  end
+  
   if T.myclass == "DEATHKNIGHT" then
 
     ChopsuiNeedToKnowTargetDebuff(5, "Blood Plague", { 0.6, 0, 0.07 }, true)
@@ -256,13 +279,24 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
 
   elseif T.myclass == "WARLOCK" then
 
+    ChopsuiNeedToKnowTargetDebuff(3, "Bane of Agony, Bane of Doom", { 0.79, 0.52, 0 }, true)
+    ChopsuiNeedToKnowTargetDebuff(4, "Shadow and Flame", { 0, 0.10, 0.96 }, true)
+    ChopsuiNeedToKnowTargetDebuff(5, "Corruption", { 0.74, 0, 0.06 }, true)
+    ChopsuiNeedToKnowTargetDebuff(6, "Curse of the Elements, Curse of Tongues", { 0.53, 0, 0.78 }, true)
+    
     if T.Spec == "AFFLICTION" then
+
       ChopsuiNeedToKnowTargetDebuff(1, "Haunt", { 0, 0.74, 1 }, true)
       ChopsuiNeedToKnowTargetDebuff(2, "Unstable Affliction", { 0.47, 0.31, 0 }, true)
-      ChopsuiNeedToKnowTargetDebuff(3, "Bane of Agony", { 0.79, 0.52, 0 }, true)
-      ChopsuiNeedToKnowTargetDebuff(4, "Shadow and Flame", { 0, 0.10, 0.96 }, true)
-      ChopsuiNeedToKnowTargetDebuff(5, "Corruption", { 0.74, 0, 0.06 }, true)
-      ChopsuiNeedToKnowTargetDebuff(6, "Curse of the Elements", { 0.53, 0, 0.78 }, true)
+
+    elseif T.Spec == "DEMONOLOGY" then
+
+      ChopsuiNeedToKnowTargetDebuff(2, "Immolate", { 0.91, 0.54, 0 }, true)
+
+    elseif T.Spec == "DESTRUCTION" then
+      
+      ChopsuiNeedToKnowTargetDebuff(2, "Immolate", { 0.91, 0.54, 0 }, true)
+
     end
 
   elseif T.myclass == "WARRIOR" then

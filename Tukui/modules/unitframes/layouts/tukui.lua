@@ -846,11 +846,11 @@ local function Shared(self, unit)
 			local debuffs = CreateFrame("Frame", nil, health)
 			debuffs:SetHeight(20)
 			debuffs:SetWidth(127)
-			debuffs.size = 20
+			debuffs.size = 32
 			debuffs.spacing = 2
 			debuffs.num = 6
 
-			debuffs:SetPoint("TOPLEFT", health, "TOPLEFT", -0.5, 24)
+			debuffs:SetPoint("TOPLEFT", health, "TOPLEFT", -0.5, 36)
 			debuffs.initialAnchor = "TOPLEFT"
 			debuffs["growth-y"] = "UP"
 			debuffs.PostCreateIcon = T.PostCreateAura
@@ -1399,11 +1399,13 @@ local function Shared(self, unit)
 		local debuffs = CreateFrame("Frame", nil, self)
 		debuffs:SetHeight(26)
 		debuffs:SetWidth(200)
-		debuffs:SetPoint('LEFT', self, 'RIGHT', T.Scale(4), 0)
+		--debuffs:SetPoint('LEFT', self, 'RIGHT', T.Scale(4), 0)
+    debuffs:SetPoint('TOPLEFT', health, 'TOPLEFT', -0.5, 24)
 		debuffs.size = 26
 		debuffs.num = 5
 		debuffs.spacing = 2
 		debuffs.initialAnchor = 'LEFT'
+    debuffs.onlyShowPlayer = true
 		debuffs["growth-x"] = "RIGHT"
 		debuffs.PostCreateIcon = T.PostCreateAura
 		debuffs.PostUpdateIcon = T.PostUpdateAura
@@ -1600,7 +1602,7 @@ if C.arena.unitframes then
 		if i == 1 then
 			arena[i]:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 68 + adjust, 246)
 		else
-			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 35)
+			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 45)
 		end
 		arena[i]:Size(200, 29)
 	end
@@ -1622,7 +1624,7 @@ if C["unitframes"].showboss then
 		if i == 1 then
 			boss[i]:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 68 + adjust,246)
 		else
-			boss[i]:SetPoint('BOTTOM', boss[i-1], 'TOP', 0, 35)             
+			boss[i]:SetPoint('BOTTOM', boss[i-1], 'TOP', 0, 45)
 		end
 		boss[i]:Size(200, 29)
 	end

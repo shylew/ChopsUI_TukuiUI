@@ -245,6 +245,7 @@ function ChopsuiGridReset()
   GridFrame.db.profile["statusmap"]["text"]["alert_heals"] = false
   GridFrame.db.profile["statusmap"]["text"]["alert_death"] = false
   GridFrame.db.profile["statusmap"]["text"]["alert_feignDeath"] = false
+  GridFrame.db.profile["statusmap"]["text2"]["unit_healthDeficit"] = true
 
   -- Set up corner icons
   GridIndicatorCornerIcons.db.profile["iconSizeTopLeftCorner"] = 16

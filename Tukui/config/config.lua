@@ -73,7 +73,7 @@ C["actionbar"] = {
 }
 
 C["bags"] = {
-	["enable"] = true,                                  -- enable an all in one bag mod that fit tukui perfectly
+	["enable"] = false,                                 -- enable an all in one bag mod that fit tukui perfectly
 }
 
 C["map"] = {
@@ -83,7 +83,7 @@ C["map"] = {
 C["loot"] = {
 	["lootframe"] = true,                               -- reskin the loot frame to fit tukui
 	["rolllootframe"] = true,                           -- reskin the roll frame to fit tukui
-	["autogreed"] = true,                               -- auto-dez or auto-greed item at max level, auto-greed Frozen orb
+	["autogreed"] = false,                              -- auto-dez or auto-greed item at max level, auto-greed Frozen orb
 }
 
 C["cooldown"] = {
@@ -126,13 +126,13 @@ C["chat"] = {
 
 C["nameplate"] = {
 	["enable"] = true,                                  -- enable nice skinned nameplates that fit into tukui
-	["showhealth"] = false,				                -- show health text on nameplate
-	["enhancethreat"] = false,			                -- threat features based on if your a tank or not
-	["overlap"] = false,				                -- allow nameplates to overlap
-	["combat"] = false,					                -- only show enemy nameplates in-combat.
+	["showhealth"] = true,        			                -- show health text on nameplate
+	["enhancethreat"] = true,		                        -- threat features based on if your a tank or not
+	["overlap"] = false,				                        -- allow nameplates to overlap
+	["combat"] = false,					                        -- only show enemy nameplates in-combat.
 	["goodcolor"] = {75/255,  175/255, 76/255},	        -- good threat color (tank shows this with threat, everyone else without)
-	["badcolor"] = {0.78, 0.25, 0.25},			        -- bad threat color (opposite of above)
-	["transitioncolor"] = {218/255, 197/255, 92/255},	-- threat color when gaining threat
+	["badcolor"] = {0.78, 0.25, 0.25},			            -- bad threat color (opposite of above)
+	["transitioncolor"] = {218/255, 197/255, 92/255},	  -- threat color when gaining threat
 }
 
 C["tooltip"] = {
