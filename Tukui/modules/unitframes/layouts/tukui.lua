@@ -501,7 +501,7 @@ local function Shared(self, unit)
 						if (i == 2) then
 							TotemBar[i]:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
 						elseif i == 1 then
-							fixme = 62
+							fixme = 55
 							if T.lowversion then fixme = 46 end
 							TotemBar[i]:Point("BOTTOMLEFT", self, "TOPLEFT", fixme + 1, 1)
 						else
@@ -518,7 +518,7 @@ local function Shared(self, unit)
 								TotemBar[i]:SetWidth(46)
 							end
 						else
-              TotemBar[i]:SetWidth(52)
+              TotemBar[i]:SetWidth(54)
 						end
 						TotemBar[i]:SetBackdrop(backdrop)
 						TotemBar[i]:SetBackdropColor(0, 0, 0)
