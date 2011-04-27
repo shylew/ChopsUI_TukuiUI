@@ -1,9 +1,9 @@
-## Interface: 30300
+## Interface: 40100
 ## Title: Lib: Fail-1.0
 ## Notes: Fires events whenever a raid member "fails."
-## Version: 1.0.255
+## Version: 1.0.256
 ## Author: Sylvanaar, Sztanpet, Rinu, Maat, MysticalOS
-## X-Curse-Packaged-Version: r255
+## X-Curse-Packaged-Version: r256
 ## X-Curse-Project-Name: LibFail-1.0
 ## X-Curse-Project-ID: libfail-1-0
 ## X-Curse-Repository-ID: wow/libfail-1-0/mainline

@@ -1,4 +1,4 @@
-## Interface: 40000
+## Interface: 40100
 ## Title: Skada
 ## Notes: Modular damage meter.
 ## Notes-koKR: 데미지 미터 모듈입니다.
@@ -6,10 +6,10 @@
 ## Notes-deDE: Ein Damage-Meter.
 ## Notes-frFR: Un damage meter.
 ## Notes-zhCN: 伤害统计
-## Author: Zarnivoop/kryptik
-## Version: 1.2-31
+## Author: Zarnivoop
+## Version: 1.2-32
 ## SavedVariables: SkadaDB
-## X-Curse-Packaged-Version: 1.2-31.1
+## X-Curse-Packaged-Version: 1.2-32
 ## X-Curse-Project-Name: Skada Damage Meter
 ## X-Curse-Project-ID: skada
 ## X-Curse-Repository-ID: wow/skada/mainline
@@ -38,21 +38,3 @@ Options.lua
 BarDisplay.lua
 
 modules.xml
-
-modules\SkadaThreat\Threat.lua
-modules\SkadaDamage\Damage.lua
-modules\SkadaHealing\Healing.lua
-modules\SkadaHealing\Overhealing.lua
-modules\SkadaHealing\TotalHealing.lua
-modules\SkadaDamageTaken\DamageTaken.lua
-modules\SkadaDeaths\Deaths.lua
-modules\SkadaFailbot\Failbot.lua
-modules\SkadaDebuffs\Debuffs.lua
-modules\SkadaDispels\Dispels.lua
-modules\SkadaDispels\Interrupts.lua
-modules\SkadaEnemies\Enemies.lua
-modules\SkadaPower\Power.lua
-modules\SkadaAbsorbs\Absorbs.lua
-modules\SkadaCC\CC.lua
-
-SkadaWindowButtons\SkadaWindowButtons.lua

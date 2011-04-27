@@ -1,4 +1,4 @@
-local MAJOR, MINOR = "LibFail-1.0", tonumber("255") or 999
+local MAJOR, MINOR = "LibFail-1.0", tonumber("256") or 999
 
 assert(LibStub, MAJOR.." requires LibStub")
 
@@ -833,10 +833,10 @@ do
         if event == "COMBAT_LOG_EVENT_UNFILTERED" then
             _, etype = ...
             if etype == "SPELL_MISSED" then  -- lets hack the misses onto the damage event
-                local timestamp, _, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, missType,  amountMissed = ...
+                local timestamp, _, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, missType,  amountMissed = ...
                 local damage, overkill = 0, 0
 
-                lib.SPELL_DAMAGE(lib, timestamp, etype, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, damage, overkill, missType, amountMissed)
+                lib.SPELL_DAMAGE(lib, timestamp, etype, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, damage, overkill, missType, amountMissed)
 
                 return
             end
@@ -924,7 +924,7 @@ function lib:CHAT_MSG_MONSTER_EMOTE(message, sourceName, language, channelName, 
 end
 
 local onyxia_breath_name = GetSpellInfo(18351)
-function lib:SPELL_DAMAGE(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, damage, overkill)
+function lib:SPELL_DAMAGE(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, damage, overkill)
     -- Guardian activities ignored after this point
     --5/7 21:13:33.865  SPELL_DAMAGE,0xF1300079F0003A98,"Mirror Image",0x2114,0xF130008092003842,"Elder Stonebark",0xa48,59637,"Fire Blast",0x4,139,0,4,0,0,0,nil,nil,nil
     --5/7 21:13:36.092  SPELL_HEAL,0x01800000007C56B2,"Blackknite",0x512,0xF1300079F0003A97,"Mirror Image",0x2114,54968,"Glyph of Holy Light",0x2,1240,1240,nil
@@ -2008,7 +2008,7 @@ function lib:SPELL_DAMAGE(timestamp, type, sourceGUID, sourceName, sourceFlags, 
     end
 end
 
-function lib:SWING_DAMAGE(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, damage, overkill)
+function lib:SWING_DAMAGE(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, damage, overkill)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
     damage = damage ~= "ABSORB" and damage or 0
     overkill = overkill or 0
@@ -2034,7 +2034,7 @@ function lib:SWING_DAMAGE(timestamp, type, sourceGUID, sourceName, sourceFlags, 
     end
 end
 
-function lib:SWING_MISSED(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags)
+function lib:SWING_MISSED(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Lady Deathwhisper Vengeful Shades
@@ -2048,7 +2048,7 @@ function lib:SWING_MISSED(timestamp, type, sourceGUID, sourceName, sourceFlags, 
     end
 end
 
-function lib:ENVIRONMENTAL_DAMAGE(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, dmgType)
+function lib:ENVIRONMENTAL_DAMAGE(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, dmgType)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Thaddius Falling
@@ -2062,7 +2062,7 @@ function lib:ENVIRONMENTAL_DAMAGE(timestamp, type, sourceGUID, sourceName, sourc
 end
 
 -- Thaddius Polarity Shift
-function lib:SPELL_CAST_START(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool)
+function lib:SPELL_CAST_START(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool)
     -- local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Auriaya - Sonic Screech
@@ -2101,7 +2101,7 @@ function lib:SPELL_CAST_START(timestamp, type, sourceGUID, sourceName, sourceFla
     end
 end
 
-function lib:UNIT_DIED(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags)
+function lib:UNIT_DIED(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
     local mobid = self:GetMobId(destGUID)
 
@@ -2136,7 +2136,7 @@ function lib:UNIT_DIED(timestamp, type, sourceGUID, sourceName, sourceFlags, des
 
 end
 
-function lib:SPELL_PERIODIC_DAMAGE(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, damage, overkill)
+function lib:SPELL_PERIODIC_DAMAGE(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, damage, overkill)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
     damage = damage ~= "ABSORB" and damage or 0
     overkill = overkill or 0
@@ -2253,7 +2253,7 @@ function lib:SPELL_PERIODIC_DAMAGE(timestamp, type, sourceGUID, sourceName, sour
     end
 end
 
-function lib:SPELL_HEAL(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, damage)
+function lib:SPELL_HEAL(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, damage)
     -- local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Vezax Mark of the Faceless
@@ -2269,7 +2269,7 @@ function lib:SPELL_HEAL(timestamp, type, sourceGUID, sourceName, sourceFlags, de
     end
 end
 
-function lib:SPELL_AURA_APPLIED(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, auraType)
+function lib:SPELL_AURA_APPLIED(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, auraType)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Festergut Heroic -- Malleable goo (Debuff)
@@ -2420,7 +2420,7 @@ function lib:SPELL_AURA_APPLIED(timestamp, type, sourceGUID, sourceName, sourceF
     end
 end
 
-function lib:SPELL_AURA_APPLIED_DOSE(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, auraType, amount)
+function lib:SPELL_AURA_APPLIED_DOSE(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, auraType, amount)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Sindragosa - Mystic Buffet (Debuff)
@@ -2434,7 +2434,7 @@ function lib:SPELL_AURA_APPLIED_DOSE(timestamp, type, sourceGUID, sourceName, so
 
 end
 
-function lib:SPELL_INTERRUPT(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, extraSpellId)
+function lib:SPELL_INTERRUPT(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, extraSpellId)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Flame Jets -- Ignis
@@ -2452,7 +2452,7 @@ function lib:SPELL_INTERRUPT(timestamp, type, sourceGUID, sourceName, sourceFlag
     end
 end
 
-function lib:SPELL_SUMMON(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName)
+function lib:SPELL_SUMMON(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName)
     -- local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     --SPELL_SUMMON,0xF15000838601084D,"Aerial Command Unit",0xa48,0xF13000842C010A24,"Bomb Bot",0xa28,63811,"Bomb Bot",0x1
@@ -2466,7 +2466,7 @@ end
 
 --70337, 73912, 73913, 73914 are cast success IDs (from lich king)
 --70338, 73785, 73786, 73787 are jump spellids (from another player, these don't show in combat log when they jump, only do damage)
-function lib:SPELL_CAST_SUCCESS(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool)
+function lib:SPELL_CAST_SUCCESS(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool)
     -- The Lich King - Necrotic Plague
     if spellId == 70337 or spellId == 73912 or spellId == 73913 or spellId == 73914 then
         if self.LastEvent.TheLichKing_NecroticPlague and timestamp - self.LastEvent.TheLichKing_NecroticPlague > 35 then
@@ -2486,7 +2486,7 @@ function lib:SPELL_CAST_SUCCESS(timestamp, type, sourceGUID, sourceName, sourceF
 end
 
 local necrotic_plague = GetSpellInfo(73912)
-function lib:SPELL_DISPEL(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, extraSpellId, extraSpellName)
+function lib:SPELL_DISPEL(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, extraSpellId, extraSpellName)
     -- Grobbulus - Mutating Injection
     if extraSpellId == 28169 then
         self:FailEvent("Fail_Grobbulus_MutatingInjection", sourceName, self.FAIL_TYPE_NOTDISPELLING)
@@ -2510,7 +2510,7 @@ function lib:SPELL_DISPEL(timestamp, type, sourceGUID, sourceName, sourceFlags, 
     end
 end
 
-function lib:SPELL_AURA_REMOVED(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool)
+function lib:SPELL_AURA_REMOVED(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Malygos Phase3 Dot
@@ -2569,7 +2569,7 @@ function lib:SPELL_AURA_REMOVED(timestamp, type, sourceGUID, sourceName, sourceF
     end
 end
 
-function lib:SPELL_PERIODIC_ENERGIZE(timestamp, type, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, amount, powerType)
+function lib:SPELL_PERIODIC_ENERGIZE(timestamp, type, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellId, spellName, spellSchool, amount, powerType)
     local is_playerevent = bit.band(destFlags or 0, COMBATLOG_OBJECT_TYPE_PLAYER) > 0
 
     -- Valithria Dreamwalker - Emerald Vigor (Debuff)

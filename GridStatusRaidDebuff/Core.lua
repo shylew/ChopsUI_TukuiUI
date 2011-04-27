@@ -175,6 +175,12 @@ local dispelMap = {
 	["SHAMAN"] = {["Curse"] = true, ["Magic"] = (select(5,GetTalentInfo(3,12)) == 1)},
 }
 
+local clientVersion
+do
+	local version = GetBuildInfo() -- e.g. "4.0.6"
+	local a, b, c = strsplit(".", version) -- e.g. "4", "0", "6"
+	clientVersion = 10000*a + 100*b + c -- e.g. 40006
+end
 
 ---------------------------------------------------------
 --	Core
@@ -337,7 +343,13 @@ function GridStatusRaidDebuff:UpdateAllUnit()
 	end
 end
 
-function GridStatusRaidDebuff:ScanNewDebuff(e, ts, event, srcguid, srcname, srcflg, dstguid, dstname, dstflg, spellId, name)
+function GridStatusRaidDebuff:ScanNewDebuff(e, ts, event, hideCaster, srcguid, srcname, srcflg, dstguid, dstname, dstflg, spellId, name)
+
+        -- Handle New 4.1 hideCaster flag with backwards compatibility
+	if clientVersion < 40100 then
+		hideCaster, srcguid, srcname, srcflg, dstguid, dstname, dstflg, spellId, name = nil, hideCaster, srcguid, srcname, srcflg, dstguid, dstname, dstflg, spellId
+	end
+
 	local settings = self.db.profile["alert_RaidDebuff"]
 	if (settings.enable and debuff_list[realzone]) then
 		if event == "SPELL_AURA_APPLIED" and srcguid and not GridRoster:IsGUIDInRaid(srcguid) and GridRoster:IsGUIDInRaid(dstguid)

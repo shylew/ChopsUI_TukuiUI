@@ -11,7 +11,7 @@
 ## OptionalDeps: LibBabble-Zone-3.0, LibBabble-Boss-3.0
 ## X-Category: UnitFrame
 ## X-GridStatusModule: GridStatusRaidDebuff
-## X-Curse-Packaged-Version: r291
+## X-Curse-Packaged-Version: r292
 ## X-Curse-Project-Name: GridStatusRaidDebuff
 ## X-Curse-Project-ID: grid-status-raid-debuff
 ## X-Curse-Repository-ID: wow/grid-status-raid-debuff/mainline

@@ -1,0 +1,41 @@
+------------------------------------------------------------------------
+r317 | zarnivoop | 2011-04-26 21:11:19 +0000 (Tue, 26 Apr 2011) | 1 line
+Changed paths:
+   A /tags/1.2-32 (from /trunk:316)
+
+Tagging as 1.2-32 (not tested, yay)
+------------------------------------------------------------------------
+r316 | zarnivoop | 2011-04-26 20:50:41 +0000 (Tue, 26 Apr 2011) | 1 line
+Changed paths:
+   M /trunk/modules/SkadaCC/CC.lua
+
+updated CC spell IDs
+------------------------------------------------------------------------
+r315 | zarnivoop | 2011-04-26 20:45:51 +0000 (Tue, 26 Apr 2011) | 2 lines
+Changed paths:
+   M /trunk/Skada.lua
+   M /trunk/Skada.toc
+   M /trunk/locale/enUS.lua
+   M /trunk/modules/SkadaAbsorbs/SkadaAbsorbs.toc
+   M /trunk/modules/SkadaCC/SkadaCC.toc
+   M /trunk/modules/SkadaDamage/SkadaDamage.toc
+   M /trunk/modules/SkadaDamageTaken/SkadaDamageTaken.toc
+   M /trunk/modules/SkadaDeaths/Deaths.lua
+   M /trunk/modules/SkadaDeaths/SkadaDeaths.toc
+   M /trunk/modules/SkadaDebuffs/SkadaDebuffs.toc
+   M /trunk/modules/SkadaDispels/SkadaDispels.toc
+   M /trunk/modules/SkadaEnemies/SkadaEnemies.toc
+   M /trunk/modules/SkadaFailbot/SkadaFailbot.toc
+   M /trunk/modules/SkadaHealing/SkadaHealing.toc
+   M /trunk/modules/SkadaPower/SkadaPower.toc
+   M /trunk/modules/SkadaThreat/SkadaThreat.toc
+
+.toc update
+death log improvements (thanks yellowsheep)
+------------------------------------------------------------------------
+r314 | Maat | 2011-01-27 11:07:19 +0000 (Thu, 27 Jan 2011) | 1 line
+Changed paths:
+   M /trunk/modules/SkadaFailbot/Failbot.lua
+
+small fix so SkadaEnsidiaFails can be used till Zarnivoop decides add LibFail-2.0 support
+------------------------------------------------------------------------
