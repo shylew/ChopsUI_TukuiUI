@@ -51,13 +51,24 @@ function ChopsuiConfigureGridIndicators()
   --
   -- Absorbs
   --
-  GridFrame.db.profile["statusmap"]["cornertextbottomright"]["unitAbsorbsLeft"] = true
+  GridFrame.db.profile["statusmap"]["cornertextbottomright"]["unitShieldLeft"] = true
 
   --
   -- Class/Spec specific configurations
   --
 
-  if T.myclass == "PALADIN" then
+  if T.myclass == "DRUID" then
+
+    if T.Spec == "RESTORATION" then
+
+      GridFrame.db.profile["statusmap"]["iconTLcornerleft"]["buff_Rejuvenation"] = true
+      GridFrame.db.profile["statusmap"]["iconTLcornerright"]["buff_Regrowth"] = true
+      GridFrame.db.profile["statusmap"]["iconBLcornerleft"]["buff_Lifebloom"] = true
+      GridFrame.db.profile["statusmap"]["iconBLcornerright"]["buff_WildGrowth"] = true
+      
+    end
+
+  elseif T.myclass == "PALADIN" then
 
     GridFrame.db.profile["statusmap"]["iconTLcornerleft"] = {
       ["buff_HandofSalvation"] = true,
@@ -67,21 +78,25 @@ function ChopsuiConfigureGridIndicators()
     }
 
     if T.Spec == "HOLY" then
-      GridFrame.db.profile["statusmap"]["corner1"]["alert_beacon"] = true
-      GridFrame.db.profile["statusmap"]["iconBLcornerleft"]["buff_GiftoftheNaaru"] = true
+      GridFrame.db.profile["statusmap"]["iconTRcornerright"]["buff_BeaconofLight"] = true
+      GridFrame.db.profile["statusmap"]["iconleft"]["buff_GiftoftheNaaru"] = true
     end
 
   elseif T.myclass == "PRIEST" then
 
     if T.Spec == "DISCIPLINE" or T.spec == "HOLY" then
-      GridFrame.db.profile["statusmap"]["iconTRcornerright"]["debuff_WeakenedSoul"] = true
-      GridFrame.db.profile["statusmap"]["iconTLcornerleft"]["alert_renew"] = true
-      GridFrame.db.profile["statusmap"]["iconTLcornerright"]["alert_pom"] = true
-      GridFrame.db.profile["statusmap"]["iconBLcornerleft"]["buff_GiftoftheNaaru"] = true
+      GridFrame.db.profile["statusmap"]["iconTLcornerleft"]["buff_Renew"] = true
+      GridFrame.db.profile["statusmap"]["iconTLcornerright"]["buff_PrayerofMending"] = true
+      GridFrame.db.profile["statusmap"]["iconBLcornerleft"] = {
+        ["buff_Inspiration"] = true,
+        ["buff_AncestralFortitude"] = true
+      }
+      GridFrame.db.profile["statusmap"]["iconBLcornerright"]["debuff_WeakenedSoul"] = true
+      GridFrame.db.profile["statusmap"]["iconleft"]["buff_GiftoftheNaaru"] = true
     end
 
     if T.Spec == "DISCIPLINE" then
-      GridFrame.db.profile["statusmap"]["iconBLcornerleft"]["alert_gracestack"] = true
+      GridFrame.db.profile["statusmap"]["iconTRcornerright"]["buff_Grace"] = true
     end
 
   elseif T.myclass == "SHAMAN" then
@@ -89,21 +104,71 @@ function ChopsuiConfigureGridIndicators()
     if T.Spec == "RESTORATION" then
       GridFrame.db.profile["statusmap"]["iconTLcornerleft"]["buff_Riptide"] = true
       GridFrame.db.profile["statusmap"]["iconTLcornerright"]["buff_Earthliving"] = true
-      GridFrame.db.profile["statusmap"]["iconTRcornerright"]["buff_AncestralFortitude"] = true
-      GridFrame.db.profile["statusmap"]["iconBLcornerleft"]["buff_GiftoftheNaaru"] = true
-      GridFrame.db.profile["statusmap"]["cornertextbottomleft"]["alert_earthshield"] = true
+      GridFrame.db.profile["statusmap"]["iconTRcornerright"]["buff_EarthShield"] = true
+      GridFrame.db.profile["statusmap"]["iconleft"]["buff_GiftoftheNaaru"] = true
+      GridFrame.db.profile["statusmap"]["iconBLcornerleft"] = {
+        ["buff_Inspiration"] = true,
+        ["buff_AncestralFortitude"] = true
+      }
     end
+
+  elseif T.myclass == "WARLOCK" then
+
+    GridFrame.db.profile["statusmap"]["iconleft"]["buff_DarkIntent"] = true
 
   elseif T.myclass == "WARRIOR" then
 
-    if T.Spec == "PROTECTION" then
-      GridFrame.db.profile["statusmap"]["iconTLcornerright"]["buff_Vigilance"] = true
-    end
+    GridFrame.db.profile["statusmap"]["iconleft"]["buff_Vigilance"] = true
 
   end
 
 end
 ChopsuiConfigureGridIndicators()
+
+-- Add a buff to Grid
+function ChopsuiGridAddBuff(GridStatusAuras, auraName, onlyMine, color, priority)
+  ChopsuiGridAddAura(GridStatusAuras, "buff", auraName, onlyMine, color, priority)
+end
+
+-- Add a debuff to Grid
+function ChopsuiGridAddDebuff(GridStatusAuras, auraName, onlyMine, color, priority)
+  ChopsuiGridAddAura(GridStatusAuras, "debuff", auraName, onlyMine, color, priority)
+end
+
+-- Returns the key to use in the profile map for the specified aura
+function ChopsuiGridAuraKey(auraName)
+  return auraName:gsub("%s+", "")
+end
+
+-- Add an aura to Grid
+function ChopsuiGridAddAura(GridStatusAuras, buffOrDebuff, auraName, onlyMine, color, priority)
+
+  if onlyMine == nil then
+    onlyMine = false
+  end
+  if color == nil then
+    color = { 1, 1, 1 }
+  end
+  if priority == nil then
+    priority = 90
+  end
+
+  local colorRed, colorGreen, colorBlue = unpack(color)
+  local auraKey = ChopsuiGridAuraKey(auraName)
+
+  GridStatusAuras.db.profile[buffOrDebuff .. "_" .. auraKey] = {
+    ["missing"] = false,
+    ["priority"] = priority,
+    ["text"] = auraName,
+    ["enable"] = true,
+    ["color"] = { ["r"] = colorRed, ["g"] = colorGreen, ["b"] = colorBlue, ["a"] = 1 },
+    ["duration"] = true,
+    ["range"] = false,
+    ["desc"] = buffOrDebuff:gsub("^%l", string.upper) .. ": " .. auraName,
+    ["mine"] = onlyMine    
+  }
+
+end
 
 -- Reset Grid
 function ChopsuiGridReset()
@@ -120,9 +185,10 @@ function ChopsuiGridReset()
   local GridManaBarFrame = GridFrame:GetModule("GridMBFrame")
   local GridManaBarStatus = GridStatus:GetModule("GridMBStatus")
   local GridIndicatorCornerIcons = GridFrame:GetModule("GridIndicatorCornerIcons")
+  local GridIndicatorSideIcons = GridFrame:GetModule("GridIndicatorSideIcons")
   local GridIndicatorCornerText = GridFrame:GetModule("GridIndicatorCornerText")
   local GridStatusAuras = GridStatus:GetModule("GridStatusAuras")
-  local GridStatusHots = GridStatus:GetModule("GridStatusHots")
+  local GridStatusShield = GridStatus:GetModule("GridStatusShield")
 
   local gridProfile = UnitName("player") .. " - " .. GetRealmName()
   Grid.db:SetProfile(gridProfile)
@@ -160,8 +226,8 @@ function ChopsuiGridReset()
   GridFrame.db.profile["cornerSize"] = 16
 
   -- Scale the frames
-  GridFrame.db.profile["frameWidth"] = 90
-  GridFrame.db.profile["frameHeight"] = 50
+  GridFrame.db.profile["frameWidth"] = 100
+  GridFrame.db.profile["frameHeight"] = 55
 
   -- Set up some frame defaults
   GridFrame.db.profile["statusmap"] = {
@@ -252,333 +318,101 @@ function ChopsuiGridReset()
   GridIndicatorCornerIcons.db.profile["iconSizeTopRightCorner"] = 16
   GridIndicatorCornerIcons.db.profile["iconSizeBottomLeftCorner"] = 16
   GridIndicatorCornerIcons.db.profile["iconSizeBottomRightCorner"] = 16
+  GridIndicatorCornerIcons.db.profile["enableIconCooldown"] = true
+  GridIndicatorCornerIcons.db.profile["enableIconStackText"] = true
   GridIndicatorCornerIcons.db.profile["xoffset"] = 2
   GridIndicatorCornerIcons.db.profile["yoffset"] = -1
+
+  -- Set up side icons
+  GridIndicatorCornerIcons.db.profile["iconSizeTop"] = 16
+	GridIndicatorCornerIcons.db.profile["enableIconStackText"] = true
+	GridIndicatorCornerIcons.db.profile["yoffsetLR"] = 0
+	GridIndicatorCornerIcons.db.profile["iconSizeLeft"] = 16
+	GridIndicatorCornerIcons.db.profile["iconBorderSize"] = 1
+	GridIndicatorCornerIcons.db.profile["iconSizeBottom"] = 16
+	GridIndicatorCornerIcons.db.profile["iconSizeRight"] = 16
+	GridIndicatorCornerIcons.db.profile["xoffsetLR"] = -2
+	GridIndicatorCornerIcons.db.profile["enableIconCooldown"] = true
+	GridIndicatorCornerIcons.db.profile["yoffsetTB"] = -2
+  
+  -- Set up shield tracker
+	GridStatusShield.db.profile["unitShieldLeft"] = { [ "useCombatLog"] = true }
 
   -- Configure the mana bars
   GridManaBarFrame.db.profile["side"] = "Bottom"
   GridManaBarFrame.db.profile["size"] = 0.1
   GridManaBarStatus.db.profile["hiderage"] = true
 
-  -- Set up some custom auras
-  GridStatusAuras.db.profile["debuff_WeakenedSoul"] = {
-    ["color"] = {
-      ["b"] = 0,
-      ["g"] = 0.4470588235294117,
-      ["r"] = 0.8470588235294118
-    }
-  }
-  GridStatusHots.db.profile["alert_earthliving"] = {
-    ["color"] = { ["r"] = 1, ["g"] = 0.99 },
-    ["color2"] = { ["g"] = 0.78 }
-  }
-  GridStatusHots.db.profile["alert_riptide"] = {
-    ["color"] = { ["b"] = 1 }
-  }
-  GridStatusAuras.db.profile["buff_AncestralFortitude"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Ancestral Fortitude",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 0.75, ["g"] = 0.06, ["b"] = 0.56, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Ancestral Fortitude"
-  }
-  GridStatusAuras.db.profile["buff_Vigilance"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Vigilance",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 1, ["g"] = 0.73, ["b"] = 0.03, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Vigilance"
-  }
-  GridStatusAuras.db.profile["buff_HandofSalvation"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Hand of Salvation",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Hand of Salvation"
-  }
-  GridStatusAuras.db.profile["buff_HandofFreedom"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Hand of Freedom",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Hand of Freedom"
-  }
-  GridStatusAuras.db.profile["buff_HandofProtection"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Hand of Protection",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Hand of Protection"
-  }
-  GridStatusAuras.db.profile["buff_HandofSacrifice"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Hand of Sacrifice",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Hand of Sacrifice"
-  }
-  GridStatusAuras.db.profile["buff_Riptide"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Riptide",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Riptide"
-  }
-  GridStatusAuras.db.profile["buff_Earthliving"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Earthliving",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Earthliving"
-  }
-  GridStatusAuras.db.profile["buff_GiftoftheNaaru"] = {
-    ["missing"] = false,
-    ["priority"] = 90,
-    ["text"] = "Gift of the Naaru",
-    ["enable"] = true,
-    ["color"] = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 },
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Gift of the Naaru",
-    ["mine"] = true
-  }
-
-  -- Immunities
-  GridStatusAuras.db.profile["buff_IceBlock"] = {
-    ["missing"] = false,
-    ["priority"] = 98,
-    ["text"] = "Ice Block",
-    ["enable"] = true,
-    ["color"] = gridColorImmunity,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Ice Block"
-  }
-  GridStatusAuras.db.profile["buff_DivineShield"] = {
-    ["missing"] = false,
-    ["priority"] = 98,
-    ["text"] = "Divine Shield",
-    ["enable"] = true,
-    ["color"] = gridColorImmunity,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Divine Shield"
-  }
-
-  -- Strong damage reductions
-  GridStatusAuras.db.profile["buff_PowerWord:Barrier"] = {
-    ["missing"] = false,
-    ["priority"] = 97,
-    ["text"] = "Power Word: Barrier",
-    ["enable"] = true,
-    ["color"] = gridColorStrongDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Power Word: Barrier"
-  }
-  GridStatusAuras.db.profile["buff_PainSuppression"] = {
-    ["missing"] = false,
-    ["priority"] = 97,
-    ["text"] = "Pain Suppression",
-    ["enable"] = true,
-    ["color"] = gridColorStrongDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Pain Suppression"
-  }
-  GridStatusAuras.db.profile["buff_ShieldWall"] = {
-    ["missing"] = false,
-    ["priority"] = 97,
-    ["text"] = "Shield Wall",
-    ["enable"] = true,
-    ["color"] = gridColorStrongDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Shield Wall"
-  }
-  GridStatusAuras.db.profile["buff_IceboundFortitude"] = {
-    ["missing"] = false,
-    ["priority"] = 97,
-    ["text"] = "Icebound Fortitude",
-    ["enable"] = true,
-    ["color"] = gridColorStrongDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Icebound Fortitude"
-  }
-  GridStatusAuras.db.profile["buff_SurvivalInstincts"] = {
-    ["missing"] = false,
-    ["priority"] = 97,
-    ["text"] = "Survival Instincts",
-    ["enable"] = true,
-    ["color"] = gridColorStrongDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Survival Instincts"
-  }
-  GridStatusAuras.db.profile["buff_DivineProtection"] = {
-    ["missing"] = false,
-    ["priority"] = 97,
-    ["text"] = "Divine Protection",
-    ["enable"] = true,
-    ["color"] = gridColorStrongDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Divine Protection"
-  }
-  GridStatusAuras.db.profile["buff_AncientGuardian"] = {
-    ["missing"] = false,
-    ["priority"] = 97,
-    ["text"] = "Ancient Guardian",
-    ["enable"] = true,
-    ["color"] = gridColorStrongDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Ancient Guardian"
-  }
-
-  -- Light damage reduction
-  GridStatusAuras.db.profile["buff_BoneShield"] = {
-    ["missing"] = false,
-    ["priority"] = 96,
-    ["text"] = "Bone Shield",
-    ["enable"] = true,
-    ["color"] = gridColorLightDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Bone Shield"
-  }
-  GridStatusAuras.db.profile["buff_Barkskin"] = {
-    ["missing"] = false,
-    ["priority"] = 96,
-    ["text"] = "Barkskin",
-    ["enable"] = true,
-    ["color"] = gridColorLightDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Barkskin"
-  }
-  GridStatusAuras.db.profile["buff_ShieldBlock"] = {
-    ["missing"] = false,
-    ["priority"] = 96,
-    ["text"] = "Shield Block",
-    ["enable"] = true,
-    ["color"] = gridColorLightDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Shield Block"
-  }
-  GridStatusAuras.db.profile["buff_WilloftheNecropolis"] = {
-    ["missing"] = false,
-    ["priority"] = 96,
-    ["text"] = "Will of the Necropolis",
-    ["enable"] = true,
-    ["color"] = gridColorLightDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Will of the Necropolis"
-  }
-  GridStatusAuras.db.profile["buff_DivineGuardian"] = {
-    ["missing"] = false,
-    ["priority"] = 96,
-    ["text"] = "Divine Guardian",
-    ["enable"] = true,
-    ["color"] = gridColorLightDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Divine Guardian"
-  }
-
-  -- Magic damage reductions
-  GridStatusAuras.db.profile["buff_CloakofShadows"] = {
-    ["missing"] = false,
-    ["priority"] = 95,
-    ["text"] = "Cloak of Shadows",
-    ["enable"] = true,
-    ["color"] = gridColorMagicDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Cloak of Shadows"
-  }
-  GridStatusAuras.db.profile["buff_Anti-MagicShell"] = {
-    ["missing"] = false,
-    ["priority"] = 95,
-    ["text"] = "Anti-Magic Shell",
-    ["enable"] = true,
-    ["color"] = gridColorMagicDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Anti-Magic Shell"
-  }
-  GridStatusAuras.db.profile["buff_Anti-MagicZone"] = {
-    ["missing"] = false,
-    ["priority"] = 95,
-    ["text"] = "Anti-Magic Zone",
-    ["enable"] = true,
-    ["color"] = gridColorMagicDR,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Anti-Magic Zone"
-  }
-
-  -- Healer support
-  GridStatusAuras.db.profile["buff_LastStand"] = {
-    ["missing"] = false,
-    ["priority"] = 94,
-    ["text"] = "Last Stand",
-    ["enable"] = true,
-    ["color"] = gridColorHealerSupport,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Last Stand"
-  }
-  GridStatusAuras.db.profile["buff_VampiricBlood"] = {
-    ["missing"] = false,
-    ["priority"] = 94,
-    ["text"] = "Vampiric Blood",
-    ["enable"] = true,
-    ["color"] = gridColorHealerSupport,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Vampiric Blood"
-  }
-  GridStatusAuras.db.profile["buff_GuardianSpirit"] = {
-    ["missing"] = false,
-    ["priority"] = 94,
-    ["text"] = "Guardian Spirit",
-    ["enable"] = true,
-    ["color"] = gridColorHealerSupport,
-    ["duration"] = false,
-    ["range"] = false,
-    ["desc"] = "Buff: Guardian Spirit"
-  }
-
   -- Configure corner texts
   GridIndicatorCornerText.db.profile["CornerTextFontSize"] = 12
   GridIndicatorCornerText.db.profile["CornerTextFont"] = "TukuiNormalFont"
+
+  --
+  -- Set up some custom auras
+  --
+  ChopsuiGridAddBuff(GridStatusAuras, "Gift of the Naaru", true)
+
+  -- Druid auras
+  ChopsuiGridAddBuff(GridStatusAuras, "Rejuvenation", true)
+  ChopsuiGridAddBuff(GridStatusAuras, "Regrowth", true)
+  ChopsuiGridAddBuff(GridStatusAuras, "Lifebloom", true)
+  ChopsuiGridAddBuff(GridStatusAuras, "Wild Growth", true)
+  
+  -- Paladin auras
+  ChopsuiGridAddBuff(GridStatusAuras, "Hand of Salvation")
+  ChopsuiGridAddBuff(GridStatusAuras, "Hand of Freedom")
+  ChopsuiGridAddBuff(GridStatusAuras, "Hand of Protection")
+  ChopsuiGridAddBuff(GridStatusAuras, "Hand of Sacrifice")
+  ChopsuiGridAddBuff(GridStatusAuras, "Beacon of Light", true)
+  
+  -- Priest auras
+  ChopsuiGridAddDebuff(GridStatusAuras, "Weakened Soul")
+  ChopsuiGridAddBuff(GridStatusAuras, "Inspiration")
+  ChopsuiGridAddBuff(GridStatusAuras, "Prayer of Mending", true)
+  ChopsuiGridAddBuff(GridStatusAuras, "Renew", true)
+  ChopsuiGridAddBuff(GridStatusAuras, "Grace", true)
+
+  -- Shaman auras
+  ChopsuiGridAddBuff(GridStatusAuras, "Ancestral Fortitude")
+  ChopsuiGridAddBuff(GridStatusAuras, "Earthliving", true)
+  ChopsuiGridAddBuff(GridStatusAuras, "Riptide", true)
+  ChopsuiGridAddBuff(GridStatusAuras, "Earth Shield", true)
+
+  -- Warlock auras
+  ChopsuiGridAddBuff(GridStatusAuras, "Dark Intent", true)
+
+  -- Warrior auras
+  ChopsuiGridAddBuff(GridStatusAuras, "Vigilance", true)
+
+  -- Immunities
+  ChopsuiGridAddBuff(GridStatusAuras, "Iceblock", false, gridColorImmunity, 98)
+  ChopsuiGridAddBuff(GridStatusAuras, "Divine Shield", false, gridColorImmunity, 98)
+
+  -- Strong damage reductions
+  ChopsuiGridAddBuff(GridStatusAuras, "Power Word: Barrier", false, gridColorStringDR, 97)
+  ChopsuiGridAddBuff(GridStatusAuras, "Pain Suppression", false, gridColorStringDR, 97)
+  ChopsuiGridAddBuff(GridStatusAuras, "Shield Wall", false, gridColorStringDR, 97)
+  ChopsuiGridAddBuff(GridStatusAuras, "Icebound Fortitude", false, gridColorStringDR, 97)
+  ChopsuiGridAddBuff(GridStatusAuras, "Survival Instincts", false, gridColorStringDR, 97)
+  ChopsuiGridAddBuff(GridStatusAuras, "Divine Protection", false, gridColorStringDR, 97)
+  ChopsuiGridAddBuff(GridStatusAuras, "Ancient Guardian", false, gridColorStringDR, 97)
+
+  -- Light damage reduction
+  ChopsuiGridAddBuff(GridStatusAuras, "Bone Shield", false, gridColorLightDR, 96)
+  ChopsuiGridAddBuff(GridStatusAuras, "Barkskin", false, gridColorLightDR, 96)
+  ChopsuiGridAddBuff(GridStatusAuras, "Shield Block", false, gridColorLightDR, 96)
+  ChopsuiGridAddBuff(GridStatusAuras, "Will of the Necropolis", false, gridColorLightDR, 96)
+  ChopsuiGridAddBuff(GridStatusAuras, "Divine Guardian", false, gridColorLightDR, 96)
+  ChopsuiGridAddBuff(GridStatusAuras, "Spirit Link Totem", false, gridColorLightDR, 96)
+
+  -- Magic damage reductions
+  ChopsuiGridAddBuff(GridStatusAuras, "Cloak of Shadows", false, gridColorMagicDR, 95)
+  ChopsuiGridAddBuff(GridStatusAuras, "Anti-Magic Zone", false, gridColorMagicDR, 95)
+  ChopsuiGridAddBuff(GridStatusAuras, "Anti-Magic Shell", false, gridColorMagicDR, 95)
+
+  -- Healer support
+  ChopsuiGridAddBuff(GridStatusAuras, "Last Stand", false, gridColorHealerSupport, 94)
+  ChopsuiGridAddBuff(GridStatusAuras, "Vampiric Blood", false, gridColorHealerSupport, 94)
+  ChopsuiGridAddBuff(GridStatusAuras, "Guardian Spirit", false, gridColorHealerSupport, 94)
 
 end

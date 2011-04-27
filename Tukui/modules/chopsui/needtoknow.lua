@@ -14,11 +14,16 @@ NeedToKnow.Update = function()
 
   -- Position the player buff tracker
   playerFrame:ClearAllPoints()
-  playerFrame:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", (NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Width"] * -1) -20, 180)
+  playerFrame:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", (NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Width"] * -1) -4, 157)
 
   -- Position the target debuff tracker
   targetFrame:ClearAllPoints()
-  targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 20, 180)
+  if (T.Role == "Caster" and not (T.Spec == "HOLY" or T.Spec == "RESTORATION" or T.Spec == "DISCIPLINE")) then
+    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Scale"] = 0.77
+    targetFrame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundRight, "TOPLEFT", (NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Width"] * -1) - 20, 240)
+  else
+    targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 4, 157)
+  end
 
 end
 
@@ -47,7 +52,7 @@ function ChopsuiConfigureNeedToKnowPlayerBuffs()
   elseif T.myclass == "DRUID" then
 
     if T.Spec == "FERALCOMBAT" then
-      if TukuiDB.myrole == "dps" then
+      if T.Role == "dps" then
         ChopsuiNeedToKnowPlayerBuff(1, "Predator's Swiftness", { 0.6, 0.38, 0 }, true)
         ChopsuiNeedToKnowPlayerBuff(2, "Barkskin", { 0.70, 0.68, 0 }, true)
         ChopsuiNeedToKnowPlayerBuff(3, "Survival Instincts", { 0.25, 0.6, 0.45 }, true)
@@ -202,7 +207,7 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
   elseif T.myclass == "DRUID" then
 
     if T.Spec == "FERALCOMBAT" then
-      if TukuiDB.myrole == "dps" then
+      if T.Role == "dps" then
         ChopsuiNeedToKnowTargetDebuff(2, "Pounce", { 0, 0.44, 0.6 }, true)
         ChopsuiNeedToKnowTargetDebuff(3, "Rip", { 0.89, 0.38, 0 }, true)
         ChopsuiNeedToKnowTargetDebuff(4, "Rake", { 0.6, 0.02, 0 }, true)
@@ -272,7 +277,7 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
 
     if T.Spec == "ELEMENTAL" then
       ChopsuiNeedToKnowTargetDebuff(5, "Hex", { 0, 0.53, 0.02 }, true)
-      ChopsuiNeedToKnowTargetDebuff(6, "Flame Shock", { 0.91, 0.54, 0 }, true, 1, 1, 0, "Lava Burst")
+      ChopsuiNeedToKnowTargetDebuff(6, "Flame Shock", { 0.91, 0.54, 0 }, true, { 1, 1, 0 }, "Lava Burst")
     elseif T.Spec == "RESTORATION" then
       ChopsuiNeedToKnowTargetDebuff(6, "Flame Shock", { 0.91, 0.54, 0 }, true)
     end
