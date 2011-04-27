@@ -439,7 +439,7 @@ EventParse["SPELL_AURA_REMOVED"] = GridStatusShield.AuraRemoved
 EventParse["SPELL_AURA_BROKEN"] = GridStatusShield.AuraBroken
 EventParse["SPELL_AURA_BROKEN_SPELL"] = GridStatusShield.AuraBrokenSpell
 
-function GridStatusShield:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, eventtype, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)   
+function GridStatusShield:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, eventtype, hideCaster, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)   
     if not GridRoster:IsGUIDInRaid(dstGUID) then
         return
     end
@@ -448,7 +448,7 @@ function GridStatusShield:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, eventtype, s
 	
     --print("Event: "..eventtype)
 	if parsefunc then  
---        print(eventtype)
+        --print(eventtype)
 		parsefunc(self, timestamp, eventtype, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
 	end
 end
