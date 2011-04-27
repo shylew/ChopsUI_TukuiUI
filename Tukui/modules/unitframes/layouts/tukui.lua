@@ -185,7 +185,6 @@ local function Shared(self, unit)
 				panel:Point("TOPLEFT", power, "BOTTOMLEFT", 0, -1)
 				portrait:SetPoint("TOPRIGHT", health, "TOPRIGHT", 34,0)
 			end
-			
 			panel:SetWidth(panel:GetWidth() - 34) -- panel need to be resized if charportrait is enabled
 			table.insert(self.__elements, T.HidePortrait)
 			portrait.PostUpdate = T.PortraitUpdate --Worgen Fix (Hydra)
@@ -291,6 +290,8 @@ local function Shared(self, unit)
 				Experience.Rested = CreateFrame('StatusBar', nil, self)
 				Experience.Rested:SetParent(Experience)
 				Experience.Rested:SetAllPoints(Experience)
+				Experience.Rested:SetStatusBarTexture(normTex)
+				Experience.Rested:SetStatusBarColor(1, 0, 1, 0.2)
 				local Resting = Experience:CreateTexture(nil, "OVERLAY")
 				Resting:SetHeight(28)
 				Resting:SetWidth(28)
@@ -414,7 +415,7 @@ local function Shared(self, unit)
 							if T.lowversion then
 								bars[i]:Width(62)
 							else
-								bars[i]:Width(72) -- setting SetWidth here just to fit fit 250 perfectly
+								bars[i]:Width(72) -- setting SetWidth here just to fit fit 220 perfectly
 							end
 							bars[i].bg:SetAllPoints(bars[i])
 						else
@@ -422,7 +423,7 @@ local function Shared(self, unit)
 							if T.lowversion then
 								bars[i]:Width(61)
 							else
-								bars[i]:Width(73) -- setting SetWidth here just to fit fit 250 perfectly
+								bars[i]:Width(73) -- setting SetWidth here just to fit fit 220 perfectly
 							end
 							bars[i].bg:SetAllPoints(bars[i])
 						end
@@ -660,7 +661,6 @@ local function Shared(self, unit)
 			castbar.bg = castbar:CreateTexture(nil, "BORDER")
 			castbar.bg:SetAllPoints(castbar)
 			castbar.bg:SetTexture(normTex)
-			--castbar.bg:SetVertexColor(0.15, 0.15, 0.15)
       castbar.bg:SetVertexColor(0.8, 0.8, 0.8)
 			castbar:SetFrameLevel(6)
 			castbar:Point("TOPLEFT", panel, 2, -2)
@@ -1399,8 +1399,7 @@ local function Shared(self, unit)
 		local debuffs = CreateFrame("Frame", nil, self)
 		debuffs:SetHeight(26)
 		debuffs:SetWidth(200)
-		--debuffs:SetPoint('LEFT', self, 'RIGHT', T.Scale(4), 0)
-    debuffs:SetPoint('TOPLEFT', health, 'TOPLEFT', -0.5, 24)
+    debuffs:Point('TOPLEFT', health, 'TOPLEFT', -0.5, 24)
 		debuffs.size = 26
 		debuffs.num = 5
 		debuffs.spacing = 2
@@ -1423,8 +1422,8 @@ local function Shared(self, unit)
 			
 			local Trinket = CreateFrame("Frame", nil, Trinketbg)
 			Trinket:SetAllPoints(Trinketbg)
-			Trinket:SetPoint("TOPLEFT", Trinketbg, T.Scale(2), T.Scale(-2))
-			Trinket:SetPoint("BOTTOMRIGHT", Trinketbg, T.Scale(-2), T.Scale(2))
+			Trinket:Point("TOPLEFT", Trinketbg, 2, -2)
+			Trinket:Point("BOTTOMRIGHT", Trinketbg, -2, 2)
 			Trinket:SetFrameLevel(1)
 			Trinket.trinketUseAnnounce = true
 			self.Trinket = Trinket
@@ -1468,7 +1467,7 @@ local function Shared(self, unit)
 		castbar.button:SetTemplate("Default")
 		castbar.button:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
 		castbar.icon = castbar.button:CreateTexture(nil, "ARTWORK")
-		castbar.icon:Point("TOPLEFT", castbar.button, T.Scale(2), T.Scale(-2))
+		castbar.icon:Point("TOPLEFT", castbar.button, 2, -2)
 		castbar.icon:Point("BOTTOMRIGHT", castbar.button, -2, 2)
 		castbar.icon:SetTexCoord(0.08, 0.92, 0.08, .92)
 
@@ -1540,7 +1539,7 @@ if T.lowversion then adjust = 125 end
 -- for lower reso
 local adjustXY = 120
 local totdebuffs = 0
-if T.lowversion then adjustXY = adjustXY + 24 end
+if T.lowversion then adjustXY = 24 end
 if C["unitframes"].totdebuffs then totdebuffs = 24 end
 
 oUF:RegisterStyle('Tukui', Shared)

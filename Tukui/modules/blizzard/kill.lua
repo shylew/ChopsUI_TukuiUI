@@ -6,15 +6,12 @@ Kill:RegisterEvent("ADDON_LOADED")
 Kill:RegisterEvent("PLAYER_LOGIN")
 Kill:SetScript("OnEvent", function(self, event, addon)
 	if event == "PLAYER_LOGIN" then
-		if IsAddOnLoaded("Tukui_Raid") or IsAddOnLoaded("Tukui_Raid_Healing") then
-			InterfaceOptionsFrameCategoriesButton10:SetScale(0.00001)
-			InterfaceOptionsFrameCategoriesButton10:SetAlpha(0)		
-			InterfaceOptionsFrameCategoriesButton11:SetScale(0.00001)
-			InterfaceOptionsFrameCategoriesButton11:SetAlpha(0)
-			CompactPartyFrame:Kill()
-			CompactRaidFrameManager:Kill()
-			CompactRaidFrameContainer:Kill()
-		end	
+    InterfaceOptionsFrameCategoriesButton10:SetScale(0.00001)
+    InterfaceOptionsFrameCategoriesButton10:SetAlpha(0)		
+    InterfaceOptionsFrameCategoriesButton11:SetScale(0.00001)
+    InterfaceOptionsFrameCategoriesButton11:SetAlpha(0)
+    CompactRaidFrameManager:Kill()
+    CompactRaidFrameContainer:Kill()
 	else
 		if addon == "Blizzard_AchievementUI" then
 			if C.tooltip.enable then
