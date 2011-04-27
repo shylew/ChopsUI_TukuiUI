@@ -147,13 +147,13 @@ function ChopsuiGridAddAura(GridStatusAuras, buffOrDebuff, auraName, onlyMine, c
     onlyMine = false
   end
   if color == nil then
-    color = { 1, 1, 1 }
+    color = { ["r"] = 1, ["g"] = 1, ["b"] = 1 }
   end
   if priority == nil then
     priority = 90
   end
 
-  local colorRed, colorGreen, colorBlue = unpack(color)
+  color["a"] = 1
   local auraKey = ChopsuiGridAuraKey(auraName)
 
   GridStatusAuras.db.profile[buffOrDebuff .. "_" .. auraKey] = {
@@ -161,7 +161,7 @@ function ChopsuiGridAddAura(GridStatusAuras, buffOrDebuff, auraName, onlyMine, c
     ["priority"] = priority,
     ["text"] = auraName,
     ["enable"] = true,
-    ["color"] = { ["r"] = colorRed, ["g"] = colorGreen, ["b"] = colorBlue, ["a"] = 1 },
+    ["color"] = color,
     ["duration"] = true,
     ["range"] = false,
     ["desc"] = buffOrDebuff:gsub("^%l", string.upper) .. ": " .. auraName,
