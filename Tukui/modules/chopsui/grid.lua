@@ -222,6 +222,7 @@ function ChopsuiGridReset()
   GridFrame.db.profile["enableText2"] = true
   GridFrame.db.profile["orientation"] = "HORIZONTAL"
   GridFrame.db.profile["enableMouseoverHighlight"] = false
+	GridFrame.db.profile["invertBarColor"] = true
   GridFrame.db.profile["iconSize"] = 22
   GridFrame.db.profile["cornerSize"] = 16
 
@@ -272,6 +273,7 @@ function ChopsuiGridReset()
       ["buff_ShieldBlock"] = true,
       ["buff_WilloftheNecropolis"] = true,
       ["buff_DivineGuardian"] = true,
+      ["buff_SpiritLinkTotem"] = true,
 
       -- Magic damage reductions
       ["buff_CloakofShadows"] = true,
