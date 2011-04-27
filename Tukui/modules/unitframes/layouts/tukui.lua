@@ -74,7 +74,7 @@ local function Shared(self, unit)
 		if T.lowversion then
 			panel:CreatePanel("Default", 186, 21, "BOTTOM", self, "BOTTOM", 0, 0)
 		else
-			panel:CreatePanel("Default", 220, 21, "BOTTOM", self, "BOTTOM", 0, 0)
+			panel:CreatePanel("Default", 250, 21, "BOTTOM", self, "BOTTOM", 0, 0)
 		end
 		panel:SetFrameLevel(2)
 		panel:SetFrameStrata("MEDIUM")
@@ -342,7 +342,7 @@ local function Shared(self, unit)
 					if T.lowversion then
 						eclipseBar:Size(186, 8)
 					else
-						eclipseBar:Size(220, 8)
+						eclipseBar:Size(250, 8)
 					end
 					eclipseBar:SetFrameStrata("MEDIUM")
 					eclipseBar:SetFrameLevel(8)
@@ -388,7 +388,7 @@ local function Shared(self, unit)
 					if T.lowversion then
 						bars:Width(186)
 					else
-						bars:Width(220)
+						bars:Width(250)
 					end
 					bars:Height(8)
 					bars:SetTemplate("Default")
@@ -415,7 +415,7 @@ local function Shared(self, unit)
 							if T.lowversion then
 								bars[i]:Width(62)
 							else
-								bars[i]:Width(72) -- setting SetWidth here just to fit fit 220 perfectly
+								bars[i]:Width(82) -- setting SetWidth here just to fit fit 250 perfectly
 							end
 							bars[i].bg:SetAllPoints(bars[i])
 						else
@@ -423,7 +423,7 @@ local function Shared(self, unit)
 							if T.lowversion then
 								bars[i]:Width(61)
 							else
-								bars[i]:Width(73) -- setting SetWidth here just to fit fit 220 perfectly
+								bars[i]:Width(83) -- setting SetWidth here just to fit fit 250 perfectly
 							end
 							bars[i].bg:SetAllPoints(bars[i])
 						end
@@ -452,7 +452,7 @@ local function Shared(self, unit)
 					if T.lowversion then
 						Runes:SetWidth(186)
 					else
-						Runes:SetWidth(220)
+						Runes:SetWidth(250)
 					end
 					Runes:SetBackdrop(backdrop)
 					Runes:SetBackdropColor(0, 0, 0)
@@ -502,7 +502,7 @@ local function Shared(self, unit)
 						if (i == 2) then
 							TotemBar[i]:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
 						elseif i == 1 then
-							fixme = 55
+							fixme = 62
 							if T.lowversion then fixme = 46 end
 							TotemBar[i]:Point("BOTTOMLEFT", self, "TOPLEFT", fixme + 1, 1)
 						else
@@ -519,7 +519,11 @@ local function Shared(self, unit)
 								TotemBar[i]:SetWidth(46)
 							end
 						else
-              TotemBar[i]:SetWidth(54)
+              if i == 4 then
+                TotemBar[i]:SetWidth(61)
+              else
+                TotemBar[i]:SetWidth(62)
+              end
 						end
 						TotemBar[i]:SetBackdrop(backdrop)
 						TotemBar[i]:SetBackdropColor(0, 0, 0)
@@ -592,20 +596,12 @@ local function Shared(self, unit)
 		if (unit == "target" and C["unitframes"].targetauras) or (unit == "player" and C["unitframes"].playerauras) then
 			local buffs = CreateFrame("Frame", nil, self)
 			local debuffs = CreateFrame("Frame", nil, self)
-			
-			if (T.myclass == "SHAMAN" or T.myclass == "DEATHKNIGHT" or T.myclass == "PALADIN" or T.myclass == "WARLOCK") and (C["unitframes"].playerauras) and (unit == "player") then
-				if T.lowversion then
-					buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 34)
-				else
-					buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 38)
-				end
-			else
-				if T.lowversion then
-					buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 26)
-				else
-					buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 30)
-				end
-			end
+
+      if (C["unitframes"].playerauras and unit == "player") then
+        buffs:SetPoint("BOTTOMRIGHT", self, "BOTTOMLEFT", 5, 0)
+      elseif (C["unitframes"].targetauras and unit == "target") then
+        buffs:SetPoint("BOTTOMLEFT", self, "BOTTOMRIGHT", 5, 1)
+      end
 			
 			if T.lowversion then
 				buffs:SetHeight(21.5)
@@ -619,20 +615,20 @@ local function Shared(self, unit)
 				debuffs.size = 21.5	
 				debuffs.num = 24
 			else				
-				buffs:SetHeight(26)
-				buffs:SetWidth(222)
+				buffs:SetHeight(54)
+				buffs:SetWidth(54)
 				buffs.size = 26
-				buffs.num = 9
+				buffs.num = 4
 				
 				debuffs:SetHeight(26)
-				debuffs:SetWidth(222)
+				debuffs:SetWidth(252)
 				debuffs:SetPoint("BOTTOMLEFT", buffs, "TOPLEFT", -2, 2)
 				debuffs.size = 26
 				debuffs.num = 27
 			end
 						
 			buffs.spacing = 2
-			buffs.initialAnchor = 'TOPLEFT'
+			buffs.initialAnchor = 'BOTTOMLEFT'
 			buffs.PostCreateIcon = T.PostCreateAura
 			buffs.PostUpdateIcon = T.PostUpdateAura
 			self.Buffs = buffs	
@@ -648,8 +644,12 @@ local function Shared(self, unit)
 			if unit == "target" then
 				debuffs.onlyShowPlayer = C.unitframes.onlyselfdebuffs
 			end
-			
-			self.Debuffs = debuffs
+
+      -- Only show debuffs on player
+      if unit == "player" then
+        self.Debuffs = debuffs
+      end
+
 		end
 		
 		-- cast bar for player and target
@@ -754,7 +754,7 @@ local function Shared(self, unit)
 			if T.lowversion then
 				mhpb:SetWidth(186)
 			else
-				mhpb:SetWidth(220)
+				mhpb:SetWidth(250)
 			end
 			mhpb:SetStatusBarTexture(normTex)
 			mhpb:SetStatusBarColor(0, 1, 0.5, 0.25)
@@ -763,7 +763,7 @@ local function Shared(self, unit)
 			local ohpb = CreateFrame('StatusBar', nil, self.Health)
 			ohpb:SetPoint('TOPLEFT', mhpb:GetStatusBarTexture(), 'TOPRIGHT', 0, 0)
 			ohpb:SetPoint('BOTTOMLEFT', mhpb:GetStatusBarTexture(), 'BOTTOMRIGHT', 0, 0)
-			ohpb:SetWidth(220)
+			ohpb:SetWidth(250)
 			ohpb:SetStatusBarTexture(normTex)
 			ohpb:SetStatusBarColor(0, 1, 0, 0.25)
 
@@ -791,7 +791,7 @@ local function Shared(self, unit)
 		-- create panel if higher version
 		local panel = CreateFrame("Frame", nil, self)
 		if not T.lowversion then
-			panel:CreatePanel("Default", 129, 17, "BOTTOM", self, "BOTTOM", 0, T.Scale(0))
+			panel:CreatePanel("Default", 129, 21, "BOTTOM", self, "BOTTOM", 0, T.Scale(0))
 			panel:SetFrameLevel(2)
 			panel:SetFrameStrata("MEDIUM")
 			panel:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
@@ -800,7 +800,7 @@ local function Shared(self, unit)
 		
 		-- health bar
 		local health = CreateFrame('StatusBar', nil, self)
-		health:Height(18)
+		health:Height(26)
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)
@@ -828,6 +828,27 @@ local function Shared(self, unit)
 			health.colorReaction = true			
 		end
 		
+		-- power
+		local power = CreateFrame('StatusBar', nil, self)
+		power:Height(8)
+		power:Point("TOPLEFT", health, "BOTTOMLEFT", 0, -1)
+		power:Point("TOPRIGHT", health, "BOTTOMRIGHT", 0, -1)
+		power:SetStatusBarTexture(normTex)
+		
+		power.frequentUpdates = true
+		power.colorPower = true
+		if C["unitframes"].showsmooth == true then
+			power.Smooth = true
+		end
+
+		local powerBG = power:CreateTexture(nil, 'BORDER')
+		powerBG:SetAllPoints(power)
+		powerBG:SetTexture(normTex)
+		powerBG.multiplier = 0.3
+				
+		self.Power = power
+		self.Power.bg = powerBG
+    
 		-- Unit name
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		if T.lowversion then
@@ -867,7 +888,7 @@ local function Shared(self, unit)
 		-- create panel if higher version
 		local panel = CreateFrame("Frame", nil, self)
 		if not T.lowversion then
-			panel:CreatePanel("Default", 129, 17, "BOTTOM", self, "BOTTOM", 0, 0)
+			panel:CreatePanel("Default", 129, 21, "BOTTOM", self, "BOTTOM", 0, 0)
 			panel:SetFrameLevel(2)
 			panel:SetFrameStrata("MEDIUM")
 			panel:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
@@ -876,7 +897,7 @@ local function Shared(self, unit)
 		
 		-- health bar
 		local health = CreateFrame('StatusBar', nil, self)
-		health:Height(13)
+		health:Height(26)
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)
@@ -911,7 +932,7 @@ local function Shared(self, unit)
 		
 		-- power
 		local power = CreateFrame('StatusBar', nil, self)
-		power:Height(4)
+		power:Height(8)
 		power:Point("TOPLEFT", health, "BOTTOMLEFT", 0, -1)
 		power:Point("TOPRIGHT", health, "BOTTOMRIGHT", 0, -1)
 		power:SetStatusBarTexture(normTex)
@@ -1537,7 +1558,7 @@ local adjust = 0
 if T.lowversion then adjust = 125 end
 
 -- for lower reso
-local adjustXY = 120
+local adjustXY = 0
 local totdebuffs = 0
 if T.lowversion then adjustXY = 24 end
 if C["unitframes"].totdebuffs then totdebuffs = 24 end
@@ -1546,20 +1567,20 @@ oUF:RegisterStyle('Tukui', Shared)
 
 -- player
 local player = oUF:Spawn('player', "TukuiPlayer")
-player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", -68,8+adjustXY)
+player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 125,8+adjustXY)
 if T.lowversion then
 	player:Size(186, 51)
 else
-	player:Size(220, 57)
+	player:Size(250, 57)
 end
 
 -- target
 local target = oUF:Spawn('target', "TukuiTarget")
-target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 69,8+adjustXY)
+target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -125,8+adjustXY)
 if T.lowversion then
 	target:Size(186, 51)
 else
-	target:Size(220, 57)
+	target:Size(250, 57)
 end
 
 -- focus
@@ -1573,8 +1594,8 @@ if T.lowversion then
   tot:SetPoint("LEFT", TukuiTarget, "RIGHT", 13, 11)
 	tot:Size(186, 18)
 else
-  tot:SetPoint("LEFT", TukuiTarget, "RIGHT", 13, 11)
-	tot:Size(129, 36)
+  tot:SetPoint("LEFT", TukuiTarget, "RIGHT", 67, 0)
+	tot:Size(129, 57)
 end
 
 -- pet
@@ -1583,8 +1604,8 @@ if T.lowversion then
   pet:SetPoint("RIGHT", TukuiPlayer, "LEFT", -14, 11)
 	pet:Size(186, 18)
 else
-  pet:SetPoint("RIGHT", TukuiPlayer, "LEFT", -14, 11)
-	pet:Size(129, 36)
+  pet:SetPoint("RIGHT", TukuiPlayer, "LEFT", -67, 0)
+	pet:Size(129, 57)
 end
 
 if C.unitframes.showfocustarget then
