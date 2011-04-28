@@ -1,1 +1,1 @@
-local T, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
+local T, C, L = unpack(select(2, ...))
