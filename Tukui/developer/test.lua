@@ -5,6 +5,9 @@ local T, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Lo
 -- it reskin the all "Battleground" Timer bars.
 --------------------------------------------------------------------------
 
+-- for running a test dummy type in your chat the command below:
+-- /run TimerTracker_OnLoad(TimerTracker); TimerTracker_OnEvent(TimerTracker, "START_TIMER", 1, 30, 30)
+
 local function SkinIt(self)	
 	local name = self:GetName()
 	local bar = _G[name.."StatusBar"]
