@@ -54,7 +54,7 @@ local function SkinBlizzTimer(self, event, ...)
 			for a,b in pairs(bar) do
 				if not bar.isSkinned then
 					SkinIt(bar)
-					bar.IsSkinned = true
+					bar.isSkinned = true
 				end
 			end
 		end
