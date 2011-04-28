@@ -11,7 +11,6 @@ local T, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Lo
 local function SkinIt(self)	
 	local name = self:GetName()
 	local bar = _G[name.."StatusBar"]
-	print(name)
 
 	bar:ClearAllPoints()
 	bar:Point("TOPLEFT", self, "TOPLEFT", 2, -2)
