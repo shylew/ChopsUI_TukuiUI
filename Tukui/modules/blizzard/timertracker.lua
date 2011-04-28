@@ -27,7 +27,7 @@ local function SkinIt(bar)
 end
 
 
-local function SkinBlizzTimer(self, event, timerType)	
+local function SkinBlizzTimer(self, event)
 	for _, b in pairs(TimerTracker.timerList) do
 		if not b["bar"].skinned then
 			SkinIt(b["bar"])
