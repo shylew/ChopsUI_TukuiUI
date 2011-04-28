@@ -1,0 +1,19 @@
+------------------------------------------------------------------------
+r17 | stassart | 2011-04-27 06:37:44 +0000 (Wed, 27 Apr 2011) | 1 line
+Changed paths:
+   M /trunk/GridStatusRD_Cata.toc
+
+Updated TOC.
+------------------------------------------------------------------------
+r16 | stassart | 2011-04-08 06:00:28 +0000 (Fri, 08 Apr 2011) | 1 line
+Changed paths:
+   M /trunk/TheBastionOfTwilight.lua
+
+Marked Twilight Shift and Twilight Zone as stackable debuffs for Valiona heroic.
+------------------------------------------------------------------------
+r15 | stassart | 2011-03-17 08:33:34 +0000 (Thu, 17 Mar 2011) | 1 line
+Changed paths:
+   M /trunk/ThroneOfTheFourWinds.lua
+
+Added Slicing Gale for Conclave heroic.
+------------------------------------------------------------------------

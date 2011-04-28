@@ -171,10 +171,10 @@ function mod:OnBossEnable()
 	self:Log("SWING_DAMAGE", "WhelpWatcher", "*")
 	self:Log("SWING_MISS", "WhelpWatcher", "*")
 
-	self:Log("SPELL_CAST_START", "Breath", 92944)
+	self:Log("SPELL_CAST_START", "Breath", 90125, 92944)
 
 	self:Log("SPELL_AURA_REMOVED", "Egg", 87654)
-	self:Log("SPELL_AURA_APPLIED", "Indomitable", 92946)
+	self:Log("SPELL_AURA_APPLIED", "Indomitable", 90045, 92946)
 	self:Log("SPELL_CAST_START", "Extinction", 86227)
 
 	self:Yell("EggTrigger", L["omelet_trigger"])
@@ -187,9 +187,9 @@ end
 
 function mod:OnEngage()
 	self:Bar(92944, "~"..breath, 24, 92944)
-	self:Bar(92954, "~"..slicer, 30, 92954)
+	self:Bar(92954, "~"..slicer, 29, 92954)
 	self:Bar("whelps", L["whelps"], 16, 69005) -- whelp like icon
-	self:ScheduleTimer(nextOrbSpawned, 30)
+	self:ScheduleTimer(nextOrbSpawned, 29)
 	eggs = 0
 	self:RegisterEvent("UNIT_HEALTH")
 	wipe(whelpGUIDs)
@@ -238,6 +238,7 @@ do
 	local scheduled = nil
 	local function EggMessage(spellId)
 		mod:Message(87654, L["egg_vulnerable"], "Important", spellId, "Alert")
+		mod:Bar(87654, L["egg_vulnerable"], 30, 87654)
 		scheduled = nil
 	end
 	function mod:Egg(_, spellId)
@@ -291,3 +292,4 @@ function mod:Deaths(mobId)
 		self:Win()
 	end
 end
+

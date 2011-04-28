@@ -15,7 +15,7 @@
 -- @name LibCandyBar-3.0
 
 local major = "LibCandyBar-3.0"
-local minor = tonumber(("$Rev: 37 $"):match("(%d+)")) or 1
+local minor = tonumber(("$Rev: 38 $"):match("(%d+)")) or 1
 if not LibStub then error("LibCandyBar-3.0 requires LibStub.") end
 local cbh = LibStub:GetLibrary("CallbackHandler-1.0")
 if not cbh then error("LibCandyBar-3.0 requires CallbackHandler-1.0") end
@@ -161,7 +161,7 @@ function barPrototype:AddUpdateFunction(func) if not self.funcs then self.funcs 
 function barPrototype:Set(key, data) if not self.data then self.data = {} end; self.data[key] = data end
 --- Retrieves user data from the timerbar object.
 -- @param key Key to retrieve
-function barPrototype:Get(key) return self.data[key] end
+function barPrototype:Get(key) return self.data and self.data[key] end
 --- Sets the color of the bar.
 -- This is basically a wrapper to SetStatusBarColor.
 -- @paramsig r, g, b, a

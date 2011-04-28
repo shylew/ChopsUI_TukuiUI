@@ -1,6 +1,6 @@
 ﻿--[[
 Name: Sink-2.0
-Revision: $Rev: 74 $
+Revision: $Rev: 76 $
 Author(s): Rabbit (rabbit.magtheridon@gmail.com), Antiarc (cheal@gmail.com)
 Website: http://rabbit.nihilum.eu
 Documentation: http://wiki.wowace.com/index.php/Sink-2.0
@@ -21,7 +21,7 @@ If you derive from the library or change it in any way, you are required to cont
 -- Sink-2.0
 
 local SINK20 = "LibSink-2.0"
-local SINK20_MINOR = 90000 + tonumber(("$Revision: 74 $"):match("(%d+)"))
+local SINK20_MINOR = 90000 + tonumber(("$Revision: 76 $"):match("(%d+)"))
 
 local sink = LibStub:NewLibrary(SINK20, SINK20_MINOR)
 if not sink then return end
@@ -153,6 +153,7 @@ elseif l == "zhCN" then
 	L_STICKY_DESC = "设置信息固定显示位置。\n\n只有系统自带滚动战斗信息、Parrot、SCT 及 MikSBT 支持。"
 	L_NONE = "隐藏"
 	L_NONE_DESC = "隐藏所有来自插件的信息。"
+	L_NOTINCHANNEL = "（尝试发送到%s频道，但其并不存在。）"
 elseif l == "zhTW" then
 	L_DEFAULT = "預設"
 	L_DEFAULT_DESC = "插件輸出經由第一個可使用的處理器顯示，如果有 SCT 的話，則優先使用。"
@@ -166,6 +167,7 @@ elseif l == "zhTW" then
 	L_BLIZZARD = "Blizzard 浮動戰鬥文字"
 	L_RW = "團隊警告"
 	L_PARROT = "Parrot"
+	L_CHANNEL = "頻道"
 	L_OUTPUT = "顯示模式"
 	L_OUTPUT_DESC = "插件輸出經由哪裡顯示。"
 	L_SCROLL = "滾動區域"
@@ -174,6 +176,7 @@ elseif l == "zhTW" then
 	L_STICKY_DESC = "設定使用固定訊息。\n\n只有 Blizzard 浮動戰鬥文字，Parrot，SCT 及 MikSBT 有支援。"
 	L_NONE = "隱藏"
 	L_NONE_DESC = "隱藏所有插件輸出。"
+	L_NOTINCHANNEL = "（你嘗試發送訊息到頻道%s，但是此頻道不存在。）"
 elseif l == "ruRU" then
 	L_DEFAULT = "По умолчанию"
 	L_DEFAULT_DESC = "Маршрут вывода сообщений данного аддона через первое доступное устройство, предпочитая доступные аддоны прокрутки текста боя."

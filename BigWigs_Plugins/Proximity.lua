@@ -224,12 +224,12 @@ local function getClosestRangeFunction(toRange)
 	local currentFloor = GetCurrentMapDungeonLevel()
 	if currentFloor == 0 then currentFloor = 1 end
 	local id = floors[currentFloor]
-	if not ranges[id] then
+	if not ranges[id] then	-- note to the confused: id is a tableref here, not an integer
 		ranges[id] = function(unit, srcX, srcY)
 			local dstX, dstY = GetPlayerMapPosition(unit)
 			local x = (dstX - srcX) * id[1]
 			local y = (dstY - srcY) * id[2]
-			return (x*x + y*y) ^ 0.5 < activeRange
+			return (x*x + y*y) ^ 0.5 < activeRange*1.1	-- add 10% because of mapData inaccuracies, e.g. 6 yards actually testing for 5.5 on chimaeron = ouch
 		end
 	end
 	return ranges[id], toRange
@@ -608,7 +608,7 @@ do
 				local range = (dx * dx + dy * dy) ^ 0.5
 				if range < (activeRange * 1.5) then
 					setDot(dx, dy, classCache[i])
-					if range <= activeRange then
+					if range <= activeRange*1.1 then  -- add 10% because of mapData inaccuracies, e.g. 6 yards actually testing for 5.5 on chimaeron = ouch
 						anyoneClose = true
 					end
 				end

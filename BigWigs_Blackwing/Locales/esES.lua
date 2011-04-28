@@ -39,7 +39,7 @@ if L then
 	L.phase2 = "Fase 2"
 	L.phase2_desc = "Aviso para la transición de la fase 2 y visualiza el comprobador de rango."
 	L.phase2_message = "¡Fase 2!"
-	L.phase2_yell = "Inconceivable! You may actually defeat my lava worm! Perhaps I can help... tip the scales."
+	L.phase2_yell = "¡Inconcebible! ¡Existe la posibilidad de que venzáis a mi gusano de lava! Quizás yo pueda... desequilibrar la balanza."
 
 	-- normal
 	L.pillar_of_flame_cd = "~Columna de llamas"
@@ -96,8 +96,8 @@ if L then
 	L.green_phase_trigger = "Este es un poco inestable, pero ¿acaso hay progreso sin fracaso?"
 	L.green_phase_emote_trigger = "verde"
 	L.green_phase = "Fase |cFF33FF00Verde|r"
-	L.dark_phase_trigger = "Your mixtures are weak, Maloriak! They need a bit more... kick!"
-	L.dark_phase_emote_trigger = "oscuro"
+	L.dark_phase_trigger = "¡Tus mezclas son flojas, Maloriak! ¡Necesitan un poco más de... sustancia!"
+	L.dark_phase_emote_trigger = "oscura"
 	L.dark_phase = "Fase |cFF660099Oscura|r"
 end
 

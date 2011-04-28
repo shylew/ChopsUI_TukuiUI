@@ -44,7 +44,7 @@ if L then
 	L.slump = "撲倒（騎乘）"
 	L.slump_desc = "當熔喉撲倒並暴露時發出警報。騎乘載具開始。"
 	L.slump_bar = "<下一騎乘>"
-	L.slump_message = "嘢，快騎上它！"
+	L.slump_message = "嘿，快騎上它！"
 	L.slump_trigger = "%s往前撲倒，露出他的鉗子!"
 
 	L.infection_message = ">你< 感染！"
@@ -139,7 +139,7 @@ if L then
 	L.cloud_message = ">你< 化學毒霧！"
 	L.protocol_message = "毒炸彈！"
 
-	L.iconomnotron = "標記激活首領"
-	L.iconomnotron_desc = "為激活的首領打上主團隊標記。（需要權限）"
+	L.iconomnotron = "標記啟動首領"
+	L.iconomnotron_desc = "為啟動的首領打上主團隊標記。（需要權限）"
 end
 
