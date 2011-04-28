@@ -326,16 +326,16 @@ function ChopsuiGridReset()
   GridIndicatorCornerIcons.db.profile["yoffset"] = -1
 
   -- Set up side icons
-  GridIndicatorCornerIcons.db.profile["iconSizeTop"] = 16
-	GridIndicatorCornerIcons.db.profile["enableIconStackText"] = true
-	GridIndicatorCornerIcons.db.profile["yoffsetLR"] = 0
-	GridIndicatorCornerIcons.db.profile["iconSizeLeft"] = 16
-	GridIndicatorCornerIcons.db.profile["iconBorderSize"] = 1
-	GridIndicatorCornerIcons.db.profile["iconSizeBottom"] = 16
-	GridIndicatorCornerIcons.db.profile["iconSizeRight"] = 16
-	GridIndicatorCornerIcons.db.profile["xoffsetLR"] = -2
-	GridIndicatorCornerIcons.db.profile["enableIconCooldown"] = true
-	GridIndicatorCornerIcons.db.profile["yoffsetTB"] = -2
+  GridIndicatorSideIcons.db.profile["iconSizeTop"] = 16
+	GridIndicatorSideIcons.db.profile["enableIconStackText"] = true
+	GridIndicatorSideIcons.db.profile["yoffsetLR"] = 0
+	GridIndicatorSideIcons.db.profile["iconSizeLeft"] = 16
+	GridIndicatorSideIcons.db.profile["iconBorderSize"] = 1
+	GridIndicatorSideIcons.db.profile["iconSizeBottom"] = 16
+	GridIndicatorSideIcons.db.profile["iconSizeRight"] = 16
+	GridIndicatorSideIcons.db.profile["xoffsetLR"] = -2
+	GridIndicatorSideIcons.db.profile["enableIconCooldown"] = true
+	GridIndicatorSideIcons.db.profile["yoffsetTB"] = -2
   
   -- Set up shield tracker
 	GridStatusShield.db.profile["unitShieldLeft"] = { [ "useCombatLog"] = true }
