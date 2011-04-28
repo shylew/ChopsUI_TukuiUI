@@ -52,7 +52,10 @@ local function SkinBlizzTimer(self, event, ...)
 		
 		if isTimerRuning then 
 			for a,b in pairs(bar) do
-				SkinIt(bar)
+				if not bar.isSkinned then
+					SkinIt(bar)
+					bar.IsSkinned = true
+				end
 			end
 		end
 	end
