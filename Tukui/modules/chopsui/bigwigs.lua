@@ -52,6 +52,7 @@ function ChopsuiBigWigsReset()
   local barProfile = BigWigs.db:GetNamespace("BigWigs_Plugins_Bars")
   local messageProfile = BigWigs.db:GetNamespace("BigWigs_Plugins_Messages")
   local proximityProfile = BigWigs.db:GetNamespace("BigWigs_Plugins_Proximity")
+  local tipOfTheRaidProfile = BigWigs.db:GetNamespace("BigWigs_Plugins_Tip of the Raid")
 
   -- Switch the BigWigs profile to a character specific profile
   local bigwigsProfile = UnitName("player") .. " - " .. GetRealmName()
@@ -68,6 +69,7 @@ function ChopsuiBigWigsReset()
   messageProfile.profile["fontSize"] = 15
   proximityProfile.profile["fontSize"] = 15
   proximityProfile.profile["font"] = "TukuiNormalFont"
+  tipOfTheRaidProfile.profile["show"] = false
 
   -- Set the size of the bars
   barProfile.profile["BigWigsAnchor_width"] = 200
