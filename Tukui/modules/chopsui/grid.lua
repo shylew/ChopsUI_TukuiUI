@@ -200,6 +200,7 @@ function ChopsuiGridReset()
   GridLayout.db.profile["layout"] = "None"
   GridLayout.db.profile["groupAnchor"] = "BOTTOMLEFT"
   GridLayout.db.profile["horizontal"] = true
+  GridLayout.db.profile["layouts"] = { ["solo"] = "None" }
 
   -- Lock the frame
   GridLayout.db.profile["hideTab"] = true
