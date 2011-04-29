@@ -1,0 +1,6 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">	
+	<Script file="config.lua"/>
+	<Script file="core.lua"/>
+	<Script file="Plugins\power.lua"/>
+	<Script file="Plugins\points.lua"/>
+</Ui>

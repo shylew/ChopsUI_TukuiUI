@@ -28,7 +28,7 @@ function ChopsuiBigWigsRepositionEmphasisAnchor()
 
   frame = _G["BigWigsEmphasizeAnchor"]
   frame:ClearAllPoints()
-  frame:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 200)
+  frame:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 210)
 
 end
 
