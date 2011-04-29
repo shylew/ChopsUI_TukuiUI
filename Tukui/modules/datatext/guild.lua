@@ -60,7 +60,12 @@ local function UpdateGuildMessage()
 	guildMotD = GetGuildRosterMOTD()
 end
 
-local function Update(self, event, ...)	
+local function Update(self, event, ...)
+	if event == "PLAYER_ENTERING_WORLD" then
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+		if IsInGuild() and not GuildFrame then LoadAddOn("Blizzard_GuildUI") end
+	end
+	
 	if IsInGuild() then
 		totalOnline = 0
 		local name, rank, level, zone, note, officernote, connected, status, class
@@ -137,7 +142,6 @@ end)
 
 Stat:SetScript("OnEnter", function(self)
 	if InCombatLockdown() or not IsInGuild() then return end
-	if not GuildFrame then LoadAddOn("Blizzard_GuildUI") end
 	
 	UpdateGuildMessage()
 	BuildGuildTable()
@@ -150,18 +154,21 @@ Stat:SetScript("OnEnter", function(self)
 	GameTooltip:SetOwner(panel, anchor, xoff, yoff)
 	GameTooltip:ClearLines()
 	GameTooltip:AddDoubleLine(string.format(guildInfoString, GetGuildInfo('player'), GetGuildLevel()), string.format(guildInfoString2, L.datatext_guild, online, #guildTable),tthead.r,tthead.g,tthead.b,tthead.r,tthead.g,tthead.b)
-	GameTooltip:AddLine(' ')
 	
-	if guildMotD ~= "" then GameTooltip:AddLine(string.format(guildMotDString, GUILD_MOTD, guildMotD), ttsubh.r, ttsubh.g, ttsubh.b, 1) end
+	if guildMotD ~= "" then GameTooltip:AddLine(' ') GameTooltip:AddLine(string.format(guildMotDString, GUILD_MOTD, guildMotD), ttsubh.r, ttsubh.g, ttsubh.b, 1) end
 	
 	local col = T.RGBToHex(ttsubh.r, ttsubh.g, ttsubh.b)
 	GameTooltip:AddLine' '
 	if GetGuildLevel() ~= 25 then
 		UpdateGuildXP()
+		
 		local currentXP, nextLevelXP, percentTotal = unpack(guildXP[0])
 		local dailyXP, maxDailyXP, percentDaily = unpack(guildXP[1])
-		GameTooltip:AddLine(string.format(col..GUILD_EXPERIENCE_CURRENT, "|r |cFFFFFFFF"..T.ShortValue(currentXP), T.ShortValue(nextLevelXP), percentTotal))
-		GameTooltip:AddLine(string.format(col..GUILD_EXPERIENCE_DAILY, "|r |cFFFFFFFF"..T.ShortValue(dailyXP), T.ShortValue(maxDailyXP), percentDaily))
+		
+		if currentXP ~= 0 then
+			GameTooltip:AddLine(string.format(col..GUILD_EXPERIENCE_CURRENT, "|r |cFFFFFFFF"..T.ShortValue(currentXP), T.ShortValue(nextLevelXP), percentTotal))
+			GameTooltip:AddLine(string.format(col..GUILD_EXPERIENCE_DAILY, "|r |cFFFFFFFF"..T.ShortValue(dailyXP), T.ShortValue(maxDailyXP), percentDaily))
+		end
 	end
 	
 	local _, _, standingID, barMin, barMax, barValue = GetGuildFactionInfo()
