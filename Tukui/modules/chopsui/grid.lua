@@ -284,7 +284,8 @@ function ChopsuiGridReset()
       -- Healer support
       ["buff_LastStand"] = true,
       ["buff_VampiricBlood"] = true,
-      ["buff_GuardianSpirit"] = true
+      ["buff_GuardianSpirit"] = true,
+      ["buff_RallyingCry"] = true
 
     },
     ["manabar"] = { ["unit_mana"] = true }
@@ -417,5 +418,6 @@ function ChopsuiGridReset()
   ChopsuiGridAddBuff(GridStatusAuras, "Last Stand", false, gridColorHealerSupport, 94)
   ChopsuiGridAddBuff(GridStatusAuras, "Vampiric Blood", false, gridColorHealerSupport, 94)
   ChopsuiGridAddBuff(GridStatusAuras, "Guardian Spirit", false, gridColorHealerSupport, 94)
+  ChopsuiGridAddBuff(GridStatusAuras, "Rallying Cry", false, gridColorHealerSupport, 94)
 
 end
