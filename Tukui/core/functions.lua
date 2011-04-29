@@ -421,7 +421,7 @@ T.PostUpdateHealth = function(health, unit, min, max)
 				end
 			elseif unit == "target" or (unit and unit:find("boss%d")) then
 				if C["unitframes"].showtotalhpmp == true then
-					health.value:SetFormattedText("|cff559655%s|r |cffD7BEA5|||r |cff559655%s|r", ShortValue(min), ShortValue(max))
+          health.value:SetFormattedText("|cff559655%s|r |cffD7BEA5|||r |cff559655%s|r |cffD7BEA5-|r |cff%02x%02x%02x%d%%|r", ShortValue(min), ShortValue(max), r * 255, g * 255, b * 255, floor(min / max * 100))
 				else
 					health.value:SetFormattedText("|cffAF5050%s|r |cffD7BEA5-|r |cff%02x%02x%02x%d%%|r", ShortValue(min), r * 255, g * 255, b * 255, floor(min / max * 100))
 				end
