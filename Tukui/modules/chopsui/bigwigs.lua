@@ -5,7 +5,6 @@ assert(BigWigs_LoadAndEnableCore, "ChopsUI BigWigs extension failed to load, mak
 --  - BigWigs_Plugins/Bars.lua, inside createAnchor()
 --  - BigWigs_Plugins/Messages.lua, inside createAnchor()
 function ChopsuiBigWigsReposition(frameName)
-  DEFAULT_CHAT_FRAME:AddMessage("REPOSITION: " .. frameName)
   if frameName == "BigWigsAnchor" then
     ChopsuiBigWigsRepositionAnchor()
   elseif frameName == "BigWigsEmphasizeAnchor" then

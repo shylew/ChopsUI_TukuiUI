@@ -19,11 +19,9 @@ NeedToKnow.Update = function()
   -- Position the target debuff tracker
   targetFrame:ClearAllPoints()
   if (T.Role == "Caster" and not (T.Spec == "HOLY" or T.Spec == "RESTORATION" or T.Spec == "DISCIPLINE")) then
-    DEFAULT_CHAT_FRAME:AddMessage("Setting NTK to caster size because of role " .. T.Role .. " and spec " .. T.Spec)
     NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Scale"] = 0.77
     targetFrame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundRight, "TOPLEFT", (NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Width"] * -1) - 20, 240)
   else
-    DEFAULT_CHAT_FRAME:AddMessage("Setting NTK to normal size because of role " .. T.Role .. " and spec " .. T.Spec)
     NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Scale"] = 0.6666667461395264
     targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 4, 180)
   end
