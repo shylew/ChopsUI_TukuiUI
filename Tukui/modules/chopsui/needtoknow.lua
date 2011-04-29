@@ -14,15 +14,18 @@ NeedToKnow.Update = function()
 
   -- Position the player buff tracker
   playerFrame:ClearAllPoints()
-  playerFrame:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", (NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Width"] * -1) -4, 157)
+  playerFrame:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", (NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Width"] * -1) -4, 180)
 
   -- Position the target debuff tracker
   targetFrame:ClearAllPoints()
   if (T.Role == "Caster" and not (T.Spec == "HOLY" or T.Spec == "RESTORATION" or T.Spec == "DISCIPLINE")) then
+    DEFAULT_CHAT_FRAME:AddMessage("Setting NTK to caster size because of role " .. T.Role .. " and spec " .. T.Spec)
     NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Scale"] = 0.77
     targetFrame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundRight, "TOPLEFT", (NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Width"] * -1) - 20, 240)
   else
-    targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 4, 157)
+    DEFAULT_CHAT_FRAME:AddMessage("Setting NTK to normal size because of role " .. T.Role .. " and spec " .. T.Spec)
+    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Scale"] = 0.6666667461395264
+    targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 4, 180)
   end
 
 end
@@ -380,8 +383,6 @@ end
 -- Reset NeedToKnow
 function ChopsuiNeedToKnowReset()
 
-  local scale = 0.6666667461395264
-
   -- Reset the settings of NeedToKnow
   NeedToKnow_Settings = CopyTable(NEEDTOKNOW.DEFAULTS)
   NeedToKnow_Settings["Locked"] = true
@@ -395,13 +396,13 @@ function ChopsuiNeedToKnowReset()
     -- Change the player bar look&feel
     NeedToKnow_Settings["Spec"][i]["Groups"][1]["Enabled"] = true
     NeedToKnow_Settings["Spec"][i]["Groups"][1]["NumberBars"] = 6
-    NeedToKnow_Settings["Spec"][i]["Groups"][1]["Scale"] = scale
+    NeedToKnow_Settings["Spec"][i]["Groups"][1]["Scale"] = 0.6666667461395264
     NeedToKnow_Settings["Spec"][i]["Groups"][1]["Width"] = 290
 
     -- Change the target bar look&feel
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["Enabled"] = true
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["NumberBars"] = 6
-    NeedToKnow_Settings["Spec"][i]["Groups"][2]["Scale"] = scale
+    NeedToKnow_Settings["Spec"][i]["Groups"][2]["Scale"] = 0.6666667461395264
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["Width"] = 290
 
   end
