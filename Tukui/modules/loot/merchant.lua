@@ -46,11 +46,12 @@ f:SetScript("OnEvent", function()
 			local cost, possible = GetRepairAllCost()
 			if cost>0 then
 				if possible then
-					RepairAllItems()
+					RepairAllItems(1) -- Attempt to repair with guild bank money first. The normal RepairAllItems() call will be the fallback and use our own money
+          RepairAllItems()
 					local c = cost%100
 					local s = math.floor((cost%10000)/100)
 					local g = math.floor(cost/10000)
-					DEFAULT_CHAT_FRAME:AddMessage(L.merchant_repaircost.." |cffffffff"..g..L.goldabbrev.." |cffffffff"..s..L.silverabbrev.." |cffffffff"..c..L.copperabbrev..".",255,255,0)
+          DEFAULT_CHAT_FRAME:AddMessage(L.merchant_repaircost.." |cffffffff"..g..L.goldabbrev.." |cffffffff"..s..L.silverabbrev.." |cffffffff"..c..L.copperabbrev..".",255,255,0)
 				else
 					DEFAULT_CHAT_FRAME:AddMessage(L.merchant_repairnomoney,255,0,0)
 				end
