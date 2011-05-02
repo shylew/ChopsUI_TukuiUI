@@ -49,3 +49,9 @@ SlashCmdList["RAIDDISBAND"] = function()
 		end
 		LeaveParty()
 end
+
+-- Leave party chat command
+SlashCmdList["LEAVEPARTY"] = function()
+	LeaveParty()
+end
+SLASH_LEAVEPARTY1 = '/leaveparty'
