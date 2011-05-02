@@ -311,12 +311,14 @@ StaticPopupDialogs["NEEDTOKNOW.CHOOSENAME_DIALOG"] = {
     hideOnEscape = 1,
 };
 
+local emptyTbl = {}
+
 NeedToKnow.BarMenu_MoreOptions = {
-    { VariableName = "Enabled", MenuText = NEEDTOKNOW.BARMENU_ENABLE },
+    { VariableName = "Enabled", MenuText = NEEDTOKNOW.BARMENU_ENABLE, Icon = "Check" },
     { VariableName = "AuraName", MenuText = NEEDTOKNOW.BARMENU_CHOOSENAME, Type = "Dialog", DialogText = "CHOOSENAME_DIALOG" },
     { VariableName = "BuffOrDebuff", MenuText = NEEDTOKNOW.BARMENU_BUFFORDEBUFF, Type = "Submenu" },
     { VariableName = "Options", MenuText = "Settings", Type = "Submenu" },
-    {},
+    emptyTbl,
     { VariableName = "TimeFormat", MenuText = NEEDTOKNOW.BARMENU_TIMEFORMAT, Type = "Submenu" }, 
     { VariableName = "Show", MenuText = "Show...", Type = "Submenu" }, -- FIXME: Localization
     { VariableName = "VisualCastTime", MenuText = NEEDTOKNOW.BARMENU_VISUALCASTTIME, Type = "Submenu" },
@@ -351,9 +353,9 @@ NeedToKnow.BarMenu_SubMenus = {
     },
     Opt_HELPFUL = {
       { VariableName = "Unit", MenuText = NEEDTOKNOW.BARMENU_CHOOSEUNIT, Type = "Submenu" },
-      { VariableName = "bDetectExtends", MenuText = "Track duration increases" }, -- FIXME: Localization
-      { VariableName = "OnlyMine", MenuText = NEEDTOKNOW.BARMENU_ONLYMINE },
-      { VariableName = "show_all_stacks", MenuText = "Sum stacks from all casters" },
+      { VariableName = "bDetectExtends", MenuText = "Track duration increases", Icon = "Check" }, -- FIXME: Localization
+      { VariableName = "OnlyMine", MenuText = NEEDTOKNOW.BARMENU_ONLYMINE, Icon = "Check" },
+      { VariableName = "show_all_stacks", MenuText = "Sum stacks from all casters", Icon = "Check" },
     },
     Opt_TOTEM = {},
     Opt_CASTCD = 
@@ -372,26 +374,26 @@ NeedToKnow.BarMenu_SubMenus = {
         { VariableName = "append_usable", MenuText = "Append \"Usable\"" }, -- FIXME: Localization
     },
     VisualCastTime = {
-        { VariableName = "vct_enabled", MenuText = NEEDTOKNOW.BARMENU_VCT_ENABLE },
+        { VariableName = "vct_enabled", MenuText = NEEDTOKNOW.BARMENU_VCT_ENABLE, Icon = "Check" },
         { VariableName = "vct_color", MenuText = NEEDTOKNOW.BARMENU_VCT_COLOR, Type = "Color" },
         { VariableName = "vct_spell", MenuText = NEEDTOKNOW.BARMENU_VCT_SPELL, Type = "Dialog", DialogText = "CHOOSE_VCT_SPELL_DIALOG" },
         { VariableName = "vct_extra", MenuText = NEEDTOKNOW.BARMENU_VCT_EXTRA, Type = "Dialog", DialogText = "CHOOSE_VCT_EXTRA_DIALOG", Numeric=true },
     },
     Show = {
-        { VariableName = "show_icon", MenuText = "Icon" },
-        { VariableName = "show_text", MenuText = "Aura Name" },
-        { VariableName = "show_count", MenuText = "Stack Count" },
-        { VariableName = "show_time", MenuText = "Time Remaining" },
-        { VariableName = "show_spark", MenuText = "Spark" },
-        { VariableName = "show_mypip", MenuText = "Indicator if mine" },
+        { VariableName = "show_icon", MenuText = "Icon", Icon = "Check" },
+        { VariableName = "show_text", MenuText = "Aura Name", Icon = "Check" },
+        { VariableName = "show_count", MenuText = "Stack Count", Icon = "Check" },
+        { VariableName = "show_time", MenuText = "Time Remaining", Icon = "Check" },
+        { VariableName = "show_spark", MenuText = "Spark", Icon = "Check" },
+        { VariableName = "show_mypip", MenuText = "Indicator if mine", Icon = "Check" },
         { VariableName = "show_text_user", MenuText = "Override Aura Name", Type = "Dialog", DialogText = "CHOOSE_OVERRIDE_TEXT", Checked = function(settings) return "" ~= settings.show_text_user end },
     },
     BlinkSettings = {
-        { VariableName = "blink_enabled", MenuText = NEEDTOKNOW.BARMENU_VCT_ENABLE },
+        { VariableName = "blink_enabled", MenuText = NEEDTOKNOW.BARMENU_VCT_ENABLE, Icon = "Check" },
         { VariableName = "blink_label", MenuText = "Bar text while blinking...", Type = "Dialog", DialogText="CHOOSE_BLINK_TITLE_DIALOG" }, 
         { VariableName = "MissingBlink", MenuText = "Bar color when blinking...", Type = "Color" }, -- FIXME: Localization
-        { VariableName = "blink_ooc", MenuText = "Blink out of combat" }, -- FIXME: Localization
-        { VariableName = "blink_boss", MenuText = "Blink only for bosses" }, -- FIXME: Localization
+        { VariableName = "blink_ooc", MenuText = "Blink out of combat", Icon = "Check" }, -- FIXME: Localization
+        { VariableName = "blink_boss", MenuText = "Blink only for bosses", Icon = "Check" }, -- FIXME: Localization
     },
 };
 
@@ -443,6 +445,14 @@ function NeedToKnow.BarMenu_AddButton(barSettings, i_desc, i_parent)
     --info.notCheckable = true; -- Doesn't prevent checking, just formats the line differently
     info.keepShownOnClick = true;
 
+    if i_desc['Icon'] == 'Check' then
+        info.isNotRadio = true
+    end
+
+    if i_desc == emptyTbl then
+        info.notCheckable = true
+    end
+
     if ( not item_type and not text and not info.value ) then
         info.func = NeedToKnow.BarMenu_IgnoreToggle;
         info.disabled = true;
@@ -458,15 +468,17 @@ function NeedToKnow.BarMenu_AddButton(barSettings, i_desc, i_parent)
         info.keepShownOnClick = false;
     elseif ( item_type == "Submenu" ) then
         info.hasArrow = true;
-        --info.notCheckable = true;
+        info.notCheckable = true;
         -- The above doesn't really do what we want, so do it ourselves
-        info.func = NeedToKnow.BarMenu_IgnoreToggle;
+        -- info.func = NeedToKnow.BarMenu_IgnoreToggle;
     elseif ( item_type == "Dialog" ) then
         info.func = NeedToKnow.BarMenu_ShowNameDialog;
+        info.notCheckable = true;
         info.keepShownOnClick = false;
         info.value = {variable = i_desc.VariableName, text = i_desc.DialogText, numeric = i_desc.Numeric };
     elseif ( item_type == "Color" ) then
         info.hasColorSwatch = 1;
+        info.notCheckable = true;
         info.hasOpacity = true;
         info.r = varSettings.r;
         info.g = varSettings.g;
@@ -541,6 +553,7 @@ function NeedToKnow.BarMenu_Initialize()
         local info = UIDropDownMenu_CreateInfo();
         info.text = barSettings.AuraName;
         info.isTitle = true;
+        info.notCheckable = true;
         UIDropDownMenu_AddButton(info);
     end
 
@@ -551,11 +564,13 @@ function NeedToKnow.BarMenu_Initialize()
 
     info = UIDropDownMenu_CreateInfo();
     info.disabled = true;
+    info.notCheckable = true;
     UIDropDownMenu_AddButton(info);
 
     -- clear settings
     info = UIDropDownMenu_CreateInfo();
     info.text = NEEDTOKNOW.BARMENU_CLEARSETTINGS;
+    info.notCheckable = true;
     info.func = NeedToKnow.BarMenu_ClearSettings;
     UIDropDownMenu_AddButton(info);
 

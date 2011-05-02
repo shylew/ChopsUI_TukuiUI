@@ -14,7 +14,7 @@ NeedToKnow = {}
 
 -- NEEDTOKNOW = {} is defined in the localization file, which must be loaded before this file
 
-NEEDTOKNOW.VERSION = "3.2.05"
+NEEDTOKNOW.VERSION = "3.2.06"
 NEEDTOKNOW.MAXGROUPS = 4
 NEEDTOKNOW.MAXBARS = 6
 NEEDTOKNOW.UPDATE_INTERVAL = 0.05
@@ -201,7 +201,7 @@ function NeedToKnow.ExecutiveFrame_UNIT_SPELLCAST_SUCCEEDED(unit, spell, rank)
     end
 end
 
-function NeedToKnow.ExecutiveFrame_COMBAT_LOG_EVENT_UNFILTERED(time, event, guidCaster, ...)
+function NeedToKnow.ExecutiveFrame_COMBAT_LOG_EVENT_UNFILTERED(time, event, hideCaster, guidCaster, ...)
     -- the time that's passed in appears to be time of day, not game time like everything else.
     time = GetTime() 
     -- TODO: Is checking r.state sufficient or must event be checked instead?
@@ -514,6 +514,7 @@ function NeedToKnow.SetupSpellCooldown(bar, idx, barSpell)
             betterSpell = NeedToKnow.TryToFindSpellWithCD(barSpell)
             if nil ~= betterSpell then
                 bar.spells[idx] = betterSpell
+                bar.cd_functions[idx] = NeedToKnow.GetSpellCooldown
             elseif not GetSpellCooldown(barSpell) then
                 bar.cd_functions[idx] = NeedToKnow.GetUnresolvedCooldown
             end
@@ -731,6 +732,16 @@ function NeedToKnow.Bar_Update(groupID, barID)
     end
 end
 
+
+function NeedToKnow.CheckCombatLogRegistration(bar, force)
+    if UnitExists(bar.unit) then
+        bar:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+    else
+        bar:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+    end
+end
+
+
 function NeedToKnow.SetScripts(bar)
     bar:SetScript("OnEvent", NeedToKnow.Bar_OnEvent)
     bar:SetScript("OnUpdate", NeedToKnow.Bar_OnUpdate)
@@ -753,7 +764,7 @@ function NeedToKnow.SetScripts(bar)
         bar:RegisterEvent("PLAYER_TARGET_CHANGED")
         bar:RegisterEvent("UNIT_TARGET")
         -- WORKAROUND: Don't get UNIT_AURA for targettarget
-        bar:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+        NeedToKnow.CheckCombatLogRegistration(bar)
     else
         bar:RegisterEvent("UNIT_AURA")
         if ( bar.unit == "focus" ) then
@@ -802,17 +813,20 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
         local combatEvent = select(2, ...)
 
         if ( NEEDTOKNOW.AURAEVENTS[combatEvent] ) then
-            local guidTarget = select(6, ...)
+            local guidTarget = select(7, ...)
             if ( guidTarget == UnitGUID(self.unit) ) then
-                local idSpell, nameSpell = select(9, ...)
+                local idSpell, nameSpell = select(10, ...)
                 if (self.auraName:find(idSpell) or
                      self.auraName:find(nameSpell)) 
                 then 
                     NeedToKnow.Bar_AuraCheck(self)
                 end
             end
-        elseif ( combatEvent == "UNIT_DIED" ) and ( select(6, ...) == UnitGUID(self.unit) ) then
-            NeedToKnow.Bar_AuraCheck(self)
+        elseif ( combatEvent == "UNIT_DIED" ) then
+            local guidDeceased = select(7, ...) 
+            if ( guidDeceased == UnitGUID(self.unit) ) then
+                NeedToKnow.Bar_AuraCheck(self)
+            end
         end 
     elseif ( event == "PLAYER_TOTEM_UPDATE"  ) or
            ( event == "ACTIONBAR_UPDATE_COOLDOWN" ) or
@@ -828,15 +842,22 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
         NeedToKnow.UpdateWeaponEnchants()
         NeedToKnow.Bar_AuraCheck(self)
     elseif ( event == "PLAYER_TARGET_CHANGED" ) or ( event == "PLAYER_FOCUS_CHANGED" ) then
+        if self.unit == "targettarget" then
+            NeedToKnow.CheckCombatLogRegistration(self)
+        end
         NeedToKnow.Bar_AuraCheck(self)
     elseif ( event == "UNIT_TARGET" and select(1, ...) == "target" ) then 
+        if self.unit == "targettarget" then
+            NeedToKnow.CheckCombatLogRegistration(self)
+        end
         NeedToKnow.Bar_AuraCheck(self)
     elseif ( event == "UNIT_PET" and select(1, ...) == "player" ) then
         NeedToKnow.Bar_AuraCheck(self)
     elseif ( event == "UNIT_SPELLCAST_SENT" ) then
         local unit, spell = select(1, ...)
         if ( self.settings.bDetectExtends ) then
-            if unit == "player" and self.buffName == spell then
+            -- FIXME: This really does not belong on the individual bar
+            if unit == "player" then --and self.buffName == spell then
                 local r = NeedToKnow.last_cast[spell]
                 if ( r and r.state == 0 ) then
                     r.state = 1
@@ -1551,6 +1572,8 @@ function NeedToKnow.AuraCheck_AllStacks(bar, idxName, barSpell, isSpellID)
     local matchID 
     if isSpellID then matchID = tonumber(barSpell) end
     local all_stacks = bar.all_stacks
+    local settings = bar.settings
+    local filter = settings.BuffOrDebuff
     
     while true do
         local buffName, _, iconPath, count, _, duration, expirationTime, caster, _, _, spellID 
