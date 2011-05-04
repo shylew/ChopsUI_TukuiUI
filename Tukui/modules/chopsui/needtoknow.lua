@@ -242,7 +242,7 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
       ChopsuiNeedToKnowTargetDebuff(3, "Hammer of Justice", { 0, 0.57, 0.6 }, true)
       ChopsuiNeedToKnowTargetDebuff(4, "Censure", { 1, 0.98, 0 }, true)
       ChopsuiNeedToKnowTargetDebuff(5, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
-      ChopsuiNeedToKnowTargetDebuff(6, "Frost Fever, Infected Wounds, Judgements of the Just, Thunder Clap", { 0.28, 0.79, 0.30 }, false)
+      ChopsuiNeedToKnowTargetDebuff(6, "Judgements of the Just, Frost Fever, Infected Wounds, Thunder Clap", { 0.28, 0.79, 0.30 }, false)
     elseif T.Spec == "RETRIBUTION" then
       ChopsuiNeedToKnowTargetDebuff(4, "Hammer of Justice", { 0, 0.57, 0.6 }, true)
       ChopsuiNeedToKnowTargetDebuff(5, "Repentence", { 0.04, 0.29, 0.6 }, true)
@@ -312,8 +312,8 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
       ChopsuiNeedToKnowTargetDebuff(2, "Concussion Blow", { 0.91, 0.91, 0.91 }, true)
       ChopsuiNeedToKnowTargetDebuff(3, "Rend", { 0.6, 0.01, 0 }, true)
       ChopsuiNeedToKnowTargetDebuff(4, "Expose Armor, Sunder Armor, Faerie Fire", { 0.75, 0.58, 0 }, false)
-      ChopsuiNeedToKnowTargetDebuff(5, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
-      ChopsuiNeedToKnowTargetDebuff(6, "Frost Fever, Infected Wounds, Judgements of the Just, Thunder Clap", { 0.28, 0.79, 0.30 }, false)
+      ChopsuiNeedToKnowTargetDebuff(5, "Demoralizing Shout, Vindication, Demoralizing Roar, Curse of Weakness, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
+      ChopsuiNeedToKnowTargetDebuff(6, "Thunder Clap, Frost Fever, Infected Wounds, Judgements of the Just", { 0.28, 0.79, 0.30 }, false)
     end
 
   end
