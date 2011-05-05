@@ -969,7 +969,6 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		BarberShopFrame:Size(BarberShopFrame:GetWidth() - 30, BarberShopFrame:GetHeight() - 56)
 		
 		BarberShopFrameMoneyFrame:StripTextures()
-		BarberShopFrameMoneyFrame:CreateBackdrop()
 		BarberShopFrameBackground:Kill()
 		
 		BarberShopBannerFrameBGTexture:Kill()
@@ -1097,7 +1096,6 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			QuestLogFrame:SetTemplate("Transparent")
 			QuestLogFrame:CreateShadow("Default")
 			QuestLogCount:StripTextures()
-			QuestLogCount:SetTemplate("Default")
 			
 			local buttons = {
 				"QuestLogFrameAbandonButton",
