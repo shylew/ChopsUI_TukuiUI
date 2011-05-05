@@ -1805,7 +1805,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 					object.BgMiddle:SetTexture(nil)
 
 					object.Check:SetTexture(nil)
-					object.text:SetFont(C["media"].font,C["general"].fontscale)
+					object.text:SetFont(C["media"].font,12)
 					object.text.SetFont = T.dummy
 				end
 			end)
