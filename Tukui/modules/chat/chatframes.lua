@@ -78,6 +78,9 @@ local function SetChatStyle(frame)
 		tab:HookScript("OnLeave", function() _G[chat.."TabText"]:Hide() end)
 	end
 	
+	-- change tab font
+	_G[chat.."TabText"]:SetFont(C.media.font, 11)
+	
 	-- yeah baby
 	_G[chat]:SetClampRectInsets(0,0,0,0)
 	
@@ -136,7 +139,6 @@ local function SetChatStyle(frame)
 	local a, b, c = select(6, _G[chat.."EditBox"]:GetRegions()) a:Kill() b:Kill() c:Kill()
 	
 	-- bubble tex & glow killing from privates
-	if tab.glow then tab.glow:Kill() end
 	if tab.conversationIcon then tab.conversationIcon:Kill() end
 				
 	-- Disable alt key usage
