@@ -18,12 +18,13 @@ NeedToKnow.Update = function()
 
   -- Position the target debuff tracker
   targetFrame:ClearAllPoints()
+  targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 4, 180)
+
+  -- Disable target debuff tracker if we're on a dot class
   if (T.Role == "Caster" and not (T.Spec == "HOLY" or T.Spec == "RESTORATION" or T.Spec == "DISCIPLINE")) then
-    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Scale"] = 0.77
-    targetFrame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundRight, "TOPLEFT", (NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][1]["Width"] * -1) - 20, 240)
+    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Enabled"] = false
   else
-    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Scale"] = 0.6666667461395264
-    targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 4, 180)
+    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Enabled"] = true
   end
 
 end
