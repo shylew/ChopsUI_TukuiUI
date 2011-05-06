@@ -53,13 +53,20 @@ function ChopsuiConfigureNeedToKnowPlayerBuffs()
   elseif T.myclass == "DRUID" then
 
     if T.Spec == "FERALCOMBAT" then
-      if T.Role == "dps" then
+      if T.Role == "Melee" then
         ChopsuiNeedToKnowPlayerBuff(1, "Predator's Swiftness", { 0.6, 0.38, 0 }, true)
         ChopsuiNeedToKnowPlayerBuff(2, "Barkskin", { 0.70, 0.68, 0 }, true)
         ChopsuiNeedToKnowPlayerBuff(3, "Survival Instincts", { 0.25, 0.6, 0.45 }, true)
         ChopsuiNeedToKnowPlayerBuff(4, "Berserk", { 0.71, 0, 1 }, true)
         ChopsuiNeedToKnowPlayerBuff(5, "Stampede", { 0.74, 0.33, 0 }, true)
         ChopsuiNeedToKnowPlayerBuff(6, "Savage Roar", { 0.92, 0.76, 0 }, true)
+      elseif T.Role == "Tank" then
+        ChopsuiNeedToKnowPlayerBuff(1, "Barkskin", { 0.19, 0.71, 0.78 }, true)
+        ChopsuiNeedToKnowPlayerBuff(2, "Survival Instincts", { 0.75, 0.58, 0 }, true)
+        ChopsuiNeedToKnowPlayerBuff(3, "Earthen Armor", { 0.25, 0.25, 0.25 }, true)
+        ChopsuiNeedToKnowPlayerBuff(4, "Savage Defense", { 0.91, 0.91, 0.91 }, true)
+        ChopsuiNeedToKnowPlayerBuff(5, "Pulverize", { 0.14, 0.6, 0.2 }, true)
+        ChopsuiNeedToKnowPlayerBuff(6, "Berserk", { 0.6, 0, 0.05 }, true)
       end
     end
 
@@ -190,7 +197,7 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
   for i = 1, NEEDTOKNOW.MAXBARS do
     NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Bars"][i]["Enabled"] = false
   end
-  
+
   if T.myclass == "DEATHKNIGHT" then
 
     ChopsuiNeedToKnowTargetDebuff(5, "Blood Plague", { 0.6, 0, 0.07 }, true)
@@ -208,12 +215,19 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
   elseif T.myclass == "DRUID" then
 
     if T.Spec == "FERALCOMBAT" then
-      if T.Role == "dps" then
+      if T.Role == "Melee" then
         ChopsuiNeedToKnowTargetDebuff(2, "Pounce", { 0, 0.44, 0.6 }, true)
         ChopsuiNeedToKnowTargetDebuff(3, "Rip", { 0.89, 0.38, 0 }, true)
         ChopsuiNeedToKnowTargetDebuff(4, "Rake", { 0.6, 0.02, 0 }, true)
         ChopsuiNeedToKnowTargetDebuff(5, "Faerie Fire, Expose Armor, Sunder Armor", { 0.6, 0, 0.55 }, false)
         ChopsuiNeedToKnowTargetDebuff(6, "Mangle, Trauma", { 0.6, 0.34, 0 }, false)
+      elseif T.Role == "Tank" then
+        ChopsuiNeedToKnowTargetDebuff(1, "Thrash", { 0.04, 0.29, 0.6 }, true)
+        ChopsuiNeedToKnowTargetDebuff(2, "Mangle, Trauma", { 0.6, 0.34, 0 }, false)
+        ChopsuiNeedToKnowTargetDebuff(3, "Lacerate", { 0.6, 0.01, 0 }, true)
+        ChopsuiNeedToKnowTargetDebuff(4, "Faerie Fire, Sunder Armor, Expose Armor", { 0.75, 0.58, 0 }, false)
+        ChopsuiNeedToKnowTargetDebuff(5, "Demoralizing Roar, Demoralizing Shout, Vindication, Curse of Weakness, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
+        ChopsuiNeedToKnowTargetDebuff(6, "Infected Wounds, Thunder Clap, Frost Fever, Judgements of the Just", { 0.28, 0.79, 0.30 }, false)
       end
     end
 
@@ -311,7 +325,7 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
       ChopsuiNeedToKnowTargetDebuff(1, "Shockwave", { 0.04, 0.29, 0.6 }, true)
       ChopsuiNeedToKnowTargetDebuff(2, "Concussion Blow", { 0.91, 0.91, 0.91 }, true)
       ChopsuiNeedToKnowTargetDebuff(3, "Rend", { 0.6, 0.01, 0 }, true)
-      ChopsuiNeedToKnowTargetDebuff(4, "Expose Armor, Sunder Armor, Faerie Fire", { 0.75, 0.58, 0 }, false)
+      ChopsuiNeedToKnowTargetDebuff(4, "Sunder Armor, Expose Armor, Faerie Fire", { 0.75, 0.58, 0 }, false)
       ChopsuiNeedToKnowTargetDebuff(5, "Demoralizing Shout, Vindication, Demoralizing Roar, Curse of Weakness, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
       ChopsuiNeedToKnowTargetDebuff(6, "Thunder Clap, Frost Fever, Infected Wounds, Judgements of the Just", { 0.28, 0.79, 0.30 }, false)
     end
