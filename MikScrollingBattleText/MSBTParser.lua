@@ -1,8 +1,6 @@
 -------------------------------------------------------------------------------
 -- Title: Mik's Scrolling Battle Text Parser
 -- Author: Mikord
--- Updated by the generous ppl at Curse.com use at own risk.
--- Modified line is on 347
 -------------------------------------------------------------------------------
 
 -- Create module and set its name.
@@ -343,7 +341,6 @@ end
 -- ****************************************************************************
 -- Parses the parameter style events going to the combat log.
 -- ****************************************************************************
--- Modified here for the 4.1 patch by Protonova Rexxar (US)
 local function ParseLogMessage(timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, recipientGUID, recipientName, recipientFlags, ...)
  -- Make sure the capture function for the event exists.
  local captureFunc = captureFuncs[event]

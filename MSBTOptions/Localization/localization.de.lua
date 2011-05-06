@@ -20,15 +20,15 @@ local L = MikSBT.translations
 ------------------------------
 
 L.MSG_CUSTOM_FONTS					= "Benutzerdefinierte Schrift"
-L.MSG_INVALID_CUSTOM_FONT_NAME		= "Ungültiger Schriftname"
+L.MSG_INVALID_CUSTOM_FONT_NAME		= "Ungültiger Schriftname."
 L.MSG_FONT_NAME_ALREADY_EXISTS		= "Schriftname existiert bereits."
 L.MSG_INVALID_CUSTOM_FONT_PATH		= "Schrift Pfad muss zu einer .ttf Datei führen."
 L.MSG_CUSTOM_SOUNDS					= "Benutzerdefinierte Sounds"
-L.MSG_INVALID_CUSTOM_SOUND_NAME		= "Ung�ltiger Sound-Name."
+L.MSG_INVALID_CUSTOM_SOUND_NAME		= "Ungültiger Sound-Name."
 L.MSG_SOUND_NAME_ALREADY_EXISTS		= "Sound-Name existiert bereits."
 L.MSG_NEW_PROFILE					= "Neues Profil"
 L.MSG_PROFILE_ALREADY_EXISTS		= "Profil existiert bereits."
-L.MSG_INVALID_PROFILE_NAME			= "Ungültiger Profil-Name."
+L.MSG_INVALID_PROFILE_NAME			= "Ungültiger Profilname."
 L.MSG_NEW_SCROLL_AREA				= "Neuer Scroll-Bereich"
 L.MSG_SCROLL_AREA_ALREADY_EXISTS	= "Name für Scroll-Bereich existiert bereits."
 L.MSG_INVALID_SCROLL_AREA_NAME		= "Ungültiger Name für Scroll-Bereich."
@@ -37,18 +37,18 @@ L.MSG_NORMAL_PREVIEW_TEXT			= "Normal"
 L.MSG_INVALID_SOUND_FILE			= "Sound muss eine .mp3 oder .ogg Datei sein."
 L.MSG_NEW_TRIGGER					= "Neuer Auslöser"
 L.MSG_TRIGGER_CLASSES				= "Klassen Auslöser"
-L.MSG_MAIN_EVENTS					= "Haupt Ereignisse"
-L.MSG_TRIGGER_EXCEPTIONS			= "Ausl�ser ausschließen"
-L.MSG_EVENT_CONDITIONS				= "Ereignis Bedingungen"
-L.MSG_DISPLAY_QUALITY				= "Zeige Benachrichtigungen für diese Gegenstand Qualtitäten."
-L.MSG_SKILLS						= "Skills"
-L.MSG_SKILL_ALREADY_EXISTS			= "Skill Name existiert bereits."
-L.MSG_INVALID_SKILL_NAME			= "Ungültiger Skill Name."
+L.MSG_MAIN_EVENTS					= "Hauptereignisse"
+L.MSG_TRIGGER_EXCEPTIONS			= "Auslöser ausschließen"
+L.MSG_EVENT_CONDITIONS				= "Ereignisbedingungen"
+L.MSG_DISPLAY_QUALITY				= "Zeige Benachrichtigungen für Gegenstände dieser Qualtität."
+L.MSG_SKILLS						= "Fähigkeiten"
+L.MSG_SKILL_ALREADY_EXISTS			= "Fähigkeitsname existiert bereits."
+L.MSG_INVALID_SKILL_NAME			= "Ungültiger Fähigkeitsname."
 L.MSG_HOSTILE						= "Feind"
 L.MSG_ANY							= "Jeder"
 L.MSG_CONDITION						= "Bedingung"
 L.MSG_CONDITIONS					= "Bedingungen"
-L.MSG_ITEM_QUALITIES				= "Gegenstands-Qualität"
+L.MSG_ITEM_QUALITIES				= "Gegenstandsqualitäten"
 L.MSG_ITEMS							= "Gegenstände"
 L.MSG_ITEM_ALREADY_EXISTS			= "Gegenstandsname exisiert bereits."
 L.MSG_INVALID_ITEM_NAME				= "Ungültiger Gegenstandsname."
@@ -76,15 +76,15 @@ obj["WARRIOR"]		= "Krieger"
 ------------------------------
 
 obj = L.TABS
-obj["customMedia"]	= { label="Benutzerdefinierte Media", tooltip="Optionen zum Einstellen für benutzerdefinierte Media anzeigen."}
+obj["customMedia"]	= { label="Benutzerdefinierte Medien", tooltip="Optionen für benutzerdefinierte Medien anzeigen."}
 obj["general"]		= { label="Allgemein", tooltip="Allgemeine Optionen anzeigen."}
-obj["scrollAreas"]	= { label="Scroll-Bereiche", tooltip="Optionen für das Erstellen, Löschen, und Konfigurieren der Scroll-Bereiche anzeigen.\n\nMit der Maus über die Icons fahren für mehr Informationen."}
-obj["events"]		= { label="Ereignisse", tooltip="Optionen für eingehende, ausgehende und benachrichtigende Ereignisse anzeigen.\n\nMit der Maus über die Icons fahren für mehr Informationen."}
-obj["triggers"]		= { label="Auslöser", tooltip="Optionen für das Auslöser-System anzeigen.\n\nMit der Maus über die Icons fahren für mehr Informationen."}
-obj["spamControl"]	= { label="Spam-Kontrolle", tooltip="Optionen für die Spam-Kontrolle anzeigen."}
-obj["cooldowns"]	= { label="Abklingzeiten", tooltip="Optionen für Abklingzeiten anzeigen."}
-obj["lootAlerts"]	= { label="Loot-Benachrichtigungen", tooltip="Optionen für Loot-Benachrichtigungen anzeigen."}
-obj["skillIcons"]	= { label="Skill Icons", tooltip="Optionen für Skill Icons anzeigen."}
+obj["scrollAreas"]	= { label="Scroll-Bereiche", tooltip="Optionen für das Erstellen, Löschen, und Konfigurieren der Scroll-Bereiche anzeigen.\n\nFür mehr Informationen mit der Maus über die Symbole fahren."}
+obj["events"]		= { label="Ereignisse", tooltip="Optionen für eingehende, ausgehende und benachrichtigende Ereignisse anzeigen.\n\nFür mehr Informationen mit der Maus über die Symbole fahren."}
+obj["triggers"]		= { label="Auslöser", tooltip="Optionen für das Auslösersystem anzeigen.\n\nFür mehr Informationen mit der Maus über die Symbole fahren."}
+obj["spamControl"]	= { label="Spamkontrolle", tooltip="Optionen für die Spamkontrolle anzeigen."}
+obj["cooldowns"]	= { label="Abklingzeiten", tooltip="Optionen für die Abklingzeiten anzeigen."}
+obj["lootAlerts"]	= { label="Plündernachrichten", tooltip="Optionen für die Plünderbenachrichtigung anzeigen."}
+obj["skillIcons"]	= { label="Fähigkeitssymbole", tooltip="Optionen für die Fähigkeitssymbole anzeigen."}
 
 
 ------------------------------
@@ -93,43 +93,43 @@ obj["skillIcons"]	= { label="Skill Icons", tooltip="Optionen für Skill Icons an
 
 obj = L.CHECKBOXES
 obj["enableMSBT"]				= { label="Mik's Scrolling Battle Text aktivieren", tooltip="MSBT aktivieren."}
-obj["stickyCrits"]				= { label="Sticky-Krits", tooltip="Bei kritischen Treffern den Sticky Style verwenden."}
-obj["enableSounds"]				= { label="Sounds aktivieren", tooltip="Sounds abspielen, die zu den Ereignissen und Auslösern zugewiesen sind."}
-obj["textShadowing"]			= { label="Text Schatten", tooltip="Fügt ein Schatten Effekt zu der Schrift hinzu um sie besser Aussehen zu lassen."}
-obj["colorPartialEffects"]		= { label="Partielle Effekte einfärben", tooltip="Fügt festgelegte Farben zu den Partiellen Effekten hinzu."}
-obj["crushing"]					= { label="Zerschmetternde Stöße", tooltip="Zeigt zerschmetternde Stöße an."}
-obj["glancing"]					= { label="Streif-Treffer", tooltip="Zeigt Streif-Treffer an."}
-obj["absorb"]					= { label="Partiell - Absorbieren", tooltip="Zeigt die zum Teil absobierte Menge an."}
-obj["block"]					= { label="Partiell - Blocken", tooltip="Zeigt die zum Teil geblockte Menge an."}
-obj["resist"]					= { label="Partiell - Widerstehen", tooltip="Zeigt die zum Teil widerstandene Menge an."}
-obj["vulnerability"]			= { label="Verwundbarkeit Bonis", tooltip="Zeigt die Menge des Verwundbarkeits Bonis an."}
+obj["stickyCrits"]				= { label="Sticky-Krits", tooltip="Bei kritischen Treffern den 'Sticky'-Stil verwenden."}
+obj["enableSounds"]				= { label="Sounds aktivieren", tooltip="Sounds abspielen, die Ereignissen und Auslösern zugewiesen wurden."}
+obj["textShadowing"]			= { label="Textschatten", tooltip="Fügt den Schriften einen Schatteneffekt hinzu, um die Lesbarkeit zu erhöhen."}
+obj["colorPartialEffects"]		= { label="Teileffekte einfärben", tooltip="Fügt den Teileffekten festgelegte Farben hinzu."}
+obj["crushing"]					= { label="Schmetternde Stöße", tooltip="Zeigt den Anhang bei schmetternden Treffern an."}
+obj["glancing"]					= { label="Streifende Treffer", tooltip="Zeigt den Anhang bei streifenden Treffern an."}
+obj["absorb"]					= { label="Teilweise absorbiert", tooltip="Zeigt die zum Teil absobierte Menge an."}
+obj["block"]					= { label="Teilweise geblockt", tooltip="Zeigt die zum Teil geblockte Menge an."}
+obj["resist"]					= { label="Teilweise widerstanden", tooltip="Zeigt die zum Teil widerstandene Menge an."}
+obj["vulnerability"]			= { label="Verwundbarkeitsboni", tooltip="Zeigt die Menge der Verwundbarkeitsboni an."}
 obj["overheal"]					= { label="Überheilung", tooltip="Zeigt die Menge der Überheilung an."}
-obj["overkill"]					= { label="Overkills", tooltip="Zeigt die Menge der Overkills an."}
-obj["colorDamageAmounts"]		= { label="Farbiger Schaden", tooltip="Fügt zu den Schadensbeträgen die festgelegten Farben hinzu."}
+obj["overkill"]					= { label="Über Tod", tooltip="Zeigt die Menge des Schadens über Tod an."}
+obj["colorDamageAmounts"]		= { label="Farbiger Schaden", tooltip="Färbt den Schaden in der entsprechenden Farbe ein."}
 obj["colorDamageEntry"]			= { tooltip="Aktiviert Farbe für diese Schadensart."}
-obj["colorUnitNames"]			= { label="Farbige Klassen Namen", tooltip="Fügt festgelegte Klassen Farben zu den Einheit Namen."}
+obj["colorUnitNames"]			= { label="Farbige Namen", tooltip="Färbt die Namen in Klassenfarbe ein."}
 obj["colorClassEntry"]			= { tooltip="Aktiviert Farbe für diese Klasse."}
 obj["enableScrollArea"]			= { tooltip="Scroll-Bereich aktivieren."}
-obj["inheritField"]				= { label="Übernehmen", tooltip="Übernehmen der eingegebenen Werte.  Markierung aufheben zum Überschreiben."}
-obj["hideSkillIcons"]			= { label="Icons verstecken", tooltip="Keine Icons in diesem Scroll-Bereich anzeigen."}
-obj["stickyEvent"]				= { label="Sticky-Style verwenden", tooltip="Ereignis immer im Sticky-Style anzeigen."}
+obj["inheritField"]				= { label="Übernehmen", tooltip="Übernimmt die eingegebenen Werte.\n\nHacken entfernen, um zu überschreiben."}
+obj["hideSkillIcons"]			= { label="Symbole verstecken", tooltip="Keine Symbole in diesem Scroll-Bereich anzeigen."}
+obj["stickyEvent"]				= { label="Sticky-Stil verwenden", tooltip="Ereignis immer im 'Sticky'-Stil anzeigen."}
 obj["enableTrigger"]			= { tooltip="Auslöser aktivieren."}
-obj["allPowerGains"]			= { label="ALLE Regenerationen", tooltip="Zeigt alle Power Gains einschließlich die, die nicht im Kampflog gemeldet werden.\n\nWARNUNG: Diese Einstellung ist sehr Spammy, ignoriert den Power Schwellwert und drosselt einige Funktionen.\n\nNICHT EMPFOHLEN."}
-obj["abbreviateSkills"]			= { label="Skills abkürzen", tooltip="Skill Namen abkürzen (Nur Englisch).\n\nDies kann von jedem Ereignis mit dem %sl Ereignis Code überschrieben werden."}
---obj["mergeSwings"]				= { label="Merge Swings", tooltip="Merge regular melee swings that hit within a short time span."}
-obj["hideSkills"]				= { label="Skills verstecken", tooltip="Keine Skill Namen für eingehende und ausgehende Ereignisse anzeigen.\n\nYou will give up some customization capability at the event level if you choose to use this option since it causes the %s event code to be ignored."}
-obj["hideNames"]				= { label="Namen verstecken", tooltip="Namen für eingehende und ausgehende Ereignisse nicht anzeigen.\n\nYou will give up some customization capability at the event level if you choose to use this option since it causes the %n event code to be ignored."}
-obj["hideFullOverheals"]		= { label="Komplette Überheilungen verstecken", tooltip="Heilungen die eine effektige Heilung von null haben, nicht anzeigen."}
---obj["hideFullHoTOverheals"]		= { label="Hide Full HoT Overheals", tooltip="Don't display heals over time that have an effective heal amount of zero."}
---obj["hideMergeTrailer"]			= { label="Hide Merge Trailer", tooltip="Don't display the trailer that specifies the number of hits and crits at the end of merged events."}
+obj["allPowerGains"]			= { label="ALLE Regenerationen", tooltip="Zeigt alle Ressourcenregenerationen einschließlich derjenigen, die nicht im Kampflog gemeldet werden.\n\nWARNUNG: Diese Einstellung führt zu viel Spam, da sie alle Grenzwerte und Drosselfunktionen ignoriert.\n\nNICHT EMPFOHLEN."}
+obj["abbreviateSkills"]			= { label="Fähigkeiten abkürzen", tooltip="Fähigkeiten abkürzen (nur Englisch).\n\nDies kann von jedem Ereignis mit dem %sl Code überschrieben werden."}
+obj["mergeSwings"]				= { label="Schwünge verbinden", tooltip="Verbindet normale Meleetreffer, die in einer kurzen Zeitspanne erfolgen."}
+obj["hideSkills"]				= { label="Fähigkeiten verstecken", tooltip="Keine Fähigkeitsnamen für eingehende und ausgehende Ereignisse anzeigen.\n\nDu gibst ein wenig Anpassungsmöglichkeit auf Ereignisebene auf, da der Ereigniscode %s nun ignoriert wird."}
+obj["hideNames"]				= { label="Namen verstecken", tooltip="Keine Namen für eingehende und ausgehende Ereignisse anzeigen.\n\nDu gibst ein wenig Anpassungsmöglichkeit auf Ereignisebene auf, da der Ereigniscode %n nun ignoriert wird."}
+obj["hideFullOverheals"]		= { label="Überheilungen verstecken", tooltip="Heilungen, die eine effektive Heilung von null haben, werden nicht angezeigt."}
+obj["hideFullHoTOverheals"]		= { label="HoT Überheilungen verstecken", tooltip="Heilungen über Zeit, die eine effektive Heilung von null haben, werden nicht angezeigt."}
+obj["hideMergeTrailer"]			= { label="Verbinden-Anhang verstecken", tooltip="Der Anhang, der die Anzahl der miteinander verbundenen Treffer und Krits am Ende jedes Ereignisses darstellt, wird nicht angezeigt."}
 obj["allClasses"]				= { label="Alle Klassen"}
---obj["enablePlayerCooldowns"]	= { label="Player Cooldowns", tooltip="Display notifications when your cooldowns complete."}
---obj["enablePetCooldowns"]		= { label="Pet Cooldowns", tooltip="Display notifications when your pet's cooldowns complete."}
-obj["lootedItems"]				= { label="Gelootete Gegenstände", tooltip="Zeige Benachrichtigungen wenn Gegenstände geplündert wurden."}
-obj["moneyGains"]				= { label="Gold erhalten", tooltip="Zeige Benachrichtigungen wenn Gold geplündert wurde."}
-obj["alwaysShowQuestItems"]		= { label="Quest Gegenstände immer anzeigen", tooltip="Quest Gegenstände IMMER anzeigen, unabhängig der ausgewählten Qualitäten."}
-obj["enableIcons"]				= { label="Skill Icons aktivieren", tooltip="Zeigt wenn möglich Icons für Ereignisse mit einem Skill an."}
-obj["exclusiveSkills"]			= { label="Nur Skill Namen", tooltip="Zeige nur Skill Namen, solang kein Icon verfügbar ist."}
+obj["enablePlayerCooldowns"]	= { label="Spieler Abklingzeiten", tooltip="Zeigt Benachrichtigungen, wenn deine Abklingzeiten abgelaufen sind."}
+obj["enablePetCooldowns"]		= { label="Begleiter Abklingzeiten", tooltip="Zeigt Benachrichtigungen, wenn die Abklingzeiten deines Begleiters abgelaufen sind."}
+obj["lootedItems"]				= { label="Geplünderte Gegenstände", tooltip="Zeigt Benachrichtigungen, wenn Gegenstände geplündert wurden."}
+obj["moneyGains"]				= { label="Gold erhalten", tooltip="Zeigt Benachrichtigungen, wenn Gold erhalten wurde."}
+obj["alwaysShowQuestItems"]		= { label="Questgegenstände immer anzeigen", tooltip="Questgegenstände immer anzeigen, unabhängig der ausgewählten Qualitäten."}
+obj["enableIcons"]				= { label="Fähigkeitssymbole aktivieren", tooltip="Zeigt, wenn möglich, Symbole für Ereignisse an."}
+obj["exclusiveSkills"]			= { label="Nur Fähigkeitsnamen", tooltip="Zeigt nur Fähigkeitsnamen, solange kein Symbol verfügbar ist."}
 
 
 ------------------------------
@@ -138,22 +138,22 @@ obj["exclusiveSkills"]			= { label="Nur Skill Namen", tooltip="Zeige nur Skill N
 
 obj = L.DROPDOWNS
 obj["profile"]				= { label="Aktuelles Profil:", tooltip="Legt das aktuelle Profil fest."}
-obj["normalFont"]			= { label="Schrift - Normal:", tooltip="Legt die Schriftart für Nicht-kritische Treffer."}
+obj["normalFont"]			= { label="Schrift - Normal:", tooltip="Legt die Schriftart für nicht-kritische Treffer."}
 obj["critFont"]				= { label="Schrift - Kritisch:", tooltip="Legt die Schriftart für kritische Treffer."}
-obj["normalOutline"]		= { label="Kontur - Normal:", tooltip="Legt die Kontur für Nicht-kritische Treffer."}
+obj["normalOutline"]		= { label="Kontur - Normal:", tooltip="Legt die Kontur für nicht-kritische Treffer."}
 obj["critOutline"]			= { label="Kontur - Kritisch:", tooltip="Legt die Kontur für kritische Treffer."}
 obj["scrollArea"]			= { label="Scroll-Bereich:", tooltip="Wählt den zu konfigurierenden Scroll-Bereich aus."}
-obj["sound"]				= { label="Sound:", tooltip="Wählt den Sound zum Abspielen wenn das Ereignis erscheint."}
-obj["animationStyle"]		= { label="Animationen:", tooltip="Der Animation Style für Nicht-Sticky Animationen in dem Scrollbereich."}
-obj["stickyAnimationStyle"]	= { label="Sticky Animationen:", tooltip="Der Animation Style für Sticky Animationen in dem Scrollbereich."}
+obj["sound"]				= { label="Sound:", tooltip="Wählt den Sound aus, der abgespielt werden soll, wenn das Ereignis erscheint."}
+obj["animationStyle"]		= { label="Animationen:", tooltip="Der Animationsstil für Nicht-'Sticky'-Animationen in dem Scroll-Bereich."}
+obj["stickyAnimationStyle"]	= { label="Sticky Animationen:", tooltip="Der Animationsstil für 'Sticky'-Animationen in dem Scroll-Bereich."}
 obj["direction"]			= { label="Richtung:", tooltip="Die Richtung der Animation."}
 obj["behavior"]				= { label="Verhalten:", tooltip="Das Verhalten der Animation."}
 obj["textAlign"]			= { label="Text ausrichten:", tooltip="Die Ausrichtung des Textes für die Animation."}
-obj["iconAlign"]			= { label="Icon ausrichten:", tooltip="Die Ausrichtung des Icons für die Animation."}
-obj["eventCategory"]		= { label="Ereignis-Kategorie:", tooltip="Die Kategorie der zu konfigurienden Ereignisse."}
+obj["iconAlign"]			= { label="Symbol ausrichten:", tooltip="Die Ausrichtung des Symbols für die Animation."}
+obj["eventCategory"]		= { label="Ereigniskategorie:", tooltip="Die Kategorie der zu konfigurienden Ereignisse."}
 obj["outputScrollArea"]		= { label="Scroll-Bereich:", tooltip="Den Scroll-Bereich für die Textausgabe auswählen."}
-obj["mainEvent"]			= { label="Haupt Ereignis:"}
-obj["triggerCondition"]		= { label="Bedingung:", tooltip="Die Bedingung zum Testen."}
+obj["mainEvent"]			= { label="Hauptereignis:"}
+obj["triggerCondition"]		= { label="Bedingung:", tooltip="Die Bedingung, die getestet wird."}
 obj["triggerRelation"]		= { label="Relation:"}
 obj["triggerParameter"]		= { label="Parameter:"}
 
@@ -163,8 +163,8 @@ obj["triggerParameter"]		= { label="Parameter:"}
 ------------------------------
 
 obj = L.BUTTONS
-obj["addCustomFont"]			= { label="Schrift hinzufügen", tooltip="Fügt eine benutzerdefinierte Schrift zu der Liste der verfügbaren Schriften.\n\nWARNUNG: Die Schrift Datei muss in dem Ziel Verzeichnis existieren *BEVOR* WoW gestartet wurde.\n\nEs ist empfohlen die Datei in den MikScrollingBattleText\\Fonts Ordner zu platzieren um Fehler zu vermeiden."}
-obj["addCustomSound"]			= { label="Sound hinzufügen", tooltip="Fügt ein benutzerdefinierten Sound zu der Liste der verfügbaren Sounds.\n\nWARNUNG: Die Sound Datei muss in dem Ziel Verzeichnis existieren *BEVOR* WoW gestartet wurde.\n\nEs ist empfohlen die Datei in den MikScrollingBattleText\\Sounds Ordner zu platzieren um Fehler zu vermeiden."}
+obj["addCustomFont"]			= { label="Schrift hinzufügen", tooltip="Fügt eine benutzerdefinierte Schrift zu der Liste der verfügbaren Schriften.\n\nWARNUNG: Die Datei muss in dem Ziel-Verzeichnis existieren, *BEVOR* WoW gestartet wurde.\n\nEs wird empfohlen, die Datei in den MikScrollingBattleText\\Fonts Ordner zu kopieren um Fehler zu vermeiden."}
+obj["addCustomSound"]			= { label="Sound hinzufügen", tooltip="Fügt einen benutzerdefinierten Sound zu der Liste der verfügbaren Sounds.\n\nWARNUNG: Die Datei muss in dem Ziel-Verzeichnis existieren, *BEVOR* WoW gestartet wurde.\n\nEs wird empfohlen, die Datei in den MikScrollingBattleText\\Sounds Ordner zu kopieren um Fehler zu vermeiden."}
 obj["editCustomFont"]			= { tooltip="Klicken, um benutzerdefinierte Schrift zu bearbeiten."}
 obj["deleteCustomFont"]			= { tooltip="Klicken, um benutzerdefinierte Schrift aus MSBT zu entfernen."}
 obj["editCustomSound"]			= { tooltip="Klicken, um benutzerdefinierten Sound zu bearbeiten."}
@@ -173,13 +173,13 @@ obj["copyProfile"]				= { label="Kopieren", tooltip="Kopiert das aktuelle Profil
 obj["resetProfile"]				= { label="Zurücksetzen", tooltip="Setzt das Profil auf die Standardeinstellungen zurück."}
 obj["deleteProfile"]			= { label="Löschen", tooltip="Löscht das Profil."}
 obj["masterFont"]				= { label="Master Schrift", tooltip="Erlaubt dir die Master Schrift festzulegen, welche bei allen Scroll-Bereichen und Ereignissen übernommen wird, sofern sie nicht überschrieben wird."}
-obj["partialEffects"]			= { label="Partielle Effekte", tooltip="Erlaubt dir festzulegen welche partiellen Effekte angezeigt werden sollen, ob sie eingefärbt werden sollen, und wenn ja in welcher Farbe."}
-obj["damageColors"]				= { label="Schaden Farben", tooltip="Erlaubt dir festzulegen ob oder auch nicht die Beträge nach der Farbe der Schadensart gefärbt sind und welche Farben für jede Art verwendet werden."}
-obj["classColors"]				= { label="Klassen Farben", tooltip="Erlaubt dir festzulegen ob doer auch nicht die Namen nach der Farbe der Klassen gefärbt sind und welche Farben für jede Klasse verwendet werden." }
+obj["partialEffects"]			= { label="Partielle Effekte", tooltip="Erlaubt dir festzulegen, welche partiellen Effekte angezeigt werden sollen, ob sie eingefärbt werden sollen, und wenn ja in welcher Farbe."}
+obj["damageColors"]				= { label="Schaden Farben", tooltip="Erlaubt dir festzulegen, ob oder auch nicht die Beträge nach der Farbe der Schadensart gefärbt sind und welche Farben für jede Art verwendet werden."}
+obj["classColors"]				= { label="Klassen Farben", tooltip="Erlaubt dir festzulegen, ob die Namen nach Klassenfarbe eingefärbt werden sollen oder welche Farbe für jede Klasse verwendet werden soll." }
 obj["inputOkay"]				= { label=OKAY, tooltip="Eingaben übernehmen."}
 obj["inputCancel"]				= { label=CANCEL, tooltip="Eingaben zurücksetzen."}
 obj["genericSave"]				= { label=SAVE, tooltip="Speichert die Änderungen."}
-obj["genericCancel"]			= { label=CANCEL, tooltip="Änderungen zurücksetzen."}
+obj["genericCancel"]			= { label=CANCEL, tooltip="Setzt die Änderungen zurück."}
 obj["addScrollArea"]			= { label="Neuer Scroll-Bereich", tooltip="Einen neuen Scroll-Bereich auswählen, dem Ereignisse und Auslöser zugewiesen werden können."}
 obj["configScrollAreas"]		= { label="Scroll-Bereiche konfigurieren", tooltip="Konfiguriert die normalen und Sticky-Styles, Text-Ausrichtung, Scroll Weite/Höhe und Position der Scroll-Bereiche."}
 obj["editScrollAreaName"]		= { tooltip="Klicken, um den Namen des Scroll-Bereichs zu bearbeiten."}
@@ -190,26 +190,26 @@ obj["toggleAll"]				= { label="Alle umschalten", tooltip="Die Aktivierung aller 
 obj["moveAll"]					= { label="Alle verschieben", tooltip="Verschiebt alle Ereignisse in der ausgewählten Kategorie zu dem ausgewählten Scroll-Bereich."}
 obj["eventFontSettings"]		= { tooltip="Klicken, um die Schrifteinstellungen für dieses Ereignis zu bearbeiten."}
 obj["eventSettings"]			= { tooltip="Klicken, um die Ereigniseinstellungen wie Scroll-Bereich, Text, Sound, etc. zu bearbeiten."}
-obj["customSound"]				= { tooltip="Klicken, um eine benutzerdefinierte Sound Datei auszuwählen." }
+obj["customSound"]				= { tooltip="Klicken, um eine benutzerdefinierte Sound-Datei auszuwählen." }
 obj["playSound"]				= { label="Abspielen", tooltip="Klicken, um den ausgewählten Sound abzuspielen."}
 obj["addTrigger"]				= { label="Neuen Auslöser hinzufügen", tooltip="Einen neuen Auslöser hinzufügen."}
 obj["triggerSettings"]			= { tooltip="Klicken, um die Auslöser-Einstellungen zu konfigurieren."}
 obj["deleteTrigger"]			= { tooltip="Klicken, um diesen Auslöser zu löschen."}
-obj["editTriggerClasses"]		= { tooltip="Klicken, um die Klassen wo der Auslöser verwendet wird zu bearbeiten."}
-obj["addMainEvent"]				= { label="Ereignis hinzufügen", tooltip="Wenn IRGENDEINER dieser Ereignisse auftritt und deren definierte Bedingungen geschehen, werden die Auslöser ausgeführt, außer es trifft eine festgelegte Ausnahme zu."}
+obj["editTriggerClasses"]		= { tooltip="Klicken, um die Klassen, in der der Auslöser verwendet wird, zu bearbeiten."}
+obj["addMainEvent"]				= { label="Ereignis hinzufügen", tooltip="Wenn IRGENDEINES dieser Ereignisse auftritt und deren definierte Bedingungen geschehen, werden die Auslöser ausgeführt, außer es trifft eine festgelegte Ausnahme zu."}
 obj["addTriggerException"]		= { label="Ausnahme hinzufügen", tooltip="Wenn IRGENDEINE dieser Ausnahmen auftritt, wird der Auslöser nicht ausgeführt."}
 obj["editEventConditions"]		= { tooltip="Klicken, um für dieses Ereignis die Bedingungen zu bearbeiten."}
 obj["deleteMainEvent"]			= { tooltip="Klicken, um Ereignis zu entfernen."}
-obj["addEventCondition"]		= { label="Bedingung hinzufügen", tooltip="Wenn JEDE dieser Bedingungen zutrifft für das ausgewählte Ereignis, wird der Auslöser ausgeführt, außer es trifft eine festgelegte Ausnahme zu."}
+obj["addEventCondition"]		= { label="Bedingung hinzufügen", tooltip="Wenn JEDE dieser Bedingungen für das ausgewählte Ereignis zutrifft, wird der Auslöser ausgeführt, außer es trifft eine festgelegte Ausnahme zu."}
 obj["editCondition"]			= { tooltip="Klicken, um Bedingung zu bearbeiten."}
 obj["deleteCondition"]			= { tooltip="Klicken, um Bedingung zu entfernen."}
-obj["throttleList"]				= { label="Unterdrückungs Liste", tooltip="Benutzerdefinierte Unterdrückungs Zeit für festgelegte Fertigkeiten setzen."}
-obj["mergeExclusions"]			= { label="Ausschlüsse zusammenfügen", tooltip="Verhindert, dass festgelegte Fertigkeiten zusammengefügt werden."}
-obj["skillSuppressions"]		= { label="Skill Unterdrückungen", tooltip="Unterdrücke Skills durch ihren Namen."}
-obj["skillSubstitutions"]		= { label="Skill Ersetzungen", tooltip="Ersetze Skill Namen mit angepassten Werten."}
-obj["addSkill"]					= { label="Skill hinzufügen", tooltip="Neuen Skill zur Liste hinzufügen."}
-obj["deleteSkill"]				= { tooltip="Klicken, um Skill zu entfernen."}
-obj["cooldownExclusions"]		= { label="Cooldown Ausschlüsse", tooltip="Bei festgelegten Fertigkeiten die Cooldown-Verfolgung ignorieren."}
+obj["throttleList"]				= { label="Unterdrückungs-Liste", tooltip="Benutzerdefinierte Unterdrückungszeit für festgelegte Fähigkeiten setzen."}
+obj["mergeExclusions"]			= { label="Ausschlüsse zusammenfügen", tooltip="Verhindert, dass festgelegte Fähigkeiten zusammengefügt werden."}
+obj["skillSuppressions"]		= { label="Fähigkeiten unterdrücken", tooltip="Unterdrückt Fähigkeiten durch ihren Namen."}
+obj["skillSubstitutions"]		= { label="Fähigkeiten ersetzen", tooltip="Ersetzt Fähigkeitsnamen mit angepassten Werten."}
+obj["addSkill"]					= { label="Fähigkeiten hinzufügen", tooltip="Neuen Fähigkeiten zur Liste hinzufügen."}
+obj["deleteSkill"]				= { tooltip="Klicken, um Fähigkeiten zu entfernen."}
+obj["cooldownExclusions"]		= { label="Cooldown-Ausschlüsse", tooltip="Bei festgelegten Fähigkeiten die Cooldown-Verfolgung ignorieren."}
 obj["itemsAllowed"]				= { label="Gegenstände erlauben", tooltip="Festgelegte Gegenstände unabhängig der Gegenstandsqualität immer anzeigen."}
 obj["itemExclusions"]			= { label="Gegenstände ignorieren", tooltip="Verhindert, dass festgelegte Gegenstände angezeigt werden."}
 obj["addItem"]					= { label="Gegenstand hinzufügen", tooltip="Neuen Gegenstand zur Liste hinzufügen."}
@@ -227,37 +227,37 @@ obj["customSoundName"]	= { label="Sound Name:", tooltip="Der Name wird benutzt u
 obj["customSoundPath"]	= { label="Sound Pfad:", tooltip="Der Pfad zu der Sound Datei.\n\nNOTIZ: Wenn die Datei in dem empfohlenen MikScrollingBattleText\\Sounds Ordner ist, muss nur der Dateiname hier eingegeben werden anstatt der ganze Pfad.\n\nBeispiel: mySound.mp3 "}
 obj["copyProfile"]		= { label="Neuer Profilname:", tooltip="Der Name des neuen Profils auf den das eben gewählte Profil kopiert werden soll."}
 obj["partialEffect"]	= { tooltip="Der Trailer, der angehängt wird wenn der Partielle Effekte erscheint."}
-obj["scrollAreaName"]	= { label="Neuen Scroll-Bereich-Name eingeben:", tooltip="Neuer Name für den Scroll-Bereich."}
+obj["scrollAreaName"]	= { label="Neuen Scroll-Bereich-Namen eingeben:", tooltip="Neuer Name für den Scroll-Bereich."}
 obj["xOffset"]			= { label="X-Achse:", tooltip="Die X-Achse des ausgewählten Scroll-Bereichs."}
 obj["yOffset"]			= { label="Y-Achse:", tooltip="Die Y-Achse des ausgewählten Scroll-Bereichs."}
-obj["eventMessage"]		= { label="Ausgabenachricht eingeben:", tooltip="Die Nachricht die angezeigt wird, wenn das Ereignis vorkommt."}
-obj["soundFile"]		= { label="Sound Dateiname:", tooltip="Der Name der Sound Datei zum Abspielen wenn das Ereignis erscheint."}
-obj["iconSkill"]		= { label="Icon Skill:", tooltip="Der Name oder spell ID des Zaubers mit dem Icon das angezeigt wird wenn das Ereignis erscheint.\n\nMSBT wird versuchen automatisch ein Icon auszuwählen wenn keins festgelegt ist.\n\nNOTIZ: Eine Zauber ID muss statt einem Namen benutzt werden wenn der Skill nicht im Zauberbuch für die Klasse die gespielt wird während das Ereignis erscheint.  Die meisten online Datenbanken wie wowhead können zum Auffinden dafür benutz werden."}
-obj["skillName"]		= { label="Skill Name:", tooltip="Name des Skills welches hinzugefügt werden soll."}
-obj["substitutionText"]	= { label="Ersetzungs Text:", tooltip="Der Text der Ersetzt werden soll für den Skill Namen."}
-obj["itemName"]			= { label="Gegenstandname:", tooltip="Name des Gegenstandes welches hinzugefügt werden soll."}
+obj["eventMessage"]		= { label="Ausgabenachricht eingeben:", tooltip="Die Nachricht die angezeigt wird, wenn das Ereignis auftritt."}
+obj["soundFile"]		= { label="Sound-Dateiname:", tooltip="Der Name der Sound Datei zum Abspielen wenn das Ereignis erscheint."}
+obj["iconSkill"]		= { label="Fähigkeitssymbol:", tooltip="Der Name oder Spell-ID des Zaubers mit dem Symbol das angezeigt wird, wenn das Ereignis auftritt.\n\nMSBT wird versuchen, automatisch ein Symbol auszuwählen, wenn keines festgelegt wurde.\n\nNOTIZ: Eine Spell-ID muss anstatt einem Namen benutzt werden, wenn die Fähigkeit nicht im Zauberbuch für die Klasse, die gespielt wird, während das Ereignis auftritt, ist. Die meisten Datenbanken wie z.B. Wowhead Dir dabei helfen."}
+obj["skillName"]		= { label="Fähigkeitsname:", tooltip="Name der Fähigkeit, die hinzugefügt werden soll."}
+obj["substitutionText"]	= { label="Text ersetzen:", tooltip="Der Text, der für den Fähigkeitsnamen ersetzt werden soll."}
+obj["itemName"]			= { label="Gegenstandsname:", tooltip="Name des Gegenstandes, der hinzugefügt werden soll."}
 
 ------------------------------
 -- Interface sliders
 ------------------------------
 
 obj = L.SLIDERS
-obj["animationSpeed"]		= { label="Animationsgeschwindigkeit", tooltip="Die Master Geschwindigkeit der Animation."}
-obj["normalFontSize"]		= { label="Normale Schriftgröße", tooltip="Die Schriftgröße für Nicht-kritische Treffer."}
-obj["normalFontOpacity"]	= { label="Normale Transparenz", tooltip="Die Schrift Transparez für Nicht-kritische Treffer."}
+obj["animationSpeed"]		= { label="Animationsgeschwindigkeit", tooltip="Die Master-Geschwindigkeit der Animation."}
+obj["normalFontSize"]		= { label="Normale Schriftgröße", tooltip="Die Schriftgröße für nicht-kritische Treffer."}
+obj["normalFontOpacity"]	= { label="Normale Transparenz", tooltip="Die Schrifttransparenz für nicht-kritische Treffer."}
 obj["critFontSize"]			= { label="Kritische Schriftgröße", tooltip="Die Schriftgröße für kritische Treffer."}
-obj["critFontOpacity"]		= { label="Kritische Transparenz", tooltip="Die Schrift Transparenz für kritische Treffer."}
+obj["critFontOpacity"]		= { label="Kritische Transparenz", tooltip="Die Schrifttransparenz für kritische Treffer."}
 obj["scrollHeight"]			= { label="Scroll-Höhe", tooltip="Die Höhe des Scroll-Bereichs."}
 obj["scrollWidth"]			= { label="Scroll-Weite", tooltip="Die Weite des Scroll-Bereichs."}
 obj["scrollAnimationSpeed"]	= { label="Geschwindigkeit", tooltip="Die Geschwindigkeit der Animation des Scroll-Bereichs."}
-obj["powerThreshold"]		= { label="Energie Schwelle", tooltip="The threshold that power gains must exceed to be displayed."}
-obj["healThreshold"]		= { label="Heilung Schwelle", tooltip="The threshold that heals must exceed to be displayed."}
-obj["damageThreshold"]		= { label="Schaden Schwelle", tooltip="The threshold that damage must exceed to be displayed."}
-obj["dotThrottleTime"]		= { label="DoT Throttle Time", tooltip="The number of seconds to throttle DoTs."}
-obj["hotThrottleTime"]		= { label="HoT Throttle Time", tooltip="The number of seconds to throttle HoTs."}
-obj["powerThrottleTime"]	= { label="Energie Throttle Time", tooltip="The number of seconds to throttle power changes."}
-obj["skillThrottleTime"]	= { label="Throttle Time", tooltip="The number of seconds to throttle the skill."}
-obj["cooldownThreshold"]	= { label="Cooldown Schwelle", tooltip="Skills with a cooldown less than the specified number of seconds will not be displayed."}
+obj["powerThreshold"]		= { label="Energiesschwelle", tooltip="Die Schwelle, die die Energie überschreiten muss, um angezeigt zu werden."}
+obj["healThreshold"]		= { label="Heilungsschwelle", tooltip="Die Schwelle, die die Heilung überschreiten muss, um angezeigt zu werden."}
+obj["damageThreshold"]		= { label="Schadensschwelle", tooltip="Die Schwelle, die der Schaden überschreiten muss, um angezeigt zu werden."}
+obj["dotThrottleTime"]		= { label="DoTs drosseln", tooltip="Die Nummer in Sekunden, die DoTs gedrosselt werden sollen."}
+obj["hotThrottleTime"]		= { label="HoTs drosseln", tooltip="Die Nummer in Sekunden, die HoTs gedrosselt werden sollen."}
+obj["powerThrottleTime"]	= { label="Energie drosseln", tooltip="Die Nummer in Sekunden, die Energieänderungen gedrosselt werden sollen."}
+obj["skillThrottleTime"]	= { label="Drosseln", tooltip="Die Nummer in Sekunden, um diese Fähigkeit zu drosseln."}
+obj["cooldownThreshold"]	= { label="Cooldown-Schwelle", tooltip="Fähigkeiten mit einer Abklingzeit, die weniger als die angegebenen Sekunden entspricht, werden nicht angezeigt."}
 
 
 ------------------------------
@@ -281,38 +281,38 @@ obj["HEALING_TAKEN"]		= "%a - Menge der erhaltenen Heilung.\n"
 obj["DAMAGE_DONE"]			= "%a - Menge des Schadens.\n"
 obj["HEALING_DONE"]			= "%a - Geheilte Menge.\n"
 obj["ABSORBED_AMOUNT"]		= "%a - Menge des absobierten Schadens.\n"
---obj["AURA_AMOUNT"]			= "%a - Amount of stacks for the aura.\n"
+obj["AURA_AMOUNT"]			= "%a - Menge der Stapel für eine Aura.\n"
 obj["ENERGY_AMOUNT"]		= "%a - Menge der Energie.\n"
-obj["CP_AMOUNT"]			= "%a - Menge der momentanen Combo Punkten.\n"
-obj["HOLY_POWER_AMOUNT"]	= "%a - Amount of holy power you have.\n"
+obj["CP_AMOUNT"]			= "%a - Menge der momentanen Combo-Punkte.\n"
+obj["HOLY_POWER_AMOUNT"]	= "%a - Menge der heiligen Kraft.\n"
 obj["HONOR_AMOUNT"]			= "%a - Menge der Ehre.\n"
 obj["REP_AMOUNT"]			= "%a - Menge des Rufs.\n"
 obj["ITEM_AMOUNT"]			= "%a - Menge des geplünderten Gegenstands.\n"
-obj["SKILL_AMOUNT"]			= "%a - Menge der Punkte die du in der Fertigkeit hast.\n"
+obj["SKILL_AMOUNT"]			= "%a - Menge der Punkte, die du in der Fähigkeit hast.\n"
 obj["EXPERIENCE_AMOUNT"]	= "%a - Menge der erhaltenen Erfahrung.\n"
---obj["PARTIAL_AMOUNT"]		= "%a - Amount of the partial effect.\n"
+obj["PARTIAL_AMOUNT"]		= "%a - Menge des partiellen Effekts.\n"
 obj["ATTACKER_NAME"]		= "%n - Name des Angreifers.\n"
 obj["HEALER_NAME"]			= "%n - Name des Heilers.\n"
 obj["ATTACKED_NAME"]		= "%n - Name der angegriffenen Einheit.\n"
 obj["HEALED_NAME"]			= "%n - Name der geheilten Einheit.\n"
 obj["BUFFED_NAME"]			= "%n - Name der gebufften Einheit.\n"
 obj["UNIT_KILLED"]			= "%n - Name der getöteten Einheit.\n"
-obj["SKILL_NAME"]			= "%s - Name der Fertigkeit.\n"
+obj["SKILL_NAME"]			= "%s - Name der Fähigkeit.\n"
 obj["SPELL_NAME"]			= "%s - Name des Zaubers.\n"
 obj["DEBUFF_NAME"]			= "%s - Name des Debuffs.\n"
 obj["BUFF_NAME"]			= "%s - Name des Buffs\n"
-obj["ITEM_BUFF_NAME"]		= "%s - Name des Gegenstand Buffs.\n"
-obj["EXTRA_ATTACKS"]		= "%s - Name of skill granting the extra attacks.\n"
-obj["SKILL_LONG"]			= "%sl - Long form of %s. Used to override abbreviation for the event.\n"
+obj["ITEM_BUFF_NAME"]		= "%s - Name des Gegenstands-Buffs.\n"
+obj["EXTRA_ATTACKS"]		= "%s - Name der Fähigkeit, die Extraangriffe gewährt.\n"
+obj["SKILL_LONG"]			= "%sl - Lange Form von %s. Wird benutzt, um Abkürzungen für das Ereignis zu überschreiben.\n"
 obj["DAMAGE_TYPE_TAKEN"]	= "%t - Art des erhaltenen Schadens.\n"
-obj["DAMAGE_TYPE_DONE"]		= "%t - Type of damage done.\n"
-obj["ENVIRONMENTAL_DAMAGE"]	= "%e - Name of the source of the damage (falling, drowning, lava, etc...)\n"
+obj["DAMAGE_TYPE_DONE"]		= "%t - Art des angerichteten Schadens.\n"
+obj["ENVIRONMENTAL_DAMAGE"]	= "%e - Name der Schadensquelle (Fallen, Ertrinken, Lava, usw.).\n"
 obj["FACTION_NAME"]			= "%e - Name der Fraktion.\n"
-obj["EMOTE_TEXT"]			= "%e - The text of the emote.\n"
-obj["MONEY_TEXT"]			= "%e - The money gained text.\n"
-obj["COOLDOWN_NAME"]		= "%e - Name der Fertigkeit die Bereit ist.\n"
+obj["EMOTE_TEXT"]			= "%e - Der Text der Geste.\n"
+obj["MONEY_TEXT"]			= "%e - Der Text des erhaltenen Geldes.\n"
+obj["COOLDOWN_NAME"]		= "%e - Name der Fähigkeit, die bereit ist.\n"
 obj["ITEM_NAME"]			= "%e - Der Name des geplünderten Gegenstands.\n"
-obj["POWER_TYPE"]			= "%p - Art der Power (Energie, Wut, Mana).\n"
+obj["POWER_TYPE"]			= "%p - Art der Energie (Energie, Wut, Mana, Runenmacht, usw.).\n"
 obj["TOTAL_ITEMS"]			= "%t - Gesamte Anzahl der geplünderten Gegenstände im Inventar."
 
 
@@ -321,65 +321,65 @@ obj["TOTAL_ITEMS"]			= "%t - Gesamte Anzahl der geplünderten Gegenstände im In
 ------------------------------
 
 obj = L.INCOMING_PLAYER_EVENTS
-obj["INCOMING_DAMAGE"]						= { label="Nahkampf - Treffer", tooltip="Enable incoming melee hits."}
-obj["INCOMING_DAMAGE_CRIT"]					= { label="Nahkampf - Kritisch", tooltip="Enable incoming melee crits."}
-obj["INCOMING_MISS"]						= { label="Nahkampf - Fehlschlag", tooltip="Enable incoming melee misses."}
-obj["INCOMING_DODGE"]						= { label="Nahkampf - Ausweichen", tooltip="Enable incoming melee dodges."}
-obj["INCOMING_PARRY"]						= { label="Nahkampf - Parieren", tooltip="Enable incoming melee parries."}
-obj["INCOMING_BLOCK"]						= { label="Nahkampf - Blocken", tooltip="Enable incoming melee blocks."}
---obj["INCOMING_DEFLECT"]						= { label="Melee Deflects", tooltip="Enable incoming melee deflects."}
-obj["INCOMING_ABSORB"]						= { label="Nahkampf - Absorbieren", tooltip="Enable absorbed incoming melee damage."}
-obj["INCOMING_IMMUNE"]						= { label="Nahkampf - Immun", tooltip="Enable incoming melee damage you are immune to."}
-obj["INCOMING_SPELL_DAMAGE"]				= { label="Skill - Treffer", tooltip="Enable incoming skill hits."}
-obj["INCOMING_SPELL_DAMAGE_CRIT"]			= { label="Skill - Kritisch", tooltip="Enable incoming skill damage."}
-obj["INCOMING_SPELL_DOT"]					= { label="Skill - DoTs", tooltip="Enable incoming skill damage over time."}
-obj["INCOMING_SPELL_DOT_CRIT"]				= { label="Skill - DoT Kritisch", tooltip="Enable incoming skill damage over time crits."}
-obj["INCOMING_SPELL_DAMAGE_SHIELD"]			= { label="Schadensschild - Treffer", tooltip="Enable incoming damage done by damage shields."}
-obj["INCOMING_SPELL_DAMAGE_SHIELD_CRIT"]	= { label="Schadensschild - Kritisch", tooltip="Enable incoming crits done by damage shields."}
-obj["INCOMING_SPELL_MISS"]					= { label="Skill - Fehlschlag", tooltip="Enable incoming skill misses."}
-obj["INCOMING_SPELL_DODGE"]					= { label="Skill - Ausweichen", tooltip="Enable incoming skill dodges."}
-obj["INCOMING_SPELL_PARRY"]					= { label="Skill - Parieren", tooltip="Enable incoming skill parries."}
-obj["INCOMING_SPELL_BLOCK"]					= { label="Skill - Blocken", tooltip="Enable incoming skill blocks."}
---obj["INCOMING_SPELL_DEFLECT"]				= { label="Skill Deflects", tooltip="Enable incoming skill deflects."}
-obj["INCOMING_SPELL_RESIST"]				= { label="Zauber widerstanden", tooltip="Enable incoming spell resists."}
-obj["INCOMING_SPELL_ABSORB"]				= { label="Zauber absorbieren", tooltip="Enable absorbed damage from incoming skills."}
-obj["INCOMING_SPELL_IMMUNE"]				= { label="Skill - Immun", tooltip="Enable incoming skill damage you are immune to."}
-obj["INCOMING_SPELL_REFLECT"]				= { label="Skill - Reflektieren", tooltip="Enable incoming skill damage you reflected."}
-obj["INCOMING_SPELL_INTERRUPT"]				= { label="Zauber unterbrochen", tooltip="Aktiviert eingehende Zauber unterbrochen."}
-obj["INCOMING_HEAL"]						= { label="Heilungen", tooltip="Aktiviert eingehende Heilungen."}
-obj["INCOMING_HEAL_CRIT"]					= { label="Kritische Heilungen", tooltip="Aktiviert eingehende kritische Heilungen."}
-obj["INCOMING_HOT"]							= { label="Heilungen über Zeit", tooltip="Aktiviert eingehende Heilungen über Zeit."}
---obj["INCOMING_HOT_CRIT"]					= { label="Crit Heals Over Time", tooltip="Enable incoming crit heals over time."}
-obj["INCOMING_ENVIRONMENTAL"]				= { label="Umwelt-Schaden", tooltip="Aktiviert Umwelt-Schaden (fallen, ertrinken, Lava, etc...)."}
+obj["INCOMING_DAMAGE"]						= { label="Melee: Treffer", tooltip="Aktiviert eingehende Melee-Treffer."}
+obj["INCOMING_DAMAGE_CRIT"]					= { label="Melee: Krit", tooltip="Aktiviert eingehende Melee-Krits."}
+obj["INCOMING_MISS"]						= { label="Melee: Fehlschlag", tooltip="Aktiviert eingehende Melee-Fehlschläge."}
+obj["INCOMING_DODGE"]						= { label="Melee: Ausweichen", tooltip="Aktiviert eingehendes Melee-Ausweichen."}
+obj["INCOMING_PARRY"]						= { label="Melee: Parieren", tooltip="Aktiviert eingehendes Melee-Parieren."}
+obj["INCOMING_BLOCK"]						= { label="Melee: Blocken", tooltip="Aktiviert eingehendes Melee-Blocken."}
+obj["INCOMING_DEFLECT"]						= { label="Melee: Abwehr", tooltip="Aktiviert eingehende Melee-Abwehr."}
+obj["INCOMING_ABSORB"]						= { label="Melee: Absorbieren", tooltip="Aktiviert eingehenden, absorbierten Meleeschaden."}
+obj["INCOMING_IMMUNE"]						= { label="Melee: Immunität", tooltip="Aktiviert eingehenden Meleeschaden, gegen den du immun bist."}
+obj["INCOMING_SPELL_DAMAGE"]				= { label="Fähigkeit: Treffer", tooltip="Aktiviert eingehende Fähigkeitstreffer."}
+obj["INCOMING_SPELL_DAMAGE_CRIT"]			= { label="Fähigkeit: Krit", tooltip="Aktiviert eingehende Fähigkeitskrits."}
+obj["INCOMING_SPELL_DOT"]					= { label="Fähigkeit: DoT", tooltip="Aktiviert eingehenden Fähigkeitsschaden über Zeit."}
+obj["INCOMING_SPELL_DOT_CRIT"]				= { label="Fähigkeit: DoT-Krit", tooltip="Aktiviert eingehenden, kritischen Fähigkeitsschaden über Zeit."}
+obj["INCOMING_SPELL_DAMAGE_SHIELD"]			= { label="Schadensschild: Treffer", tooltip="Aktiviert eingehenden Schaden durch Schadensschilde."}
+obj["INCOMING_SPELL_DAMAGE_SHIELD_CRIT"]	= { label="Schadensschild: Krit", tooltip="Aktiviert eingehenden, kritischen Schaden durch Schadensschilde."}
+obj["INCOMING_SPELL_MISS"]					= { label="Fähigkeit: Fehlschlag", tooltip="Aktiviert eingehende Fähigkeits-Fehlschläge."}
+obj["INCOMING_SPELL_DODGE"]					= { label="Fähigkeit: Ausweichen", tooltip="Aktiviert eingehendes Fähigkeits-Ausweichen."}
+obj["INCOMING_SPELL_PARRY"]					= { label="Fähigkeit: Parieren", tooltip="Aktiviert eingehendes Fähigkeits-Parieren."}
+obj["INCOMING_SPELL_BLOCK"]					= { label="Fähigkeit: Blocken", tooltip="Aktiviert eingehendes Fähigkeits-Blocken."}
+obj["INCOMING_SPELL_DEFLECT"]				= { label="Fähigkeit: Abwehr", tooltip="Aktiviert eingehende Fähigkeits-Abwehr."}
+obj["INCOMING_SPELL_RESIST"]				= { label="Fähigkeit: Widerstehen", tooltip="Aktiviert eingehendes Widerstehen von Fähigkeiten."}
+obj["INCOMING_SPELL_ABSORB"]				= { label="Fähigkeit: Absorbieren", tooltip="Aktiviert eingehenden, absorbierten Fähigkeitsschaden."}
+obj["INCOMING_SPELL_IMMUNE"]				= { label="Fähigkeit: Immunität", tooltip="Aktiviert eingehenden Fähigkeitsschaden, gegen den du immun bist."}
+obj["INCOMING_SPELL_REFLECT"]				= { label="Fähigkeit: Reflektieren", tooltip="Aktiviert eingehende Reflektionen von Fähigkeitsschaden."}
+obj["INCOMING_SPELL_INTERRUPT"]				= { label="Fähigkeit: Unterbrechen", tooltip="Aktiviert eingehende Fähigkeitsunterbrechungen."}
+obj["INCOMING_HEAL"]						= { label="Heilung", tooltip="Aktiviert eingehende Heilungen."}
+obj["INCOMING_HEAL_CRIT"]					= { label="Heilung: Krit", tooltip="Aktiviert eingehende, kritische Heilungen."}
+obj["INCOMING_HOT"]							= { label="HoT", tooltip="Aktiviert eingehende Heilungen über Zeit."}
+obj["INCOMING_HOT_CRIT"]					= { label="HoT: Krit", tooltip="Aktiviert eingehende, kritische Heilungen über Zeit."}
+obj["INCOMING_ENVIRONMENTAL"]				= { label="Umwelt-Schaden", tooltip="Aktiviert Umwelt-Schaden (Fallen, Ertrinken, Lava, usw.)."}
 
 obj = L.INCOMING_PET_EVENTS
-obj["PET_INCOMING_DAMAGE"]						= { label="Nahkampf - Treffer", tooltip="Enable your pet's incoming melee hits."}
-obj["PET_INCOMING_DAMAGE_CRIT"]					= { label="Nahkampf - Kritisch", tooltip="Enable your pet's incoming melee crits."}
-obj["PET_INCOMING_MISS"]						= { label="Nahkampf - Fehlschlag", tooltip="Enable your pet's incoming melee misses."}
-obj["PET_INCOMING_DODGE"]						= { label="Nahkampf - Ausweichen", tooltip="Enable your pet's incoming melee dodges."}
-obj["PET_INCOMING_PARRY"]						= { label="Nahkampf - Parieren", tooltip="Enable your pet's incoming melee parries."}
-obj["PET_INCOMING_BLOCK"]						= { label="Nahkampf - Blocken", tooltip="Enable your pet's incoming melee blocks."}
---obj["PET_INCOMING_DEFLECT"]						= { label="Melee Deflects", tooltip="Enable your pet's incoming melee deflects."}
-obj["PET_INCOMING_ABSORB"]						= { label="Nahkampf - Absorbieren", tooltip="Enable your pet's absorbed incoming melee damage."}
-obj["PET_INCOMING_IMMUNE"]						= { label="Nahkampf - Immun", tooltip="Enable melee damage your is pet immune to."}
-obj["PET_INCOMING_SPELL_DAMAGE"]				= { label="Skill - Treffer", tooltip="Enable your pet's incoming skill hits."}
-obj["PET_INCOMING_SPELL_DAMAGE_CRIT"]			= { label="Skill - Kritisch", tooltip="Enable your pet's incoming skill crits."}
-obj["PET_INCOMING_SPELL_DOT"]					= { label="Skill - DoTs", tooltip="Enable your pet's incoming skill damage over time."}
-obj["PET_INCOMING_SPELL_DOT_CRIT"]				= { label="Skill - DoT Kritisch", tooltip="Enable your pet's incoming skill damage over time crits."}
-obj["PET_INCOMING_SPELL_DAMAGE_SHIELD"]			= { label="Schadensschild - Treffer", tooltip="Enable incoming damage done to your pet by damage shields."}
-obj["PET_INCOMING_SPELL_DAMAGE_SHIELD_CRIT"]	= { label="Schadensschild - Kritisch", tooltip="Enable incoming crits done to your pet by damage shields."}
-obj["PET_INCOMING_SPELL_MISS"]					= { label="Skill - Fehlschlag", tooltip="Enable your pet's incoming skill misses."}
-obj["PET_INCOMING_SPELL_DODGE"]					= { label="Skill - Ausweichen", tooltip="Enable your pet's incoming skill dodges."}
-obj["PET_INCOMING_SPELL_PARRY"]					= { label="Skill - Parieren", tooltip="Enable your pet's incoming skill parries."}
-obj["PET_INCOMING_SPELL_BLOCK"]					= { label="Skill - Blocken", tooltip="Enable your pet's incoming skill blocks."}
---obj["PET_INCOMING_SPELL_DEFLECT"]				= { label="Skill Deflects", tooltip="Enable your pet's incoming skill deflects."}
-obj["PET_INCOMING_SPELL_RESIST"]				= { label="Skill - Widerstehen", tooltip="Enable your pet's incoming spell resists."}
-obj["PET_INCOMING_SPELL_ABSORB"]				= { label="Skill - Absorbieren", tooltip="Enable absorbed damage from your pet's incoming skills."}
-obj["PET_INCOMING_SPELL_IMMUNE"]				= { label="Skill - Immun", tooltip="Enable incoming skill damage your pet is immune to."}
-obj["PET_INCOMING_HEAL"]						= { label="Heilungen", tooltip="Enable your pet's incoming heals."}
-obj["PET_INCOMING_HEAL_CRIT"]					= { label="Kritische Heilungen", tooltip="Enable your pet's incoming crit heals."}
-obj["PET_INCOMING_HOT"]							= { label="Heilungen über Zeit", tooltip="Enable your pet's incoming heals over time."}
---obj["PET_INCOMING_HOT_CRIT"]					= { label="Crit Heals Over Time", tooltip="Enable your pet's incoming crit heals over time."}
+obj["PET_INCOMING_DAMAGE"]						= { label="Melee: Treffer", tooltip="Aktiviert für Begleiter eingehende Melee-Treffer."}
+obj["PET_INCOMING_DAMAGE_CRIT"]					= { label="Melee: Krit", tooltip="Aktiviert für Begleiter eingehende Melee-Krits."}
+obj["PET_INCOMING_MISS"]						= { label="Melee: Fehlschlag", tooltip="Aktiviert für Begleiter eingehende Melee-Fehlschläge."}
+obj["PET_INCOMING_DODGE"]						= { label="Melee: Ausweichen", tooltip="Aktiviert für Begleiter eingehendes Melee-Ausweichen."}
+obj["PET_INCOMING_PARRY"]						= { label="Melee: Parieren", tooltip="Aktiviert für Begleiter eingehendes Melee-Parieren."}
+obj["PET_INCOMING_BLOCK"]						= { label="Melee: Blocken", tooltip="Aktiviert für Begleiter eingehendes Melee-Blocken."}
+obj["PET_INCOMING_DEFLECT"]						= { label="Melee: Abwehr", tooltip="Aktiviert für Begleiter eingehende Melee-Abwehr."}
+obj["PET_INCOMING_ABSORB"]						= { label="Melee: Absorbieren", tooltip="Aktiviert für Begleiter eingehenden, absorbierten Meleeschaden."}
+obj["PET_INCOMING_IMMUNE"]						= { label="Melee: Immunität", tooltip="Aktiviert eingehenden Meleeschaden, gegen den dein Begleiter immun ist."}
+obj["PET_INCOMING_SPELL_DAMAGE"]				= { label="Fähigkeit: Treffer", tooltip="Aktiviert für Begleiter eingehende Fähigkeitstreffer."}
+obj["PET_INCOMING_SPELL_DAMAGE_CRIT"]			= { label="Fähigkeit: Krit", tooltip="Aktiviert für Begleiter eingehende Fähigkeitskrits."}
+obj["PET_INCOMING_SPELL_DOT"]					= { label="Fähigkeit: DoT", tooltip="Aktiviert für Begleiter eingehenden Fähigkeitsschaden über Zeit."}
+obj["PET_INCOMING_SPELL_DOT_CRIT"]				= { label="Fähigkeit: DoT-Krit", tooltip="Aktiviert für Begleiter eingehenden, kritischen Fähigkeitsschaden über Zeit."}
+obj["PET_INCOMING_SPELL_DAMAGE_SHIELD"]			= { label="Schadensschild: Treffer", tooltip="Aktiviert für Begleiter eingehenden Schaden durch Schadensschilde."}
+obj["PET_INCOMING_SPELL_DAMAGE_SHIELD_CRIT"]	= { label="Schadensschild: Krit", tooltip="Aktiviert für Begleiter eingehenden, kritischen Schaden durch Schadensschilde."}
+obj["PET_INCOMING_SPELL_MISS"]					= { label="Fähigkeit: Fehlschlag", tooltip="Aktiviert für Begleiter eingehende Fähigkeits-Fehlschläge."}
+obj["PET_INCOMING_SPELL_DODGE"]					= { label="Fähigkeit: Ausweichen", tooltip="Aktiviert für Begleiter eingehendes Fähigkeits-Ausweichen."}
+obj["PET_INCOMING_SPELL_PARRY"]					= { label="Fähigkeit: Parieren", tooltip="Aktiviert für Begleiter eingehendes Fähigkeits-Parieren."}
+obj["PET_INCOMING_SPELL_BLOCK"]					= { label="Fähigkeit: Blocken", tooltip="Aktiviert für Begleiter eingehendes Fähigkeits-Blocken."}
+obj["PET_INCOMING_SPELL_DEFLECT"]				= { label="Fähigkeit: Abwehr", tooltip="Aktiviert für Begleiter eingehende Fähigkeits-Abwehr."}
+obj["PET_INCOMING_SPELL_RESIST"]				= { label="Fähigkeit: Widerstehen", tooltip="Aktiviert für Begleiter eingehendes Widerstehen von Fähigkeiten."}
+obj["PET_INCOMING_SPELL_ABSORB"]				= { label="Fähigkeit: Absorbieren", tooltip="Aktiviert für Begleiter eingehenden, absorbierten Fähigkeitsschaden."}
+obj["PET_INCOMING_SPELL_IMMUNE"]				= { label="Fähigkeit: Immunität", tooltip="Aktiviert eingehenden Fähigkeitsschaden, gegen den dein Begleiter immun ist."}
+obj["PET_INCOMING_HEAL"]						= { label="Heilung", tooltip="Aktiviert für Begleiter eingehende Heilungen."}
+obj["PET_INCOMING_HEAL_CRIT"]					= { label="Heilung: Krit", tooltip="Aktiviert für Begleiter eingehende, kritische Heilungen."}
+obj["PET_INCOMING_HOT"]							= { label="HoT", tooltip="Aktiviert für Begleiter eingehende Heilungen über Zeit."}
+obj["PET_INCOMING_HOT_CRIT"]					= { label="HoT: Krit", tooltip="Aktiviert für Begleiter eingehende, kritische Heilungen über Zeit."}
 
 
 ------------------------------
@@ -387,70 +387,70 @@ obj["PET_INCOMING_HOT"]							= { label="Heilungen über Zeit", tooltip="Enable 
 ------------------------------
 
 obj = L.OUTGOING_PLAYER_EVENTS
-obj["OUTGOING_DAMAGE"]						= { label="Nahkampf - Treffer", tooltip="Enable outgoing melee hits."}
-obj["OUTGOING_DAMAGE_CRIT"]					= { label="Nahkampf - Kritisch", tooltip="Enable outgoing melee crits."}
-obj["OUTGOING_MISS"]						= { label="Nahkampf - Fehlschlag", tooltip="Enable outgoing melee misses."}
-obj["OUTGOING_DODGE"]						= { label="Nahkampf - Ausweichen", tooltip="Enable outgoing melee dodges."}
-obj["OUTGOING_PARRY"]						= { label="Nahkampf - Parieren", tooltip="Enable outgoing melee parries."}
-obj["OUTGOING_BLOCK"]						= { label="Nahkampf - Blocken", tooltip="Enable outgoing melee blocks."}
---obj["OUTGOING_DEFLECT"]						= { label="Melee Deflects", tooltip="Enable outgoing melee deflects."}
-obj["OUTGOING_ABSORB"]						= { label="Nahkampf - Absorbieren", tooltip="Enable absorbed outgoing melee damage."}
-obj["OUTGOING_IMMUNE"]						= { label="Nahkampf - Immun", tooltip="Enable outgoing melee damage the enemy is immune to."}
-obj["OUTGOING_EVADE"]						= { label="Nahkampf - Entkommen", tooltip="Enable outgoing melee evades."}
-obj["OUTGOING_SPELL_DAMAGE"]				= { label="Skill - Treffer", tooltip="Enable outgoing skill hits."}
-obj["OUTGOING_SPELL_DAMAGE_CRIT"]			= { label="Skill - Kritisch", tooltip="Enable outgoing skill crits."}
-obj["OUTGOING_SPELL_DOT"]					= { label="Skill - DoTs", tooltip="Enable outgoing skill damage over time."}
-obj["OUTGOING_SPELL_DOT_CRIT"]				= { label="Skill - DoT Kritisch", tooltip="Enable outgoing skill damage over time crits."}
-obj["OUTGOING_SPELL_DAMAGE_SHIELD"]			= { label="Schadensschild - Treffer", tooltip="Enable outgoing damage done by damage shields."}
-obj["OUTGOING_SPELL_DAMAGE_SHIELD_CRIT"]	= { label="Schadensschild - Kritisch", tooltip="Enable outgoing crits done by damage shields."}
-obj["OUTGOING_SPELL_MISS"]					= { label="Skill - Fehlschlag", tooltip="Enable outgoing skill misses."}
-obj["OUTGOING_SPELL_DODGE"]					= { label="Skill - Ausweichen", tooltip="Enable outgoing skill dodges."}
-obj["OUTGOING_SPELL_PARRY"]					= { label="Skill - Parieren", tooltip="Enable outgoing skill parries."}
-obj["OUTGOING_SPELL_BLOCK"]					= { label="Skill - Blocken", tooltip="Enable outgoing skill blocks."}
---obj["OUTGOING_SPELL_DEFLECT"]				= { label="Skill Deflects", tooltip="Enable outgoing skill deflects."}
-obj["OUTGOING_SPELL_RESIST"]				= { label="Skill - Widerstehen", tooltip="Enable outgoing spell resists."}
-obj["OUTGOING_SPELL_ABSORB"]				= { label="Skill - Absorbieren", tooltip="Enable absorbed damage from outgoing skills."}
-obj["OUTGOING_SPELL_IMMUNE"]				= { label="Skill - Immun", tooltip="Enable outgoing skill damage the enemy is immune to."}
-obj["OUTGOING_SPELL_REFLECT"]				= { label="Skill - Reflektieren", tooltip="Enable outgoing skill damage reflected back to you."}
-obj["OUTGOING_SPELL_INTERRUPT"]				= { label="Skill - Unterbrechen", tooltip="Enable outgoing spell interrupts."}
-obj["OUTGOING_SPELL_EVADE"]					= { label="Skill - Entkommen", tooltip="Enable outgoing skill evades."}
-obj["OUTGOING_HEAL"]						= { label="Heilungen", tooltip="Enable outgoing heals."}
-obj["OUTGOING_HEAL_CRIT"]					= { label="Kritische Heilungen", tooltip="Enable outgoing crit heals."}
-obj["OUTGOING_HOT"]							= { label="Heilungen über Zeit", tooltip="Enable outgoing heals over time."}
---obj["OUTGOING_HOT_CRIT"]					= { label="Crit Heals Over Time", tooltip="Enable outgoing crit heals over time."}
-obj["OUTGOING_DISPEL"]						= { label="Dispels", tooltip="Enable outgoing dispels."}
+obj["OUTGOING_DAMAGE"]						= { label="Melee: Treffer", tooltip="Aktiviert ausgehende Melee-Treffer."}
+obj["OUTGOING_DAMAGE_CRIT"]					= { label="Melee: Krit", tooltip="Aktiviert ausgehende Melee-Krits."}
+obj["OUTGOING_MISS"]						= { label="Melee: Fehlschlag", tooltip="Aktiviert ausgehende Melee-Fehlschläge."}
+obj["OUTGOING_DODGE"]						= { label="Melee: Ausweichen", tooltip="Aktiviert ausgehendes Melee-Ausweichen."}
+obj["OUTGOING_PARRY"]						= { label="Melee: Parieren", tooltip="Aktiviert ausgehendess Melee-Parieren."}
+obj["OUTGOING_BLOCK"]						= { label="Melee: Blocken", tooltip="Aktiviert ausgehendes Melee-Blocken."}
+obj["OUTGOING_DEFLECT"]						= { label="Melee: Abwehr", tooltip="Aktiviert ausgehende Melee-Abwehr."}
+obj["OUTGOING_ABSORB"]						= { label="Melee: Absorbieren", tooltip="Aktiviert ausgehenden, absorbierten Meleeschaden."}
+obj["OUTGOING_IMMUNE"]						= { label="Melee: Immunität", tooltip="Aktiviert ausgehenden Meleeschaden, gegen den der Feind immun ist."}
+obj["OUTGOING_EVADE"]						= { label="Melee: Entkommen", tooltip="Aktiviert ausgehendes Melee-Entkommen."}
+obj["OUTGOING_SPELL_DAMAGE"]				= { label="Fähigkeit: Treffer", tooltip="Aktiviert ausgehende Fähigkeitstreffer."}
+obj["OUTGOING_SPELL_DAMAGE_CRIT"]			= { label="Fähigkeit: Krit", tooltip="Aktiviert ausgehende Fähigkeitskrits."}
+obj["OUTGOING_SPELL_DOT"]					= { label="Fähigkeit: DoT", tooltip="Aktiviert ausgehenden Fähigkeitsschaden über Zeit."}
+obj["OUTGOING_SPELL_DOT_CRIT"]				= { label="Fähigkeit: DoT-Krit", tooltip="Aktiviert ausgehenden, kritischen Fähigkeitsschaden über Zeit."}
+obj["OUTGOING_SPELL_DAMAGE_SHIELD"]			= { label="Schadensschild: Treffer", tooltip="Aktiviert ausgehenden Schaden durch Schadensschilde."}
+obj["OUTGOING_SPELL_DAMAGE_SHIELD_CRIT"]	= { label="Schadensschild: Krit", tooltip="Aktiviert ausgehenden, kritischen Schaden durch Schadensschilde."}
+obj["OUTGOING_SPELL_MISS"]					= { label="Fähigkeit: Fehlschlag", tooltip="Aktiviert ausgehende Fähigkeits-Fehlschläge."}
+obj["OUTGOING_SPELL_DODGE"]					= { label="Fähigkeit: Ausweichen", tooltip="Aktiviert ausgehendes Fähigkeits-Ausweichen."}
+obj["OUTGOING_SPELL_PARRY"]					= { label="Fähigkeit: Parieren", tooltip="Aktiviert ausgehendes Fähigkeits-Parieren."}
+obj["OUTGOING_SPELL_BLOCK"]					= { label="Fähigkeit: Blocken", tooltip="Aktiviert ausgehendes Fähigkeits-Blocken."}
+obj["OUTGOING_SPELL_DEFLECT"]				= { label="Fähigkeit: Abwehr", tooltip="Aktiviert ausgehende Fähigkeits-Abwehr."}
+obj["OUTGOING_SPELL_RESIST"]				= { label="Fähigkeit: Widerstehen", tooltip="Aktiviert ausgehendes Widerstehen von Fähigkeiten."}
+obj["OUTGOING_SPELL_ABSORB"]				= { label="Fähigkeit: Absorbieren", tooltip="Aktiviert ausgehenden, absorbierten Fähigkeitsschaden."}
+obj["OUTGOING_SPELL_IMMUNE"]				= { label="Fähigkeit: Immunität", tooltip="Aktiviert ausgehenden Fähigkeitsschaden, gegen den der Feind immun ist."}
+obj["OUTGOING_SPELL_REFLECT"]				= { label="Fähigkeit: Reflektieren", tooltip="Aktiviert Reflektionen von Fähigkeitsschaden, der zu dir zurückgeworfen wird."}
+obj["OUTGOING_SPELL_INTERRUPT"]				= { label="Fähigkeit: Unterbrechen", tooltip="Aktiviert ausgehende Fähigkeitsunterbrechungen."}
+obj["OUTGOING_SPELL_EVADE"]					= { label="Fähigkeit: Entkommen", tooltip="Aktiviert ausgehendes Fähigkeits-Entkommen."}
+obj["OUTGOING_HEAL"]						= { label="Heilung", tooltip="Aktiviert ausgehende Heilungen."}
+obj["OUTGOING_HEAL_CRIT"]					= { label="Heilung: Krit", tooltip="Aktiviert ausgehende, kritische Heilungen."}
+obj["OUTGOING_HOT"]							= { label="HoT", tooltip="Aktiviert ausgehende Heilungen über Zeit."}
+obj["OUTGOING_HOT_CRIT"]					= { label="HoT: Krit", tooltip="Aktiviert ausgehende, kritische Heilungen über Zeit."}
+obj["OUTGOING_DISPEL"]						= { label="Dispel", tooltip="Aktiviert ausgehende Entzauberungen."}
 
 obj = L.OUTGOING_PET_EVENTS
-obj["PET_OUTGOING_DAMAGE"]						= { label="Nahkampf - Treffer", tooltip="Enable your pet's outgoing melee hits."}
-obj["PET_OUTGOING_DAMAGE_CRIT"]					= { label="Nahkampf - Kritisch", tooltip="Enable your pet's outgoing melee crits."}
-obj["PET_OUTGOING_MISS"]						= { label="Nahkampf - Fehlschlag", tooltip="Enable your pet's outgoing melee misses."}
-obj["PET_OUTGOING_DODGE"]						= { label="Nahkampf - Ausweichen", tooltip="Enable your pet's outgoing melee dodges."}
-obj["PET_OUTGOING_PARRY"]						= { label="Nahkampf - Parieren", tooltip="Enable your pet's outgoing melee parries."}
-obj["PET_OUTGOING_BLOCK"]						= { label="Nahkampf - Blocken", tooltip="Enable your pet's outgoing melee blocks."}
---obj["PET_OUTGOING_DEFLECT"]						= { label="Melee Deflects", tooltip="Enable your pet's outgoing melee deflects."}
-obj["PET_OUTGOING_ABSORB"]						= { label="Nahkampf - Absorbieren", tooltip="Enable your pet's absorbed outgoing melee damage."}
-obj["PET_OUTGOING_IMMUNE"]						= { label="Nahkampf - Immun", tooltip="Enable your pet's outgoing melee damage the enemy is immune to."}
-obj["PET_OUTGOING_EVADE"]						= { label="Nahkampf - Entkommen", tooltip="Enable your pet's outgoing melee evades."}
-obj["PET_OUTGOING_SPELL_DAMAGE"]				= { label="Skill - Treffer", tooltip="Enable your pet's outgoing skill hits."}
-obj["PET_OUTGOING_SPELL_DAMAGE_CRIT"]			= { label="Skill - Kritisch", tooltip="Enable your pet's outgoing skill crits."}
-obj["PET_OUTGOING_SPELL_DOT"]					= { label="Skill - DoTs", tooltip="Enable outgoing skill damage over time."}
-obj["PET_OUTGOING_SPELL_DOT_CRIT"]				= { label="Skill - DoT Kritisch", tooltip="Enable outgoing skill damage over time crits."}
-obj["PET_OUTGOING_SPELL_DAMAGE_SHIELD"]			= { label="Schadensschild - Treffer", tooltip="Enable outgoing damage done by your pet's damage shields."}
-obj["PET_OUTGOING_SPELL_DAMAGE_SHIELD_CRIT"]	= { label="Schadensschild - Kritisch", tooltip="Enable outgoing crits done by your pet's damage shields."}
-obj["PET_OUTGOING_SPELL_MISS"]					= { label="Skill - Fehlschlag", tooltip="Enable your pet's outgoing skill misses."}
-obj["PET_OUTGOING_SPELL_DODGE"]					= { label="Skill - Ausweichen", tooltip="Enable your pet's outgoing skill dodges."}
-obj["PET_OUTGOING_SPELL_PARRY"]					= { label="Skill - Parieren", tooltip="Enable your pet's outgoing ability parries."}
-obj["PET_OUTGOING_SPELL_BLOCK"]					= { label="Skill - Blocken", tooltip="Enable your pet's outgoing skill blocks."}
---obj["PET_OUTGOING_SPELL_DEFLECT"]				= { label="Skill Deflects", tooltip="Enable your pet's outgoing skill deflects."}
-obj["PET_OUTGOING_SPELL_RESIST"]				= { label="Skill - Widerstehen", tooltip="Enable your pet's outgoing spell resists."}
-obj["PET_OUTGOING_SPELL_ABSORB"]				= { label="Skill - Absorbieren", tooltip="Enable your pet's absorbed damage from outgoing skills."}
-obj["PET_OUTGOING_SPELL_IMMUNE"]				= { label="Skill - Immun", tooltip="Enable your pet's outgoing skill damage the enemy is immune to."}
-obj["PET_OUTGOING_SPELL_EVADE"]					= { label="Skill - Unterbrechen", tooltip="Enable your pet's outgoing skill evades."}
---obj["PET_OUTGOING_HEAL"]						= { label="Heals", tooltip="Enable your pet's outgoing heals."}
---obj["PET_OUTGOING_HEAL_CRIT"]					= { label="Crit Heals", tooltip="Enable your pet's outgoing crit heals."}
---obj["PET_OUTGOING_HOT"]							= { label="Heals Over Time", tooltip="Enable your pet's outgoing heals over time."}
---obj["PET_OUTGOING_HOT_CRIT"]					= { label="Crit Heals Over Time", tooltip="Enable your pet's outgoing crit heals over time."}
-obj["PET_OUTGOING_DISPEL"]						= { label="Dispels", tooltip="Enable your pet's outgoing dispels."}
+obj["PET_OUTGOING_DAMAGE"]						= { label="Melee: Treffer", tooltip="Aktiviert von Begleiter ausgehende Melee-Treffer."}
+obj["PET_OUTGOING_DAMAGE_CRIT"]					= { label="Melee: Krit", tooltip="Aktiviert von Begleiter ausgehende Melee-Krits."}
+obj["PET_OUTGOING_MISS"]						= { label="Melee: Fehlschlag", tooltip="Aktiviert von Begleiter ausgehende Melee-Fehlschläge."}
+obj["PET_OUTGOING_DODGE"]						= { label="Melee: Ausweichen", tooltip="Aktiviert von Begleiter ausgehendes Melee-Ausweichen."}
+obj["PET_OUTGOING_PARRY"]						= { label="Melee: Parieren", tooltip="Aktiviert von Begleiter ausgehendes Melee-Parieren."}
+obj["PET_OUTGOING_BLOCK"]						= { label="Melee: Blocken", tooltip="Aktiviert von Begleiter ausgehendes Melee-Blocken."}
+obj["PET_OUTGOING_DEFLECT"]						= { label="Melee: Abwehr", tooltip="Aktiviert von Begleiter ausgehende Melee-Abwehr."}
+obj["PET_OUTGOING_ABSORB"]						= { label="Melee: Absorbieren", tooltip="Aktiviert von Begleiter ausgehenden, absorbierten Meleeschaden."}
+obj["PET_OUTGOING_IMMUNE"]						= { label="Melee: Immunität", tooltip="Aktiviert von Begleiter ausgehenden Meleeschaden, gegen den der Feind immun ist."}
+obj["PET_OUTGOING_EVADE"]						= { label="Melee: Entkommen", tooltip="Aktiviert von Begleiter ausgehendes Melee-Entkommen."}
+obj["PET_OUTGOING_SPELL_DAMAGE"]				= { label="Fähigkeit: Treffer", tooltip="Aktiviert von Begleiter ausgehende Fähigkeitstreffer."}
+obj["PET_OUTGOING_SPELL_DAMAGE_CRIT"]			= { label="Fähigkeit: Krit", tooltip="Aktiviert von Begleiter ausgehende Fähigkeitskrits."}
+obj["PET_OUTGOING_SPELL_DOT"]					= { label="Fähigkeit: DoT", tooltip="Aktiviert von Begleiter ausgehenden Fähigkeitsschaden über Zeit."}
+obj["PET_OUTGOING_SPELL_DOT_CRIT"]				= { label="Fähigkeit: DoT Kritisch", tooltip="Aktiviert von Begleiter ausgehenden, kritischen Fähigkeitsschaden über Zeit."}
+obj["PET_OUTGOING_SPELL_DAMAGE_SHIELD"]			= { label="Schadensschild: Treffer", tooltip="Aktiviert ausgehenden Schaden durch Schadensschilde des Begleiters."}
+obj["PET_OUTGOING_SPELL_DAMAGE_SHIELD_CRIT"]	= { label="Schadensschild: Krit", tooltip="Aktiviert ausgehenden, kritischen Schaden durch Schadensschilde des Begleiters."}
+obj["PET_OUTGOING_SPELL_MISS"]					= { label="Fähigkeit: Fehlschlag", tooltip="Aktiviert von Begleiter ausgehende Fähigkeits-Fehlschläge."}
+obj["PET_OUTGOING_SPELL_DODGE"]					= { label="Fähigkeit: Ausweichen", tooltip="Aktiviert von Begleiter ausgehendes Fähigkeits-Ausweichen."}
+obj["PET_OUTGOING_SPELL_PARRY"]					= { label="Fähigkeit: Parieren", tooltip="Aktiviert von Begleiter ausgehendes Fähigkeits-Parieren."}
+obj["PET_OUTGOING_SPELL_BLOCK"]					= { label="Fähigkeit: Blocken", tooltip="Aktiviert von Begleiter ausgehendes Fähigkeits-Blocken."}
+obj["PET_OUTGOING_SPELL_DEFLECT"]				= { label="Fähigkeit: Abwehr", tooltip="Aktiviert von Begleiter ausgehende Fähigkeits-Abwehr."}
+obj["PET_OUTGOING_SPELL_RESIST"]				= { label="Fähigkeit: Widerstehen", tooltip="Aktiviert von Begleiter ausgehendes Widerstehen von Fähigkeiten."}
+obj["PET_OUTGOING_SPELL_ABSORB"]				= { label="Fähigkeit: Absorbieren", tooltip="Aktiviert von Begleiter ausgehenden, absorbierten Fähigkeitsschaden."}
+obj["PET_OUTGOING_SPELL_IMMUNE"]				= { label="Fähigkeit: Immunität", tooltip="Aktiviert von Begleiter ausgehenden Fähigkeitsschaden, gegen den der Feind immun ist."}
+obj["PET_OUTGOING_SPELL_EVADE"]					= { label="Fähigkeit: Unterbrechen", tooltip="Aktiviert von Begleiter ausgehende Fähigkeitsunterbrechungen."}
+obj["PET_OUTGOING_HEAL"]						= { label="Heilung", tooltip="Aktiviert von Begleiter ausgehende Heilungen."}
+obj["PET_OUTGOING_HEAL_CRIT"]					= { label="Heilung: Krit", tooltip="Aktiviert von Begleiter ausgehende, kritische Heilungen."}
+obj["PET_OUTGOING_HOT"]							= { label="HoT", tooltip="Aktiviert von Begleiter ausgehende Heilungen über Zeit."}
+obj["PET_OUTGOING_HOT_CRIT"]					= { label="HoT: Krit", tooltip="Aktiviert von Begleiter ausgehende, kritische Heilungen über Zeit."}
+obj["PET_OUTGOING_DISPEL"]						= { label="Dispel", tooltip="Aktiviert von Begleiter ausgehende Entzauberungen."}
 
 
 ------------------------------
@@ -458,32 +458,32 @@ obj["PET_OUTGOING_DISPEL"]						= { label="Dispels", tooltip="Enable your pet's 
 ------------------------------
 
 obj = L.NOTIFICATION_EVENTS
-obj["NOTIFICATION_DEBUFF"]				= { label="Debuffs", tooltip="Enable debuffs you are afflicted by."}
-obj["NOTIFICATION_DEBUFF_STACK"]		= { label="Debuff Stacks", tooltip="Enable debuff stacks you are afflicted by."}
-obj["NOTIFICATION_BUFF"]				= { label="Buffs", tooltip="Enable buffs you receive."}
-obj["NOTIFICATION_BUFF_STACK"]			= { label="Gegenstand Stacks", tooltip="Enable buff stacks you receive."}
-obj["NOTIFICATION_ITEM_BUFF"]			= { label="Gegenstand Buffs", tooltip="Enable buffs your items receive."}
-obj["NOTIFICATION_DEBUFF_FADE"]			= { label="Debuff verblasst", tooltip="Enable debuffs that have faded from you."}
-obj["NOTIFICATION_BUFF_FADE"]			= { label="Buff verblasst", tooltip="Enable buffs that have faded from you."}
-obj["NOTIFICATION_ITEM_BUFF_FADE"]		= { label="Gegenstand Buff verblasst", tooltip="Enable item buffs that have faded from you."}
-obj["NOTIFICATION_COMBAT_ENTER"]		= { label="Kampfaustritt", tooltip="Enable when you have entered combat."}
-obj["NOTIFICATION_COMBAT_LEAVE"]		= { label="Kampfeintritt", tooltip="Enable when you have left combat."}
-obj["NOTIFICATION_POWER_GAIN"]			= { label="Energie erhalten", tooltip="Enable when you gain extra mana, rage, or energy."}
-obj["NOTIFICATION_POWER_LOSS"]			= { label="Energie verloren", tooltip="Enable when you lose mana, rage, or energy from drains."}
-obj["NOTIFICATION_CP_GAIN"]				= { label="Combo Punkt erhalten", tooltip="Enable when you gain combo points."}
-obj["NOTIFICATION_CP_FULL"]				= { label="Alle Combo Punkte", tooltip="Enable when you attain full combo points."}
-obj["NOTIFICATION_HOLY_POWER_CHANGE"]	= { label="Holy Power Changes", tooltip="Enable when you change holy power."}
-obj["NOTIFICATION_HOLY_POWER_FULL"]		= { label="Holy Power Full", tooltip="Enable when you attain full holy power."}
-obj["NOTIFICATION_HONOR_GAIN"]			= { label="Ehre erhalten", tooltip="Enable when you gain honor."}
-obj["NOTIFICATION_REP_GAIN"]			= { label="Ruf erhalten", tooltip="Enable when you gain reputation."}
-obj["NOTIFICATION_REP_LOSS"]			= { label="Ruf verloren", tooltip="Enable when you lose reputation."}
-obj["NOTIFICATION_SKILL_GAIN"]			= { label="Skillpunkt erhalten", tooltip="Enable when you gain skill points."}
-obj["NOTIFICATION_EXPERIENCE_GAIN"]		= { label="Erfahrung erhalten", tooltip="Enable when you gain experience points."}
-obj["NOTIFICATION_PC_KILLING_BLOW"]		= { label="Spieler Todesstoß", tooltip="Enable when you get a killing blow against a hostile player."}
-obj["NOTIFICATION_NPC_KILLING_BLOW"]	= { label="NPC Todesstoß", tooltip="Enable when you get a killing blow against an NPC."}
-obj["NOTIFICATION_EXTRA_ATTACK"]		= { label="Extra Attacken", tooltip="Enable when you gain extra attacks such as windfury, thrash, sword spec, etc."}
-obj["NOTIFICATION_ENEMY_BUFF"]			= { label="Feind Buff erhalten", tooltip="Enable buffs your currently targeted enemy gains."}
-obj["NOTIFICATION_MONSTER_EMOTE"]		= { label="Monster Emotes", tooltip="Enable emotes by the currently targeted monster."}
+obj["NOTIFICATION_DEBUFF"]				= { label="Debuffs", tooltip="Aktiviert Debuffs, wenn du betroffen bist."}
+obj["NOTIFICATION_DEBUFF_STACK"]		= { label="Debuff-Stapel", tooltip="Aktiviert Debuff-Stapel, wenn du betroffen bist."}
+obj["NOTIFICATION_BUFF"]				= { label="Buffs", tooltip="Aktiviert Buffs, die du erhälst."}
+obj["NOTIFICATION_BUFF_STACK"]			= { label="Buff-Stacks", tooltip="Aktiviert Buff-Stapel, die du erhälst."}
+obj["NOTIFICATION_ITEM_BUFF"]			= { label="Gegenstands-Buffs", tooltip="Aktiviert Buffs, die ein Gegenstand erhält."}
+obj["NOTIFICATION_DEBUFF_FADE"]			= { label="Debuff verblasst", tooltip="Aktiviert Debuffs, die von dir verblassen."}
+obj["NOTIFICATION_BUFF_FADE"]			= { label="Buff verblasst", tooltip="Aktiviert Buffs, die von dir verblassen."}
+obj["NOTIFICATION_ITEM_BUFF_FADE"]		= { label="Gegenstands-Buff verblasst", tooltip="Aktiviert Gegenstands-Buffs, die von dir verblassen."}
+obj["NOTIFICATION_COMBAT_ENTER"]		= { label="Kampfeintritt", tooltip="Aktiviert, wenn du in den Kampf eintrittst."}
+obj["NOTIFICATION_COMBAT_LEAVE"]		= { label="Kampfaustritt", tooltip="Aktiviert, wenn du in den Kampf verlässt."}
+obj["NOTIFICATION_POWER_GAIN"]			= { label="Energie erhalten", tooltip="Aktiviert, wenn du zusätzliches Mana, Wut oder Energie erhälst."}
+obj["NOTIFICATION_POWER_LOSS"]			= { label="Energie verloren", tooltip="Aktiviert, wenn du durch Abzug Mana, Wut oder Energie verlierst."}
+obj["NOTIFICATION_CP_GAIN"]				= { label="Combo-Punkte erhalten", tooltip="Aktiviert, wenn du Combo-Punkte bekommst."}
+obj["NOTIFICATION_CP_FULL"]				= { label="Combo-Punkte komplett", tooltip="Aktiviert, wenn du alle Combo-Punkte erreicht hast."}
+obj["NOTIFICATION_HOLY_POWER_CHANGE"]	= { label="Heilige Kraft verändert", tooltip="Aktiviert, wenn sich deine Heilige Kraft verändert."}
+obj["NOTIFICATION_HOLY_POWER_FULL"]		= { label="Heilige Kraft komplett", tooltip="Aktiviert, wenn deine Heilige Kraft voll ist."}
+obj["NOTIFICATION_HONOR_GAIN"]			= { label="Ehre erhalten", tooltip="Aktiviert, wenn du Ehre erhälst."}
+obj["NOTIFICATION_REP_GAIN"]			= { label="Ruf erhalten", tooltip="Aktiviert, wenn du Ruf erhälst."}
+obj["NOTIFICATION_REP_LOSS"]			= { label="Ruf verloren", tooltip="Aktiviert, wenn du Ruf verlierst."}
+obj["NOTIFICATION_SKILL_GAIN"]			= { label="Skillpunkt erhalten", tooltip="Aktiviert, wenn du einen Skillpunkt erhälst."}
+obj["NOTIFICATION_EXPERIENCE_GAIN"]		= { label="Erfahrung erhalten", tooltip="Aktiviert, wenn du Erfahrung erhälst."}
+obj["NOTIFICATION_PC_KILLING_BLOW"]		= { label="Todesstoß Spieler", tooltip="Aktiviert, wenn du einen Todesstoß bei einem Spieler anbringst."}
+obj["NOTIFICATION_NPC_KILLING_BLOW"]	= { label="Todesstoß NPC", tooltip="Aktiviert, wenn du einen Todesstoß bei einem NPC anbringst."}
+obj["NOTIFICATION_EXTRA_ATTACK"]		= { label="Extraattacken", tooltip="Aktiviert, wenn du Extraattacken durch Windzorn, Schwertspezialisierung usw. erhälst."}
+obj["NOTIFICATION_ENEMY_BUFF"]			= { label="Feind erhält Buff", tooltip="Aktiviert, wenn dein aktuelles, feindliches Ziel einen Buff erhält."}
+obj["NOTIFICATION_MONSTER_EMOTE"]		= { label="Monster Emotes", tooltip="Aktiviert Emotes, die dein aktuelles Ziel sagt."}
 
 
 ------------------------------
@@ -491,36 +491,36 @@ obj["NOTIFICATION_MONSTER_EMOTE"]		= { label="Monster Emotes", tooltip="Enable e
 ------------------------------
 
 -- Main events.
---obj = L.TRIGGER_DATA
---obj["SWING_DAMAGE"]				= "Swing Damage"
---obj["RANGE_DAMAGE"]				= "Range Damage"
---obj["SPELL_DAMAGE"]				= "Skill Damage"
---obj["GENERIC_DAMAGE"]			= "Swing/Range/Skill Damage"
---obj["SPELL_PERIODIC_DAMAGE"]	= "Periodic Skill Damage (DoT)"
---obj["DAMAGE_SHIELD"]			= "Damage Shield Damage"
---obj["DAMAGE_SPLIT"]				= "Split Damage"
---obj["ENVIRONMENTAL_DAMAGE"]		= "Environmental Damage"
---obj["SWING_MISSED"]				= "Swing Miss"
---obj["RANGE_MISSED"]				= "Range Miss"
---obj["SPELL_MISSED"]				= "Skill Miss"
---obj["GENERIC_MISSED"]			= "Swing/Range/Skill Miss"
---obj["SPELL_PERIODIC_MISSED"]	= "Periodic Skill Miss"
---obj["SPELL_DISPEL_FAILED"]		= "Dispel Failed"
---obj["DAMAGE_SHIELD_MISSED"]		= "Damage Shield Miss"
---obj["SPELL_HEAL"]				= "Heal"
---obj["SPELL_PERIODIC_HEAL"]		= "Periodic Heal (HoT)"
---obj["SPELL_ENERGIZE"]			= "Power Gain"
---obj["SPELL_PERIODIC_ENERGIZE"]	= "Periodic Power Gain"
---obj["SPELL_DRAIN"]				= "Power Drain"
---obj["SPELL_PERIODIC_DRAIN"]		= "Periodic Power Drain"
---obj["SPELL_LEECH"]				= "Power Leech"
---obj["SPELL_PERIODIC_LEECH"]		= "Periodic Power Leech"
-obj["SPELL_INTERRUPT"]			= "Fertigkeit unterbrochen"
+obj = L.TRIGGER_DATA
+obj["SWING_DAMAGE"]				= "Meleeschaden"
+obj["RANGE_DAMAGE"]				= "Fernkampfschaden"
+obj["SPELL_DAMAGE"]				= "Fähigkeitsschaden"
+obj["GENERIC_DAMAGE"]			= "Melee-/Fernkampf-/Fähigkeitsschaden"
+obj["SPELL_PERIODIC_DAMAGE"]	= "Periodischer Fähigkeitsschaden (DoT)"
+obj["DAMAGE_SHIELD"]			= "Schadensschild-Schaden"
+obj["DAMAGE_SPLIT"]				= "Aufgeteilter Schaden"
+obj["ENVIRONMENTAL_DAMAGE"]		= "Umwelt-Schaden"
+obj["SWING_MISSED"]				= "Melee-Fehlschlag"
+obj["RANGE_MISSED"]				= "Fernkampf-Fehlschlag"
+obj["SPELL_MISSED"]				= "Fähigkeits-Fehlschlag"
+obj["GENERIC_MISSED"]			= "Melee-/Fernkampf-/Fähigkeits-Fehlschlag"
+obj["SPELL_PERIODIC_MISSED"]	= "Periodischer Fähigkeits-Fehlschlag"
+obj["SPELL_DISPEL_FAILED"]		= "Dispel-Fehlschlag"
+obj["DAMAGE_SHIELD_MISSED"]		= "Schadensschild-Fehlschlag"
+obj["SPELL_HEAL"]				= "Heilung"
+obj["SPELL_PERIODIC_HEAL"]		= "Periodische Heilung (HoT)"
+obj["SPELL_ENERGIZE"]			= "Powergewinn"
+obj["SPELL_PERIODIC_ENERGIZE"]	= "Periodischer Powergewinn"
+obj["SPELL_DRAIN"]				= "Powerverlust"
+obj["SPELL_PERIODIC_DRAIN"]		= "Periodischer Powerverlust"
+obj["SPELL_LEECH"]				= "Power-Absaugen"
+obj["SPELL_PERIODIC_LEECH"]		= "Periodischer Power-Absaugen"
+obj["SPELL_INTERRUPT"]			= "Fähigkeit unterbrochen"
 obj["SPELL_AURA_APPLIED"]		= "Aura eingesetzt"
 obj["SPELL_AURA_REMOVED"]		= "Aura entfernt"
-obj["SPELL_STOLEN"]				= "Aura gestolen"
+obj["SPELL_STOLEN"]				= "Aura gestohlen"
 obj["SPELL_DISPEL"]				= "Aura Dispel"
---obj["SPELL_AURA_REFRESH"]		= "Aura Refresh"
+obj["SPELL_AURA_REFRESH"]		= "Aura aufgefrischt"
 obj["SPELL_AURA_BROKEN_SPELL"]	= "Aura gebrochen"
 obj["ENCHANT_APPLIED"]			= "Verzauberung eingesetzt"
 obj["ENCHANT_REMOVED"]			= "Verzauberung entfernt"
@@ -530,45 +530,45 @@ obj["SPELL_CAST_FAILED"]		= "Wirken fehlgeschlagen"
 obj["SPELL_SUMMON"]				= "Beschwören"
 obj["SPELL_CREATE"]				= "Erstellen"
 obj["PARTY_KILL"]				= "Todesstoß"
-obj["UNIT_DIED"]				= "Einheit Tot"
+obj["UNIT_DIED"]				= "Einheit tot"
 obj["UNIT_DESTROYED"]			= "Einheit zerstört"
-obj["SPELL_EXTRA_ATTACKS"]		= "Extra Attacken"
---obj["UNIT_HEALTH"]				= "Health Change"
---obj["UNIT_POWER"]				= "Power Change"
---obj["SKILL_COOLDOWN"]			= "Player Cooldown Complete"
---obj["PET_COOLDOWN"]				= "Pet Cooldown Complete"
+obj["SPELL_EXTRA_ATTACKS"]		= "Zusätzliche Attacken"
+obj["UNIT_HEALTH"]				= "Lebenspunkteveränderung"
+obj["UNIT_POWER"]				= "Powerveränderung"
+obj["SKILL_COOLDOWN"]			= "Spielerabklingzeit abgelaufen"
+obj["PET_COOLDOWN"]				= "Begleiterabklingzeit abgelaufen"
  
 -- Main event conditions.
---obj["sourceName"]				= "Source Unit Name"
---obj["sourceAffiliation"]		= "Source Unit Affiliation"
---obj["sourceReaction"]			= "Source Unit Reaction"
---obj["sourceControl"]			= "Source Unit Control"
---obj["sourceUnitType"]			= "Source Unit Type"
---obj["recipientName"]			= "Recipient Unit Name"
---obj["recipientAffiliation"]		= "Recipient Unit Affiliation"
---obj["recipientReaction"]		= "Recipient Unit Reaction"
---obj["recipientControl"]			= "Recipient Unit Control"
---obj["recipientUnitType"]		= "Recipient Unit Type"
---obj["skillID"]					= "Skill ID"
---obj["skillName"]				= "Skill Name"
---obj["skillSchool"]				= "Skill School"
---obj["extraSkillID"]				= "Extra Skill ID"
---obj["extraSkillName"]			= "Extra Skill Name"
---obj["extraSkillSchool"]			= "Extra Skill School"
+obj["sourceName"]				= "Quellenname"
+obj["sourceAffiliation"]		= "Quellenzugehörigkeit"
+obj["sourceReaction"]			= "Quellenreaktion"
+obj["sourceControl"]			= "Quellenkontrolle"
+obj["sourceUnitType"]			= "Quellentyp"
+obj["recipientName"]			= "Empfängername"
+obj["recipientAffiliation"]		= "Empfängerzugehörigkeit"
+obj["recipientReaction"]		= "Empfängerreaktion"
+obj["recipientControl"]			= "Empfängerkontrolle"
+obj["recipientUnitType"]		= "Empfängertyp"
+obj["skillID"]					= "Fähigkeits-ID"
+obj["skillName"]				= "Fähigkeitsname"
+obj["skillSchool"]				= "Fähigkeitsschule"
+obj["extraSkillID"]				= "Zusätzliche Fähigkeits-ID"
+obj["extraSkillName"]			= "Zusätzlicher Fähigkeitsname"
+obj["extraSkillSchool"]			= "Zusätzliche Fähigkeitsschule"
 obj["amount"]					= "Menge"
-obj["overkillAmount"]			= "Overkill Menge"
+obj["overkillAmount"]			= "Menge über Tod"
 obj["damageType"]				= "Schadensart"
 obj["resistAmount"]				= "Widerstandene Menge"
 obj["blockAmount"]				= "Geblockte Menge"
 obj["absorbAmount"]				= "Absobierte Menge"
 obj["isCrit"]					= "Krit"
-obj["isGlancing"]				= "Streif-Treffer"
-obj["isCrushing"]				= "Zerschmetternder Stoß"
+obj["isGlancing"]				= "Gestreifter Treffer"
+obj["isCrushing"]				= "Schmetternder Stoß"
 obj["extraAmount"]				= "Extra Menge"
---obj["missType"]					= "Miss Type"
---obj["hazardType"]				= "Hazard Type"
---obj["powerType"]				= "Power Type"
---obj["auraType"]					= "Aura Type"
+obj["missType"]					= "Verfehlen-Typ"
+obj["hazardType"]				= "Gefahrentyp"
+obj["powerType"]				= "Power-Typ"
+obj["auraType"]					= "Auren-Typ"
 obj["threshold"]				= "Schwelle"
 obj["unitID"]					= "Einheit ID"
 obj["unitReaction"]				= "Einheit Reaktion"
@@ -580,10 +580,10 @@ obj["buffInactive"]				= "Buff Inaktiv"
 obj["currentCP"]				= "Momentane Combo Punkte"
 obj["currentPower"]				= "Momentane Energie"
 obj["inCombat"]					= "Im Kampf"
---obj["recentlyFired"]			= "Trigger Recently Fired"
---obj["trivialTarget"]			= "Trivial Target"
-obj["unavailableSkill"]			= "Fehlende Fertigkeit"
-obj["warriorStance"]			= "Krieger Haltung"
+obj["recentlyFired"]			= "Auslöser kürzlich aktiviert"
+obj["trivialTarget"]			= "Triviales Ziel"
+obj["unavailableSkill"]			= "Fehlende Fähigkeit"
+obj["warriorStance"]			= "Krieger-Haltung"
 obj["zoneName"]					= "Zonenname"
 obj["zoneType"]					= "Zonenart"
  
@@ -600,23 +600,23 @@ obj["affiliationMine"]			= "Mein"
 obj["affiliationParty"]			= "Gruppenmitglied"
 obj["affiliationRaid"]			= "Schlachtzugsmitglied"
 obj["affiliationOutsider"]		= "Außenstehender"
-obj["affiliationTarget"]		= TARGET
-obj["affiliationFocus"]			= FOCUS
-obj["affiliationYou"]			= YOU
+obj["affiliationTarget"]		= "Ziel"
+obj["affiliationFocus"]			= "Fokus"
+obj["affiliationYou"]			= "Du"
 
 -- Reactions.
 obj["reactionFriendly"]			= "Freundlich"
 obj["reactionNeutral"]			= "Neutral"
-obj["reactionHostile"]			= HOSTILE
+obj["reactionHostile"]			= "Feindlich"
 
 -- Control types.
 obj["controlServer"]			= "Server"
 obj["controlHuman"]				= "Mensch"
 
 -- Unit types.
-obj["unitTypePlayer"]			= PLAYER 
+obj["unitTypePlayer"]			= "Spieler"
 obj["unitTypeNPC"]				= "NPC"
-obj["unitTypePet"]				= PET
+obj["unitTypePet"]				= "Begleiter"
 obj["unitTypeGuardian"]			= "Wächter"
 obj["unitTypeObject"]			= "Objekt"
 
@@ -626,7 +626,7 @@ obj["auraTypeDebuff"]			= "Debuff"
 
 -- Zone types.
 obj["zoneTypeArena"]			= "Arena"
-obj["zoneTypePvP"]				= BATTLEGROUND
+obj["zoneTypePvP"]				= "Schlachtfeld"
 obj["zoneTypeParty"]			= "5-Mann Instanz"
 obj["zoneTypeRaid"]				= "Schlachtzug-Instanz"
 
@@ -682,11 +682,11 @@ obj["Up"]			= "Aufwärts"
 obj["Down"]			= "Abwärts"
 
 -- Animation style behaviors.
-obj["AngleUp"]			= "Winkel aufwärts"
-obj["AngleDown"]		= "Winkel abwärts"
-obj["GrowUp"]			= "Wachsen aufwärts"
+obj["AngleUp"]		= "Winkel aufwärts"
+obj["AngleDown"]	= "Winkel abwärts"
+obj["GrowUp"]		= "Wachsen aufwärts"
 obj["GrowDown"]		= "Wachsen abwärts"
-obj["CurvedLeft"]		= "Gerundet Links"
-obj["CurvedRight"]		= "Gerundet Rechts"
-obj["Jiggle"]			= "Rütteln"
-obj["Normal"]			= "Normal"
+obj["CurvedLeft"]	= "Gerundet Links"
+obj["CurvedRight"]	= "Gerundet Rechts"
+obj["Jiggle"]		= "Rütteln"
+obj["Normal"]		= "Normal"

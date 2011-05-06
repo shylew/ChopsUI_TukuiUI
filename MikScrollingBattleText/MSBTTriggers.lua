@@ -1,8 +1,6 @@
 -------------------------------------------------------------------------------
 -- Title: Mik's Scrolling Battle Text Triggers
 -- Author: Mikord
--- Updated by the generous ppl at Curse.com use at own risk.
--- Modified line is on 700
 -------------------------------------------------------------------------------
 
 -- Create module and set its name.
@@ -697,7 +695,6 @@ end
 -- ****************************************************************************
 -- Handles triggers for combat log events.
 -- ****************************************************************************
--- Modified here for the 4.1 patch by Protonova Rexxar (US)
 local function HandleCombatLogTriggers(timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, recipientGUID, recipientName, recipientFlags, ...)
  -- Ignore the event if there are no triggers to search for it.
  if (not categorizedTriggers[event]) then return end

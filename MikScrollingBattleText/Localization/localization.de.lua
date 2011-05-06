@@ -1,7 +1,7 @@
 ﻿-------------------------------------------------------------------------------
 -- Title: Mik's Scrolling Battle Text German Localization
 -- Author: Mikord
--- German Translation by: Farook
+-- German Translation by: Farook, mojosdojo
 -------------------------------------------------------------------------------
 
 -- Don't do anything if the locale isn't German.
@@ -39,12 +39,12 @@ L.DEFAULT_FONT_NAME = "MSBT Porky"
 ------------------------------
 
 L.COMMAND_USAGE = {
- "Usage: " .. MikSBT.COMMAND .. " <befehle> [params]",
+ "Usage: " .. MikSBT.COMMAND .. " <Befehl> [Parameter]",
  " Befehle:",
  "  " .. L.COMMAND_RESET .. " - Das aktuelle Profil auf Standardwerte zurücksetzen.",
  "  " .. L.COMMAND_DISABLE .. " - Das Addon deaktivieren.",
  "  " .. L.COMMAND_ENABLE .. " - Das Addon aktivieren.",
- "  " .. L.COMMAND_SHOWVER .. " - Zeigt die aktuelle Version an.",
+ "  " .. L.COMMAND_SHOWVER .. " - Die aktuelle Version anzeigen.",
  "  " .. L.COMMAND_HELP .. " - Hilfe anzeigen.",
 }
 
@@ -55,12 +55,12 @@ L.COMMAND_USAGE = {
 
 L.MSG_DISABLE				= "Addon deaktiviert."
 L.MSG_ENABLE				= "Addon aktiviert."
-L.MSG_PROFILE_RESET			= "Profil zurücksetzen"
+L.MSG_PROFILE_RESET			= "Profil zurückgesetzt."
 L.MSG_HITS					= "Treffer"
 L.MSG_CRIT					= "Krit"
 L.MSG_CRITS					= "Krits"
 L.MSG_MULTIPLE_TARGETS		= "Mehrere"
-L.MSG_READY_NOW				= "Verfügbar"
+L.MSG_READY_NOW				= "verfügbar"
 
 
 ------------------------------
@@ -80,8 +80,9 @@ L.MSG_STATIC			= "Statisch"
 L.MSG_COMBAT					= "Kampf"
 L.MSG_DISPEL					= "Dispel"
 L.MSG_CP						= "CP"
-L.MSG_CP_FULL					= "Alle Combo-Punkte"
+L.MSG_CP_FULL					= "Alle CP"
+L.MSG_HOLY_POWER_FULL			= "3x Heilige Kraft"
 L.MSG_KILLING_BLOW				= "Todesstoß"
 L.MSG_TRIGGER_LOW_HEALTH		= "Wenig Gesundheit"
 L.MSG_TRIGGER_LOW_MANA			= "Wenig Mana"
-L.MSG_TRIGGER_LOW_PET_HEALTH	= "Begleiter Gesundheit Niedrig"
+L.MSG_TRIGGER_LOW_PET_HEALTH	= "Wenig Begleiter Gesundheit"

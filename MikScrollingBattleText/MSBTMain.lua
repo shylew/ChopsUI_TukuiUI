@@ -1,8 +1,6 @@
 -------------------------------------------------------------------------------
 -- Title: Mik's Scrolling Battle Text Main
 -- Author: Mikord
--- Modifed by Protonova of Rexxar (US) to include sp00n fix for
--- merged off-hand combat events. Modified lines: 53 and 1058.
 -------------------------------------------------------------------------------
 
 -- Create module and set its name.
@@ -50,7 +48,7 @@ local classMap = MSBTParser.classMap
 -------------------------------------------------------------------------------
 
 -- How long to wait before showing events so that merges may happen.
-local MERGE_DELAY_TIME = 0.5
+local MERGE_DELAY_TIME = 0.3
 
 -- How long to wait between throttle window checking.
 local THROTTLE_UPDATE_TIME = 0.5
@@ -1054,11 +1052,7 @@ local function ParserEventsHandler(parserEvent)
  else
   -- Acquire a recycled table from cache or create a new one if there aren't any available in cache.
   local combatEvent = table_remove(combatEventCache) or {}
-
-  -- Fix "Off-Hand" swings
-  if (effectName and string_find(effectName, " Off%-Hand")) then
-	effectName = string_gsub(effectName, " Off%-Hand", "")
-  end
+  
 
   -- Setup the combat event.
   combatEvent.eventType = eventTypeString

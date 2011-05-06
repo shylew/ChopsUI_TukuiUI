@@ -476,7 +476,7 @@ local function MediaTab_CreateCustomSoundLine(this)
   function (this)
    local soundName = this:GetParent().soundKey
    local soundFile = MSBTProfiles.savedMedia.sounds[soundName]
-   PlaySoundFile(soundFile)
+   PlaySoundFile(soundFile, "Master")
   end
  )
  controls[#controls+1] = button

@@ -2142,7 +2142,7 @@ local function CreateEvent()
     if (soundName == soundFile) then soundFile = soundPath end
    end
    soundFile = string.find(soundFile, "\\", nil, 1) and soundFile or DEFAULT_SOUND_PATH .. soundFile
-   PlaySoundFile(soundFile)
+   PlaySoundFile(soundFile, "Master")
   end
  )
  controls[#controls+1] = button

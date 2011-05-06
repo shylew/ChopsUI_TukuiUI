@@ -373,7 +373,7 @@ local function DisplayEvent(eventSettings, message, texturePath)
  local soundFile = eventSettings.soundFile
  if (soundFile and not currentProfile.soundsDisabled) then
   soundFile = sounds[soundFile] or (string_find(soundFile, "\\", 1, true) and soundFile) or DEFAULT_SOUND_PATH .. soundFile
-  PlaySoundFile(soundFile)
+  PlaySoundFile(soundFile, "Master")
  end
 
  Display(message, saSettings, isSticky, eventSettings.colorR or 1, eventSettings.colorG or 1, eventSettings.colorB or 1, fontSize, fonts[fontName], outlineIndex, fontAlpha, texturePath)
