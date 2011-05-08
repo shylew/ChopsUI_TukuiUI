@@ -192,7 +192,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	if addon == "Blizzard_GuildControlUI" then
 		GuildControlUI:StripTextures()
 		GuildControlUIHbar:StripTextures()
-		GuildControlUI:SetTemplate("Transparent")
+		GuildControlUI:SetTemplate("Default")
 		GuildControlUI:CreateShadow("Default")
 		
 		local function SkinGuildRanks()
@@ -265,7 +265,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	--Guild
 	if addon == "Blizzard_GuildUI" then
 		GuildFrame:StripTextures(true)
-		GuildFrame:SetTemplate("Transparent")
+		GuildFrame:SetTemplate("Default")
 		GuildFrame:CreateShadow("Default")
 		GuildLevelFrame:Kill()
 		
@@ -302,7 +302,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			_G[frame]:StripTextures()
 		end
 		
-		GuildNewsBossModel:CreateBackdrop("Transparent")
+		GuildNewsBossModel:CreateBackdrop("Default")
 		GuildNewsBossModelTextFrame:CreateBackdrop("Default")
 		GuildNewsBossModelTextFrame.backdrop:Point("TOPLEFT", GuildNewsBossModel.backdrop, "BOTTOMLEFT", 0, -1)
 		GuildNewsBossModel:Point("TOPLEFT", GuildFrame, "TOPRIGHT", 4, -43)
@@ -417,7 +417,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		end
 		
 		--Detail Frame
-		GuildMemberDetailFrame:SetTemplate("Transparent")
+		GuildMemberDetailFrame:SetTemplate("Default")
 		GuildMemberNoteBackground:SetTemplate("Default")
 		GuildMemberOfficerNoteBackground:SetTemplate("Default")
 		GuildMemberRankDropdown:SetFrameLevel(GuildMemberRankDropdown:GetFrameLevel() + 5)
@@ -430,7 +430,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		end
 		
 		GuildNewsFiltersFrame:StripTextures()
-		GuildNewsFiltersFrame:SetTemplate("Transparent")
+		GuildNewsFiltersFrame:SetTemplate("Default")
 		SkinCloseButton(GuildNewsFiltersFrameCloseButton)
 		
 		for i=1, 7 do
@@ -474,7 +474,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		end
 		
 		--Text Edit Frame
-		GuildTextEditFrame:SetTemplate("Transparent")
+		GuildTextEditFrame:SetTemplate("Default")
 		SkinScrollBar(GuildTextEditScrollFrameScrollBar)
 		GuildTextEditContainer:SetTemplate("Default")
 		for i=1, GuildTextEditFrame:GetNumChildren() do
@@ -488,7 +488,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		
 		--Guild Log
 		SkinScrollBar(GuildLogScrollFrameScrollBar)
-		GuildLogFrame:SetTemplate("Transparent")
+		GuildLogFrame:SetTemplate("Default")
 
 		--Blizzard has two buttons with the same name, this is a fucked up way of determining that it isn't the other button
 		for i=1, GuildLogFrame:GetNumChildren() do
@@ -527,7 +527,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		TradeSkillExpandButtonFrame:StripTextures()
 		TradeSkillDetailScrollChildFrame:StripTextures()
 		
-		TradeSkillFrame:SetTemplate("Transparent")
+		TradeSkillFrame:SetTemplate("Default")
 		TradeSkillFrame:CreateShadow("Default")
 		TradeSkillFrame:Height(TradeSkillFrame:GetHeight() + 12)
 		TradeSkillRankFrame:StripTextures()
@@ -597,7 +597,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 
 		--Guild Crafters
 		TradeSkillGuildFrame:StripTextures()
-		TradeSkillGuildFrame:SetTemplate("Transparent")
+		TradeSkillGuildFrame:SetTemplate("Default")
 		TradeSkillGuildFrame:Point("BOTTOMLEFT", TradeSkillFrame, "BOTTOMRIGHT", 3, 19)
 		TradeSkillGuildFrameContainer:StripTextures()
 		TradeSkillGuildFrameContainer:SetTemplate("Default")
@@ -645,7 +645,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		for i=1,8 do
 			for j=1,5 do
 				_G["RaidGroup"..i.."Slot"..j]:StripTextures()
-				_G["RaidGroup"..i.."Slot"..j]:SetTemplate("Transparent")
+				_G["RaidGroup"..i.."Slot"..j]:SetTemplate("Default")
 			end
 		end
 	end	
@@ -706,14 +706,14 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			_G[texture]:Kill()
 		end
 
-		PlayerTalentFrame:SetTemplate("Transparent")
-		PlayerTalentFramePanel1:CreateBackdrop("Transparent")
+		PlayerTalentFrame:SetTemplate("Default")
+		PlayerTalentFramePanel1:CreateBackdrop("Default")
 		PlayerTalentFramePanel1.backdrop:Point( "TOPLEFT", PlayerTalentFramePanel1, "TOPLEFT", 3, -3 )
 		PlayerTalentFramePanel1.backdrop:Point( "BOTTOMRIGHT", PlayerTalentFramePanel1, "BOTTOMRIGHT", -3, 3 )
-		PlayerTalentFramePanel2:CreateBackdrop("Transparent")
+		PlayerTalentFramePanel2:CreateBackdrop("Default")
 		PlayerTalentFramePanel2.backdrop:Point( "TOPLEFT", PlayerTalentFramePanel2, "TOPLEFT", 3, -3 )
 		PlayerTalentFramePanel2.backdrop:Point( "BOTTOMRIGHT", PlayerTalentFramePanel2, "BOTTOMRIGHT", -3, 3 )
-		PlayerTalentFramePanel3:CreateBackdrop("Transparent")
+		PlayerTalentFramePanel3:CreateBackdrop("Default")
 		PlayerTalentFramePanel3.backdrop:Point( "TOPLEFT", PlayerTalentFramePanel3, "TOPLEFT", 3, -3 )
 		PlayerTalentFramePanel3.backdrop:Point( "BOTTOMRIGHT", PlayerTalentFramePanel3, "BOTTOMRIGHT", -3, 3 )
 		PlayerTalentFrame:CreateShadow("Default")
@@ -874,10 +874,10 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		SkinRotateButton(PlayerTalentFramePetModelRotateRightButton)
 		PlayerTalentFramePetModelRotateLeftButton:Point("BOTTOM", PlayerTalentFramePetModel, "BOTTOM", -4, 4)
 		PlayerTalentFramePetModelRotateRightButton:Point("TOPLEFT", PlayerTalentFramePetModelRotateLeftButton, "TOPRIGHT", 4, 0)
-		PlayerTalentFramePetPanel:CreateBackdrop("Transparent")
+		PlayerTalentFramePetPanel:CreateBackdrop("Default")
 		PlayerTalentFramePetPanel.backdrop:Point( "TOPLEFT", PlayerTalentFramePetPanel, "TOPLEFT", 3, -3 )
 		PlayerTalentFramePetPanel.backdrop:Point( "BOTTOMRIGHT", PlayerTalentFramePetPanel, "BOTTOMRIGHT", -3, 3 )
-		PlayerTalentFramePetModel:CreateBackdrop("Transparent")
+		PlayerTalentFramePetModel:CreateBackdrop("Default")
 		PlayerTalentFramePetModel.backdrop:Point( "TOPLEFT", PlayerTalentFramePetModel, "TOPLEFT")
 		PlayerTalentFramePetModel.backdrop:Point( "BOTTOMRIGHT", PlayerTalentFramePetModel, "BOTTOMRIGHT")
 		SkinButton(PlayerTalentFrameLearnButton, true)
@@ -998,7 +998,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		ScriptErrorsFrame:SetBackdropColor(unpack(C.media.backdropcolor))
 		ScriptErrorsFrame:SetBackdropBorderColor(unpack(C.media.bordercolor))	
 
-		EventTraceFrame:SetTemplate("Transparent")
+		EventTraceFrame:SetTemplate("Default")
 		
 		local texs = {
 			"TopLeft",
@@ -1084,7 +1084,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		
 		SkinDropDownBox(ClassTrainerFrameFilterDropDown, 155)
 
-		ClassTrainerFrame:CreateBackdrop("Transparent")
+		ClassTrainerFrame:CreateBackdrop("Default")
 		ClassTrainerFrame.backdrop:Point("TOPLEFT", ClassTrainerFrame, "TOPLEFT")
 		ClassTrainerFrame.backdrop:Point("BOTTOMRIGHT", ClassTrainerFrame, "BOTTOMRIGHT")
 		SkinCloseButton(ClassTrainerFrameCloseButton,ClassTrainerFrame)
@@ -1165,7 +1165,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	--Auction House
 	if addon == "Blizzard_AuctionUI" then
 		AuctionFrame:StripTextures(true)
-		AuctionFrame:SetTemplate("Transparent")
+		AuctionFrame:SetTemplate("Default")
 		AuctionFrame:CreateShadow("Default")
 		
 		BrowseFilterScrollFrame:StripTextures()
@@ -1182,7 +1182,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		
 		--Dress Up Frame
 		AuctionDressUpFrame:StripTextures()
-		AuctionDressUpFrame:SetTemplate("Transparent")
+		AuctionDressUpFrame:SetTemplate("Default")
 		AuctionDressUpFrame:Point("TOPLEFT", AuctionFrame, "TOPRIGHT", 2, 0)
 		SkinButton(AuctionDressUpFrameResetButton)
 		AuctionDressUpFrameCloseButton:StripTextures()
@@ -1197,7 +1197,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		
 		--Progress Frame
 		AuctionProgressFrame:StripTextures()
-		AuctionProgressFrame:SetTemplate("Transparent")
+		AuctionProgressFrame:SetTemplate("Default")
 		AuctionProgressFrame:CreateShadow("Default")
 		AuctionProgressFrameCancelButton:StyleButton()
 		AuctionProgressFrameCancelButton:SetTemplate("Default")
@@ -1450,7 +1450,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		BarberShopFrameResetButton:Point("BOTTOM", 0, 12)
 	
 		BarberShopFrame:StripTextures()
-		BarberShopFrame:SetTemplate("Transparent")
+		BarberShopFrame:SetTemplate("Default")
 		BarberShopFrame:Size(BarberShopFrame:GetWidth() - 30, BarberShopFrame:GetHeight() - 56)
 		
 		BarberShopFrameMoneyFrame:StripTextures()
@@ -1462,7 +1462,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		BarberShopAltFormFrameBorder:StripTextures()
 		BarberShopAltFormFrame:Point( "BOTTOM", BarberShopFrame, "TOP", 0, 5 )
 		BarberShopAltFormFrame:StripTextures()
-		BarberShopAltFormFrame:CreateBackdrop("Transparent")
+		BarberShopAltFormFrame:CreateBackdrop("Default")
 	end
 	
 	--Macro Frame
@@ -1495,12 +1495,12 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	
 		-- General
 		MacroFrame:StripTextures()
-		MacroFrame:SetTemplate("Transparent")
+		MacroFrame:SetTemplate("Default")
 		MacroFrameTextBackground:StripTextures()
 		MacroFrameTextBackground:CreateBackdrop()
 		MacroButtonScrollFrame:CreateBackdrop()
 		MacroPopupFrame:StripTextures()
-		MacroPopupFrame:SetTemplate("Transparent")
+		MacroPopupFrame:SetTemplate("Default")
 		MacroPopupScrollFrame:StripTextures()
 		MacroPopupScrollFrame:CreateBackdrop()
 		MacroPopupScrollFrame.backdrop:Point("TOPLEFT", 51, 2)
@@ -1608,7 +1608,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			end
 
 			GossipGreetingText:SetTextColor(1,1,1)
-			GossipFrame:CreateBackdrop("Transparent")
+			GossipFrame:CreateBackdrop("Default")
 			GossipFrame.backdrop:Point("TOPLEFT", GossipFrame, "TOPLEFT", 15, -20)
 			GossipFrame.backdrop:Point("BOTTOMRIGHT", GossipFrame, "BOTTOMRIGHT", -30, 65)
 			SkinCloseButton(GossipFrameCloseButton,GossipFrame.backdrop)
@@ -1724,14 +1724,14 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			
 			LFDQueueFrameSpecificListScrollFrame:StripTextures()
 			LFDQueueFrameSpecificListScrollFrame:Height(LFDQueueFrameSpecificListScrollFrame:GetHeight() - 8)
-			LFDParentFrame:CreateBackdrop("Transparent")
+			LFDParentFrame:CreateBackdrop("Default")
 			LFDParentFrame.backdrop:Point( "TOPLEFT", LFDParentFrame, "TOPLEFT")
 			LFDParentFrame.backdrop:Point( "BOTTOMRIGHT", LFDParentFrame, "BOTTOMRIGHT")
 			SkinCloseButton(LFDParentFrameCloseButton,LFDParentFrame)
 			SkinCloseButton(LFDDungeonReadyDialogCloseButton,LFDDungeonReadyDialog)
 			SkinDropDownBox(LFDQueueFrameTypeDropDown, 300)
 			LFDQueueFrameTypeDropDown:Point("RIGHT",-10,0)
-			LFDQueueFrameCapBar:CreateBackdrop("Transparent")
+			LFDQueueFrameCapBar:CreateBackdrop("Default")
 			LFDQueueFrameCapBar.backdrop:Point( "TOPLEFT", LFDQueueFrameCapBar, "TOPLEFT", 1, -1)
 			LFDQueueFrameCapBar.backdrop:Point( "BOTTOMRIGHT", LFDQueueFrameCapBar, "BOTTOMRIGHT", -1, 1 )
 			LFDQueueFrameCapBarProgress:SetTexture(C["media"].normTex)
@@ -1746,7 +1746,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			QuestFrameDetailPanel:StripTextures(true)
 			QuestFrameProgressPanel:StripTextures(true)
 			QuestFrameRewardPanel:StripTextures(true)
-			QuestFrame:CreateBackdrop("Transparent")
+			QuestFrame:CreateBackdrop("Default")
 			QuestFrame.backdrop:Point("TOPLEFT", 6, -8)
 			QuestFrame.backdrop:Point("BOTTOMRIGHT", -20, 65)
 			QuestFrame.backdrop:CreateShadow("Default")
@@ -1779,13 +1779,13 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			end)
 			
 			QuestNPCModel:StripTextures()
-			QuestNPCModel:CreateBackdrop("Transparent")
+			QuestNPCModel:CreateBackdrop("Default")
 			QuestNPCModel:Point("TOPLEFT", QuestLogDetailFrame, "TOPRIGHT", 4, -34)
 			QuestNPCModelTextFrame:StripTextures()
 			QuestNPCModelTextFrame:CreateBackdrop("Default")
 			QuestNPCModelTextFrame.backdrop:Point("TOPLEFT", QuestNPCModel.backdrop, "BOTTOMLEFT", 0, -2)
 			QuestLogDetailFrame:StripTextures()
-			QuestLogDetailFrame:SetTemplate("Transparent")
+			QuestLogDetailFrame:SetTemplate("Default")
 			QuestLogDetailScrollFrame:StripTextures()
 			SkinCloseButton(QuestLogDetailFrameCloseButton)
 			
@@ -1798,7 +1798,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		--Petition Frame
 		do
 			PetitionFrame:StripTextures(true)
-			PetitionFrame:SetTemplate("Transparent")
+			PetitionFrame:SetTemplate("Default")
 			PetitionFrame:CreateShadow("Default")
 			
 			SkinButton(PetitionFrameRequestButton)
@@ -1830,7 +1830,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		do
 			SkinCloseButton(QuestLogFrameCloseButton)
 			QuestLogFrame:StripTextures()
-			QuestLogFrame:SetTemplate("Transparent")
+			QuestLogFrame:SetTemplate("Default")
 			QuestLogFrame:CreateShadow("Default")
 			QuestLogCount:StripTextures()
 			EmptyQuestLogFrame:StripTextures()
@@ -1931,7 +1931,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		--Dressing Room Frame
 		do
 			DressUpFrame:StripTextures(true)
-			DressUpFrame:CreateBackdrop("Transparent")
+			DressUpFrame:CreateBackdrop("Default")
 			DressUpFrame.backdrop:CreateShadow("Default")
 			DressUpFrame.backdrop:Point("TOPLEFT", 6, 0)
 			DressUpFrame.backdrop:Point("BOTTOMRIGHT", -32, 70)
@@ -2036,7 +2036,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			PVPFrameConquestBar:StripTextures()
 			PVPFrameConquestBar:SetStatusBarTexture(C["media"].normTex)
 			PVPFrameConquestBar:CreateBackdrop("Default")
-			PVPBannerFrame:CreateBackdrop("Transparent")
+			PVPBannerFrame:CreateBackdrop("Default")
 			PVPBannerFrame.backdrop:Point( "TOPLEFT", PVPBannerFrame, "TOPLEFT")
 			PVPBannerFrame.backdrop:Point( "BOTTOMRIGHT", PVPBannerFrame, "BOTTOMRIGHT")
 			PVPBannerFrameCustomization1:CreateBackdrop("Default")
@@ -2054,7 +2054,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			PVPBannerFrameCustomization2LeftButton:Height(PVPBannerFrameCustomization1:GetHeight())
 			SkinNextPrevButton(PVPBannerFrameCustomization2RightButton)
 			PVPBannerFrameCustomization2RightButton:Height(PVPBannerFrameCustomization1:GetHeight())
-			PVPFrame:CreateBackdrop("Transparent")
+			PVPFrame:CreateBackdrop("Default")
 			PVPFrame.backdrop:Point( "TOPLEFT", PVPFrame, "TOPLEFT")
 			PVPFrame.backdrop:Point( "BOTTOMRIGHT", PVPFrame, "BOTTOMRIGHT")
 			SkinCloseButton(PVPFrameCloseButton,PVPFrame)
@@ -2118,7 +2118,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				SkinButton(_G[buttons[i]])
 			end
 			RaidInfoScrollFrame:StripTextures()
-			RaidInfoFrame:CreateBackdrop("Transparent")
+			RaidInfoFrame:CreateBackdrop("Default")
 			RaidInfoFrame.backdrop:Point( "TOPLEFT", RaidInfoFrame, "TOPLEFT")
 			RaidInfoFrame.backdrop:Point( "BOTTOMRIGHT", RaidInfoFrame, "BOTTOMRIGHT")
 			SkinCloseButton(RaidInfoCloseButton,RaidInfoFrame)
@@ -2228,7 +2228,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			end
 			
 			SkinEditBox(AddFriendNameEditBox)
-			AddFriendFrame:SetTemplate("Transparent") 
+			AddFriendFrame:SetTemplate("Default") 
 			
 			--Who Frame
 			local function UpdateWhoSkins()
@@ -2249,8 +2249,8 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			WhoFrame:HookScript("OnShow", UpdateWhoSkins)
 			hooksecurefunc("FriendsFrame_OnEvent", UpdateWhoSkins)
 
-			ChannelFrameDaughterFrame:CreateBackdrop("Transparent")
-			FriendsFrame:CreateBackdrop("Transparent")
+			ChannelFrameDaughterFrame:CreateBackdrop("Default")
+			FriendsFrame:CreateBackdrop("Default")
 			FriendsFrame.backdrop:Point( "TOPLEFT", FriendsFrame, "TOPLEFT", 11,-12)
 			FriendsFrame.backdrop:Point( "BOTTOMRIGHT", FriendsFrame, "BOTTOMRIGHT", -35, 76)
 			SkinCloseButton(ChannelFrameDaughterFrameDetailCloseButton,ChannelFrameDaughterFrame)
@@ -2362,7 +2362,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				end
 			end
 			
-			SpellBookFrame:SetTemplate("Transparent")
+			SpellBookFrame:SetTemplate("Default")
 			SpellBookFrame:CreateShadow("Default")
 			
 			--Profession Tab
@@ -2603,7 +2603,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 					object.icon.SetSize = T.dummy
 				end
 				GearManagerDialogPopup:StripTextures()
-				GearManagerDialogPopup:SetTemplate("Transparent")
+				GearManagerDialogPopup:SetTemplate("Default")
 				GearManagerDialogPopup:Point("LEFT", PaperDollFrame, "RIGHT", 4, 0)
 				GearManagerDialogPopupScrollFrame:StripTextures()
 				GearManagerDialogPopupEditBox:StripTextures()
@@ -2697,7 +2697,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 					end		
 				end
 				ReputationDetailFrame:StripTextures()
-				ReputationDetailFrame:SetTemplate("Transparent")
+				ReputationDetailFrame:SetTemplate("Default")
 				ReputationDetailFrame:Point("TOPLEFT", ReputationFrame, "TOPRIGHT", 4, -28)			
 			end	
 			ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
@@ -2720,7 +2720,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 					end
 				end
 				TokenFramePopup:StripTextures()
-				TokenFramePopup:SetTemplate("Transparent")
+				TokenFramePopup:SetTemplate("Default")
 				TokenFramePopup:Point("TOPLEFT", TokenFrame, "TOPRIGHT", 4, -28)				
 			end)
 			
@@ -2739,7 +2739,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			PetPaperDollPetInfo:CreateBackdrop("Default")
 			PetPaperDollPetInfo:Size(24, 24)
 			
-			CharacterFrame:SetTemplate("Transparent")
+			CharacterFrame:SetTemplate("Default")
 			CharacterFrame:CreateShadow("Default")
 		end
 		
@@ -2777,7 +2777,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		end
 		
 		for i = 1, getn(skins) do
-			_G[skins[i]]:SetTemplate("Transparent")
+			_G[skins[i]]:SetTemplate("Default")
 			if _G[skins[i]] ~= _G["AutoCompleteBox"] and _G[skins[i]] ~= _G["BNToastFrame"] then -- frame to blacklist from create shadow function
 				_G[skins[i]]:CreateShadow("Default")
 			end
