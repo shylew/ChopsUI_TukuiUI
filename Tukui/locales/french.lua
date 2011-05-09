@@ -26,7 +26,7 @@ if T.client == "frFR" then
 	L.chat_recrutment = "RecrutementDeGuilde"
 	L.chat_lfg = "RechercheDeGroupe"
 
-	L.disband = "Dissoudre le groupe"
+	L.disband = "Dissoudre le groupe ?"
 
 	L.datatext_download = "Téléchargement : "
 	L.datatext_bandwidth = "Bande passante : "
