@@ -73,7 +73,7 @@ TukuiRaidUtilityCloseButton:SetScript("OnMouseUp", function(self) TukuiRaidUtili
 CreateButton("TukuiRaidUtilityDisbandRaidButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate", TukuiRaidUtility:GetWidth() * 0.95, T.Scale(21), "TOP", TukuiRaidUtility, "TOP", 0, T.Scale(-5), "Disband Group", nil)
 TukuiRaidUtilityDisbandRaidButton:SetScript("OnMouseUp", function(self)
 	if CheckRaidStatus() then
-		StaticPopup_Show("DISBAND_RAID")
+		StaticPopup_Show("TUKUIDISBAND_RAID")
 	end
 end)
 
