@@ -1696,8 +1696,21 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				_G[frames[i]]:StripTextures(true)
 				_G[frames[i]]:CreateBackdrop("Default")
 			end
-			
+
 			HelpFrameHeader:SetFrameLevel(HelpFrameHeader:GetFrameLevel() + 2)
+
+			HelpFrameTicketScrollFrame:StripTextures()
+			HelpFrameTicketScrollFrame:CreateBackdrop("Default")
+			HelpFrameTicketScrollFrame.backdrop:Point("TOPLEFT", -4, 4)
+			HelpFrameTicketScrollFrame.backdrop:Point("BOTTOMRIGHT", 6, -4)
+			for i=1, HelpFrameTicket:GetNumChildren() do
+				local child = select(i, HelpFrameTicket:GetChildren())
+				if not child:GetName() then
+					child:StripTextures()
+				end
+			end
+			
+			SkinScrollBar(HelpFrameKnowledgebaseScrollFrame2ScrollBar)
 			
 			-- skin sub buttons
 			for i = 1, #buttons do
