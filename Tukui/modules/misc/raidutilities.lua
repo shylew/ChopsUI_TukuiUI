@@ -153,7 +153,7 @@ local function ToggleRaidUtil(self, event)
 		return
 	end
 
-	if CheckRaidStatus() then
+	if not TukuiRaidUtility:IsShown() and CheckRaidStatus() then
 		TukuiRaidUtilityShowButton:Show()
 	else
 		TukuiRaidUtilityShowButton:Hide()

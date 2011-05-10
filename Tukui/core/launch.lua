@@ -485,7 +485,7 @@ StaticPopupDialogs["TUKUIDISBAND_RAID"] = {
 		if UnitInRaid("player") then
 			for i = 1, GetNumRaidMembers() do
 				local name, _, _, _, _, _, _, online = GetRaidRosterInfo(i)
-				if online and name ~= E.myname then
+				if online and name ~= T.myname then
 					UninviteUnit(name)
 				end
 			end
