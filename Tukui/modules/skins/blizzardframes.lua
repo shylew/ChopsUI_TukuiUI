@@ -1662,6 +1662,120 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	
 	-- stuff not in Blizzard load-on-demand
 	if addon == "Tukui" then
+		-- skin help frame
+		do
+			local frames = {
+				"HelpFrameLeftInset",
+				"HelpFrameMainInset",
+				"HelpFrameKnowledgebase",
+				"HelpFrameHeader",
+				"HelpFrameKnowledgebaseErrorFrame",
+			}
+			
+			local buttons = {
+				"HelpFrameAccountSecurityOpenTicket",
+				"HelpFrameReportLagLoot",
+				"HelpFrameReportLagAuctionHouse",
+				"HelpFrameReportLagMail",
+				"HelpFrameReportLagMovement",
+				"HelpFrameReportLagSpell",
+				"HelpFrameReportLagChat",
+				"HelpFrameReportAbuseOpenTicket",
+				"HelpFrameOpenTicketHelpTopIssues",
+				"HelpFrameOpenTicketHelpOpenTicket",
+				"HelpFrameKnowledgebaseSearchButton",
+				"HelpFrameKnowledgebaseNavBarHomeButton",
+				"HelpFrameCharacterStuckStuck",
+				"GMChatOpenLog",
+				"HelpFrameTicketSubmit",
+				"HelpFrameTicketCancel",
+			}
+			
+			-- skin main frames
+			for i = 1, #frames do
+				_G[frames[i]]:StripTextures(true)
+				_G[frames[i]]:CreateBackdrop("Default")
+			end
+			
+			HelpFrameHeader:SetFrameLevel(HelpFrameHeader:GetFrameLevel() + 2)
+			
+			-- skin sub buttons
+			for i = 1, #buttons do
+				_G[buttons[i]]:StripTextures(true)
+				SkinButton(_G[buttons[i]], true)
+				
+				if _G[buttons[i]].text then
+					_G[buttons[i]].text:ClearAllPoints()
+					_G[buttons[i]].text:SetPoint("CENTER")
+					_G[buttons[i]].text:SetJustifyH("CENTER")				
+				end
+			end
+			
+			-- skin main buttons
+			for i = 1, 6 do
+				local b = _G["HelpFrameButton"..i]
+				SkinButton(b, true)
+				b.text:ClearAllPoints()
+				b.text:SetPoint("CENTER")
+				b.text:SetJustifyH("CENTER")
+			end	
+			
+			-- skin table options
+			for i = 1, HelpFrameKnowledgebaseScrollFrameScrollChild:GetNumChildren() do
+				local b = _G["HelpFrameKnowledgebaseScrollFrameButton"..i]
+				b:StripTextures(true)
+				SkinButton(b, true)
+			end
+			
+			-- skin misc items
+			HelpFrameKnowledgebaseSearchBox:ClearAllPoints()
+			HelpFrameKnowledgebaseSearchBox:Point("TOPLEFT", HelpFrameMainInset, "TOPLEFT", 13, -10)
+			HelpFrameKnowledgebaseNavBarOverlay:Kill()
+			HelpFrame:StripTextures(true)
+			HelpFrame:CreateBackdrop("Transparent")
+			SkinEditBox(HelpFrameKnowledgebaseSearchBox)
+			SkinScrollBar(HelpFrameKnowledgebaseScrollFrameScrollBar)
+			SkinScrollBar(HelpFrameKnowledgebaseScrollFrame2ScrollBar)
+			SkinCloseButton(HelpFrameCloseButton, HelpFrame.backdrop)
+			SkinCloseButton(HelpFrameKnowledgebaseErrorFrameCloseButton, HelpFrameKnowledgebaseErrorFrame.backdrop)			
+			
+			--Hearth Stone Button
+			HelpFrameCharacterStuckHearthstone:StyleButton()
+			HelpFrameCharacterStuckHearthstone:SetTemplate("Default", true)
+			HelpFrameCharacterStuckHearthstone.IconTexture:ClearAllPoints()
+			HelpFrameCharacterStuckHearthstone.IconTexture:Point("TOPLEFT", 2, -2)
+			HelpFrameCharacterStuckHearthstone.IconTexture:Point("BOTTOMRIGHT", -2, 2)
+			HelpFrameCharacterStuckHearthstone.IconTexture:SetTexCoord(.08, .92, .08, .92)
+			
+			local function navButtonFrameLevel(self)
+				for i=1, #self.navList do
+					local navButton = self.navList[i]
+					local lastNav = self.navList[i-1]
+					if navButton and lastNav then
+						navButton:SetFrameLevel(lastNav:GetFrameLevel() - 2)
+						navButton:ClearAllPoints()
+						navButton:Point("LEFT", lastNav, "RIGHT", 3, 0)
+					end
+				end			
+			end
+			
+			hooksecurefunc("NavBar_AddButton", function(self, buttonData)
+				local navButton = self.navList[#self.navList]
+				
+				
+				if not navButton.skinned then
+					SkinButton(navButton, true)
+					navButton.skinned = true
+					
+					navButton:HookScript("OnClick", function()
+						navButtonFrameLevel(self)
+					end)
+				end
+				
+				navButtonFrameLevel(self)
+			end)
+		end
+		
 		--Trade Frame
 		do
 			TradeFrame:StripTextures(true)
