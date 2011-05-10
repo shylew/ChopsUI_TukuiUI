@@ -160,8 +160,8 @@ local function CreateUtilities(self, event, addon)
 				return
 			end
 
-			if not TukuiRaidUtility.toggled and CheckRaidStatus() then
-				TukuiRaidUtilityShowButton:Show()
+			if CheckRaidStatus() then
+				if not TukuiRaidUtility.toggled then TukuiRaidUtilityShowButton:Show() end
 			else
 				TukuiRaidUtilityShowButton:Hide()
 				if TukuiRaidUtility:IsShown() then TukuiRaidUtility:Hide() end
