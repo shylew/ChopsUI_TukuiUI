@@ -1676,15 +1676,93 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	end
 	
 	-- stuff not in Blizzard load-on-demand
-	if addon == "Tukui" then
+	if addon == "Tukui" then	
+		-- mail frame
+		do
+			MailFrame:StripTextures(true)
+			MailFrame:SetTemplate("Default")
+			MailFrame:CreateShadow("Default")
+			MailFrame:SetWidth(360)
+
+			for i = 1, 7 do
+				local bg = _G["MailItem"..i]
+				bg:StripTextures()
+				
+				local b = _G["MailItem"..i.."Button"]
+				b:StripTextures()
+				b:SetTemplate("Default")
+				
+				local t = _G["MailItem"..i.."ButtonIcon"]
+				t:SetTexCoord(.08, .92, .08, .92)
+				t:ClearAllPoints()
+				t:Point("TOPLEFT", 2, -2)
+				t:Point("BOTTOMRIGHT", -2, 2)
+			end
+			
+			SkinCloseButton(InboxCloseButton)
+			SkinNextPrevButton(InboxPrevPageButton)
+			SkinNextPrevButton(InboxNextPageButton)
+
+			MailFrameTab1:StripTextures()
+			MailFrameTab2:StripTextures()
+			SkinTab(MailFrameTab1)
+			SkinTab(MailFrameTab2)
+			
+			--Reposition tabs
+			MailFrameTab1:ClearAllPoints()
+			MailFrameTab1:SetPoint("TOPLEFT", MailFrame, "BOTTOMLEFT", 0, 0)
+			MailFrameTab1.SetPoint = T.dummy
+
+			-- send mail
+			SendMailScrollFrame:StripTextures(true)
+			SendMailScrollFrame:SetTemplate("Default")
+
+			SkinScrollBar(SendMailScrollFrameScrollBar)
+			SkinEditBox(SendMailNameEditBox)
+			SkinEditBox(SendMailSubjectEditBox)
+			SkinEditBox(SendMailMoneyGold)
+			SkinEditBox(SendMailMoneySilver)
+			SkinEditBox(SendMailMoneyCopper)
+			
+			for i = 1, 12 do				
+				local b = _G["SendMailAttachment"..i]
+				b:StripTextures()
+				b:SetTemplate("Default")
+			end
+			
+			SkinButton(SendMailMailButton)
+			SkinButton(SendMailCancelButton)
+			
+			-- open mail (cod)
+			OpenMailFrame:StripTextures(true)
+			OpenMailFrame:SetTemplate("Default")
+			OpenMailFrame:CreateShadow("Default")
+			OpenMailFrame:SetWidth(360)
+			
+			SkinCloseButton(OpenMailCloseButton)
+			SkinButton(OpenMailReportSpamButton)
+			SkinButton(OpenMailReplyButton)
+			SkinButton(OpenMailDeleteButton)
+			SkinButton(OpenMailCancelButton)
+			
+			OpenMailScrollFrame:StripTextures(true)
+			OpenMailScrollFrame:SetTemplate("Default")
+
+			SkinScrollBar(OpenMailScrollFrameScrollBar)
+			
+			for i = 1, 12 do				
+				local b = _G["OpenMailAttachmentButton"..i]
+				b:StripTextures()
+				b:SetTemplate("Default")
+			end
+		end
+		
 		-- merchant frame
 		do
 			MerchantFrame:StripTextures(true)
 			MerchantFrame:SetTemplate("Default")
 			MerchantFrame:CreateShadow("Default")
 			MerchantFrame:SetWidth(360)
-
-			MerchantBuyBackItem:StripTextures()
 
 			MerchantFrameTab1:StripTextures()
 			MerchantFrameTab2:StripTextures()
@@ -1693,7 +1771,6 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 
 			SkinCloseButton(MerchantFrameCloseButton)
 			
-			--MerchantPrevPageButton:StripTextures()
 			SkinNextPrevButton(MerchantPrevPageButton)
 			SkinNextPrevButton(MerchantNextPageButton)
 
