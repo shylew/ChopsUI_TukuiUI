@@ -1677,6 +1677,54 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	
 	-- stuff not in Blizzard load-on-demand
 	if addon == "Tukui" then
+		-- merchant frame
+		do
+			MerchantFrame:StripTextures(true)
+			MerchantFrame:SetTemplate("Default")
+			MerchantFrame:CreateShadow("Default")
+			MerchantFrame:SetWidth(360)
+
+			MerchantBuyBackItem:StripTextures()
+
+			MerchantFrameTab1:StripTextures()
+			MerchantFrameTab2:StripTextures()
+			SkinTab(MerchantFrameTab1)
+			SkinTab(MerchantFrameTab2)
+
+			SkinCloseButton(MerchantFrameCloseButton)
+			
+			--MerchantPrevPageButton:StripTextures()
+			SkinNextPrevButton(MerchantPrevPageButton)
+			SkinNextPrevButton(MerchantNextPageButton)
+
+			for i=1,12 do
+				local bg = _G["MerchantItem"..i]
+				bg:StripTextures() 
+				
+				local b = _G["MerchantItem"..i.."ItemButton"]
+				b:StripTextures()
+				b:SetTemplate("Default")
+				
+				local t = _G["MerchantItem"..i.."ItemButtonIconTexture"]
+				t:SetTexCoord(.08, .92, .08, .92)
+				t:ClearAllPoints()
+				t:Point("TOPLEFT", 2, -2)
+				t:Point("BOTTOMRIGHT", -2, 2)
+			end
+			
+			MerchantBuyBackItemItemButton:StripTextures()
+			MerchantBuyBackItemItemButton:SetTemplate("Default")
+			MerchantBuyBackItemItemButtonIconTexture:SetTexCoord(.08, .92, .08, .92)
+			MerchantBuyBackItemItemButtonIconTexture:ClearAllPoints()
+			MerchantBuyBackItemItemButtonIconTexture:Point("TOPLEFT", 2, -2)
+			MerchantBuyBackItemItemButtonIconTexture:Point("BOTTOMRIGHT", -2, 2)
+			
+			--Reposition tabs
+			MerchantFrameTab1:ClearAllPoints()
+			MerchantFrameTab1:SetPoint("TOPLEFT", MerchantFrame, "BOTTOMLEFT", 0, 0)
+			MerchantFrameTab1.SetPoint = T.dummy
+		end	
+
 		-- skin help frame
 		do
 			local frames = {
