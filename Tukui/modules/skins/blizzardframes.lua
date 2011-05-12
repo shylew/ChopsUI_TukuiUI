@@ -199,7 +199,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	if addon == "Blizzard_ArchaeologyUI" then
 		ArchaeologyFrame:StripTextures(true)
 		ArchaeologyFrameInset:StripTextures(true)
-		ArchaeologyFrame:SetTemplate("Transparent")
+		ArchaeologyFrame:SetTemplate("Default")
 		ArchaeologyFrame:CreateShadow("Default")
 		
 		SkinButton(ArchaeologyFrameArtifactPageSolveFrameSolveButton, true)
@@ -1682,23 +1682,172 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		end
 	end
 	
+	-- Socketing UI
+	if addon == "Blizzard_ItemSocketingUI" then	
+		ItemSocketingFrame:StripTextures()
+		ItemSocketingFrame:SetTemplate("Default")
+		ItemSocketingScrollFrame:StripTextures()
+		ItemSocketingScrollFrame:CreateBackdrop("Default")
+
+		for i = 1, MAX_NUM_SOCKETS  do
+			local button = _G["ItemSocketingSocket"..i]
+			local button_bracket = _G["ItemSocketingSocket"..i.."BracketFrame"]
+			local button_bg = _G["ItemSocketingSocket"..i.."Background"]
+			local button_icon = _G["ItemSocketingSocket"..i.."IconTexture"]
+			button:StripTextures()
+			button:StyleButton(false)
+			button:SetTemplate("Default", true)
+			button_bracket:Kill()
+			button_bg:Kill()
+			button_icon:SetTexCoord(.08, .92, .08, .92)
+			button_icon:ClearAllPoints()
+			button_icon:Point("TOPLEFT", 2, -2)
+			button_icon:Point("BOTTOMRIGHT", -2, 2)
+			ItemSocketingFrame:HookScript("OnUpdate", function(self)
+				gemColor = GetSocketTypes(i)
+				local color = GEM_TYPE_INFO[gemColor]
+				button:SetBackdropColor(color.r, color.g, color.b, 0.15)
+				button:SetBackdropBorderColor(color.r, color.g, color.b)
+			end)
+		end
+		
+		ItemSocketingFramePortrait:Kill()
+		ItemSocketingSocketButton:ClearAllPoints()
+		ItemSocketingSocketButton:Point("BOTTOMRIGHT", ItemSocketingFrame, "BOTTOMRIGHT", -5, 5)
+		SkinButton(ItemSocketingSocketButton)
+		SkinCloseButton(ItemSocketingCloseButton)
+	end
+	
 	-- stuff not in Blizzard load-on-demand
-	if addon == "Tukui" then	
+	if addon == "Tukui" then
+		-- bg score frame
+		do 
+			WorldStateScoreScrollFrame:StripTextures()
+			WorldStateScoreFrame:StripTextures()
+			WorldStateScoreFrame:SetTemplate("Default")
+			SkinCloseButton(WorldStateScoreFrameCloseButton)
+			WorldStateScoreFrameInset:Kill()
+			
+			for i = 1, WorldStateScoreScrollFrameScrollChildFrame:GetNumChildren() do
+				local b = _G["WorldStateScoreButton"..i]
+				b:StripTextures()
+				b:StyleButton(false)
+				b:SetTemplate("Default", true)
+			end
+			
+			for i = 1, 3 do 
+				SkinTab(_G["WorldStateScoreFrameTab"..i])
+			end
+		end
+		
+		-- Merchant Frame
+		do
+			local frames = {
+				"MerchantBuyBackItem",
+				"MerchantFrame",
+			}
+			
+			-- skin main frames
+			for i = 1, #frames do
+				_G[frames[i]]:StripTextures(true)
+				_G[frames[i]]:CreateBackdrop("Default")
+			end
+			MerchantBuyBackItem.backdrop:Point("TOPLEFT", -6, 6)
+			MerchantBuyBackItem.backdrop:Point("BOTTOMRIGHT", 6, -6)
+			MerchantFrame.backdrop:Point("TOPLEFT", 6, 0)
+			MerchantFrame.backdrop:Point("BOTTOMRIGHT", 0, 35)
+			MerchantFrame.backdrop:Point("BOTTOMRIGHT", 0, 60)
+			-- skin tabs
+			for i= 1, 2 do
+				SkinTab(_G["MerchantFrameTab"..i])
+			end
+			
+			-- skin icons / merchant slots
+			for i = 1, 12 do
+				local b = _G["MerchantItem"..i.."ItemButton"]
+				local t = _G["MerchantItem"..i.."ItemButtonIconTexture"]
+				local item_bar = _G["MerchantItem"..i]
+				item_bar:StripTextures(true)
+				item_bar:CreateBackdrop("Default")
+				
+				b:StripTextures()
+				b:StyleButton(false)
+				b:SetTemplate("Default", true)
+				b:Point("TOPLEFT", item_bar, "TOPLEFT", 4, -4)
+				t:SetTexCoord(.08, .92, .08, .92)
+				t:ClearAllPoints()
+				t:Point("TOPLEFT", 2, -2)
+				t:Point("BOTTOMRIGHT", -2, 2)
+				
+				_G["MerchantItem"..i.."MoneyFrame"]:ClearAllPoints()
+				_G["MerchantItem"..i.."MoneyFrame"]:Point("BOTTOMLEFT", b, "BOTTOMRIGHT", 3, 0)
+				
+			end
+			
+			-- Skin buyback item frame + icon
+			MerchantBuyBackItemItemButton:StripTextures()
+			MerchantBuyBackItemItemButton:StyleButton(false)
+			MerchantBuyBackItemItemButton:SetTemplate("Default", true)
+			MerchantBuyBackItemItemButtonIconTexture:SetTexCoord(.08, .92, .08, .92)
+			MerchantBuyBackItemItemButtonIconTexture:ClearAllPoints()
+			MerchantBuyBackItemItemButtonIconTexture:Point("TOPLEFT", 2, -2)
+			MerchantBuyBackItemItemButtonIconTexture:Point("BOTTOMRIGHT", -2, 2)
+		
+			
+			MerchantRepairItemButton:StyleButton(false)
+			MerchantRepairItemButton:SetTemplate("Default", true)
+			for i=1, MerchantRepairItemButton:GetNumRegions() do
+				local region = select(i, MerchantRepairItemButton:GetRegions())
+				if region:GetObjectType() == "Texture" and region:GetTexture() == "Interface\\MerchantFrame\\UI-Merchant-RepairIcons" then
+					region:SetTexCoord(0.04, 0.24, 0.06, 0.5)
+					region:ClearAllPoints()
+					region:Point("TOPLEFT", 2, -2)
+					region:Point("BOTTOMRIGHT", -2, 2)
+				end
+			end
+			
+			MerchantGuildBankRepairButton:StyleButton()
+			MerchantGuildBankRepairButton:SetTemplate("Default", true)
+			MerchantGuildBankRepairButtonIcon:SetTexCoord(0.61, 0.82, 0.1, 0.52)
+			MerchantGuildBankRepairButtonIcon:ClearAllPoints()
+			MerchantGuildBankRepairButtonIcon:Point("TOPLEFT", 2, -2)
+			MerchantGuildBankRepairButtonIcon:Point("BOTTOMRIGHT", -2, 2)
+			
+			MerchantRepairAllButton:StyleButton(false)
+			MerchantRepairAllButton:SetTemplate("Default", true)
+			MerchantRepairAllIcon:SetTexCoord(0.34, 0.1, 0.34, 0.535, 0.535, 0.1, 0.535, 0.535)
+			MerchantRepairAllIcon:ClearAllPoints()
+			MerchantRepairAllIcon:Point("TOPLEFT", 2, -2)
+			MerchantRepairAllIcon:Point("BOTTOMRIGHT", -2, 2)
+			
+			-- Skin misc frames
+			MerchantFrame:Width(360)
+			SkinCloseButton(MerchantFrameCloseButton, MerchantFrame.backdrop)
+			SkinNextPrevButton(MerchantNextPageButton)
+			SkinNextPrevButton(MerchantPrevPageButton)
+		end
+		
 		-- mail frame
 		do
 			MailFrame:StripTextures(true)
-			MailFrame:SetTemplate("Default")
-			MailFrame:CreateShadow("Default")
+			MailFrame:CreateBackdrop("Default")
+			MailFrame.backdrop:Point("TOPLEFT", 4, 0)
+			MailFrame.backdrop:Point("BOTTOMRIGHT", 2, 74)
+			MailFrame.backdrop:CreateShadow("Default")
 			MailFrame:SetWidth(360)
 
-			for i = 1, 7 do
+			for i = 1, INBOXITEMS_TO_DISPLAY do
 				local bg = _G["MailItem"..i]
 				bg:StripTextures()
+				bg:CreateBackdrop("Default")
+				bg.backdrop:Point("TOPLEFT", 2, 1)
+				bg.backdrop:Point("BOTTOMRIGHT", -2, 2)
 				
 				local b = _G["MailItem"..i.."Button"]
 				b:StripTextures()
-				b:SetTemplate("Default")
-				
+				b:SetTemplate("Default", true)
+				b:StyleButton()
+
 				local t = _G["MailItem"..i.."ButtonIcon"]
 				t:SetTexCoord(.08, .92, .08, .92)
 				t:ClearAllPoints()
@@ -1714,36 +1863,54 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			MailFrameTab2:StripTextures()
 			SkinTab(MailFrameTab1)
 			SkinTab(MailFrameTab2)
-			
-			--Reposition tabs
-			MailFrameTab1:ClearAllPoints()
-			MailFrameTab1:SetPoint("TOPLEFT", MailFrame, "BOTTOMLEFT", 0, 0)
-			MailFrameTab1.SetPoint = T.dummy
 
 			-- send mail
 			SendMailScrollFrame:StripTextures(true)
 			SendMailScrollFrame:SetTemplate("Default")
 
 			SkinScrollBar(SendMailScrollFrameScrollBar)
+			
 			SkinEditBox(SendMailNameEditBox)
 			SkinEditBox(SendMailSubjectEditBox)
 			SkinEditBox(SendMailMoneyGold)
 			SkinEditBox(SendMailMoneySilver)
 			SkinEditBox(SendMailMoneyCopper)
 			
-			for i = 1, 12 do				
-				local b = _G["SendMailAttachment"..i]
-				b:StripTextures()
-				b:SetTemplate("Default")
+			SendMailMoneySilver.backdrop:Point("BOTTOMRIGHT", -12, -2)
+			SendMailMoneyCopper.backdrop:Point("BOTTOMRIGHT", -12, -2)
+			SendMailNameEditBox.backdrop:Point("BOTTOMRIGHT", 2, 0)
+			SendMailSubjectEditBox.backdrop:Point("BOTTOMRIGHT", 2, 0)
+			SendMailFrame:StripTextures()
+			
+			local function MailFrameSkin()
+				for i = 1, ATTACHMENTS_MAX_SEND do				
+					local b = _G["SendMailAttachment"..i]
+					if not b.skinned then
+						b:StripTextures()
+						b:SetTemplate("Default", true)
+						b:StyleButton()
+						b.skinned = true
+					end
+					local t = b:GetNormalTexture()
+					if t then
+						t:SetTexCoord(.08, .92, .08, .92)
+						t:ClearAllPoints()
+						t:Point("TOPLEFT", 2, -2)
+						t:Point("BOTTOMRIGHT", -2, 2)
+					end
+				end
 			end
+			hooksecurefunc("SendMailFrame_Update", MailFrameSkin)
 			
 			SkinButton(SendMailMailButton)
 			SkinButton(SendMailCancelButton)
 			
 			-- open mail (cod)
 			OpenMailFrame:StripTextures(true)
-			OpenMailFrame:SetTemplate("Default")
-			OpenMailFrame:CreateShadow("Default")
+			OpenMailFrame:CreateBackdrop("Default")
+			OpenMailFrame.backdrop:Point("TOPLEFT", 4, 0)
+			OpenMailFrame.backdrop:Point("BOTTOMRIGHT", 2, 74)
+			OpenMailFrame.backdrop:CreateShadow("Default")
 			OpenMailFrame:SetWidth(360)
 			
 			SkinCloseButton(OpenMailCloseButton)
@@ -1757,59 +1924,38 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 
 			SkinScrollBar(OpenMailScrollFrameScrollBar)
 			
-			for i = 1, 12 do				
+			SendMailBodyEditBox:SetTextColor(1, 1, 1)
+			OpenMailBodyText:SetTextColor(1, 1, 1)
+			
+			OpenMailLetterButton:StripTextures()
+			OpenMailLetterButton:SetTemplate("Default", true)
+			OpenMailLetterButton:StyleButton()
+			OpenMailLetterButtonIconTexture:SetTexCoord(.08, .92, .08, .92)						
+			OpenMailLetterButtonIconTexture:ClearAllPoints()
+			OpenMailLetterButtonIconTexture:Point("TOPLEFT", 2, -2)
+			OpenMailLetterButtonIconTexture:Point("BOTTOMRIGHT", -2, 2)
+			
+			for i = 1, ATTACHMENTS_MAX_SEND do				
 				local b = _G["OpenMailAttachmentButton"..i]
 				b:StripTextures()
-				b:SetTemplate("Default")
+				b:SetTemplate("Default", true)
+				b:StyleButton()
+				
+				local t = _G["OpenMailAttachmentButton"..i.."IconTexture"]
+				if t then
+					t:SetTexCoord(.08, .92, .08, .92)
+					t:ClearAllPoints()
+					t:Point("TOPLEFT", 2, -2)
+					t:Point("BOTTOMRIGHT", -2, 2)
+				end				
 			end
+			
+			OpenMailReplyButton:Point("RIGHT", OpenMailDeleteButton, "LEFT", -2, 0)
+			OpenMailDeleteButton:Point("RIGHT", OpenMailCancelButton, "LEFT", -2, 0)
+			SendMailMailButton:Point("RIGHT", SendMailCancelButton, "LEFT", -2, 0)
 		end
-		
-		-- merchant frame
-		do
-			MerchantFrame:StripTextures(true)
-			MerchantFrame:SetTemplate("Default")
-			MerchantFrame:CreateShadow("Default")
-			MerchantFrame:SetWidth(360)
 
-			MerchantFrameTab1:StripTextures()
-			MerchantFrameTab2:StripTextures()
-			SkinTab(MerchantFrameTab1)
-			SkinTab(MerchantFrameTab2)
-
-			SkinCloseButton(MerchantFrameCloseButton)
-			
-			SkinNextPrevButton(MerchantPrevPageButton)
-			SkinNextPrevButton(MerchantNextPageButton)
-
-			for i=1,12 do
-				local bg = _G["MerchantItem"..i]
-				bg:StripTextures() 
-				
-				local b = _G["MerchantItem"..i.."ItemButton"]
-				b:StripTextures()
-				b:SetTemplate("Default")
-				
-				local t = _G["MerchantItem"..i.."ItemButtonIconTexture"]
-				t:SetTexCoord(.08, .92, .08, .92)
-				t:ClearAllPoints()
-				t:Point("TOPLEFT", 2, -2)
-				t:Point("BOTTOMRIGHT", -2, 2)
-			end
-			
-			MerchantBuyBackItemItemButton:StripTextures()
-			MerchantBuyBackItemItemButton:SetTemplate("Default")
-			MerchantBuyBackItemItemButtonIconTexture:SetTexCoord(.08, .92, .08, .92)
-			MerchantBuyBackItemItemButtonIconTexture:ClearAllPoints()
-			MerchantBuyBackItemItemButtonIconTexture:Point("TOPLEFT", 2, -2)
-			MerchantBuyBackItemItemButtonIconTexture:Point("BOTTOMRIGHT", -2, 2)
-			
-			--Reposition tabs
-			MerchantFrameTab1:ClearAllPoints()
-			MerchantFrameTab1:SetPoint("TOPLEFT", MerchantFrame, "BOTTOMLEFT", 0, 0)
-			MerchantFrameTab1.SetPoint = T.dummy
-		end	
-
-		-- skin help frame
+		-- Help frame
 		do
 			local frames = {
 				"HelpFrameLeftInset",
@@ -1892,7 +2038,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			HelpFrameKnowledgebaseSearchBox:Point("TOPLEFT", HelpFrameMainInset, "TOPLEFT", 13, -10)
 			HelpFrameKnowledgebaseNavBarOverlay:Kill()
 			HelpFrame:StripTextures(true)
-			HelpFrame:CreateBackdrop("Transparent")
+			HelpFrame:CreateBackdrop("Default")
 			SkinEditBox(HelpFrameKnowledgebaseSearchBox)
 			SkinScrollBar(HelpFrameKnowledgebaseScrollFrameScrollBar)
 			SkinScrollBar(HelpFrameKnowledgebaseScrollFrame2ScrollBar)
@@ -1939,7 +2085,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		--Trade Frame
 		do
 			TradeFrame:StripTextures(true)
-			TradeFrame:CreateBackdrop("Transparent")
+			TradeFrame:CreateBackdrop("Default")
 			TradeFrame.backdrop:Point("TOPLEFT", 10, -4)
 			TradeFrame.backdrop:Point("BOTTOMRIGHT", -16, 35)
 			SkinButton(TradeFrameTradeButton, true)
