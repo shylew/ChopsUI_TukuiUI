@@ -3347,13 +3347,6 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				if event == "PLAYER_LOGIN" then
 					if not GetCVarBool("miniWorldMap") then
 						ToggleFrame(WorldMapFrame)
-						WorldMapFrameSizeDownButton:Click()	
-						WorldMapFrameSizeUpButton:Click()					
-						ToggleFrame(WorldMapFrame)
-					else
-						ToggleFrame(WorldMapFrame)
-						WorldMapFrameSizeUpButton:Click()
-						WorldMapFrameSizeDownButton:Click()
 						ToggleFrame(WorldMapFrame)
 					end
 				end
