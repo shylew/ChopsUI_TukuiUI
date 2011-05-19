@@ -3725,7 +3725,6 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 			QuestLogFrame:SetTemplate("Default")
 			QuestLogFrame:CreateShadow("Default")
 			QuestLogCount:StripTextures()
-			QuestLogCount:SetTemplate("Default")
 			
 			EmptyQuestLogFrame:StripTextures()
 			
