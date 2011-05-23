@@ -10,7 +10,7 @@ end
 
 -- Reposition the Ellipsis target frame
 EllipsisTargets:SetMovable(false)
-EllipsisTargets:SetPoint("BOTTOMLEFT", TukuiChatBackgroundRight, "TOPLEFT", -50, 25)
+EllipsisTargets:SetPoint("BOTTOMLEFT", TukuiTarget, "TOPLEFT", 150, 145)
 
 function ChopsuiEllipsisReset()
 
@@ -21,7 +21,7 @@ function ChopsuiEllipsisReset()
 
   -- Set display options
   Ellipsis.db.profile["lock"] = true
-  Ellipsis.db.profile["width"] = 200
+  Ellipsis.db.profile["width"] = 250
   Ellipsis.db.profile["targetPadding"] = 7
   Ellipsis.db.profile["targetFont"] = "TukuiNormalFont"
   Ellipsis.db.profile["growTargets"] = "UP"

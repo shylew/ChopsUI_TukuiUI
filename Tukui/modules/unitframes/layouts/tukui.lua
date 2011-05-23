@@ -1543,7 +1543,7 @@ end
 
 -- focus
 local focus = oUF:Spawn('focus', "TukuiFocus")
-focus:SetPoint("BOTTOMLEFT", TukuiTarget, "TOPRIGHT", 21, 239)
+focus:SetPoint("BOTTOMRIGHT", TukuiPlayer, "TOPLEFT", -21, 239)
 focus:Size(129, 36)
 
 -- tot
@@ -1578,7 +1578,7 @@ if C.arena.unitframes then
 	for i = 1, 5 do
 		arena[i] = oUF:Spawn("arena"..i, "TukuiArena"..i)
 		if i == 1 then
-			arena[i]:SetPoint("BOTTOMLEFT", TukuiChatBackgroundRight, "TOPLEFT", 0 + adjust, 90)
+			arena[i]:SetPoint("BOTTOMRIGHT", TukuiChatBackgroundRight, "TOPRIGHT", 0 + adjust, 90)
 		else
 			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 45)
 		end
@@ -1600,7 +1600,7 @@ if C["unitframes"].showboss then
 	for i = 1, MAX_BOSS_FRAMES do
 		boss[i] = oUF:Spawn("boss"..i, "TukuiBoss"..i)
 		if i == 1 then
-			boss[i]:SetPoint("BOTTOMLEFT", TukuiChatBackgroundRight, "TOPLEFT", 0 + adjust, 90)
+			boss[i]:SetPoint("BOTTOMRIGHT", TukuiChatBackgroundRight, "TOPRIGHT", 0 + adjust, 90)
 		else
 			boss[i]:SetPoint('BOTTOM', boss[i-1], 'TOP', 0, 45)
 		end
