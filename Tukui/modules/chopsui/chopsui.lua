@@ -7,5 +7,5 @@ function ChopsuiReset()
   ChopsuiMsbtReset()
   ChopsuiSkadaReset()
   ChopsuiPostalReset()
-  ChopsuiNugRunningReset()
+  ChopsuiEllipsisReset()
 end

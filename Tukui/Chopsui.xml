@@ -8,5 +8,5 @@
   <Script file="modules\chopsui\msbt.lua"/>
   <Script file="modules\chopsui\skada.lua"/>
   <Script file="modules\chopsui\postal.lua"/>
-  <Script file="modules\chopsui\nugrunning.lua"/>
+  <Script file="modules\chopsui\ellipsis.lua"/>
 </Ui>
