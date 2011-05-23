@@ -40,5 +40,6 @@ function ChopsuiEllipsisReset()
   Ellipsis.db.profile["cdSpell"] = false
   Ellipsis.db.profile["cdPet"] = false
   Ellipsis.db.profile["cdItem"] = false
+  Ellipsis.db.profile["cdHideWhenNone"] = true
   
 end
