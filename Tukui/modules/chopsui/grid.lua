@@ -62,7 +62,7 @@ function ChopsuiConfigureGridIndicators()
     if T.Spec == "RESTORATION" then
 
       GridFrame.db.profile["statusmap"]["iconTLcornerleft"]["buff_Rejuvenation"] = true
-      GridFrame.db.profile["statusmap"]["iconTLcornerright"]["buff_Regrowth"] = true
+      GridFrame.db.profile["statusmap"]["iconTRcornerright"]["buff_Regrowth"] = true
       GridFrame.db.profile["statusmap"]["iconBLcornerleft"]["buff_Lifebloom"] = true
       GridFrame.db.profile["statusmap"]["iconBLcornerright"]["buff_WildGrowth"] = true
       
