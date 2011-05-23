@@ -53,7 +53,13 @@ function ChopsuiConfigureNeedToKnowPlayerBuffs()
 
   elseif T.myclass == "DRUID" then
 
-    if T.Spec == "FERALCOMBAT" then
+    if T.Spec== "BALANCE" then
+      ChopsuiNeedToKnowPlayerBuff(1, "Volcanic Power", { 0.25, 0.25, 0.25 }, true)
+      ChopsuiNeedToKnowPlayerBuff(2, "Heroism, Bloodlust", { 0.6, 0.01, 0 }, false)
+      ChopsuiNeedToKnowPlayerBuff(3, "Shooting Stars", { 0, 0.10, 0.96 }, true)
+      ChopsuiNeedToKnowPlayerBuff(4, "Lunar Shower", { 0, 0.60, 0.74 }, true)
+      ChopsuiNeedToKnowPlayerBuff(5, "Nature's Grace", { 0.6, 0, 0.55 }, true)
+    elseif T.Spec == "FERALCOMBAT" then
       if T.Role == "Melee" then
         ChopsuiNeedToKnowPlayerBuff(1, "Predator's Swiftness", { 0.6, 0.38, 0 }, true)
         ChopsuiNeedToKnowPlayerBuff(2, "Barkskin", { 0.70, 0.68, 0 }, true)
