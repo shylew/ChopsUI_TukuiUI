@@ -571,7 +571,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			--Initiate fucked up method of creating a backdrop
 			frame.bg1 = frame:CreateTexture(nil, "BACKGROUND")
 			frame.bg1:SetDrawLayer("BACKGROUND", 4)
-			frame.bg1:SetTexture(C["media"].glossTex) --Default TukUI users this is normTex, glossTex doesn't exist
+			frame.bg1:SetTexture(C["media"].normTex) --Default TukUI users this is normTex, glossTex doesn't exist
 			frame.bg1:SetVertexColor(unpack(C["media"].backdropcolor))
 			frame.bg1:Point("TOPLEFT", T.mult*4, -T.mult*4)
 			frame.bg1:Point("BOTTOMRIGHT", -T.mult*4, T.mult*4)				
