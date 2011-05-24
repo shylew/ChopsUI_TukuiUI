@@ -693,11 +693,11 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				_G[frame]:StripTextures()
 				_G[frame.."Background"]:Kill()
 				
-				_G[frame].SetBackdropBorderColor = E.dummy		
+				_G[frame].SetBackdropBorderColor = T.dummy		
 				
 				if _G[frame.."Description"] then
 					_G[frame.."Description"]:SetTextColor(0.6, 0.6, 0.6)
-					_G[frame.."Description"].SetTextColor = E.dummy
+					_G[frame.."Description"].SetTextColor = T.dummy
 				end
 
 				--Initiate fucked up method of creating a backdrop
@@ -705,26 +705,26 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				_G[frame].bg1:SetDrawLayer("BACKGROUND", 4)
 				_G[frame].bg1:SetTexture(C["media"].glossTex) --Default TukUI users this is normTex, glossTex doesn't exist
 				_G[frame].bg1:SetVertexColor(unpack(C["media"].backdropcolor))
-				_G[frame].bg1:Point("TOPLEFT", E.mult*4, -E.mult*4)
-				_G[frame].bg1:Point("BOTTOMRIGHT", -E.mult*4, E.mult*4)				
+				_G[frame].bg1:Point("TOPLEFT", T.mult*4, -T.mult*4)
+				_G[frame].bg1:Point("BOTTOMRIGHT", -T.mult*4, T.mult*4)				
 				
 				_G[frame].bg2 = _G[frame]:CreateTexture(nil, "BACKGROUND")
 				_G[frame].bg2:SetDrawLayer("BACKGROUND", 3)
 				_G[frame].bg2:SetTexture(0,0,0)
-				_G[frame].bg2:Point("TOPLEFT", E.mult*3, -E.mult*3)
-				_G[frame].bg2:Point("BOTTOMRIGHT", -E.mult*3, E.mult*3)
+				_G[frame].bg2:Point("TOPLEFT", T.mult*3, -T.mult*3)
+				_G[frame].bg2:Point("BOTTOMRIGHT", -T.mult*3, T.mult*3)
 				
 				_G[frame].bg3 = _G[frame]:CreateTexture(nil, "BACKGROUND")
 				_G[frame].bg3:SetDrawLayer("BACKGROUND", 2)
 				_G[frame].bg3:SetTexture(unpack(C["media"].bordercolor))
-				_G[frame].bg3:Point("TOPLEFT", E.mult*2, -E.mult*2)
-				_G[frame].bg3:Point("BOTTOMRIGHT", -E.mult*2, E.mult*2)			
+				_G[frame].bg3:Point("TOPLEFT", T.mult*2, -T.mult*2)
+				_G[frame].bg3:Point("BOTTOMRIGHT", -T.mult*2, T.mult*2)			
 
 				_G[frame].bg4 = _G[frame]:CreateTexture(nil, "BACKGROUND")
 				_G[frame].bg4:SetDrawLayer("BACKGROUND", 1)
 				_G[frame].bg4:SetTexture(0,0,0)
-				_G[frame].bg4:Point("TOPLEFT", E.mult, -E.mult)
-				_G[frame].bg4:Point("BOTTOMRIGHT", -E.mult, E.mult)	
+				_G[frame].bg4:Point("TOPLEFT", T.mult, -T.mult)
+				_G[frame].bg4:Point("BOTTOMRIGHT", -T.mult, T.mult)	
 				
 				
 				if compare == "Friend" then
