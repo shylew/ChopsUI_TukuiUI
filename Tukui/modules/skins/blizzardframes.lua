@@ -213,7 +213,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	
 	if addon == "Blizzard_TimeManager" then
 		TimeManagerFrame:StripTextures()
-		TimeManagerFrame:SetTemplate("Transparent")
+		TimeManagerFrame:SetTemplate("Default")
 
 		SkinCloseButton(TimeManagerCloseButton)
 
@@ -248,7 +248,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		TimeManagerStopwatchCheck:SetHighlightTexture(hover)
 		
 		StopwatchFrame:StripTextures()
-		StopwatchFrame:CreateBackdrop("Transparent")
+		StopwatchFrame:CreateBackdrop("Default")
 		StopwatchFrame.backdrop:Point("TOPLEFT", 0, -17)
 		StopwatchFrame.backdrop:Point("BOTTOMRIGHT", 0, 2)
 		
@@ -898,7 +898,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		end
 		
 		GuildFinderRequestMembershipFrame:StripTextures(true)
-		GuildFinderRequestMembershipFrame:SetTemplate("Transparent")
+		GuildFinderRequestMembershipFrame:SetTemplate("Default")
 		SkinButton(GuildFinderRequestMembershipFrameAcceptButton)
 		SkinButton(GuildFinderRequestMembershipFrameCancelButton)
 		GuildFinderRequestMembershipFrameInputFrame:StripTextures()
@@ -3231,7 +3231,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		
 		--Guild Registrar Frame
 		GuildRegistrarFrame:StripTextures(true)
-		GuildRegistrarFrame:SetTemplate("Transparent")
+		GuildRegistrarFrame:SetTemplate("Default")
 		GuildRegistrarGreetingFrame:StripTextures()
 		SkinButton(GuildRegistrarFrameGoodbyeButton)
 		SkinButton(GuildRegistrarFrameCancelButton)
@@ -3258,7 +3258,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		
 		--Tabard Frame
 		TabardFrame:StripTextures(true)
-		TabardFrame:SetTemplate("Transparent")
+		TabardFrame:SetTemplate("Default")
 		TabardModel:CreateBackdrop("Default")
 		SkinButton(TabardFrameCancelButton)
 		SkinButton(TabardFrameAcceptButton)
@@ -3579,6 +3579,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				if not InCombatLockdown() then
 					WorldMapFrame:SetScale(1)
 					WorldMapFrameSizeDownButton:Show()
+					WorldMapFrame:SetFrameLevel(10)
 				else
 					WorldMapFrameSizeDownButton:Disable()
 					WorldMapFrameSizeUpButton:Disable()
