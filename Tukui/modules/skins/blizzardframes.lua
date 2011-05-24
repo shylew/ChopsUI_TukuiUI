@@ -4,12 +4,6 @@ local FONT = C["media"].font
 local FONTSIZE = 18
 local FONTFLAG = "THINOUTLINE"
 
---[[
-		To do:
-		(PTR) War Games tab of the PVP Frame
-		(PTR) Statusbar on the PVP Frame
---]]
-
 local function SetModifiedBackdrop(self)
 	local color = RAID_CLASS_COLORS[T.myclass]
 	self:SetBackdropColor(color.r, color.g, color.b, 0.15)
@@ -458,6 +452,8 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		CalendarViewEventInviteList:SetTemplate("Default")
 		CalendarViewEventInviteListSection:StripTextures()
 		SkinCloseButton(CalendarViewEventCloseButton)
+		
+		SkinScrollBar(CalendarViewEventInviteListScrollFrameScrollBar)
 
 		local buttons = {
 		    "CalendarViewEventAcceptButton",
@@ -697,28 +693,44 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				_G[frame]:StripTextures()
 				_G[frame.."Background"]:Kill()
 				
-				_G[frame]:CreateBackdrop("Default", true)
-				_G[frame].backdrop:Point("TOPLEFT", 2, -2)
-				_G[frame].backdrop:Point("BOTTOMRIGHT", -2, 2)
-				_G[frame].SetBackdropBorderColor = T.dummy		
+				_G[frame].SetBackdropBorderColor = E.dummy		
 				
 				if _G[frame.."Description"] then
 					_G[frame.."Description"]:SetTextColor(0.6, 0.6, 0.6)
-					_G[frame.."Description"].SetTextColor = T.dummy
-					_G[frame.."Description"]:SetParent(_G[frame].backdrop)
+					_G[frame.."Description"].SetTextColor = E.dummy
 				end
+
+				--Initiate fucked up method of creating a backdrop
+				_G[frame].bg1 = _G[frame]:CreateTexture(nil, "BACKGROUND")
+				_G[frame].bg1:SetDrawLayer("BACKGROUND", 4)
+				_G[frame].bg1:SetTexture(C["media"].glossTex) --Default TukUI users this is normTex, glossTex doesn't exist
+				_G[frame].bg1:SetVertexColor(unpack(C["media"].backdropcolor))
+				_G[frame].bg1:Point("TOPLEFT", E.mult*4, -E.mult*4)
+				_G[frame].bg1:Point("BOTTOMRIGHT", -E.mult*4, E.mult*4)				
 				
-				_G[frame.."Icon"]:SetParent(_G[frame].backdrop)
-				_G[frame.."Shield"]:SetParent(_G[frame].backdrop)
+				_G[frame].bg2 = _G[frame]:CreateTexture(nil, "BACKGROUND")
+				_G[frame].bg2:SetDrawLayer("BACKGROUND", 3)
+				_G[frame].bg2:SetTexture(0,0,0)
+				_G[frame].bg2:Point("TOPLEFT", E.mult*3, -E.mult*3)
+				_G[frame].bg2:Point("BOTTOMRIGHT", -E.mult*3, E.mult*3)
+				
+				_G[frame].bg3 = _G[frame]:CreateTexture(nil, "BACKGROUND")
+				_G[frame].bg3:SetDrawLayer("BACKGROUND", 2)
+				_G[frame].bg3:SetTexture(unpack(C["media"].bordercolor))
+				_G[frame].bg3:Point("TOPLEFT", E.mult*2, -E.mult*2)
+				_G[frame].bg3:Point("BOTTOMRIGHT", -E.mult*2, E.mult*2)			
+
+				_G[frame].bg4 = _G[frame]:CreateTexture(nil, "BACKGROUND")
+				_G[frame].bg4:SetDrawLayer("BACKGROUND", 1)
+				_G[frame].bg4:SetTexture(0,0,0)
+				_G[frame].bg4:Point("TOPLEFT", E.mult, -E.mult)
+				_G[frame].bg4:Point("BOTTOMRIGHT", -E.mult, E.mult)	
+				
 				
 				if compare == "Friend" then
-					_G[frame.."Shield"]:Point("TOPRIGHT", _G["AchievementFrameComparisonContainerButton"..i.."Friend"], "TOPRIGHT", -20, -9)
+					_G[frame.."Shield"]:Point("TOPRIGHT", _G["AchievementFrameComparisonContainerButton"..i.."Friend"], "TOPRIGHT", -20, -3)
 				end
-				
-				if _G[frame.."Label"] then
-					_G[frame.."Label"]:SetParent(_G[frame].backdrop)
-				end
-				
+								
 				_G[frame.."IconBling"]:Kill()
 				_G[frame.."IconOverlay"]:Kill()
 				_G[frame.."Icon"]:SetTemplate("Default")
@@ -1713,6 +1725,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			"PlayerTalentFramePanel2SummaryRoleIcon",
 			"PlayerTalentFramePanel3SummaryRoleIcon",
 			"PlayerTalentFramePetShadowOverlay",
+			"PlayerTalentFrameHeaderHelpBox",
 		}
 
 		for _, texture in pairs(KillTextures) do
@@ -1833,7 +1846,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		PlayerSpecTab1.SetPoint = T.dummy
 		
 		local function TalentSummaryClean(i)
-			frame = _G["PlayerTalentFramePanel"..i.."Summary"]
+			local frame = _G["PlayerTalentFramePanel"..i.."Summary"]
 			frame:SetFrameLevel(frame:GetFrameLevel() + 2)
 			frame:CreateBackdrop("Default")
 			frame:SetFrameLevel(frame:GetFrameLevel() +1)
@@ -1842,6 +1855,8 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			b:Hide()
 			d:Hide()
 			m:Hide()
+			
+			_G["PlayerTalentFramePanel"..i.."SummaryIcon"]:SetTexCoord(.08, .92, .08, .92)
 		end
 
 		local function TalentHeaderIcon(self, first, i)
@@ -2737,6 +2752,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 						end
 						
 						_G["DungeonCompletionAlertFrame"..i.."Shine"]:Kill()
+						
 						_G["DungeonCompletionAlertFrame"..i.."GlowFrame"]:Kill()
 						_G["DungeonCompletionAlertFrame"..i.."GlowFrame"].glow:Kill()
 						
@@ -3779,6 +3795,8 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			local buttons = {
 				"LFDQueueFrameFindGroupButton",
 				"LFDQueueFrameCancelButton",
+				"LFDQueueFramePartyBackfillBackfillButton",
+				"LFDQueueFramePartyBackfillNoBackfillButton",
 			}
 			
 			local checkButtons = {
@@ -4078,6 +4096,13 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 						QuestInfoRequiredMoneyText:SetTextColor(1, 1, 0)
 					end
 				end			
+			end)
+
+			QuestLogFrame:HookScript("OnShow", function()
+				QuestLogScrollFrame:Height(QuestLogScrollFrame:GetHeight() - 4)
+				QuestLogDetailScrollFrame:Height(QuestLogScrollFrame:GetHeight() - 4)
+				QuestLogScrollFrame:SetTemplate("Default")
+				QuestLogDetailScrollFrame:SetTemplate("Default")
 			end)			
 		end
 		
@@ -4190,13 +4215,23 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			PVPTeamManagementFrameInvalidTeamFrame.backdrop:Point( "TOPLEFT", PVPTeamManagementFrameInvalidTeamFrame, "TOPLEFT")
 			PVPTeamManagementFrameInvalidTeamFrame.backdrop:Point( "BOTTOMRIGHT", PVPTeamManagementFrameInvalidTeamFrame, "BOTTOMRIGHT")
 			PVPTeamManagementFrameInvalidTeamFrame.backdrop:SetFrameLevel(PVPTeamManagementFrameInvalidTeamFrame:GetFrameLevel())
-			PVPFrameConquestBar:StripTextures()
 			
 			if not T.IsPTRVersion() then
+				PVPFrameConquestBar:StripTextures()
 				PVPFrameConquestBar:SetStatusBarTexture(C["media"].normTex)
+				PVPFrameConquestBar:CreateBackdrop("Default")
+			else
+				PVPFrameConquestBarLeft:Kill()
+				PVPFrameConquestBarRight:Kill()
+				PVPFrameConquestBarMiddle:Kill()
+				PVPFrameConquestBarBG:Kill()
+				PVPFrameConquestBarShadow:Kill()
+				PVPFrameConquestBar.progress:SetTexture(C["media"].normTex)
+				PVPFrameConquestBar:CreateBackdrop("Default")
+				PVPFrameConquestBar.backdrop:Point("TOPLEFT", PVPFrameConquestBar.progress, "TOPLEFT", -2, 2)
+				PVPFrameConquestBar.backdrop:Point("BOTTOMRIGHT", PVPFrameConquestBar, "BOTTOMRIGHT", -2, 2) 
 			end
 			
-			PVPFrameConquestBar:CreateBackdrop("Default")
 			PVPBannerFrame:CreateBackdrop("Default")
 			PVPBannerFrame.backdrop:Point( "TOPLEFT", PVPBannerFrame, "TOPLEFT")
 			PVPBannerFrame.backdrop:Point( "BOTTOMRIGHT", PVPBannerFrame, "BOTTOMRIGHT")
@@ -4233,6 +4268,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				
 				WarGameStartButton:ClearAllPoints()
 				WarGameStartButton:Point("LEFT", PVPFrameLeftButton, "RIGHT", 2, 0)
+				WarGamesFrameDescription:SetTextColor(1, 1, 1)
 			end
 			
 			--Freaking gay Cancel Button FFSlocal
@@ -4320,7 +4356,6 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		--Friends/Social Pane
 		do
 			local StripAllTextures = {
-				"FriendsFrame",
 				"FriendsListFrame",
 				"FriendsTabHeader",
 				"FriendsFrameFriendsScrollFrame",
@@ -4403,6 +4438,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			for _, object in pairs(StripAllTextures) do
 				_G[object]:StripTextures()
 			end
+			FriendsFrame:StripTextures(true)
 
 			SkinEditBox(AddFriendNameEditBox)
 			AddFriendFrame:SetTemplate("Default")			
