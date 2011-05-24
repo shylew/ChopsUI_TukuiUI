@@ -3383,13 +3383,11 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				if not InCombatLockdown() then
 					WorldMapFrame:SetScale(1)
 					WorldMapFrameSizeDownButton:Show()
-					WorldMapFrame:SetFrameStrata("DIALOG")
 				else
 					WorldMapFrameSizeDownButton:Disable()
 					WorldMapFrameSizeUpButton:Disable()
 				end	
 				
-				WorldMapFrameAreaFrame:SetFrameStrata("FULLSCREEN")
 				WorldMapFrameAreaLabel:SetFont(C["media"].font, 50, "OUTLINE")
 				WorldMapFrameAreaLabel:SetShadowOffset(2, -2)
 				WorldMapFrameAreaLabel:SetTextColor(0.90, 0.8294, 0.6407)	
