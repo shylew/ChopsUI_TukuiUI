@@ -105,7 +105,9 @@ local function SkinNextPrevButton(btn, horizonal)
 		btn:GetDisabledTexture():SetTexCoord(0.3, 0.29, 0.3, 0.75, 0.65, 0.29, 0.65, 0.75)	
 	else
 		btn:GetNormalTexture():SetTexCoord(0.3, 0.29, 0.3, 0.81, 0.65, 0.29, 0.65, 0.81)
-		btn:GetPushedTexture():SetTexCoord(0.3, 0.35, 0.3, 0.81, 0.65, 0.35, 0.65, 0.81)
+		if btn:GetPushedTexture() then
+			btn:GetPushedTexture():SetTexCoord(0.3, 0.35, 0.3, 0.81, 0.65, 0.35, 0.65, 0.81)
+		end
 		if btn:GetDisabledTexture() then
 			btn:GetDisabledTexture():SetTexCoord(0.3, 0.29, 0.3, 0.75, 0.65, 0.29, 0.65, 0.75)
 		end
@@ -114,8 +116,12 @@ local function SkinNextPrevButton(btn, horizonal)
 	btn:GetNormalTexture():ClearAllPoints()
 	btn:GetNormalTexture():Point("TOPLEFT", 2, -2)
 	btn:GetNormalTexture():Point("BOTTOMRIGHT", -2, 2)
-	btn:GetDisabledTexture():SetAllPoints(btn:GetNormalTexture())
-	btn:GetPushedTexture():SetAllPoints(btn:GetNormalTexture())
+	if btn:GetDisabledTexture() then
+		btn:GetDisabledTexture():SetAllPoints(btn:GetNormalTexture())
+	end
+	if btn:GetPushedTexture() then
+		btn:GetPushedTexture():SetAllPoints(btn:GetNormalTexture())
+	end
 	btn:GetHighlightTexture():SetTexture(1, 1, 1, 0.3)
 	btn:GetHighlightTexture():SetAllPoints(btn:GetNormalTexture())
 end
@@ -210,6 +216,55 @@ local TukuiSkin = CreateFrame("Frame")
 TukuiSkin:RegisterEvent("ADDON_LOADED")
 TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	if IsAddOnLoaded("Skinner") or IsAddOnLoaded("Aurora") then return end
+	
+	if addon == "Blizzard_TimeManager" then
+		TimeManagerFrame:StripTextures()
+		TimeManagerFrame:SetTemplate("Transparent")
+
+		SkinCloseButton(TimeManagerCloseButton)
+
+		SkinDropDownBox(TimeManagerAlarmHourDropDown, 80)
+		SkinDropDownBox(TimeManagerAlarmMinuteDropDown, 80)
+		SkinDropDownBox(TimeManagerAlarmAMPMDropDown, 80)
+		
+		SkinEditBox(TimeManagerAlarmMessageEditBox)
+		
+		SkinButton(TimeManagerAlarmEnabledButton, true)
+		TimeManagerAlarmEnabledButton:HookScript("OnClick", function(self)
+			SkinButton(self)
+		end)
+
+		TimeManagerFrame:HookScript("OnShow", function(self)
+			SkinButton(TimeManagerAlarmEnabledButton)
+		end)		
+		
+		SkinCheckBox(TimeManagerMilitaryTimeCheck)
+		SkinCheckBox(TimeManagerLocalTimeCheck)
+		
+		TimeManagerStopwatchFrame:StripTextures()
+		TimeManagerStopwatchCheck:SetTemplate("Default")
+		TimeManagerStopwatchCheck:GetNormalTexture():SetTexCoord(.08, .92, .08, .92)
+		TimeManagerStopwatchCheck:GetNormalTexture():ClearAllPoints()
+		TimeManagerStopwatchCheck:GetNormalTexture():Point("TOPLEFT", 2, -2)
+		TimeManagerStopwatchCheck:GetNormalTexture():Point("BOTTOMRIGHT", -2, 2)
+		local hover = TimeManagerStopwatchCheck:CreateTexture("frame", nil, TimeManagerStopwatchCheck) -- hover
+		hover:SetTexture(1,1,1,0.3)
+		hover:Point("TOPLEFT",TimeManagerStopwatchCheck,2,-2)
+		hover:Point("BOTTOMRIGHT",TimeManagerStopwatchCheck,-2,2)
+		TimeManagerStopwatchCheck:SetHighlightTexture(hover)
+		
+		StopwatchFrame:StripTextures()
+		StopwatchFrame:CreateBackdrop("Transparent")
+		StopwatchFrame.backdrop:Point("TOPLEFT", 0, -17)
+		StopwatchFrame.backdrop:Point("BOTTOMRIGHT", 0, 2)
+		
+		StopwatchTabFrame:StripTextures()
+		SkinCloseButton(StopwatchCloseButton)
+		SkinNextPrevButton(StopwatchPlayPauseButton)
+		SkinNextPrevButton(StopwatchResetButton)
+		StopwatchPlayPauseButton:Point("RIGHT", StopwatchResetButton, "LEFT", -4, 0)
+		StopwatchResetButton:Point("BOTTOMRIGHT", StopwatchFrame, "BOTTOMRIGHT", -4, 6)
+	end
 	
 	if addon == "Blizzard_ReforgingUI" then
 		ReforgingFrame:StripTextures()
