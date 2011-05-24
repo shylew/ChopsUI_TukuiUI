@@ -3230,68 +3230,64 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		end
 		
 		--Guild Registrar Frame
-		if C["skin"].guildregistrar == true then
-			GuildRegistrarFrame:StripTextures(true)
-			GuildRegistrarFrame:SetTemplate("Transparent")
-			GuildRegistrarGreetingFrame:StripTextures()
-			SkinButton(GuildRegistrarFrameGoodbyeButton)
-			SkinButton(GuildRegistrarFrameCancelButton)
-			SkinButton(GuildRegistrarFramePurchaseButton)
-			SkinCloseButton(GuildRegistrarFrameCloseButton)
-			SkinEditBox(GuildRegistrarFrameEditBox)
-			for i=1, GuildRegistrarFrameEditBox:GetNumRegions() do
-				local region = select(i, GuildRegistrarFrameEditBox:GetRegions())
-				if region:GetObjectType() == "Texture" then
-					if region:GetTexture() == "Interface\\ChatFrame\\UI-ChatInputBorder-Left" or region:GetTexture() == "Interface\\ChatFrame\\UI-ChatInputBorder-Right" then
-						region:Kill()
-					end
+		GuildRegistrarFrame:StripTextures(true)
+		GuildRegistrarFrame:SetTemplate("Transparent")
+		GuildRegistrarGreetingFrame:StripTextures()
+		SkinButton(GuildRegistrarFrameGoodbyeButton)
+		SkinButton(GuildRegistrarFrameCancelButton)
+		SkinButton(GuildRegistrarFramePurchaseButton)
+		SkinCloseButton(GuildRegistrarFrameCloseButton)
+		SkinEditBox(GuildRegistrarFrameEditBox)
+		for i=1, GuildRegistrarFrameEditBox:GetNumRegions() do
+			local region = select(i, GuildRegistrarFrameEditBox:GetRegions())
+			if region:GetObjectType() == "Texture" then
+				if region:GetTexture() == "Interface\\ChatFrame\\UI-ChatInputBorder-Left" or region:GetTexture() == "Interface\\ChatFrame\\UI-ChatInputBorder-Right" then
+					region:Kill()
 				end
 			end
-			
-			GuildRegistrarFrameEditBox:Height(20)
-			
-			for i=1, 2 do
-				_G["GuildRegistrarButton"..i]:GetFontString():SetTextColor(1, 1, 1)
-			end
-			
-			GuildRegistrarPurchaseText:SetTextColor(1, 1, 1)
-			AvailableServicesText:SetTextColor(1, 1, 0)
 		end
 		
-		--Tabard Frame
-		if C["skin"].tabard == true then
-			TabardFrame:StripTextures(true)
-			TabardFrame:SetTemplate("Transparent")
-			TabardModel:CreateBackdrop("Default")
-			SkinButton(TabardFrameCancelButton)
-			SkinButton(TabardFrameAcceptButton)
-			SkinCloseButton(TabardFrameCloseButton)
-			SkinRotateButton(TabardCharacterModelRotateLeftButton)
-			SkinRotateButton(TabardCharacterModelRotateRightButton)
-			TabardFrameCostFrame:StripTextures()
-			TabardFrameCustomizationFrame:StripTextures()
-			
-			for i=1, 5 do
-				local custom = "TabardFrameCustomization"..i
-				_G[custom]:StripTextures()
-				SkinNextPrevButton(_G[custom.."LeftButton"])
-				SkinNextPrevButton(_G[custom.."RightButton"])
-				
-				
-				if i > 1 then
-					_G[custom]:ClearAllPoints()
-					_G[custom]:Point("TOP", _G["TabardFrameCustomization"..i-1], "BOTTOM", 0, -6)
-				else
-					local point, anchor, point2, x, y = _G[custom]:GetPoint()
-					_G[custom]:Point(point, anchor, point2, x, y+4)
-				end
-			end
-			
-			TabardCharacterModelRotateLeftButton:Point("BOTTOMLEFT", 4, 4)
-			TabardCharacterModelRotateRightButton:Point("TOPLEFT", TabardCharacterModelRotateLeftButton, "TOPRIGHT", 4, 0)
-			TabardCharacterModelRotateLeftButton.SetPoint = T.dummy
-			TabardCharacterModelRotateRightButton.SetPoint = T.dummy
+		GuildRegistrarFrameEditBox:Height(20)
+		
+		for i=1, 2 do
+			_G["GuildRegistrarButton"..i]:GetFontString():SetTextColor(1, 1, 1)
 		end
+		
+		GuildRegistrarPurchaseText:SetTextColor(1, 1, 1)
+		AvailableServicesText:SetTextColor(1, 1, 0)
+		
+		--Tabard Frame
+		TabardFrame:StripTextures(true)
+		TabardFrame:SetTemplate("Transparent")
+		TabardModel:CreateBackdrop("Default")
+		SkinButton(TabardFrameCancelButton)
+		SkinButton(TabardFrameAcceptButton)
+		SkinCloseButton(TabardFrameCloseButton)
+		SkinRotateButton(TabardCharacterModelRotateLeftButton)
+		SkinRotateButton(TabardCharacterModelRotateRightButton)
+		TabardFrameCostFrame:StripTextures()
+		TabardFrameCustomizationFrame:StripTextures()
+		
+		for i=1, 5 do
+			local custom = "TabardFrameCustomization"..i
+			_G[custom]:StripTextures()
+			SkinNextPrevButton(_G[custom.."LeftButton"])
+			SkinNextPrevButton(_G[custom.."RightButton"])
+			
+			
+			if i > 1 then
+				_G[custom]:ClearAllPoints()
+				_G[custom]:Point("TOP", _G["TabardFrameCustomization"..i-1], "BOTTOM", 0, -6)
+			else
+				local point, anchor, point2, x, y = _G[custom]:GetPoint()
+				_G[custom]:Point(point, anchor, point2, x, y+4)
+			end
+		end
+		
+		TabardCharacterModelRotateLeftButton:Point("BOTTOMLEFT", 4, 4)
+		TabardCharacterModelRotateRightButton:Point("TOPLEFT", TabardCharacterModelRotateLeftButton, "TOPRIGHT", 4, 0)
+		TabardCharacterModelRotateLeftButton.SetPoint = T.dummy
+		TabardCharacterModelRotateRightButton.SetPoint = T.dummy
 		
 		--Gossip Frame
 		do	
