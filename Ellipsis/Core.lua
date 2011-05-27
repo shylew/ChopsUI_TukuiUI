@@ -170,7 +170,7 @@ function Ellipsis:OnEnable()
 	-- Most loading pushed back to OnEnable due to some missing data (player GUID mainly) when init is called.
 	self.playerGUID = UnitGUID('player') -- constant after init
 
-	self:DefineClassSpells()
+	--self:DefineClassSpells()
 	self:InitializeCooldowns() -- not technically an init, but it is only done once
 	self:ApplyConfigSettings() -- also called when config is changed
 
