@@ -7,10 +7,12 @@ NeedToKnow.Update = function()
 
   ChopsuiConfigureNeedToKnowPlayerBuffs()
   ChopsuiConfigureNeedToKnowTargetDebuffs()
+  ChopsuiConfigureNeedToKnowInternalCooldowns()
   NeedToKnow.Update_()
 
   playerFrame = _G["NeedToKnow_Group1"]
   targetFrame = _G["NeedToKnow_Group2"]
+  icdFrame = _G["NeedToKnow_Group3"]
 
   -- Position the player buff tracker
   playerFrame:ClearAllPoints()
@@ -19,6 +21,10 @@ NeedToKnow.Update = function()
   -- Position the target debuff tracker
   targetFrame:ClearAllPoints()
   targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 4, 180)
+
+  -- Positon the ICD tracker
+  icdFrame:ClearAllPoints()
+  icdFrame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundLeft, "TOPLEFT", 0, 130)
 
   -- Disable target debuff tracker if we're on a dot class
   if (T.Role == "Caster" and not (T.Spec == "HOLY" or T.Spec == "RESTORATION" or T.Spec == "DISCIPLINE")) then
@@ -341,6 +347,21 @@ function ChopsuiConfigureNeedToKnowTargetDebuffs()
   
 end
 
+-- Configure the NeedToKnow internal cooldown bars
+function ChopsuiConfigureNeedToKnowInternalCooldowns()
+
+  for i = 1, NEEDTOKNOW.MAXBARS do
+    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][3]["Bars"][i]["Enabled"] = false
+  end
+
+  if T.myclass == "DRUID" then
+    if T.Spec == "RESTORATION" then
+      ChopsuiNeedToKnowInternalCooldown(6, "Nature's Grace", { 0.28, 0.79, 0.30 }, 60)
+    end
+  end
+
+end
+
 -- Configure a NeedToKnow player buff bar
 function ChopsuiNeedToKnowPlayerBuff(barID, buffName, color, onlyMine, unit)
 
@@ -363,7 +384,7 @@ function ChopsuiNeedToKnowPlayerBuff(barID, buffName, color, onlyMine, unit)
 
 end
 
--- Configure a NeedToKnow target debuff b ar
+-- Configure a NeedToKnow target debuff bar
 function ChopsuiNeedToKnowTargetDebuff(barID, debuffName, color, onlyMine, vctColor, vctSpell)
 
   colorRed, colorGreen, colorBlue = unpack(color)
@@ -399,6 +420,26 @@ function ChopsuiNeedToKnowTargetDebuff(barID, debuffName, color, onlyMine, vctCo
 
 end
 
+-- Configure a NeedToKnow internal cooldown
+function ChopsuiNeedToKnowInternalCooldown(barID, cooldownName, color, duration)
+
+  colorRed, colorGreen, colorBlue = unpack(color)
+
+  NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][3]["Bars"][barID]["BuffOrDebuff"] = "BUFFCD"
+  NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][3]["Bars"][barID]["buffcd_duration"] = duration
+  NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][3]["Bars"][barID]["Enabled"] = true
+  NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][3]["Bars"][barID]["AuraName"] = cooldownName
+  NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][3]["Bars"][barID]["OnlyMine"] = true
+  NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][3]["Bars"][barID]["Unit"] = "player"
+  NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][3]["Bars"][barID]["BarColor"] = {
+    ["r"] = colorRed,
+    ["g"] = colorGreen,
+    ["b"] = colorBlue,
+    ["a"] = 1
+  }
+
+end
+
 -- Reset NeedToKnow
 function ChopsuiNeedToKnowReset()
 
@@ -423,6 +464,12 @@ function ChopsuiNeedToKnowReset()
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["NumberBars"] = 6
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["Scale"] = 0.6666667461395264
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["Width"] = 290
+
+    -- Change the ICD bar look&feel
+    NeedToKnow_Settings["Spec"][i]["Groups"][3]["Enabled"] = true
+    NeedToKnow_Settings["Spec"][i]["Groups"][3]["NumberBars"] = 6
+    NeedToKnow_Settings["Spec"][i]["Groups"][3]["Scale"] = 0.80
+    NeedToKnow_Settings["Spec"][i]["Groups"][3]["Width"] = 475
 
   end
   
