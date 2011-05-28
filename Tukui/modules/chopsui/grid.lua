@@ -318,23 +318,23 @@ function ChopsuiGridReset()
   GridFrame.db.profile["statusmap"]["text2"]["unit_healthDeficit"] = true
 
   -- Set up corner icons
-  GridIndicatorCornerIcons.db.profile["iconSizeTopLeftCorner"] = 16
-  GridIndicatorCornerIcons.db.profile["iconSizeTopRightCorner"] = 16
-  GridIndicatorCornerIcons.db.profile["iconSizeBottomLeftCorner"] = 16
-  GridIndicatorCornerIcons.db.profile["iconSizeBottomRightCorner"] = 16
+  GridIndicatorCornerIcons.db.profile["iconSizeTopLeftCorner"] = 18
+  GridIndicatorCornerIcons.db.profile["iconSizeTopRightCorner"] = 18
+  GridIndicatorCornerIcons.db.profile["iconSizeBottomLeftCorner"] = 18
+  GridIndicatorCornerIcons.db.profile["iconSizeBottomRightCorner"] = 18
   GridIndicatorCornerIcons.db.profile["enableIconCooldown"] = true
   GridIndicatorCornerIcons.db.profile["enableIconStackText"] = true
   GridIndicatorCornerIcons.db.profile["xoffset"] = 2
   GridIndicatorCornerIcons.db.profile["yoffset"] = -1
 
   -- Set up side icons
-  GridIndicatorSideIcons.db.profile["iconSizeTop"] = 16
+  GridIndicatorSideIcons.db.profile["iconSizeTop"] = 18
 	GridIndicatorSideIcons.db.profile["enableIconStackText"] = true
 	GridIndicatorSideIcons.db.profile["yoffsetLR"] = 0
-	GridIndicatorSideIcons.db.profile["iconSizeLeft"] = 16
+	GridIndicatorSideIcons.db.profile["iconSizeLeft"] = 18
 	GridIndicatorSideIcons.db.profile["iconBorderSize"] = 1
-	GridIndicatorSideIcons.db.profile["iconSizeBottom"] = 16
-	GridIndicatorSideIcons.db.profile["iconSizeRight"] = 16
+	GridIndicatorSideIcons.db.profile["iconSizeBottom"] = 18
+	GridIndicatorSideIcons.db.profile["iconSizeRight"] = 18
 	GridIndicatorSideIcons.db.profile["xoffsetLR"] = -2
 	GridIndicatorSideIcons.db.profile["enableIconCooldown"] = true
 	GridIndicatorSideIcons.db.profile["yoffsetTB"] = -2
