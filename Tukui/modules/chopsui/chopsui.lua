@@ -8,4 +8,9 @@ function ChopsuiReset()
   ChopsuiSkadaReset()
   ChopsuiPostalReset()
   ChopsuiEllipsisReset()
+  ChopsuiChatReset()
+end
+
+function ChopsuiChatReset()
+  ChangeChatColor("OFFICER", 0.79, 0.57, 0)
 end
