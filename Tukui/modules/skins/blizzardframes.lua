@@ -3611,46 +3611,52 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 						ToggleFrame(WorldMapFrame)
 					end
 				elseif event == "PLAYER_REGEN_DISABLED" then
-					if GetCVarBool("miniWorldMap") then
-						WorldMapFrameSizeDownButton:Disable()
-						WorldMapFrameSizeUpButton:Disable()
-						
-						HideUIPanel(WorldMapFrame)
-						WatchFrame.showObjectives = nil
-						WorldMapQuestShowObjectives:SetChecked(false)
-						WorldMapTitleButton:Hide()
-						WorldMapBlobFrame:Hide()
-						WorldMapPOIFrame:Hide()
-
-						WorldMapQuestShowObjectives.Show = T.dummy
-						WorldMapTitleButton.Show = T.dummy
-						WorldMapBlobFrame.Show = T.dummy
-						WorldMapPOIFrame.Show = T.dummy       
-
-						WatchFrame_Update()
-					end
+					HideUIPanel(WorldMapFrame)
 					
-					WorldMapQuestShowObjectives:Hide() -- don't allow disabling quest track in combat on both map, cause lots of taints
-				elseif event == "PLAYER_REGEN_ENABLED" then
-					if GetCVarBool("miniWorldMap") then
-						WorldMapFrameSizeDownButton:Enable()
-						WorldMapFrameSizeUpButton:Enable()
-						
-						WorldMapQuestShowObjectives.Show = WorldMapQuestShowObjectives:Show()
-						WorldMapTitleButton.Show = WorldMapTitleButton:Show()
-						WorldMapBlobFrame.Show = WorldMapBlobFrame:Show()
-						WorldMapPOIFrame.Show = WorldMapPOIFrame:Show()
-
-						WorldMapTitleButton:Show()
-
-						WatchFrame.showObjectives = true
-						WorldMapQuestShowObjectives:SetChecked(true)
-
-						WorldMapBlobFrame:Show()
-						WorldMapPOIFrame:Show()
-
-						WatchFrame_Update()
+					if not miniWorldMap and WatchFrame.showObjectives then
+						WorldMapFrame_SetFullMapView()
 					end
+				
+					WorldMapFrameSizeDownButton:Disable()
+					WorldMapFrameSizeUpButton:Disable()
+					
+					HideUIPanel(WorldMapFrame)
+					WatchFrame.showObjectives = nil
+					WorldMapQuestShowObjectives:SetChecked(false)
+					WorldMapTitleButton:Hide()
+					WorldMapBlobFrame:Hide()
+					WorldMapPOIFrame:Hide()
+
+					WorldMapQuestShowObjectives.Show = T.dummy
+					WorldMapTitleButton.Show = T.dummy
+					WorldMapBlobFrame.Show = T.dummy
+					WorldMapPOIFrame.Show = T.dummy       
+
+					WatchFrame_Update()
+					
+					WorldMapQuestShowObjectives:Hide()
+				elseif event == "PLAYER_REGEN_ENABLED" then
+					WorldMapFrameSizeDownButton:Enable()
+					WorldMapFrameSizeUpButton:Enable()
+					
+					WorldMapQuestShowObjectives.Show = WorldMapQuestShowObjectives:Show()
+					WorldMapTitleButton.Show = WorldMapTitleButton:Show()
+					WorldMapBlobFrame.Show = WorldMapBlobFrame:Show()
+					WorldMapPOIFrame.Show = WorldMapPOIFrame:Show()
+
+					WorldMapTitleButton:Show()
+
+					WatchFrame.showObjectives = true
+					WorldMapQuestShowObjectives:SetChecked(true)
+					
+					if not miniWorldMap and WatchFrame.showObjectives then
+						WorldMapFrame_SetQuestMapView()
+					end
+
+					WorldMapBlobFrame:Show()
+					WorldMapPOIFrame:Show()
+
+					WatchFrame_Update()
 					
 					WorldMapQuestShowObjectives:Show()
 				end
