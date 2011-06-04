@@ -3719,7 +3719,11 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 					
 					int = 0
 				end				
-			end)		
+			end)
+
+			-- dropdown on full map is scaled incorrectly
+			WorldMapContinentDropDownButton:HookScript("OnClick", function() DropDownList1:SetScale(C.general.uiscale) end)
+			WorldMapZoneDropDownButton:HookScript("OnClick", function() DropDownList1:SetScale(C.general.uiscale) end)
 		end
 		
 		--Item Text Frame
