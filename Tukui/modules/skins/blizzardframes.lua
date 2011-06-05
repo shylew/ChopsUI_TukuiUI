@@ -3605,8 +3605,10 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			WorldMapFrame:RegisterEvent("PLAYER_REGEN_ENABLED") -- fix taint with small map & big map
 			WorldMapFrame:RegisterEvent("PLAYER_REGEN_DISABLED") -- fix taint with small map & big map
 			WorldMapFrame:HookScript("OnEvent", function(self, event)
+				local miniWorldMap = GetCVarBool("miniWorldMap")
+				
 				if event == "PLAYER_LOGIN" then
-					if not GetCVarBool("miniWorldMap") then
+					if not miniWorldMap then
 						ToggleFrame(WorldMapFrame)
 						ToggleFrame(WorldMapFrame)
 					end
