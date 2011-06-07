@@ -3105,7 +3105,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			HelpFrameKnowledgebaseSearchBox:Point("TOPLEFT", HelpFrameMainInset, "TOPLEFT", 13, -10)
 			HelpFrameKnowledgebaseNavBarOverlay:Kill()
 			
-			if T.IsPTRVersion() then
+			if T.toc >= 40200 then
 				HelpFrameKnowledgebaseNavBar:StripTextures()
 			end
 			
@@ -3378,7 +3378,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		
 		
 		--Encounter Journal
-		if T.IsPTRVersion() then
+		if T.toc >= 40200 then
 			do
 				EncounterJournal:StripTextures(true)
 				
@@ -4180,7 +4180,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				"PVPBannerFrameAcceptButton",
 			}
 			
-			if not T.IsPTRVersion() then
+			if T.toc < 40200 then
 				tinsert(buttons, "PVPHonorFrameWarGameButton")
 			end
 			
@@ -4261,7 +4261,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			PVPTeamManagementFrameInvalidTeamFrame.backdrop:Point( "BOTTOMRIGHT", PVPTeamManagementFrameInvalidTeamFrame, "BOTTOMRIGHT")
 			PVPTeamManagementFrameInvalidTeamFrame.backdrop:SetFrameLevel(PVPTeamManagementFrameInvalidTeamFrame:GetFrameLevel())
 			
-			if not T.IsPTRVersion() then
+			if T.toc < 40200 then
 				PVPFrameConquestBar:StripTextures()
 				PVPFrameConquestBar:SetStatusBarTexture(C["media"].normTex)
 				PVPFrameConquestBar:CreateBackdrop("Default")
@@ -4306,7 +4306,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			PVPColorPickerButton3:Height(PVPColorPickerButton1:GetHeight())
 			
 			--War Games
-			if T.IsPTRVersion() then
+			if T.toc >= 40200 then
 				SkinButton(WarGameStartButton, true)
 				WarGamesFrame:StripTextures()
 				SkinScrollBar(WarGamesFrameScrollFrameScrollBar)
@@ -4331,7 +4331,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			f.backdrop:SetFrameLevel(f:GetFrameLevel()-1)
 			
 			--Bottom Tabs
-			if not T.IsPTRVersion() then
+			if T.toc < 40200 then
 				for i=1,3 do
 					SkinTab(_G["PVPFrameTab"..i])
 				end
