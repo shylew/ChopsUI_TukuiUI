@@ -128,6 +128,7 @@
 	<Script file="modules\skins\bubbles.lua"/>
 	<Script file="modules\skins\calendar.lua"/>
 	<Script file="modules\skins\character.lua"/>
+	<Script file="modules\skins\chat.lua"/>
 	<Script file="modules\skins\debugtools.lua"/>
 	<Script file="modules\skins\dressup.lua"/>
 	<Script file="modules\skins\friends.lua"/>
