@@ -128,8 +128,8 @@ local function LoadSkin()
 		navButtonFrameLevel(self)
 	end)
 	
-	SkinButton(HelpFrameGM_ResponseNeedMoreHelp)
-	SkinButton(HelpFrameGM_ResponseCancel)
+	T.SkinButton(HelpFrameGM_ResponseNeedMoreHelp)
+	T.SkinButton(HelpFrameGM_ResponseCancel)
 	for i=1, HelpFrameGM_Response:GetNumChildren() do
 		local child = select(i, HelpFrameGM_Response:GetChildren())
 		if child and child:GetObjectType() == "Frame" and not child:GetName() then
