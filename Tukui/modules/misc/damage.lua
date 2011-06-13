@@ -5,7 +5,7 @@ local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, vari
 -- BECAUSE REGULAR 3D WORLD DAMAGE ISN'T COMPATIBLE
 -------------------------------------------------------------
 
---if not T.eyefinity then return end
+if not T.eyefinity then return end
 
 local displaydamage = GetCVar("CombatDamage")
 local displayheal = GetCVar("CombatHealing")
