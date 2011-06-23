@@ -40,15 +40,17 @@ if C["invite"].autoaccept then
 			-- find which faction we play
 			if select(1, UnitFactionGroup("player")) == "Horde" then playerFaction = 0 else playerFaction = 1 end
 			
-			for i = 1, select(2, BNGetNumFriends()) do
-				local presenceID, givenName, surname, toonName, toonID, client, isOnline = BNGetFriendInfo(i)
-				local _, _, _, realmName, faction, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
+			if not ingroup then
+				for i = 1, select(2, BNGetNumFriends()) do
+					local presenceID, givenName, surname, toonName, toonID, client, isOnline = BNGetFriendInfo(i)
+					local _, _, _, realmName, faction, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
 
-				if client == "WoW" and realmName == T.myrealm and faction == playerFaction then
-					if toonName == leader then
-						AcceptGroup()
-						ingroup = true
-						break
+					if client == "WoW" and realmName == T.myrealm and faction == playerFaction then
+						if toonName == leader then
+							AcceptGroup()
+							ingroup = true
+							break
+						end
 					end
 				end
 			end
