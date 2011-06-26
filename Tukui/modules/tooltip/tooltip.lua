@@ -11,7 +11,7 @@ local GameTooltip, GameTooltipStatusBar = _G["GameTooltip"], _G["GameTooltipStat
 
 local gsub, find, format = string.gsub, string.find, string.format
 
-local Tooltips = {GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ShoppingTooltip3,WorldMapTooltip}
+local Tooltips = {GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ShoppingTooltip3,WorldMapTooltip,WorldMapCompareTooltip1,WorldMapCompareTooltip2,WorldMapCompareTooltip3}
 local ItemRefTooltip = ItemRefTooltip
 
 local linkTypes = {item = true, enchant = true, spell = true, quest = true, unit = true, talent = true, achievement = true, glyph = true}
@@ -58,6 +58,7 @@ local function UpdateTooltip(self)
 		-- h4x for world object tooltip border showing last border color 
 		-- or showing background sometime ~blue :x		
 		if NeedBackdropBorderRefresh then
+			self:ClearAllPoints()
 			NeedBackdropBorderRefresh = false			
 			self:SetBackdropColor(unpack(C.media.backdropcolor))
 			if not C["tooltip"].cursor then
@@ -119,6 +120,8 @@ hooksecurefunc("GameTooltip_SetDefaultAnchor", function(self, parent)
 	else
 		self:SetOwner(parent, "ANCHOR_NONE")
 	end
+	
+	self:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -111111, -111111) -- hack to update GameStatusBar instantly.
 end)
 
 GameTooltip:HookScript("OnUpdate", function(self, ...) UpdateTooltip(self) end)

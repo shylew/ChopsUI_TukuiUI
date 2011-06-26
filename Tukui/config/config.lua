@@ -7,6 +7,7 @@ C["general"] = {
 	["multisampleprotect"] = true,                      -- i don't recommend this because of shitty border but, voila!
 	["backdropcolor"] = { .1,.1,.1 },                   -- default backdrop color of panels
 	["bordercolor"] = { .36,.36,.36 },                  -- default border color of panels
+	["blizzardreskin"] = true                           -- reskin all Blizzard frames
 }
 
 C["unitframes"] = {
@@ -77,10 +78,6 @@ C["actionbar"] = {
 
 C["bags"] = {
 	["enable"] = false,                                 -- enable an all in one bag mod that fit tukui perfectly
-}
-
-C["map"] = {
-	["enable"] = true,                                  -- reskin the map to fit tukui
 }
 
 C["loot"] = {
