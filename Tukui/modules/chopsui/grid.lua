@@ -65,6 +65,7 @@ function ChopsuiConfigureGridIndicators()
       GridFrame.db.profile["statusmap"]["iconTRcornerright"]["buff_Regrowth"] = true
       GridFrame.db.profile["statusmap"]["iconBLcornerleft"]["buff_Lifebloom"] = true
       GridFrame.db.profile["statusmap"]["iconBLcornerright"]["buff_WildGrowth"] = true
+      GridFrame.db.profile["statusmap"]["iconBRcornerleft"]["buff_LivingSeed"] = true
       
     end
 
@@ -361,6 +362,7 @@ function ChopsuiGridReset()
   ChopsuiGridAddBuff(GridStatusAuras, "Regrowth", true)
   ChopsuiGridAddBuff(GridStatusAuras, "Lifebloom", true)
   ChopsuiGridAddBuff(GridStatusAuras, "Wild Growth", true)
+  ChopsuiGridAddBuff(GridStatusAuras, "Living Seed", true)
   
   -- Paladin auras
   ChopsuiGridAddBuff(GridStatusAuras, "Hand of Salvation")
