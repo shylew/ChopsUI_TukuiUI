@@ -356,7 +356,13 @@ function ChopsuiConfigureNeedToKnowInternalCooldowns()
 
   if T.myclass == "DRUID" then
     if T.Spec == "RESTORATION" then
+      ChopsuiNeedToKnowInternalCooldown(5, "Power Torrent", { 0.03, 0.88, 1 }, 45)
       ChopsuiNeedToKnowInternalCooldown(6, "Nature's Grace", { 0.28, 0.79, 0.30 }, 60)
+    end
+  elseif T.myclass == "PRIEST" then
+    if T.Spec == "DISCIPLINE" then
+      ChopsuiNeedToKnowInternalCooldown(5, "Power Torrent", { 0.03, 0.88, 1 }, 45)
+      ChopsuiNeedToKnowInternalCooldown(6, "Rapture", { 0.19, 0.71, 0.78 }, 12)
     end
   end
 
