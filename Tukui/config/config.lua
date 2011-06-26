@@ -7,7 +7,7 @@ C["general"] = {
 	["multisampleprotect"] = true,                      -- i don't recommend this because of shitty border but, voila!
 	["backdropcolor"] = { .1,.1,.1 },                   -- default backdrop color of panels
 	["bordercolor"] = { .36,.36,.36 },                  -- default border color of panels
-	["blizzardreskin"] = true                           -- reskin all Blizzard frames
+	["blizzardreskin"] = false                          -- reskin all Blizzard frames
 }
 
 C["unitframes"] = {
