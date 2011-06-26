@@ -1,13 +1,6 @@
 local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 assert(Ellipsis, "ChopsUI Ellipsis extension failed to load, make sure Ellipsis is enabled")
 
--- Enable debuff tracking if we're on a dot class
-if (T.Role == "Caster" and not (T.Spec == "HOLY" or T.Spec == "RESTORATION" or T.Spec == "DISCIPLINE")) then
-  Ellipsis.db.profile["trackDebuffs"] = true
-else
-  Ellipsis.db.profile["trackDebuffs"] = false
-end
-
 -- Reposition the Ellipsis target frame
 EllipsisTargets:SetMovable(false)
 EllipsisTargets:SetPoint("BOTTOMLEFT", TukuiTarget, "TOPLEFT", 150, 145)
@@ -30,9 +23,13 @@ function ChopsuiEllipsisReset()
   Ellipsis.db.profile["timerFontHeight"] = 12
   Ellipsis.db.profile["barHeight"] = 18
 
-  -- Set aura tracking options
+  -- Set aura tracking options. We only track debuffs, and only if you're a caster.
   Ellipsis.db.profile["trackBuffs"] = false
-  Ellipsis.db.profile["trackDebuffs"] = false
+  if (T.Role == "Caster") then
+    Ellipsis.db.profile["trackDebuffs"] = true
+  else
+    Ellipsis.db.profile["trackDebuffs"] = false
+  end
   Ellipsis.db.profile["trackPlayer"] = false
   Ellipsis.db.profile["trackPet"] = false
 
@@ -41,5 +38,5 @@ function ChopsuiEllipsisReset()
   Ellipsis.db.profile["cdPet"] = false
   Ellipsis.db.profile["cdItem"] = false
   Ellipsis.db.profile["cdHideWhenNone"] = true
-  
+
 end

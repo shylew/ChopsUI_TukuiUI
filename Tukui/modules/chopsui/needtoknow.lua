@@ -26,13 +26,6 @@ NeedToKnow.Update = function()
   icdFrame:ClearAllPoints()
   icdFrame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundLeft, "TOPLEFT", 0, 130)
 
-  -- Disable target debuff tracker if we're on a dot class
-  if (T.Role == "Caster" and not (T.Spec == "HOLY" or T.Spec == "RESTORATION" or T.Spec == "DISCIPLINE")) then
-    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Enabled"] = false
-  else
-    NeedToKnow_Settings["Spec"][NEEDTOKNOW.CURRENTSPEC]["Groups"][2]["Enabled"] = true
-  end
-
 end
 
 -- Configure the NeedToKnow player buff bars
@@ -466,7 +459,12 @@ function ChopsuiNeedToKnowReset()
     NeedToKnow_Settings["Spec"][i]["Groups"][1]["Width"] = 290
 
     -- Change the target bar look&feel
-    NeedToKnow_Settings["Spec"][i]["Groups"][2]["Enabled"] = true
+    -- This bar is only enabled if you're a non-caster class
+    if (T.Role == "Caster") then
+      NeedToKnow_Settings["Spec"][i]["Groups"][2]["Enabled"] = false
+    else
+      NeedToKnow_Settings["Spec"][i]["Groups"][2]["Enabled"] = true
+    end
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["NumberBars"] = 6
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["Scale"] = 0.6666667461395264
     NeedToKnow_Settings["Spec"][i]["Groups"][2]["Width"] = 290
