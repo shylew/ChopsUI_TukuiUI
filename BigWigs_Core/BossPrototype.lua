@@ -86,7 +86,7 @@ do
 			end
 		end
 	end
-	function boss:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, ...)
+	function boss:RAID_BOSS_EMOTE(_, msg, ...)
 		if emoteMap[self][msg] then
 			self[emoteMap[self][msg]](self, msg, ...)
 		else
@@ -98,7 +98,7 @@ do
 		end
 	end
 
-	function boss:COMBAT_LOG_EVENT_UNFILTERED(_, _, event, _, sGUID, source, sFlags, dGUID, player, dFlags, spellId, spellName, _, secSpellId, buffStack)
+	function boss:COMBAT_LOG_EVENT_UNFILTERED(_, _, event, _, sGUID, source, sFlags, _, dGUID, player, dFlags, _, spellId, spellName, _, secSpellId, buffStack, ...)
 		if event == "UNIT_DIED" then
 			local numericId = tonumber(dGUID:sub(7, 10), 16)
 			local d = deathMap[self][numericId]
@@ -124,7 +124,7 @@ do
 		for i = 1, select("#", ...) do
 			emoteMap[self][(select(i, ...))] = func
 		end
-		self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+		self:RegisterEvent("RAID_BOSS_EMOTE")
 	end
 	function boss:Yell(func, ...)
 		if not func then error(missingArgument:format(self.moduleName)) end
@@ -259,17 +259,18 @@ do
 		end
 	end
 
-	function boss:GetInstanceDifficulty()
-		local diff = select(3, GetInstanceInfo())
+	function boss:Difficulty()
+		local _, _, diff = GetInstanceInfo()
 		return diff
 	end
+	boss.GetInstanceDifficulty = boss.Difficulty
 
 	function boss:Engage()
 		if debug then dbg(self, ":Engage") end
 		CombatLogClearEntries()
 		self.isEngaged = true
 		if self.OnEngage then
-			self:OnEngage(self:GetInstanceDifficulty())
+			self:OnEngage(self:Difficulty())
 		end
 	end
 

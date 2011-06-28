@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Cho'gall", "The Bastion of Twilight")
+local mod = BigWigs:NewBoss("Cho'gall", 758, 167)
 if not mod then return end
 mod:RegisterEnableMob(43324)
 
@@ -97,7 +97,7 @@ function mod:OnEngage(diff)
 	counter = 1
 
 	self:RegisterEvent("UNIT_AURA")
-	self:RegisterEvent("UNIT_HEALTH")
+	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
 end
 
 --------------------------------------------------------------------------------
@@ -134,7 +134,7 @@ do
 			else
 				mod:SecondaryIcon(93180, player)
 			end
-			if mod:GetInstanceDifficulty() == 4 then counter = counter + 1 end
+			if mod:Difficulty() == 4 then counter = counter + 1 end
 		end
 		if counter > 2 then counter = 1 end
 	end
@@ -165,6 +165,8 @@ end
 function mod:FuryOfChogall(_, spellId, _, _, spellName)
 	if firstFury == 1 then
 		self:Message(82524, L["first_fury_message"], "Attention", spellId)
+		self:Bar(91303, L["worship_cooldown"], 10, 91303)
+		worshipCooldown = 40
 		firstFury = 2
 	else
 		self:Message(82524, L["fury_message"], "Attention", spellId)
@@ -175,7 +177,7 @@ end
 function mod:Orders(_, spellId, _, _, spellName)
 	self:Message("orders", spellName, "Urgent", spellId)
 	if spellId == 81556 then
-		if self:GetInstanceDifficulty() > 2 then
+		if self:Difficulty() > 2 then
 			self:Bar(93223, L["unleashed_shadows"], 24, 93223) -- verified for 25man heroic
 		else
 			self:Bar(93223, L["unleashed_shadows"], 15, 93223) -- verified for 10man normal
@@ -188,7 +190,6 @@ do
 		mod:Bar(81628, L["adherent_bar"]:format(bigcount), 50, spellId)
 	end
 	function mod:SummonCorruptingAdherent(_, spellId, _, _, spellName)
-		worshipCooldown = 40
 		self:Message(81628, L["adherent_message"]:format(bigcount), "Important", spellId)
 		bigcount = bigcount + 1
 		self:ScheduleTimer(nextAdd, 41, spellId)
@@ -203,14 +204,15 @@ function mod:FesterBlood(_, spellId, _, _, spellName)
 	oozecount = oozecount + 1
 end
 
-function mod:UNIT_HEALTH()
-	local hp = UnitHealth("boss1") / UnitHealthMax("boss1") * 100
+function mod:UNIT_HEALTH_FREQUENT(_, unit)
+	if unit ~= "boss1" then return end
+	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 	if firstFury == 0 and hp > 86 and hp < 89 then
 		self:Message(82524, L["first_fury_soon"], "Attention", 82524)
 		firstFury = 1
 	elseif hp < 30 then
 		self:Message(82630, L["phase2_soon"], "Attention", 82630, "Info")
-		self:UnregisterEvent("UNIT_HEALTH")
+		self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 	end
 end
 

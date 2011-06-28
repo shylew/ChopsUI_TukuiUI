@@ -1,5 +1,5 @@
-## Interface: 40100
-## X-Curse-Packaged-Version: r8334-release
+## Interface: 40200
+## X-Curse-Packaged-Version: r8406-release
 ## X-Curse-Project-Name: BigWigs Bossmods
 ## X-Curse-Project-ID: big-wigs
 ## X-Curse-Repository-ID: wow/big-wigs/mainline
@@ -23,8 +23,7 @@
 ## Dependencies: BigWigs
 
 ## X-Category: Raid
-## X-BigWigs-Menu: Baradin Hold
-## X-BigWigs-LoadOn-Zone: Baradin Hold
+## X-BigWigs-LoadOn-ZoneId: 752
 
 locales.xml
 modules.xml

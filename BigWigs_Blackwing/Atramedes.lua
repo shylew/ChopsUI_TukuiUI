@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Atramedes", "Blackwing Descent")
+local mod = BigWigs:NewBoss("Atramedes", 754, 171)
 if not mod then return end
 mod:RegisterEnableMob(41442)
 

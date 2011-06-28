@@ -179,6 +179,15 @@ local function getProfileOptions()
 	return profileOptions
 end
 
+local function translateZoneID(id)
+	if not id or type(id) ~= "number" then return end
+	local name = GetMapNameByID(id) or select(id, GetMapContinents())
+	if not name then
+		print(("Big Wigs: Tried to translate %q as a zone ID, but it could not be resolved into a name."):format(tostring(id)))
+	end
+	return name
+end
+
 local function findPanel(name, parent)
 	for i, button in next, InterfaceOptionsFrameAddOns.buttons do
 		if button.element then
@@ -322,7 +331,8 @@ end
 function options:Open()
 	for name, module in BigWigs:IterateBossModules() do
 		if module:IsEnabled() then
-			local menu = module.otherMenu or module.zoneName
+			local menu = translateZoneID(module.otherMenu) or translateZoneID(module.zoneId)
+			if not menu then return end
 			InterfaceOptionsFrame_OpenToCategory(menu)
 		end
 	end
@@ -611,7 +621,7 @@ local function getDefaultToggleOption(scrollFrame, dropdown, module, bossOption)
 	check:SetDescription(desc)
 	check:SetCallback("OnValueChanged", masterOptionToggled)
 	check:SetValue(getMasterOption(check))
-	if icon then check:SetImage(icon, 0.07, 0.93, 0.07, 0.93) end
+	if type(icon) == "string" then check:SetImage(icon, 0.07, 0.93, 0.07, 0.93) end
 
 	local button = AceGUI:Create("Button")
 	button:SetText(">>")
@@ -627,8 +637,6 @@ end
 
 local listAbilitiesInChat = nil
 do
-	-- XXX This stuff needs some serious cleaning up.
-
 	local function output(channel, ...)
 		if channel then
 			SendChatMessage(strjoin(" ", ...), channel)
@@ -643,12 +651,6 @@ do
 		else output(channel, unpack(list)) end
 	end
 
-	local function checkSize(header, list)
-		local hS = header and header:len() + 1 or 0
-		local lS = strjoin(" ", unpack(list)):len()
-		return hS + lS
-	end
-
 	function listAbilitiesInChat(widget)
 		local module = widget:GetUserData("module")
 		local channel = nil
@@ -657,6 +659,7 @@ do
 		local abilities = {}
 		local header = nil
 		output(channel, module.displayName or module.moduleName or module.name)
+		local currentSize = 0
 		for i, option in next, module.toggleOptions do
 			local o = option
 			if type(o) == "table" then o = option[1] end
@@ -665,14 +668,29 @@ do
 				printList(channel, header, abilities)
 				wipe(abilities)
 				header = module.optionHeaders[o]
+				currentSize = #header
 			end
 			if type(o) == "number" then
 				local l = GetSpellLink(o)
-				if checkSize(header, abilities) + l:len() > 255 then
+				if currentSize + #l + 1 > 255 then
 					printList(channel, header, abilities)
 					wipe(abilities)
+					currentSize = 0
 				end
 				abilities[#abilities + 1] = l
+				currentSize = currentSize + #l + 1
+			elseif type(o) == "string" then
+				local ejID = option:match("^ej:(%d+)$")
+				if tonumber(ejID) then
+					local l = select(9, EJ_GetSectionInfo(tonumber(ejID)))
+					if currentSize + #l + 1 > 255 then
+						printList(channel, header, abilities)
+						wipe(abilities)
+						currentSize = 0
+					end
+					abilities[#abilities + 1] = l
+					currentSize = currentSize + #l + 1
+				end
 			end
 		end
 		printList(channel, header, abilities)
@@ -718,7 +736,7 @@ local onZoneShow
 do
 	local sorted = {}
 	function onZoneShow(frame)
-		local zone = frame.name
+		local zone = frame.id
 
 		-- Make sure all the bosses for this zone are loaded.
 		BigWigsLoader:LoadZone(zone)
@@ -775,7 +793,7 @@ do
 
 		outerContainer:ResumeLayout()
 		outerContainer:PerformLayout()
-		
+
 		-- Need to parent the AceGUI container to the actual
 		-- zone panel frame so that the AceGUI container will
 		-- show at all.
@@ -815,10 +833,11 @@ end
 do
 	local panels = {}
 	local noop = function() end
-	function options:GetPanel(id, parent)
+	function options:GetPanel(id, parent, zoneId)
 		if not panels[id] then
 			local frame = CreateFrame("Frame", nil, InterfaceOptionsFramePanelContainer)
 			frame.name = id
+			frame.id = zoneId
 			frame.parent = parent
 			frame.addonname = "BigWigs"
 			frame.okay = noop
@@ -833,8 +852,10 @@ do
 		return panels[id]
 	end
 
-	function options:GetZonePanel(zone)
-		local panel, created = self:GetPanel(zone, L["Big Wigs Encounters"])
+	function options:GetZonePanel(zoneId)
+		local zoneName = translateZoneID(zoneId)
+		if not zoneName then return end
+		local panel, created = self:GetPanel(zoneName, L["Big Wigs Encounters"], zoneId)
 		if created then
 			panel:SetScript("OnShow", onZoneShow)
 			panel:SetScript("OnHide", onZoneHide)
@@ -850,7 +871,7 @@ do
 		registered[module.name] = true
 		if module.toggleOptions or module.GetOptions then
 			if module:IsBossModule() then
-				local zone = module.otherMenu or module.zoneName
+				local zone = module.otherMenu or module.zoneId
 				if not zone then error(module.name .. " doesn't have any valid zone set!") end
 				if not zoneModules[zone] then zoneModules[zone] = {} end
 				zoneModules[zone][module.moduleName] = module.displayName

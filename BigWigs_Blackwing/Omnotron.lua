@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Omnotron Defense System", "Blackwing Descent")
+local mod = BigWigs:NewBoss("Omnotron Defense System", 754, 169)
 if not mod then return end
 mod:RegisterEnableMob(42166, 42179, 42178, 42180, 49226) -- Arcanotron, Electron, Magmatron, Toxitron, Lord Victor Nefarius
 
@@ -119,7 +119,7 @@ end
 do
 	local prev = 0
 	function mod:Switch(unit, spellId, _, _, spellName, _, _, _, _, dGUID)
-		local timer = self:GetInstanceDifficulty() > 2 and 27 or 42
+		local timer = self:Difficulty() > 2 and 27 or 42
 		local t = GetTime()
 		if (t - prev) > timer then
 			prev = t

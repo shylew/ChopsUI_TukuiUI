@@ -2,15 +2,9 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Halfus Wyrmbreaker", "The Bastion of Twilight")
+local mod = BigWigs:NewBoss("Halfus Wyrmbreaker", 758, 156)
 if not mod then return end
 mod:RegisterEnableMob(44600)
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local stackWarn = nil
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -23,6 +17,8 @@ if L then
 
 	L.breath_message = "Breath incoming!"
 	L.breath_bar = "~Breath"
+
+	L.engage_yell = "Cho'gall will have your heads"
 end
 L = mod:GetLocale()
 
@@ -38,15 +34,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MalevolentStrikes", 83908, 86158, 86157, 86159) -- used with Slate Dragon ready
 	self:Log("SPELL_CAST_START", "Breath", 83707) -- used by Proto-Behemoth with whelps ready
 
-	--no CheckBossStatus here as event does not fire, GM confirms known issue
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	--No CheckBossStatus() here as event does not fire, GM confirms "known" issue.
+	--It's more likely to be because there isn't enough frames for all bosses on heroic.
+	self:Yell("Engage", L["engage_yell"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 44600)
 end
 
-function mod:OnEngage(diff)
-	stackWarn = diff > 2 and 5 or 10 -- 8% in heroic, 6% in normal, announce around 50-60% reduced healing
+function mod:OnEngage()
 	self:Berserk(360)
 end
 
@@ -68,6 +64,7 @@ function mod:Paralysis(_, spellId, _, _, spellName)
 end
 
 function mod:MalevolentStrikes(player, spellId, _, _, spellName, stack)
+	local stackWarn = self:Difficulty() > 2 and 5 or 10 -- 8% in heroic, 6% in normal, announce around 50-60% reduced healing
 	if stack > stackWarn then
 		self:TargetMessage(83908, L["strikes_message"], player, "Urgent", spellId, "Info", stack)
 	end
