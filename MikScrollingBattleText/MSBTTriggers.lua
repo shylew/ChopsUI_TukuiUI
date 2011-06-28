@@ -84,6 +84,7 @@ local triggerSuppressions = {}
 -- Supported power types given a power token.
 local powerTypes = {}
 
+
 -------------------------------------------------------------------------------
 -- Trigger utility functions.
 -------------------------------------------------------------------------------
@@ -840,12 +841,20 @@ powerTypes["MANA"] = SPELL_POWER_MANA
 powerTypes["RAGE"] = SPELL_POWER_RAGE
 powerTypes["FOCUS"] = SPELL_POWER_FOCUS
 powerTypes["ENERGY"] = SPELL_POWER_ENERGY
-powerTypes["HAPPINESS"] = SPELL_POWER_HAPPINESS
 powerTypes["RUNES"] = SPELL_POWER_RUNES
 powerTypes["RUNIC_POWER"] = SPELL_POWER_RUNIC_POWER
 powerTypes["SOUL_SHARDS"] = SPELL_POWER_SOUL_SHARDS
 powerTypes["ECLIPSE"] = SPELL_POWER_ECLIPSE
 powerTypes["HOLY_POWER"] = SPELL_POWER_HOLY_POWER
+
+-- XXX: Temporary workaround for new arguments coming in Patch 4.2.  The main handler should be
+-- updated appropriately for Patch 4.2 to remove the extra indirection.
+if MikSBT.CLIENT_VERSION >= 40200 then
+ local HandlePatch41CombatLogTriggers = HandleCombatLogTriggers
+ HandleCombatLogTriggers = function(timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, recipientGUID, recipientName, recipientFlags, recipientRaidFlags, ...)
+  HandlePatch41CombatLogTriggers(timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, recipientGUID, recipientName, recipientFlags, ...)
+ end
+end
 
 
 

@@ -101,11 +101,13 @@ local DAMAGETYPE_CHAOS = DAMAGETYPE_PHYSICAL + DAMAGETYPE_HOLY + DAMAGETYPE_FIRE
 local SPELLID_AUTOSHOT = 75
 
 -- Spell names.
-local SPELL_BLINK			= GetSkillName(1953)
-local SPELL_BLIZZARD		= GetSkillName(10)
-local SPELL_HELLFIRE		= GetSkillName(1949)
-local SPELL_HURRICANE		= GetSkillName(16914)
-local SPELL_RAIN_OF_FIRE	= GetSkillName(5740)
+local SPELL_BLINK					= GetSkillName(1953)
+local SPELL_BLIZZARD				= GetSkillName(10)
+local SPELL_BLOOD_STRIKE			= GetSkillName(45902)
+local SPELL_BLOOD_STRIKE_OFF_HAND	= GetSkillName(66215)
+local SPELL_HELLFIRE				= GetSkillName(1949)
+local SPELL_HURRICANE				= GetSkillName(16914)
+local SPELL_RAIN_OF_FIRE			= GetSkillName(5740)
 
 
 -------------------------------------------------------------------------------
@@ -147,13 +149,17 @@ local recentEmotes = {}
 local recentEnemyBuffs = {}
 local ignoreAuras = {}
 
+-- Localized off-hand info to allow merging of off-hand strikes.
+local offHandTrailer
+local offHandPattern
+
 
 -------------------------------------------------------------------------------
 -- Utility functions.
 -------------------------------------------------------------------------------
 
 -- ****************************************************************************
--- Creates te damage type and damage color profile maps.
+-- Creates damage type and damage color profile maps.
 -- ****************************************************************************
 local function CreateDamageMaps()
  -- Create the damage type lookup map.
@@ -1052,7 +1058,13 @@ local function ParserEventsHandler(parserEvent)
  else
   -- Acquire a recycled table from cache or create a new one if there aren't any available in cache.
   local combatEvent = table_remove(combatEventCache) or {}
-  
+
+  -- Strip off-hand trailers so they merge with main hand strikes of the same name.
+  -- Use a plain text search since it is faster than doing a full regular expression search.
+  if (effectName and offHandTrailer and string_find(effectName, offHandTrailer, 1, true)) then
+   effectName = string_gsub(effectName, offHandPattern, "")
+  end
+
 
   -- Setup the combat event.
   combatEvent.eventType = eventTypeString
@@ -1359,6 +1371,12 @@ ignoreAuras[SPELL_BLIZZARD] = true
 ignoreAuras[SPELL_HELLFIRE] = true
 ignoreAuras[SPELL_HURRICANE] = true
 ignoreAuras[SPELL_RAIN_OF_FIRE] = true
+
+-- Get localized off-hand trailer and convert to a lua search pattern.
+if (SPELL_BLOOD_STRIKE ~= UNKNOWN and SPELL_BLOOD_STRIKE_OFF_HAND ~= UNKNOWN) then
+ offHandTrailer = string_gsub(SPELL_BLOOD_STRIKE_OFF_HAND, SPELL_BLOOD_STRIKE, "")
+ offHandPattern = string_gsub(offHandTrailer, "([%^%(%)%.%[%]%*%+%-%?])", "%%%1")
+end
 
 
 

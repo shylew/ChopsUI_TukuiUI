@@ -28,6 +28,7 @@ local TOC_VERSION = string_gsub(GetAddOnMetadata("MikScrollingBattleText", "Vers
 mod.VERSION = tonumber(select(3, string_find(TOC_VERSION, "(%d+%.%d+)")))
 mod.VERSION_STRING = "v" .. TOC_VERSION
 mod.SVN_REVISION = tonumber(select(3, string_find(TOC_VERSION, "%d+%.%d+.(%d+)")))
+mod.CLIENT_VERSION = tonumber((select(4, GetBuildInfo())))
 
 mod.COMMAND = "/msbt"
 

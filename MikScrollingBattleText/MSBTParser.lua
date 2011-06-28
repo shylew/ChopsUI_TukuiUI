@@ -341,7 +341,7 @@ end
 -- ****************************************************************************
 -- Parses the parameter style events going to the combat log.
 -- ****************************************************************************
-local function ParseLogMessage(timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, recipientGUID, recipientName, recipientFlags, ...)
+local function ParseLogMessage(timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, recipientGUID, recipientName, recipientFlags, recipientRaidFlags, ...)
  -- Make sure the capture function for the event exists.
  local captureFunc = captureFuncs[event]
  if (not captureFunc) then return end
