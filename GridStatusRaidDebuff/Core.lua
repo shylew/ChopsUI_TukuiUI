@@ -343,13 +343,7 @@ function GridStatusRaidDebuff:UpdateAllUnit()
 	end
 end
 
-function GridStatusRaidDebuff:ScanNewDebuff(e, ts, event, hideCaster, srcguid, srcname, srcflg, dstguid, dstname, dstflg, spellId, name)
-
-        -- Handle New 4.1 hideCaster flag with backwards compatibility
-	if clientVersion < 40100 then
-		hideCaster, srcguid, srcname, srcflg, dstguid, dstname, dstflg, spellId, name = nil, hideCaster, srcguid, srcname, srcflg, dstguid, dstname, dstflg, spellId
-	end
-
+function GridStatusRaidDebuff:ScanNewDebuff(e, ts, event, hideCaster, srcguid, srcname, srcflg, srcraidflg, dstguid, dstname, dstflg, dstraidflg, spellId, name)
 	local settings = self.db.profile["alert_RaidDebuff"]
 	if (settings.enable and debuff_list[realzone]) then
 		if event == "SPELL_AURA_APPLIED" and srcguid and not GridRoster:IsGUIDInRaid(srcguid) and GridRoster:IsGUIDInRaid(dstguid)
