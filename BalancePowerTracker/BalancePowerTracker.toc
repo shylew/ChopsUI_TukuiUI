@@ -1,0 +1,11 @@
+## Interface: 40200
+## Title: BalancePowerTracker
+## Version: 1.2.1
+## Author: Kurohoshi (EU-Minahonda)
+## SavedVariables: BalancePowerTracker_DB
+## Notes: Tracker for Moonkin energy.
+
+Embeds.xml
+
+BalancePowerTracker.lua
+ModuleLoader.lua

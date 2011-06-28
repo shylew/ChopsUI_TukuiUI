@@ -1,0 +1,9 @@
+## Interface: 40200
+## Title: BalancePowerTracker_Options
+## Version: 1.0.0
+## Author: Kurohoshi (EU-Minahonda)
+## Notes: BPT's Options were moved into a neew AddOn
+## LoadOnDemand: 1
+## Dependencies: BalancePowerTracker
+
+BalancePowerTracker_Options.xml
