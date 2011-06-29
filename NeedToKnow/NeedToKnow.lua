@@ -14,7 +14,7 @@ NeedToKnow = {}
 
 -- NEEDTOKNOW = {} is defined in the localization file, which must be loaded before this file
 
-NEEDTOKNOW.VERSION = "3.2.06"
+NEEDTOKNOW.VERSION = "3.2.07"
 NEEDTOKNOW.MAXGROUPS = 4
 NEEDTOKNOW.MAXBARS = 6
 NEEDTOKNOW.UPDATE_INTERVAL = 0.05
@@ -206,7 +206,7 @@ function NeedToKnow.ExecutiveFrame_COMBAT_LOG_EVENT_UNFILTERED(time, event, hide
     time = GetTime() 
     -- TODO: Is checking r.state sufficient or must event be checked instead?
     if ( guidCaster == NeedToKnow.guidPlayer ) then
-        local guidTarget, _, _, _, spell = select(3, ...)
+        local guidTarget, _, _, _, _, spell = select(4, ...)
         local r = NeedToKnow.last_cast[spell]
         if ( r and r.state == 2) then
             r.state = 0
@@ -813,9 +813,9 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
         local combatEvent = select(2, ...)
 
         if ( NEEDTOKNOW.AURAEVENTS[combatEvent] ) then
-            local guidTarget = select(7, ...)
+            local guidTarget = select(8, ...)
             if ( guidTarget == UnitGUID(self.unit) ) then
-                local idSpell, nameSpell = select(10, ...)
+                local idSpell, nameSpell = select(12, ...)
                 if (self.auraName:find(idSpell) or
                      self.auraName:find(nameSpell)) 
                 then 
@@ -823,7 +823,7 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
                 end
             end
         elseif ( combatEvent == "UNIT_DIED" ) then
-            local guidDeceased = select(7, ...) 
+            local guidDeceased = select(8, ...) 
             if ( guidDeceased == UnitGUID(self.unit) ) then
                 NeedToKnow.Bar_AuraCheck(self)
             end
@@ -1267,6 +1267,17 @@ function NeedToKnow.GetSpellCooldown(bar, barSpell)
     local start, cd_len, enable = GetSpellCooldown(barSpell)
     if start and start > 0 then
         local spellName, spellRank, spellIconPath, _, _, spellPower = GetSpellInfo(barSpell)
+        if not spellName then 
+            if not NeedToKnow.GSIBroken then 
+                NeedToKnow.GSIBroken = {} 
+            end
+            if  not NeedToKnow.GSIBroken[barSpell] then
+                print("NeedToKnow: Warning! Unable to get spell info for "..barSpell..".  Try using Spell ID instead.")
+                NeedToKnow.GSIBroken[barSpell] = true;
+            end
+            spellName = barSpell
+        end
+
         if 0 == enable then 
             -- Filter out conditions like Stealth while stealthed
             start = nil
