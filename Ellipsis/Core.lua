@@ -93,7 +93,7 @@ do
 	end
 
 	-- This is included here for speed mainly, as it saves on a few table lookups on a rapidly firing event
-	local function CLEUEvent(frame, event, hideCaster, time, cleuEvent, sguid, sname, sflags, dguid)
+	local function CLEUEvent(frame, event, time, cleuEvent, sguid, sname, sflags, dguid)
 		if (cleuEvent == 'UNIT_DIED' and activeGUIDS[dguid]) then
 			Ellipsis:DestroyTarget(dguid)
 		end
@@ -170,7 +170,7 @@ function Ellipsis:OnEnable()
 	-- Most loading pushed back to OnEnable due to some missing data (player GUID mainly) when init is called.
 	self.playerGUID = UnitGUID('player') -- constant after init
 
-	--self:DefineClassSpells()
+	self:DefineClassSpells()
 	self:InitializeCooldowns() -- not technically an init, but it is only done once
 	self:ApplyConfigSettings() -- also called when config is changed
 

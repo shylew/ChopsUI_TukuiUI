@@ -101,6 +101,7 @@ do
 	local GetContainerItemCooldown = _G.GetContainerItemCooldown
 	local GetTime = _G.GetTime
 	local strfind = _G.strfind
+	local math_max = math.max
 	local BT_SPELL, BT_PET = BOOKTYPE_SPELL, BOOKTYPE_PET
 	local bTime, bStart, bDur, bT
 	local pTime, pStart, pDur, pT
@@ -194,12 +195,15 @@ do
 		for name, data in pairs(spellCooldowns) do
 			sStart, sDur = GetSpellCooldown(data.id, BT_SPELL)
 
-			if (sDur >= minTime and sDur <= maxTime and not cdDoNotTrack[name]) then
+			if (not cdDoNotTrack[name]) then
 				sT = data.isGroupSpell and activeCDTimers[data.group] or activeCDTimers[name] or nil
+
 				if (sT) then
 					sT.valid = sTime
-				else
-					-- no timer (or group timer) started, make one
+					if (sT.finish > sTime) then
+						sT.finish = sStart + sDur
+					end
+				elseif (sDur >= minTime and sDur <= maxTime) then
 					self:CreateCDTimer(data.isGroupSpell and data.group or name, data.icon, sDur, sStart, sTime, 1)
 				end
 			end
@@ -373,6 +377,8 @@ do
 		local index, name = 1, GetSpellBookItemName(1, BOOKTYPE_SPELL)
 		local last
 
+		local isPriest, archangel = (select(2, UnitClass('player')) == 'PRIEST') and true or false, GetSpellInfo(87152) -- awkward archangel, stupid priests
+
 		while (name) do
 			if (name ~= last) then
 				last = name
@@ -381,7 +387,11 @@ do
 				tipRight4:SetText('')
 				tip:SetSpellBookItem(index, BOOKTYPE_SPELL)
 
-				if (strfind(tipRight2:GetText() or '', spCooldown) or strfind(tipRight3:GetText() or '', spCooldown) or strfind(tipRight4:GetText() or '', spCooldown)) then
+				if (strfind(tipRight2:GetText() or '', spCooldown) or
+					strfind(tipRight3:GetText() or '', spCooldown) or
+					strfind(tipRight4:GetText() or '', spCooldown) or
+					(isPriest and name == archangel)
+				) then
 					-- this spell has a cooldown, store its data
 					if (not spellCooldowns[name]) then
 						spellCooldowns[name] = {
