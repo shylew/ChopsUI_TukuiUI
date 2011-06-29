@@ -25,15 +25,102 @@ end
 
 ------------------------------------------------------------------------
 
-function GridLayout_InitialConfigFunction(frame)
-	Grid:GetModule("GridFrame").InitialConfigFunction(frame)
+GridLayout.prototype = { }
+
+function GridLayout.prototype:Reset()
+	self:Hide()
+
+	self:SetAttribute("showPlayer", true)
+
+	self:SetAttribute("showSolo", true)
+	self:SetAttribute("showParty", true)
+	self:SetAttribute("showRaid", true)
+
+	self:SetAttribute("columnSpacing", nil)
+	self:SetAttributeByProxy("columnAnchorPoint", nil)
+	self:SetAttribute("groupBy", nil)
+	self:SetAttribute("groupFilter", nil)
+	self:SetAttribute("groupingOrder", nil)
+	self:SetAttribute("maxColumns", nil)
+	self:SetAttribute("nameList", nil)
+	self:SetAttributeByProxy("point", nil)
+	self:SetAttribute("sortDir", nil)
+	self:SetAttribute("sortMethod", "NAME")
+	self:SetAttribute("startingIndex", nil)
+	self:SetAttribute("strictFiltering", nil)
+	self:SetAttributeByProxy("unitsPerColumn", nil)
+	self:SetAttribute("xOffset", nil)
+	self:SetAttribute("yOffset", nil)
+
+	self:UnregisterEvent("UNIT_NAME_UPDATE")
+end
+
+function GridLayout.prototype:SetAttributeByProxy(name, value)
+	if name == "point" or name == "columnAnchorPoint" or name == "unitsPerColumn" then
+		GridLayout:Debug("SetAttributeByProxy " .. name .. " " .. tostring(value) .. " " .. self:GetName())
+		local count = 1
+		local uframe = self:GetAttribute("child" .. count)
+		while uframe do
+			-- GridLayout:Debug("ClearAllPoints " .. uframe:GetName())
+			uframe:ClearAllPoints()
+			count = count + 1
+			uframe = self:GetAttribute("child" .. count)
+		end
+	end
+	self:SetAttribute(name, value)
+end
+
+-- nil or false for vertical
+function GridLayout.prototype:SetOrientation(horizontal)
+	local p = GridLayout.db.profile
+	local groupAnchor = p.groupAnchor
+	local padding = p.Padding
+
+	local xOffset, yOffset, point
+
+	if horizontal then
+		if groupAnchor == "TOPLEFT" or groupAnchor == "BOTTOMLEFT" then
+			xOffset = padding
+			yOffset = 0
+			point = "LEFT"
+		else
+			xOffset = -padding
+			yOffset = 0
+			point = "RIGHT"
+		end
+	else
+		if groupAnchor == "TOPLEFT" or groupAnchor == "TOPRIGHT" then
+			xOffset = 0
+			yOffset = -padding
+			point = "TOP"
+		else
+			xOffset = 0
+			yOffset = padding
+			point = "BOTTOM"
+		end
+	end
+
+	self:SetAttributeByProxy("point", point)
+	self:SetAttribute("xOffset", xOffset)
+	self:SetAttribute("yOffset", yOffset)
+end
+
+-- return the number of visible units belonging to the GroupHeader
+function GridLayout.prototype:GetVisibleUnitCount()
+	local count = 0
+	while self:GetAttribute("child" .. count) do
+		count = count + 1
+	end
+	return count
 end
 
 ------------------------------------------------------------------------
 
-GridLayout.prototype = { }
-
 local NUM_HEADERS = 0
+
+function GridLayout_InitialConfigFunction(frame)
+	Grid:GetModule("GridFrame").InitialConfigFunction(frame)
+end
 
 function GridLayout:CreateHeader(isPetGroup)
 	NUM_HEADERS = NUM_HEADERS + 1
@@ -80,78 +167,6 @@ function GridLayout:CreateHeader(isPetGroup)
 	-- header:SetOrientation()
 
 	return header
-end
-
-function GridLayout.prototype:Reset()
-	self:Hide()
-
-	self:SetAttribute("showPlayer", true)
-
-	self:SetAttribute("showSolo", true)
-	self:SetAttribute("showParty", true)
-	self:SetAttribute("showRaid", true)
-
-	self:SetAttribute("columnSpacing", nil)
-	self:SetAttribute("columnAnchorPoint", nil)
-	self:SetAttribute("groupBy", nil)
-	self:SetAttribute("groupFilter", nil)
-	self:SetAttribute("groupingOrder", nil)
-	self:SetAttribute("maxColumns", nil)
-	self:SetAttribute("nameList", nil)
-	self:SetAttribute("point", nil)
-	self:SetAttribute("sortDir", nil)
-	self:SetAttribute("sortMethod", "NAME")
-	self:SetAttribute("startingIndex", nil)
-	self:SetAttribute("strictFiltering", nil)
-	self:SetAttribute("unitsPerColumn", nil)
-	self:SetAttribute("xOffset", nil)
-	self:SetAttribute("yOffset", nil)
-
-	self:UnregisterEvent("UNIT_NAME_UPDATE")
-end
-
--- nil or false for vertical
-function GridLayout.prototype:SetOrientation(horizontal)
-	local p = GridLayout.db.profile
-	local groupAnchor = p.groupAnchor
-	local padding = p.Padding
-
-	local xOffset, yOffset, point
-
-	if horizontal then
-		if groupAnchor == "TOPLEFT" or groupAnchor == "BOTTOMLEFT" then
-			xOffset = padding
-			yOffset = 0
-			point = "LEFT"
-		else
-			xOffset = -padding
-			yOffset = 0
-			point = "RIGHT"
-		end
-	else
-		if groupAnchor == "TOPLEFT" or groupAnchor == "TOPRIGHT" then
-			xOffset = 0
-			yOffset = -padding
-			point = "TOP"
-		else
-			xOffset = 0
-			yOffset = padding
-			point = "BOTTOM"
-		end
-	end
-
-	self:SetAttribute("xOffset", xOffset)
-	self:SetAttribute("yOffset", yOffset)
-	self:SetAttribute("point", point)
-end
-
--- return the number of visible units belonging to the GroupHeader
-function GridLayout.prototype:GetVisibleUnitCount()
-	local count = 0
-	while self:GetAttribute("child" .. count) do
-		count = count + 1
-	end
-	return count
 end
 
 ------------------------------------------------------------------------
@@ -611,7 +626,7 @@ local function GridLayout_OnMouseDown(frame, button)
 		else
 			GridLayout:StartMoveFrame()
 		end
-	elseif button == "RightButton" then
+	elseif button == "RightButton" and frame == GridLayoutFrameTab and not InCombatLockdown() then
 		local dialog = LibStub("AceConfigDialog-3.0")
 		if dialog.OpenFrames["Grid"] then
 			dialog:Close("Grid")
@@ -778,10 +793,11 @@ end
 
 function GridLayout:AddLayout(layoutName, layout)
 	self.layoutSettings[layoutName] = layout
-	for _, party_type in ipairs(GridRoster.party_states) do
-	--	local options = self.options.args[party_type .. "layout"]
+	for i = 1, #GridRoster.party_states do
+		local party_type_layout = GridRoster.party_states[i] .. "layout"
+	--	local options = self.options.args[party_type_layout]
 	--	if options then
-			self.options.args[party_type .. "layout"].values[layoutName] = layoutName
+			self.options.args[party_type_layout].values[layoutName] = layoutName
 	--	end
 	end
 end
@@ -832,8 +848,8 @@ function GridLayout:LoadLayout(layoutName)
 
 	local groupsNeeded, groupsAvailable, petGroupsNeeded, petGroupsAvailable = 0, #self.layoutGroups, 0, #self.layoutPetGroups
 
-	for _, l in ipairs(layout) do
-		if l.isPetGroup then
+	for i = 1, #layout do
+		if layout[i].isPetGroup then
 			petGroupsNeeded = petGroupsNeeded + 1
 		else
 			groupsNeeded = groupsNeeded + 1
@@ -861,7 +877,9 @@ function GridLayout:LoadLayout(layoutName)
 	local defaults = layout.defaults
 	local iGroup, iPetGroup = 1, 1
 	-- configure groups
-	for i, l in ipairs(layout) do
+	for i = 1, #layout do
+		local l = layout[i]
+
 		local layoutGroup
 		if l.isPetGroup then
 			layoutGroup = self.layoutPetGroups[iPetGroup]
@@ -877,16 +895,16 @@ function GridLayout:LoadLayout(layoutName)
 		if defaults then
 			for attr, value in pairs(defaults) do
 				if attr == "unitsPerColumn" then
-					layoutGroup:SetAttribute("unitsPerColumn", value)
+					layoutGroup:SetAttributeByProxy("unitsPerColumn", value)
+					layoutGroup:SetAttributeByProxy("columnAnchorPoint", getColumnAnchorPoint(p.groupAnchor, p.horizontal))
 					layoutGroup:SetAttribute("columnSpacing", p.Padding)
-					layoutGroup:SetAttribute("columnAnchorPoint", getColumnAnchorPoint(p.groupAnchor, p.horizontal))
 				elseif attr == "useOwnerUnit" then
 					-- related to fix for using SecureActionButtonTemplate, see GridLayout:CreateHeader()
 					if value == true then
 						layoutGroup:SetAttribute("unitsuffix", nil)
 					end
 				else
-					layoutGroup:SetAttribute(attr, value)
+					layoutGroup:SetAttributeByProxy(attr, value)
 				end
 			end
 		end
@@ -894,16 +912,16 @@ function GridLayout:LoadLayout(layoutName)
 		-- apply settings
 		for attr, value in pairs(l) do
 			if attr == "unitsPerColumn" then
-				layoutGroup:SetAttribute("unitsPerColumn", value)
+				layoutGroup:SetAttributeByProxy("unitsPerColumn", value)
+				layoutGroup:SetAttributeByProxy("columnAnchorPoint", getColumnAnchorPoint(p.groupAnchor, p.horizontal))
 				layoutGroup:SetAttribute("columnSpacing", p.Padding)
-				layoutGroup:SetAttribute("columnAnchorPoint", getColumnAnchorPoint(p.groupAnchor, p.horizontal))
 			elseif attr == "useOwnerUnit" then
 				-- related to fix for using SecureActionButtonTemplate, see GridLayout:CreateHeader()
 				if value == true then
 					layoutGroup:SetAttribute("unitsuffix", nil)
 				end
 			elseif attr ~= "isPetGroup" then
-				layoutGroup:SetAttribute(attr, value)
+				layoutGroup:SetAttributeByProxy(attr, value)
 			end
 		end
 
@@ -957,7 +975,8 @@ function GridLayout:UpdateSize()
 
 	local Padding, Spacing = p.Padding, p.Spacing * 2
 
-	for _, layoutGroup in ipairs(self.layoutGroups) do
+	for i = 1, #self.layoutGroups do
+		local layoutGroup = self.layoutGroups[i]
 		if layoutGroup:IsVisible() then
 			groupCount = groupCount + 1
 			local width, height = layoutGroup:GetWidth(), layoutGroup:GetHeight()
@@ -968,7 +987,8 @@ function GridLayout:UpdateSize()
 		end
 	end
 
-	for _, layoutGroup in ipairs(self.layoutPetGroups) do
+	for i = 1, #self.layoutPetGroups do
+		local layoutGroup = self.layoutPetGroups[i]
 		if layoutGroup:IsVisible() then
 			groupCount = groupCount + 1
 			local width, height = layoutGroup:GetWidth(), layoutGroup:GetHeight()

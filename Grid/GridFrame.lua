@@ -29,25 +29,11 @@ local function GridFrame_OnAttributeChanged(self, name, value)
 	end
 end
 
-local function GridFrame_Initialize(self)
+GridFrame.InitialConfigFunction = function(self)
 	GridFrame:RegisterFrame(self)
 
 	self:SetScript("OnShow", GridFrame_OnShow)
 	self:SetScript("OnAttributeChanged", GridFrame_OnAttributeChanged)
-end
-
-local function GridFrame_OnClearAllPoints(self)
-	-- print( self:GetName(), "ClearAllPoints" )
-	self.clearedPoints = true
-end
-
-local function GridFrame_OnSetPoint(self, p1, p, p2, x, y)
-	-- print( self:GetName(), self.clearedPoints and "CLEAR" or "CONFLICT", "SetPoint", p1 or "nil", type(p) == "table" and p.GetName and p:GetName() or "nil", p2 or "nil", x or "nil", y or "nil" )
-	if not self.clearedPoints and not InCombatLockdown() then
-		self:ClearAllPoints()
-		self:SetPoint(p1, p, p2, x, y)
-	end
-	self.clearedPoints = nil
 end
 
 ------------------------------------------------------------------------
@@ -205,10 +191,6 @@ function GridFrame:InitializeFrame(frame)
 	ClickCastFrames = ClickCastFrames or {}
 	ClickCastFrames[frame] = true
 
-	self.clearedPoints = true
-	hooksecurefunc(frame, "ClearAllPoints", GridFrame_OnClearAllPoints)
-	hooksecurefunc(frame, "SetPoint", GridFrame_OnSetPoint)
-
 	return frame
 end
 
@@ -229,8 +211,8 @@ GridFrame.prototype.indicators = {
 }
 
 function GridFrame.prototype:Reset()
-	for _,indicator in ipairs(self.indicators) do
-		self:ClearIndicator(indicator.type)
+	for i = 1, #self.indicators do
+		self:ClearIndicator(self.indicators[i].type)
 	end
 	self:SetBorderSize(GridFrame.db.profile.borderSize)
 	self:SetOrientation(GridFrame.db.profile.orientation)
@@ -743,10 +725,6 @@ function GridFrame.prototype:ClearIndicator(indicator)
 		self.IconCD:Hide()
 	end
 end
-
-------------------------------------------------------------------------
-
-GridFrame.InitialConfigFunction = GridFrame_Initialize
 
 ------------------------------------------------------------------------
 
@@ -1495,7 +1473,8 @@ end
 function GridFrame:UpdateOptionsMenu()
 	self:Debug("UpdateOptionsMenu()")
 
-	for _, indicator in ipairs(self.prototype.indicators) do
+	for i = 1, #self.prototype.indicators do
+		local indicator = self.prototype.indicators[i]
 		self:UpdateOptionsForIndicator(indicator.type, indicator.name, indicator.order)
 	end
 end
