@@ -78,6 +78,7 @@ L["Critical"] = "치명타"
 L["Crushing"] = "강타"
 L["Current"] = "현재"
 L["DPS"] = "DPS"
+-- L["DTPS"] = ""
 L["Damage"] = "데미지"
 L["Damage done"] = "데미지" -- Needs review
 L["Damage done per player"] = "플레이어별 받은 피해량"

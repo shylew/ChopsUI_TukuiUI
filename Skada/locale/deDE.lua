@@ -77,6 +77,7 @@ L["Critical"] = "Kritischer Treffer"
 L["Crushing"] = "Schmetternd"
 L["Current"] = "Momentaner Kampf"
 L["DPS"] = "DPS"
+L["DTPS"] = "Erhaltener Schaden pro Sekunde" -- Needs review
 L["Damage"] = "Schaden"
 L["Damage done"] = "Schaden verursacht"
 L["Damage done per player"] = "Ausgeteilter Schaden pro Spieler"
