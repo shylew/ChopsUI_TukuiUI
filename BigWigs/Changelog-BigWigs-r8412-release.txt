@@ -1,9 +1,53 @@
 ------------------------------------------------------------------------
-r8406 | funkydude | 2011-06-28 21:53:23 +0000 (Tue, 28 Jun 2011) | 1 line
+r8412 | funkydude | 2011-06-30 02:27:57 +0000 (Thu, 30 Jun 2011) | 1 line
 Changed paths:
-   A /tags/r8406-release (from /trunk:8405)
+   A /tags/r8412-release (from /trunk:8411)
 
-Tagging as r8406-release
+Tagging as r8412-release
+------------------------------------------------------------------------
+r8411 | funkydude | 2011-06-29 23:29:13 +0000 (Wed, 29 Jun 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Rhyolith.lua
+
+Firelands/Rhyolith: nil check
+------------------------------------------------------------------------
+r8410 | funkydude | 2011-06-29 15:05:37 +0000 (Wed, 29 Jun 2011) | 1 line
+Changed paths:
+   M /trunk/Options/Options.lua
+
+BigWigs_Northrend is not in Durotar, 4.2 map id change.
+------------------------------------------------------------------------
+r8409 | funkydude | 2011-06-29 14:57:50 +0000 (Wed, 29 Jun 2011) | 1 line
+Changed paths:
+   M /trunk/Core/Core.lua
+
+remove a compat check
+------------------------------------------------------------------------
+r8408 | funkydude | 2011-06-29 14:35:15 +0000 (Wed, 29 Jun 2011) | 1 line
+Changed paths:
+   M /trunk/Options/BigWigs_Options.toc
+
+bump options toc, had a feeling I missed one...
+------------------------------------------------------------------------
+r8407 | ananhaid | 2011-06-29 09:08:46 +0000 (Wed, 29 Jun 2011) | 2 lines
+Changed paths:
+   M /trunk/Baradin/BigWigs_Baradin.toc
+   M /trunk/Baradin/Locales/zhCN.lua
+   M /trunk/Bastion/BigWigs_Bastion.toc
+   M /trunk/Bastion/Locales/zhCN.lua
+   M /trunk/Bastion/Locales/zhTW.lua
+   M /trunk/Blackwing/BigWigs_Blackwing.toc
+   M /trunk/Blackwing/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhTW.lua
+   M /trunk/Firelands/BigWigs_Firelands.toc
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+   M /trunk/Throne/BigWigs_Throne.toc
+   M /trunk/Throne/Locales/zhCN.lua
+   M /trunk/Throne/Locales/zhTW.lua
+
+BigWigs:
+- zhCN/zhTW update.
 ------------------------------------------------------------------------
 r8405 | Maat | 2011-06-28 21:49:37 +0000 (Tue, 28 Jun 2011) | 1 line
 Changed paths:
@@ -338,29 +382,4 @@ Changed paths:
 
 Alysrazor.lua fix power related spam
 Staghelm.lua start populating the module
-------------------------------------------------------------------------
-r8368 | pettigrow | 2011-05-28 14:18:37 +0000 (Sat, 28 May 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/BigWigs_Firelands.toc
-   M /trunk/Firelands/Locales/frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r8367 | Maat | 2011-05-28 12:05:25 +0000 (Sat, 28 May 2011) | 2 lines
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-   M /trunk/Firelands/Baleroc.lua
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Ragnaros.lua
-   M /trunk/Firelands/Rhyolith.lua
-   M /trunk/Firelands/Shannox.lua
-
-some cleanup
-populate the Ragnaros module
-------------------------------------------------------------------------
-r8366 | Maat | 2011-05-26 19:53:47 +0000 (Thu, 26 May 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Baleroc.lua
-
-start populating the module
 ------------------------------------------------------------------------
