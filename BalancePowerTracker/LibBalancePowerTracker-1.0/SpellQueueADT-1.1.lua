@@ -1,10 +1,11 @@
 -- Spell Queue ADT for Balance Druids
 -- Created by Kurohoshi (Minahonda-EU)
--- v1.1.7
+-- v1.1.8
 -- Can be used by any class, but it's designed for Balance Druids 
 -- Designed to use in BalancePowerTracker and LibBalancePowerTracker
 
 --[[Changelog:
+v1.1.8: Fixed lua error on Shooting stars proc
 v1.1.7: Removed SpecilaWR, no it's handled by LibBalancePowerTracker
 v1.1.6: Fixed SpecialWR bug and 4.1 fix
 		Changed SpellQueue:tonumber()
@@ -19,7 +20,7 @@ v1.1.2: Improved sWR calculation for missed wraths
 		Changed special, if 0 then 14, else 13, but it stores specialWR (0,1,2) (Merged two vars)
 --]]
 
-local version = {1,1,7};
+local version = {1,1,8};
 
 if (SpellQueueADT and SpellQueueADT:CompareVersion(version)) then return; end;
 
@@ -65,7 +66,7 @@ function SpellQueueADT:New()
 	
 	function SpellQueue:FinishCastingSpell(name,num,missChance) --returns true if it was an instant spell
 		if num ~= lastSpellCasting.num then --Instant
-			self:AddInstantSpell(name,specialWR,missChance)
+			self:AddInstantSpell(name,missChance)
 			
 			lastSpellCasting.n=false
 			lastSpellCasting.num=-1

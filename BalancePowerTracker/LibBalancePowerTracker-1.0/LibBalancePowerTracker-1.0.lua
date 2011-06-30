@@ -1,7 +1,7 @@
 --[[
 Interface: 4.2.0
 Title: LibBalancePowerTracker
-Version: 1.0.7
+Version: 1.0.8
 Author: Kurohoshi (EU-Minahonda)
 
 --INFO
@@ -76,6 +76,8 @@ Author: Kurohoshi (EU-Minahonda)
 		-> A lo mejor debería añadir una función para introducir los hechizos en la cola en función de cuando van a llegar en vez de cuando salieron.
 	
 --CHANGELOG
+v 1.0.8 SpellQueueADT updated
+
 v 1.0.7 Tier12 fully supported
 		Handling specialWR now here
 		Updated SpellQueueADT
@@ -118,7 +120,7 @@ v 1.0.1 Reduced the number of callbacks fired.
 v 1.0.0 Release
 --]]
 
-local version = {1,0,7};
+local version = {1,0,8};
 
 if (LibBalancePowerTracker and LibBalancePowerTracker:CompareVersion(version)) then return; end;
 
@@ -732,7 +734,7 @@ do --Tree ADT functions
 		if prob == 0 then sonMiss.prob,sonNormal.prob,sonDouble.prob = 0,0,0; return; end
 		
 		local euphoriaProb = ((((direction == "moon" and energy >=-40) or (direction == "sun"  and energy <=40) or (direction == "none")) and not virtualEclipse ) and vars.euphoria) or 0;
-
+		
 		sonMiss.prob = prob * element.mc;
 		sonDouble.prob = prob *(1-element.mc)* euphoriaProb 
 		sonNormal.prob = prob *(1-element.mc)*(1-euphoriaProb)

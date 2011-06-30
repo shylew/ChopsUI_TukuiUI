@@ -2,7 +2,7 @@ local libCompatibilityIssues = false;
 --[[
 Interface: 4.2.0
 Title: BalancePowerTracker
-Version: 1.2.1
+Version: 1.2.2
 Author: Kurohoshi (EU-Minahonda)
 
 --INFO
@@ -52,6 +52,8 @@ Author: Kurohoshi (EU-Minahonda)
 	Sometimes, if the target disappears (only if it's a pet and it's unsummoned) while a spell is flying, the spell would not be erased immediately.
 
 --CHANGELOG
+v 1.2.2 FIX; Lua error when Shooting stars proc
+
 v 1.2.1 FIX: Tier 12 fully supported now
 		CHANGE: LibBalancePowerTracker updated
 		CHANGE: Minor change due to reachEnd converted into VirtualEcipse (still using reachEnd)

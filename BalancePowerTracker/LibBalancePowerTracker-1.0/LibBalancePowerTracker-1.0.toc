@@ -1,6 +1,6 @@
 ## Interface: 40200
 ## Title: LibBalancePowerTracker 1.0
-## Version: 1.0.7
+## Version: 1.0.8
 ## Author: Kurohoshi (EU-Minahonda)
 ## Notes: Moonkin energy tracker library.
 
