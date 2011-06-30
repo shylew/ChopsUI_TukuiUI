@@ -83,7 +83,7 @@ local function createAnchor(frameName, title)
 			self:SetPoint(unpack(defaultPositions[self:GetName()]))
 		end
 	end
-	display:RefixPosition
+	display:RefixPosition()
   ChopsuiBigWigsReposition(frameName)
 	display:Hide()
 	return display

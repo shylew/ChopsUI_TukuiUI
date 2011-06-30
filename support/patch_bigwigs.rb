@@ -25,7 +25,7 @@ def patch_bars_plugin
   unless lua =~ /ChopsuiBigWigsReposition/
 
     # Add a call to ChopsUI to reposition the frames during initizliation
-    lua.gsub!(/display\:RefixPosition\(\)/, "display:RefixPosition\r\n  ChopsuiBigWigsReposition(frameName)")
+    lua.gsub!(/display\:RefixPosition\(\)/, "display:RefixPosition()\r\n  ChopsuiBigWigsReposition(frameName)")
 
     File.open(File.join('BigWigs_Plugins', 'Bars.lua'), 'w') { |f| f.puts lua }
 
@@ -40,7 +40,7 @@ def patch_messages_plugin
   unless lua =~ /ChopsuiBigWigsReposition/
 
     # Add a call to ChopsUI to reposition the frames during initizliation
-    lua.gsub!(/display\:RefixPosition\(\)/, "display:RefixPosition\r\n  ChopsuiBigWigsReposition(frameName)")
+    lua.gsub!(/display\:RefixPosition\(\)/, "display:RefixPosition()\r\n  ChopsuiBigWigsReposition(frameName)")
 
     File.open(File.join('BigWigs_Plugins', 'Messages.lua'), 'w') { |f| f.puts lua }
 

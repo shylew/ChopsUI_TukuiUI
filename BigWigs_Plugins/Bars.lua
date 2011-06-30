@@ -727,7 +727,7 @@ local function createAnchor(frameName, title)
 		end
 		self:SetWidth(db[self.w] or plugin.defaultDB[self.w])
 	end
-	display:RefixPosition
+	display:RefixPosition()
   ChopsuiBigWigsReposition(frameName)
 	display:Hide()
 	return display
