@@ -1,9 +1,118 @@
 ------------------------------------------------------------------------
-r8412 | funkydude | 2011-06-30 02:27:57 +0000 (Thu, 30 Jun 2011) | 1 line
+r8430 | funkydude | 2011-07-01 13:21:29 +0000 (Fri, 01 Jul 2011) | 1 line
 Changed paths:
-   A /tags/r8412-release (from /trunk:8411)
+   A /tags/r8430-release (from /trunk:8429)
 
-Tagging as r8412-release
+Tagging as r8430-release
+------------------------------------------------------------------------
+r8429 | mojosdojo | 2011-07-01 13:13:24 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Bethtilac.lua
+
+Bugfix.
+------------------------------------------------------------------------
+r8428 | rabbit | 2011-07-01 12:55:45 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Don't ding on the wounds, it would be too spammy I think.
+------------------------------------------------------------------------
+r8427 | rabbit | 2011-07-01 12:30:44 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+Use ej section header magic.
+------------------------------------------------------------------------
+r8426 | rabbit | 2011-07-01 12:25:33 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Staghelm.lua
+
+Don't close the proximity when other players remove their seeds.
+------------------------------------------------------------------------
+r8425 | rabbit | 2011-07-01 12:16:37 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Bethtilac.lua
+
+Clean up a bit.
+------------------------------------------------------------------------
+r8424 | rabbit | 2011-07-01 11:59:33 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Shannox.lua
+
+Tweak immolation warning.
+------------------------------------------------------------------------
+r8423 | rabbit | 2011-07-01 11:54:16 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Rhyolith.lua
+   M /trunk/Firelands/Shannox.lua
+
+I forgot that boss NPC IDs are static, and make the Safe message for Face Rage a positive message.
+------------------------------------------------------------------------
+r8422 | rabbit | 2011-07-01 11:38:53 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Rhyolith.lua
+
+Add obsidian armor to options.
+------------------------------------------------------------------------
+r8421 | rabbit | 2011-07-01 11:37:57 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Rhyolith.lua
+
+Add messages for obsidian stacks and spark/fragment spawns.
+------------------------------------------------------------------------
+r8420 | rabbit | 2011-07-01 10:51:02 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Add more Blazing Claw spell Ids.
+------------------------------------------------------------------------
+r8419 | rabbit | 2011-07-01 10:23:56 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Rhyolith.lua
+
+Add stomp cast warning+bar and change the stack warnings a bit.
+------------------------------------------------------------------------
+r8418 | Maat | 2011-07-01 09:50:06 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+small encoding fix
+------------------------------------------------------------------------
+r8417 | rabbit | 2011-07-01 09:20:43 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Redo the power based warnings and set berserk to 15min.
+------------------------------------------------------------------------
+r8416 | Maat | 2011-07-01 08:52:49 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Baleroc.lua
+
+add 1st blade timer
+------------------------------------------------------------------------
+r8415 | rabbit | 2011-07-01 08:38:19 +0000 (Fri, 01 Jul 2011) | 4 lines
+Changed paths:
+   M /trunk/Blackwing/Nefarian.lua
+   M /trunk/Core/Core.lua
+   M /trunk/Firelands/Alysrazor.lua
+
+* Add ej:sectionId support for option headers and use it on Alysrazor
+* Remove the Stolen Power "warnings" from Nef, why would we warn about that?
+* Add Tantrum and Gushing Wound warnings to Alysrazor and try to get wise to how the fight works, unsuccessfully.
+
+------------------------------------------------------------------------
+r8414 | Maat | 2011-06-30 22:40:46 +0000 (Thu, 30 Jun 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Baleroc.lua
+
+add blades
+------------------------------------------------------------------------
+r8413 | starinnia | 2011-06-30 03:35:37 +0000 (Thu, 30 Jun 2011) | 2 lines
+Changed paths:
+   M /trunk/Firelands/Shannox.lua
+
+Firelands/Shannox
+-add 10 man spellId for Immolation Trap and Face Rage
 ------------------------------------------------------------------------
 r8411 | funkydude | 2011-06-29 23:29:13 +0000 (Wed, 29 Jun 2011) | 1 line
 Changed paths:

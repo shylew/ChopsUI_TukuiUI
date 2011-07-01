@@ -1,6 +1,6 @@
 --[[
 Name: LibBabble-Boss-3.0
-Revision: $Rev: 345 $
+Revision: $Rev: 347 $
 Maintainers: ckknight, nevcairiel, Ackis
 Website: http://www.wowace.com/projects/libbabble-boss-3-0/
 Dependencies: None
@@ -8,7 +8,7 @@ License: MIT
 ]]
 
 local MAJOR_VERSION = "LibBabble-Boss-3.0"
-local MINOR_VERSION = 90000 + tonumber(("$Rev: 345 $"):match("%d+"))
+local MINOR_VERSION = 90000 + tonumber(("$Rev: 347 $"):match("%d+"))
 
 if not LibStub then error(MAJOR_VERSION .. " requires LibStub.") end
 local lib = LibStub("LibBabble-3.0"):New(MAJOR_VERSION, MINOR_VERSION)
@@ -852,7 +852,7 @@ elseif GAME_LOCALE == "deDE" then
 	["Algalon the Observer"] = "Algalon der Beobachter",
 	Altairus = "Altairus",
 	Altarius = "Altairus",
-	Alysrazor = "Alysrazar", -- Needs review
+	Alysrazor = "Alysrazar",
 	["Alzzin the Wildshaper"] = "Alzzin der Wildformer",
 	Amanitar = "Amanitar",
 	["Ambassador Flamelash"] = "Botschafter Flammenschlag",
@@ -902,7 +902,7 @@ elseif GAME_LOCALE == "deDE" then
 	Azuregos = "Azuregos",
 	["Bael'Gar"] = "Bael'Gar",
 	Baelog = "Baelog",
-	Baleroc = "Baloroc", -- Needs review
+	Baleroc = "Baloroc",
 	Balnazzar = "Balnazzar",
 	["Baltharus the Warborn"] = "Baltharus der Kriegsjünger",
 	["Bannok Grimaxe"] = "Bannok Grimmaxt",
@@ -918,7 +918,7 @@ elseif GAME_LOCALE == "deDE" then
 	["Bazil Thredd"] = "Bazil Thredd",
 	Bazzalan = "Bazzalan",
 	Beauty = "Bella",
-	["Beth'tilac"] = "Beth'tilac", -- Needs review
+	["Beth'tilac"] = "Beth'tilac",
 	["Black Guard Swordsmith"] = "Schwertschmied der schwarzen Wache",
 	["Blackheart the Inciter"] = "Schwarzherz der Hetzer",
 	["Blind Hunter"] = "Blinder Jäger",
@@ -1286,7 +1286,7 @@ elseif GAME_LOCALE == "deDE" then
 	["Lord Marrowgar"] = "Lord Mark'gar",
 	["Lord Overheat"] = "Fürst Gluthitze",
 	["Lord Pythas"] = "Lord Pythas",
-	["Lord Rhyolith"] = "Lord Rhyolith", -- Needs review
+	["Lord Rhyolith"] = "Lord Rhyolith",
 	["Lord Roccor"] = "Lord Roccor",
 	["Lord Sanguinar"] = "Fürst Blutdurst",
 	["Lord Serpentis"] = "Lord Serpentis",
@@ -1314,7 +1314,7 @@ elseif GAME_LOCALE == "deDE" then
 	["Maiden of Grief"] = "Maid der Trauer",
 	["Maiden of Virtue"] = "Tugendhafte Maid",
 	["Majordomo Executus"] = "Majordomus Exekutus",
-	["Majordomo Staghelm"] = "Majordomus Hirschhaupt", -- Needs review
+	["Majordomo Staghelm"] = "Majordomus Hirschhaupt",
 	["Mal'Ganis"] = "Mal'Ganis",
 	Malacrass = "Malacrass",
 	["Maleki the Pallid"] = "Maleki der Leichenblasse",
@@ -1362,7 +1362,7 @@ elseif GAME_LOCALE == "deDE" then
 	Nalorakk = "Nalorakk",
 	Nazan = "Nazan",
 	Nefarian = "Nefarian",
-	["Nefarian's End"] = "Nefarians Ende", -- Needs review
+	["Nefarian's End"] = "Nefarians Ende",
 	["Nekrum Gutchewer"] = "Nekrum der Ausweider",
 	["Nerub'enkan"] = "Nerub'enkan",
 	["Nethermancer Sepethrea"] = "Nethermantin Sepethrea",
@@ -1375,7 +1375,7 @@ elseif GAME_LOCALE == "deDE" then
 	["Novos the Summoner"] = "Novos der Beschwörer",
 	Noxxion = "Noxxion",
 	["Obsidian Sentinel"] = "Obsidianschildwache",
-	["Occu'thar"] = "Occu'thar", -- Needs review
+	["Occu'thar"] = "Occu'thar",
 	["Odo the Blindwatcher"] = "Odo der Blindseher",
 	Oggleflint = "Flintauge",
 	["Ogom the Wretched"] = "Ogom der Elende",
@@ -1492,7 +1492,7 @@ elseif GAME_LOCALE == "deDE" then
 	["Shadow of Leotheras"] = "Schatten von Leotheras",
 	["Shadowpriest Sezz'ziz"] = "Schattenpriester Sezz'ziz",
 	Shadron = "Shadron",
-	Shannox = "Shannox", -- Needs review
+	Shannox = "Shannox",
 	Shazzrah = "Shazzrah",
 	["Shirrak the Dead Watcher"] = "Shirrak der Totenwächter",
 	["Siamat, Lord of South Wind"] = "Siamat, Herrscher des Südwinds",
@@ -1667,8 +1667,8 @@ elseif GAME_LOCALE == "frFR" then
 	["Al'ar"] = "Al'ar",
 	["Algalon the Observer"] = "Algalon l'Observateur",
 	Altairus = "Altairus",
-	Altarius = "Altarius", -- Needs review
-	Alysrazor = "Alysrazor", -- Needs review
+	Altarius = "Altarius",
+	Alysrazor = "Alysrazor",
 	["Alzzin the Wildshaper"] = "Alzzin le Modeleur",
 	Amanitar = "Amanitar",
 	["Ambassador Flamelash"] = "Ambassadeur Cinglefouet",
@@ -1718,7 +1718,7 @@ elseif GAME_LOCALE == "frFR" then
 	Azuregos = "Azuregos",
 	["Bael'Gar"] = "Bael'Gar",
 	Baelog = "Baelog",
-	Baleroc = "Baleroc", -- Needs review
+	Baleroc = "Baleroc",
 	Balnazzar = "Balnazzar",
 	["Baltharus the Warborn"] = "Baltharus l'Enfant de la guerre",
 	["Bannok Grimaxe"] = "Bannok Hache-sinistre",
@@ -1734,7 +1734,7 @@ elseif GAME_LOCALE == "frFR" then
 	["Bazil Thredd"] = "Bazil Thredd",
 	Bazzalan = "Bazzalan",
 	Beauty = "La Belle",
-	["Beth'tilac"] = "Beth'tilac", -- Needs review
+	["Beth'tilac"] = "Beth'tilac",
 	["Black Guard Swordsmith"] = "Fabricant d'épées de la Garde noire",
 	["Blackheart the Inciter"] = "Coeur-noir le Séditieux",
 	["Blind Hunter"] = "Chasseur aveugle",
@@ -1797,7 +1797,7 @@ elseif GAME_LOCALE == "frFR" then
 	["Crowd Pummeler 9-60"] = "Faucheur de foule 9-60",
 	["Crystal Fang"] = "Croc cristallin",
 	Cyanigosa = "Cyanigosa",
-	Daakara = "Daakara", -- Needs review
+	Daakara = "Daakara",
 	["Dalliah the Doomsayer"] = "Dalliah l'Auspice-funeste",
 	["Dalronn the Controller"] = "Dalronn le Contrôleur",
 	["Dark Coffer"] = "Coffre sombre",
@@ -1983,7 +1983,7 @@ elseif GAME_LOCALE == "frFR" then
 	["High Priestess Arlokk"] = "Grande prêtresse Arlokk",
 	["High Priestess Azil"] = "Grande prêtresse Azil",
 	["High Priestess Jeklik"] = "Grande prêtresse Jeklik",
-	["High Priestess Kilnara"] = "Grande prêtresse Kilnara", -- Needs review
+	["High Priestess Kilnara"] = "Grande prêtresse Kilnara",
 	["High Priestess Mar'li"] = "Grande prêtresse Mar'li",
 	["High Priestess of Thaurissan"] = "Grande prêtresse de Thaurissan",
 	["High Prophet Barim"] = "Grand prophète Barim",
@@ -2032,7 +2032,7 @@ elseif GAME_LOCALE == "frFR" then
 	["Jed Runewatcher"] = "Jed Guette-runes",
 	["Jedoga Shadowseeker"] = "Jedoga Cherchelombre",
 	["Jergosh the Invoker"] = "Jergosh l'Invocateur",
-	["Jin'do the Godbreaker"] = "Jin'do le Briseur de dieux", -- Needs review
+	["Jin'do the Godbreaker"] = "Jin'do le Briseur de dieux",
 	["Jin'do the Hexxer"] = "Jin'do le Maléficieur",
 	["Jormungar Behemoth"] = "Béhémoth jormungar",
 	Jormungars = "Jormungars",
@@ -2102,7 +2102,7 @@ elseif GAME_LOCALE == "frFR" then
 	["Lord Marrowgar"] = "Seigneur Gargamoelle",
 	["Lord Overheat"] = "Seigneur Surchauffe",
 	["Lord Pythas"] = "Seigneur Pythas",
-	["Lord Rhyolith"] = "Seigneur Rhyolith", -- Needs review
+	["Lord Rhyolith"] = "Seigneur Rhyolith",
 	["Lord Roccor"] = "Seigneur Roccor",
 	["Lord Sanguinar"] = "Seigneur Sanguinar",
 	["Lord Serpentis"] = "Seigneur Serpentis",
@@ -2130,7 +2130,7 @@ elseif GAME_LOCALE == "frFR" then
 	["Maiden of Grief"] = "Damoiselle de peine",
 	["Maiden of Virtue"] = "Damoiselle de vertu",
 	["Majordomo Executus"] = "Chambellan Executus",
-	["Majordomo Staghelm"] = "Chambellan Forteramure", -- Needs review
+	["Majordomo Staghelm"] = "Chambellan Forteramure",
 	["Mal'Ganis"] = "Mal'Ganis",
 	Malacrass = "Malacrass",
 	["Maleki the Pallid"] = "Maleki le Blafard",
@@ -2191,7 +2191,7 @@ elseif GAME_LOCALE == "frFR" then
 	["Novos the Summoner"] = "Novos l'Invocateur",
 	Noxxion = "Noxcion",
 	["Obsidian Sentinel"] = "Sentinelle d'obsidienne",
-	["Occu'thar"] = "Occu'thar", -- Needs review
+	["Occu'thar"] = "Occu'thar",
 	["Odo the Blindwatcher"] = "Odo l'Aveugle",
 	Oggleflint = "Lorgnesilex",
 	["Ogom the Wretched"] = "Ogom le Misérable",
@@ -2308,7 +2308,7 @@ elseif GAME_LOCALE == "frFR" then
 	["Shadow of Leotheras"] = "Ombre de Leotheras",
 	["Shadowpriest Sezz'ziz"] = "Prêtre des ombres Sezz'ziz",
 	Shadron = "Obscuron",
-	Shannox = "Shannox", -- Needs review
+	Shannox = "Shannox",
 	Shazzrah = "Shazzrah",
 	["Shirrak the Dead Watcher"] = "Shirrak le Veillemort",
 	["Siamat, Lord of South Wind"] = "Siamat, seigneur du vent du Sud",
@@ -2454,7 +2454,7 @@ elseif GAME_LOCALE == "frFR" then
 	["Yogg-Saron"] = "Yogg-Saron",
 	Yor = "Yor",
 	Ysondre = "Ysondre",
-	Zanzil = "Zanzil", -- Needs review
+	Zanzil = "Zanzil",
 	Zekkis = "Zekkis",
 	["Zelemar the Wrathful"] = "Zelemar le Courroucé",
 	["Zereketh the Unbound"] = "Zereketh le Délié",
@@ -2484,7 +2484,7 @@ elseif GAME_LOCALE == "koKR" then
 	["Algalon the Observer"] = "관찰자 알갈론",
 	Altairus = "알타이루스",
 	Altarius = "알타리우스",
-	-- Alysrazor = "",
+	Alysrazor = "알리스라조르",
 	["Alzzin the Wildshaper"] = "칼날바람 알진",
 	Amanitar = "아마니타르",
 	["Ambassador Flamelash"] = "사자 화염채찍",
@@ -2534,7 +2534,7 @@ elseif GAME_LOCALE == "koKR" then
 	Azuregos = "아주어고스",
 	["Bael'Gar"] = "벨가르",
 	Baelog = "밸로그",
-	-- Baleroc = "",
+	Baleroc = "문지기 발레록",
 	Balnazzar = "발나자르",
 	["Baltharus the Warborn"] = "전쟁의 아들 발타루스",
 	["Bannok Grimaxe"] = "반노크 그림액스",
@@ -2550,7 +2550,7 @@ elseif GAME_LOCALE == "koKR" then
 	["Bazil Thredd"] = "바질 스레드",
 	Bazzalan = "바잘란",
 	Beauty = "아름이",
-	-- ["Beth'tilac"] = "",
+	["Beth'tilac"] = "베스틸락",
 	["Black Guard Swordsmith"] = "검은호위대 검제작자",
 	["Blackheart the Inciter"] = "선동자 검은심장",
 	["Blind Hunter"] = "장님 사냥꾼",
@@ -2823,7 +2823,7 @@ elseif GAME_LOCALE == "koKR" then
 	Icehowl = "얼음울음",
 	Ichoron = "이코론",
 	Ick = "이크",
-	Ignacious = "이그나시우스", -- Needs review
+	Ignacious = "이그나시우스",
 	["Ignis the Furnace Master"] = "용광로 군주 이그니스",
 	["Illidan Stormrage"] = "일리단 스톰레이지",
 	["Illidari Council"] = "일리다리 의회",
@@ -2918,7 +2918,7 @@ elseif GAME_LOCALE == "koKR" then
 	["Lord Marrowgar"] = "군주 매로우가르",
 	["Lord Overheat"] = "군주 열지옥",
 	["Lord Pythas"] = "군주 피타스",
-	-- ["Lord Rhyolith"] = "",
+	["Lord Rhyolith"] = "군주 라이올리스",
 	["Lord Roccor"] = "불의군주 록코르",
 	["Lord Sanguinar"] = "군주 생귀나르",
 	["Lord Serpentis"] = "군주 서펜디스",
@@ -2946,7 +2946,7 @@ elseif GAME_LOCALE == "koKR" then
 	["Maiden of Grief"] = "고뇌의 마녀",
 	["Maiden of Virtue"] = "고결의 여신",
 	["Majordomo Executus"] = "청지기 이그젝큐투스",
-	-- ["Majordomo Staghelm"] = "",
+	["Majordomo Staghelm"] = "청지기 스태그헬름",
 	["Mal'Ganis"] = "말가니스",
 	Malacrass = "말라크라스",
 	["Maleki the Pallid"] = "냉혈한 말레키",
@@ -3007,7 +3007,7 @@ elseif GAME_LOCALE == "koKR" then
 	["Novos the Summoner"] = "소환사 노보스",
 	Noxxion = "녹시온",
 	["Obsidian Sentinel"] = "흑요석 파수꾼",
-	-- ["Occu'thar"] = "",
+	["Occu'thar"] = "오쿠타르",
 	["Odo the Blindwatcher"] = "눈먼감시자 오도",
 	Oggleflint = "오글플린트",
 	["Ogom the Wretched"] = "비운의 오그옴",
@@ -3124,7 +3124,7 @@ elseif GAME_LOCALE == "koKR" then
 	["Shadow of Leotheras"] = "레오테라스의 그림자",
 	["Shadowpriest Sezz'ziz"] = "어둠의사제 세즈지즈",
 	Shadron = "샤드론",
-	-- Shannox = "",
+	Shannox = "샤녹스",
 	Shazzrah = "샤즈라",
 	["Shirrak the Dead Watcher"] = "죽음의 감시인 쉴라크",
 	["Siamat, Lord of South Wind"] = "남풍 군주 시아마트",
@@ -3190,7 +3190,7 @@ elseif GAME_LOCALE == "koKR" then
 	["The Illidari Council"] = "일리다리 의회",
 	["The Iron Council"] = "무쇠 평의회",
 	["The Lich King"] = "리치 왕",
-	["The Lost Dwarves"] = "길잃은 드워프", -- Needs review
+	["The Lost Dwarves"] = "길 잃은 드워프",
 	["The Lurker Below"] = "심연의 잠복꾼",
 	["The Maker"] = "재앙의 창조자",
 	["The Prophet Skeram"] = "예언자 스케람",
@@ -4931,8 +4931,8 @@ elseif GAME_LOCALE == "ruRU" then
 	["Al'ar"] = "Ал'ар",
 	["Algalon the Observer"] = "Алгалон Наблюдатель",
 	Altairus = "Альтаирий",
-	Altarius = "Альтаирий", -- Needs review
-	-- Alysrazor = "",
+	Altarius = "Альтаирий",
+	Alysrazor = "Алисразор",
 	["Alzzin the Wildshaper"] = "Алззин Перевертень",
 	Amanitar = "Аманитар",
 	["Ambassador Flamelash"] = "Посол Огнехлыст",
@@ -4967,7 +4967,7 @@ elseif GAME_LOCALE == "ruRU" then
 	Asaad = "Асаад",
 	["Ascendant Council"] = "Совет Перерожденных",
 	["Ascendant Lord Obsidius"] = "Повелитель Перерожденных Обсидий",
-	-- ["Asim al Akir"] = "",
+	["Asim al Akir"] = "Ассад, калиф зефиров",
 	["Assault Bot"] = "Штурмовой робот",
 	["Assembly of Iron"] = "Железное собрание",
 	["Atal'alarion"] = "Атал'аларион",
@@ -4982,7 +4982,7 @@ elseif GAME_LOCALE == "ruRU" then
 	Azuregos = "Азурегос",
 	["Bael'Gar"] = "Бейл'Гор",
 	Baelog = "Бейлог",
-	-- Baleroc = "",
+	Baleroc = "Бейлрок, привратник",
 	Balnazzar = "Балназзар",
 	["Baltharus the Warborn"] = "Балтар Рожденный в Битве",
 	["Bannok Grimaxe"] = "Баннок Люторез",
@@ -4998,7 +4998,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Bazil Thredd"] = "Базиль Тредд",
 	Bazzalan = "Баззалан",
 	Beauty = "Красавица",
-	-- ["Beth'tilac"] = "",
+	["Beth'tilac"] = "Бет'тилак",
 	["Black Guard Swordsmith"] = "Оружейник Черной Стражи",
 	["Blackheart the Inciter"] = "Черносерд Проповедник",
 	["Blind Hunter"] = "Слепой охотник",
@@ -5037,7 +5037,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Chief Ukorz Sandscalp"] = "Вождь Укорз Песчаная Плешь",
 	Chimaeron = "Химерон",
 	["Cho'Rush the Observer"] = "Чо'Раш Наблюдатель",
-	["Cho'gall"] = "Чо'Галл", -- Needs review
+	["Cho'gall"] = "Чо'Галл",
 	Chromaggus = "Хроммагус",
 	["Chrono Lord Deja"] = "Повелитель времени Дежа",
 	["Chrono-Lord Epoch"] = "Хронолорд Эпох",
@@ -5061,7 +5061,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Crowd Pummeler 9-60"] = "Толпогон 9-60",
 	["Crystal Fang"] = "Хрустальный Клык",
 	Cyanigosa = "Синигоса",
-	Daakara = "Даакара", -- Needs review
+	Daakara = "Даакара",
 	["Dalliah the Doomsayer"] = "Далия Глашатай Судьбы",
 	["Dalronn the Controller"] = "Далронн Контролирующий",
 	["Dark Coffer"] = "Черный ящик",
@@ -5247,7 +5247,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["High Priestess Arlokk"] = "Верховная жрица Арлокк",
 	["High Priestess Azil"] = "Верховная жрица Азил",
 	["High Priestess Jeklik"] = "Верховная жрица Джеклик",
-	["High Priestess Kilnara"] = "Верховная жрица Килнара", -- Needs review
+	["High Priestess Kilnara"] = "Верховная жрица Килнара",
 	["High Priestess Mar'li"] = "Верховная жрица Мар'ли",
 	["High Priestess of Thaurissan"] = "Верховная жрица Тауриссана",
 	["High Prophet Barim"] = "Верховный пророк Барим",
@@ -5296,7 +5296,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Jed Runewatcher"] = "Джед Руновед",
 	["Jedoga Shadowseeker"] = "Джедога Искательница Теней",
 	["Jergosh the Invoker"] = "Жергош Призыватель Духов",
-	["Jin'do the Godbreaker"] = "Джин'до Низвержитель Богов", -- Needs review
+	["Jin'do the Godbreaker"] = "Джин'до Низвержитель Богов",
 	["Jin'do the Hexxer"] = "Джин'до Проклинатель",
 	["Jormungar Behemoth"] = "Йормунгарское чудовище",
 	Jormungars = "Йормунгары",
@@ -5366,7 +5366,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Lord Marrowgar"] = "Лорд Ребрад",
 	["Lord Overheat"] = "Лорд Пережар",
 	["Lord Pythas"] = "Лорд Питонас",
-	-- ["Lord Rhyolith"] = "",
+	["Lord Rhyolith"] = "Повелитель Риолит",
 	["Lord Roccor"] = "Лорд Роккор",
 	["Lord Sanguinar"] = "Лорд Сангвинар",
 	["Lord Serpentis"] = "Лорд Серпентис",
@@ -5394,7 +5394,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Maiden of Grief"] = "Дева Скорби",
 	["Maiden of Virtue"] = "Благочестивая дева",
 	["Majordomo Executus"] = "Мажордом Экзекутус",
-	-- ["Majordomo Staghelm"] = "",
+	["Majordomo Staghelm"] = "Мажордом Фэндрал Олений Шлем",
 	["Mal'Ganis"] = "Мал'Ганис",
 	Malacrass = "Малакрасс",
 	["Maleki the Pallid"] = "Малекай Бледный",
@@ -5442,7 +5442,7 @@ elseif GAME_LOCALE == "ruRU" then
 	Nalorakk = "Налоракк",
 	Nazan = "Назан",
 	Nefarian = "Нефариан",
-	-- ["Nefarian's End"] = "",
+	["Nefarian's End"] = "Гибель Нефариана",
 	["Nekrum Gutchewer"] = "Некрум Кишкожуй",
 	["Nerub'enkan"] = "Неруб'энкан",
 	["Nethermancer Sepethrea"] = "Пустомант Сепетрея",
@@ -5455,7 +5455,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Novos the Summoner"] = "Новос Призыватель",
 	Noxxion = "Ноксион",
 	["Obsidian Sentinel"] = "Обсидиановый часовой",
-	-- ["Occu'thar"] = "",
+	["Occu'thar"] = "Оку'тар",
 	["Odo the Blindwatcher"] = "Одо Слепой Страж",
 	Oggleflint = "Огглфлинт",
 	["Ogom the Wretched"] = "Огом Презренный",
@@ -5572,7 +5572,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Shadow of Leotheras"] = "Тень Леотераса",
 	["Shadowpriest Sezz'ziz"] = "Темный жрец Шезз'зиз",
 	Shadron = "Шадрон",
-	-- Shannox = "",
+	Shannox = "Шэннокс",
 	Shazzrah = "Шаззрах",
 	["Shirrak the Dead Watcher"] = "Ширрак Страж Мертвых",
 	["Siamat, Lord of South Wind"] = "Сиамат",
@@ -5718,7 +5718,7 @@ elseif GAME_LOCALE == "ruRU" then
 	["Yogg-Saron"] = "Йогг-Сарон",
 	Yor = "Йор",
 	Ysondre = "Исондра",
-	Zanzil = "Занзил", -- Needs review
+	Zanzil = "Занзил",
 	Zekkis = "Зеккис",
 	["Zelemar the Wrathful"] = "Зелемар Гневный",
 	["Zereketh the Unbound"] = "Зерекет Бездонный",
