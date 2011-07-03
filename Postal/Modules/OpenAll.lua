@@ -8,8 +8,9 @@ Postal_OpenAll.description2 = L[ [[|cFFFFCC00*|r Simple filters are available fo
 |cFFFFCC00*|r OpenAll will skip CoD mails and mails from Blizzard.
 |cFFFFCC00*|r Disable the Verbose option to stop the chat spam while opening mail.]] ]
 
+local MAX_MAIL_SHOWN = 50
 local mailIndex, attachIndex
-local origNumItems, origTotalItems
+local numUnshownItems
 local lastItem, lastNumAttach, lastNumGold
 local wait
 local button
@@ -65,8 +66,8 @@ refreshFrame:SetScript("OnUpdate", function(self, elapsed)
 end)
 function refreshFrame:OnEvent(event)
 	local current, total = GetInboxNumItems()
-	if current == 50 or current == total then
-		-- If we're here, then mailbox contains a full fresh 50 or
+	if current == MAX_MAIL_SHOWN or current == total then
+		-- If we're here, then mailbox contains a full fresh batch or
 		-- we're showing all the mail we have. Continue OpenAll in
 		-- 3 seconds to allow for other addons to do stuff.
 		self.time = 3
@@ -131,9 +132,8 @@ end
 
 function Postal_OpenAll:OpenAll(isRecursive)
 	refreshFrame:Hide()
-	-- Get mail counts
-	origNumItems, origTotalItems = GetInboxNumItems()
-	mailIndex = origNumItems
+	mailIndex, numUnshownItems = GetInboxNumItems()
+	numUnshownItems = numUnshownItems - mailIndex
 	attachIndex = ATTACHMENTS_MAX_RECEIVE
 	invFull = nil
 	invAlmostFull = nil
@@ -158,7 +158,7 @@ end
 function Postal_OpenAll:ProcessNext()
 	-- We need this because MAIL_INBOX_UPDATEs can now potentially
 	-- include mailbox refreshes since patch 4.0.3 (that is mail can
-	-- get inserted both at the back (old mail past 50) and at the front
+	-- get inserted both at the back (old mail) and at the front
 	-- (new mail received in the last 60 seconds))
 	local currentFirstMailDaysLeft = select(7, GetInboxHeaderInfo(1))
 	if currentFirstMailDaysLeft ~= firstMailDaysLeft then
@@ -287,9 +287,9 @@ function Postal_OpenAll:ProcessNext()
 		if attachIndex > 0 and (lootFlag or not invFull) then
 			-- If there's attachments, take the item
 			--Postal:Print("Getting Item from Message "..mailIndex..", "..attachIndex)
+			lastNumAttach, lastNumGold = Postal:CountItemsAndMoney()
 			TakeInboxItem(mailIndex, attachIndex)
 
-			lastNumAttach, lastNumGold = Postal:CountItemsAndMoney()
 			wait = true
 			-- Find next attachment index backwards
 			local attachIndex2 = attachIndex - 1
@@ -302,9 +302,9 @@ function Postal_OpenAll:ProcessNext()
 		elseif msgMoney > 0 then
 			-- No attachments, but there is money
 			--Postal:Print("Getting Gold from Message "..mailIndex)
+			lastNumAttach, lastNumGold = Postal:CountItemsAndMoney()
 			TakeInboxMoney(mailIndex)
 
-			lastNumAttach, lastNumGold = Postal:CountItemsAndMoney()
 			wait = true
 
 			updateFrame.lootingMoney = true
@@ -319,15 +319,15 @@ function Postal_OpenAll:ProcessNext()
 	else
 		-- Reached the end of opening all selected mail
 
-		-- If the numbers are different from previously
 		local numItems, totalItems = GetInboxNumItems()
-		if origNumItems ~= numItems or origTotalItems ~= totalItems then
+		if numUnshownItems ~= totalItems - numItems then
+			-- We will Open All again if the number of unshown items is different
+			return self:OpenAll(true) -- tail call
+		elseif totalItems > numItems and numItems < MAX_MAIL_SHOWN then
 			-- We only want to refresh if there's more items to show
-			if (totalItems > numItems and numItems < 50) or (origTotalItems > origNumItems) then
-				Postal:Print(L["Not all messages are shown, refreshing mailbox soon to continue Open All..."])
-				refreshFrame:Show()
-				return
-			end
+			Postal:Print(L["Not all messages are shown, refreshing mailbox soon to continue Open All..."])
+			refreshFrame:Show()
+			return
 		end
 
 		if IsAddOnLoaded("MrPlow") then

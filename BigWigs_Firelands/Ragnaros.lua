@@ -14,6 +14,7 @@ local seedWarned, intermission1warned, intermission2warned = false, false, false
 local blazingHeatTargets = mod:NewTargetList()
 local sons = 8
 local phase = 1
+local smashCD = 30
 local moltenSeed, handOfRagnaros, sulfurasSmash = (GetSpellInfo(98498)), (GetSpellInfo(98237)), (GetSpellInfo(98710))
 
 --------------------------------------------------------------------------------
@@ -26,8 +27,8 @@ if L then
 	L.intermission = "Intermission"
 	L.sons_left = "%d Sons Left"
 	L.engulfing_close = "Close %s"
-	L.engulfing_middle = "Far %s"
-	L.engulfing_far = "Middle %s"
+	L.engulfing_middle = "Middle %s"
+	L.engulfing_far = "Far %s"
 end
 L = mod:GetLocale()
 
@@ -54,7 +55,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_DAMAGE", "MoltenSeed", 98498, 100579)
 	self:Log("SPELL_CAST_START", "EngulfingFlames", 100175, 100171, 100181)
-
 	self:Log("SPELL_CAST_SUCCESS", "HandofRagnaros", 98237, 100383)
 	self:Log("SPELL_CAST_SUCCESS", "BlazingHeat", 100460)
 	self:Log("SPELL_CAST_START", "SulfurasSmash", 98710, 100890)
@@ -70,6 +70,7 @@ function mod:OnEngage(diff)
 	self:Bar(98710, sulfurasSmash, 30, 98710)
 	self:OpenProximity(6)
 	self:Berserk(600)
+	smashCD = 30
 	seedWarned, intermission1warned, intermission2warned = false, false, false
 	sons = 8
 	phase = 1
@@ -80,15 +81,17 @@ end
 --
 
 local function intermissionEnd()
+	phase = phase + 1
+	mod:SendMessage("BigWigs_StopBar", self, L["intermission"])
 	if phase == 2 and not intermission1warned then
+		smashCD = 40 -- need to confirm
 		intermission1warned = true
-		phase = phase + 1
 		mod:Bar(98498, moltenSeed, 15, 98498)
 		mod:Bar(98710, sulfurasSmash, 55, 98710) -- not sure if timer actually starts here
 		mod:Message(98953, CL["phase"]:format(phase), "Positive", 98953)
+		mod:OpenProximity(6)
 	elseif phase == 3 and not intermission2warned then
 		intermission2warned = true
-		phase = phase + 1
 		mod:OpenProximity(5)
 		-- this is just guesswork
 		mod:Bar(99317, (GetSpellInfo(99317)), 15, 99317) -- Living Meteor
@@ -116,7 +119,7 @@ end
 
 function mod:SulfurasSmash(_, spellId, _, _, spellName)
 	self:Message(98710, spellName, "Urgent", spellId, "Alarm")
-	self:Bar(98710, spellName, 41, spellId)
+	self:Bar(98710, spellName, smashCD, spellId)
 end
 
 function mod:EngulfingFlames(_, spellId, _, _, spellName)
@@ -136,7 +139,6 @@ do
 		mod:TargetMessage(100460, spellName, blazingHeatTargets, "Attention", 100460, "Info")
 		scheduled = nil
 	end
-
 	function mod:BlazingHeat(player, spellID, _, _, spellName)
 		blazingHeatTargets[#blazingHeatTargets + 1] = player
 		if UnitIsUnit(player, "player") then

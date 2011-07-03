@@ -1,9 +1,147 @@
 ------------------------------------------------------------------------
-r8430 | funkydude | 2011-07-01 13:21:29 +0000 (Fri, 01 Jul 2011) | 1 line
+r8452 | funkydude | 2011-07-02 21:21:15 +0000 (Sat, 02 Jul 2011) | 1 line
 Changed paths:
-   A /tags/r8430-release (from /trunk:8429)
+   A /tags/r8452-release (from /trunk:8451)
 
-Tagging as r8430-release
+Tagging as r8452-release
+------------------------------------------------------------------------
+r8451 | funkydude | 2011-07-02 21:13:07 +0000 (Sat, 02 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+   M /trunk/Firelands/Rhyolith.lua
+
+Alysrazor: change the way tantrum check is done
+Rhyolith: change the way molten armor check is done
+------------------------------------------------------------------------
+r8450 | Maat | 2011-07-02 19:40:18 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+use the correct power type as we figured out from the debug message
+------------------------------------------------------------------------
+r8449 | Maat | 2011-07-02 18:17:11 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Rhyolith.lua
+
+dont spam molten stacks on boss
+------------------------------------------------------------------------
+r8448 | jongt23 | 2011-07-02 17:27:46 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8447 | Maat | 2011-07-02 17:04:11 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Shannox.lua
+
+shorter the messages
+------------------------------------------------------------------------
+r8446 | zhTW | 2011-07-02 16:46:17 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/zhTW.lua
+
+zhTW Update.
+------------------------------------------------------------------------
+r8445 | funkydude | 2011-07-02 15:51:44 +0000 (Sat, 02 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Firelands/Locales/esES.lua
+   M /trunk/Firelands/Locales/frFR.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+
+Revert zhTW breakage, forget to use a UTF8 editor?
+frFR/esES fix for middle/far mixed around.
+------------------------------------------------------------------------
+r8444 | ananhaid | 2011-07-02 15:27:42 +0000 (Sat, 02 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+
+BigWigs:
+- zhCN/zhTW update.
+------------------------------------------------------------------------
+r8443 | Maat | 2011-07-02 14:48:32 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Throne/Alakir.lua
+
+feedback spellId fixes
+------------------------------------------------------------------------
+r8442 | Maat | 2011-07-02 14:30:01 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Shannox.lua
+
+add crystal trap warning, it needs testing (ticket 350)
+------------------------------------------------------------------------
+r8440 | funkydude | 2011-07-02 13:25:29 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+
+bump toc version
+------------------------------------------------------------------------
+r8439 | Maat | 2011-07-02 11:30:25 +0000 (Sat, 02 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Firelands/Bethtilac.lua
+   M /trunk/Firelands/Ragnaros.lua
+   M /trunk/Plugins/Proximity.lua
+
+Ragnaros.lua some untested fixes (ticket 347)
+Proximity.lua change back the map data for Firelands level 2-3
+------------------------------------------------------------------------
+r8438 | funkydude | 2011-07-02 02:17:10 +0000 (Sat, 02 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Plugins/Proximity.lua
+
+Plugins/Proximity: Update proximity data
+------------------------------------------------------------------------
+r8437 | jongt23 | 2011-07-01 22:30:28 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/esES.lua
+
+esES Update (fix typo)
+------------------------------------------------------------------------
+r8436 | jongt23 | 2011-07-01 21:52:01 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8435 | Maat | 2011-07-01 21:20:49 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Bethtilac.lua
+   M /trunk/Firelands/Locales/deDE.lua
+   M /trunk/Firelands/Locales/esES.lua
+   M /trunk/Firelands/Locales/frFR.lua
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+
+remove the unused locale too
+------------------------------------------------------------------------
+r8434 | Maat | 2011-07-01 21:17:59 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Bethtilac.lua
+
+fixes
+------------------------------------------------------------------------
+r8433 | jongt23 | 2011-07-01 16:47:56 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8432 | mojosdojo | 2011-07-01 16:19:00 +0000 (Fri, 01 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Blackwing/Locales/deDE.lua
+   M /trunk/Firelands/Locales/deDE.lua
+   M /trunk/Firelands/Ragnaros.lua
+
+* deDE update.
+* Small fix for Raggi.
+------------------------------------------------------------------------
+r8431 | pettigrow | 2011-07-01 13:46:34 +0000 (Fri, 01 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/frFR.lua
+
+frFR Update
 ------------------------------------------------------------------------
 r8429 | mojosdojo | 2011-07-01 13:13:24 +0000 (Fri, 01 Jul 2011) | 1 line
 Changed paths:

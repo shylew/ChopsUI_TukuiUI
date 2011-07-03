@@ -15,6 +15,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.safe = "%s safe"
 	L.immolation_trap = "Immolation on %s!"
+	L.crystaltrap = "Crystal Trap"
 end
 L = mod:GetLocale()
 
@@ -24,7 +25,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions(CL)
 	return {
-		100002, 101209,
+		100002, 101209, {99836, "SAY", "FLASHSHAKE"},
 		{100129, "ICON"},
 		"bosskill"
 	}, {
@@ -37,6 +38,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "FaceRage", 99945, 99947)
 	self:Log("SPELL_AURA_REMOVED", "FaceRageRemoved", 99945, 99947)
 	self:Log("SPELL_CAST_SUCCESS", "HurlSpear", 99978)
+	self:Log("SPELL_SUMMON", "CrystalTrap", 99836)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -50,6 +52,22 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+do
+	local function trapWarn()
+		if UnitExists("boss1target") then
+			mod:TargetMessage(99836, L["crystaltrap"], (UnitName("boss1target")), "Urgent", 99836, "Alarm")
+			if UnitIsUnit("boss1target", "player") then
+				mod:FlashShake(99836)
+				mod:Say(99836, CL["say"]:format(L["crystaltrap"]))
+			end
+		end
+	end
+
+	function mod:CrystalTrap()
+		self:ScheduleTimer(trapWarn, 0.2)
+	end
+end
 
 function mod:ImmolationTrap(player, spellId, _, _, spellName, _, _, _, _, dGUID)
 	local unitId = tonumber(dGUID:sub(7, 10), 16)

@@ -1,12 +1,12 @@
 local L = BigWigs:NewBossLocale("Beth'tilac", "zhTW")
 if not L then return end
 if L then
-	L.kiss_message = "%2$dx Kiss on %1$s"
+
 end
 
 L = BigWigs:NewBossLocale("Lord Rhyolith", "zhTW")
 if L then
-	L.phase2_message = "Immolation phase soon! Boss has %dx %s"
+	L.phase2_message = "獻祭階段即將到來! 首領有 %dx %s"
 end
 
 L = BigWigs:NewBossLocale("Alysrazor", "zhTW")
@@ -23,7 +23,7 @@ end
 
 L = BigWigs:NewBossLocale("Baleroc", "zhTW")
 if L then
-	L.torment_message = "%2$dx torment on %1$s"
+	L.torment_message = "%2$dx 層折磨在 %1$s"
 end
 
 L = BigWigs:NewBossLocale("Majordomo Staghelm", "zhTW")
@@ -36,7 +36,7 @@ if L then
 	L.intermission = "Intermission"
 	L.sons_left = "%d Sons Left"
 	L.engulfing_close = "Close %s"
-	L.engulfing_middle = "Far %s"
-	L.engulfing_far = "Middle %s"
+	L.engulfing_middle = "Middle %s"
+	L.engulfing_far = "Far %s"
 end
 

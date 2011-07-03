@@ -1,6 +1,6 @@
 --[[
 Name: LibBabble-Boss-3.0
-Revision: $Rev: 347 $
+Revision: $Rev: 348 $
 Maintainers: ckknight, nevcairiel, Ackis
 Website: http://www.wowace.com/projects/libbabble-boss-3-0/
 Dependencies: None
@@ -8,7 +8,7 @@ License: MIT
 ]]
 
 local MAJOR_VERSION = "LibBabble-Boss-3.0"
-local MINOR_VERSION = 90000 + tonumber(("$Rev: 347 $"):match("%d+"))
+local MINOR_VERSION = 90000 + tonumber(("$Rev: 348 $"):match("%d+"))
 
 if not LibStub then error(MAJOR_VERSION .. " requires LibStub.") end
 local lib = LibStub("LibBabble-3.0"):New(MAJOR_VERSION, MINOR_VERSION)
@@ -5877,7 +5877,7 @@ elseif GAME_LOCALE == "zhCN" then
 	["Crowd Pummeler 9-60"] = "群体打击者9-60",
 	["Crystal Fang"] = "水晶之牙",
 	Cyanigosa = "塞安妮苟萨",
-	Daakara = "达卡拉", -- Needs review
+	Daakara = "达卡拉",
 	["Dalliah the Doomsayer"] = "末日预言者达尔莉安",
 	["Dalronn the Controller"] = "控制者达尔隆",
 	["Dark Coffer"] = "黑暗宝箱",
@@ -5922,7 +5922,7 @@ elseif GAME_LOCALE == "zhCN" then
 	["Elder Stonebark"] = "石树长老",
 	["Electrocutioner 6000"] = "电刑器6000型",
 	Electron = "Electron", -- Needs review
-	["Elementium Monstrosity"] = "源质畸体", -- Needs review
+	["Elementium Monstrosity"] = "源质畸体",
 	["Emalon the Storm Watcher"] = "风暴看守者埃玛尔隆",
 	Emeriss = "艾莫莉丝",
 	["Emperor Dagran Thaurissan"] = "达格兰·索瑞森大帝",
@@ -5935,7 +5935,7 @@ elseif GAME_LOCALE == "zhCN" then
 	["Eressea Dawnsinger"] = "埃蕾希·晨歌",
 	["Eric \"The Swift\""] = "埃瑞克",
 	Erudax = "埃鲁达克",
-	["Erunak Stonespeaker"] = "Erunak Stonespeaker", -- Needs review
+	["Erunak Stonespeaker"] = "埃鲁纳克 Stonespeaker", -- Needs review
 	["Essence of Anger"] = "愤怒精华",
 	["Essence of Desire"] = "欲望精华",
 	["Essence of Suffering"] = "苦痛精华",
@@ -6063,7 +6063,7 @@ elseif GAME_LOCALE == "zhCN" then
 	["High Priestess Arlokk"] = "高阶祭司娅尔罗",
 	["High Priestess Azil"] = "高阶女祭司艾苏尔",
 	["High Priestess Jeklik"] = "高阶祭司耶克里克",
-	["High Priestess Kilnara"] = "High Priestess Kilnara", -- Needs review
+	["High Priestess Kilnara"] = "高阶祭司基尔娜拉",
 	["High Priestess Mar'li"] = "高阶祭司玛尔里",
 	["High Priestess of Thaurissan"] = "索瑞森高阶女祭司",
 	["High Prophet Barim"] = "高阶预言者巴林姆",
@@ -6112,7 +6112,7 @@ elseif GAME_LOCALE == "zhCN" then
 	["Jed Runewatcher"] = "杰德",
 	["Jedoga Shadowseeker"] = "耶戈达·觅影者",
 	["Jergosh the Invoker"] = "祈求者耶戈什",
-	["Jin'do the Godbreaker"] = "Jin'do the Godbreaker", -- Needs review
+	["Jin'do the Godbreaker"] = "碎神者金度",
 	["Jin'do the Hexxer"] = "妖术师金度",
 	["Jormungar Behemoth"] = "蛰猛巨虫",
 	Jormungars = "冰虫",
@@ -6258,7 +6258,7 @@ elseif GAME_LOCALE == "zhCN" then
 	Nalorakk = "纳洛拉克",
 	Nazan = "纳杉",
 	Nefarian = "奈法利安",
-	["Nefarian's End"] = "Nefarian's End", -- Needs review
+	["Nefarian's End"] = "奈法利安's End", -- Needs review
 	["Nekrum Gutchewer"] = "耐克鲁姆",
 	["Nerub'enkan"] = "奈鲁布恩坎",
 	["Nethermancer Sepethrea"] = "灵术师塞比瑟蕾",
