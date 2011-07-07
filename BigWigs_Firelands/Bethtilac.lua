@@ -26,6 +26,7 @@ if L then
 	L.devastate_bar = "~Next devastation"
 	L.drone_bar = "Next Cinderweb Drone"
 	L.drone_message = "Big drone incoming!"
+	L.kiss_message = "Kiss"
 end
 L = mod:GetLocale()
 
@@ -42,7 +43,7 @@ end
 
 function mod:GetOptions(CL)
 	return {
-		99052, "ej:2773",
+		{99052, "FLASHSHAKE"}, "ej:2773",
 		99506, 99497,
 		{99559, "FLASHSHAKE", "WHISPER"}, {99990, "FLASHSHAKE", "SAY"},
 		"bosskill"
@@ -95,8 +96,6 @@ do
 					mod:Say(99990, CL["say"]:format(burst))
 				end
 			end
-		else
-			mod:ScheduleTimer(broodlingWarn, 0.1)
 		end
 	end
 	function mod:BroodlingWatcher()
@@ -107,7 +106,7 @@ do
 end
 
 function mod:Fixate(player, spellId, _, _, spellName)
-	self:TargetMessage(99559, spellName, player, "Important", spellId, "Alarm")
+	self:TargetMessage(99559, spellName, player, "Attention", spellId, "Alarm")
 	if UnitIsUnit("player", player) then
 		self:FlashShake(99559)
 		self:Whisper(99559, player, CL["you"]:format(spellName))
@@ -122,13 +121,21 @@ function mod:Frenzy()
 end
 
 function mod:Kiss(player, spellId, _, _, spellName)
-	self:TargetMessage(99506, spellName, player, "Urgent", spellId)
+	self:TargetMessage(99506, L["kiss_message"], player, "Urgent", spellId)
 	-- We play the sound manually because TargetMessage strips it unless the target is the player
 	self:PlaySound(99506, "Info")
 end
 
-function mod:Devastate(_, spellId)
-	self:Message(99052, L["devastate_message"]:format(devastateCount), "Important", spellId, "Long")
+function mod:Devastate(_, spellId, _, _, spellName)
+	local name = GetSpellInfo(100048) --Fiery Web Silk
+	local hasDebuff = UnitDebuff("player", name)
+	if hasDebuff then
+		self:Message(99052, L["devastate_message"]:format(devastateCount), "Important", spellId, "Long")
+		self:FlashShake(99052)
+		self:Bar(99052, spellName, 8, spellId)
+	else
+		self:Message(99052, L["devastate_message"]:format(devastateCount), "Attention", spellId)
+	end
 	devastateCount = devastateCount + 1
 	-- This timer is only accurate if you dont fail with the Drones
 	-- Might need to use the bosses power bar or something to adjust this
