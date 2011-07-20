@@ -1580,6 +1580,7 @@ local masterProfile = {
  shadow			= { colorR = 0.628, colorG = 0, colorB = 0.628 },
  arcane			= { colorR = 1, colorG = 0.725, colorB = 1 },
  frostfire		= { colorR = 0.824, colorG = 0.314, colorB = 0.471 },
+ shadowflame	= { colorR = 0.824, colorG = 0.5, colorB = 0.628 },
 
 
  -- Class color settings.

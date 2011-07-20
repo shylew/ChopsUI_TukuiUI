@@ -1044,7 +1044,7 @@ end
 local function CreateDamageColors()
  local frame = CreatePopup()
  frame:SetWidth(260)
- frame:SetHeight(220)
+ frame:SetHeight(260)
 
  -- Close button.
  local button = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
@@ -1067,27 +1067,27 @@ local function CreateDamageColors()
  local anchor = checkbox
  local globalStringSchoolIndex = 0
  local colorswatch, fontString
- for damageType in string.gmatch("physical holy fire nature frost shadow arcane", "[^%s]+") do
+ for damageType, profileKey in pairs(MSBTMain.damageColorProfileEntries) do
   colorswatch = MSBTControls.CreateColorswatch(frame)
   colorswatch:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", anchor == checkbox and 20 or 0, anchor == checkbox and -10 or -5)
   colorswatch:SetColorChangedHandler(
    function (this)
-    MSBTProfiles.SetOption(damageType, "colorR", this.r)
-    MSBTProfiles.SetOption(damageType, "colorG", this.g)
-    MSBTProfiles.SetOption(damageType, "colorB", this.b)
+    MSBTProfiles.SetOption(profileKey, "colorR", this.r)
+    MSBTProfiles.SetOption(profileKey, "colorG", this.g)
+    MSBTProfiles.SetOption(profileKey, "colorB", this.b)
    end
   )
   checkbox = MSBTControls.CreateCheckbox(frame)
   objLocale = L.CHECKBOXES["colorDamageEntry"]
-  checkbox:Configure(24, _G["SPELL_SCHOOL" .. globalStringSchoolIndex .. "_CAP"], objLocale.tooltip)
+  checkbox:Configure(24, MSBTMain.damageTypeMap[damageType], objLocale.tooltip)
   checkbox:SetPoint("LEFT", colorswatch, "RIGHT", 5, 0)
   checkbox:SetClickHandler(
    function (this, isChecked)
-    MSBTProfiles.SetOption(damageType, "disabled", not isChecked)
+    MSBTProfiles.SetOption(profileKey, "disabled", not isChecked)
    end
   )
-  frame[damageType .. "Colorswatch"] = colorswatch
-  frame[damageType .. "Checkbox"] = checkbox 
+  frame[profileKey .. "Colorswatch"] = colorswatch
+  frame[profileKey .. "Checkbox"] = checkbox 
   
   anchor = colorswatch 
   globalStringSchoolIndex = globalStringSchoolIndex + 1
@@ -1115,10 +1115,10 @@ local function ShowDamageColors(configTable)
  frame.colorCheckbox:SetChecked(not MSBTProfiles.currentProfile.damageColoringDisabled)
 
  local profileEntry
- for damageType in string.gmatch("physical holy fire nature frost shadow arcane", "[^%s]+") do
-  profileEntry = MSBTProfiles.currentProfile[damageType]
-  frame[damageType .. "Colorswatch"]:SetColor(profileEntry.colorR, profileEntry.colorG, profileEntry.colorB)
-  frame[damageType .. "Checkbox"]:SetChecked(not profileEntry.disabled)
+ for damageType, profileKey in pairs(MSBTMain.damageColorProfileEntries) do
+  profileEntry = MSBTProfiles.currentProfile[profileKey]
+  frame[profileKey .. "Colorswatch"]:SetColor(profileEntry.colorR, profileEntry.colorG, profileEntry.colorB)
+  frame[profileKey .. "Checkbox"]:SetChecked(not profileEntry.disabled)
  end
  
  -- Configure the frame.
