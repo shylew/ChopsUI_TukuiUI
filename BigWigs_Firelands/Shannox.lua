@@ -4,7 +4,7 @@
 
 local mod = BigWigs:NewBoss("Shannox", 800, 195)
 if not mod then return end
-mod:RegisterEnableMob(53691)
+mod:RegisterEnableMob(53691, 53695, 53694) --Shannox, Rageface, Riplimb
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -27,7 +27,7 @@ function mod:GetOptions(CL)
 	return {
 		100002, 101209, {99836, "SAY", "FLASHSHAKE"},
 		{100129, "ICON"},
-		"bosskill"
+		"berserk", "bosskill"
 	}, {
 		[100002] = "general"
 	}
@@ -47,6 +47,7 @@ end
 
 function mod:OnEngage(diff)
 	self:Bar(100002, (GetSpellInfo(100002)), 23, 100002) -- Hurl Spear
+	self:Berserk(600)
 end
 
 --------------------------------------------------------------------------------
@@ -80,7 +81,7 @@ end
 function mod:ImmolationTrap(player, spellId, _, _, spellName, _, _, _, _, dGUID)
 	local unitId = tonumber(dGUID:sub(7, 10), 16)
 	if unitId == 53695 or unitId == 53694 then
-		self:Message(100129, L["immolation_trap"]:format(player), "Attention", spellId)
+		self:Message(101209, L["immolation_trap"]:format(player), "Attention", spellId)
 	end
 end
 

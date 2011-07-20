@@ -5,6 +5,7 @@ if L then
 	L.devastate_bar = "<下一Devastation>"
 	L.drone_bar = "Next Cinderweb Drone"
 	L.drone_message = "Big drone incoming!"
+	L.kiss_message = "Kiss"
 end
 
 L = BigWigs:NewBossLocale("Lord Rhyolith", "zhCN")
@@ -14,6 +15,7 @@ if L then
 	L.armor_gone_message = "Armor go bye-bye!"
 	L.phase2_soon_message = "Phase 2 soon!"
 	L.stomp_message = "Stomp! Stomp! Stomp!"
+	L.stomp_warning = "Next Stomp"
 	L.big_add_message = "Big add spawned!"
 	L.small_adds_message = "Small adds inc!"
 end
@@ -43,20 +45,29 @@ L = BigWigs:NewBossLocale("Baleroc", "zhCN")
 if L then
 	L.torment_message = "%2$dx torment on %1$s"
 	L.blade = "~Blade"
+	L.shard_message = "Purple shards (%d)!"
+	L.focus_message = "Your focus has %d stacks!"
+	L.countdown_bar = "Next link"
+	L.link_message = "Linked"
 end
 
 L = BigWigs:NewBossLocale("Majordomo Staghelm", "zhCN")
 if L then
 	L.seed_explosion = "Seed explosion soon!"
+	L.seed_bar = "<你：灼熱種子爆炸>"
+	L.adrenaline_message = "Adrenaline x%d!"
 end
 
 L = BigWigs:NewBossLocale("Ragnaros", "zhCN")
 if L then
 	L.seed_explosion = "Seed Explosion!"
-	L.intermission = "Intermission"
+	L.intermission_bar = "<中場>"
+	L.intermission_message = "Intermission... Got cookies?"
 	L.sons_left = "%d Sons Left"
-	L.engulfing_close = "Close %s"
-	L.engulfing_middle = "Middle %s"
-	L.engulfing_far = "Far %s"
+	L.engulfing_close = "Close quarters Engulfed!"
+	L.engulfing_middle = "Middle section Engulfed!"
+	L.engulfing_far = "Far side Engulfed!"
+	L.hand_bar = "Next knockback"
+	L.ragnaros_back_message = "Raggy is back, party on!"
 end
 

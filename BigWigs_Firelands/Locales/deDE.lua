@@ -15,6 +15,7 @@ if L then
 	L.armor_gone_message = "Rüstung weg!"
 	L.phase2_soon_message = "Phase 2 bald!"
 	L.stomp_message = "Stampfen! Stampfen! Stampfen!"
+	L.stomp_warning = "Nächstes Stampfen"
 	L.big_add_message = "Funke kommt!"
 	L.small_adds_message = "Fragmente kommen!"
 end
@@ -44,20 +45,29 @@ L = BigWigs:NewBossLocale("Baleroc", "deDE")
 if L then
 	L.torment_message = "%2$dx Qual: %1$s"
 	L.blade = "Nächste Klinge"
+	L.shard_message = "Splitter %d!"
+	L.focus_message = "Dein Fokus hat %d Stapel!"
+	L.countdown_bar = "Nächste Verbindung"
+	L.link_message = "Verbunden"
 end
 
 L = BigWigs:NewBossLocale("Majordomo Staghelm", "deDE")
 if L then
-	L.seed_explosion = "Samenexplosion bald!"
+	L.seed_explosion = "Du explodierst gleich!"
+	L.seed_bar = "Du explodierst!"
+	L.adrenaline_message = "%dx Adrenalin!"
 end
 
 L = BigWigs:NewBossLocale("Ragnaros", "deDE")
 if L then
 	L.seed_explosion = "Samenexplosion!"
-	L.intermission = "Übergang"
+	L.intermission_bar = "Phasenübergang"
+	L.intermission_message = "Phasenübergang!"
 	L.sons_left = "%d Söhne noch"
-	L.engulfing_close = "Nahe %s"
-	L.engulfing_middle = "Mittlere %s"
-	L.engulfing_far = "Weite %s"
+	L.engulfing_close = "Innen entflammt!"
+	L.engulfing_middle = "Mitte entflammt!"
+	L.engulfing_far = "Außen entflammt!"
+	L.hand_bar = "Nächster Rückstoß"
+	L.ragnaros_back_message = "Raggy wieder da, auf geht's!"
 end
 
