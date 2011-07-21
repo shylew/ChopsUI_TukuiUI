@@ -1,9 +1,47 @@
 ------------------------------------------------------------------------
-r8543 | funkydude | 2011-07-17 21:33:31 +0000 (Sun, 17 Jul 2011) | 1 line
+r8549 | funkydude | 2011-07-20 22:56:40 +0000 (Wed, 20 Jul 2011) | 1 line
 Changed paths:
-   A /tags/r8543-release (from /trunk:8542)
+   A /tags/r8549-release (from /trunk:8548)
 
-Tagging as r8543-release
+Tagging as r8549-release
+------------------------------------------------------------------------
+r8548 | rabbit | 2011-07-20 21:06:23 +0000 (Wed, 20 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Shannox.lua
+
+Try not to spam the say.
+------------------------------------------------------------------------
+r8547 | funkydude | 2011-07-19 21:48:56 +0000 (Tue, 19 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Firelands/Alysrazor: naming tweaks
+------------------------------------------------------------------------
+r8546 | ananhaid | 2011-07-19 02:16:18 +0000 (Tue, 19 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Bastion/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhTW.lua
+   M /trunk/Throne/Locales/zhCN.lua
+   M /trunk/Throne/Locales/zhTW.lua
+
+BigWigs:
+- zhCN/zhTW update.(contributor:ffx_yd@nga)
+------------------------------------------------------------------------
+r8545 | ananhaid | 2011-07-18 03:09:30 +0000 (Mon, 18 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Blackwing/Locales/zhCN.lua
+
+BigWigs:
+- zhCN update.
+------------------------------------------------------------------------
+r8544 | ananhaid | 2011-07-18 02:40:52 +0000 (Mon, 18 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Firelands/Locales/zhTW.lua
+   M /trunk/Locales/common.zhTW.lua
+
+BigWigs:
+- zhTW update.
 ------------------------------------------------------------------------
 r8542 | funkydude | 2011-07-17 21:21:46 +0000 (Sun, 17 Jul 2011) | 1 line
 Changed paths:
@@ -1101,57 +1139,4 @@ Changed paths:
    M /trunk/Blackwing/Magmaw.lua
 
 Blackwing/Magmaw: Warn for Armageddon during head phase only.
-------------------------------------------------------------------------
-r8380 | funkydude | 2011-06-16 18:25:59 +0000 (Thu, 16 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Baleroc.lua
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Ragnaros.lua
-   M /trunk/Firelands/Rhyolith.lua
-   M /trunk/Firelands/Staghelm.lua
-
-Firelands: tweaks/fixes
-------------------------------------------------------------------------
-r8379 | Maat | 2011-06-16 14:09:40 +0000 (Thu, 16 Jun 2011) | 20 lines
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-   M /trunk/Firelands/Baleroc.lua
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Ragnaros.lua
-   M /trunk/Firelands/Shannox.lua
-   M /trunk/Firelands/Staghelm.lua
-   M /trunk/Plugins/Proximity.lua
-
-Alysrazor.lua
-  add: Firestorm, Meteor, Molting (for normal only)
-Baleroc.lua
-  add: Countdown, Berserk
-  fix: Torment
-Bethtilac.lua
-  add: Drone, Broodling, Fixate
-  fix: Devastate
-Ragnaros.lua
-  add: spellIds
-Shannox.lua
-  add: Immolation Trap
-  cleanup
-Staghelm.lua
-  add: Flame Scythe, more data for adrenaline timers
-  cleanup
-Proximity.lua
-  add Firelands map data (the ones that are available), handle if a floor has no data
-
-  
-------------------------------------------------------------------------
-r8378 | zhTW | 2011-06-16 07:07:53 +0000 (Thu, 16 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Plugins/Locales/zhTW.lua
-
-zhTW update
-------------------------------------------------------------------------
-r8377 | funkydude | 2011-06-14 21:12:59 +0000 (Tue, 14 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Blackwing/Maloriak.lua
-
-Blackwing/Maloriak: warn for arcane earlier and show a dark phase bar on engage.
 ------------------------------------------------------------------------
