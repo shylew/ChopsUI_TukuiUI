@@ -1,11 +1,13 @@
 --[[
 ## Interface: 40200
 ## Title: BalancePowerTracker_Options
-## Version: 1.0.0
+## Version: 1.0.1
 ## Author: Kurohoshi (EU-Minahonda)
 ## Notes: BPT's Options were moved into a new AddOn.
 
 --CHANGELOG
+v1.0.1: Width step changed from 5 to 1 pixel
+		Move freely fixed
 v1.0.0: Release
 --]]
 if BPT_OPT_STATUS then 
@@ -671,7 +673,7 @@ local function CreateOptions(self)
 						name	= 'Move freely',
 						desc	= "Move the addon dragging it",
 						get		= function () return self.vars.move end,
-						set		= "Move",
+						set		= function () self:Move() end,
 						order	= 4,
 					},
 					x	= {
@@ -747,7 +749,7 @@ local function CreateOptions(self)
 						desc	= nil,
 						min		= 50,
 						max		= 400,
-						step    = 5,
+						step    = 1,
 						get		= function () return self.options.width end,
 						set		= function (info, new) self.options.width = new; self:CreateInterface() end,
 						order	= 2,
@@ -878,7 +880,7 @@ local function CreateOptions(self)
 				args ={
 					info = {
 						type	= 'description',
-						name	= "Advanced functions. These funtions are in Beta stage, increase CPU usage by twofold each (with both activated CPU usage is increased by threefold), so consider carefully if you need them (most people won't, since they are intended to provide support to theorycrafters)",
+						name	= "Advanced functions. Increase CPU usage slightly each",
 						order = 1,
 					},
 					header = {
@@ -906,7 +908,7 @@ local function CreateOptions(self)
 					},
 					info3 = {
 						type	= 'description',
-						name	= "Statistically Energy calculation is a feature that allows the display of the least energy you'll have taking into consideration both Euphoria and miss chance with a confidence degree. For example: You are hitcapped against your target, you have 60 solar energy and are casting a Starfire, so you have 24% chance of having 100 energy and 76% of having 80, with required confidence at 10% it will display 100 and with confidence at 30% it will display 80.",
+						name	= "Statistically Energy calculation is a feature that allows the display of the least energy you'll have taking into consideration both Euphoria and miss chance with a confidence degree. For example: You are hitcapped against your target, you have 20 solar energy and are casting a Starfire, so you have 24% chance of having 60 energy and 76% of having 40, with required confidence at 10% it will display 60 and with confidence at 30% it will display 40.",
 						order = 6,
 					},
 					confidence	= {

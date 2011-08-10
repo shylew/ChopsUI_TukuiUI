@@ -1,7 +1,7 @@
 --[[
 Interface: 4.2.0
 Title: LibBalancePowerTracker
-Version: 1.0.8
+Version: 1.0.9
 Author: Kurohoshi (EU-Minahonda)
 
 --INFO
@@ -16,7 +16,7 @@ Author: Kurohoshi (EU-Minahonda)
 		-You're hit capped (All your spells will land).
 		-You're not going to proc Euphoria (2x energy gain).
 			·If you proc it, it will update immediately, this only means you will reach Eclipse earlier than the library predicted the moment 
-			before the Eupforia proc. 
+			before the Eupforia proc. You can never get an Euphoria proc that push you into Eclipse, so Eclipse procs are predicted accurately. 
 	All the features with the 'virtual' tag (virtual Energy, virtual Eclipse ...) rely on Foresee Energy.
 	
 --API
@@ -42,13 +42,11 @@ Author: Kurohoshi (EU-Minahonda)
 	negative for Lunar Eclipse, positive for Solar Eclipse.
 	NOTE: When registering a callback, that callback will be fired once.
 	
-	id = LibBalancePowerTracker:RegisterStatCallback(function(EnergyFunction))
-	These callbacks will be fired every time EnergyFunction changes:
+	id,EnergyFunction = LibBalancePowerTracker:RegisterStatCallback(callback())
+	Callback will be fired every time EnergyFunction changes:
 		energy, direction, virtual_energy, virtual_direction, virtual_eclipse = EnergyFunction(value) 
 		Note: In this case, virtual_energy, virtual_direction and virtual_eclipse are special, EnergyFunction means:
 		 "You have <value*100>% chance of having at least <select(3,EnergyFunction(value))> energy when all spells land, considering euphoria & miss chance." (the same goes the direction and virtual_eclipse)
-	
-	NOTE: When registering a callback, that callback will be fired once.
 	
 	failed = LibBalancePowerTracker:UnregisterCallback(id)
 	Tries to unregister the callback with identifier id (id is returned only when you register the callback).
@@ -65,7 +63,7 @@ Author: Kurohoshi (EU-Minahonda)
 		 "You have <value*100>% chance of having at least <select(3,EnergyFunction(value))> energy when all spells land, considering euphoria & miss chance." (the same goes the direction and virtual_eclipse)
 		
 	version,subversion,revision = LibBalancePowerTracker:GetVersion()
-	Gets the current working version of the library.	
+		Gets the current working version of the library.	
 
 --Must have an eye on this:
 	AoE silence ------------------------------ Working in 4.1
@@ -76,6 +74,10 @@ Author: Kurohoshi (EU-Minahonda)
 		-> A lo mejor debería añadir una función para introducir los hechizos en la cola en función de cuando van a llegar en vez de cuando salieron.
 	
 --CHANGELOG
+v 1.0.9 Increased WR and SS autodelete timers by 1s, SF's by .5s
+		Fixed advanced settings bugs
+		Eclipse stat rewritten (less CPU used)
+
 v 1.0.8 SpellQueueADT updated
 
 v 1.0.7 Tier12 fully supported
@@ -120,7 +122,7 @@ v 1.0.1 Reduced the number of callbacks fired.
 v 1.0.0 Release
 --]]
 
-local version = {1,0,8};
+local version = {1,0,9};
 
 if (LibBalancePowerTracker and LibBalancePowerTracker:CompareVersion(version)) then return; end;
 
@@ -174,8 +176,13 @@ local vars = {
 	unitIsPCSent = true,
 	euphoria = 0.12,
 	wayTable = {},
+	probTable = {
+		firstSpell = nil,
+		sun  = {},
+		none = {},
+		moon = {},
+	},
 	max_levels = 5, --Número máximo de hechizos que se calculan, consumo máximo aumenta de forma exponencial, 3^5 me parece un buen límite
-	
 	inverseCumulativeDistributionFunction = function() return 0,"none",0,"none",false; end,
 	eclipseProb= 0,
 	
@@ -238,9 +245,9 @@ local data ={
 local timers={
 	holder = CreateFrame("Frame","LibBalancePowerTrackerTimerFrame",UIParent);
 	broadcastTier = CreateFrame("Cooldown","LibBalancePowerTrackerWRTimer",LibBalancePowerTrackerTimerFrame),
-	[data.WR.spellId] = {seconds=2,timer=CreateFrame("Cooldown","LibBalancePowerTrackerWRTimer",LibBalancePowerTrackerTimerFrame)}, --2.2s aprox
-	[data.SS.spellId] = {seconds=2,timer=CreateFrame("Cooldown","LibBalancePowerTrackerSSTimer",LibBalancePowerTrackerTimerFrame)}, --2.2s aprox
-	[data.SF.spellId] = {seconds=.5,timer=CreateFrame("Cooldown","LibBalancePowerTrackerSFTimer",LibBalancePowerTrackerTimerFrame)}, --0.6s aprox
+	[data.WR.spellId] = {seconds=3,timer=CreateFrame("Cooldown","LibBalancePowerTrackerWRTimer",LibBalancePowerTrackerTimerFrame)}, --2.2s aprox
+	[data.SS.spellId] = {seconds=3,timer=CreateFrame("Cooldown","LibBalancePowerTrackerSSTimer",LibBalancePowerTrackerTimerFrame)}, --2.2s aprox
+	[data.SF.spellId] = {seconds=1,timer=CreateFrame("Cooldown","LibBalancePowerTrackerSFTimer",LibBalancePowerTrackerTimerFrame)}, --0.6s aprox
 }
 for k,v in pairs(timers) do	if tonumber(k)~= nil then v.timer:SetScript("OnHide",function() if vars.spellQ:RemoveAllSpellsById(k) then LBPT:ChangedState() end end)	end end
 ----FRAME--------------------------------------------------------------------------------
@@ -372,9 +379,9 @@ local function UpdateEuphoria()	vars.euphoria = select(5,GetTalentInfo(1,7)) * .
 local function CheckEcplipseBuff() vars.eclipse = (UnitBuff('player',select(1,GetSpellInfo(data.SolarEclipse.spellId))) and 100) or (UnitBuff('player',select(1,GetSpellInfo(data.LunarEclipse.spellId))) and -100) end
 
 --Loading
-frame:SetScript("OnEvent",  function(self, event, ...) 	LBPT[event](self,...)	end);
+frame:SetScript("OnEvent",  function(self, event, ...) 	LBPT[event](self,...) end);
 frame:RegisterEvent("PLAYER_LOGIN"); 
-function LBPT:PLAYER_LOGIN() playerGUID=UnitGUID("player");vars.isDruid = select(2,UnitClass('player'))=="DRUID"; if vars.isDruid then LibBalancePowerTracker:RegisterFunctionsLog() LBPT:ReCheck();end end;
+function LBPT:PLAYER_LOGIN() playerGUID=UnitGUID("player");vars.isDruid = select(2,UnitClass('player'))=="DRUID"; if vars.isDruid then LibBalancePowerTracker:RegisterFunctionsLog() frame:RegisterEvent("UPDATE_SHAPESHIFT_FORMS"); LBPT:ReCheck();end end;
 
 function LBPT:ReCheck()
 	vars.isBalance = GetSpellCooldown(data.SS.name)~=nil;
@@ -385,11 +392,9 @@ function LBPT:ReCheck()
 	if options.enabled and vars.isDruid then
 		LibBalancePowerTrackerEventFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED");	 
 		LibBalancePowerTrackerEventFrame:RegisterEvent("CHARACTER_POINTS_CHANGED");	
-		LibBalancePowerTrackerEventFrame:RegisterEvent("UPDATE_SHAPESHIFT_FORMS");
 	else
 		LibBalancePowerTrackerEventFrame:UnregisterEvent("ACTIVE_TALENT_GROUP_CHANGED");	 
 		LibBalancePowerTrackerEventFrame:UnregisterEvent("CHARACTER_POINTS_CHANGED");
-		LibBalancePowerTrackerEventFrame:UnregisterEvent("UPDATE_SHAPESHIFT_FORMS");
 	end
 		
 	if options.enabled and vars.isBalance then
@@ -430,7 +435,12 @@ function LBPT:ReCheck()
 		--Reset values
 		vars.spellQ:Clear();
 		vars.computedEnergy,vars.direction,vars.computedVirtualEnergy,vars.vDirection,vars.computedVirtualEclipse = 0,"none",0,"none",false;
-		vars.inverseCumulativeDistributionFunction = function() return 0,"none",0,"none",false; end
+		vars.probTable = {
+			firstSpell = nil,
+			sun  = {},
+			none = {},
+			moon = {},
+		}
 		vars.eclipseProb = 0
 		
 		--Propagate values
@@ -484,9 +494,11 @@ do --COMBAT LOG HANDLER -------------------------------------------------------
 		local energy = UnitPower("player" , 8);
 		if energy ==100 then vars.direction = "moon"; 		vars.ecTime,vars.eclipse = timestamp, 100
 		elseif energy == -100 then vars.direction = "sun";	vars.ecTime,vars.eclipse = timestamp,-100
-		elseif (vars.direction == "moon" and energy <=0) or (vars.direction == "sun"  and energy >=0) or (vars.direction == "none") then
-			vars.eclipse=false;
-		--elseif abs(energy)<=90 then vars.direction = GetEclipseDirection();
+		else
+			vars.direction = GetEclipseDirection();
+			if (vars.direction == "moon" and energy <=0) or (vars.direction == "sun"  and energy >=0) or (vars.direction == "none") then
+				vars.eclipse=false;
+			end
 		end
 	end
 	local notEnergy = {
@@ -649,7 +661,7 @@ function LBPT:ECLIPSE_DIRECTION_CHANGE(dir) if dir == "none" then 	vars.directio
 function LBPT:ACTIVE_TALENT_GROUP_CHANGED() LBPT:ReCheck(); end; 
 function LBPT:CHARACTER_POINTS_CHANGED()	LBPT:ReCheck(); end;
 --Talent check events
-function LBPT:UPDATE_SHAPESHIFT_FORMS()	vars.direction = GetEclipseDirection() UpdateEuphoria(); CheckEcplipseBuff(); LBPT:ChangedState(true); end;
+function LBPT:UPDATE_SHAPESHIFT_FORMS()	vars.direction = GetEclipseDirection() UpdateEuphoria(); CheckEcplipseBuff(); LBPT:ChangedState(true); LibBalancePowerTrackerEventFrame:UnregisterEvent("UPDATE_SHAPESHIFT_FORMS"); end;
 
 --ChangedState
 function LBPT:ChangedState() vars.changedState=true end;--will be changed when registeriong callbacks (UpdateFunctions())
@@ -659,7 +671,7 @@ do --Recalc Energy function
 	local reallyZeroEnergy=false;
 	local timeShown = 0;
 	frame:SetScript("OnShow",	function() timeShown = GetTime()+.5; end); 
-	frame:SetScript("OnUpdate", function()	if UnitPower("player",8) ~= 0  then frame:Hide(); LBPT:ChangedState(true); 
+	frame:SetScript("OnUpdate", function()	if (UnitPower("player",8) ~= 0) and (UnitPower("player",8) ~= 15) then frame:Hide(); LBPT:ChangedState(true); 
 											elseif (timeShown < GetTime()) then reallyZeroEnergy = true LBPT:ChangedState(true) frame:Hide(); 
 											elseif (elements == 0) then frame:Hide(); 
 											end; end); 
@@ -670,7 +682,7 @@ do --Recalc Energy function
 		local getNext = vars.spellQ:iterator();
 		local v = getNext();
 		local temp,ultimoWR,penutlimoWR,eclipse = 0,vars.lastWRenergy,vars.formerlastWRenergy,vars.eclipse
-		
+
 		while v do
 			temp,ultimoWR,penutlimoWR = EnergyFromSpell(v.n,direction,energy,ultimoWR,penutlimoWR,false,eclipse)
 			energy = energy + temp
@@ -695,7 +707,7 @@ do --Recalc Energy function
 	function LBPT:RecalcEnergy()
 		local energy = UnitPower("player" , 8);
 
-		if energy == 0 then
+		if (energy == 0) or (energy == 15) then
 			if not reallyZeroEnergy then 
 				frame:Show()
 				return true
@@ -707,7 +719,7 @@ do --Recalc Energy function
 		vars.computedEnergy,vars.changedState = energy, false;
 		
 		if options.foresee then
-			vars.spellQ:RemoveTimedOutFlyingSpell(4);
+			vars.spellQ:RemoveTimedOutFlyingSpell(5);
 			vars.computedVirtualEnergy,vars.vDirection,vars.computedVirtualEclipse = ExtraEnergy(energy,vars.direction)
 			return
 		end
@@ -733,7 +745,7 @@ do --Tree ADT functions
 			
 		if prob == 0 then sonMiss.prob,sonNormal.prob,sonDouble.prob = 0,0,0; return; end
 		
-		local euphoriaProb = ((((direction == "moon" and energy >=-40) or (direction == "sun"  and energy <=40) or (direction == "none")) and not virtualEclipse ) and vars.euphoria) or 0;
+		local euphoriaProb = ((((direction == "moon" and energy >=-40) or (direction == "sun"  and energy <=40) or (direction == "none")) and element.n ~= data.SS.spellId and not virtualEclipse ) and vars.euphoria) or 0;
 		
 		sonMiss.prob = prob * element.mc;
 		sonDouble.prob = prob *(1-element.mc)* euphoriaProb 
@@ -742,9 +754,13 @@ do --Tree ADT functions
 		if sonMiss.prob ~=0 then sonMiss.energy,sonMiss.direction,sonMiss.virtualEclipse,sonMiss.lWR,sonMiss.fWR = energy,direction,virtualEclipse,lWR,fWR;end
 		if sonDouble.prob~=0 then sonDouble.energy,sonDouble.direction,sonDouble.virtualEclipse,sonDouble.lWR,sonDouble.fWR = TreeEnergyFromSpell(element.n,direction,energy,virtualEclipse,lWR,fWR,true);end
 		if sonNormal.prob~=0 then sonNormal.energy,sonNormal.direction,sonNormal.virtualEclipse,sonNormal.lWR,sonNormal.fWR = TreeEnergyFromSpell(element.n,direction,energy,virtualEclipse,lWR,fWR);end
-	end
-	local function checkNext(node,now) --return true si debemos pasar al siguiente (insertaremos cuando encontremos uno con energia mayor)
-		return node.energy > now.energy
+	
+		if sonDouble.prob~=0 then
+			if (sonDouble.energy == sonNormal.energy and sonDouble.direction == sonNormal.direction) or  (direction == "none" and sonNormal.direction == "none" and ((energy >= 40 and sonDouble.energy > sonNormal.energy) or (energy <= -40 and sonDouble.energy < sonNormal.energy))) then
+				sonNormal.prob = sonNormal.prob + sonDouble.prob
+				sonDouble.prob = 0
+			end
+		end
 	end
 	function LBPT:RecalcWays(forced)
 		local direction,energy,getNext = vars.direction,UnitPower("player" , 8),vars.spellQ:iterator();
@@ -792,123 +808,95 @@ do --Tree ADT functions
 		end
 		
 		if callBacksActivated.stat or forced then
-			--función de distribución como lista doblemente enlazada (cumulative distribution as doubly linked list) 
-			local first = false;
-			local last;
-			local now;
+			for i,_ in pairs(vars.probTable.sun ) do vars.probTable.sun[i] =nil end
+			for i,_ in pairs(vars.probTable.moon) do vars.probTable.moon[i]=nil end
+			for i,_ in pairs(vars.probTable.none) do vars.probTable.none[i]=nil end
+				
+			for i=1,wayEnd do 
+				if tempTable[i].prob>0 then
+					vars.probTable[tempTable[i].direction][tempTable[i].energy] = tempTable[i].prob + (vars.probTable[tempTable[i].direction][tempTable[i].energy] or 0)
+				end;
+			end;
 			
-			for i = 1,wayEnd do 
-				if tempTable[i].energy and tempTable[i].prob>0 then
-					if not first then --si está vacía la inicializamos
-						first=tempTable[i];
-						last =tempTable[i];
-						tempTable[i].nextItem = nil;
-						tempTable[i].previousItem = nil;		
-					else --si no está vacía, nos ponemos en el primero y evaluamos, si tenemos que insertar, insertamos, si no, pasamos al siguiente
-						now = first;
-						while now do
-							if checkNext(tempTable[i],now,direction) then  --no debemos insertar, sino pasar al siguiente
-								if now.nextItem then  --hay siguiente																			
-									now = now.nextItem;
-								else -- no hay siguiente, insertamos al final de la lista
-									tempTable[i].previousItem = now;
-									tempTable[i].nextItem = nil;
-									now.nextItem = tempTable[i]
-									last = tempTable[i];
-									now = false;
-								end
-							elseif (tempTable[i].energy == now.energy) and (tempTable[i].virtualEclipse == now.virtualEclipse) then --no insertamos, actualizamos el valor
-								now.prob=now.prob+tempTable[i].prob
-								now = false;
-							else -- hay que insertar, moviendo el item una posicion a la derecha
-								if now.previousItem then --hay anterior (no es el primero), hay que desplazar los valores una posición a la derecha
-									tempTable[i].previousItem = now.previousItem;
-									tempTable[i].nextItem = now;
-									now.previousItem.nextItem = tempTable[i];
-									now.previousItem = tempTable[i];
-									now=false;
-								else --es el primero, hay que insertar al principio de la tabla 
-									tempTable[i].previousItem = nil;
-									tempTable[i].nextItem = now;
-									first=tempTable[i];
-									now.previousItem = tempTable[i];
-									now=false;
-								end
-							end
-						end 
-					end
-				end
-			end
+			vars.probTable.firstSpell = idFirstSpell
 			
-			if first.energy == -100 then
-				local now,temp = first.nextItem;	
-				while now do 
-					temp = now
-					if now.direction == first.direction then 
-						now.previousItem.nextItem = now.nextItem
-						now.nextItem.previousItem = now.previousItem
-						now.previousItem = nil
-						now.nextItem = first
-						first.previousItem = now
-						first = now
-					end
-					now = temp.nextItem;	
-				end
-			elseif last.energy == 100 then
-				local now,temp = last.previousItem;	
-				while now do 
-					temp = now
-					if now.direction == last.direction then 
-						now.previousItem.nextItem = now.nextItem
-						now.nextItem.previousItem = now.previousItem
-						now.previousItem = last
-						now.nextItem = nil
-						last.nextItem = now
-						last = now
-					end
-					now = temp.previousItem;	
-				end
-			end
-
-			--[[now=first;
-			print("BEGIN")
-			while now do
-				print(now.energy..": "..tostring(now.virtualEclipse).." = "..now.prob)
-				now = now.nextItem;
+			for k,v in pairs(statCallbacks) do v() end
+		
+			--[[print("BEGIN")
+			for k,v in pairs(vars.probTable) do
+				if type(v)=="table" then 
+				for i,j in pairs(v) do
+					print(i..":"..j)
+				end end
 			end
 			print("END")--]]
-			
-			--funcion (valor) devuelve la mínima energía que tendrás con un valor% de seguridad
-			-- "tienes un valor*100% de tener como mínimo funcion(valor) energía
-			if (direction == "sun") or (direction=="none" and idFirstSpell == data.SF.spellId) or (direction=="none" and idFirstSpell == data.SS.spellId and energy>=0) then --empiezo comprobando probabilidades desde el final
-				vars.inverseCumulativeDistributionFunction = 	function(value) 
-					if value>1 then value = 1 
-					elseif value <0 then value = 0 end 
-					local last = last;		
-					while last do 
-						value=value-last.prob;	
-						if value<=0 then 
-							return energy,direction,last.energy,last.direction,last.virtualEclipse;		
-						else last = last.previousItem;	
-						end 
-					end	
-				end	
-			else --empiezo comprobando probabilidades desde el principio
-				vars.inverseCumulativeDistributionFunction = function(value) 
-					if value>1 then value = 1 elseif value <0 then value = 0 end 
-					local first = first;	
-					while first do 
-						value=value-first.prob;	
-						if value<=0 then 
-							return energy,direction,first.energy,first.direction,first.virtualEclipse;	
-						else 
-							first = first.nextItem 	
-						end	
-					end	
+		end
+	end
+	vars.inverseCumulativeDistributionFunction = function(value) 		
+		--funcion (valor) devuelve la mínima energía que tendrás con un valor% de seguridad
+		-- "tienes un valor*100% de tener como mínimo funcion(valor) energía
+		if value>1 then value = 1 
+		elseif value <0 then value = 0 end 
+		local prob = 0;
+		local direction = vars.direction
+		local eclipse = vars.eclipse
+		local mustCheckNoneTable = false
+		
+		if direction == "none" then
+			if (vars.probTable.firstSpell == data.SF.spellId) or (vars.probTable.firstSpell == data.SS.spellId and vars.computedEnergy>=0) then
+				mustCheckNoneTable = -1
+				direction = "sun"
+				eclipse = -100
+			else
+				mustCheckNoneTable = 1
+				direction = "moon"
+				eclipse = 100
+			end
+		end
+		
+		if direction == "sun" then
+			for i = -100,100 do
+				prob = vars.probTable.moon[i]
+				if prob then
+					value=value-prob;	
+					if value<=0 then return vars.computedEnergy,vars.direction,i,"moon",i>0 and 100; end 
 				end	
 			end
-			for k,v in pairs(statCallbacks) do v(vars.inverseCumulativeDistributionFunction);end;
+			for i = 100,-100,-1 do
+				prob = vars.probTable.sun[i]
+				if prob then
+					value=value-prob;	
+					if value<=0 then return vars.computedEnergy,vars.direction,i,"sun",i<0 and eclipse;	end 
+				end	
+			end
+		elseif direction == "moon" then
+			for i = 100,-100,-1 do
+				prob = vars.probTable.sun[i]
+				if prob then
+					value=value-prob;	
+					if value<=0 then return vars.computedEnergy,vars.direction,i,"sun",i<0 and -100;	end 
+				end	
+			end
+			for i = -100,100 do
+				prob = vars.probTable.moon[i]
+				if prob then
+					value=value-prob;	
+					if value<=0 then return vars.computedEnergy,vars.direction,i,"moon",i>0 and eclipse; end 
+				end	
+			end
 		end
+		
+		if mustCheckNoneTable then
+			for i = mustCheckNoneTable*-100,mustCheckNoneTable*100,mustCheckNoneTable do
+				prob = vars.probTable.none[i]
+				if prob then
+					value=value-prob;	
+					if value<=0 then return vars.computedEnergy,vars.direction,i,"none",false; end 
+				end	
+			end
+		end
+		
+		return vars.computedEnergy,vars.direction,vars.computedEnergy,vars.direction,false;
 	end
 end
 
@@ -949,9 +937,9 @@ function LibBalancePowerTracker:RegisterStatCallback(callback)
 	lastCallback=lastCallback+1
 	elements=elements+1
 	statCallbacks[lastCallback]=callback;
-	callback(LibBalancePowerTracker:GetEnergyFunction())
+	LibBalancePowerTracker:GetEnergyFunction()
 	UpdateFunctions()
-	return lastCallback
+	return lastCallback,vars.inverseCumulativeDistributionFunction
 end
 function LibBalancePowerTracker:UnregisterCallback(id)
 	if reducedCallbacks[id] then
