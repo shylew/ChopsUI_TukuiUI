@@ -7,10 +7,9 @@
 ## Notes-frFR: Un damage meter.
 ## Notes-zhCN: 伤害统计
 ## Author: Zarnivoop
-## Version: 1.3-2
+## Version: 1.2-34
 ## SavedVariables: SkadaDB
-## SavedVariablesPerCharacter: SkadaPerCharDB
-## X-Curse-Packaged-Version: 1.3-2
+## X-Curse-Packaged-Version: 1.2-34
 ## X-Curse-Project-Name: Skada Damage Meter
 ## X-Curse-Project-ID: skada
 ## X-Curse-Repository-ID: wow/skada/mainline
@@ -35,7 +34,6 @@ locale\frFR.lua
 locale\deDE.lua
 
 Skada.lua
-Menus.lua
 Options.lua
 BarDisplay.lua
 

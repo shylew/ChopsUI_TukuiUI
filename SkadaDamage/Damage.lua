@@ -268,10 +268,8 @@ end
 
 function playermod:Enter(win, id, label)
 	local player = Skada:find_player(win:get_selected_set(), id)
-	if player then
-		playermod.playerid = id
-		playermod.title = player.name..L["'s Damage"]
-	end
+	playermod.playerid = id
+	playermod.title = player.name..L["'s Damage"]
 end
 
 -- Detail view of a player.

@@ -17,30 +17,26 @@ end
 local function log_death(set, playerid, playername, timestamp)
 	local player = Skada:get_player(set, playerid, playername)
 
-	if player then
-		-- Add a death along with it's timestamp.
-		table.insert(player.deaths, 1, {["ts"] = timestamp, ["log"] = player.deathlog})
+	-- Add a death along with it's timestamp.
+	table.insert(player.deaths, 1, {["ts"] = timestamp, ["log"] = player.deathlog})
 
-		-- Add a fake entry for the actual death.
-		local spellid = 5384 -- Feign Death.
-		local spellname = string.format(L["%s dies"], player.name)
-		log_deathlog(set, playerid, playername, spellid, spellname, 0, timestamp)
-			
-		-- Also add to set deaths.
-		set.deaths = set.deaths + 1
+	-- Add a fake entry for the actual death.
+	local spellid = 5384 -- Feign Death.
+	local spellname = string.format(L["%s dies"], player.name)
+	log_deathlog(set, playerid, playername, spellid, spellname, 0, timestamp)
 		
-		-- Change to a new deathlog.
-		player.deathlog = {}
-	end
+	-- Also add to set deaths.
+	set.deaths = set.deaths + 1
+	
+	-- Change to a new deathlog.
+	player.deathlog = {}
 end
 
 local function log_resurrect(set, playerid, playername, spellid, spellname, timestamp)
 	local player = Skada:get_player(set, playerid, playername)
 	
 	-- Add log entry to to previous death.
-	if player and player.deaths then
-		table.insert(player.deaths[1].log, 1, {["spellid"] = spellid, ["spellname"] = spellname, ["amount"] = 0, ["ts"] = timestamp, hp = UnitHealth(playername)})
-	end
+	table.insert(player.deaths[1].log, 1, {["spellid"] = spellid, ["spellname"] = spellname, ["amount"] = 0, ["ts"] = timestamp, hp = UnitHealth(playername)})
 end
 
 local function UnitDied(timestamp, eventtype, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
