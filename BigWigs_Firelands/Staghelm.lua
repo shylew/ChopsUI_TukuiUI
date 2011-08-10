@@ -16,7 +16,6 @@ local specialCD = {17.5, 13.4, 10.9, 8.6, 7.4, 7.3, 6.1, 6.1, 4.9, 4.9, 4.9}
 local specialCounter = 1
 local leapWarned = nil
 local form = "cat"
-local seedTimer = nil
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -39,7 +38,7 @@ function mod:GetOptions(CL)
 	return {
 		98379, 100213,
 		{98374, "PROXIMITY"}, {98476, "FLASHSHAKE", "ICON", "SAY"},
-		{98450, "FLASHSHAKE", "PROXIMITY"}, 98451,
+		{98450, "FLASHSHAKE", "PROXIMITY"},
 		97238, "berserk", "bosskill"
 	}, {
 		[98379] = 98379,
@@ -57,7 +56,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "LeapingFlames", 98476, 100206)
 	self:Log("SPELL_AURA_APPLIED", "SearingSeeds", 98450)
 	self:Log("SPELL_AURA_REMOVED", "SearingSeedsRemoved", 98450)
-	self:Log("SPELL_CAST_START", "BurningOrbs", 98451)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
@@ -129,14 +127,7 @@ end
 
 function mod:SearingSeedsRemoved(player)
 	if not UnitIsUnit(player, "player") then return end
-	self:SendMessage("BigWigs_StopBar", self, L["seed_bar"])
 	self:CloseProximity(98450)
-	self:CancelTimer(seedTimer, true)
-	seedTimer = nil
-end
-
-function mod:BurningOrbs(_, spellId, _, _, spellName)
-	self:Bar(98451, spellName, 64, spellId)
 end
 
 do
@@ -150,11 +141,11 @@ do
 		self:SendMessage("BigWigs_StopBar", self, leapingFlames)
 		if not UnitIsUnit(player, "player") then return end
 		local remaining = (select(7, UnitDebuff("player", spellName))) - GetTime()
-		self:Bar(98450, L["seed_bar"], remaining, spellId)
+		self:Bar(98450, L["seed_bar"], remaining, 98450)
 		if remaining < 5 then
 			searingSeed()
 		else
-			seedTimer = self:ScheduleTimer(searingSeed, remaining - 5)
+			self:ScheduleTimer(searingSeed, remaining - 5)
 		end
 	end
 end

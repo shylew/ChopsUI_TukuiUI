@@ -10,22 +10,14 @@ end
 
 L = BigWigs:NewBossLocale("Lord Rhyolith", "koKR")
 if L then
-	L.armor = "Obsidian Armor"
-	L.armor_desc = "Warn when armor stacks are being removed from Rhyolith."
-	L.armor_icon = 98632
+	L.molten_message = "보스 공격 증가 x%d !"
 	L.armor_message = "흑요석 갑옷 - %d%%"
 	L.armor_gone_message = "흑요석 갑옷 사라짐!"
-
-	L.adds_header = "Adds"
-	L.big_add_message = "큰 쫄 등장!"
-	L.small_adds_message = "작은 쫄 등장!"
-
-	L.phase2_warning = "곧 2 단계!"
-
-	L.molten_message = "보스 공격 증가 x%d !"
-
+	L.phase2_soon_message = "곧 2 단계!"
 	L.stomp_message = "진탕 발길! 발구르기! 발구르기!"
 	L.stomp_warning = "다음 발구르기"
+	L.big_add_message = "큰 쫄 등장!"
+	L.small_adds_message = "작은 쫄 등장!"
 end
 
 L = BigWigs:NewBossLocale("Alysrazor", "koKR")
@@ -50,24 +42,13 @@ L = BigWigs:NewBossLocale("Shannox", "koKR")
 if L then
 	L.safe = "%s 안전함"
 	L.immolation_trap = "제물의 덫 : %s!"
-	L.crystal_trap = "수정 감옥 덫"
-
-	L.traps_header = "Traps"
-	L.immolation = "Immolation Trap"
-	L.immolation_desc = "Alert when Rageface or Riplimb steps on an Immolation Trap."
-	L.immolation_icon = 99838
-	L.crystal = "Crystal Trap"
-	L.crystal_desc = "Warn whom Shannox casts a Crystal Trap under."
-	L.crystal_icon = 99836
+	L.crystaltrap = "수정 감옥 덫"
 end
 
 L = BigWigs:NewBossLocale("Baleroc", "koKR")
 if L then
-	L.torment = "Torment stacks on Focus"
-	L.torment_desc = "Warn when your /focus gains another torment stack."
 	L.torment_message = "고통 x%2$d : %1$s"
-
-	L.blade_bar = "~칼날"
+	L.blade = "~칼날"
 	L.shard_message = "고문의 파편(%d)!"
 	L.focus_message = "당신의 주시 대상 - 고문 x%d !"
 	L.countdown_bar = "다음 고리"
@@ -83,9 +64,6 @@ end
 
 L = BigWigs:NewBossLocale("Ragnaros", "koKR")
 if L then
-	--L.intermission_end_trigger1 = "Sulfuras will be your end."
-	--L.intermission_end_trigger2 = "Fall to your knees, mortals!  This ends now."
-	--L.intermission_end_trigger3 = "Enough! I will finish this."
 	L.phase4_trigger = "너무"	--Check(너무 일러...)
 	L.seed_explosion = "씨앗 폭발!"
 	L.intermission_bar = "휴식"

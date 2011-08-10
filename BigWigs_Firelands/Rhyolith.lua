@@ -20,22 +20,14 @@ local lastFragments = nil
 local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.armor = "Obsidian Armor"
-	L.armor_desc = "Warn when armor stacks are being removed from Rhyolith."
-	L.armor_icon = 98632
+	L.molten_message = "%dx stacks on boss!"
 	L.armor_message = "%d%% armor left"
 	L.armor_gone_message = "Armor go bye-bye!"
-
-	L.adds_header = "Adds"
-	L.big_add_message = "Big add spawned!"
-	L.small_adds_message = "Small adds inc!"
-
-	L.phase2_warning = "Phase 2 soon!"
-
-	L.molten_message = "%dx stacks on boss!"
-
+	L.phase2_soon_message = "Phase 2 soon!"
 	L.stomp_message = "Stomp! Stomp! Stomp!"
 	L.stomp_warning = "Next Stomp"
+	L.big_add_message = "Big add spawned!"
+	L.small_adds_message = "Small adds inc!"
 end
 L = mod:GetLocale()
 
@@ -45,13 +37,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions(CL)
 	return {
-		"armor", 97282, 98255, "ej:2537", "bosskill",
-		98552, 98136,
-		101305,
+		98632, 98552, 98136, 97282, 98255, 99846,
+		101305, "bosskill"
 	}, {
-		["armor"] = "general",
-		[98552] = L["adds_header"],
-		[101305] = "heroic"
+		[98632] = "general"
 	}
 end
 
@@ -84,14 +73,14 @@ end
 function mod:Obsidian(_, spellId, _, _, _, _, _, _, _, dGUID)
 	local unitId = tonumber(dGUID:sub(7, 10), 16)
 	if unitId ~= 52558 then return end
-	self:Message("armor", L["armor_gone_message"], "Positive", spellId)
+	self:Message(98632, L["armor_gone_message"], "Positive", spellId)
 end
 
 function mod:ObsidianStack(_, spellId, _, _, _, buffStack, _, _, _, dGUID)
 	local unitId = tonumber(dGUID:sub(7, 10), 16)
 	if unitId ~= 52558 then return end
 	if buffStack % 20 ~= 0 then return end -- Only warn every 20
-	self:Message("armor", L["armor_message"]:format(buffStack), "Positive", spellId)
+	self:Message(98632, L["armor_message"]:format(buffStack), "Positive", spellId)
 end
 
 function mod:Spark(_, spellId)
@@ -122,7 +111,7 @@ function mod:UNIT_HEALTH_FREQUENT(_, unitId)
 	if unitId == "boss1" or unitId == "boss2" then
 		local hp = UnitHealth(unitId) / UnitHealthMax(unitId) * 100
 		if hp < 30 then -- phase starts at 25
-			self:Message("ej:2537", L["phase2_warning"], "Positive", 99846, "Info")
+			self:Message(99846, L["phase2_soon_message"], "Positive", 99846, "Info")
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 			local stack = select(4, UnitBuff(unitId, moltenArmor))
 			if stack then
