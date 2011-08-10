@@ -1,9 +1,320 @@
 ------------------------------------------------------------------------
-r8549 | funkydude | 2011-07-20 22:56:40 +0000 (Wed, 20 Jul 2011) | 1 line
+r8591 | funkydude | 2011-08-02 13:46:54 +0000 (Tue, 02 Aug 2011) | 1 line
 Changed paths:
-   A /tags/r8549-release (from /trunk:8548)
+   A /tags/r8591-release (from /trunk:8590)
 
-Tagging as r8549-release
+Tagging as r8591-release
+------------------------------------------------------------------------
+r8590 | pettigrow | 2011-08-01 11:43:29 +0000 (Mon, 01 Aug 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8589 | Maat | 2011-08-01 08:50:21 +0000 (Mon, 01 Aug 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+add back the engulfing bar
+------------------------------------------------------------------------
+r8588 | starinnia | 2011-08-01 08:17:25 +0000 (Mon, 01 Aug 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+update EngulfingFlames function for 10 man near, middle and far spellIds
+------------------------------------------------------------------------
+r8587 | starinnia | 2011-08-01 07:31:23 +0000 (Mon, 01 Aug 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Baleroc.lua
+
+fix the Blade bar in OnEngage
+------------------------------------------------------------------------
+r8586 | ananhaid | 2011-08-01 02:12:48 +0000 (Mon, 01 Aug 2011) | 2 lines
+Changed paths:
+   M /trunk/Baradin/Locales/zhCN.lua
+   M /trunk/Baradin/Locales/zhTW.lua
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+
+BigWigs:
+- zhCN/zhTW update.
+------------------------------------------------------------------------
+r8585 | stanzilla | 2011-07-31 19:14:09 +0000 (Sun, 31 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/deDE.lua
+
+deDE yell trigger translations for intermission 1 and 2
+------------------------------------------------------------------------
+r8583 | funkydude | 2011-07-31 11:21:29 +0000 (Sun, 31 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+
+bump toc
+------------------------------------------------------------------------
+r8582 | Maat | 2011-07-30 19:16:59 +0000 (Sat, 30 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Rhyolith.lua
+
+option key fix
+------------------------------------------------------------------------
+r8581 | funkydude | 2011-07-30 13:20:49 +0000 (Sat, 30 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+Firelands/Ragnaros: shorten yell triggers
+------------------------------------------------------------------------
+r8580 | pettigrow | 2011-07-30 13:05:16 +0000 (Sat, 30 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8579 | Maat | 2011-07-30 11:45:52 +0000 (Sat, 30 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/deDE.lua
+   M /trunk/Firelands/Locales/esES.lua
+   M /trunk/Firelands/Locales/frFR.lua
+   M /trunk/Firelands/Locales/koKR.lua
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+   M /trunk/Firelands/Ragnaros.lua
+
+switch to using yells as intermission end trigger as suggested (ticket 373)
+------------------------------------------------------------------------
+r8578 | mojosdojo | 2011-07-30 09:46:56 +0000 (Sat, 30 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/deDE.lua
+   M /trunk/Firelands/Locales/esES.lua
+   M /trunk/Firelands/Locales/frFR.lua
+   M /trunk/Firelands/Locales/koKR.lua
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+   M /trunk/Firelands/Shannox.lua
+
+Make the options a little bit more precise, update locales.
+------------------------------------------------------------------------
+r8577 | rabbit | 2011-07-29 22:38:55 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+
+Fix .pkgmeta tags.
+------------------------------------------------------------------------
+r8576 | funkydude | 2011-07-29 19:21:22 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/deDE.lua
+   M /trunk/Firelands/Locales/esES.lua
+   M /trunk/Firelands/Locales/frFR.lua
+   M /trunk/Firelands/Locales/koKR.lua
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+   M /trunk/Firelands/Shannox.lua
+
+Firelands/Shannox: Improve config
+------------------------------------------------------------------------
+r8575 | pettigrow | 2011-07-29 18:00:01 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/frFR.lua
+   M /trunk/Firelands/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8574 | mojosdojo | 2011-07-29 16:26:26 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/deDE.lua
+   M /trunk/Firelands/Locales/deDE.lua
+
+deDE update.
+------------------------------------------------------------------------
+r8573 | funkydude | 2011-07-29 15:50:20 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/deDE.lua
+   M /trunk/Baradin/Locales/esES.lua
+   M /trunk/Baradin/Locales/frFR.lua
+   M /trunk/Baradin/Locales/koKR.lua
+   M /trunk/Baradin/Locales/zhCN.lua
+   M /trunk/Baradin/Locales/zhTW.lua
+   M /trunk/Baradin/Occuthar.lua
+   M /trunk/Firelands/Rhyolith.lua
+
+Baradin/Occuthar: redo most of this
+------------------------------------------------------------------------
+r8572 | funkydude | 2011-07-29 14:14:18 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+   M /trunk/Firelands/Locales/deDE.lua
+   M /trunk/Firelands/Locales/esES.lua
+   M /trunk/Firelands/Locales/frFR.lua
+   M /trunk/Firelands/Locales/koKR.lua
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+   M /trunk/Firelands/Rhyolith.lua
+
+Firelands/Rhyolith: cleanup config
+------------------------------------------------------------------------
+r8571 | Maat | 2011-07-29 10:15:08 +0000 (Fri, 29 Jul 2011) | 8 lines
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+screw Ensidia them poopers
+add heroic last phase timers
+change meteor fixate detection (lot more heavy, lot more accurate)
+change 1st molten seed on heroic to 15 sec cd
+change wrath of ragnaros to cooldown
+
+
+
+------------------------------------------------------------------------
+r8570 | pettigrow | 2011-07-29 09:34:48 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8569 | mojosdojo | 2011-07-29 09:16:28 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Baleroc.lua
+   M /trunk/Firelands/Locales/deDE.lua
+   M /trunk/Firelands/Staghelm.lua
+
+deDE update and minor fixes.
+------------------------------------------------------------------------
+r8568 | funkydude | 2011-07-29 04:07:50 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+Firelands/Ragnaros: 10m hc inferno id
+------------------------------------------------------------------------
+r8567 | funkydude | 2011-07-29 03:01:08 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+   M /trunk/Firelands/Baleroc.lua
+
+Firelands: add some icons
+------------------------------------------------------------------------
+r8566 | funkydude | 2011-07-29 03:00:37 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+   M /trunk/Core/Constants.lua
+   M /trunk/Core/Core.lua
+
+Core: add a berserk icon to modules with berserk, hackish attempt at allowing modules to specify _icon for custom options.
+------------------------------------------------------------------------
+r8565 | funkydude | 2011-07-29 01:27:20 +0000 (Fri, 29 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+   M /trunk/Firelands/Baleroc.lua
+   M /trunk/Firelands/Locales/deDE.lua
+   M /trunk/Firelands/Locales/esES.lua
+   M /trunk/Firelands/Locales/frFR.lua
+   M /trunk/Firelands/Locales/koKR.lua
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+
+Firelands/Baleroc: make the config not suck
+------------------------------------------------------------------------
+r8564 | pigmonkey | 2011-07-29 00:50:00 +0000 (Fri, 29 Jul 2011) | 3 lines
+Changed paths:
+   M /trunk/Firelands/Staghelm.lua
+
+Majordomo Staghelm:
+- Added a bar for Burning Orbs duration
+- Stop the Searing Seeds timer/bar if you lose the debuff (e.g., to immunity)
+------------------------------------------------------------------------
+r8563 | funkydude | 2011-07-28 19:57:46 +0000 (Thu, 28 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Firelands/Alysrazor: Improve stage messages & bars, minor tweaks
+------------------------------------------------------------------------
+r8562 | jongt23 | 2011-07-28 12:48:17 +0000 (Thu, 28 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8561 | mojosdojo | 2011-07-28 10:46:33 +0000 (Thu, 28 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/deDE.lua
+
+deDE update.
+------------------------------------------------------------------------
+r8560 | funkydude | 2011-07-26 18:49:15 +0000 (Tue, 26 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Firelands/Alysrazor: Molting fixes.
+------------------------------------------------------------------------
+r8559 | funkydude | 2011-07-24 21:48:58 +0000 (Sun, 24 Jul 2011) | 3 lines
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Firelands/Alysrazor: Add a "flight assist", a timer bar for wings of flame, should be used with super emphasize for 54321 ohshit countdown.
+-Prevent the molting bar showing when stage 2 is next, not another molt.
+-Tweak text on some messages/bars
+------------------------------------------------------------------------
+r8558 | jongt23 | 2011-07-24 20:47:46 +0000 (Sun, 24 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8557 | funkydude | 2011-07-23 08:12:42 +0000 (Sat, 23 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Baleroc.lua
+
+Firelands/Baleroc: 10man normal torment spell id
+------------------------------------------------------------------------
+r8556 | ananhaid | 2011-07-23 07:07:15 +0000 (Sat, 23 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Bastion/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhCN.lua
+
+BigWigs:
+- zhCN update.
+------------------------------------------------------------------------
+r8555 | ananhaid | 2011-07-23 05:28:54 +0000 (Sat, 23 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Blackwing/Locales/zhCN.lua
+
+BigWigs:
+- zhCN update.
+------------------------------------------------------------------------
+r8554 | ananhaid | 2011-07-23 05:03:04 +0000 (Sat, 23 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Bastion/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhCN.lua
+   M /trunk/Throne/Locales/zhCN.lua
+
+BigWigs:
+- zhCN update.
+------------------------------------------------------------------------
+r8553 | pettigrow | 2011-07-22 13:58:15 +0000 (Fri, 22 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8552 | ananhaid | 2011-07-22 05:52:53 +0000 (Fri, 22 Jul 2011) | 2 lines
+Changed paths:
+   M /trunk/Bastion/Locales/zhCN.lua
+   M /trunk/Blackwing/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhCN.lua
+   M /trunk/Firelands/Locales/zhTW.lua
+
+BigWigs:
+- zhCN/zhTW update.
+------------------------------------------------------------------------
+r8551 | rabbit | 2011-07-21 19:04:15 +0000 (Thu, 21 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+1 second off ftl
+------------------------------------------------------------------------
+r8550 | rabbit | 2011-07-21 19:01:33 +0000 (Thu, 21 Jul 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+Add wound bar for tanks.
 ------------------------------------------------------------------------
 r8548 | rabbit | 2011-07-20 21:06:23 +0000 (Wed, 20 Jul 2011) | 1 line
 Changed paths:
@@ -718,425 +1029,4 @@ Changed paths:
    M /trunk/Firelands/Locales/esES.lua
 
 esES Update (fix typo)
-------------------------------------------------------------------------
-r8436 | jongt23 | 2011-07-01 21:52:01 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Locales/esES.lua
-
-esES Update
-------------------------------------------------------------------------
-r8435 | Maat | 2011-07-01 21:20:49 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Locales/deDE.lua
-   M /trunk/Firelands/Locales/esES.lua
-   M /trunk/Firelands/Locales/frFR.lua
-   M /trunk/Firelands/Locales/zhCN.lua
-   M /trunk/Firelands/Locales/zhTW.lua
-
-remove the unused locale too
-------------------------------------------------------------------------
-r8434 | Maat | 2011-07-01 21:17:59 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-
-fixes
-------------------------------------------------------------------------
-r8433 | jongt23 | 2011-07-01 16:47:56 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Locales/esES.lua
-
-esES Update
-------------------------------------------------------------------------
-r8432 | mojosdojo | 2011-07-01 16:19:00 +0000 (Fri, 01 Jul 2011) | 2 lines
-Changed paths:
-   M /trunk/Blackwing/Locales/deDE.lua
-   M /trunk/Firelands/Locales/deDE.lua
-   M /trunk/Firelands/Ragnaros.lua
-
-* deDE update.
-* Small fix for Raggi.
-------------------------------------------------------------------------
-r8431 | pettigrow | 2011-07-01 13:46:34 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Locales/frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r8429 | mojosdojo | 2011-07-01 13:13:24 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-
-Bugfix.
-------------------------------------------------------------------------
-r8428 | rabbit | 2011-07-01 12:55:45 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-
-Don't ding on the wounds, it would be too spammy I think.
-------------------------------------------------------------------------
-r8427 | rabbit | 2011-07-01 12:30:44 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Ragnaros.lua
-
-Use ej section header magic.
-------------------------------------------------------------------------
-r8426 | rabbit | 2011-07-01 12:25:33 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Staghelm.lua
-
-Don't close the proximity when other players remove their seeds.
-------------------------------------------------------------------------
-r8425 | rabbit | 2011-07-01 12:16:37 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-
-Clean up a bit.
-------------------------------------------------------------------------
-r8424 | rabbit | 2011-07-01 11:59:33 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Shannox.lua
-
-Tweak immolation warning.
-------------------------------------------------------------------------
-r8423 | rabbit | 2011-07-01 11:54:16 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Rhyolith.lua
-   M /trunk/Firelands/Shannox.lua
-
-I forgot that boss NPC IDs are static, and make the Safe message for Face Rage a positive message.
-------------------------------------------------------------------------
-r8422 | rabbit | 2011-07-01 11:38:53 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Rhyolith.lua
-
-Add obsidian armor to options.
-------------------------------------------------------------------------
-r8421 | rabbit | 2011-07-01 11:37:57 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Rhyolith.lua
-
-Add messages for obsidian stacks and spark/fragment spawns.
-------------------------------------------------------------------------
-r8420 | rabbit | 2011-07-01 10:51:02 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-
-Add more Blazing Claw spell Ids.
-------------------------------------------------------------------------
-r8419 | rabbit | 2011-07-01 10:23:56 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Rhyolith.lua
-
-Add stomp cast warning+bar and change the stack warnings a bit.
-------------------------------------------------------------------------
-r8418 | Maat | 2011-07-01 09:50:06 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-
-small encoding fix
-------------------------------------------------------------------------
-r8417 | rabbit | 2011-07-01 09:20:43 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-
-Redo the power based warnings and set berserk to 15min.
-------------------------------------------------------------------------
-r8416 | Maat | 2011-07-01 08:52:49 +0000 (Fri, 01 Jul 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Baleroc.lua
-
-add 1st blade timer
-------------------------------------------------------------------------
-r8415 | rabbit | 2011-07-01 08:38:19 +0000 (Fri, 01 Jul 2011) | 4 lines
-Changed paths:
-   M /trunk/Blackwing/Nefarian.lua
-   M /trunk/Core/Core.lua
-   M /trunk/Firelands/Alysrazor.lua
-
-* Add ej:sectionId support for option headers and use it on Alysrazor
-* Remove the Stolen Power "warnings" from Nef, why would we warn about that?
-* Add Tantrum and Gushing Wound warnings to Alysrazor and try to get wise to how the fight works, unsuccessfully.
-
-------------------------------------------------------------------------
-r8414 | Maat | 2011-06-30 22:40:46 +0000 (Thu, 30 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Baleroc.lua
-
-add blades
-------------------------------------------------------------------------
-r8413 | starinnia | 2011-06-30 03:35:37 +0000 (Thu, 30 Jun 2011) | 2 lines
-Changed paths:
-   M /trunk/Firelands/Shannox.lua
-
-Firelands/Shannox
--add 10 man spellId for Immolation Trap and Face Rage
-------------------------------------------------------------------------
-r8411 | funkydude | 2011-06-29 23:29:13 +0000 (Wed, 29 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Rhyolith.lua
-
-Firelands/Rhyolith: nil check
-------------------------------------------------------------------------
-r8410 | funkydude | 2011-06-29 15:05:37 +0000 (Wed, 29 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Options/Options.lua
-
-BigWigs_Northrend is not in Durotar, 4.2 map id change.
-------------------------------------------------------------------------
-r8409 | funkydude | 2011-06-29 14:57:50 +0000 (Wed, 29 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Core/Core.lua
-
-remove a compat check
-------------------------------------------------------------------------
-r8408 | funkydude | 2011-06-29 14:35:15 +0000 (Wed, 29 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Options/BigWigs_Options.toc
-
-bump options toc, had a feeling I missed one...
-------------------------------------------------------------------------
-r8407 | ananhaid | 2011-06-29 09:08:46 +0000 (Wed, 29 Jun 2011) | 2 lines
-Changed paths:
-   M /trunk/Baradin/BigWigs_Baradin.toc
-   M /trunk/Baradin/Locales/zhCN.lua
-   M /trunk/Bastion/BigWigs_Bastion.toc
-   M /trunk/Bastion/Locales/zhCN.lua
-   M /trunk/Bastion/Locales/zhTW.lua
-   M /trunk/Blackwing/BigWigs_Blackwing.toc
-   M /trunk/Blackwing/Locales/zhCN.lua
-   M /trunk/Blackwing/Locales/zhTW.lua
-   M /trunk/Firelands/BigWigs_Firelands.toc
-   M /trunk/Firelands/Locales/zhCN.lua
-   M /trunk/Firelands/Locales/zhTW.lua
-   M /trunk/Throne/BigWigs_Throne.toc
-   M /trunk/Throne/Locales/zhCN.lua
-   M /trunk/Throne/Locales/zhTW.lua
-
-BigWigs:
-- zhCN/zhTW update.
-------------------------------------------------------------------------
-r8405 | Maat | 2011-06-28 21:49:37 +0000 (Tue, 28 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-
-small fix
-------------------------------------------------------------------------
-r8404 | funkydude | 2011-06-28 21:49:15 +0000 (Tue, 28 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Core/BossPrototype.lua
-
-Core/BossPrototype: typofix
-------------------------------------------------------------------------
-r8403 | rabbit | 2011-06-28 21:47:19 +0000 (Tue, 28 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Options/author-list.lua
-
-Update author list.
-------------------------------------------------------------------------
-r8402 | funkydude | 2011-06-28 21:20:12 +0000 (Tue, 28 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/BigWigs_Baradin.toc
-   M /trunk/Baradin/Occuthar.lua
-   M /trunk/Bastion/BigWigs_Bastion.toc
-   M /trunk/BigWigs.toc
-   M /trunk/Blackwing/BigWigs_Blackwing.toc
-   M /trunk/Core/BigWigs_Core.toc
-   M /trunk/Core/BossPrototype.lua
-   M /trunk/Firelands/Alysrazor.lua
-   M /trunk/Firelands/Baleroc.lua
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Ragnaros.lua
-   M /trunk/Firelands/Rhyolith.lua
-   M /trunk/Firelands/Shannox.lua
-   M /trunk/Firelands/Staghelm.lua
-   M /trunk/Foreign/BigWigs_Foreign.toc
-   M /trunk/Options/Options.lua
-   M /trunk/Plugins/BigWigs_Plugins.toc
-   M /trunk/Throne/Alakir.lua
-   M /trunk/Throne/BigWigs_Throne.toc
-
-toc updates, remove compat code
-------------------------------------------------------------------------
-r8401 | Maat | 2011-06-28 14:05:37 +0000 (Tue, 28 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/BigWigs_Firelands.toc
-
-firelands zone name translation from wowhead
-------------------------------------------------------------------------
-r8400 | jongt23 | 2011-06-28 13:35:35 +0000 (Tue, 28 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/BigWigs_Firelands.toc
-   M /trunk/Firelands/Locales/esES.lua
-
-esES Firelands update
-------------------------------------------------------------------------
-r8399 | pettigrow | 2011-06-27 11:04:28 +0000 (Mon, 27 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Blackwing/Locales/frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r8398 | mojosdojo | 2011-06-27 10:04:10 +0000 (Mon, 27 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Blackwing/Locales/deDE.lua
-
-deDE update.
-------------------------------------------------------------------------
-r8397 | Maat | 2011-06-27 09:18:09 +0000 (Mon, 27 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Blackwing/Nefarian.lua
-
-ticket 333
-------------------------------------------------------------------------
-r8396 | Maat | 2011-06-26 14:33:29 +0000 (Sun, 26 Jun 2011) | 2 lines
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Options/Options.lua
-
-Bethtilac.lua use the ej:sectionId for the Cinderweb Drones
-Options.lua small fix
-------------------------------------------------------------------------
-r8395 | rabbit | 2011-06-26 14:19:06 +0000 (Sun, 26 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Options/Options.lua
-
-Small cleanup to the ability printing, drycoded.
-------------------------------------------------------------------------
-r8394 | Maat | 2011-06-26 14:02:47 +0000 (Sun, 26 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Options/Options.lua
-
-use EJ links when linking abilities for the new ej:sectionId option keys
-------------------------------------------------------------------------
-r8393 | Maat | 2011-06-26 13:40:26 +0000 (Sun, 26 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Core/Constants.lua
-
-small fix
-------------------------------------------------------------------------
-r8392 | funkydude | 2011-06-26 13:37:39 +0000 (Sun, 26 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Bastion/Chogall.lua
-   M /trunk/Bastion/Halfus.lua
-   M /trunk/Blackwing/Chimaeron.lua
-   M /trunk/Blackwing/Maloriak.lua
-   M /trunk/Blackwing/Nefarian.lua
-   M /trunk/Blackwing/Omnotron.lua
-   M /trunk/Core/BossPrototype.lua
-   M /trunk/Firelands/Alysrazor.lua
-   M /trunk/Firelands/Baleroc.lua
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Throne/Alakir.lua
-
-rename :GetInstanceDifficulty to :Difficulty but keep the former as a temporary wrapper.
-------------------------------------------------------------------------
-r8391 | rabbit | 2011-06-26 12:28:33 +0000 (Sun, 26 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Options/Options.lua
-   M /trunk/Plugins/Proximity.lua
-
-Make sure we don't error on the portrait icons for now.
-------------------------------------------------------------------------
-r8390 | rabbit | 2011-06-26 12:24:03 +0000 (Sun, 26 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Core/Constants.lua
-
-Add support for the EJ in :GetBossOptionDetails; invoke by having an option key like 'ej:<sectionId>'. Supports both abilities and NPCs, but will only return the portrait ID as the icon for a NPC section - we need to support displaying those in the options, and until we do this will probably error.
-------------------------------------------------------------------------
-r8389 | funkydude | 2011-06-21 20:38:14 +0000 (Tue, 21 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-
-Firelands/Bethtilac: oops, active on hc only not normal only.
-------------------------------------------------------------------------
-r8388 | funkydude | 2011-06-21 16:19:22 +0000 (Tue, 21 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Core/BossPrototype.lua
-   M /trunk/Firelands/Alysrazor.lua
-   M /trunk/Firelands/Baleroc.lua
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Shannox.lua
-
-Firelands: minor tweaks
-------------------------------------------------------------------------
-r8387 | funkydude | 2011-06-20 16:59:40 +0000 (Mon, 20 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Throne/Alakir.lua
-
-Throne/Alakir: 4.2 feedback Id's ticket 344
-------------------------------------------------------------------------
-r8386 | pettigrow | 2011-06-20 15:45:48 +0000 (Mon, 20 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/Locales/frFR.lua
-   M /trunk/Blackwing/Locales/frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r8385 | mojosdojo | 2011-06-20 11:39:11 +0000 (Mon, 20 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Bastion/Locales/deDE.lua
-   M /trunk/Blackwing/Locales/deDE.lua
-
-deDE update.
-------------------------------------------------------------------------
-r8384 | maat | 2011-06-20 08:38:16 +0000 (Mon, 20 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Bastion/Chogall.lua
-
-ticket 340
-------------------------------------------------------------------------
-r8383 | funkydude | 2011-06-20 02:01:58 +0000 (Mon, 20 Jun 2011) | 2 lines
-Changed paths:
-   M /trunk/Baradin/Argaloth.lua
-   M /trunk/Baradin/Occuthar.lua
-   M /trunk/Bastion/Chogall.lua
-   M /trunk/Bastion/DoubleDragon.lua
-   M /trunk/Bastion/Halfus.lua
-   M /trunk/Bastion/Sinestra.lua
-   M /trunk/Bastion/TwilightAscendants.lua
-   M /trunk/Blackwing/Atramedes.lua
-   M /trunk/Blackwing/Chimaeron.lua
-   M /trunk/Blackwing/Magmaw.lua
-   M /trunk/Blackwing/Maloriak.lua
-   M /trunk/Blackwing/Nefarian.lua
-   M /trunk/Blackwing/Omnotron.lua
-   M /trunk/Core/Core.lua
-   M /trunk/Firelands/Alysrazor.lua
-   M /trunk/Firelands/Baleroc.lua
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Ragnaros.lua
-   M /trunk/Firelands/Rhyolith.lua
-   M /trunk/Firelands/Shannox.lua
-   M /trunk/Firelands/Staghelm.lua
-   M /trunk/Throne/Alakir.lua
-   M /trunk/Throne/Conclave.lua
-
-Test out using the EJ for translating boss names where available, BB for anything else (old content). Will probably be changed/improved.
-Firelands: fix some typos
-------------------------------------------------------------------------
-r8382 | funkydude | 2011-06-19 15:00:24 +0000 (Sun, 19 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/Argaloth.lua
-   M /trunk/Bastion/Chogall.lua
-   M /trunk/Bastion/Halfus.lua
-   M /trunk/Bastion/Sinestra.lua
-   M /trunk/Bastion/TwilightAscendants.lua
-   M /trunk/Blackwing/Chimaeron.lua
-   M /trunk/Blackwing/Maloriak.lua
-
-Use _frequent for health updates as it passes boss args correctly.
-------------------------------------------------------------------------
-r8381 | funkydude | 2011-06-16 19:39:07 +0000 (Thu, 16 Jun 2011) | 1 line
-Changed paths:
-   M /trunk/Blackwing/Locales/deDE.lua
-   M /trunk/Blackwing/Locales/esES.lua
-   M /trunk/Blackwing/Locales/frFR.lua
-   M /trunk/Blackwing/Locales/koKR.lua
-   M /trunk/Blackwing/Locales/ruRU.lua
-   M /trunk/Blackwing/Locales/zhCN.lua
-   M /trunk/Blackwing/Locales/zhTW.lua
-   M /trunk/Blackwing/Magmaw.lua
-
-Blackwing/Magmaw: Warn for Armageddon during head phase only.
 ------------------------------------------------------------------------
