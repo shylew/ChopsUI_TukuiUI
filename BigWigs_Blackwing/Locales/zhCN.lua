@@ -7,7 +7,7 @@ if L then
 	L.air_phase = "空中阶段"
 	L.air_phase_desc = "当艾卓曼德斯起飞时发出警报。"
 
-	L.air_phase_trigger = "对，跑吧！每跑一步你的心跳都会加快。这心跳声轰亮如雷……震耳欲聋。你逃不掉的！"
+	L.air_phase_trigger = "对，跑吧！每跑一步你的心跳都会加快。这心跳声，洪亮如雷，震耳欲聋。你逃不掉的！"
 
 	L.obnoxious_soon = "即将 喧闹恶鬼！"
 
@@ -42,7 +42,7 @@ if L then
 	L.phase2 = "第二阶段"
 	L.phase2_desc = "当第二阶段时显示距离检查。"
 	L.phase2_message = "第二阶段！"
-	L.phase2_yell = "Inconceivable! You may actually defeat my lava worm! Perhaps I can help... tip the scales."
+	L.phase2_yell = "难以置信"
 
 	-- normal
 	L.pillar_of_flame_cd = "<烈焰火柱>"
@@ -51,11 +51,11 @@ if L then
 	L.slump_desc = "当熔喉扑倒并暴露后脑时发出警报。需要骑乘。"
 	L.slump_bar = "<下一弱点>"
 	L.slump_message = "嘿，快骑上它！"
-	L.slump_trigger = "%s slumps forward, exposing his pincers!"
+	L.slump_trigger = "%s向前倒下，暴露出他的钳子！"
 
 	L.infection_message = ">你< 寄生感染！"
 
-	L.expose_trigger = "头"
+	L.expose_trigger = "将自己钉在刺上，露出了他的头"
 	L.expose_message = "头部暴露！"
 
 	L.spew_bar = "<下一熔岩喷涌>"
@@ -88,18 +88,18 @@ if L then
 	L.next_phase = "下一阶段！"
 	L.green_phase_bar = "<绿色阶段>"
 
-	L.red_phase_trigger = "Mix and stir, apply heat..."
-	L.red_phase_emote_trigger = "红色" --verify
-	L.red_phase = "|cFFFF0000红色|r阶段！"
-	L.blue_phase_trigger = "How well does the mortal shell handle extreme temperature change? Must find out! For science!"
-	L.blue_phase_emote_trigger = "蓝色" --verify
-	L.blue_phase = "|cFF809FFE蓝色|r阶段！"
-	L.green_phase_trigger = "This one's a little unstable, but what's progress without failure?"
-	L.green_phase_emote_trigger = "绿色" --verify
-	L.green_phase = "|cFF33FF00绿色|r阶段！"
-	L.dark_phase_trigger = "Your mixtures are weak, Maloriak! They need a bit more... kick!"
-	L.dark_phase_emote_trigger = "黑色" --verify
-	L.dark_phase = "|cFF660099黑色|r阶段！"
+	L.red_phase_trigger = "混合、搅拌、加热……"
+	L.red_phase_emote_trigger = "红瓶"
+	L.red_phase = "|cFFFF0000红瓶|r阶段"
+	L.blue_phase_trigger = "凡人的躯壳能否经得住极端温度的转变，要弄清楚！为了科学！"
+	L.blue_phase_emote_trigger = "蓝瓶"
+	L.blue_phase = "|cFF809FFE蓝瓶|r阶段"
+	L.green_phase_trigger = "这个有点儿不稳定，但不经过失败怎么会进步？"
+	L.green_phase_emote_trigger = "绿瓶"
+	L.green_phase = "|cFF33FF00绿瓶|r阶段"
+	L.dark_phase_trigger = "你的混合剂太弱了"
+	L.dark_phase_emote_trigger = "黑瓶" --verify
+	L.dark_phase = "|cFF660099黑瓶|r阶段"
 end
 
 L = BigWigs:NewBossLocale("Nefarian", "zhCN")
@@ -113,10 +113,10 @@ if L then
 
 	L.phase_three_trigger = "我一直在尝试扮演好客的主人，可你们就是不肯受死！该卸下伪装了……杀光你们！"
 
-	L.crackle_trigger = "The air crackles with electricity!"
+	L.crackle_trigger = "空气中激荡的电流噼啪作响！"
 	L.crackle_message = "即将 通电！"
 
-	L.shadowblaze_trigger = "Flesh turns to ash!"
+	L.shadowblaze_trigger = "血肉化为灰烬！"
 	L.shadowblaze_message = ">你< 暗影爆燃！"
 
 	L.onyxia_power_message = "即将 电荷过载！"
