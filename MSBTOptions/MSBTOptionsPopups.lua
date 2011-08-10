@@ -37,7 +37,7 @@ local sounds = MSBTMedia.sounds
 -- Private constants.
 -------------------------------------------------------------------------------
 
-local OUTLINE_MAP = {"", "OUTLINE", "THICKOUTLINE"}
+local OUTLINE_MAP = {"", "OUTLINE", "THICKOUTLINE", "MONOCHROME", "MONOCHROME,OUTLINE", "MONOCHROME,THICKOUTLINE"}
 local DEFAULT_TEXT_ALIGN_INDEX = 2
 local DEFAULT_SCROLL_HEIGHT = 260
 local DEFAULT_SCROLL_WIDTH = 40
@@ -3424,32 +3424,32 @@ local function CreateTriggerPopup()
   -- Main event conditions.
   -- Source unit.
   sourceName = {controlType = "editbox", relations = stringRelations},
-  sourceAffiliation = {controlType = "dropdown", items = affiliationTypes, default=FLAG_YOU, relations = booleanRelations},
-  sourceReaction = {controlType = "dropdown", items = reactionTypes, default=MSBTParser.REACTION_HOSTILE, relations = booleanRelations},
-  sourceControl = {controlType = "dropdown", items = controlTypes, default=MSBTParser.CONTROL_HUMAN, relations = booleanRelations},
-  sourceUnitType = {controlType = "dropdown", items = unitTypes, default=MSBTParser.UNITTYPE_PLAYER, relations = booleanRelations},
+  sourceAffiliation = {controlType = "dropdown", items = affiliationTypes, default = FLAG_YOU, relations = booleanRelations},
+  sourceReaction = {controlType = "dropdown", items = reactionTypes, default = MSBTParser.REACTION_HOSTILE, relations = booleanRelations},
+  sourceControl = {controlType = "dropdown", items = controlTypes, default = MSBTParser.CONTROL_HUMAN, relations = booleanRelations},
+  sourceUnitType = {controlType = "dropdown", items = unitTypes, default = MSBTParser.UNITTYPE_PLAYER, relations = booleanRelations},
 
   -- Recipient unit.
   recipientName = {controlType = "editbox", relations = stringRelations},
-  recipientAffiliation = {controlType = "dropdown", items = affiliationTypes, default=FLAG_YOU, relations = booleanRelations},
-  recipientReaction = {controlType = "dropdown", items = reactionTypes, default=MSBTParser.REACTION_HOSTILE, relations = booleanRelations},
-  recipientControl = {controlType = "dropdown", items = controlTypes, default=MSBTParser.CONTROL_HUMAN, relations = booleanRelations},
-  recipientUnitType = {controlType = "dropdown", items = unitTypes, default=MSBTParser.UNITTYPE_PLAYER, relations = booleanRelations},
+  recipientAffiliation = {controlType = "dropdown", items = affiliationTypes, default = FLAG_YOU, relations = booleanRelations},
+  recipientReaction = {controlType = "dropdown", items = reactionTypes, default = MSBTParser.REACTION_HOSTILE, relations = booleanRelations},
+  recipientControl = {controlType = "dropdown", items = controlTypes, default = MSBTParser.CONTROL_HUMAN, relations = booleanRelations},
+  recipientUnitType = {controlType = "dropdown", items = unitTypes, default = MSBTParser.UNITTYPE_PLAYER, relations = booleanRelations},
 
   -- Skill.
   skillID = {controlType = "editbox", relations = booleanRelations},
   skillName = {controlType = "editbox", relations = stringRelations},
-  skillSchool = {controlType = "dropdown", items = MSBTMain.damageTypeMap, default=0x1, relations = booleanRelations},
+  skillSchool = {controlType = "dropdown", items = MSBTMain.damageTypeMap, default = 0x1, relations = booleanRelations},
   
   -- Extra skill.
   extraSkillID = {controlType = "editbox", relations = booleanRelations},
   extraSkillName = {controlType = "editbox", relations = stringRelations},
-  extraSkillSchool = {controlType = "dropdown", items = MSBTMain.damageTypeMap, default=0x1, relations = booleanRelations},
+  extraSkillSchool = {controlType = "dropdown", items = MSBTMain.damageTypeMap, default = 0x1, relations = booleanRelations},
 
   -- Damage/heal.
   amount = {controlType = "editbox", relations = numberRelations},
   overkillAmount = {controlType = "editbox", relations = numberRelations},
-  damageType = {controlType = "dropdown", items = MSBTMain.damageTypeMap, default=0x1, relations = booleanRelations},
+  damageType = {controlType = "dropdown", items = MSBTMain.damageTypeMap, default = 0x1, relations = booleanRelations},
   resistAmount = {controlType = "editbox", relations = numberRelations},
   blockAmount = {controlType = "editbox", relations = numberRelations},
   absorbAmount = {controlType = "editbox", relations = numberRelations},
@@ -3458,18 +3458,22 @@ local function CreateTriggerPopup()
   isCrushing = {controlType = "dropdown", items = booleanItems, default = "true", relations = booleanRelations},
 
   -- Miss/environmental/power.
-  missType = {controlType = "dropdown", items = missTypes, default="MISS", relations = booleanRelations},
-  hazardType = {controlType = "dropdown", items = hazardTypes, default="FALLING", relations = booleanRelations},
-  powerType = {controlType = "dropdown", items = powerTypes, default=0, relations = booleanRelations},
+  missType = {controlType = "dropdown", items = missTypes, default = "MISS", relations = booleanRelations},
+  hazardType = {controlType = "dropdown", items = hazardTypes, default = "FALLING", relations = booleanRelations},
+  powerType = {controlType = "dropdown", items = powerTypes, default = 0, relations = booleanRelations},
   extraAmount = {controlType = "editbox", relations = numberRelations},
   
   -- Aura.
-  auraType = {controlType = "dropdown", items = auraTypes, default="BUFF", relations = booleanRelations},
+  auraType = {controlType = "dropdown", items = auraTypes, default = "BUFF", relations = booleanRelations},
 
   -- Health/power changes.
-  threshold = {controlType = "slider", minValue=1, maxValue=100, step=1, default=40, relations=numberRelations, defaultRelation = "lt"},
-  unitID = {controlType = "dropdown", items = unitIDs, default="player", relations = booleanRelations},
-  unitReaction = {controlType = "dropdown", items = reactionTypes, default=MSBTParser.REACTION_HOSTILE, relations = booleanRelations},
+  threshold = {controlType = "slider", minValue=1, maxValue=100, step=1, default = 40, relations=numberRelations, defaultRelation = "lt"},
+  unitID = {controlType = "dropdown", items = unitIDs, default = "player", relations = booleanRelations},
+  unitReaction = {controlType = "dropdown", items = reactionTypes, default = MSBTParser.REACTION_HOSTILE, relations = booleanRelations},
+
+  -- Items.
+  itemID = {controlType = "editbox", relations = booleanRelations},
+  itemName = {controlType = "editbox", relations = stringRelations},
 
   -- Exception conditions.
   activeTalents = {controlType = "dropdown", items = talentSpecs, default = 1, relations = booleanRelations},
@@ -3483,7 +3487,7 @@ local function CreateTriggerPopup()
   unavailableSkill = {controlType = "editbox", relations = equalityRelations},
   warriorStance = {controlType = "dropdown", items = warriorStances, default = 1, relations = booleanRelations},
   zoneName = {controlType = "editbox", relations = stringRelations},
-  zoneType = {controlType = "dropdown", items = zoneTypes, default="arena", relations = booleanRelations},
+  zoneType = {controlType = "dropdown", items = zoneTypes, default = "arena", relations = booleanRelations},
  }
 
  -- Event condition data.
@@ -3546,6 +3550,7 @@ local function CreateTriggerPopup()
 
   -- Cooldowns.
   SKILL_COOLDOWN = {availableConditions = "skillID skillName", defaultConditions="skillName;;eq;;" .. UNKNOWN},
+  ITEM_COOLDOWN = {availableConditions = "itemID itemName", defaultConditions="itemName;;eq;;" .. UNKNOWN},
  }
  eventConditionData["RANGE_DAMAGE"] = eventConditionData["SPELL_DAMAGE"]
  eventConditionData["GENERIC_DAMAGE"] = eventConditionData["SPELL_DAMAGE"]
