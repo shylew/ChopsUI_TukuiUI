@@ -1,0 +1,23 @@
+------------------------------------------------------------------------
+r24 | stassart | 2011-11-29 18:09:26 +0000 (Tue, 29 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/BaradinHold.lua
+   M /trunk/DragonSoul.lua
+   M /trunk/GridStatusRD_Cata.toc
+
+Updated TOC to 4.3. Enabled Dragon Soul. Alizabal disabled until it's added to libbabble-boss.
+------------------------------------------------------------------------
+r23 | stassart | 2011-11-18 13:06:27 +0000 (Fri, 18 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/BaradinHold.lua
+   A /trunk/DragonSoul.lua
+   M /trunk/GridStatusRD_Cata.toc
+
+Getting ready for 4.3. Dragon Soul/Alizabal commented out until libbabble-zone and libbabble-boss are updated for 4.3.
+------------------------------------------------------------------------
+r22 | stassart | 2011-10-13 20:55:42 +0000 (Thu, 13 Oct 2011) | 1 line
+Changed paths:
+   M /trunk/Firelands.lua
+
+Added Dreadflame and Superheated for phase 4 Heroic Rag. Added Volcanus debuff for legendary staff quest.  Added some missing Firelands trash debuffs.
+------------------------------------------------------------------------
