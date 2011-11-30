@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Sinestra", 758, 168)
+local mod, CL = BigWigs:NewBoss("Sinestra", 758, 168)
 if not mod then return end
 mod:RegisterEnableMob(45213)
 
@@ -10,7 +10,6 @@ mod:RegisterEnableMob(45213)
 -- Localization
 --
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.whelps = "Whelps"
@@ -59,7 +58,6 @@ local function isTargetableByOrb(unit)
 	-- check sinestra's target too
 	if UnitIsUnit("boss1target", unit) then return false end
 	-- and maybe do a check for whelp targets
-	-- not 100% sure if whelp "tanks" can be targeted by the orb or not
 	for k, v in pairs(whelpGUIDs) do
 		local whelp = mod:GetUnitIdByGUID(k)
 		if whelp then
@@ -72,14 +70,17 @@ end
 local function populateOrbList()
 	wipe(orbList)
 	for i = 1, GetNumRaidMembers() do
+		local n, _, g = GetRaidRosterInfo(i)
 		-- do some checks for 25/10 man raid size so we don't warn for ppl who are not in the instance
-		if GetInstanceDifficulty() == 3 and i > 10 then return end
-		if GetInstanceDifficulty() == 4 and i > 25 then return end
-		local n = GetRaidRosterInfo(i)
-		-- Tanking something, but not a tank (aka not tanking Sinestra or Whelps)
-		if UnitThreatSituation(n) == 3 and isTargetableByOrb(n) then
-			if UnitIsUnit(n, "player") then playerInList = true end
-			orbList[#orbList + 1] = n
+		if (GetInstanceDifficulty() == 3 and g < 3) or (GetInstanceDifficulty() == 4 and g < 6) then
+			-- Tanking something, but not a tank (aka not tanking Sinestra or Whelps)
+			if UnitThreatSituation(n) == 3 and isTargetableByOrb(n) then
+				if UnitIsUnit(n, "player") then playerInList = true end
+				-- orbList is not created by :NewTargetList
+				-- so we don't have to decolorize when we set icons,
+				-- instead we colorize targets in the module
+				orbList[#orbList + 1] = n
+			end
 		end
 	end
 end
@@ -90,8 +91,9 @@ local function wipeWhelpList(resetWarning)
 	wipe(whelpGUIDs)
 end
 
+-- since we don't use :NewTargetList we have to color the targets
 local hexColors = {}
-for k, v in pairs(RAID_CLASS_COLORS) do
+for k, v in pairs(CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS) do
 	hexColors[k] = "|cff" .. string.format("%02x%02x%02x", v.r * 255, v.g * 255, v.b * 255)
 end
 
@@ -108,6 +110,7 @@ end
 local function orbWarning(source)
 	if playerInList then mod:FlashShake(92954) end
 
+	-- this is why orbList can't be created by :NewTargetList
 	if orbList[1] then mod:PrimaryIcon(92954, orbList[1]) end
 	if orbList[2] then mod:SecondaryIcon(92954, orbList[2]) end
 
@@ -139,7 +142,7 @@ end
 -- Initialization
 --
 
-function mod:GetOptions()
+function mod:GetOptions(CL)
 	return {
 	-- Phase 1 and 3
 		92944, -- Breath

@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Lord Rhyolith", 800, 193)
+local mod, CL = BigWigs:NewBoss("Lord Rhyolith", 800, 193)
 if not mod then return end
 mod:RegisterEnableMob(52577, 53087, 52558) -- Left foot, Right Foot, Lord Rhyolith
 
@@ -17,7 +17,6 @@ local lastFragments = nil
 -- Localization
 --
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.armor = "Obsidian Armor"
@@ -35,7 +34,7 @@ if L then
 	L.molten_message = "%dx stacks on boss!"
 
 	L.stomp_message = "Stomp! Stomp! Stomp!"
-	L.stomp_warning = "Next Stomp"
+	L.stomp = "Stomp"
 end
 L = mod:GetLocale()
 
@@ -43,15 +42,13 @@ L = mod:GetLocale()
 -- Initialization
 --
 
-function mod:GetOptions(CL)
+function mod:GetOptions()
 	return {
-		"armor", 97282, 98255, "ej:2537", "bosskill",
 		98552, 98136,
-		101305,
+		"armor", 97282, 98255, "ej:2537", 101305, "bosskill"
 	}, {
-		["armor"] = "general",
 		[98552] = L["adds_header"],
-		[101305] = "heroic"
+		["armor"] = "general"
 	}
 end
 
@@ -69,10 +66,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage(diff)
-	if diff > 2 then
-		self:Berserk(300, nil, nil, 101305)
-	end
-	self:Bar(97282, L["stomp_warning"], 15, 97282)
+	self:Berserk(diff > 2 and 300 or 360, nil, nil, 101305)
+	self:Bar(97282, L["stomp"], 15, 97282)
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
 	lastFragments = GetTime()
 end
@@ -82,16 +77,15 @@ end
 --
 
 function mod:Obsidian(_, spellId, _, _, _, _, _, _, _, dGUID)
-	local unitId = tonumber(dGUID:sub(7, 10), 16)
-	if unitId ~= 52558 then return end
-	self:Message("armor", L["armor_gone_message"], "Positive", spellId)
+	if self:GetCID(dGUID) == 52558 then
+		self:Message("armor", L["armor_gone_message"], "Positive", spellId)
+	end
 end
 
 function mod:ObsidianStack(_, spellId, _, _, _, buffStack, _, _, _, dGUID)
-	local unitId = tonumber(dGUID:sub(7, 10), 16)
-	if unitId ~= 52558 then return end
-	if buffStack % 20 ~= 0 then return end -- Only warn every 20
-	self:Message("armor", L["armor_message"]:format(buffStack), "Positive", spellId)
+	if buffStack % 20 == 0 and self:GetCID(dGUID) == 52558 then -- Only warn every 20
+		self:Message("armor", L["armor_message"]:format(buffStack), "Positive", spellId)
+	end
 end
 
 function mod:Spark(_, spellId)
@@ -107,14 +101,14 @@ end
 
 function mod:Stomp(_, spellId, _, _, spellName)
 	self:Message(97282, L["stomp_message"], "Urgent",  spellId, "Alert")
-	self:Bar(97282, L["stomp_message"], 3, spellId)
-	self:Bar(97282, L["stomp_warning"], 30, spellId)
+	self:Bar(97282, L["stomp"], 30, spellId)
+	self:Bar(97282, CL["cast"]:format(L["stomp"]), 3, spellId)
 end
 
 function mod:MoltenArmor(player, spellId, _, _, spellName, stack, _, _, _, dGUID)
-	local unitId = tonumber(dGUID:sub(7, 10), 16)
-	if stack < 4 or stack % 2 ~= 0 or unitId ~= 52558 then return end
-	self:Message(98255, L["molten_message"]:format(stack), "Attention", spellId)
+	if stack > 3 and stack % 2 == 0 and self:GetCID(dGUID) == 52558 then
+		self:Message(98255, L["molten_message"]:format(stack), "Attention", spellId)
+	end
 end
 
 function mod:UNIT_HEALTH_FREQUENT(_, unitId)

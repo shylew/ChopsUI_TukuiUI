@@ -193,23 +193,22 @@ do
 			"boss1", "boss2", "boss3", "boss4",
 			"target", "targettarget",
 			"focus", "focustarget",
-			"mouseover", "mouseovertarget",
-			"party1target", "party2target", "party3target", "party4target"
+			"party1target", "party2target", "party3target", "party4target",
+			"mouseover", "mouseovertarget"
 		}
 		for i = 1, 25 do t[#t+1] = fmt("raid%dtarget", i) end
 	end
 	local function findTargetByGUID(id)
-		local idType = type(id)
 		if not t then buildTable() end
 		for i, unit in next, t do
-			if UnitExists(unit) and not UnitIsPlayer(unit) then
-				local unitId = UnitGUID(unit)
-				if idType == "number" then unitId = tonumber(unitId:sub(7, 10), 16) end
-				if unitId == id then return unit end
+			local guid = UnitGUID(unit)
+			if guid and not UnitIsPlayer(unit) then
+				if type(id) == "number" then guid = tonumber(guid:sub(7, 10), 16) end
+				if guid == id then return unit end
 			end
 		end
 	end
-	function boss:GetUnitIdByGUID(mob) return findTargetByGUID(mob) end
+	function boss:GetUnitIdByGUID(id) return findTargetByGUID(id) end
 
 	local function scan(self)
 		for mobId, entry in pairs(core:GetEnableMobs()) do
@@ -251,8 +250,8 @@ do
 		local go = scan(self)
 		if not go then
 			if debug then dbg(self, "Wipe scan found no active boss entities, rebooting module.") end
-			if self.OnWipe then self:OnWipe() end
 			self:Reboot()
+			if self.OnWipe then self:OnWipe() end
 		else
 			if debug then dbg(self, "Wipe scan found active boss entities (" .. tostring(go) .. "). Re-scheduling another wipe check in 2 seconds.") end
 			self:ScheduleTimer("CheckForWipe", 2)
@@ -264,6 +263,12 @@ do
 		return diff
 	end
 	boss.GetInstanceDifficulty = boss.Difficulty
+
+	-- XXX Maybe expand this to accept guid and unitId.
+	function boss:GetCID(guid)
+		local creatureId = tonumber(guid:sub(7, 10), 16)
+		return creatureId
+	end
 
 	function boss:Engage()
 		if debug then dbg(self, ":Engage") end
@@ -316,6 +321,7 @@ end
 -------------------------------------------------------------------------------
 -- Boss module APIs for messages, bars, icons, etc.
 --
+
 local silencedOptions = {}
 do
 	local bwOptionSilencer = CreateFrame("Frame")
@@ -373,6 +379,17 @@ do
 	end
 end
 
+local icons = setmetatable({}, {__index =
+	function(self, key)
+		if not key then return end
+		local value = nil
+		if type(key) == "number" then value = select(3, GetSpellInfo(key))
+		else value = "Interface\\Icons\\" .. key end
+		self[key] = value
+		return value
+	end
+})
+
 -- XXX the monitor should probably also get a button to turn off the proximity bitflag
 -- XXX for the given key.
 function boss:OpenProximity(range, key)
@@ -386,18 +403,18 @@ end
 
 function boss:Message(key, text, color, icon, sound, noraidsay, broadcastonly)
 	if not checkFlag(self, key, C.MESSAGE) then return end
-	self:SendMessage("BigWigs_Message", self, key, text, color, noraidsay, sound, broadcastonly, icon)
+	self:SendMessage("BigWigs_Message", self, key, text, color, noraidsay, sound, broadcastonly, icons[icon])
 end
 
 -- Outputs a local message only, no raid warning.
 function boss:LocalMessage(key, text, color, icon, sound)
 	if not checkFlag(self, key, C.MESSAGE) then return end
-	self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icon)
+	self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icons[icon])
 end
 
 do
 	local hexColors = {}
-	for k, v in pairs(RAID_CLASS_COLORS) do
+	for k, v in pairs(CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS) do
 		hexColors[k] = "|cff" .. fmt("%02x%02x%02x", v.r * 255, v.g * 255, v.b * 255)
 	end
 	local coloredNames = setmetatable({}, {__index =
@@ -428,16 +445,16 @@ do
 			local list = table.concat(player, ", ")
 			if not (list):find(UnitName("player")) then sound = nil end
 			local text = fmt(L["other"], spellName, list)
-			self:SendMessage("BigWigs_Message", self, key, text, color, nil, sound, nil, icon)
+			self:SendMessage("BigWigs_Message", self, key, text, color, nil, sound, nil, icons[icon])
 			wipe(player)
 		else
 			if UnitIsUnit(player, "player") then
 				if ... then
 					local text = fmt(spellName, coloredNames[player], ...)
-					self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icon)
+					self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icons[icon])
 					self:SendMessage("BigWigs_Message", self, key, text, nil, nil, nil, true)
 				else
-					self:SendMessage("BigWigs_Message", self, key, fmt(L["you"], spellName), "Personal", true, sound, nil, icon)
+					self:SendMessage("BigWigs_Message", self, key, fmt(L["you"], spellName), "Personal", true, sound, nil, icons[icon])
 					self:SendMessage("BigWigs_Message", self, key, fmt(L["other"], spellName, player), nil, nil, nil, true)
 				end
 			else
@@ -449,7 +466,7 @@ do
 				else
 					text = fmt(L["other"], spellName, coloredNames[player])
 				end
-				self:SendMessage("BigWigs_Message", self, key, text, color, nil, nil, nil, icon)
+				self:SendMessage("BigWigs_Message", self, key, text, color, nil, nil, nil, icons[icon])
 			end
 		end
 	end
@@ -470,25 +487,16 @@ function boss:PlaySound(key, sound)
 	self:SendMessage("BigWigs_Sound", sound)
 end
 
-do
-	local icons = setmetatable({}, {__index =
-		function(self, key)
-			if not key then return end
-			local value = nil
-			if type(key) == "number" then value = select(3, GetSpellInfo(key))
-			else value = "Interface\\Icons\\" .. key end
-			self[key] = value
-			return value
-		end
-	})
 
-	function boss:Bar(key, text, length, icon, barColor, barEmphasized, barText, barBackground, ...)
-		if checkFlag(self, key, C.BAR) then
-			self:SendMessage("BigWigs_StartBar", self, key, text, length, icons[icon], ...)
-		end
+function boss:Bar(key, text, length, icon, barColor, barEmphasized, barText, barBackground, ...)
+	if checkFlag(self, key, C.BAR) then
+		self:SendMessage("BigWigs_StartBar", self, key, text, length, icons[icon], ...)
 	end
 end
 
+-- Examples of API use in a module:
+-- self:Sync("abilityPrefix", playerName)
+-- self:Sync("ability")
 function boss:Sync(...) core:Transmit(...) end
 
 do

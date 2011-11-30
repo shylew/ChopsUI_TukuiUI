@@ -4,7 +4,7 @@
 
 local mod = BigWigs:NewBoss("Majordomo Staghelm", 800, 197)
 if not mod then return end
-mod:RegisterEnableMob(52571)
+mod:RegisterEnableMob(52571, 53619) --Staghelm, Druid of the Flame
 
 --------------------------------------------------------------------------------
 -- Locales
@@ -14,7 +14,6 @@ local leapingFlames, flameScythe = (GetSpellInfo(98476)), (GetSpellInfo(100213))
 -- got data up to 15 stacks, after 11 its 3.7
 local specialCD = {17.5, 13.4, 10.9, 8.6, 7.4, 7.3, 6.1, 6.1, 4.9, 4.9, 4.9}
 local specialCounter = 1
-local leapWarned = nil
 local form = "cat"
 local seedTimer = nil
 
@@ -22,12 +21,12 @@ local seedTimer = nil
 -- Localization
 --
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.seed_explosion = "You explode soon!"
 	L.seed_bar = "You explode!"
 	L.adrenaline_message = "Adrenaline x%d!"
+	L.leap_say = "Leap on ME!"
 end
 L = mod:GetLocale()
 
@@ -35,7 +34,7 @@ L = mod:GetLocale()
 -- Initialization
 --
 
-function mod:GetOptions(CL)
+function mod:GetOptions()
 	return {
 		98379, 100213,
 		{98374, "PROXIMITY"}, {98476, "FLASHSHAKE", "ICON", "SAY"},
@@ -55,6 +54,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CatForm", 98374)
 	self:Log("SPELL_AURA_APPLIED", "ScorpionForm", 98379)
 	self:Log("SPELL_CAST_SUCCESS", "LeapingFlames", 98476, 100206)
+	self:Log("SPELL_CAST_START", "RecklessLeap", 99629)
 	self:Log("SPELL_AURA_APPLIED", "SearingSeeds", 98450)
 	self:Log("SPELL_AURA_REMOVED", "SearingSeedsRemoved", 98450)
 	self:Log("SPELL_CAST_START", "BurningOrbs", 98451)
@@ -67,8 +67,8 @@ end
 function mod:OnEngage(diff)
 	self:Berserk(600) -- assumed
 	specialCounter = 1
-	leapWarned = nil
 	form = "cat"
+	seedTimer = nil
 end
 
 --------------------------------------------------------------------------------
@@ -88,40 +88,72 @@ function mod:Adrenaline(_, spellId, _, _, spellName, stack)
 end
 
 do
-	local function reset() leapWarned = nil end
+	local prev, fired, timer = 0, 0, nil
 	local function checkTarget()
-		local mobId = mod:GetUnitIdByGUID(52571)
-		if mobId then
-			local player = UnitName(mobId.."target")
-			if not player then return end
-			leapWarned = true
-			if UnitIsUnit("player", player) then
-				mod:Say(98476, CL["say"]:format(leapingFlames))
+		fired = fired + 1
+		local player = UnitName("boss1target")
+		if player and not UnitDetailedThreatSituation("boss1target", "boss1") then
+			mod:CancelTimer(timer, true)
+			timer = nil
+			if UnitIsUnit("player", "boss1target") then
+				mod:Say(98476, L["leap_say"])
 				mod:FlashShake(98476)
 			end
 			mod:TargetMessage(98476, leapingFlames, player, "Urgent", 98476, "Long")
 			mod:PrimaryIcon(98476, player)
+			return
+		end
+		if fired > 18 then
+			mod:CancelTimer(timer, true)
+			timer = nil
 		end
 	end
-	function mod:LeapingFlames(...)
-		if leapWarned then return end
-		leapWarned = true
-		self:ScheduleTimer(reset, 2)
-		self:ScheduleTimer(checkTarget, 0.2)
+	function mod:LeapingFlames()
+		local t = GetTime() --Throttle as it's sometimes casted twice in a row
+		if t-prev > 2 then
+			prev, fired = t, 0
+			if not timer then
+				timer = self:ScheduleRepeatingTimer(checkTarget, 0.05)
+			end
+		end
+	end
+end
+
+do
+	local function checkTarget(guid)
+		for i=1, GetNumRaidMembers() do
+			local leapTarget = ("%s%d%s"):format("raid", i, "target")
+			if UnitGUID(leapTarget) == guid and UnitIsUnit("player", leapTarget.."target") then
+				mod:Say(98476, L["leap_say"])
+				mod:FlashShake(98476)
+				break
+			end
+		end
+	end
+	function mod:RecklessLeap(...)
+		local sGUID = select(11, ...)
+		--3sec cast so we have room to balance accuracy vs reaction time
+		self:ScheduleTimer(checkTarget, 1.5, sGUID)
 	end
 end
 
 function mod:CatForm(_, spellId, _, _, spellName)
 	form = "cat"
 	self:Message(98374, spellName, "Important", spellId, "Alert")
-	self:OpenProximity(10, 98374)
 	specialCounter = 1
 	self:Bar(98476, leapingFlames, specialCD[specialCounter], 98476)
+	--Don't open if already opened from seed
+	local spell = GetSpellInfo(98450)
+	local hasDebuff, _, _, _, _, _, remaining = UnitDebuff("player", spell)
+	if not hasDebuff or (remaining - GetTime() > 6) then
+		self:OpenProximity(10, 98374)
+	end
 end
 
 function mod:ScorpionForm(_, spellId, _, _, spellName)
 	form = "scorpion"
 	self:Message(98379, spellName, "Important", spellId, "Alert")
+	self:PrimaryIcon(98476)
 	self:CloseProximity(98374)
 	specialCounter = 1
 	self:Bar(100213, flameScythe, specialCD[specialCounter], 100213)
@@ -130,7 +162,11 @@ end
 function mod:SearingSeedsRemoved(player)
 	if not UnitIsUnit(player, "player") then return end
 	self:SendMessage("BigWigs_StopBar", self, L["seed_bar"])
-	self:CloseProximity(98450)
+	if form == "cat" then
+		self:OpenProximity(10, 98374)
+	else
+		self:CloseProximity(98450)
+	end
 	self:CancelTimer(seedTimer, true)
 	seedTimer = nil
 end

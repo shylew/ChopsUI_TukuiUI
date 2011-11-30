@@ -2,20 +2,21 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Ragnaros", 800, 198)
+local mod, CL = BigWigs:NewBoss("Ragnaros", 800, 198)
 if not mod then return end
-mod:RegisterEnableMob(52409)
+mod:RegisterEnableMob(52409, 53231) --Ragnaros, Lava Scion
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local seedWarned, intermissionwarned, infernoWarned, meteorWarned, fixateWarned = false, false, false, false, false
+local intermissionwarned, infernoWarned, fixateWarned = false, false, false
 local blazingHeatTargets = mod:NewTargetList()
 local sons = 8
 local phase = 1
-local lavaWavesCD, engulfingCD = 30, 40
+local lavaWavesCD, engulfingCD, dreadflameCD = 30, 40, 40
 local moltenSeed, lavaWaves, fixate, livingMeteor, wrathOfRagnaros = (GetSpellInfo(98498)), (GetSpellInfo(100292)), (GetSpellInfo(99849)), (GetSpellInfo(99317)), (GetSpellInfo(98263))
+local dreadflame, cloudburst, worldInFlames = (GetSpellInfo(100675)), (GetSpellInfo(100714)), (GetSpellInfo(100190))
 local meteorCounter, meteorNumber = 1, {1, 2, 4, 6, 8}
 local intermissionHandle = nil
 
@@ -23,7 +24,6 @@ local intermissionHandle = nil
 -- Localization
 --
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.intermission_end_trigger1 = "Sulfuras will be your end"
@@ -33,28 +33,33 @@ if L then
 	L.seed_explosion = "Seed explosion!"
 	L.intermission_bar = "Intermission!"
 	L.intermission_message = "Intermission... Got cookies?"
-	L.sons_left = "%d sons left"
+	L.sons_left = "%d |4son left:sons left;"
 	L.engulfing_close = "Close quarters Engulfed!"
 	L.engulfing_middle = "Middle section Engulfed!"
 	L.engulfing_far = "Far side Engulfed!"
-	L.hand_bar = "Next knockback"
-	L.wound_bar = "Wound on %s"
+	L.hand_bar = "Knockback"
 	L.ragnaros_back_message = "Raggy is back, parry on!" -- yeah thats right PARRY ON!
+
+	L.wound = "Burning Wound"
+	L.wound_desc = "Tank alert only. Count the stacks of burning wound and show a duration bar."
+	L.wound_icon = 99399
+	L.wound_message = "%2$dx Wound on %1$s"
 end
 L = mod:GetLocale()
+L.wound = L.wound.." "..INLINE_TANK_ICON
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
-function mod:GetOptions(CL)
+function mod:GetOptions()
 	return {
-		98237, 100115,
+		98237, 100115, 98164,
 		98953, {100460, "ICON", "FLASHSHAKE", "SAY"},
-		{98498, "FLASHSHAKE"}, 100178,
+		98498, 100178,
 		99317, {99849, "FLASHSHAKE", "SAY"},
-		100190, 100479, 100646, 100714, 100997,
-		98710, 99399, "proximity", "berserk", "bosskill"
+		100190, 100479, 100646, 100714, 100997, 100675,
+		98710, "wound", "proximity", "berserk", "bosskill"
 	}, {
 		[98237] = "ej:2629",
 		[98953] = L["intermission_bar"],
@@ -67,25 +72,27 @@ end
 
 function mod:OnBossEnable()
 	-- Heroic
-	self:Log("SPELL_AURA_APPLIED", "WorldInFlames", 100190)
+	self:Log("SPELL_AURA_APPLIED", "WorldInFlames", 100190, 100171)
 
 	self:Yell("Phase4", L["phase4_trigger"])
 	self:Log("SPELL_CAST_START", "BreadthofFrost", 100479)
 	self:Log("SPELL_CAST_START", "EntrappingRoots", 100646)
 	self:Log("SPELL_CAST_START", "Cloudburst", 100714)
-	self:Log("SPELL_CAST_START", "EmpowerSulfuras", 100997)
+	self:Log("SPELL_CAST_SUCCESS", "EmpowerSulfuras", 100997)
 
 	-- Normal
 	self:Yell("IntermissionEnd", L["intermission_end_trigger1"], L["intermission_end_trigger2"], L["intermission_end_trigger3"])
 
-	self:Log("SPELL_DAMAGE", "MoltenInferno", 98518, 100252, 100253, 100254)
-	self:Log("SPELL_DAMAGE", "MoltenSeed", 98498, 100579, 100580, 100581)
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 	self:Log("SPELL_CAST_START", "EngulfingFlames", 99236, 99172, 99235, 100175, 100171, 100178, 100181) -- don't add heroic spellIds!
 	self:Log("SPELL_CAST_SUCCESS", "HandofRagnaros", 98237, 100383, 100384, 100387)
+	self:Log("SPELL_CAST_SUCCESS", "WrathofRagnaros", 100114) -- only 10 man heroic spellId!
 	self:Log("SPELL_CAST_SUCCESS", "BlazingHeat", 100460, 100981, 100982, 100983)
+	self:Log("SPELL_CAST_SUCCESS", "MagmaTrap", 98164)
 	self:Log("SPELL_CAST_START", "SulfurasSmash", 98710, 100890, 100891, 100892)
 	self:Log("SPELL_CAST_START", "SplittingBlow", 98953, 98952, 98951, 100880, 100883, 100877, 100885, 100882, 100879, 100884, 100881, 100878)
 	self:Log("SPELL_SUMMON", "LivingMeteor", 99317, 100989, 100990, 100991)
+	self:Emote("Dreadflame", dreadflame)
 
 	self:Log("SPELL_AURA_APPLIED", "Wound", 101238, 101239, 101240, 99399)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Wound", 101238, 101239, 101240, 99399)
@@ -100,8 +107,13 @@ function mod:OnEngage(diff)
 	self:Bar(98710, lavaWaves, 30, 98710)
 	self:OpenProximity(6)
 	self:Berserk(1080)
-	lavaWavesCD, engulfingCD = 30, 40
-	seedWarned, intermissionwarned, infernoWarned, meteorWarned, fixateWarned = false, false, false, false, false
+	lavaWavesCD, dreadflameCD = 30, 40
+	if diff > 2 then
+		engulfingCD = 60
+	else
+		engulfingCD = 40
+	end
+	intermissionwarned, infernoWarned, fixateWarned = false, false, false
 	sons = 8
 	phase = 1
 	meteorCounter = 1
@@ -113,15 +125,31 @@ end
 --
 
 function mod:Phase4()
-	self:SendMessage("BigWigs_StopBar", self, livingMeteor)
-	phase = 4
-	self:OpenProximity(6)
-	 -- not sure if we want a different option key or different icon
-	mod:Message(98953, CL["phase"]:format(phase), "Positive", 98953)
-	self:Bar(100479, (GetSpellInfo(100479)), 34, 100479) -- Breadth of Frost
-	self:Bar(100714, (GetSpellInfo(100714)), 51, 100714) -- Cloudburst
-	self:Bar(100646, (GetSpellInfo(100646)), 68, 100646) -- Entraping Roots
-	self:Bar(100997, (GetSpellInfo(100997)), 90, 100997) -- EmpowerSulfuras
+	--10% Yell is Phase 4 for heroic, and victory for normal
+	if self:Difficulty() > 2 then
+		self:SendMessage("BigWigs_StopBar", self, livingMeteor)
+		self:SendMessage("BigWigs_StopBar", self, lavaWaves)
+		self:SendMessage("BigWigs_StopBar", self, moltenSeed)
+		phase = 4
+		self:OpenProximity(6)
+		 -- not sure if we want a different option key or different icon
+		self:Message(98953, CL["phase"]:format(phase), "Positive", 98953)
+		self:Bar(100479, (GetSpellInfo(100479)), 34, 100479) -- Breadth of Frost
+		self:Bar(100714, cloudburst, 51, 100714) -- Cloudburst
+		self:Bar(100646, (GetSpellInfo(100646)), 68, 100646) -- Entraping Roots
+		self:Bar(100997, (GetSpellInfo(100997)), 90, 100997) -- EmpowerSulfuras
+	else
+		self:Win()
+	end
+end
+
+function mod:Dreadflame()
+	if not UnitDebuff("player", (GetSpellInfo(101015))) then return end -- No Deluge on you = you don't care
+	self:Message(100675, dreadflame, "Important", 100675, "Alarm")
+	self:Bar(100675, dreadflame, dreadflameCD, 100675)
+	if dreadflameCD > 10 then
+		dreadflameCD = dreadflameCD - 5
+	end
 end
 
 function mod:EmpowerSulfuras(_, spellId, _, _, spellName)
@@ -144,28 +172,32 @@ function mod:BreadthofFrost(_, spellId, _, _, spellName)
 	self:Bar(100479, spellName, 45, spellId)
 end
 
-function mod:Wound(player, spellId, _, _, _, buffStack, _, _, _, dGUID)
-	self:Bar(99399, L["wound_bar"]:format(player), 21, spellId)
+function mod:Wound(player, spellId, _, _, _, buffStack)
+	if UnitGroupRolesAssigned("player") ~= "TANK" then return end
+	if not buffStack then buffStack = 1 end
+	self:SendMessage("BigWigs_StopBar", self, L["wound_message"]:format(player, buffStack - 1))
+	self:Bar("wound", L["wound_message"]:format(player, buffStack), 21, spellId)
+	self:TargetMessage("wound", L["wound_message"], player, "Urgent", spellId, buffStack > 2 and "Info" or nil, buffStack)
+end
+
+function mod:MagmaTrap(player, spellId, _, _, spellName)
+	self:Bar(98164, "~"..spellName, 25, spellId)
 end
 
 do
-	local function setMeteorWarned()
-		meteorWarned = false
-	end
-
+	local prev = 0
 	function mod:LivingMeteor(_, spellId, _, _, spellName)
-		if not meteorWarned then
-			meteorWarned = true
+		local t = GetTime()
+		if t-prev > 5 then
+			prev = t
 			self:Message(99317, ("%s (%d)"):format(spellName, meteorNumber[meteorCounter]), "Attention", spellId)
 			meteorCounter = meteorCounter + 1
 			self:Bar(99317, spellName, 45, spellId)
-			self:ScheduleTimer(setMeteorWarned, 5)
 		end
 	end
 end
 
 do
-	local prev = 0
 	function mod:UNIT_AURA(_, unit)
 		if unit ~= "player" then return end
 		local fixated = UnitDebuff("player", fixate)
@@ -180,31 +212,28 @@ do
 	end
 end
 
-local function moltenInferno()
-	-- don't overwrite an accurate timer with a scheduled timer
-	if not seedWarned then
-		mod:Bar(98498, L["seed_explosion"], 10, 100252)
-	end
-end
-
 function mod:IntermissionEnd()
 	self:SendMessage("BigWigs_StopBar", self, L["intermission_bar"])
 	if phase == 1 then
 		lavaWavesCD = 40
 		self:OpenProximity(6)
 		if self:Difficulty() > 2 then
-			self:ScheduleTimer(moltenInferno, 15)
 			self:Bar(98498, "~"..moltenSeed, 15, 98498)
 			self:Bar(98710, lavaWaves, 7.5, 98710)
+			self:Bar(100190, worldInFlames, 40, 100190)
 		else
-			self:Bar(98498, moltenSeed, 24, 98498)
+			self:Bar(98498, moltenSeed, 22.7, 98498)
 			self:Bar(98710, lavaWaves, 55, 98710)
 		end
 	elseif phase == 2 then
 		engulfingCD = 30
+		if self:Difficulty() > 2 then
+			self:Bar(100190, worldInFlames, engulfingCD, 100190)
+		end
 		self:Bar(99317, "~"..livingMeteor, 52, 99317)
 		self:Bar(98710, lavaWaves, 55, 98710)
 		self:RegisterEvent("UNIT_AURA")
+		self:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 	end
 	phase = phase + 1
 	self:Message(98953, L["ragnaros_back_message"], "Positive", 101228) -- ragnaros icon
@@ -214,19 +243,21 @@ function mod:HandofRagnaros(_, spellId)
 	self:Bar(98237, L["hand_bar"], 25, spellId)
 end
 
+function mod:WrathofRagnaros(_, spellId, _, _, spellName)
+	self:Bar(100115, "~"..spellName, 25, spellId)
+end
+
 function mod:SplittingBlow(_, spellId, _, _, spellName)
 	if phase == 2 then
 		self:CancelAllTimers()
 		self:SendMessage("BigWigs_StopBar", self, L["seed_explosion"])
 		self:SendMessage("BigWigs_StopBar", self, moltenSeed)
+		self:SendMessage("BigWigs_StopBar", self, worldInFlames)
+		self:SendMessage("BigWigs_StopBar", self, (GetSpellInfo(100178))) -- Engulfing Flames
 	end
 	self:Message(98953, L["intermission_message"], "Positive", spellId, "Long")
 	self:Bar(98953, spellName, 7, spellId)
-	if self:Difficulty() > 2 then
-		self:Bar(98953, L["intermission_bar"], 60, spellId)
-	else
-		self:Bar(98953, L["intermission_bar"], 45, spellId)
-	end
+	self:Bar(98953, L["intermission_bar"], self:Difficulty() > 2 and 60 or 57, spellId) -- They are probably both 60
 	self:CloseProximity()
 	sons = 8
 	self:SendMessage("BigWigs_StopBar", self, L["hand_bar"])
@@ -236,7 +267,7 @@ function mod:SplittingBlow(_, spellId, _, _, spellName)
 end
 
 function mod:SulfurasSmash(_, spellId)
-	if phase == 1 then
+	if phase == 1 and self:Difficulty() ~= 3 then
 		self:Bar(100115, "~"..wrathOfRagnaros, 12, 100115)
 	end
 	self:Message(98710, lavaWaves, "Attention", spellId, "Info")
@@ -287,32 +318,16 @@ do
 end
 
 do
-	local function moltenSeedWarned()
-		seedWarned = false
-	end
-	function mod:MoltenSeed(_, spellId, _, _, spellName)
-		-- This might not always trigger, since if you play correctly you can compeltely avoid damage taken from this
-		if not seedWarned then
-			self:ScheduleTimer(moltenSeedWarned, 5)
-			self:Message(98498, spellName, "Urgent", spellId, "Alarm")
-			self:Bar(98498, L["seed_explosion"], 10, spellId)
-			seedWarned = true
-		end
-	end
-end
-
-do
-	local function moltenInfernoWarned()
-		infernoWarned = false
-	end
-	function mod:MoltenInferno(_, spellId)
-		-- This is more reliable, because you always take damage from this
-		if not infernoWarned then
-			self:ScheduleTimer(moltenInfernoWarned, 5)
-			self:ScheduleTimer(moltenInferno, 50)
-			self:Message(98498, L["seed_explosion"], "Urgent", spellId, "Alarm")
-			self:Bar(98498, moltenSeed, 50, 98498)
-			infernoWarned = true
+	local prev = 0
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellName, _, _, spellId)
+		if spellName == moltenSeed then
+			local t = GetTime()
+			if t-prev > 5 then
+				prev = t
+				self:Message(98498, spellName, "Urgent", spellId, "Alarm")
+				self:Bar(98498, L["seed_explosion"], 12, spellId)
+				self:Bar(98498, spellName, 60, spellId)
+			end
 		end
 	end
 end
@@ -320,8 +335,8 @@ end
 function mod:Deaths(mobId)
 	if mobId == 53140 then
 		sons = sons - 1
-		if sons < 3 and sons > 0 then
-			self:Message(98953, L["sons_left"]:format(sons), "Positive", 100308) -- the speed buff icon on the sons
+		if sons < 4 then
+			self:LocalMessage(98953, L["sons_left"]:format(sons), "Positive", 100308) -- the speed buff icon on the sons
 		end
 	elseif mobId == 52409 then
 		self:Win()

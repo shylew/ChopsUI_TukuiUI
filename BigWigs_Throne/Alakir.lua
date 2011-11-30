@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Al'Akir", 773, 155)
+local mod, CL = BigWigs:NewBoss("Al'Akir", 773, 155)
 if not mod then return end
 mod:RegisterEnableMob(46753)
 
@@ -14,7 +14,6 @@ local phase, lastWindburst = 1, 0
 local cloud = GetSpellInfo(89588)
 local windburst = GetSpellInfo(87770)
 local shock = nil
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local acidRainCounter, acidRainCounted = 1, nil
 
 --------------------------------------------------------------------------------
@@ -26,7 +25,7 @@ if L then
 	L.stormling = "Stormling adds"
 	L.stormling_desc = "Summons Stormling."
 	L.stormling_message = "Stormling incoming!"
-	L.stormling_bar = "Next stormling"
+	L.stormling_bar = "Stormling"
 	L.stormling_yell = "Storms! I summon you to my side!"
 
 	L.acid_rain = "Acid Rain (%d)"

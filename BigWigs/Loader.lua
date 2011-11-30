@@ -24,7 +24,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("8590")
+	releaseRevision = tonumber("8764")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -103,9 +103,21 @@ local enableZones = {} -- contains the zones in which BigWigs will enable
 
 --[[
 function GetMapID(name)
-	for i=1,800 do
+	for i=1,1000 do
 		local fetchedName = GetMapNameByID(i)
 		if name == fetchedName then return i end
+	end
+end
+function GetBossID(name)
+	for i=1,1000 do
+		local fetchedName, _, id = EJ_GetEncounterInfo(i)
+		if fetchedName and (fetchedName):find(name) then print(fetchedName, i) end
+	end
+end
+function PrintNewBossIDs() 
+	for i=200,1000 do
+		local n,_,id = EJ_GetEncounterInfo(i)
+		if n then print(n,id) end
 	end
 end
 ]]
@@ -283,11 +295,6 @@ function loader:OnInitialize()
 			meta = GetAddOnMetadata(i, "X-BigWigs-LoadOn-ZoneId")
 			if meta then
 				loadOnZoneAddons[#loadOnZoneAddons + 1] = name
-			end
-			-- XXX remove at some point
-			meta = GetAddOnMetadata(i, "X-BigWigs-LoadOn-Zone")
-			if meta then
-				sysprint(("The addon %q is using the old way of registering when to load its content, please tell the author to fix it and update your copy."):format(name))
 			end
 		elseif not enabled and reqFuncAddons[name] then
 			sysprint(L["coreAddonDisabled"])
@@ -619,7 +626,7 @@ do
 		if not m then return end
 		if not hexColors then
 			hexColors = {}
-			for k, v in pairs(RAID_CLASS_COLORS) do
+			for k, v in pairs(CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS) do
 				hexColors[k] = "|cff" .. string.format("%02x%02x%02x", v.r * 255, v.g * 255, v.b * 255)
 			end
 		end
@@ -684,8 +691,3 @@ do
 	loader.RemoveInterfaceOptions = removeFrame
 end
 
-
--- ChopsUI hack to allow external initialization of BigWigs
-function BigWigs_LoadAndEnableCore()
-  loadAndEnableCore()
-end

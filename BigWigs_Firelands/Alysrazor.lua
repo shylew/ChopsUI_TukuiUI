@@ -2,42 +2,54 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Alysrazor", 800, 194)
+local mod, CL = BigWigs:NewBoss("Alysrazor", 800, 194)
 if not mod then return end
-mod:RegisterEnableMob(52530, 53898, 54015) --Alysrazor, Voracious Hatchling, Majordomo Staghelm
+mod:RegisterEnableMob(52530, 53898, 54015, 53089) --Alysrazor, Voracious Hatchling, Majordomo Staghelm, Molten Feather
 
-local firestorm, cataclysm = (GetSpellInfo(101659)), (GetSpellInfo(100761))
+local firestorm = GetSpellInfo(101659)
 local woundTargets = mod:NewTargetList()
-local cataclysmCount, moltCount = 0, 0 -- So that Cataclysm knows when to create bars for the next Cataclysm
+local meteorCount, moltCount, burnCount, initiateCount = 0, 0, 0, 0
+local initiateTimes = {31, 31, 21, 21, 21}
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.tornado_trigger = "These skies are MINE!"
 	L.claw_message = "%2$dx Claw on %1$s"
 	L.fullpower_soon_message = "Full power soon!"
 	L.halfpower_soon_message = "Stage 4 soon!"
 	L.encounter_restart = "Here we go again..."
 	L.no_stacks_message = "Dunno if you care, but you have no feathers"
 	L.moonkin_message = "Stop pretending and get some real feathers"
-	L.molt_bar = "Next Molt"
+	L.molt_bar = "Molt"
+
+	L.meteor = "Meteor"
+	L.meteor_desc = "Warn when a Molten Meteor is summoned."
+	L.meteor_icon = 100761
+	L.meteor_message = "Meteor!"
 
 	L.stage_message = "Stage %d"
+	L.kill_message = "It's now or never - Kill her!"
+	L.engage_message = "Alysrazor engaged - Stage 2 in ~%d min"
 
 	L.worm_emote = "Fiery Lava Worms erupt from the ground!"
 	L.phase2_soon_emote = "Alysrazor begins to fly in a rapid circle!"
-	L.phase2_emote = "99794" -- Fiery Vortex spell ID used in the emote
-	L.phase3_emote = "99432" -- Burns Out spell ID used in the emote
-	L.phase4_emote = "99922" -- Re-Ignites spell ID used in the emote
-	L.restart_emote = "99925" -- Full Power spell ID used in the emote
 
 	L.flight = "Flight Assist"
 	L.flight_desc = "Show a bar with the duration of 'Wings of Flame' on you, ideally used with the Super Emphasize feature."
 	L.flight_icon = 98619
+
+	L.initiate = "Initiate Spawn"
+	L.initiate_desc = "Show timer bars for initiate spawns."
+	L.initiate_icon = 97062
+	L.initiate_both = "Both Initiates"
+	L.initiate_west = "West Initiate"
+	L.initiate_east = "East Initiate"
+
+	L.eggs, L.eggs_desc = EJ_GetSectionInfo(2836)
+	L.eggs_icon = "inv_trinket_firelands_02"
 end
 L = mod:GetLocale()
 
@@ -45,21 +57,21 @@ L = mod:GetLocale()
 -- Initialization
 --
 
-function mod:GetOptions(CL)
+function mod:GetOptions()
 	return {
-		99362, 100723, 97128, 99464, "flight",
+		99362, 100723, 97128, 99464, "flight", "initiate", "eggs",
 		99816,
 		99432,
 		99844, 99925,
-		{100744, "FLASHSHAKE"}, 100761,
-		"berserk", "bosskill"
+		{100744, "FLASHSHAKE"}, "meteor",
+		"bosskill"
 	}, {
 		[99362] = "ej:2820", --Stage 1: Flight
 		[99816] = "ej:2821", --Stage 2: Tornadoes
 		[99432] = "ej:2822", --Stage 3: Burnout
 		[99844] = "ej:2823", --Stage 4: Re-Ignite
 		[100744] = "heroic",
-		berserk = "general"
+		bosskill = "general"
 	}
 end
 
@@ -74,10 +86,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Wound", 100723, 100722, 100721, 100720, 100719, 100718, 100024, 99308)
 	self:Log("SPELL_AURA_APPLIED", "Tantrum", 99362)
 
-	self:Emote("BuffCheck", L["worm_emote"], L["phase2_soon_emote"])
+	self:Emote("BuffCheck", L["worm_emote"])
 
 	-- Stage 2: Tornadoes
-	self:Yell("FieryTornado", L["tornado_trigger"])
+	self:Emote("FieryTornado", L["phase2_soon_emote"])
 
 	-- Stage 3: Burnout
 	self:Log("SPELL_AURA_APPLIED", "Burnout", 99432)
@@ -86,25 +98,36 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ReIgnite", 99432)
 
 	-- Heroic only
-	self:Log("SPELL_CAST_START", "Cataclysm", 100761, 102111)
+	self:Log("SPELL_CAST_START", "Meteor", 100761, 102111)
 	self:Log("SPELL_CAST_START", "Firestorm", 100744)
+	self:Log("SPELL_AURA_REMOVED", "FirestormOver", 100744)
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Initiates")
 
 	self:Death("Win", 52530)
 end
 
 function mod:OnEngage(diff)
-	self:Berserk(900) -- assumed
-	cataclysmCount, moltCount = 0, 0
+	meteorCount, moltCount, burnCount, initiateCount = 0, 0, 0, 0
+	wipe(initiateTimes)
 	if diff > 2 then
+		initiateTimes = {22, 63, 21, 21, 40}
+		self:Message(99816, L["engage_message"]:format(4), "Attention", "inv_misc_pheonixpet_01")
 		self:Bar(99816, L["stage_message"]:format(2), 250, 99816)
-		self:Bar(100744, firestorm, 93, 100744)
-		self:Bar(100761, cataclysm, 37, 100761)
+		self:Bar(100744, firestorm, 95, 100744)
+		self:Bar("meteor", "~"..L["meteor"], 30, 100761)
+		self:Bar("eggs", "~"..GetSpellInfo(58542), 42, L["eggs_icon"])
+		self:DelayedMessage("eggs", 41.5, GetSpellInfo(58542), "Positive", L["eggs_icon"])
 	else
+		initiateTimes = {31, 31, 21, 21, 21}
+		self:Message(99816, L["engage_message"]:format(3), "Attention", "inv_misc_pheonixpet_01")
 		self:Bar(99816, L["stage_message"]:format(2), 188.5, 99816)
 		self:Bar(99464, L["molt_bar"], 12.5, 99464)
+		--self:Bar("eggs", "~"..GetSpellInfo(58542), 42, L["eggs_icon"])
+		--self:DelayedMessage("eggs", 41.5, GetSpellInfo(58542), "Positive", L["eggs_icon"])
 	end
+	self:Bar("initiate", L["initiate_both"], 27, 97062)
 end
 
 --------------------------------------------------------------------------------
@@ -124,13 +147,25 @@ do
 	end
 	function mod:StartFlying(player)
 		if UnitIsUnit(player, "player") then
-			self:Bar("flight", flying, 20, 98619)
+			self:Bar("flight", flying, 30, 98619)
 			self:RegisterEvent("UNIT_AURA")
 		end
 	end
 	function mod:StopFlying(player)
 		if UnitIsUnit(player, "player") then
 			self:UnregisterEvent("UNIT_AURA")
+		end
+	end
+end
+
+do
+	local initiateLocation = {L["initiate_both"], L["initiate_east"], L["initiate_west"], L["initiate_east"], L["initiate_west"]}
+	local initiate = EJ_GetSectionInfo(2834)
+	function mod:Initiates(_, _, unit)
+		if unit == initiate then
+			initiateCount = initiateCount + 1
+			if initiateCount > 5 then return end
+			self:Bar("initiate", initiateLocation[initiateCount], initiateTimes[initiateCount], 97062) --Night Elf head
 		end
 	end
 end
@@ -187,28 +222,32 @@ end
 function mod:Firestorm(_, spellId, _, _, spellName)
 	self:FlashShake(100744)
 	self:Message(100744, spellName, "Urgent", spellId, "Alert")
-	self:Bar(100744, spellName, 10, spellId)
-	-- Only show a bar for next if we have seen less than 3 Cataclysms
-	if cataclysmCount < 3 then
-		self:Bar(100744, "~"..spellName, 82, spellId)
-	end
-	self:Bar(100761, cataclysm, 10, 100761)
+	self:Bar(100744, CL["cast"]:format(spellName), 10, spellId)
 end
 
-function mod:Cataclysm(_, spellId, _, _, spellName)
-	self:Message(100761, spellName, "Attention", spellId, "Alarm")
-	-- Only show a bar if this is the first or third Cataclysm this phase
-	cataclysmCount = cataclysmCount + 1
-	if cataclysmCount == 1 or cataclysmCount == 3 then
-		self:Bar(100761, spellName, 32, 100761)
+function mod:FirestormOver(_, spellId, _, _, spellName)
+	-- Only show a bar for next if we have seen less than 3 meteors
+	if meteorCount < 3 then
+		self:Bar(100744, "~"..spellName, 72, spellId)
+	end
+	self:Bar("meteor", L["meteor"], meteorCount == 2 and 11.5 or 21.5, 100761)
+	self:Bar("eggs", "~"..GetSpellInfo(58542), 22.5, L["eggs_icon"])
+	self:DelayedMessage("eggs", 22, GetSpellInfo(58542), "Positive", L["eggs_icon"])
+end
+
+function mod:Meteor(_, spellId)
+	self:Message("meteor", L["meteor_message"], "Attention", spellId, "Alarm")
+	-- Only show a bar if this is the first or third meteor this phase
+	meteorCount = meteorCount + 1
+	if meteorCount == 1 or meteorCount == 3 then
+		self:Bar("meteor", L["meteor"], 32, spellId)
 	end
 end
 
 function mod:FieryTornado()
-	local fieryTornado = GetSpellInfo(99816)
-	local feather = GetSpellInfo(98619)
+	self:BuffCheck()
 	self:SendMessage("BigWigs_StopBar", self, firestorm)
-	self:SendMessage("BigWigs_StopBar", self, feather)
+	local fieryTornado = GetSpellInfo(99816)
 	self:Bar(99816, fieryTornado, 35, 99816)
 	self:Message(99816, (L["stage_message"]:format(2))..": "..fieryTornado, "Important", 99816, "Alarm")
 end
@@ -219,16 +258,6 @@ function mod:BlazingClaw(player, spellId, _, _, _, stack)
 	end
 end
 
---[[
-In case we need to rebase this on emotes instead of unit power, here's a few noteworthy events
-"<2329.1> RAID_BOSS_EMOTE#Fiery Lava Worms erupt from the ground!#Plump Lava Worm#0#false", -- [17]
-"<2391.0> RAID_BOSS_EMOTE#Fiery Lava Worms erupt from the ground!#Plump Lava Worm#0#false", -- [18]
-"<2454.5> RAID_BOSS_EMOTE#Alysrazor begins to fly in a rapid circle!  The harsh winds will remove Wings of Flame!#Alysrazor#0#false", -- [19]
-"<2461.0> RAID_BOSS_EMOTE#|TInterface\\Icons\\ability_mage_firestarter.blp:20|t The harsh winds form a |cFFFF0000|Hspell:99794|h[Fiery Vortex]|h|r!#Fiery Vortex#0#false", -- [20]
-"<2485.0> RAID_BOSS_EMOTE#|TInterface\\Icons\\spell_holiday_tow_spicecloud.blp:20|t Alysrazor's fire |cFFFF0000|Hspell:99432|h[Burns Out]|h|r!#Alysrazor#0#false", -- [21]
-"<2515.6> RAID_BOSS_EMOTE#|TInterface\\Icons\\inv_elemental_primal_fire.blp:20|t Alysrazor's firey core |cFFFF0000|Hspell:99922|h[Re-Ignites]|h|r!#Alysrazor#0#false", -- [22]
-"<2542.8> RAID_BOSS_EMOTE#|TInterface\\Icons\\spell_shaman_improvedfirenova.blp:20|t Alysrazor is at |cFFFF0000|Hspell:99925|h[Full Power]|h|r!#Alysrazor#0#false", -- [23]
-]]
 do
 	local halfWarned = false
 	local fullWarned = false
@@ -238,7 +267,10 @@ do
 		self:Message(99432, (L["stage_message"]:format(3))..": "..spellName, "Positive", spellId, "Alert")
 		self:Bar(99432, "~"..spellName, 33, spellId)
 		halfWarned, fullWarned = false, false
-		self:RegisterEvent("UNIT_POWER")
+		burnCount = burnCount + 1
+		if burnCount < 3 then
+			self:RegisterEvent("UNIT_POWER")
+		end
 	end
 
 	function mod:UNIT_POWER(_, unit)
@@ -252,23 +284,33 @@ do
 		elseif power == 100 then
 			self:Message(99925, (L["stage_message"]:format(1))..": "..(L["encounter_restart"]), "Positive", 99925, "Alert")
 			self:UnregisterEvent("UNIT_POWER")
+			initiateCount = 0
+			self:Bar("initiate", L["initiate_both"], 13.5, 97062)
 			if self:Difficulty() > 2 then
-				cataclysmCount = 0
-				self:Bar(100761, cataclysm, 18, 100761)
+				meteorCount = 0
+				self:Bar("meteor", L["meteor"], 19, 100761)
 				self:Bar(100744, firestorm, 72, 100744)
 				self:Bar(99816, L["stage_message"]:format(2), 225, 99816) -- Just adding 60s like OnEngage
+				self:Bar("eggs", "~"..GetSpellInfo(58542), 30, L["eggs_icon"])
+				self:DelayedMessage("eggs", 29.5, GetSpellInfo(58542), "Positive", L["eggs_icon"])
 			else
 				self:Bar(99816, L["stage_message"]:format(2), 165, 99816)
 				moltCount = 1
 				self:Bar(99464, L["molt_bar"], 55, 99464)
+				--self:Bar("eggs", "~"..GetSpellInfo(58542), 22.5, L["eggs_icon"])
+				--self:DelayedMessage("eggs", 22, GetSpellInfo(58542), "Positive", L["eggs_icon"])
 			end
 		end
 	end
-end
 
-function mod:ReIgnite()
-	self:Message(99925, (L["stage_message"]:format(4))..": "..(GetSpellInfo(99922)), "Positive", 99922, "Alert")
-	self:Bar(99925, GetSpellInfo(99925), 25, 99925)
-	self:SendMessage("BigWigs_StopBar", self, "~"..GetSpellInfo(99432))
+	function mod:ReIgnite()
+		if burnCount < 3 then
+			self:Message(99925, (L["stage_message"]:format(4))..": "..(GetSpellInfo(99922)), "Positive", 99922, "Alert")
+			self:Bar(99925, GetSpellInfo(99925), 25, 99925)
+		else
+			self:Message(99925, L["kill_message"], "Positive", 99922, "Alert")
+		end
+		self:SendMessage("BigWigs_StopBar", self, "~"..GetSpellInfo(99432))
+	end
 end
 

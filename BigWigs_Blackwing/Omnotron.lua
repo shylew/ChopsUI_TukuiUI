@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Omnotron Defense System", 754, 169)
+local mod, CL = BigWigs:NewBoss("Omnotron Defense System", 754, 169)
 if not mod then return end
 mod:RegisterEnableMob(42166, 42179, 42178, 42180, 49226) -- Arcanotron, Electron, Magmatron, Toxitron, Lord Victor Nefarius
 
@@ -10,7 +10,6 @@ mod:RegisterEnableMob(42166, 42179, 42178, 42180, 49226) -- Arcanotron, Electron
 -- Localization
 --
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.nef = "Lord Victor Nefarius"
@@ -24,11 +23,7 @@ if L then
 
 	L.next_switch = "Next activation"
 
-	-- not using these but lets not just remove them yet who knows what will 4.0.6 break
-	--L.nef_trigger1 = "Were you planning on using Toxitron's chemicals to damage the other constructs? Clever plan, let me ruin that for you."
-	--L.nef_trigger2 = "Stupid Dwarves and your fascination with runes! Why would you create something that would help your enemy?"
-
-	L.nef_next = "~Next ability buff"
+	L.nef_next = "~Ability buff"
 
 	L.acquiring_target = "Acquiring target"
 
@@ -45,7 +40,7 @@ L = mod:GetLocale()
 -- Initialization
 --
 
-function mod:GetOptions(CL)
+function mod:GetOptions()
 	return {
 		{79501, "ICON", "FLASHSHAKE"},
 		{79888, "ICON", "FLASHSHAKE", "PROXIMITY"},
@@ -53,9 +48,9 @@ function mod:GetOptions(CL)
 		"nef", 91849, 91880, {92048, "ICON"}, 92023, {"switch", "ICON"},
 		"berserk", "bosskill"
 	}, {
-		[79501] = "Magmatron",
-		[79888] = "Electron",
-		[80161] = "Toxitron",
+		[79501] = "ej:3207", -- Electron
+		[79888] = "ej:3201", -- Magmatron
+		[80161] = "ej:3208", -- Toxitron
 		nef = "heroic",
 		switch = "general"
 	}

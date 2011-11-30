@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Ascendant Council", 758, 158)
+local mod, CL = BigWigs:NewBoss("Ascendant Council", 758, 158)
 if not mod then return end
 mod:RegisterEnableMob(43686, 43687, 43688, 43689, 43735) --Ignacious, Feludius, Arion, Terrastra, Elementium Monstrosity
 
@@ -10,7 +10,6 @@ mod:RegisterEnableMob(43686, 43687, 43688, 43689, 43735) --Ignacious, Feludius, 
 -- Locals
 --
 
-local CL = LibStub("AceLocale-3.0"):GetLocale("Big Wigs: Common")
 local lrTargets, gcTargets = mod:NewTargetList(), mod:NewTargetList()
 local glaciate = GetSpellInfo(82746)
 local quake, thundershock, hardenSkin = GetSpellInfo(83565), GetSpellInfo(83067), GetSpellInfo(92541)
@@ -33,7 +32,7 @@ if L then
 
 	L.shield_up_message = "Shield is UP!"
 	L.shield_down_message = "Shield is DOWN!"
-	L.shield_bar = "Next shield"
+	L.shield_bar = "Shield"
 
 	L.switch_trigger = "We will handle them!"
 
@@ -52,7 +51,7 @@ L = mod:GetLocale()
 -- Initialization
 --
 
-function mod:GetOptions(CL)
+function mod:GetOptions()
 	return {
 		-- Ignacious
 		82631, {82660, "FLASHSHAKE"},
@@ -71,11 +70,11 @@ function mod:GetOptions(CL)
 		-- General
 		"proximity", "switch", "bosskill"
 	}, {
-		[82631] = "Ignacious",
-		[82746] = "Feludius",
-		[83067] = "Arion",
-		[83565] = "Terrastra",
-		[92488] = "Elementium Monstrosity",
+		[82631] = "ej:3118", -- Ignacious
+		[82746] = "ej:3110", -- Feludius
+		[83067] = "ej:3123", -- Arion
+		[83565] = "ej:3125", -- Terrastra
+		[92488] = "ej:3145", --Elementium Monstrosity
 		[92067] = "heroic",
 		proximity = "general",
 	}
@@ -222,7 +221,8 @@ function mod:FrostBeacon(player, spellId, _, _, spellName)
 end
 
 do
-	local terrastra, arion = BigWigs:Translate("Terrastra"), BigWigs:Translate("Arion")
+	local terrastra = EJ_GetSectionInfo(3125)
+	local arion = EJ_GetSectionInfo(3123)
 	function mod:UNIT_HEALTH_FREQUENT(_, unit)
 		if unit == "boss1" or unit == "boss2" or unit == "boss3" or unit == "boss4" then
 			local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
