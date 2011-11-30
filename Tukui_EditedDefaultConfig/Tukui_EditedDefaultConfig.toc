@@ -1,0 +1,6 @@
+## Interface: 40300
+## Title: |cffC495DDTukui ChopsUI Default Options|r
+## Notes: Custom Default Configuration for ChopsUI.
+## Author: Trond Arve Nordheim
+
+config\config.lua

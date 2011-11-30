@@ -1,0 +1,23 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Include file="libs\libs.xml" />
+  <Script file="medias\sharedmedia.lua" />
+  <Script file="core\init.lua" />
+  <Script file="core\install.lua" />
+  <Script file="core\functions.lua" />
+  <Script file="modules\panels\panels.lua" />
+  <Script file="modules\unitframes\arena.lua" />
+  <Script file="modules\unitframes\boss.lua" />
+  <Script file="modules\unitframes\focus.lua" />
+  <Script file="modules\unitframes\focustarget.lua" />
+  <Script file="modules\unitframes\pet.lua" />
+  <Script file="modules\unitframes\player.lua" />
+  <Script file="modules\unitframes\target.lua" />
+  <Script file="modules\unitframes\tot.lua" />
+  <Script file="modules\chopsui\bigwigs.lua" />
+  <Script file="modules\chopsui\ellipsis.lua" />
+  <Script file="modules\chopsui\grid.lua" />
+  <Script file="modules\chopsui\msbt.lua" />
+  <Script file="modules\chopsui\needtoknow.lua" />
+  <Script file="modules\chopsui\postal.lua" />
+  <Script file="modules\chopsui\skada.lua" />
+</Ui>
