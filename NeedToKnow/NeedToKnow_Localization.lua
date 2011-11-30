@@ -33,7 +33,7 @@ NEEDTOKNOW = {};
     NEEDTOKNOW.BARMENU_BARCOLOR = "Bar color";
     NEEDTOKNOW.BARMENU_CLEARSETTINGS = "Clear settings";
 
-    NEEDTOKNOW.UIPANEL_SUBTEXT1 = "These options allow you to customize NeedToKnow's timer bars.";
+    NEEDTOKNOW.UIPANEL_SUBTEXT1 = "These options allow you to customize NeedToKnow's timer bar groups.";
 --    NEEDTOKNOW.UIPANEL_SUBTEXT2 = "Bars work when locked. When unlocked, you can move/size bar groups and right click individual bars for more settings. You can also type '/needtoknow' or '/ntk' to lock/unlock.";
     NEEDTOKNOW.UIPANEL_BARGROUP = "Group ";
     NEEDTOKNOW.UIPANEL_NUMBERBARS = "Number of bars";
@@ -45,11 +45,12 @@ NEEDTOKNOW = {};
     NEEDTOKNOW.UIPANEL_TOOLTIP_BARTEXTURE = "Choose the texture graphic for timer bars";
     NEEDTOKNOW.CMD_RESET = "reset";
 
-	NEEDTOKNOW.UIPANEL_CONFIGMODE = "Config mode";
-	NEEDTOKNOW.UIPANEL_CONFIGMODE_TOOLTIP = "Unlock timer bars and make them configurable";
-	NEEDTOKNOW.UIPANEL_PLAYMODE = "Play mode";
-	NEEDTOKNOW.UIPANEL_PLAYMODE_TOOLTIP = "Lock and enable timer bars, making them click-through";
+    NEEDTOKNOW.UIPANEL_CONFIGMODE = "Config mode";
+    NEEDTOKNOW.UIPANEL_CONFIGMODE_TOOLTIP = "Unlock timer bars and make them configurable";
+    NEEDTOKNOW.UIPANEL_PLAYMODE = "Play mode";
+    NEEDTOKNOW.UIPANEL_PLAYMODE_TOOLTIP = "Lock and enable timer bars, making them click-through";
 
+    NEEDTOKNOW.UIPANEL_APPEARANCE_SUBTEXT1 = "These options allow you to customize NeedToKnow's timer bars.";
     NEEDTOKNOW.UIPANEL_APPEARANCE = "Appearance";
     NEEDTOKNOW.UIPANEL_BACKGROUNDCOLOR = "Background color";
     NEEDTOKNOW.UIPANEL_BARSPACING = "Bar spacing";
@@ -58,11 +59,31 @@ NEEDTOKNOW = {};
     NEEDTOKNOW.UIPANEL_BARFONT = "Bar font";
     NEEDTOKNOW.UIPANEL_FONT = "Font";
 
+    NEEDTOKNOW.UIPANEL_PROFILES_SUBTEXT1 = "These options allow you to manage profiles.  Each profile is a complete NeedToKnow configuration for one talent spec.\nBy default, profiles are per-character (and have character: in front of their name.) Per-character profiles are only available to this character.  Profiles can be switched between per-character and per-account so that the same profile can be used by multiple characters on the same account.";
+    NEEDTOKNOW.UIPANEL_CURRENTPRIMARY = "Current Primary Profile:";
+    NEEDTOKNOW.UIPANEL_CURRENTSECONDARY = "Current Secondary Profile:";
+    NEEDTOKNOW.UIPANEL_PROFILE = "Profile";
+    NEEDTOKNOW.UIPANEL_SWITCHPROFILE_TOOLTIP = "Switch to using the currently selected profile";
+    NEEDTOKNOW.UIPANEL_DELETEPROFILE_TOOLTIP = "Permanently delete the currently selected profile";
+    NEEDTOKNOW.UIPANEL_COPYPROFILE_TOOLTIP   = "Create a new profile based on the currently selected profile";
+    NEEDTOKNOW.UIPANEL_PRIVATEPROFILE_TOOLTIP  = "Make the selected profile accessible only to the current character";
+    NEEDTOKNOW.UIPANEL_PUBLICPROFILE_TOOLTIP  = "Make the selected profile accessible to all the characters on the same account";
+    NEEDTOKNOW.UIPANEL_RENAMEPROFILE_TOOLTIP  = "Change the name of this profile";
+    NEEDTOKNOW.UIPANEL_PROFILE_SWITCHTO = "Switch To";
+    NEEDTOKNOW.UIPANEL_PROFILE_DELETE = "Delete";
+    NEEDTOKNOW.UIPANEL_PROFILE_DUPLICATE = "Duplicate";
+    NEEDTOKNOW.UIPANEL_PROFILE_NAMELABEL = "New profile name:";
+    NEEDTOKNOW.UIPANEL_PROFILE_RENAME = "Rename";
+    NEEDTOKNOW.UIPANEL_PROFILE_MAKEPUBLIC = "To Account";
+    NEEDTOKNOW.UIPANEL_PROFILE_MAKEPRIVATE = "Only This Char";
+
     NEEDTOKNOW.BARMENU_TOTEM = "Totem";
     NEEDTOKNOW.BARMENU_CASTCD = "Spell Cooldown";
     NEEDTOKNOW.BARMENU_BUFFCD = "Internal Cooldown";
     NEEDTOKNOW.BARMENU_USABLE = "Spell Usable";
+    NEEDTOKNOW.BARMENU_EQUIPSLOT = "Equipment Slot";
     NEEDTOKNOW.CMD_HIDE = "hide";
+    NEEDTOKNOW.CMD_PROFILE = "profile";
     NEEDTOKNOW.CMD_SHOW = "show";
     NEEDTOKNOW.BARMENU_TIMEFORMAT = "Time Format"; 
     NEEDTOKNOW.FMT_SINGLEUNIT = "Single unit (2 m)";
