@@ -287,7 +287,6 @@ end
 local shieldCache = {}
 
 function GridStatusShield:ScanBuffToolTip(unit, buffIndex, id)
-    if self.Tooltip == nil then return end
     local cacheEntry = shieldCache[id]
     if cacheEntry == nil then        
         self.Tooltip:SetUnitBuff(unit, buffIndex)
@@ -439,7 +438,7 @@ EventParse["SPELL_AURA_REMOVED"] = GridStatusShield.AuraRemoved
 EventParse["SPELL_AURA_BROKEN"] = GridStatusShield.AuraBroken
 EventParse["SPELL_AURA_BROKEN_SPELL"] = GridStatusShield.AuraBrokenSpell
 
-function GridStatusShield:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, eventtype, hideCaster, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)   
+function GridStatusShield:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, eventtype, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)   
     if not GridRoster:IsGUIDInRaid(dstGUID) then
         return
     end
@@ -448,7 +447,7 @@ function GridStatusShield:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, eventtype, h
 	
     --print("Event: "..eventtype)
 	if parsefunc then  
-        --print(eventtype)
+--        print(eventtype)
 		parsefunc(self, timestamp, eventtype, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
 	end
 end
