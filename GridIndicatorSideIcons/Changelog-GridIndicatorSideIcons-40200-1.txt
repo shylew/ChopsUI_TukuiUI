@@ -1,0 +1,20 @@
+------------------------------------------------------------------------
+r71 | kunda | 2011-09-11 00:01:15 +0000 (Sun, 11 Sep 2011) | 1 line
+Changed paths:
+   A /tags/40200-1 (from /trunk:70)
+
+Tagging as 40200-1
+------------------------------------------------------------------------
+r70 | kunda | 2011-09-10 22:08:16 +0000 (Sat, 10 Sep 2011) | 1 line
+Changed paths:
+   M /trunk/GridIndicatorSideIcons.toc
+
+toc update
+------------------------------------------------------------------------
+r69 | kunda | 2011-02-01 17:16:05 +0000 (Tue, 01 Feb 2011) | 1 line
+Changed paths:
+   M /trunk/GridIndicatorSideIcons.lua
+   M /trunk/GridIndicatorSideIcons.toc
+
+removed Grid-'tab' check
+------------------------------------------------------------------------

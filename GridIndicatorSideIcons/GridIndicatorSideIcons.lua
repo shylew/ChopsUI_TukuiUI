@@ -7,11 +7,6 @@ local media = LibStub("LibSharedMedia-3.0", true)
 
 local Grid = Grid
 
-if not Grid or not Grid.options or not Grid.options.childGroups or Grid.options.childGroups ~= "tab" then
-	print("Please update Grid! GridIndicatorSideIcons deactivated!")
-	return
-end
-
 local GridFrame = Grid:GetModule("GridFrame")
 local GridIndicatorSideIcons = GridFrame:NewModule("GridIndicatorSideIcons", "AceEvent-3.0")
 
