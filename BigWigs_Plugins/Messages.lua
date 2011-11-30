@@ -84,6 +84,7 @@ local function createAnchor(frameName, title)
 		end
 	end
 	display:RefixPosition()
+  ChopsUI.modules.bigwigs.RepositionFrame(frameName)
 	display:Hide()
 	return display
 end
