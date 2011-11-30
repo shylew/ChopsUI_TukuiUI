@@ -1,0 +1,24 @@
+------------------------------------------------------------------------
+r27 | oscarucb | 2011-10-01 15:30:27 +0000 (Sat, 01 Oct 2011) | 4 lines
+Changed paths:
+   A /tags/2.8 (from /trunk:26)
+
+Tagging as 2.8
+
+Add more robust caching of gems and enchants
+fix some potential bad interactions with other addons trying to hijack inspect
+------------------------------------------------------------------------
+r26 | oscarucb | 2011-10-01 04:03:06 +0000 (Sat, 01 Oct 2011) | 2 lines
+Changed paths:
+   M /trunk/InspectFix.lua
+
+Add more robust caching of gems and enchants
+
+------------------------------------------------------------------------
+r25 | oscarucb | 2011-10-01 02:20:09 +0000 (Sat, 01 Oct 2011) | 2 lines
+Changed paths:
+   M /trunk/InspectFix.lua
+
+fix some potential bad interactions with other addons trying to hijack inspect
+
+------------------------------------------------------------------------
