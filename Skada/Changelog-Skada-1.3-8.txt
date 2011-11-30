@@ -1,0 +1,44 @@
+------------------------------------------------------------------------
+r365 | zarnivoop | 2011-11-29 20:19:39 +0000 (Tue, 29 Nov 2011) | 1 line
+Changed paths:
+   A /tags/1.3-8 (from /trunk:364)
+
+Tagging as 1.3-8
+------------------------------------------------------------------------
+r364 | zarnivoop | 2011-11-29 20:17:05 +0000 (Tue, 29 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/BarDisplay.lua
+   M /trunk/lib/SpecializedLibBars-1.0/SpecializedLibBars-1.0.lua
+
+possible fix for that elusive nil value bug various people have mentioned
+------------------------------------------------------------------------
+r363 | zarnivoop | 2011-11-29 19:42:11 +0000 (Tue, 29 Nov 2011) | 2 lines
+Changed paths:
+   M /trunk/Skada.toc
+   M /trunk/lib/SpecializedLibBars-1.0/SpecializedLibBars-1.0.lua
+   M /trunk/modules/SkadaAbsorbs/Absorbs.lua
+   M /trunk/modules/SkadaAbsorbs/SkadaAbsorbs.toc
+   M /trunk/modules/SkadaCC/SkadaCC.toc
+   M /trunk/modules/SkadaDamage/SkadaDamage.toc
+   M /trunk/modules/SkadaDamageTaken/SkadaDamageTaken.toc
+   M /trunk/modules/SkadaDeaths/SkadaDeaths.toc
+   M /trunk/modules/SkadaDebuffs/SkadaDebuffs.toc
+   M /trunk/modules/SkadaDispels/SkadaDispels.toc
+   M /trunk/modules/SkadaEnemies/SkadaEnemies.toc
+   M /trunk/modules/SkadaHealing/SkadaHealing.toc
+   M /trunk/modules/SkadaPower/SkadaPower.toc
+   M /trunk/modules/SkadaThreat/SkadaThreat.toc
+   M /trunk/modules/SkadaThreat/Threat.lua
+
+.toc update
+fixed a few potential division by zero errors
+------------------------------------------------------------------------
+r362 | zarnivoop | 2011-11-22 18:05:29 +0000 (Tue, 22 Nov 2011) | 2 lines
+Changed paths:
+   M /trunk/BarDisplay.lua
+   M /trunk/Options.lua
+   M /trunk/locale/enUS.lua
+
+added font flags options
+probably fixed rare mouseover error
+------------------------------------------------------------------------
