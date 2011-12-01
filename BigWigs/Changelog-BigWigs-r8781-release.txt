@@ -1,9 +1,111 @@
 ------------------------------------------------------------------------
-r8765 | funkydude | 2011-11-29 20:13:26 +0000 (Tue, 29 Nov 2011) | 1 line
+r8781 | funkydude | 2011-12-01 01:07:06 +0000 (Thu, 01 Dec 2011) | 1 line
 Changed paths:
-   A /tags/r8765-release (from /trunk:8764)
+   A /tags/r8781-release (from /trunk:8780)
 
-Tagging as r8765-release
+Tagging as r8781-release
+------------------------------------------------------------------------
+r8780 | funkydude | 2011-12-01 00:33:25 +0000 (Thu, 01 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+
+bump our version
+------------------------------------------------------------------------
+r8779 | pettigrow | 2011-11-30 23:54:29 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8778 | pettigrow | 2011-11-30 22:43:09 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8777 | funkydude | 2011-11-30 21:25:06 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingSpine.lua
+
+DeathwingSpine: tweak hooked message
+------------------------------------------------------------------------
+r8776 | funkydude | 2011-11-30 17:48:00 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Zonozz.lua
+
+DragonSoul/Zonozz: Either they removed berserk, it's longer, or it doesn't happen in LFR, probably the latter.
+------------------------------------------------------------------------
+r8775 | funkydude | 2011-11-30 17:46:09 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: Replace server names with an *, wipe the icon cache OnWin.
+------------------------------------------------------------------------
+r8774 | jongt23 | 2011-11-30 17:32:17 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8773 | jongt23 | 2011-11-30 16:57:23 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8772 | funkydude | 2011-11-30 15:09:31 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Hagara.lua
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+   M /trunk/DragonSoul/Morchok.lua
+   M /trunk/DragonSoul/Yorsahj.lua
+   M /trunk/DragonSoul/Zonozz.lua
+
+DragonSoul: add some engage triggers
+------------------------------------------------------------------------
+r8771 | pettigrow | 2011-11-30 14:53:54 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8770 | funkydude | 2011-11-30 14:44:02 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Zonozz.lua
+
+DragonSoul/Zonozz: change shadows to just a warning in LFR
+------------------------------------------------------------------------
+r8769 | funkydude | 2011-11-30 14:17:25 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+   M /trunk/DragonSoul/Morchok.lua
+
+Morchok: swap to CheckBossStatus
+------------------------------------------------------------------------
+r8768 | funkydude | 2011-11-30 14:12:19 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: add an :LFR API call which simply return true, as there's only one type of LFR.
+------------------------------------------------------------------------
+r8767 | funkydude | 2011-11-30 13:54:16 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Yorsahj.lua
+
+DragonSoul/Yorsahj: bugfix
+------------------------------------------------------------------------
+r8766 | jongt23 | 2011-11-30 12:16:08 +0000 (Wed, 30 Nov 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/BigWigs_DragonSoul.toc
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES Update (Dragon Soul/Alma de Dragón)
 ------------------------------------------------------------------------
 r8764 | funkydude | 2011-11-29 19:48:30 +0000 (Tue, 29 Nov 2011) | 1 line
 Changed paths:
@@ -585,23 +687,4 @@ Changed paths:
    M /trunk/Firelands/Staghelm.lua
 
 Firelands/Staghelm: add the druid of the flame to enable triggers
-------------------------------------------------------------------------
-r8705 | Maat | 2011-10-29 13:23:53 +0000 (Sat, 29 Oct 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/DeathwingSpine.lua
-   M /trunk/DragonSoul/Morchok.lua
-
-small fixes
-------------------------------------------------------------------------
-r8704 | Maat | 2011-10-26 14:56:58 +0000 (Wed, 26 Oct 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Blackhorn.lua
-   M /trunk/DragonSoul/DeathwingSpine.lua
-   M /trunk/DragonSoul/Hagara.lua
-   M /trunk/DragonSoul/Morchok.lua
-   M /trunk/DragonSoul/Ultraxion.lua
-   M /trunk/DragonSoul/Yorsahj.lua
-   M /trunk/DragonSoul/Zonozz.lua
-
-more untested Dragon Soul modules
 ------------------------------------------------------------------------

@@ -1,15 +1,21 @@
 local L = BigWigs:NewBossLocale("Morchok", "frFR")
 if not L then return end
 if L then
+	L.engage_trigger = "Vous cherchez à arrêter l'avalanche. Je vais vous ensevelir." -- à vérifier
+
 	L.crush = "Ecraser armure"
 	L.crush_desc = "Alerte pour tanks uniquement. Compte les cumuls d'écraser armure et affiche une barre de durée."
 	L.crush_message = "%2$dx Ecraser sur %1$s"
+
+	L.blood = "Sang"
 
 	L.explosion = "Explosion"
 end
 
 L = BigWigs:NewBossLocale("Warlord Zon'ozz", "frFR")
 if L then
+	L.engage_trigger = "Zzof Shuul'wah. Thoq fssh N'Zoth!"
+
 	L.ball = "Boule de Vide"
 	L.ball_desc = "Boule de Vide qui rebondit contre les joueurs et le boss."
 
@@ -22,6 +28,8 @@ end
 
 L = BigWigs:NewBossLocale("Yor'sahj the Unsleeping", "frFR")
 if L then
+	L.engage_trigger = "Iilth qi'uothk shn'ma yeh'glu Shath'Yar! H'IWN IILTH!"
+
 	L.bolt = "Éclair de Vide"
 	L.bolt_desc = "Alerte pour tanks uniquement. Compte les cumuls d'éclairs de Vide et affiche une barre de durée."
 	L.bolt_message = "%2$dx Éclairs sur %1$s"
@@ -41,12 +49,19 @@ end
 
 L = BigWigs:NewBossLocale("Hagara the Stormbinder", "frFR")
 if L then
+	L.engage_trigger = "Vous êtes face à la Lieuse des tempêtes ! Je vais tous vous massacrer." -- à vérifier
 
+	L.lightning_or_frost = "Foudre ou Glace"
+	L.ice_next = "Phase de glace"
+	L.lightning_next = "Phase de foudre"
+
+	L.nextphase = "Prochaine phase"
+	L.nextphase_desc = "Prévient quand arrive la phase suivante."
 end
 
 L = BigWigs:NewBossLocale("Ultraxion", "frFR")
 if L then
-	L.engage_trigger = "Je sens un grand trouble dans l'équilibre qui s'approche. Un chaos tel qu'il me brûle l'esprit !"
+	L.engage_trigger = "Je suis le début de la fin" -- à compléter
 
 	L.warmup = "Échauffement"
 	L.warmup_desc = "Délai indiquant le temps restant avant le début de la rencontre."
@@ -62,6 +77,10 @@ if L then
 	L.sunder = "Fracasser armure"
 	L.sunder_desc = "Alerte pour tanks uniquement. Compte les cumuls de fracasser armure et affiche une barre de durée."
 	L.sunder_message = "%2$dx Fracasser sur %1$s"
+
+	L.sapper_trigger = "Un drake plonge et dépose un sapeur du Crépuscule sur le pont !" -- à vérifier
+	L.sapper = "Sapeur"
+	L.sapper_desc = "Sapeur infligeant des dégâts au vaisseau."
 end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "frFR")
@@ -75,7 +94,7 @@ if L then
 	L.roll_icon = "ACHIEVEMENT_BG_RETURNXFLAGS_DEF_WSG"
 	L.roll_soon = "Tonneau imminent !"
 
-	L.not_hooked = "Vous n'êtes PAS accroché !"
+	L.not_hooked = "Vous n'êtes >PAS< accroché !"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "frFR")

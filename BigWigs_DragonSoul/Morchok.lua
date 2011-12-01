@@ -6,11 +6,9 @@ local mod, CL = BigWigs:NewBoss("Morchok", 824, 311)
 if not mod then return end
 mod:RegisterEnableMob(55265)
 
---------------------------------------------------------------------------------
--- Locales
---
 local stomp, crystal, blackBlood = (GetSpellInfo(108571)), (GetSpellInfo(103640)), (GetSpellInfo(103851))
 local kohcrom = EJ_GetSectionInfo(4262)
+local fmtStr = "~%s - %s"
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -18,6 +16,8 @@ local kohcrom = EJ_GetSectionInfo(4262)
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.engage_trigger = "You seek to halt an avalanche. I will bury you."
+
 	L.crush = "Crush Armor"
 	L.crush_desc = "Tank alert only. Count the stacks of crush armor and show a duration bar."
 	L.crush_icon = 103687
@@ -57,9 +57,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "BlackBloodStacks", 110287)
 	self:Log("SPELL_SUMMON", "ResonatingCrystal", 103639)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	--self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus") -- boss is missing engage trigger on ptr
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
 	self:Death("Win", 55265)
 end
@@ -75,18 +73,18 @@ end
 --
 
 function mod:SummonKohcrom(_, spellId)
-	self:Bar(109017, ("~%s - %s"):format(self.displayName, stomp), 6, spellId)
-	self:Bar(109017, ("~%s - %s"):format(kohcrom, stomp), 12, spellId)
+	self:Bar(109017, (fmtStr):format(self.displayName, stomp), 6, spellId)
+	self:Bar(109017, (fmtStr):format(kohcrom, stomp), 12, spellId)
 end
 
 -- I know it is ugly to use this, but if we were to start bars at :BlackBlood then we are subject to BlackBlood duration changes
 function mod:UNIT_SPELLCAST_CHANNEL_STOP(_, _, spellName)
 	if spellName == blackBlood then
 		if self:Difficulty() > 2 then
-			self:Bar(108571, ("~%s - %s"):format(self.displayName, stomp), 15, 108571)
-			self:Bar(108571, ("~%s - %s"):format(kohcrom, stomp), 20, 108571)
-			self:Bar(103640, ("~%s - %s"):format(self.displayName, crystal), 22, 103640)
-			self:Bar(103640, ("~%s - %s"):format(kohcrom, crystal), 40, 103640)
+			self:Bar(108571, (fmtStr):format(self.displayName, stomp), 15, 108571)
+			self:Bar(108571, (fmtStr):format(kohcrom, stomp), 20, 108571)
+			self:Bar(103640, (fmtStr):format(self.displayName, crystal), 22, 103640)
+			self:Bar(103640, (fmtStr):format(kohcrom, crystal), 40, 103640)
 		else
 			self:Bar(108571, "~"..stomp, 5, 108571)
 			self:Bar(103640, crystal, 29, 103640)
@@ -96,7 +94,7 @@ end
 
 function mod:Stomp(_, spellId, source, _, spellName)
 	if self:Difficulty() > 2 then
-		self:Bar(108571, ("~%s - %s"):format(source, spellName), 12, spellId)
+		self:Bar(108571, (fmtStr):format(source, spellName), 12, spellId)
 	else
 		self:Bar(108571, "~"..spellName, 12, spellId)
 	end
@@ -131,8 +129,8 @@ end
 
 function mod:ResonatingCrystal(_, spellId, source, _, spellName)
 	if self:Difficulty() > 2 then
-		self:Message(103640, ("%s - %s"):format(source, spellName), "Urgent", spellId, "Alarm")
-		self:Bar(103640, ("%s - %s"):format(source, L["explosion"]), 12, spellId)
+		self:Message(103640, source.." - "..spellName, "Urgent", spellId, "Alarm")
+		self:Bar(103640, source.." - "..(L["explosion"]), 12, spellId)
 	else
 		self:Message(103640, spellName, "Urgent", spellId, "Alarm")
 		self:Bar(103640, L["explosion"], 12, spellId)

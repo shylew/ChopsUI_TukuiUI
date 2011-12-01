@@ -19,6 +19,8 @@ local disruptingShadowsTargets = mod:NewTargetList()
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.engage_trigger = "Zzof Shuul'wah. Thoq fssh N'Zoth!"
+
 	L.ball = "Void ball"
 	L.ball_desc = "Void ball that bounces off of players and the boss."
 	L.ball_icon = 28028 -- void sphere icon
@@ -51,8 +53,9 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 	self:Log("SPELL_CAST_SUCCESS", "PsychicDrain", 104322, 104607, 104608, 104606)
-	self:Log("SPELL_AURA_APPLIED", "DisruptingShadowsApplied", 103434, 104600, 104601, 104599)
-	self:Log("SPELL_AURA_REMOVED", "DisruptingShadowsRemowed", 103434, 104600, 104601, 104599)
+	self:Log("SPELL_AURA_APPLIED", "ShadowsApplied", 103434, 104600, 104601, 104599)
+	self:Log("SPELL_AURA_REMOVED", "ShadowsRemoved", 103434, 104600, 104601, 104599)
+	self:Log("SPELL_CAST_SUCCESS", "ShadowsCast", 104599) --LFR id
 	self:Log("SPELL_CAST_SUCCESS", "VoidoftheUnmaking", 103627)
 	self:Log("SPELL_AURA_APPLIED", "VoidDiffusion", 106836)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "VoidDiffusion", 106836)
@@ -63,7 +66,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage(diff)
-	self:Berserk(360) -- confirmed 10 man heroic
+	if not self:LFR() then
+		self:Berserk(360) -- confirmed 10 man heroic
+	end
 	if diff > 2 then
 		self:Bar("ball", voidoftheUnmaking, 6, 28028)
 		self:Bar(104322, psychicDrain, 12, 104322)
@@ -106,13 +111,20 @@ function mod:VoidoftheUnmaking(_, spellId, _, _, spellName)
 	self:Message("ball", L["ball"], "Urgent", 28028, "Alarm") -- void sphere icon
 end
 
+function mod:ShadowsCast(_, spellId, _, _, spellName)
+	if self:LFR() then
+		self:Message(103434, spellName, "Attention", spellId, "Info")
+	end
+end
+
 do
 	local scheduled = nil
 	local function disruptingShadows(spellName)
 		mod:TargetMessage(103434, spellName, disruptingShadowsTargets, "Attention", 103434, "Info")
 		scheduled = nil
 	end
-	function mod:DisruptingShadowsApplied(player, spellId, _, _, spellName)
+	function mod:ShadowsApplied(player, spellId, _, _, spellName)
+		if self:LFR() then return end
 		disruptingShadowsTargets[#disruptingShadowsTargets + 1] = player
 		if UnitIsUnit(player, "player") then
 			self:Say(103434, CL["say"]:format(spellName))
@@ -128,7 +140,7 @@ do
 	end
 end
 
-function mod:DisruptingShadowsRemowed(player)
+function mod:ShadowsRemoved(player)
 	if UnitIsUnit(player, "player") then
 		self:CloseProximity()
 	end
