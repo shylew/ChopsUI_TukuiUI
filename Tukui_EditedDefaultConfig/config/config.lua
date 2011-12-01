@@ -49,5 +49,10 @@ C["invite"] = {
   ["autoaccept"] = false -- Disable auto-accepting group invites.
 }
 
+-- Override TukUI error settings.
+C["error"] = {
+  ["enable"] = false -- Disable the error blocker.
+}
+
 -- Make the configuration changes public.
 TukuiEditedDefaultConfig = C
