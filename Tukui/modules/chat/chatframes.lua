@@ -249,6 +249,14 @@ T.SetDefaultChatPosition = function(frame)
 	if frame then
 		local id = frame:GetID()
 		local name = FCF_GetChatWindowInfo(id)
+		local fontSize = select(2, frame:GetFont())
+
+		-- well... tukui font under fontsize 12 is unreadable. Just a small protection!
+		if fontSize < 12 then		
+			FCF_SetChatWindowFontSize(nil, frame, 12)
+		else
+			FCF_SetChatWindowFontSize(nil, frame, fontSize)
+		end
 		
 		if id == 1 then
 			frame:ClearAllPoints()

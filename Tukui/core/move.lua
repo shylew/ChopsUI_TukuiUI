@@ -114,7 +114,7 @@ end
 local enable = true
 local origa1, origf, origa2, origx, origy
 
-local function moving()
+T.MoveUIElements = function()
 	-- don't allow moving while in combat
 	if InCombatLockdown() then print(ERR_NOT_IN_COMBAT) return end
 	
@@ -157,7 +157,7 @@ local function moving()
 end
 SLASH_MOVING1 = "/mtukui"
 SLASH_MOVING2 = "/moveui"
-SlashCmdList["MOVING"] = moving
+SlashCmdList["MOVING"] = T.MoveUIElements
 
 local protection = CreateFrame("Frame")
 protection:RegisterEvent("PLAYER_REGEN_DISABLED")
