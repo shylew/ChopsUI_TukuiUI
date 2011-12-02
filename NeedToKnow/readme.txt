@@ -26,6 +26,7 @@ Change log
  - New bar type: Equipment slot
  - Increased the maximum bars per group 
  - Reduced the minimum bar scale to 25%, allowing for very thin bars
+ - Updated toc for 4.3
 
 3.2.08
 - Fixed: blink didn't work with weapon imbues

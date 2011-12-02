@@ -451,6 +451,19 @@ function NeedToKnow.ChangeProfile(profile_key)
 
         -- fill in any missing defaults
         NeedToKnow.UncompressProfile(NeedToKnow.ProfileSettings)
+        -- FIXME: We currently display 4 groups in the options UI, not nGroups
+        -- FIXME: We don't handle nGroups changing (showing/hiding groups based on nGroups changing)
+        -- Forcing 4 groups for now
+        NeedToKnow.ProfileSettings.nGroups = 4
+        for groupID = 1,4 do
+            if ( nil == NeedToKnow.ProfileSettings.Groups[groupID] ) then
+                NeedToKnow.ProfileSettings.Groups[groupID] = CopyTable( NEEDTOKNOW.GROUP_DEFAULTS )
+                local groupSettings = NeedToKnow.ProfileSettings.Groups[groupID]
+                groupSettings.Enabled = false;
+                groupSettings.Position[4] = -100 - (groupID-1) * 100
+            end
+        end
+
         -- Hide any groups not in use
         local iGroup = NeedToKnow.ProfileSettings.nGroups + 1
         while true do
