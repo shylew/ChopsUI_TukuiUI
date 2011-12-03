@@ -5,6 +5,7 @@
   <Script file="core\install.lua" />
   <Script file="core\functions.lua" />
   <Script file="modules\panels\panels.lua" />
+  <Script file="modules\blizzard\kill.lua" />
   <Script file="modules\unitframes\arena.lua" />
   <Script file="modules\unitframes\boss.lua" />
   <Script file="modules\unitframes\focus.lua" />
