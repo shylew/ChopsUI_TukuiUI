@@ -15,7 +15,6 @@
   <Script file="modules\unitframes\target.lua" />
   <Script file="modules\unitframes\tot.lua" />
   <Script file="modules\chopsui\bigwigs.lua" />
-  <Script file="modules\chopsui\ellipsis.lua" />
   <Script file="modules\chopsui\grid.lua" />
   <Script file="modules\chopsui\msbt.lua" />
   <Script file="modules\chopsui\needtoknow.lua" />

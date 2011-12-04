@@ -466,13 +466,8 @@ function ChopsUI.modules.needtoknow.Reset()
   playerGroup.FixedDuration = nil
 
   -- Set up the target group
-  -- This group is only enabled if you're a non-caster class
   targetGroup = CopyTable(NEEDTOKNOW.GROUP_DEFAULTS)
-  if T.Role == "Caster" then
-    targetGroup.Enabled = false
-  else
-    targetGroup.Enabled = true
-  end
+  targetGroup.Enabled = true
   targetGroup.NumberBars = 6
   targetGroup.Scale = 0.6666667461395264
   targetGroup.Width = 290
