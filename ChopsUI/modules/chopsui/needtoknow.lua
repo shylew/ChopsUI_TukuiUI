@@ -181,7 +181,8 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
 
     elseif T.Spec == "DEMONOLOGY" then
 
-      ChopsUI.modules.needtoknow.PlayerBuff(6, "Metamorphosis", { 0.53, 0, 0.78 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Demon Soul: Felhunter, Demon Soul: Felguard", { 0.74, 0, 0.06 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Metamorphosis", { 0.53, 0, 0.78 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(6, "Molten Core", { 0.91, 0.54, 0 }, true)
 
     elseif T.Spec == "DESTRUCTION" then
@@ -313,7 +314,7 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
 
   elseif T.myclass == "WARLOCK" then
 
-    ChopsUI.modules.needtoknow.TargetDebuff(3, "Bane of Agony, Bane of Doom", { 0.79, 0.52, 0 }, true)
+    ChopsUI.modules.needtoknow.TargetDebuff(3, "Bane of Agony, Bane of Doom", { 0, 0.38, 0.01 }, true)
     ChopsUI.modules.needtoknow.TargetDebuff(4, "Shadow and Flame", { 0, 0.10, 0.96 }, true)
     ChopsUI.modules.needtoknow.TargetDebuff(5, "Corruption", { 0.74, 0, 0.06 }, true)
     ChopsUI.modules.needtoknow.TargetDebuff(6, "Curse of the Elements, Curse of Tongues", { 0.53, 0, 0.78 }, true)
@@ -326,6 +327,7 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
     elseif T.Spec == "DEMONOLOGY" then
 
       ChopsUI.modules.needtoknow.TargetDebuff(2, "Immolate", { 0.91, 0.54, 0 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(1, "Hand of Gul'dan", { 0.90, 0.85, 0.43 }, true)
 
     elseif T.Spec == "DESTRUCTION" then
       
