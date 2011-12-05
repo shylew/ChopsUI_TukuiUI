@@ -1,9 +1,123 @@
 ------------------------------------------------------------------------
-r8781 | funkydude | 2011-12-01 01:07:06 +0000 (Thu, 01 Dec 2011) | 1 line
+r8797 | funkydude | 2011-12-05 00:34:03 +0000 (Mon, 05 Dec 2011) | 1 line
 Changed paths:
-   A /tags/r8781-release (from /trunk:8780)
+   A /tags/r8797-release (from /trunk:8796)
 
-Tagging as r8781-release
+Tagging as r8797-release
+------------------------------------------------------------------------
+r8796 | funkydude | 2011-12-05 00:24:54 +0000 (Mon, 05 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Ultraxion.lua
+
+minor typo in description
+------------------------------------------------------------------------
+r8795 | pettigrow | 2011-12-05 00:19:01 +0000 (Mon, 05 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8794 | funkydude | 2011-12-05 00:18:06 +0000 (Mon, 05 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+
+DragonSoul/DeathwingMadness: check UnitDebuff for now.
+------------------------------------------------------------------------
+r8793 | funkydude | 2011-12-04 23:53:38 +0000 (Sun, 04 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+DragonSoul/DeathwingMadness: self warnings for shrapnel
+------------------------------------------------------------------------
+r8792 | funkydude | 2011-12-04 22:27:34 +0000 (Sun, 04 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+
+DragonSoul/Ultraxion: various fixes
+------------------------------------------------------------------------
+r8791 | funkydude | 2011-12-04 17:44:49 +0000 (Sun, 04 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Yorsahj.lua
+
+DragonSoul/Yorsahj: blobs doesn't need a throttle.
+------------------------------------------------------------------------
+r8790 | funkydude | 2011-12-03 15:40:29 +0000 (Sat, 03 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Zonozz.lua
+
+DragonSoul/Zonozz: re-add the LFR check.
+------------------------------------------------------------------------
+r8789 | funkydude | 2011-12-03 14:45:53 +0000 (Sat, 03 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+   M /trunk/DragonSoul/Yorsahj.lua
+
+DragonSoul/Yorsahj: move colors to the locale.
+------------------------------------------------------------------------
+r8788 | jongt23 | 2011-12-02 02:49:00 +0000 (Fri, 02 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8787 | jongt23 | 2011-12-02 02:45:12 +0000 (Fri, 02 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES Update
+------------------------------------------------------------------------
+r8786 | funkydude | 2011-12-02 00:30:27 +0000 (Fri, 02 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Blackhorn.lua
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/Hagara.lua
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+   M /trunk/DragonSoul/Morchok.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+   M /trunk/DragonSoul/Yorsahj.lua
+   M /trunk/DragonSoul/Zonozz.lua
+
+DragonSoul: cleanups
+------------------------------------------------------------------------
+r8785 | funkydude | 2011-12-01 23:18:07 +0000 (Thu, 01 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Hagara.lua
+
+DragonSoul/Hagara: Fix ice lance message name
+------------------------------------------------------------------------
+r8784 | funkydude | 2011-12-01 21:02:18 +0000 (Thu, 01 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+   M /trunk/DragonSoul/Zonozz.lua
+
+DragonSoul/Zonozz: Change shadows player announce to a standard/personal message, cleanups.
+------------------------------------------------------------------------
+r8783 | funkydude | 2011-12-01 20:21:58 +0000 (Thu, 01 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Yorsahj.lua
+
+DragonSoul/Yorsahj: blobs are 90 not 75, at least on 25man versions.
+------------------------------------------------------------------------
+r8782 | jongt23 | 2011-12-01 01:11:32 +0000 (Thu, 01 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES Update
 ------------------------------------------------------------------------
 r8780 | funkydude | 2011-12-01 00:33:25 +0000 (Thu, 01 Dec 2011) | 1 line
 Changed paths:
@@ -681,10 +795,4 @@ Changed paths:
    M /trunk/Plugins/Bars.lua
 
 Allow super emphasized effects even if there's less than 5 seconds left, and fix manually super emphasized timers so they don't start counting down until there's actually 5 seconds left.
-------------------------------------------------------------------------
-r8706 | funkydude | 2011-10-30 20:33:39 +0000 (Sun, 30 Oct 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Staghelm.lua
-
-Firelands/Staghelm: add the druid of the flame to enable triggers
 ------------------------------------------------------------------------

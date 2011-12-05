@@ -22,22 +22,23 @@ if L then
 
 	L.darkness = "觸鬚迪斯可聚會！"
 	L.darkness_desc = "當此階段開始，壞滅虛無撞擊首領。"
+
+	L.shadows = "Shadows"
 end
 
 L = BigWigs:NewBossLocale("Yor'sahj the Unsleeping", "zhTW")
 if L then
 	L.engage_trigger = "Iilth qi'uothk shn'ma yeh'glu Shath'Yar! H'IWN IILTH!"
 
-	L.bolt = "虛無箭"
 	L.bolt_desc = "只警報坦克。虛無箭堆疊計數並顯示持續條。"
 	L.bolt_message = "%2$d層虛無箭：>%1$s<！"
 
-	L.blue = "藍"
-	L.green = "綠"
-	L.purple = "粉"
-	L.yellow = "黃"
-	L.black = "黑"
-	L.red = "紅"
+	L.blue = "|cFF0080FF藍|r"
+	L.green = "|cFF088A08綠|r"
+	L.purple = "|cFF9932CD粉|r"
+	L.yellow = "|cFFFFA901黃|r"
+	L.black = "|cFF424242黑|r"
+	L.red = "|cFFFF0404紅|r"
 
 	L.blobs = "血珠"
 	L.blobs_bar = "下一血珠"
@@ -51,10 +52,17 @@ end
 
 L = BigWigs:NewBossLocale("Ultraxion", "zhTW")
 if L then
-	L.engage_trigger = "I sense a great disturbance in the balance approaching. The chaos of it burns my mind"
+	L.engage_trigger = "Now is the hour of twilight!"
 
 	L.warmup = "暮光之時"
 	L.warmup_desc = "暮光之時计时器。"
+	L.warmup_trigger = "I sense a great disturbance in the balance approaching. The chaos of it burns my mind"
+
+	L.crystal = "Buff Crystals"
+	L.crystal_desc = "Timers for the various buff crystals the NPC's summon."
+	L.crystal_red = "Red Crystal"
+	L.crystal_green = "Green Crystal"
+	L.crystal_blue = "Blue Crystal"
 end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "zhTW")
