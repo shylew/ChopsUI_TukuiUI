@@ -54,5 +54,10 @@ C["error"] = {
   ["enable"] = false -- Disable the error blocker.
 }
 
+-- Override TukUI font settings.
+C["media"] = {
+  ["dmgfont"] = [=[Interface\Addons\Tukui\medias\fonts\normal_font.ttf]=] -- Change the combat text font.
+}
+
 -- Make the configuration changes public.
 TukuiEditedDefaultConfig = C
