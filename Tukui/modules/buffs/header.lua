@@ -109,6 +109,6 @@ consolidate:Hide()
 SecureHandlerSetFrameRef(proxy, "header", consolidate)
 
 -- set our debuff header
-debuffs:SetPoint("TOP", buffs, "BOTTOM", 0, -38)
+debuffs:SetPoint("TOP", buffs, "BOTTOM", 0, -84)
 debuffs:SetAttribute("filter", "HARMFUL")
 debuffs:Show()

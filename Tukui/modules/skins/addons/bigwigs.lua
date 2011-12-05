@@ -138,65 +138,19 @@ local function RegisterStyle()
 	end
 end
 
-local function PositionBWAnchor()
-	if not BigWigsAnchor then return end
-	BigWigsAnchor:ClearAllPoints()
-	if E.CheckAddOnShown() == true then
-		if C["chat"].background == true and T.ChatRightShown == true then
-			BigWigsAnchor:Point("TOP", ChatRBGDummy, "TOP", 12, 0)	
-		else
-			BigWigsAnchor:Point("TOP", ChatRBGDummy, "TOP", 12, -32)
-		end	
-	else
-		BigWigsAnchor:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -5, 8)		
-	end
-end
-
-local function PositionBWAnchor()
-	if not BigWigsAnchor then return end
-	BigWigsAnchor:ClearAllPoints()
-	BigWigsAnchor:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -5, 3)		
-end
-
 f:RegisterEvent("ADDON_LOADED")
 f:SetScript("OnEvent", function(self, event, addon)
 	if event == "ADDON_LOADED" and addon == "BigWigs_Plugins" then
 		RegisterStyle()
 		local profile = BigWigs3DB["profileKeys"][T.myname.." - "..T.myrealm]
 		local path = BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][profile]
-		path.texture = "Tukui Norm"
+		path.texture = C.media.normTex
 		path.barStyle = "Tukui"
-		path.font = "Tukui Font"
+		path.font = C.media.font
 		
-		local path = BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"][profile]
-		path.font = "Tukui Font"
-		
-		local path = BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][profile]
-		path.font = "Tukui Font"
+		path = BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"][profile]
+		path.font = C.media.font
 		
 		f:UnregisterEvent("ADDON_LOADED")
-	elseif event == "PLAYER_ENTERING_WORLD" then
-		LoadAddOn("BigWigs_Core")
-		LoadAddOn("BigWigs_Plugins")
-		LoadAddOn("BigWigs_Options")
-		BigWigs:Enable()
-		BigWigsOptions:SendMessage("BigWigs_StartConfigureMode", true)
-		BigWigsOptions:SendMessage("BigWigs_StopConfigureMode")
-		PositionBWAnchor()
-
-		if Skada and Skada:GetWindows() and Skada:GetWindows()[1] and C["skin"].embed == "Skada" then
-			Skada:GetWindows()[1].bargroup:HookScript("OnShow", function() PositionBWAnchor() end)
-			Skada:GetWindows()[1].bargroup:HookScript("OnHide", function() PositionBWAnchor() end)
-		elseif Recount_MainWindow and C["skin"].embed == "Recount" then
-			Recount_MainWindow:HookScript("OnShow", function() PositionBWAnchor() end)
-			Recount_MainWindow:HookScript("OnHide", function() PositionBWAnchor() end)
-		elseif OmenAnchor and C["skin"].embed == "Omen" then
-			OmenAnchor:HookScript("OnShow", function() PositionBWAnchor() end)
-			OmenAnchor:HookScript("OnHide", function() PositionBWAnchor() end)		
-		end
-	elseif event == "PLAYER_REGEN_DISABLED" then
-		PositionBWAnchor()
-	elseif event == "PLAYER_REGEN_ENABLED" then
-		PositionBWAnchor()
 	end
 end)

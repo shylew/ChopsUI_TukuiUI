@@ -36,6 +36,7 @@ hooksecurefunc(texture, "SetTexture", disableTexture)
 icon:SetTexCoord(.08, .92, .08, .92)
 icon:Point("TOPLEFT", button, 2, -2)
 icon:Point("BOTTOMRIGHT", button, -2, 2)
+icon:SetDrawLayer("ARTWORK")
 
 -- pushed/hover
 button:StyleButton(true)
