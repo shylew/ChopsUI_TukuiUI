@@ -229,7 +229,12 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
 
   elseif T.myclass == "DRUID" then
 
-    if T.Spec == "FERALCOMBAT" then
+    if T.Spec == "BALANCE" then
+
+      ChopsUI.modules.needtoknow.TargetDebuff(1, "Insect Swarm", { 0.03, 0.72, 0.05 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Moonfire, Sunfire", { 0.82, 0.8, 0.8 }, true)
+
+    elseif T.Spec == "FERALCOMBAT" then
       if T.Role == "Melee" then
         ChopsUI.modules.needtoknow.TargetDebuff(2, "Pounce", { 0, 0.44, 0.6 }, true)
         ChopsUI.modules.needtoknow.TargetDebuff(3, "Rip", { 0.89, 0.38, 0 }, true)
@@ -357,15 +362,17 @@ function ChopsUI.modules.needtoknow.ConfigureInternalCooldowns()
     NeedToKnow.ProfileSettings.Groups[3].Bars[i].Enabled = false
   end
 
+  if T.CheckRole() == "Caster" then
+    ChopsUI.modules.needtoknow.InternalCooldown(6, "Power Torrent", { 0.03, 0.88, 1 }, 45)
+  end
+
   if T.myclass == "DRUID" then
-    if T.Spec == "RESTORATION" then
-      ChopsUI.modules.needtoknow.InternalCooldown(5, "Power Torrent", { 0.03, 0.88, 1 }, 45)
-      ChopsUI.modules.needtoknow.InternalCooldown(6, "Nature's Grace", { 0.28, 0.79, 0.30 }, 60)
+    if T.Spec == "BALANCE" or T.Spec == "RESTORATION" then
+      ChopsUI.modules.needtoknow.InternalCooldown(5, "Nature's Grace", { 0.28, 0.79, 0.30 }, 60)
     end
   elseif T.myclass == "PRIEST" then
     if T.Spec == "DISCIPLINE" then
-      ChopsUI.modules.needtoknow.InternalCooldown(5, "Power Torrent", { 0.03, 0.88, 1 }, 45)
-      ChopsUI.modules.needtoknow.InternalCooldown(6, "Rapture", { 0.19, 0.71, 0.78 }, 12)
+      ChopsUI.modules.needtoknow.InternalCooldown(5, "Rapture", { 0.19, 0.71, 0.78 }, 12)
     end
   end
 
