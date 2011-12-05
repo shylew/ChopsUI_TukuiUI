@@ -229,7 +229,7 @@ function ChopsUI.modules.grid.Reset()
 
   -- Scale the frames
   GridFrame.db.profile["frameWidth"] = 100
-  GridFrame.db.profile["frameHeight"] = 55
+  GridFrame.db.profile["frameHeight"] = 40
 
   -- Set up some frame defaults
   GridFrame.db.profile["statusmap"] = {

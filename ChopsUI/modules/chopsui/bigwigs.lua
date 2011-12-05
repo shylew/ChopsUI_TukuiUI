@@ -28,7 +28,7 @@ function ChopsUI.modules.bigwigs.RepositionEmphasisAnchor()
 
   frame = _G["BigWigsEmphasizeAnchor"]
   frame:ClearAllPoints()
-  frame:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 210)
+  frame:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 290)
 
 end
 
