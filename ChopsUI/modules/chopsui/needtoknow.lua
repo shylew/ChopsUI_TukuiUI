@@ -285,7 +285,9 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
 
   elseif T.myclass == "PRIEST" then
 
-    if T.Spec == "SHADOW" then
+    if T.Spec == "DISCIPLINE" then
+      ChopsUI.modules.needtoknow.TargetDebuff(1, "Holy Fire", { 0.86, 0.41, 0 }, true)
+    elseif T.Spec == "SHADOW" then
       ChopsUI.modules.needtoknow.TargetDebuff(1, "Vampiric Touch", { 0, 0.38, 0.6 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(2, "Shadow Word: Pain", { 0.86, 0.41, 0 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(3, "Devouring Plague", { 0.62, 0, 0.75 }, true)
