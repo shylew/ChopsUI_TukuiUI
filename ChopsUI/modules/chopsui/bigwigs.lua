@@ -28,7 +28,7 @@ function ChopsUI.modules.bigwigs.RepositionEmphasisAnchor()
 
   frame = _G["BigWigsEmphasizeAnchor"]
   frame:ClearAllPoints()
-  frame:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 290)
+  frame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundLeft, "TOPLEFT", 27, 100)
 
 end
 
@@ -72,7 +72,7 @@ function ChopsUI.modules.bigwigs.Reset()
 
   -- Set the size of the bars
   barProfile.profile["BigWigsAnchor_width"] = 200
-  barProfile.profile["BigWigsEmphasizeAnchor_width"] = 400
+  barProfile.profile["BigWigsEmphasizeAnchor_width"] = 352
 
   -- Hide the minimap icon
   BigWigs3IconDB["hide"] = true
