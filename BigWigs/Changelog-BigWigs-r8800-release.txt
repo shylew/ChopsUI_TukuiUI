@@ -1,9 +1,25 @@
 ------------------------------------------------------------------------
-r8797 | funkydude | 2011-12-05 00:34:03 +0000 (Mon, 05 Dec 2011) | 1 line
+r8800 | funkydude | 2011-12-05 12:02:36 +0000 (Mon, 05 Dec 2011) | 1 line
 Changed paths:
-   A /tags/r8797-release (from /trunk:8796)
+   A /tags/r8800-release (from /trunk:8799)
 
-Tagging as r8797-release
+Tagging as r8800-release
+------------------------------------------------------------------------
+r8799 | funkydude | 2011-12-05 11:52:39 +0000 (Mon, 05 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+
+DragonSoul/Ultraxion: cast bar for twilight.
+------------------------------------------------------------------------
+r8798 | nebula169 | 2011-12-05 04:14:35 +0000 (Mon, 05 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+common locale for shrapnel
 ------------------------------------------------------------------------
 r8796 | funkydude | 2011-12-05 00:24:54 +0000 (Mon, 05 Dec 2011) | 1 line
 Changed paths:
