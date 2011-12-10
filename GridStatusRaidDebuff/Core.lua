@@ -2,8 +2,8 @@
 ---------------------------------------------------------
 --	Library
 ---------------------------------------------------------
-local bzone = LibStub("LibBabble-Zone-3.0"):GetLookupTable()
-local bboss = LibStub("LibBabble-Boss-3.0"):GetLookupTable()
+local bzone = LibStub("LibBabble-Zone-3.0"):GetUnstrictLookupTable()
+local bboss = LibStub("LibBabble-Boss-3.0"):GetUnstrictLookupTable()
 local bzoneRev = LibStub("LibBabble-Zone-3.0"):GetReverseLookupTable()
 
 ---------------------------------------------------------
@@ -39,7 +39,7 @@ do
 		L["Border"] = "테두리"
 		L["Center Icon"] = "중앙 아이콘"
 		L["Import Debuff"] = "디버프 추가"
-    L["Import Debuff Desc"] = "현재 지역에 새 레이드 디버프 추가"
+    		L["Import Debuff Desc"] = "현재 지역에 새 레이드 디버프 추가"
 	elseif loc == "ruRU" then
 		L["Raid Debuff"] = "Дебаффы рейда"
 		L["Option for %s"] = "Опции %s"
@@ -66,7 +66,7 @@ do
 		L["Border"] = "Граница"
 		L["Center Icon"] = "Иконка в центре"
 		L["Import Debuff"] = "Import Debuff"
-    L["Import Debuff Desc"] = "Import a new raid debuff for this zone"
+   		 L["Import Debuff Desc"] = "Import a new raid debuff for this zone"
 	elseif loc == "zhCN" then
 		L["Raid Debuff"] = "团队减益状态"
 		L["Option for %s"] = "%s 设置"
@@ -147,7 +147,7 @@ do
 		L["Border"] = "Border"
 		L["Center Icon"] = "Center Icon"
 		L["Import Debuff"] = "Import Debuff"
-    L["Import Debuff Desc"] = "Import a new raid debuff for this zone"
+  		L["Import Debuff Desc"] = "Import a new raid debuff for this zone"
 	end
 end
 
@@ -283,8 +283,9 @@ function GridStatusRaidDebuff:ZoneCheck()
 	end
 
 	if (not enzone) then
-		self:Debug("ZoneCheck", realzone, enzone, "No enzone")
-		return
+		self:Debug("ZoneCheck", realzone, enzone, "No enzone translation")
+		-- enzone = nil
+		-- return
 	end
 
 	self:UpdateAllUnit()
@@ -351,7 +352,7 @@ function GridStatusRaidDebuff:ScanNewDebuff(e, ts, event, hideCaster, srcguid, s
 			if spellId == 1604 then return end --Ignore Dazed
 			self:Debug("New Debuff", srcname, dstname, name)
 
-			self:Debuff(enzone, name, spellId, 5, 5, true, true)
+			self:DebuffLocale(realzone, name, spellId, 5, 5, true, true)
 			if not self.db.profile.detected_debuff[realzone] then self.db.profile.detected_debuff[realzone] = {} end
 			if not self.db.profile.detected_debuff[realzone][name] then self.db.profile.detected_debuff[realzone][name] = spellId end
 
@@ -452,8 +453,7 @@ local function insertDb(zone, name, arg, value)
 	end
 end
 
-function GridStatusRaidDebuff:Debuff(en_zone, first, second, icon_priority, color_priority, timer, stackable, color, default_disable, noicon)
-	local zone = bzone[en_zone]
+function GridStatusRaidDebuff:DebuffLocale(zone, first, second, icon_priority, color_priority, timer, stackable, color, default_disable, noicon)
 	local name, icon, id
 	local args, data, order
 	local detected
@@ -490,10 +490,29 @@ function GridStatusRaidDebuff:Debuff(en_zone, first, second, icon_priority, colo
 	end
 end
 
-
-function GridStatusRaidDebuff:BossName(en_zone, order, en_boss)
+function GridStatusRaidDebuff:Debuff(en_zone, first, second, icon_priority, color_priority, timer, stackable, color, default_disable, noicon)
 	local zone = bzone[en_zone]
-	local boss = en_boss and bboss[en_boss]	or order
+
+	if (zone) then
+		-- Call with localized zone
+		self:DebuffLocale(zone, first, second, icon_priority, color_priority, timer, stackable, color, default_disable, noicon)
+	else
+		-- The structure is stored by localized zone
+		-- If we only have the English zone and not the localized one
+		-- we can't store it
+		-- self:Debug("Debuff", realzone, enzone, "en_zone translation not found")
+		warn(("LibBabble translation for zone %q not found"):format(en_zone))
+	end
+end
+
+function GridStatusRaidDebuff:BossNameLocale(zone, order, en_boss)
+	local boss = en_boss or order
+	if (en_boss and bboss[en_boss]) then
+		boss = en_boss and bboss[en_boss]
+	end
+
+	-- If both en_boss and order are defined, otherwise
+	-- default to 9998 for order
 	local ord = en_boss and order or 9998
 
 	self:CreateZoneMenu(zone)
@@ -508,6 +527,20 @@ function GridStatusRaidDebuff:BossName(en_zone, order, en_boss)
 			guiHidden = true,
 			args = {}
 	}
+end
+
+function GridStatusRaidDebuff:BossName(en_zone, order, en_boss)
+	local zone = bzone[en_zone]
+
+	if (zone) then
+		self:BossNameLocale(zone, order, en_boss)
+	else
+		-- The structure is stored by localized zone
+		-- If we only have the English zone and not the localized one
+		-- we can't store it
+		-- self:Debug("BossName", realzone, enzone, "zone translation not found")
+		warn(("LibBabble translation for zone %q not found"):format(en_zone))
+	end
 end
 
 -- Create a custom tooltip for debuff description
@@ -762,9 +795,8 @@ function GridStatusRaidDebuff:CreateZoneMenu(zone)
 					usage = "SpellID",
 					set = function(_, v)
 						local name = GetSpellInfo(v)
-						local enzone = bzoneRev[zone]
 						if name then						  
-        			self:Debuff(enzone, name, v, 5, 5, true, true)
+        						self:DebuffLocale(zone, name, v, 5, 5, true, true)
 							if not self.db.profile.detected_debuff[zone][name] then 
 								self.db.profile.detected_debuff[zone][name] = v
 								self:LoadZoneDebuff(zone, name)
@@ -869,13 +901,14 @@ function GridStatusRaidDebuff:CreateMainMenu()
 end
 
 function GridStatusRaidDebuff:RegisterCustomDebuff()
-	local en_zone
+	-- local en_zone
 	for zone,j in pairs(self.db.profile.detected_debuff) do
-		en_zone = bzoneRev[zone]
-		self:BossName(en_zone, L["Detected debuff"])
+		self:BossNameLocale(zone, L["Detected debuff"])
+
+		-- en_zone = bzoneRev[zone]
 
 		for name,k in pairs(j) do
-			self:Debuff(en_zone, name, k, 5, 5, true, true)
+			self:DebuffLocale(zone, name, k, 5, 5, true, true)
 		end
 	end
 end
