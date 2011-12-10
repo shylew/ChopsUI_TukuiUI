@@ -5,7 +5,8 @@ C["general"] = {
   ["autoscale"] = false, -- Disable auto scaling.
   ["overridelowtohigh"] = true, -- Always use high resolution UI, regardless of screen resolution.
   ["bordercolor"] = { .36, .36, .36 }, -- Use a brighter border color than the default UI.
-  ["blizzardreskin"] = false -- Don't reskin Blizzard frames.
+  ["blizzardreskin"] = false, -- Don't reskin Blizzard frames.
+  ["skadareskin"] = false -- Don't reskin Skada for now, its interfering with the ChopsUI Skada module.
 }
 
 -- Override TukUI unit frame settings.
