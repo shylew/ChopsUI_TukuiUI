@@ -543,8 +543,8 @@ function T.SkinCheckBox(frame)
 		frame:SetCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check")
 	end
 	
-	if frame.SetDisabledTexture then
-		frame:SetDisabledTexture("Interface\\Buttons\\UI-CheckBox-Check-Disabled")
+	if frame.SetDisabledCheckedTexture then
+		frame:SetDisabledCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check-Disabled")
 	end
 	
 	frame.SetNormalTexture = T.dummy

@@ -59,13 +59,6 @@ local PlateBlacklist = {
 
 	--Army of the Dead
 	["Army of the Dead Ghoul"] = true,
-
-	--Hunter Trap
-	["Venomous Snake"] = true,
-	["Viper"] = true,
-
-	--Test
-	--["Unbound Seer"] = true,
 }
 
 -- Check Player's Role
@@ -542,7 +535,7 @@ local function HookFrames(...)
 end
 
 --Core right here, scan for any possible nameplate frames that are Children of the WorldFrame
-CreateFrame('Frame'):SetScript('OnUpdate', function(self, elapsed)
+NamePlates:SetScript('OnUpdate', function(self, elapsed)
 	if(WorldFrame:GetNumChildren() ~= numChildren) then
 		numChildren = WorldFrame:GetNumChildren()
 		HookFrames(WorldFrame:GetChildren())

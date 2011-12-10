@@ -154,6 +154,7 @@ local function LoadSkin()
 	--Equipement Manager
 	T.SkinButton(PaperDollEquipmentManagerPaneEquipSet)
 	T.SkinButton(PaperDollEquipmentManagerPaneSaveSet)
+	T.SkinScrollBar(GearManagerDialogPopupScrollFrameScrollBar)
 	PaperDollEquipmentManagerPaneEquipSet:Width(PaperDollEquipmentManagerPaneEquipSet:GetWidth() - 8)
 	PaperDollEquipmentManagerPaneSaveSet:Width(PaperDollEquipmentManagerPaneSaveSet:GetWidth() - 8)
 	PaperDollEquipmentManagerPaneEquipSet:Point("TOPLEFT", PaperDollEquipmentManagerPane, "TOPLEFT", 8, 0)
@@ -296,6 +297,7 @@ local function LoadSkin()
 		TokenFramePopup:SetTemplate("Default")
 		TokenFramePopup:Point("TOPLEFT", TokenFrame, "TOPRIGHT", 4, -28)				
 	end)
+	T.SkinScrollBar(TokenFrameContainerScrollBar)
 
 	--Pet
 	PetModelFrame:CreateBackdrop("Default")

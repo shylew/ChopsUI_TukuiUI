@@ -112,7 +112,7 @@ local function UpdateFriendTable(total)
 		for k,v in pairs(LOCALIZED_CLASS_NAMES_MALE) do if class == v then class = k end end
 		
 		-- get the correct index in our table		
-		index = GetTableIndex(friendTable, 1, name)
+		local index = GetTableIndex(friendTable, 1, name)
 		-- we cannot find a friend in our table, so rebuild it
 		if index == -1 then
 			BuildFriendTable(total)
@@ -171,7 +171,7 @@ local function UpdateBNTable(total)
 		for k,v in pairs(LOCALIZED_CLASS_NAMES_MALE) do if class == v then class = k end end
 		
 		-- get the correct index in our table		
-		index = GetTableIndex(BNTable, 1, presenceID)
+		local index = GetTableIndex(BNTable, 1, presenceID)
 		-- we cannot find a BN member in our table, so rebuild it
 		if index == -1 then
 			BuildBNTable(total)

@@ -66,6 +66,7 @@ Kill:SetScript("OnEvent", function(self, event, addon)
 	Advanced_UIScaleSlider:Kill()
 	PartyMemberBackground:Kill()
 	TutorialFrameAlertButton:Kill()
+	GuildChallengeAlertFrame:Kill()
 	
 	if C.auras.player or C.unitframes.playerauras then
 		BuffFrame:Kill()

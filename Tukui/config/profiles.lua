@@ -19,7 +19,7 @@ end
 -- Name need to be case sensitive
 ---------------------------------------------------------------------------
 
-if T.myname == "Tukz" and T.myrealm == "Illidan" then
+if T.myname == "Tukz" and T.myrealm == "Ysondre" then
 	C.actionbar.hideshapeshift = true
 	C.actionbar.hotkey = false
 	C.unitframes.enemyhcolor = true

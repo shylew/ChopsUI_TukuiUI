@@ -157,6 +157,7 @@
 	<Script file="modules\skins\blizzard\lfd.lua"/>
 	<Script file="modules\skins\blizzard\lfg.lua"/>
 	<Script file="modules\skins\blizzard\lfr.lua"/>
+	<Script file="modules\skins\blizzard\loot.lua"/>
 	<Script file="modules\skins\blizzard\macosx.lua"/>
 	<Script file="modules\skins\blizzard\macro.lua"/>
 	<Script file="modules\skins\blizzard\mail.lua"/>
