@@ -7,7 +7,7 @@ def patch_bot_check
   lua = File.open(File.join('TradeSkillMaster_Auctioning', 'modules', 'post.lua'), 'r').read
   if lua =~ %r|if info ~= rNum and ShouldCheck\(\)|
 
-    lua.gsub!(%r|if info ~= rNum and ShouldCheck\(\)|, 'if info ~= rNum and true == false')
+    lua.gsub!(%r|if info ~= rNum and ShouldCheck\(\)|, 'if info ~= rNum and !ShouldCheck() and true == false')
 
     File.open(File.join('TradeSkillMaster_Auctioning', 'modules', 'post.lua'), 'w') { |f| f.puts lua }
 
