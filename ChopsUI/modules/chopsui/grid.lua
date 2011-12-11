@@ -49,7 +49,7 @@ function ChopsUI.modules.grid.ConfigureIndicators()
   -- Absorbs
   --
   -- TODO - this is disabled for now, GridStatusShield is having some issues.
-  -- GridFrame.db.profile["statusmap"]["cornertextbottomright"]["unitShieldLeft"] = true
+   GridFrame.db.profile["statusmap"]["cornertextbottomright"]["unitShieldLeft"] = true
 
   --
   -- Class/Spec specific configurations
@@ -188,7 +188,7 @@ function ChopsUI.modules.grid.Reset()
   local GridIndicatorCornerText = GridFrame:GetModule("GridIndicatorCornerText")
   local GridStatusAuras = GridStatus:GetModule("GridStatusAuras")
   -- TODO - this is disabled for now, GridStatusShield is having some issues.
-  --local GridStatusShield = GridStatus:GetModule("GridStatusShield")
+  local GridStatusShield = GridStatus:GetModule("GridStatusShield")
 
   local gridProfile = UnitName("player") .. " - " .. GetRealmName()
   Grid.db:SetProfile(gridProfile)
@@ -340,8 +340,7 @@ function ChopsUI.modules.grid.Reset()
 	GridIndicatorSideIcons.db.profile["yoffsetTB"] = -2
   
   -- Set up shield tracker
-  -- TODO - this is disabled for now, GridStatusShield is having some issues.
-	--GridStatusShield.db.profile["unitShieldLeft"] = { [ "useCombatLog"] = true }
+	GridStatusShield.db.profile["unitShieldLeft"] = { [ "useCombatLog"] = false }
 
   -- Configure the mana bars
   GridManaBarFrame.db.profile["side"] = "Bottom"
