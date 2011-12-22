@@ -1,4 +1,11 @@
 ------------------------------------------------------------------------
+r25 | stassart | 2011-12-06 08:58:39 +0000 (Tue, 06 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/BaradinHold.lua
+   M /trunk/DragonSoul.lua
+
+Added Dragon Soul trash debuffs.  Added a few missing Dragon Soul boss debuffs.  Added Alizabal to Baradin Hold. Requires GridStatusRaidDebuff 300 or higher to avoid lua error since Alizabal is missing from libbabble-boss.
+------------------------------------------------------------------------
 r24 | stassart | 2011-11-29 18:09:26 +0000 (Tue, 29 Nov 2011) | 1 line
 Changed paths:
    M /trunk/BaradinHold.lua
