@@ -20,6 +20,11 @@ local strings = {
 	BATTLEGROUND_LEADER = L.chat_BATTLEGROUND_LEADER_GET,
 	PARTY_LEADER = L.chat_PARTY_LEADER_GET,
 	RAID_LEADER = L.chat_RAID_LEADER_GET,
+	
+	-- zhCN
+	Battleground = L.chat_BATTLEGROUND_GET,
+	Guild = L.chat_GUILD_GET,
+	raid = L.chat_RAID_GET,
 }
 
 -- function to rename channel and other stuff
