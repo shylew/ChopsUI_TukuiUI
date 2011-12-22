@@ -25,7 +25,7 @@ if L then
 	L.darkness = "¡Fiesta de tentáculos!"
 	L.darkness_desc = "Esta fase comienza, cuando la esfera de vacío golpea al jefe."
 
-	L.shadows = "Shadows"
+	L.shadows = "Sombras"
 end
 
 L = BigWigs:NewBossLocale("Yor'sahj the Unsleeping", "esES")
@@ -55,25 +55,38 @@ if L then
 	L.ice_next = "Fase de Hielo"
 	L.lightning_next = "Fase de Relámpago"
 
+	L.assault_desc = "Alerta para tanques. "..select(2, EJ_GetSectionInfo(4159))
+
 	L.nextphase = "Siguiente Fase"
 	L.nextphase_desc = "Avisos para la siguiente fase"
 end
 
 L = BigWigs:NewBossLocale("Ultraxion", "esES")
 if L then
-	L.engage_trigger = "Now is the hour of twilight!"
+	L.engage_trigger = "¡Ha llegado la Hora del Crepúsculo!"
 
 	L.warmup = "Calentamiento"
 	L.warmup_desc = "Tiempo de calentamiento"
 	L.warmup_trigger = "Soy el principio del fin, la sombra que eclipsa el Sol, la campana que tañe por tu muerte."
 
-	L.crystal = "Buff Crystals"
-	L.crystal_desc = "Timers for the various buff crystals the NPC's summon."
-	L.crystal_red = "Red Crystal"
-	L.crystal_green = "Green Crystal"
-	L.crystal_blue = "Blue Crystal"
+	L.crystal = "Cristales de mejora"
+	L.crystal_desc = "Contadores para varios cristales de mejora que invocan los NPC's."
+	L.crystal_red = "Cristal rojo"
+	L.crystal_green = "Cristal verde"
+	L.crystal_blue = "Cristal azul"
 
-	L.twilight = "Twilight"
+	L.twilight = "Crepúsculo"
+	L.cast = "Crepúsculo barra de casteo"
+	L.cast_desc = "Mostrar una barra de 5 segundos cuando se esté casteando Crepúsculo."
+
+	L.lightyou = "Luz mortecina en TI"
+	L.lightyou_desc = "Mostrar una barra que visualice el tiempo restante hasta que Luz mortecina te haga explotar."
+	L.lightyou_bar = "<Explotas>"
+
+	L.lighttank = "Luz mortecina en tanques"
+	L.lighttank_desc = "Alerta para tanques. Si un tanque tiene Luz mortecina, muestra una barra y un Flash para la explosión."
+	L.lighttank_bar = "<%s Explota>"
+	L.lighttank_message = "Tanque explotando"
 end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "esES")
@@ -89,18 +102,22 @@ if L then
 	L.sapper_trigger = "¡Un draco desciende para dejar a un zapador Crepuscular en la cubierta!"
 	L.sapper = "Zapador"
 	L.sapper_desc = "El Zapador intenta dañar la nave"
+
+	L.stage2_trigger = "Parece que voy a tener que hacerlo yo. ¡Bien!"
 end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "esES")
 if L then
-	L.left_start = "a punto de rodar a la izquierda"
-	L.right_start = "a punto de rodar a la derecha"
-	L.left = "rueda a la izquierda"
-	L.right = "rueda a la derecha"
-
-	L.roll_soon = "¡Barril rodará pronto!"
-
+	L.left_start = "a punto de girar a la izquierda"
+	L.right_start = "a punto de girar a la derecha"
+	L.left = "gira a la izquierda"
+	L.right = "gira a la derecha"
 	L.not_hooked = "¡>NO< estás enganchado!"
+	L.roll_message = "¡Está girando, girando, girando!"
+	L.level_trigger = "levels out" -- translate
+	L.level_message = "¡No importa, se ha recuperado!"
+
+	L.exposed = "Armadura expuesta"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "esES")

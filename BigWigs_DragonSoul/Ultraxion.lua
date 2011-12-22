@@ -22,7 +22,8 @@ if L then
 	L.engage_trigger = "Now is the hour of twilight!"
 
 	L.warmup = "Warmup"
-	L.warmup_desc = "Warmup timer"
+	L.warmup_desc = "Time until combat with the boss starts."
+	L.warmup_icon = "achievment_boss_ultraxion"
 	L.warmup_trigger = "I am the beginning of the end...the shadow which blots out the sun"
 
 	L.crystal = "Buff Crystals"
@@ -36,24 +37,43 @@ if L then
 	L.crystal_bronze_icon = "inv_misc_head_dragon_bronze"
 
 	L.twilight = "Twilight"
+	L.cast = "Twilight Cast Bar"
+	L.cast_desc = "Show a 5 (Normal) or 3 (Heroic) second bar for Twilight being cast."
+	L.cast_icon = 106371
+
+	L.lightyou = "Fading Light on You"
+	L.lightyou_desc = "Show a bar displaying the time left until Fading Light causes you to explode."
+	L.lightyou_bar = "<You Explode>"
+	L.lightyou_icon = 105925
+
+	L.lighttank = "Fading Light on Tanks"
+	L.lighttank_desc = "Tank alert only. If a tank has Fading Light, show an explode bar and Flash/Shake."
+	L.lighttank_bar = "<%s Explodes>"
+	L.lighttank_message = "Exploding Tank"
+	L.lighttank_icon = 105925
 end
 L = mod:GetLocale()
+L.lighttank = L.lighttank.." "..INLINE_TANK_ICON
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
-function mod:GetOptions()
+function mod:GetOptions(CL)
 	return {
-		"warmup", {106371, "FLASHSHAKE"}, {105925, "FLASHSHAKE"}, "crystal", "berserk", "bosskill",
+		{106371, "FLASHSHAKE"}, "cast",
+		{105925, "FLASHSHAKE"}, "lightyou", {"lighttank", "FLASHSHAKE"},
+		"warmup", "crystal", "berserk", "bosskill",
 	}, {
-		warmup = "general",
+		[106371] = L["twilight"],
+		[105925] = GetSpellInfo(105925),
+		warmup = CL["general"],
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HourofTwilight", 106371, 109415, 109416, 109417)
-	self:Log("SPELL_AURA_APPLIED", "FadingLight", 105925, 109075, 110068, 110069, 110078, 110079, 110070, 110080)
+	self:Log("SPELL_AURA_APPLIED", "FadingLight", 109075, 110078, 110079, 110080, 110070, 110069, 105925, 110068)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Yell("Warmup", L["warmup_trigger"])
 	self:Emote("Gift", L["crystal_icon"])
@@ -99,11 +119,11 @@ function mod:Loop()
 end
 
 function mod:HourofTwilight(_, spellId, _, _, spellName)
-	self:FlashShake(106371)
 	self:Message(106371, ("%s (%d)"):format(spellName, hourCounter), "Important", spellId, "Alert")
 	hourCounter = hourCounter + 1
 	self:Bar(106371, ("%s (%d)"):format(spellName, hourCounter), 45, spellId)
-	self:Bar(106371, CL["cast"]:format(L["twilight"]), 5, spellId)
+	self:Bar("cast", CL["cast"]:format(L["twilight"]), self:Difficulty() > 2 and 3 or 5, spellId)
+	self:FlashShake(106371)
 end
 
 do
@@ -116,8 +136,16 @@ do
 		lightTargets[#lightTargets + 1] = player
 		if UnitIsUnit(player, "player") then
 			local duration = select(6, UnitDebuff("player", spellName))
-			self:Bar(105925, CL["you"]:format(spellName), duration, spellId)
+			self:Bar("lightyou", L["lightyou_bar"], duration, spellId)
 			self:FlashShake(105925)
+		else -- This is mainly a tanking assist
+			if (spellId == 110070 or spellId == 110069 or spellId == 105925 or spellId == 110068) and UnitGroupRolesAssigned("player") == "TANK" then
+				self:FlashShake("lighttank")
+				local duration = select(6, UnitDebuff(player, spellName))
+				self:Bar("lighttank", L["lighttank_bar"]:format(player), duration, spellId)
+				self:TargetMessage("lighttank", L["lighttank_message"], player, "Attention", spellId)
+				self:PlaySound("lighttank", "Alarm")
+			end
 		end
 		if not scheduled then
 			scheduled = true

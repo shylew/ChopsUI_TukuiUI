@@ -55,6 +55,8 @@ if L then
 	L.ice_next = "Phase de glace"
 	L.lightning_next = "Phase de foudre"
 
+	L.assault_desc = "Alerte pour tank uniquement. "..select(2, EJ_GetSectionInfo(4159))
+
 	L.nextphase = "Prochaine phase"
 	L.nextphase_desc = "Prévient quand arrive la phase suivante."
 end
@@ -73,7 +75,18 @@ if L then
 	L.crystal_green = "Cristal vert"
 	L.crystal_blue = "Cristal bleu"
 
-	L.twilight = "Twilight"
+	L.twilight = "Crépuscule"
+	L.cast = "Barre d'incantation d'Heure du Crépuscule"
+	L.cast_desc = "Affiche une barre de 5 secondes pour l'incantation d'Heure du Crépuscule."
+
+	L.lightyou = "Lumière faiblissante sur vous"
+	L.lightyou_desc = "Affiche une barre indiquant le temps restant avant que Lumière faiblissante ne vous fasse exploser."
+	L.lightyou_bar = "<Vous explosez>"
+
+	L.lighttank = "Lumière faiblissante sur tanks"
+	L.lighttank_desc = "Alerte pour tank uniquement. Si un tank a Lumière faiblissante, affiche une barre d'explosion et Flash/Shake."
+	L.lighttank_bar = "<%s explose>"
+	L.lighttank_message = "Tank explosif"
 end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "frFR")
@@ -86,9 +99,11 @@ if L then
 	L.sunder_desc = "Alerte pour tanks uniquement. Compte les cumuls de fracasser armure et affiche une barre de durée."
 	L.sunder_message = "%2$dx Fracasser sur %1$s"
 
-	L.sapper_trigger = "Un drake plonge et dépose un sapeur du Crépuscule sur le pont !" -- à vérifier
+	L.sapper_trigger = "Un drake plonge et dépose un sapeur du Crépuscule sur le pont !"
 	L.sapper = "Sapeur"
 	L.sapper_desc = "Sapeur infligeant des dégâts au vaisseau."
+
+	L.stage2_trigger = "Donc je dois le faire moi-même. Bien !"
 end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "frFR")
@@ -97,14 +112,16 @@ if L then
 	L.right_start = "va faire un tonneau à droite"
 	L.left = "fait un tonneau à gauche"
 	L.right = "fait un tonneau à droite"
-
-	L.roll_soon = "Tonneau imminent !"
-
 	L.not_hooked = "Vous n'êtes >PAS< accroché !"
+	L.roll_message = "Et il tourne, tourne, tourne !"
+	L.level_trigger = "se redresse"
+	L.level_message = "Pas grave, il s'est redressé !"
+
+	L.exposed = "Armure exposée"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "frFR")
 if L then
-
+	L.impale_desc = "Alerte pour tank uniquement. "..select(2,EJ_GetSectionInfo(4114))
 end
 
