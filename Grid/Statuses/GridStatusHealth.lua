@@ -195,6 +195,10 @@ function GridStatusHealth:UpdateUnit(event, unitid, ignoreRange)
 	end
 
 	local cur, max = UnitHealth(unitid), UnitHealthMax(unitid)
+	if max == 0 then
+		-- fix for 4.3 division by zero
+		cur, max = 100, 100
+	end
 
 	local healthSettings = self.db.profile.unit_health
 	local deficitSettings = self.db.profile.unit_healthDeficit
@@ -211,7 +215,7 @@ function GridStatusHealth:UpdateUnit(event, unitid, ignoreRange)
 	else
 		self:StatusDeath(guid, false)
 		self:StatusFeignDeath(guid, UnitIsFeignDeath(unitid))
-		self:StatusLowHealth(guid, self:IsLowHealth(cur, max))
+		self:StatusLowHealth(guid, (cur / max * 100) <= self.db.profile.alert_lowHealth.threshold)
 	end
 
 	self:StatusOffline(guid, not UnitIsConnected(unitid))

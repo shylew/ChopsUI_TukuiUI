@@ -1,0 +1,32 @@
+------------------------------------------------------------------------
+r1453 | phanx | 2011-12-16 02:01:50 +0000 (Fri, 16 Dec 2011) | 5 lines
+Changed paths:
+   A /tags/4.3.0.1453 (from /trunk:1452)
+
+- Added an option to hide aura statuses on pets/vehicles (ticket #572)
+- Added options for showing duration and/or stack count using the status color and/or text (ticket #421, patch provided by Jlam).
+- Removed the "Show duration for center cooldown" option. If you do not wish to see aura durations, disable the cooldown animation on the center icon on the Frame options tab.
+- Added checks for some division by zero errors in 4.3
+- Added Brazilian Portuguese localization
+------------------------------------------------------------------------
+r1452 | Phanx | 2011-12-13 00:33:17 +0000 (Tue, 13 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/README.txt
+
+Updated README / main description
+------------------------------------------------------------------------
+r1451 | Phanx | 2011-12-12 07:25:44 +0000 (Mon, 12 Dec 2011) | 2 lines
+Changed paths:
+   M /trunk/GridFrame.lua
+   M /trunk/GridLayout.lua
+   M /trunk/GridStatus.lua
+
+- Reverted healing bar color option for now, since I do not have time to debug it right now, and need to tag a release.
+- Improved general color options.
+------------------------------------------------------------------------
+r1450 | jlam | 2011-10-25 04:19:50 +0000 (Tue, 25 Oct 2011) | 1 line
+Changed paths:
+   M /trunk/README.txt
+
+- Minor name spelling correction.
+------------------------------------------------------------------------
