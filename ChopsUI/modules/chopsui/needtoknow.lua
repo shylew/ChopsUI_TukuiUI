@@ -84,6 +84,15 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
       end
     end
 
+  elseif T.myclass == "HUNTER" then
+
+    if T.Spec == "SURVIVAL" then
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Lock and Load", { 0.6, 0.01, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Call of the Wild", { 0.28, 0.79, 0.30 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Culling the Herd", { 1, 0.57, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Sniper Training", { 0.19, 0.71, 0.78 }, true)
+    end
+
   elseif T.myclass == "MAGE" then
 
     if T.Spec == "ARCANE" then
@@ -249,6 +258,14 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
         ChopsUI.modules.needtoknow.TargetDebuff(5, "Demoralizing Roar, Demoralizing Shout, Vindication, Curse of Weakness, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
         ChopsUI.modules.needtoknow.TargetDebuff(6, "Infected Wounds, Thunder Clap, Frost Fever, Judgements of the Just", { 0.28, 0.79, 0.30 }, false)
       end
+    end
+
+  elseif T.myclass == "HUNTER" then
+
+    if T.Spec == "SURVIVAL" then
+      ChopsUI.modules.needtoknow.TargetDebuff(4, "Black Arrow", { 0, 0.10, 0.96 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(5, "Serpent Sting", { 0.28, 0.79, 0.30 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(6, "Explosive Shot", { 1, 0.57, 0 }, true)
     end
 
   elseif T.myclass == "MAGE" then
