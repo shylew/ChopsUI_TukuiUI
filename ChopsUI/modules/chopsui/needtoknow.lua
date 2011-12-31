@@ -210,7 +210,7 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
       ChopsUI.modules.needtoknow.PlayerBuff(1, "Recklessness", { 0.91, 0.54, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(2, "Golem's Strength", { 0.86, 0.67, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(3, "Deadly Calm", { 0.41, 1, 0 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(4, "Slaughter", { 0.6, 0.01, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Executioner", { 0.6, 0.01, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(5, "Inner Rage", { 0.91, 0.91, 0.91 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(6, "Sweeping Strikes", { 0.14, 0.6, 0.2 }, true)
     elseif T.Spec == "PROTECTION" then
