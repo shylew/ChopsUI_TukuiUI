@@ -206,7 +206,14 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
 
   elseif T.myclass == "WARRIOR" then
 
-    if T.Spec == "PROTECTION" then
+    if T.Spec == "ARMS" then
+      ChopsUI.modules.needtoknow.PlayerBuff(1, "Recklessness", { 0.91, 0.54, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Golem's Strength", { 0.86, 0.67, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Deadly Calm", { 0.41, 1, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Slaughter", { 0.6, 0.01, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Inner Rage", { 0.91, 0.91, 0.91 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Sweeping Strikes", { 0.14, 0.6, 0.2 }, true)
+    elseif T.Spec == "PROTECTION" then
       ChopsUI.modules.needtoknow.PlayerBuff(1, "Shield Wall", { 0.19, 0.71, 0.78 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(2, "Last Stand", { 0.75, 0.58, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(3, "Earthen Armor", { 0.25, 0.25, 0.25 }, true)
@@ -369,7 +376,11 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
 
   elseif T.myclass == "WARRIOR" then
 
-    if T.Spec == "PROTECTION" then
+    if T.Spec == "ARMS" then
+      ChopsUI.modules.needtoknow.TargetDebuff(1, "Rend", { 0.6, 0.01, 0 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Colossus Smash", { 0.75, 0.58, 0 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(3, "Deep Wounds", { 0.91, 0.54, 0 }, true)
+    elseif T.Spec == "PROTECTION" then
       ChopsUI.modules.needtoknow.TargetDebuff(1, "Shockwave", { 0.04, 0.29, 0.6 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(2, "Concussion Blow", { 0.91, 0.91, 0.91 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(3, "Rend", { 0.6, 0.01, 0 }, true)
