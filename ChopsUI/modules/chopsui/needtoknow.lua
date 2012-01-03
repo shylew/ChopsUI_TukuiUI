@@ -8,12 +8,12 @@ NeedToKnow.Update = function()
 
   ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
   ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
-  ChopsUI.modules.needtoknow.ConfigureInternalCooldowns()
+  ChopsUI.modules.needtoknow.ConfigureCooldowns()
   NeedToKnow.Update_()
 
   playerFrame = _G["NeedToKnow_Group1"]
   targetFrame = _G["NeedToKnow_Group2"]
-  icdFrame = _G["NeedToKnow_Group3"]
+  cdFrame = _G["NeedToKnow_Group3"]
 
   -- Position the player buff tracker
   if playerFrame ~= nil then
@@ -28,10 +28,10 @@ NeedToKnow.Update = function()
     targetFrame:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 4, 180)
   end
 
-  -- Positon the ICD tracker
-  if icdFrame ~= nil then
-    icdFrame:ClearAllPoints()
-    icdFrame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundLeft, "TOPLEFT", 0, 130)
+  -- Positon the CD tracker
+  if cdFrame ~= nil then
+    cdFrame:ClearAllPoints()
+    cdFrame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundLeft, "TOPLEFT", 0, 130)
   end
 
 end
@@ -393,24 +393,24 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
   
 end
 
--- Configure the NeedToKnow internal cooldown bars
-function ChopsUI.modules.needtoknow.ConfigureInternalCooldowns()
+-- Configure the NeedToKnow cooldown bars
+function ChopsUI.modules.needtoknow.ConfigureCooldowns()
 
   for i = 1, NeedToKnow.ProfileSettings.Groups[3].NumberBars do
     NeedToKnow.ProfileSettings.Groups[3].Bars[i].Enabled = false
   end
 
   if T.CheckRole() == "Caster" then
-    ChopsUI.modules.needtoknow.InternalCooldown(6, "Power Torrent", { 0.03, 0.88, 1 }, 45)
+    ChopsUI.modules.needtoknow.Cooldown(5, "Volcanic Destruction", { 0, 0.45, 0.6 }, 45)
+    ChopsUI.modules.needtoknow.Cooldown(6, "Power Torrent", { 0.03, 0.88, 1 }, 45)
   end
 
   if T.myclass == "DRUID" then
-    if T.Spec == "BALANCE" or T.Spec == "RESTORATION" then
-      ChopsUI.modules.needtoknow.InternalCooldown(5, "Nature's Grace", { 0.28, 0.79, 0.30 }, 60)
-    end
-  elseif T.myclass == "PRIEST" then
-    if T.Spec == "DISCIPLINE" then
-      ChopsUI.modules.needtoknow.InternalCooldown(5, "Rapture", { 0.19, 0.71, 0.78 }, 12)
+    if T.Spec == "BALANCE" then
+      ChopsUI.modules.needtoknow.Cooldown(4, "Force of Nature", { 0.6, 0, 0.55 })
+      ChopsUI.modules.needtoknow.Cooldown(3, "Starfall", { 0.91, 0.91, 0.91 })
+      ChopsUI.modules.needtoknow.Cooldown(2, "Starsurge", { 0.6, 0, 0.54 })
+      ChopsUI.modules.needtoknow.Cooldown(1, "Nature's Grace", { 0.28, 0.79, 0.30 }, 60)
     end
   end
 
@@ -474,13 +474,19 @@ function ChopsUI.modules.needtoknow.TargetDebuff(barId, debuffName, color, onlyM
 
 end
 
--- Configure a NeedToKnow internal cooldown
-function ChopsUI.modules.needtoknow.InternalCooldown(barId, cooldownName, color, duration)
+-- Configure a NeedToKnow cooldown.
+function ChopsUI.modules.needtoknow.Cooldown(barId, cooldownName, color, duration)
 
   colorRed, colorGreen, colorBlue = unpack(color)
 
-  NeedToKnow.ProfileSettings.Groups[3].Bars[barId].BuffOrDebuff = "BUFFCD"
-  NeedToKnow.ProfileSettings.Groups[3].Bars[barId].buffcd_duration = duration
+  -- If we have a duration specified, we need to track some kind of ICD. if we
+  -- don't, just track a normal spell cd.
+  if duration ~= nil then
+    NeedToKnow.ProfileSettings.Groups[3].Bars[barId].BuffOrDebuff = "BUFFCD"
+    NeedToKnow.ProfileSettings.Groups[3].Bars[barId].buffcd_duration = duration
+  else
+    NeedToKnow.ProfileSettings.Groups[3].Bars[barId].BuffOrDebuff = "CASTCD"
+  end
   NeedToKnow.ProfileSettings.Groups[3].Bars[barId].Enabled = true
   NeedToKnow.ProfileSettings.Groups[3].Bars[barId].AuraName = cooldownName
   NeedToKnow.ProfileSettings.Groups[3].Bars[barId].OnlyMine = true
@@ -520,19 +526,19 @@ function ChopsUI.modules.needtoknow.Reset()
   targetGroup.Width = 290
   targetGroup.FixedDuration = nil
 
-  -- Set up the ICD group.
-  icdGroup = CopyTable(NEEDTOKNOW.GROUP_DEFAULTS)
-  icdGroup.Enabled = true
-  icdGroup.NumberBars = 6
-  icdGroup.Scale = 0.80
-  icdGroup.Width = 475
-  icdGroup.FixedDuration = nil
+  -- Set up the cooldown group.
+  cdGroup = CopyTable(NEEDTOKNOW.GROUP_DEFAULTS)
+  cdGroup.Enabled = true
+  cdGroup.NumberBars = 6
+  cdGroup.Scale = 0.80
+  cdGroup.Width = 475
+  cdGroup.FixedDuration = nil
   
   -- Assign the new groups to NeedToKnow.
   NeedToKnow.ProfileSettings.Groups = {
     playerGroup,
     targetGroup,
-    icdGroup
+    cdGroup
   }
   NeedToKnow.ProfileSettings.nGroups = 3
 
