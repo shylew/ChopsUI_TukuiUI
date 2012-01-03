@@ -37,7 +37,7 @@ if L then
 
 	L.blue = "|cFF0080FF蓝|r"
 	L.green = "|cFF088A08绿|r"
-	L.purple = "|cFF9932CD粉|r"
+	L.purple = "|cFF9932CD紫|r"
 	L.yellow = "|cFFFFA901黄|r"
 	L.black = "|cFF424242黑|r"
 	L.red = "|cFFFF0404红|r"
@@ -67,7 +67,7 @@ if L then
 
 	L.warmup = "暮光审判"
 	L.warmup_desc = "暮光审判计时器。"
-	L.warmup_trigger = "I am the beginning of the end...the shadow which blots out the sun"
+	L.warmup_trigger = "我即是末日的开端……蔽日的阴影……毁灭的丧钟……"
 
 	L.crystal = "增益水晶"
 	L.crystal_desc = "守护巨龙召唤各种增益水晶计时器。"
@@ -79,9 +79,9 @@ if L then
 	L.cast = "暮光审判施法条"
 	L.cast_desc = "显示暮光审判5秒施法条。"
 
-	L.lightyou = "自身黯淡之光"
-	L.lightyou_desc = "显示自身黯淡之光爆炸剩余计时条。"
-	L.lightyou_bar = "<你将爆炸>"
+	L.lightself = "自身黯淡之光"
+	L.lightself_desc = "显示自身黯淡之光爆炸剩余计时条。"
+	L.lightself_bar = "<你将爆炸>"
 
 	L.lighttank = "坦克黯淡之光"
 	L.lighttank_desc = "只警报坦克。如果坦克中了黯淡之光，显示一个爆炸计时条及闪屏震动。"
@@ -91,19 +91,19 @@ end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "zhCN")
 if L then
-	L.harpooning = "鱼叉炮"
-
-	L.rush = "邪刃冲击"
+	L.warmup = "热身"
+	L.warmup_desc = "首领战斗开始之前的计时器。"
+	L.warmup_trigger = "全速前进。一切都取决于我们的速度了！不能让灭世者跑了。"
 
 	L.sunder = "破甲攻击"
 	L.sunder_desc = "只警报坦克。破甲攻击堆叠计数并显示持续条。"
 	L.sunder_message = "%2$d层破甲攻击：>%1$s<！"
 
-	L.sapper_trigger = "A drake swoops down to drop a Twilight Sapper onto the deck!"
+	L.sapper_trigger = "一条幼龙俯冲下来，往甲板上投放了一个暮光工兵！"
 	L.sapper = "暮光工兵"
 	L.sapper_desc = "暮光工兵对天火号造成伤害。"
 
-	L.stage2_trigger = "Looks like I'm doing this myself. Good!"
+	L.stage2_trigger = "看来我得亲自动手了。很好！"
 end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "zhCN")
@@ -114,14 +114,18 @@ if L then
 	L.right = "右侧翻滚"
 	L.not_hooked = ">你< 没有抓牢！"
 	L.roll_message = "他开始滚了！滚了，滚啦！"
-	L.level_trigger = "levels out"
-	L.level_message = "别急，他已经平稳了！"
+	L.level_trigger = "平衡"
+	L.level_message = "别急，他已经平衡了！"
 
 	L.exposed = "装甲暴露"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "zhCN")
 if L then
+	L.engage_trigger = "你们什么都没做到。我要撕碎你们的世界。"
 	L.impale_desc = "只警报坦克。"..select(2,EJ_GetSectionInfo(4114))
+	L.bolt_explode = "<源质箭爆炸>"
+	L.parasite = "腐蚀寄生虫"
+	L.blobs_soon = "%d%% - 即将凝固之血！"
 end
 

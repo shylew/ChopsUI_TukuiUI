@@ -79,9 +79,9 @@ if L then
 	L.cast = "Crepúsculo barra de casteo"
 	L.cast_desc = "Mostrar una barra de 5 segundos cuando se esté casteando Crepúsculo."
 
-	L.lightyou = "Luz mortecina en TI"
-	L.lightyou_desc = "Mostrar una barra que visualice el tiempo restante hasta que Luz mortecina te haga explotar."
-	L.lightyou_bar = "<Explotas>"
+	L.lightself = "Luz mortecina en TI"
+	L.lightself_desc = "Mostrar una barra que visualice el tiempo restante hasta que Luz mortecina te haga explotar."
+	L.lightself_bar = "<Explotas>"
 
 	L.lighttank = "Luz mortecina en tanques"
 	L.lighttank_desc = "Alerta para tanques. Si un tanque tiene Luz mortecina, muestra una barra y un Flash para la explosión."
@@ -91,10 +91,6 @@ end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "esES")
 if L then
-	L.harpooning = "Arponear"
-
-	L.rush = "Carga de hojas"
-
 	L.sunder = "Hender armadura"
 	L.sunder_desc = "Alerta para tanques. Muestra los stacs de Hender armadura y una barra con su duración."
 	L.sunder_message = "%2$dx Hender en %1$s"
@@ -114,14 +110,18 @@ if L then
 	L.right = "gira a la derecha"
 	L.not_hooked = "¡>NO< estás enganchado!"
 	L.roll_message = "¡Está girando, girando, girando!"
-	L.level_trigger = "levels out" -- translate
-	L.level_message = "¡No importa, se ha recuperado!"
+	L.level_trigger = "se estabiliza."
+	L.level_message = "¡Bueno, se ha estabilizado!"
 
 	L.exposed = "Armadura expuesta"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "esES")
 if L then
-
+	L.engage_trigger = "No habéis hecho nada. Destruiré vuestro mundo."
+	L.impale_desc = "Alerta para tanques. "..select(2,EJ_GetSectionInfo(4114))
+	L.bolt_explode = "<Descarga Explota>"
+	L.parasite = "Parásito"
+	L.blobs_soon = "%d%% - Sangre coagulante inminente!"
 end
 

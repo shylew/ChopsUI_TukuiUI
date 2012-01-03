@@ -7,7 +7,7 @@ if L then
 	L.crush_desc = "Nur für Tanks. Zählt die Stapel von Rüstung zerschmettern und zeigt eine Timerleiste an."
 	L.crush_message = "%2$dx Rüstung zerschmettern auf %1$s"
 
-	L.blood = "Blut"
+	L.blood = "Schwarzes Blut"
 
 	L.explosion = "Explosion"
 end
@@ -51,7 +51,7 @@ L = BigWigs:NewBossLocale("Hagara the Stormbinder", "deDE")
 if L then
 	L.engage_trigger = "Ihr legt euch mit der Sturmbinderin an! Ich werde euch alle vernichten."
 
-	L.lightning_or_frost = "Blitz oder Frost"
+	L.lightning_or_frost = "Blitz oder Eis"
 	L.ice_next = "Eisphase"
 	L.lightning_next = "Blitzphase"
 
@@ -79,9 +79,9 @@ if L then
 	L.cast = "Zwielicht Zauberleiste"
 	L.cast_desc = "Zeigt eine 5 (Normal) oder 3 (Heroisch) sekündige Leiste, wenn Stunde des Zwielichts gewirkt wird."
 
-	L.lightyou = "Schwindendes Licht auf Dir"
-	L.lightyou_desc = "Zeigt eine Leiste mit der verbleibenden Zeit, bis schwindendes Licht Dich explodieren lässt."
-	L.lightyou_bar = "<Du Explodierst>"
+	L.lightself = "Schwindendes Licht auf Dir"
+	L.lightself_desc = "Zeigt eine Leiste mit der verbleibenden Zeit, bis schwindendes Licht Dich explodieren lässt."
+	L.lightself_bar = "<Du Explodierst>"
 
 	L.lighttank = "Schwindendes Licht auf Tanks"
 	L.lighttank_desc = "Nur für Tanks. Wenn ein Tank von schwindendem Licht betroffen ist, werden eine Timerleiste sowie Flash & Shake für die Explosion angezeigt."
@@ -91,9 +91,9 @@ end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "deDE")
 if L then
-	L.harpooning = "Harpune"
-
-	L.rush = "Klingenansturm"
+	L.warmup = "Warmup"
+	L.warmup_desc = "Zeit bis zum Starten des Bosskampfes."
+	L.warmup_trigger = "Volle Kraft voraus. Alles hängt von unserer Geschwindigkeit ab! Der Zerstörer darf nicht entkommen."
 
 	L.sunder = "Rüstung zerreißen"
 	L.sunder_desc = "Nur für Tanks. Zählt die Stapel von Rüstung zerreißen und zeigt eine Timerleiste an."
@@ -122,6 +122,12 @@ end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "deDE")
 if L then
+	L.engage_trigger = "Ihr habt NICHTS erreicht. Ich werde Eure Welt in STÜCKE reißen."
+
 	L.impale_desc = "Nur für Tanks. "..select(2,EJ_GetSectionInfo(4114))
+
+	L.bolt_explode = "<Blitz Explodiert>"
+	L.parasite = "Parasit"
+	L.blobs_soon = "%d%% - Gerinnendes Blut bald!"
 end
 

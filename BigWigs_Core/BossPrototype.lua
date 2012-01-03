@@ -301,21 +301,73 @@ do
 end
 
 -------------------------------------------------------------------------------
+-- Role checking
+--
+
+function boss:Tank()
+	local tree = GetPrimaryTalentTree()
+	local role = GetTalentTreeRoles(tree)
+	local _, class = UnitClass("player")
+	if class == "DRUID" and tree == 2 then
+		local _,_,_,_,talent = GetTalentInfo(2, 20)
+		if talent > 0 then
+			role = "TANK"
+		else
+			role = "DAMAGER"
+		end
+	end
+	if role == "TANK" then return true end
+end
+
+--[[
+function boss:Healer()
+	local tree = GetPrimaryTalentTree()
+	local role = GetTalentTreeRoles(tree)
+	if role == "HEALER" then return true end
+end
+
+function boss:Damager()
+	local tree = GetPrimaryTalentTree()
+	local role
+	local _, class = UnitClass("player")
+	if class == "MAGE" or class == "WARLOCK" or class == "HUNTER" or (class == "DRUID" and t == 1) or (class == "PRIEST" and t == 3) then
+		role = "RANGED"
+	elseif class == "ROGUE" or (class == "WARRIOR" and tree ~= 3) or (class == "DEATHKNIGHT" and tree ~= 1) or (class == "PALADIN" and tree == 3) then
+		role = "MELEE"
+	elseif class == "DRUID" and t == 2 then
+		local _,_,_,_,talent = GetTalentInfo(2, 20)
+		if talent == 0 then
+			role = "MELEE"
+		end
+	elseif class == "SHAMAN" then
+		if t == 1 then
+			role = "RANGED"
+		elseif t == 2 then
+			role = "MELEE"
+		end
+	end
+	return role
+end
+]]
+
+-------------------------------------------------------------------------------
 -- Delayed message handling
 --
 
 do
 	local scheduledMessages = {}
-	local function wrapper(module, _, ...) module:Message(...) end
+	local function wrapper(module, _, ...) module:Message(...) end -- Use a wrapper or select(), same thing but faster.
 	-- This should've been a local function, but if we do it this way then AceTimer passes in the correct module for us.
 	function boss:ProcessDelayedMessage(text)
 		wrapper(self, unpack(scheduledMessages[text]))
+		wipe(scheduledMessages[text])
 		scheduledMessages[text] = nil
 	end
 
 	function boss:CancelDelayedMessage(text)
 		if scheduledMessages[text] then
 			self:CancelTimer(scheduledMessages[text][1], true)
+			wipe(scheduledMessages[text])
 			scheduledMessages[text] = nil
 			return true
 		end
@@ -323,7 +375,7 @@ do
 
 	-- ... = color, icon, sound, noraidsay, broadcastonly
 	function boss:DelayedMessage(key, delay, text, ...)
-		if type(delay) ~= "number" then error(string.format("Module %s tried to schedule a delayed message with delay as type %q, but it must be a number.", self.name, type(delay))) end
+		if type(delay) ~= "number" then error(fmt("Module '%s' tried to schedule a delayed message with delay as type %q, but it must be a number.", self.moduleName, type(delay))) end
 		self:CancelDelayedMessage(text)
 
 		local id = self:ScheduleTimer("ProcessDelayedMessage", delay, text)
@@ -409,12 +461,6 @@ function boss:Message(key, text, color, icon, sound, noraidsay, broadcastonly)
 	self:SendMessage("BigWigs_Message", self, key, text, color, noraidsay, sound, broadcastonly, icons[icon])
 end
 
--- Outputs a local message only, no raid warning.
-function boss:LocalMessage(key, text, color, icon, sound)
-	if not checkFlag(self, key, C.MESSAGE) then return end
-	self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icons[icon])
-end
-
 do
 	local hexColors = {}
 	for k, v in pairs(CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS) do
@@ -440,6 +486,19 @@ do
 	}
 	function boss:NewTargetList()
 		return setmetatable({}, mt)
+	end
+
+	-- Outputs a local message only, no raid warning.
+	function boss:LocalMessage(key, text, color, icon, sound, player, stack)
+		if not checkFlag(self, key, C.MESSAGE) then return end
+		if player then
+			if stack then
+				text = fmt(text, coloredNames[player], stack)
+			else
+				text = fmt(text, coloredNames[player])
+			end
+		end
+		self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icons[icon])
 	end
 
 	function boss:TargetMessage(key, spellName, player, color, icon, sound, ...)

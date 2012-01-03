@@ -15,11 +15,10 @@ local canEnable = true
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.harpooning = "Harpooning"
-
-	L.rush = "Blade Rush"
-	L.rush_desc = select(2, EJ_GetSectionInfo(4198))
-	L.rush_icon = 100 -- charge icon
+	L.warmup = "Warmup"
+	L.warmup_desc = "Time until combat starts."
+	L.warmup_icon = "achievment_boss_blackhorn"
+	L.warmup_trigger = "All ahead full. Everything depends on our speed! We can't let the Destroyer get away."
 
 	L.sunder = "Sunder Armor"
 	L.sunder_desc = "Tank alert only. Count the stacks of sunder armor and show a duration bar."
@@ -44,11 +43,11 @@ function mod:GetOptions(CL)
 	return {
 		108862, "sapper",
 		"sunder", {108046, "SAY", "FLASHSHAKE"}, {108076, "SAY", "FLASHSHAKE", "ICON"}, 109228,
-		"berserk", "bosskill",
+		"warmup", "berserk", "bosskill",
 	}, {
 		[108862] = "ej:4027",
 		sunder = "ej:4033",
-		berserk = CL["general"],
+		warmup = CL["general"],
 	}
 end
 
@@ -65,19 +64,20 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Roar", 109228, 108044, 109229, 109230) --LFR/25N, 10N, ??, ??
 	self:Emote("Sapper", L["sapper_trigger"])
 	self:Yell("Stage2", L["stage2_trigger"])
+	self:Yell("Warmup", L["warmup_trigger"])
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 56427)
 end
 
+function mod:Warmup()
+	self:Bar("warmup", _G["COMBAT"], 20, L["warmup_icon"])
+end
+
 function mod:OnEngage(diff)
 	self:Bar(108862, (GetSpellInfo(108862)), 47, 108862) -- Twilight Onslaught
-	--self:Bar(108862, self.displayName, 264, "achievment_boss_blackhorn") -- Maybe use an approximate?
 	if not self:LFR() then
 		self:Bar("sapper", L["sapper"], 70, L["sapper_icon"])
-	end
-	if self:Difficulty() > 2 then
-		self:Berserk(420)
 	end
 end
 
@@ -99,6 +99,9 @@ function mod:Stage2()
 	self:SendMessage("BigWigs_StopBar", self, L["sapper"])
 	self:Bar(108046, "~"..GetSpellInfo(108046), 14, 108046) -- Shockwave
 	self:Message("bosskill", self.displayName, "Positive", "achievment_boss_blackhorn")
+	if self:Difficulty() > 2 then
+		self:Berserk(240)
+	end
 end
 
 do
@@ -161,11 +164,12 @@ do
 end
 
 function mod:Sunder(player, spellId, _, _, spellName, buffStack)
-	if UnitGroupRolesAssigned("player") ~= "TANK" then return end
-	if not buffStack then buffStack = 1 end
-	self:SendMessage("BigWigs_StopBar", self, L["sunder_message"]:format(player, buffStack - 1))
-	self:Bar("sunder", L["sunder_message"]:format(player, buffStack), 30, spellId)
-	self:TargetMessage("sunder", L["sunder_message"], player, "Urgent", spellId, buffStack > 2 and "Info" or nil, buffStack)
+	if self:Tank() then
+		buffStack = buffStack or 1
+		self:SendMessage("BigWigs_StopBar", self, L["sunder_message"]:format(player, buffStack - 1))
+		self:Bar("sunder", L["sunder_message"]:format(player, buffStack), 30, spellId)
+		self:LocalMessage("sunder", L["sunder_message"], "Urgent", spellId, buffStack > 2 and "Info" or nil, player, buffStack)
+	end
 end
 
 function mod:Roar(_, spellId, _, _, spellName)

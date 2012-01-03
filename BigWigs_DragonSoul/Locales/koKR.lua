@@ -79,22 +79,18 @@ if L then
 	L.cast = "황혼의 시간 시전 바"
 	L.cast_desc = "황혼의 시간 시전 5초전 바를 표시합니다."
 
-	L.lightyou = "당신에 사그라지는 빛"
-	L.lightyou_desc = "사그라지는 빛의 폭발까지 남은 시간을 바에 표시합니다."
-	L.lightyou_bar = "<폭발>"
+	L.lightself = "당신에 사그라지는 빛"
+	L.lightself_desc = "사그라지는 빛의 폭발까지 남은 시간을 바에 표시합니다."
+	L.lightself_bar = "<폭발>"
 
 	L.lighttank = "Fading Light on Tanks"
-	L.lighttank_desc = "Tank alert only. If a tank has Fading Light, show an explode bar and Flash/Shake."
+	L.lighttank_desc = "탱커 전용 경고입니다. If a tank has Fading Light, show an explode bar and Flash/Shake."
 	L.lighttank_bar = "<%s Explodes>"
 	L.lighttank_message = "Exploding Tank"
 end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "koKR")
 if L then
-	L.harpooning = "작살"
-
-	L.rush = "칼날 돌격"
-
 	L.sunder = "방어구 가르기"
 	L.sunder_desc = "탱커 전용 경고입니다. 방어구 가르기 중첩과 지속시간 바를 표시합니다."
 	L.sunder_message = "방어구 가르기 : x%2$d : %1$s"
@@ -108,13 +104,13 @@ end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "koKR")
 if L then
-	L.left_start = "왼쪽으로 회전합니다!"
-	L.right_start = "오른쪽으로 회전합니다!"
+	L.left_start = "왼쪽으로 회전하려고 합니다!"
+	L.right_start = "오른쪽으로 회전하려고 합니다!"
 	L.left = "왼쪽으로 회전"
 	L.right = "오른쪽으로 회전"
 	L.not_hooked = "접착되지 않았음!"
 	L.roll_message = "He's rolling, rolling, rolling!"
-	L.level_trigger = "levels out"
+	L.level_trigger = "수평으로 균형을 잡습니다."
 	L.level_message = "Nevermind, he leveled out!"
 
 	L.exposed = "Armor Exposed"
@@ -122,6 +118,10 @@ end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "koKR")
 if L then
-
+	L.engage_trigger = "You have done NOTHING. I will tear your world APART."
+	L.impale_desc = "탱커 전용 경고입니다. "..select(2,EJ_GetSectionInfo(4114))
+	L.bolt_explode = "<Bolt Explodes>"
+	L.parasite = "Parasite"
+	L.blobs_soon = "%d%% - Congealing Blood soon!"
 end
 

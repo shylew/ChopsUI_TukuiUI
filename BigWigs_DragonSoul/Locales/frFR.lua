@@ -79,9 +79,9 @@ if L then
 	L.cast = "Barre d'incantation d'Heure du Crépuscule"
 	L.cast_desc = "Affiche une barre de 5 secondes pour l'incantation d'Heure du Crépuscule."
 
-	L.lightyou = "Lumière faiblissante sur vous"
-	L.lightyou_desc = "Affiche une barre indiquant le temps restant avant que Lumière faiblissante ne vous fasse exploser."
-	L.lightyou_bar = "<Vous explosez>"
+	L.lightself = "Lumière faiblissante sur vous"
+	L.lightself_desc = "Affiche une barre indiquant le temps restant avant que Lumière faiblissante ne vous fasse exploser."
+	L.lightself_bar = "<Vous explosez>"
 
 	L.lighttank = "Lumière faiblissante sur tanks"
 	L.lighttank_desc = "Alerte pour tank uniquement. Si un tank a Lumière faiblissante, affiche une barre d'explosion et Flash/Shake."
@@ -91,9 +91,9 @@ end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "frFR")
 if L then
-	L.harpooning = "Harponnage"
-
-	L.rush = "Volée de lames"
+	L.warmup = "Échauffement"
+	L.warmup_desc = "Délai avant que le combat ne commence."
+	L.warmup_trigger = "En avant toute ! Tout dépend de notre vitesse ! Nous ne devons pas laisser le Destructeur s'échapper." -- à vérifier
 
 	L.sunder = "Fracasser armure"
 	L.sunder_desc = "Alerte pour tanks uniquement. Compte les cumuls de fracasser armure et affiche une barre de durée."
@@ -103,7 +103,7 @@ if L then
 	L.sapper = "Sapeur"
 	L.sapper_desc = "Sapeur infligeant des dégâts au vaisseau."
 
-	L.stage2_trigger = "Donc je dois le faire moi-même. Bien !"
+	L.stage2_trigger = "Donc je dois le faire moi-même. Bien !" -- pas d'espace insécable ici
 end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "frFR")
@@ -122,6 +122,10 @@ end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "frFR")
 if L then
+	L.engage_trigger = "Vous n'avez RIEN fait. Je vais mettre votre monde en PIÈCES."
 	L.impale_desc = "Alerte pour tank uniquement. "..select(2,EJ_GetSectionInfo(4114))
+	L.bolt_explode = "<Explosion de l'éclair>"
+	L.parasite = "Parasite"
+	L.blobs_soon = "%d%% - Sang coagulant imminent !"
 end
 

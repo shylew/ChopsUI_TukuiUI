@@ -24,7 +24,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("8896")
+	releaseRevision = tonumber("8949")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -367,12 +367,12 @@ end
 -- Events
 --
 
-function loader:CHAT_MSG_ADDON(event, prefix, message, distribution, sender)
+function loader:CHAT_MSG_ADDON(_, prefix, msg, _, sender)
 	if prefix ~= "BigWigs" then return end
-	local bwPrefix = (message):gsub("^(%u-):.+", "%1")
-	if not bwPrefix then return end
-	message = (message):gsub("^%u-:(.+)", "%1")
-	self:SendMessage("BigWigs_AddonMessage", bwPrefix, message, sender)
+	local _, _, bwPrefix, bwMsg = (msg):find("^(%u-):(.+)")
+	if bwPrefix then
+		self:SendMessage("BigWigs_AddonMessage", bwPrefix, bwMsg, sender)
+	end
 end
 
 do

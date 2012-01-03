@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Morchok", "zhTW")
 if not L then return end
 if L then
-	L.engage_trigger = "You seek to halt an avalanche. I will bury you."
+	L.engage_trigger = "你想要阻止山崩。我會埋葬你。"
 
 	L.crush = "擊碎護甲"
 	L.crush_desc = "只警報坦克。擊碎護甲堆疊計數並顯示持續條。"
@@ -37,7 +37,7 @@ if L then
 
 	L.blue = "|cFF0080FF藍|r"
 	L.green = "|cFF088A08綠|r"
-	L.purple = "|cFF9932CD粉|r"
+	L.purple = "|cFF9932CD紫|r"
 	L.yellow = "|cFFFFA901黃|r"
 	L.black = "|cFF424242黑|r"
 	L.red = "|cFFFF0404紅|r"
@@ -49,7 +49,7 @@ end
 
 L = BigWigs:NewBossLocale("Hagara the Stormbinder", "zhTW")
 if L then
-	L.engage_trigger = "You cross the Stormbinder! I'll slaughter you all."
+	L.engage_trigger = "你們惹毛暴風守縛者了!我要殺光你們。"
 
 	L.lightning_or_frost = "閃電或寒冰"
 	L.ice_next = "寒冰階段"
@@ -63,11 +63,11 @@ end
 
 L = BigWigs:NewBossLocale("Ultraxion", "zhTW")
 if L then
-	L.engage_trigger = "Now is the hour of twilight!"
+	L.engage_trigger = "現在就是暮光之時!"
 
 	L.warmup = "暮光之時"
 	L.warmup_desc = "暮光之時计时器。"
-	L.warmup_trigger = "I am the beginning of the end...the shadow which blots out the sun"
+	L.warmup_trigger = "我是終結的開始...遮掩陽光的印跡...通知末日將臨的鈴聲..."
 
 	L.crystal = "增益水晶"
 	L.crystal_desc = "守護巨龍召喚各種增益水晶計時器。"
@@ -79,9 +79,9 @@ if L then
 	L.cast = "暮光之時施法條"
 	L.cast_desc = "顯示暮光之時5秒施法條。"
 
-	L.lightyou = "自身凋零之光"
-	L.lightyou_desc = "顯示自身凋零之光爆炸剩餘計時條。"
-	L.lightyou_bar = "<你將爆炸>"
+	L.lightself = "自身凋零之光"
+	L.lightself_desc = "顯示自身凋零之光爆炸剩餘計時條。"
+	L.lightself_bar = "<你將爆炸>"
 
 	L.lighttank = "坦克凋零之光"
 	L.lighttank_desc = "只警報坦克。如果坦克中了凋零之光，顯示一個爆炸計時條及閃爍震動。"
@@ -91,19 +91,19 @@ end
 
 L = BigWigs:NewBossLocale("Warmaster Blackhorn", "zhTW")
 if L then
-	L.harpooning = "魚叉獵槍"
-
-	L.rush = "刃突"
+	L.warmup = "熱身"
+	L.warmup_desc = "首領戰鬥開始之前的計時器。"
+	L.warmup_trigger = "全速前進。一切都仰賴我們的速度!不能讓毀滅者逃走。"
 
 	L.sunder = "破甲攻擊"
 	L.sunder_desc = "只警報坦克。破甲攻擊堆疊計數並顯示持續條。"
 	L.sunder_message = "%2$d層破甲攻擊：>%1$s<！"
 
-	L.sapper_trigger = "A drake swoops down to drop a Twilight Sapper onto the deck!"
+	L.sapper_trigger = "一頭龍急速飛來，載送一名暮光工兵降落到甲板上!"
 	L.sapper = "暮光工兵"
 	L.sapper_desc = "暮光工兵對天火號造成傷害。"
 
-	L.stage2_trigger = "Looks like I'm doing this myself. Good!"
+	L.stage2_trigger = "看來我得自己動手。好極了!"
 end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "zhTW")
@@ -114,14 +114,18 @@ if L then
 	L.right = "右側翻滾"
 	L.not_hooked = ">你< 沒有抓牢！"
 	L.roll_message = "他開始滾了，滾了，滾啦！"
-	L.level_trigger = "levels out"
-	L.level_message = "別急，他已經平穩了！"
+	L.level_trigger = "平衡"
+	L.level_message = "別急，他已經平衡了！"
 
 	L.exposed = "裝甲暴露"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "zhTW")
 if L then
+	L.engage_trigger = "你們都徒勞無功。我會撕裂你們的世界。"
 	L.impale_desc = "只警報坦克。"..select(2,EJ_GetSectionInfo(4114))
+	L.bolt_explode = "<源質箭爆炸>"
+	L.parasite = "腐化寄生體"
+	L.blobs_soon = "%d%% - 即將凝結之血！"
 end
 

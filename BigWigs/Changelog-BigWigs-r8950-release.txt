@@ -1,9 +1,382 @@
 ------------------------------------------------------------------------
-r8897 | funkydude | 2011-12-18 02:01:44 +0000 (Sun, 18 Dec 2011) | 1 line
+r8950 | funkydude | 2012-01-01 16:34:29 +0000 (Sun, 01 Jan 2012) | 1 line
 Changed paths:
-   A /tags/r8897-release (from /trunk:8896)
+   A /tags/r8950-release (from /trunk:8949)
 
-Tagging as r8897-release
+Tagging as r8950-release
+------------------------------------------------------------------------
+r8949 | pettigrow | 2012-01-01 15:28:25 +0000 (Sun, 01 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8948 | Wetxius | 2012-01-01 14:08:21 +0000 (Sun, 01 Jan 2012) | 1 line
+Changed paths:
+   M /trunk/Bastion/Locales/ruRU.lua
+   M /trunk/Blackwing/Locales/ruRU.lua
+   M /trunk/DragonSoul/Locales/ruRU.lua
+   M /trunk/Locales/ruRU.lua
+   M /trunk/Plugins/Locales/ruRU.lua
+   M /trunk/Throne/Locales/ruRU.lua
+
+many fixes and improvements in ruRU locale
+------------------------------------------------------------------------
+r8947 | funkydude | 2011-12-31 19:26:52 +0000 (Sat, 31 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Blackhorn.lua
+   M /trunk/DragonSoul/Locales/deDE.lua
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/koKR.lua
+   M /trunk/DragonSoul/Locales/ruRU.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+
+DragonSoul/Blackhorn: tweak warmup description
+------------------------------------------------------------------------
+r8946 | Dynaletik | 2011-12-31 16:35:20 +0000 (Sat, 31 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/deDE.lua
+
+- deDE update
+------------------------------------------------------------------------
+r8945 | ananhaid | 2011-12-31 10:02:06 +0000 (Sat, 31 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+
+- zhCN/zhTW update - DONE.
+------------------------------------------------------------------------
+r8944 | pigmonkey | 2011-12-31 04:10:38 +0000 (Sat, 31 Dec 2011) | 2 lines
+Changed paths:
+   M /trunk/DragonSoul/Blackhorn.lua
+
+DragonSoul/Blackhorn: add warmup timer
+
+------------------------------------------------------------------------
+r8943 | jongt23 | 2011-12-29 20:39:33 +0000 (Thu, 29 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r8942 | pettigrow | 2011-12-29 12:02:35 +0000 (Thu, 29 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8941 | pigmonkey | 2011-12-29 10:31:52 +0000 (Thu, 29 Dec 2011) | 3 lines
+Changed paths:
+   M /trunk/DragonSoul/Blackhorn.lua
+
+Moved Blackhorn enrage timer to start when phase 2 starts.
+
+Note the timing is untested and may be off by +/-10s, but it should be more accurate than the original implementation.
+------------------------------------------------------------------------
+r8940 | Dynaletik | 2011-12-29 08:38:29 +0000 (Thu, 29 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/deDE.lua
+
+- deDE update
+------------------------------------------------------------------------
+r8939 | funkydude | 2011-12-29 03:52:30 +0000 (Thu, 29 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/Locales/deDE.lua
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/koKR.lua
+   M /trunk/DragonSoul/Locales/ruRU.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+
+DragonSoul/DeathwingMadness: add parasite and blob warnings, congrats Blood Legion.
+------------------------------------------------------------------------
+r8938 | funkydude | 2011-12-28 19:08:45 +0000 (Wed, 28 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Alizabal.lua
+
+Baradin/Alizabal: 5min berserk
+------------------------------------------------------------------------
+r8937 | funkydude | 2011-12-28 18:48:28 +0000 (Wed, 28 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/Loader.lua
+
+Loader: Improve our addon message handler
+------------------------------------------------------------------------
+r8936 | Wetxius | 2011-12-28 18:20:24 +0000 (Wed, 28 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/ruRU.lua
+
+ruRU update
+------------------------------------------------------------------------
+r8935 | funkydude | 2011-12-28 17:41:15 +0000 (Wed, 28 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+DragonSoul/DeathwingMadness: tweak
+------------------------------------------------------------------------
+r8934 | mysticalos | 2011-12-28 07:01:06 +0000 (Wed, 28 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+hemmorage comes 30 seconds earlier on heroic
+------------------------------------------------------------------------
+r8933 | jongt23 | 2011-12-26 17:26:37 +0000 (Mon, 26 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r8932 | ananhaid | 2011-12-26 02:24:50 +0000 (Mon, 26 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+
+zhCN/zhTW update.
+------------------------------------------------------------------------
+r8931 | ananhaid | 2011-12-25 16:34:48 +0000 (Sun, 25 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/zhCN.lua
+
+- zhCN update.
+------------------------------------------------------------------------
+r8930 | ananhaid | 2011-12-25 15:00:17 +0000 (Sun, 25 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+
+- zhCN/zhTW update.
+------------------------------------------------------------------------
+r8929 | ananhaid | 2011-12-25 14:00:13 +0000 (Sun, 25 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/Locales/common.zhCN.lua
+   M /trunk/Locales/common.zhTW.lua
+
+- zhCN/zhTW update.
+------------------------------------------------------------------------
+r8928 | funkydude | 2011-12-24 15:47:43 +0000 (Sat, 24 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Blackhorn.lua
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/Hagara.lua
+   M /trunk/DragonSoul/Morchok.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+   M /trunk/DragonSoul/Yorsahj.lua
+
+DragonSoul: Change tank warnings to Local.
+------------------------------------------------------------------------
+r8927 | funkydude | 2011-12-24 15:38:16 +0000 (Sat, 24 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: Allow LocalMessage to print colored player names.
+------------------------------------------------------------------------
+r8926 | funkydude | 2011-12-24 14:48:29 +0000 (Sat, 24 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Hagara.lua
+
+DragonSoul/Hagara: add Flash/Shake for Ice tomb cast start.
+------------------------------------------------------------------------
+r8925 | Wetxius | 2011-12-23 20:51:12 +0000 (Fri, 23 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/ruRU.lua
+   M /trunk/Locales/ruRU.lua
+
+ruRU update
+------------------------------------------------------------------------
+r8924 | Dynaletik | 2011-12-22 22:29:36 +0000 (Thu, 22 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/deDE.lua
+
+- deDE update
+------------------------------------------------------------------------
+r8923 | funkydude | 2011-12-22 20:25:35 +0000 (Thu, 22 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Zonozz.lua
+
+DragonSoul/Zonozz: Fix shadows cd bar
+------------------------------------------------------------------------
+r8922 | funkydude | 2011-12-22 19:51:09 +0000 (Thu, 22 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Morchok.lua
+
+DragonSoul/Morchok: add a blood duration bar
+------------------------------------------------------------------------
+r8921 | pettigrow | 2011-12-22 14:47:09 +0000 (Thu, 22 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8920 | dynaletik | 2011-12-22 12:17:48 +0000 (Thu, 22 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/deDE.lua
+
+- deDE update
+------------------------------------------------------------------------
+r8919 | funkydude | 2011-12-22 03:48:03 +0000 (Thu, 22 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Yorsahj.lua
+
+DragonSoul/Yorsahj: don't show proximity in LFR.
+------------------------------------------------------------------------
+r8918 | funkydude | 2011-12-21 21:58:20 +0000 (Wed, 21 Dec 2011) | 2 lines
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/DeathwingSpine.lua
+
+DeathwingMadness: prevent re-enabling
+DeathwingSpine: kill the the bar after killing a tendon
+------------------------------------------------------------------------
+r8917 | dynaletik | 2011-12-21 17:45:27 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/deDE.lua
+
+- deDE update
+------------------------------------------------------------------------
+r8916 | funkydude | 2011-12-21 16:23:28 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+DragonSoul/DeathwingMadness: change shrapnel to a static 7 as we know it's always 7 now. Not sure how that could come back nil but it's somewhat worrying for Ultraxion where the UnitDebuff check is critical.
+------------------------------------------------------------------------
+r8915 | Maat | 2011-12-21 09:56:08 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Hagara.lua
+
+ticket 436 438
+------------------------------------------------------------------------
+r8914 | Wetxius | 2011-12-21 09:12:40 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/ruRU.lua
+
+ruRU update
+------------------------------------------------------------------------
+r8913 | funkydude | 2011-12-21 04:40:23 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: wipe our DelayedMessage tables before nilling them.
+------------------------------------------------------------------------
+r8912 | funkydude | 2011-12-21 03:07:47 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Blackhorn.lua
+   M /trunk/DragonSoul/Hagara.lua
+   M /trunk/DragonSoul/Morchok.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+   M /trunk/DragonSoul/Yorsahj.lua
+   M /trunk/Firelands/Ragnaros.lua
+
+Propagate better tank checking across our modules
+------------------------------------------------------------------------
+r8911 | pettigrow | 2011-12-21 02:55:33 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r8910 | funkydude | 2011-12-21 02:48:46 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+DragonSoul/DeathwingMadness: seems fragments and terrors can also be timed, drycoded.
+------------------------------------------------------------------------
+r8909 | jongt23 | 2011-12-21 02:43:14 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r8908 | funkydude | 2011-12-21 01:39:43 +0000 (Wed, 21 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+DragonSoul/DeathwingMadness: more tweaks
+------------------------------------------------------------------------
+r8907 | funkydude | 2011-12-20 23:26:43 +0000 (Tue, 20 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/Locales/deDE.lua
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/koKR.lua
+   M /trunk/DragonSoul/Locales/ruRU.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+
+DragonSoul/DeathwingMadness: Add berserk, use the new role check, misc tweaks
+------------------------------------------------------------------------
+r8906 | funkydude | 2011-12-20 23:23:50 +0000 (Tue, 20 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/Core/BossPrototype.lua
+
+First draft at role checking, :Tank call is implemented, :Healer and :Damager commented out for possible future use. Bump version to 3.8
+------------------------------------------------------------------------
+r8905 | Wetxius | 2011-12-20 20:29:28 +0000 (Tue, 20 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/ruRU.lua
+
+ruRU update
+------------------------------------------------------------------------
+r8904 | funkydude | 2011-12-20 19:32:41 +0000 (Tue, 20 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/Locales/deDE.lua
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/koKR.lua
+   M /trunk/DragonSoul/Locales/ruRU.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+
+DragonSoul/DeathwingMadness: Better name for the bolt cast bar.
+------------------------------------------------------------------------
+r8903 | jongt23 | 2011-12-20 14:40:42 +0000 (Tue, 20 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r8902 | jongt23 | 2011-12-20 00:57:33 +0000 (Tue, 20 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/Baradin/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r8901 | Wetxius | 2011-12-19 06:35:10 +0000 (Mon, 19 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/ruRU.lua
+
+ruRU update
+------------------------------------------------------------------------
+r8900 | funkydude | 2011-12-19 03:28:02 +0000 (Mon, 19 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/deDE.lua
+   M /trunk/DragonSoul/Locales/esES.lua
+   M /trunk/DragonSoul/Locales/frFR.lua
+   M /trunk/DragonSoul/Locales/koKR.lua
+   M /trunk/DragonSoul/Locales/ruRU.lua
+   M /trunk/DragonSoul/Locales/zhCN.lua
+   M /trunk/DragonSoul/Locales/zhTW.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+
+DragonSoul/Ultraxion: Move flash/shake to the "light on you" option, if you've emphasized the "Light on you" option, you'll need to re-emphasize it.
+------------------------------------------------------------------------
+r8899 | funkydude | 2011-12-19 03:19:07 +0000 (Mon, 19 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+DragonSoul/DeathwingMadness: Shave a second off the bolt timer, stop the impale bar when the corruption dies, hide the first impale bar from non-tanks.
+------------------------------------------------------------------------
+r8898 | mundi4 | 2011-12-19 02:04:32 +0000 (Mon, 19 Dec 2011) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/koKR.lua
+
+koKR localization(DeathwingSpine)
 ------------------------------------------------------------------------
 r8896 | funkydude | 2011-12-18 01:02:20 +0000 (Sun, 18 Dec 2011) | 1 line
 Changed paths:
@@ -790,431 +1163,4 @@ Changed paths:
    M /trunk/DragonSoul/Locales/frFR.lua
 
 frFR Update
-------------------------------------------------------------------------
-r8778 | pettigrow | 2011-11-30 22:43:09 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Locales/frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r8777 | funkydude | 2011-11-30 21:25:06 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/DeathwingSpine.lua
-
-DeathwingSpine: tweak hooked message
-------------------------------------------------------------------------
-r8776 | funkydude | 2011-11-30 17:48:00 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Zonozz.lua
-
-DragonSoul/Zonozz: Either they removed berserk, it's longer, or it doesn't happen in LFR, probably the latter.
-------------------------------------------------------------------------
-r8775 | funkydude | 2011-11-30 17:46:09 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Core/BossPrototype.lua
-
-Core/BossPrototype: Replace server names with an *, wipe the icon cache OnWin.
-------------------------------------------------------------------------
-r8774 | jongt23 | 2011-11-30 17:32:17 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Locales/esES.lua
-
-esES Update
-------------------------------------------------------------------------
-r8773 | jongt23 | 2011-11-30 16:57:23 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Locales/esES.lua
-
-esES Update
-------------------------------------------------------------------------
-r8772 | funkydude | 2011-11-30 15:09:31 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Hagara.lua
-   M /trunk/DragonSoul/Locales/esES.lua
-   M /trunk/DragonSoul/Locales/frFR.lua
-   M /trunk/DragonSoul/Locales/zhCN.lua
-   M /trunk/DragonSoul/Locales/zhTW.lua
-   M /trunk/DragonSoul/Morchok.lua
-   M /trunk/DragonSoul/Yorsahj.lua
-   M /trunk/DragonSoul/Zonozz.lua
-
-DragonSoul: add some engage triggers
-------------------------------------------------------------------------
-r8771 | pettigrow | 2011-11-30 14:53:54 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/Locales/frFR.lua
-   M /trunk/DragonSoul/Locales/frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r8770 | funkydude | 2011-11-30 14:44:02 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Zonozz.lua
-
-DragonSoul/Zonozz: change shadows to just a warning in LFR
-------------------------------------------------------------------------
-r8769 | funkydude | 2011-11-30 14:17:25 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Locales/frFR.lua
-   M /trunk/DragonSoul/Locales/zhCN.lua
-   M /trunk/DragonSoul/Locales/zhTW.lua
-   M /trunk/DragonSoul/Morchok.lua
-
-Morchok: swap to CheckBossStatus
-------------------------------------------------------------------------
-r8768 | funkydude | 2011-11-30 14:12:19 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Core/BossPrototype.lua
-
-Core/BossPrototype: add an :LFR API call which simply return true, as there's only one type of LFR.
-------------------------------------------------------------------------
-r8767 | funkydude | 2011-11-30 13:54:16 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Yorsahj.lua
-
-DragonSoul/Yorsahj: bugfix
-------------------------------------------------------------------------
-r8766 | jongt23 | 2011-11-30 12:16:08 +0000 (Wed, 30 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/BigWigs_DragonSoul.toc
-   M /trunk/DragonSoul/Locales/esES.lua
-
-esES Update (Dragon Soul/Alma de Dragón)
-------------------------------------------------------------------------
-r8764 | funkydude | 2011-11-29 19:48:30 +0000 (Tue, 29 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Bastion/Sinestra.lua
-
-typo
-------------------------------------------------------------------------
-r8763 | Maat | 2011-11-29 19:40:16 +0000 (Tue, 29 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Bastion/Sinestra.lua
-   M /trunk/DragonSoul/DeathwingSpine.lua
-
-remove/add comments
-------------------------------------------------------------------------
-r8762 | Maat | 2011-11-29 19:20:02 +0000 (Tue, 29 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/DeathwingSpine.lua
-
-yeah he dies like that
-------------------------------------------------------------------------
-r8761 | funkydude | 2011-11-29 18:44:48 +0000 (Tue, 29 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Loader.lua
-   M /trunk/Options/Options.lua
-
-remove some hax
-------------------------------------------------------------------------
-r8760 | funkydude | 2011-11-29 18:41:37 +0000 (Tue, 29 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/Alizabal.lua
-   M /trunk/DragonSoul/Blackhorn.lua
-   M /trunk/DragonSoul/DeathwingMadness.lua
-   M /trunk/DragonSoul/DeathwingSpine.lua
-   M /trunk/DragonSoul/Hagara.lua
-   M /trunk/DragonSoul/Morchok.lua
-   M /trunk/DragonSoul/Ultraxion.lua
-   M /trunk/DragonSoul/Yorsahj.lua
-   M /trunk/DragonSoul/Zonozz.lua
-
-should be safe to push out all our updated modules now
-------------------------------------------------------------------------
-r8759 | funkydude | 2011-11-29 17:05:51 +0000 (Tue, 29 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/BigWigs_Baradin.toc
-   M /trunk/Bastion/BigWigs_Bastion.toc
-   M /trunk/BigWigs.toc
-   M /trunk/Blackwing/BigWigs_Blackwing.toc
-   M /trunk/Core/BigWigs_Core.toc
-   M /trunk/Firelands/BigWigs_Firelands.toc
-   M /trunk/Foreign/BigWigs_Foreign.toc
-   M /trunk/Options/BigWigs_Options.toc
-   M /trunk/Plugins/BigWigs_Plugins.toc
-   M /trunk/Throne/BigWigs_Throne.toc
-
-toc bumps
-------------------------------------------------------------------------
-r8758 | Maat | 2011-11-29 15:15:43 +0000 (Tue, 29 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Plugins/Proximity.lua
-
-update map data
-------------------------------------------------------------------------
-r8757 | funkydude | 2011-11-29 00:37:48 +0000 (Tue, 29 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Core/BossPrototype.lua
-
-Core/BossPrototype: Fire OnWipe after rebooting not before.
-------------------------------------------------------------------------
-r8756 | funkydude | 2011-11-28 23:55:00 +0000 (Mon, 28 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/Alizabal.lua
-   M /trunk/Baradin/Locales/deDE.lua
-   M /trunk/Baradin/Locales/esES.lua
-   M /trunk/Baradin/Locales/frFR.lua
-   M /trunk/Baradin/Locales/koKR.lua
-   M /trunk/Baradin/Locales/ruRU.lua
-   M /trunk/Baradin/Locales/zhCN.lua
-   M /trunk/Baradin/Locales/zhTW.lua
-
-Baradin: Attempt at an Alizabal mod.
-------------------------------------------------------------------------
-r8755 | funkydude | 2011-11-28 19:08:30 +0000 (Mon, 28 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Core/BossPrototype.lua
-
-Core/BossPrototype: save an unnecessary lookup in GetUnitIdByGUID.
-------------------------------------------------------------------------
-r8754 | funkydude | 2011-11-28 18:51:54 +0000 (Mon, 28 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/.pkgmeta
-   M /trunk/Core/BigWigs_Core.toc
-   A /trunk/Core/Libs
-   A /trunk/Core/libs.xml
-   M /trunk/embeds.xml
-
-Move some libraries to the LoD Core.
-------------------------------------------------------------------------
-r8753 | jongt23 | 2011-11-28 14:32:11 +0000 (Mon, 28 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Locales/esES.lua
-
-esES Update
-------------------------------------------------------------------------
-r8752 | ananhaid | 2011-11-28 04:14:44 +0000 (Mon, 28 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/Locales/zhCN.lua
-   M /trunk/Baradin/Locales/zhTW.lua
-   M /trunk/DragonSoul/BigWigs_DragonSoul.toc
-   M /trunk/DragonSoul/Locales/zhCN.lua
-   M /trunk/DragonSoul/Locales/zhTW.lua
-   M /trunk/Firelands/Locales/zhCN.lua
-   M /trunk/Firelands/Locales/zhTW.lua
-   M /trunk/Locales/common.zhCN.lua
-   M /trunk/Locales/common.zhTW.lua
-
-zhCN/zhTW update.
-------------------------------------------------------------------------
-r8751 | pettigrow | 2011-11-27 23:47:41 +0000 (Sun, 27 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/DragonSoul/Locales/frFR.lua
-   M /trunk/Firelands/Locales/frFR.lua
-   M /trunk/Locales/common.frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r8750 | funkydude | 2011-11-27 22:27:46 +0000 (Sun, 27 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-   M /trunk/Firelands/Bethtilac.lua
-
-Firelands/Alysrazor: add a message for eggs.
-------------------------------------------------------------------------
-r8749 | funkydude | 2011-11-27 20:47:49 +0000 (Sun, 27 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Locales/deDE.lua
-   M /trunk/Firelands/Locales/esES.lua
-   M /trunk/Firelands/Locales/frFR.lua
-   M /trunk/Firelands/Locales/koKR.lua
-   M /trunk/Firelands/Locales/ruRU.lua
-   M /trunk/Firelands/Locales/zhCN.lua
-   M /trunk/Firelands/Locales/zhTW.lua
-
-Firelands/Bethtilac: rough timers for spinners spawning
-------------------------------------------------------------------------
-r8748 | jongt23 | 2011-11-27 17:19:16 +0000 (Sun, 27 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Locales/common.esES.lua
-
-esES Update
-------------------------------------------------------------------------
-r8747 | funkydude | 2011-11-27 17:08:57 +0000 (Sun, 27 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Locales/common.koKR.lua
-   M /trunk/Locales/common.ruRU.lua
-   M /trunk/Locales/common.zhCN.lua
-   M /trunk/Locales/common.zhTW.lua
-
-fix some locale
-------------------------------------------------------------------------
-r8746 | funkydude | 2011-11-27 06:45:52 +0000 (Sun, 27 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Bastion/Sinestra.lua
-   M /trunk/Core/BossPrototype.lua
-   M /trunk/Loader.lua
-   M /trunk/Plugins/Tips.lua
-
-throw more CUSTOM_CLASS_COLORS support around the place
-------------------------------------------------------------------------
-r8745 | funkydude | 2011-11-27 05:54:55 +0000 (Sun, 27 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Core/BossPrototype.lua
-   M /trunk/Plugins/Bars.lua
-   M /trunk/Plugins/Messages.lua
-
-Use the icon cache for messages as well as bars, also enables sending texture names not just id's to messages.
-------------------------------------------------------------------------
-r8744 | funkydude | 2011-11-26 21:37:49 +0000 (Sat, 26 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Core/Core.lua
-
-Possibly fix a rare issue for LoD users where bosses wouldn't enable.
-------------------------------------------------------------------------
-r8743 | jongt23 | 2011-11-26 16:14:44 +0000 (Sat, 26 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Locales/esES.lua
-
-esES Update
-------------------------------------------------------------------------
-r8742 | funkydude | 2011-11-24 23:06:23 +0000 (Thu, 24 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-   M /trunk/Firelands/Locales/deDE.lua
-   M /trunk/Firelands/Locales/esES.lua
-   M /trunk/Firelands/Locales/frFR.lua
-   M /trunk/Firelands/Locales/koKR.lua
-   M /trunk/Firelands/Locales/ruRU.lua
-   M /trunk/Firelands/Locales/zhCN.lua
-   M /trunk/Firelands/Locales/zhTW.lua
-   M /trunk/Firelands/Shannox.lua
-
-Firelands/Alysrazor: Add an egg hatching bar
-------------------------------------------------------------------------
-r8741 | rabbit | 2011-11-24 08:10:35 +0000 (Thu, 24 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Options/author-list.lua
-
-Update author list.
-------------------------------------------------------------------------
-r8739 | funkydude | 2011-11-24 01:59:00 +0000 (Thu, 24 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/BigWigs.toc
-   M /trunk/Firelands/Alysrazor.lua
-
-Firelands/Alysrazor: fix meteor timers
-------------------------------------------------------------------------
-r8738 | funkydude | 2011-11-21 16:41:34 +0000 (Mon, 21 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/Locales/deDE.lua
-   M /trunk/Baradin/Locales/esES.lua
-   M /trunk/Baradin/Locales/frFR.lua
-   M /trunk/Baradin/Locales/koKR.lua
-   M /trunk/Baradin/Locales/ruRU.lua
-   M /trunk/Baradin/Locales/zhCN.lua
-   M /trunk/Baradin/Locales/zhTW.lua
-   M /trunk/Baradin/Occuthar.lua
-   M /trunk/Bastion/Locales/zhCN.lua
-   M /trunk/Bastion/Locales/zhTW.lua
-   M /trunk/Blackwing/Locales/zhCN.lua
-   M /trunk/Blackwing/Locales/zhTW.lua
-   M /trunk/Firelands/Locales/zhCN.lua
-   M /trunk/Firelands/Locales/zhTW.lua
-
-remove brackets from various Chinese bar text.
-------------------------------------------------------------------------
-r8737 | funkydude | 2011-11-20 04:56:10 +0000 (Sun, 20 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Bastion/DoubleDragon.lua
-   M /trunk/Firelands/Baleroc.lua
-   M /trunk/Firelands/Shannox.lua
-   M /trunk/Firelands/Staghelm.lua
-
-do a better job at removing raid icons.
-------------------------------------------------------------------------
-r8736 | funkydude | 2011-11-20 04:18:08 +0000 (Sun, 20 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Locales/common.deDE.lua
-   M /trunk/Locales/common.enUS.lua
-   M /trunk/Locales/common.esES.lua
-   M /trunk/Locales/common.frFR.lua
-   M /trunk/Locales/common.koKR.lua
-   M /trunk/Locales/common.ruRU.lua
-   M /trunk/Locales/common.zhCN.lua
-   M /trunk/Locales/common.zhTW.lua
-
-CommonLocale: add a "soon" entry.
-------------------------------------------------------------------------
-r8735 | funkydude | 2011-11-20 00:37:34 +0000 (Sun, 20 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Baradin/locales.xml
-   M /trunk/Bastion/locales.xml
-   M /trunk/Blackwing/locales.xml
-   M /trunk/DragonSoul/locales.xml
-   M /trunk/Firelands/locales.xml
-   M /trunk/Plugins/locales.xml
-   M /trunk/Throne/locales.xml
-   M /trunk/locales.xml
-
-xml file whitespace
-------------------------------------------------------------------------
-r8734 | mojosdojo | 2011-11-18 20:20:53 +0000 (Fri, 18 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Locales/deDE.lua
-
-deDE update.
-------------------------------------------------------------------------
-r8733 | pettigrow | 2011-11-18 15:13:11 +0000 (Fri, 18 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Blackwing/Locales/frFR.lua
-   M /trunk/Firelands/Locales/frFR.lua
-   M /trunk/Locales/common.frFR.lua
-
-frFR Update
-------------------------------------------------------------------------
-r8732 | funkydude | 2011-11-17 22:19:19 +0000 (Thu, 17 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-   M /trunk/Firelands/Locales/deDE.lua
-   M /trunk/Firelands/Locales/esES.lua
-   M /trunk/Firelands/Locales/frFR.lua
-   M /trunk/Firelands/Locales/koKR.lua
-   M /trunk/Firelands/Locales/ruRU.lua
-   M /trunk/Firelands/Locales/zhCN.lua
-   M /trunk/Firelands/Locales/zhTW.lua
-
-Firelands/Bethtilac: Show a cooldown bar for the AoE flare in p2, might make it HC only.
-------------------------------------------------------------------------
-r8731 | funkydude | 2011-11-17 21:18:55 +0000 (Thu, 17 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Alysrazor.lua
-
-Firelands/Alysrazor: more blank bar fixes
-------------------------------------------------------------------------
-r8730 | funkydude | 2011-11-17 20:59:17 +0000 (Thu, 17 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Bethtilac.lua
-
-Firelands/Bethtilac: naming tweaks
-------------------------------------------------------------------------
-r8729 | funkydude | 2011-11-17 20:56:31 +0000 (Thu, 17 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Locales/common.deDE.lua
-   M /trunk/Locales/common.enUS.lua
-   M /trunk/Locales/common.esES.lua
-   M /trunk/Locales/common.frFR.lua
-   M /trunk/Locales/common.koKR.lua
-   M /trunk/Locales/common.ruRU.lua
-   M /trunk/Locales/common.zhCN.lua
-   M /trunk/Locales/common.zhTW.lua
-
-CommonLocale: add a seconds engage message
-------------------------------------------------------------------------
-r8728 | funkydude | 2011-11-17 18:49:35 +0000 (Thu, 17 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Firelands/Baleroc.lua
-
-Firelands/Baleroc: fix an empty bar on engage
-------------------------------------------------------------------------
-r8727 | funkydude | 2011-11-16 22:10:31 +0000 (Wed, 16 Nov 2011) | 1 line
-Changed paths:
-   M /trunk/Bastion/DoubleDragon.lua
-   M /trunk/Bastion/TwilightAscendants.lua
-   M /trunk/Blackwing/Nefarian.lua
-   M /trunk/Blackwing/Omnotron.lua
-   M /trunk/Throne/Conclave.lua
-
-removed any remaining dependencies we had on babble boss
 ------------------------------------------------------------------------
