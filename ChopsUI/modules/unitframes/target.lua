@@ -11,20 +11,17 @@ frame:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -125, 8)
 frame.Debuffs:Kill()
 
 -- Move the buff frame to the right of the target frame instead of at the top.
--- Since changing the anchoring of the actual buff frame for some reason doesn't
--- work, we'll just kill the original buff frame and create a new one in its
--- place.
+frame.Buffs:ClearAllPoints()
+frame.Buffs:SetPoint('LEFT', frame, 'RIGHT', 6, -28)
+frame.Buffs:SetWidth(54)
+frame.Buffs:SetHeight(54)
+frame.Buffs.size = 26
+frame.Buffs.num = 4
+frame.Buffs.spacing = 2
+frame.Buffs.InitialAnchor = 'TOPLEFT'
 
-frame.Buffs:Kill()
-
-local buffs = CreateFrame('Frame', nil, frame)
-buffs:SetPoint('LEFT', frame, 'RIGHT', 6, -28)
-buffs:SetWidth(54)
-buffs:SetHeight(54)
-buffs.size = 26
-buffs.num = 4
-buffs.spacing = 2
-buffs.initialAnchor = 'TOPLEFT'
-buffs.PostCreateIcon = T.PostCreateAura
-buffs.PostUpdateIcon = T.PostUpdateAura
-frame.Buffs = buffs
+-- Stub out the anchoring methods of the buff frame to prevent OnUpdate events
+-- from moving them.
+frame.Buffs.ClearAllPoints = T.dummy
+frame.Buffs.SetPoint = T.dummy
+frame.Buffs.Point = T.dummy
