@@ -1,6 +1,6 @@
 InspectFix = CreateFrame("Button", "InspectFixHiddenFrame", UIParent)
 local addonName = "InspectFix"
-local revision = tonumber(("$Revision: 26 $"):match("%d+"))
+local revision = tonumber(("$Revision: 32 $"):match("%d+"))
 
 local BlizzardNotifyInspect = _G.NotifyInspect
 local InspectPaperDollFrame_SetLevel = nil
@@ -29,8 +29,7 @@ local function inspectfilter(self, event, ...)
   --myprint(event,...)
   if loaded then
     -- ignore an inspect target disappearance or change to non-player - ie, keep the window open
-    if (event == "PLAYER_TARGET_CHANGED" or event == nil) and
-       self.unit == "target" and
+    if (event == "PLAYER_TARGET_CHANGED" or event == "PARTY_MEMBERS_CHANGED" or event == nil) and
        (not UnitExists("target") or not UnitIsPlayer("target")) then
       return false
     end
@@ -58,11 +57,13 @@ local inspect_unit = nil
 local function pdfupdate(self)
   if loaded then
     local id = self:GetID()
-    local unit = InspectFrame.unit
+    local unit = InspectFrame and InspectFrame.unit
     if unit and id then
       local link = GetInventoryItemLink(unit, id)
       inspect_unit = unit
-      inspect_item[id] = link
+      if link then
+        inspect_item[id] = link
+      end
 
       scantt:SetOwner(UIParent, "ANCHOR_NONE");
       scantt:SetInventoryItem(unit, id)
@@ -261,10 +262,13 @@ end
 function InspectFix_OnEvent(self, event)
   if event == "ADDON_LOADED" then
     InspectFix:tryhook()
+  elseif event == "INSPECT_READY" then
+    InspectFix:Update()
   end
 end
 InspectFix:SetScript("OnEvent", InspectFix_OnEvent)
 InspectFix:RegisterEvent("ADDON_LOADED")
+InspectFix:RegisterEvent("INSPECT_READY")
 
 function InspectFix:Load()
   InspectFix:tryhook()
