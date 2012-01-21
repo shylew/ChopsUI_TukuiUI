@@ -3,6 +3,7 @@ local C = {}
 -- Override TukUI general settings.
 C["general"] = {
   ["autoscale"] = false, -- Disable auto scaling.
+  ["uiscale"] = 0.69, -- Lower the UI scale a bit.
   ["overridelowtohigh"] = true, -- Always use high resolution UI, regardless of screen resolution.
   ["bordercolor"] = { .36, .36, .36 }, -- Use a brighter border color than the default UI.
   ["blizzardreskin"] = false, -- Don't reskin Blizzard frames.
