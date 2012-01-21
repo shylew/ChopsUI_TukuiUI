@@ -37,6 +37,10 @@ if C["datatext"].avd and C["datatext"].avd > 0 then
 			basemisschance = 5 --Sets miss chance of attacker level if no target exists, lv80=5, 81=4.2, 82=3.4, 83=2.6
 			leveldifference = 0
 		end
+		
+		if T.myrace == "NightElf" then
+			basemisschance = basemisschance + 2
+		end
 
 		if leveldifference >= 0 then
 			dodge = (GetDodgeChance()-leveldifference*.2)

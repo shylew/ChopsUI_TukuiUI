@@ -25,6 +25,7 @@ local strings = {
 	Battleground = L.chat_BATTLEGROUND_GET,
 	Guild = L.chat_GUILD_GET,
 	raid = L.chat_RAID_GET,
+	Party = L.chat_PARTY_GET,
 }
 
 -- function to rename channel and other stuff

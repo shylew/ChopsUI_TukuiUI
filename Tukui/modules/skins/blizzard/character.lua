@@ -268,7 +268,7 @@ local function LoadSkin()
 		end
 		ReputationDetailFrame:StripTextures()
 		ReputationDetailFrame:SetTemplate("Default")
-		ReputationDetailFrame:Point("TOPLEFT", ReputationFrame, "TOPRIGHT", 4, -28)			
+		ReputationDetailFrame:Point("TOPLEFT", ReputationFrame, "TOPRIGHT", 4, -28)
 	end	
 	ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 	hooksecurefunc("ReputationFrame_OnEvent", UpdateFactionSkins)
@@ -276,7 +276,29 @@ local function LoadSkin()
 	T.SkinCheckBox(ReputationDetailAtWarCheckBox)
 	T.SkinCheckBox(ReputationDetailInactiveCheckBox)
 	T.SkinCheckBox(ReputationDetailMainScreenCheckBox)
-
+	
+	local function UpdateReputationExpand()
+		-- Skin Expand Buttons
+		for i=1, NUM_FACTIONS_DISPLAYED do
+			local bar = _G["ReputationBar"..i]
+			local button = _G["ReputationBar"..i.."ExpandOrCollapseButton"]
+			if not bar.isSkinned then
+				button:StripTextures()
+				button.SetNormalTexture = T.dummy
+				T.SkinCloseButton(button)
+				bar.isSkinned = true
+			end
+			
+			-- set the X or V texture
+			if bar.isCollapsed then
+				button.t:SetText("V")
+			else
+				button.t:SetText("X")
+			end
+		end
+	end
+	hooksecurefunc("ReputationFrame_Update", UpdateReputationExpand)
+	
 	--Currency
 	TokenFrame:HookScript("OnShow", function()
 		for i=1, GetCurrencyListSize() do
