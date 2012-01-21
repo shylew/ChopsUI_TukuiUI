@@ -5,11 +5,12 @@ if L then
 
 	L.crush = "Rüstung zerschmettern"
 	L.crush_desc = "Nur für Tanks. Zählt die Stapel von Rüstung zerschmettern und zeigt eine Timerleiste an."
-	L.crush_message = "%2$dx Rüstung zerschmettern auf %1$s"
+	L.crush_message = "%2$dx Rüstung zerschmettern: %1$s"
 
 	L.blood = "Schwarzes Blut"
 
 	L.explosion = "Explosion"
+	L.crystal = "Kristall"
 end
 
 L = BigWigs:NewBossLocale("Warlord Zon'ozz", "deDE")
@@ -33,10 +34,10 @@ if L then
 	L.engage_trigger = "Iilth qi'uothk shn'ma yeh'glu Shath'Yar! H'IWN IILTH!"
 
 	L.bolt_desc = "Nur für Tanks. Zählt die Stapel von Leerenblitz und zeigt eine Timerleiste an."
-	L.bolt_message = "%2$dx Blitz auf %1$s"
+	L.bolt_message = "%2$dx Blitz: %1$s"
 
 	L.blue = "|cFF0080FFBlau|r"
-	L.green = "|cFF088A08Grünn|r"
+	L.green = "|cFF088A08Grün|r"
 	L.purple = "|cFF9932CDViolett|r"
 	L.yellow = "|cFFFFA901Gelb|r"
 	L.black = "|cFF424242Schwarz|r"
@@ -93,11 +94,10 @@ L = BigWigs:NewBossLocale("Warmaster Blackhorn", "deDE")
 if L then
 	L.warmup = "Warmup"
 	L.warmup_desc = "Zeit bis zum Starten des Bosskampfes."
-	L.warmup_trigger = "Volle Kraft voraus. Alles hängt von unserer Geschwindigkeit ab! Der Zerstörer darf nicht entkommen."
 
 	L.sunder = "Rüstung zerreißen"
 	L.sunder_desc = "Nur für Tanks. Zählt die Stapel von Rüstung zerreißen und zeigt eine Timerleiste an."
-	L.sunder_message = "%2$dx Rüstung zerreißen auf %1$s"
+	L.sunder_message = "%2$dx Rüstung zerreißen: %1$s"
 
 	L.sapper_trigger = "Ein Drache stürzt herab, um einen Zwielichtpionier auf dem Deck abzusetzen!"
 	L.sapper = "Pionier"
@@ -108,6 +108,8 @@ end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "deDE")
 if L then
+	L.engage_trigger = "Die Platten! Es zerreißt ihn! Zerlegt die Platten und wir können ihn vielleicht runterbringen."
+
 	L.left_start = "gleich nach links rollen"
 	L.right_start = "gleich nach rechts rollen"
 	L.left = "rollt nach links"

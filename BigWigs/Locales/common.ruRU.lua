@@ -14,10 +14,10 @@ L.phase = "Фаза %d"
 L.normal = "Обычный режим"
 L.heroic = "Героический режим"
 L.hard = "Сложный режим"
-L.general = "Общие способности"
+L.general = "Общее"
 
 L.custom_start = "%s вступает в бой - %s через %d мин"
 L.custom_start_s = "%s вступает в бой - %s через %d сек"
-L.custom_end = "%s завершается %s!"--need check
+L.custom_end = "%s завершается %s!"
 L.custom_min = "%s через %d мин"
 L.custom_sec = "%s через %d сек!"

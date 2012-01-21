@@ -10,6 +10,7 @@ if L then
 	L.blood = "大地黑血"
 
 	L.explosion = "爆裂水晶"
+	L.crystal = "共鸣水晶"
 end
 
 L = BigWigs:NewBossLocale("Warlord Zon'ozz", "zhCN")
@@ -93,7 +94,6 @@ L = BigWigs:NewBossLocale("Warmaster Blackhorn", "zhCN")
 if L then
 	L.warmup = "热身"
 	L.warmup_desc = "首领战斗开始之前的计时器。"
-	L.warmup_trigger = "全速前进。一切都取决于我们的速度了！不能让灭世者跑了。"
 
 	L.sunder = "破甲攻击"
 	L.sunder_desc = "只警报坦克。破甲攻击堆叠计数并显示持续条。"
@@ -108,6 +108,8 @@ end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "zhCN")
 if L then
+	L.engage_trigger = "看那些装甲！他正在解体！摧毁那些装甲，我们就能给他最后一击！"
+
 	L.left_start = "即将左侧翻滚"
 	L.right_start = "即将右侧翻滚"
 	L.left = "左侧翻滚"

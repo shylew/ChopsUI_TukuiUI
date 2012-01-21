@@ -24,7 +24,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("8949")
+	releaseRevision = tonumber("8980")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -610,9 +610,9 @@ do
 			if type(key) == "nil" then return nil end
 			local class = select(2, UnitClass(key))
 			if class then
-				self[key] = hexColors[class]  .. key .. "|r"
+				self[key] = hexColors[class]  .. gsub(key, "%-.+", "*") .. "|r" -- Replace server names with *
 			else
-				self[key] = "|cffcccccc"..key.."|r"
+				self[key] = "|cffcccccc" .. gsub(key, "%-.+", "*") .. "|r" -- Replace server names with *
 			end
 			return self[key]
 		end

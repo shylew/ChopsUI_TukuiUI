@@ -10,6 +10,7 @@ if L then
 	L.blood = "Черная кровь"
 
 	L.explosion = "Взрыв"
+	L.crystal = "Кристалл"
 end
 
 L = BigWigs:NewBossLocale("Warlord Zon'ozz", "ruRU")
@@ -72,7 +73,7 @@ if L then
 	L.crystal = "Мощь Кристаллов"
 	L.crystal_desc = "Таймеры для различных кристаллов, даруемых Аспектами."
 	L.crystal_red = "Красный Кристалл"
-	L.crystal_green = "Зелёный Кристалл"
+	L.crystal_green = "Зеленый Кристалл"
 	L.crystal_blue = "Синий Кристалл"
 
 	L.twilight = "Сумерки"
@@ -81,7 +82,7 @@ if L then
 
 	L.lightself = "Гаснущий свет на Тебе"
 	L.lightself_desc = "Показывает полосу с таймером взрыва Гаснущего света на тебе."
-	L.lightself_bar = "<Ты Взорвёшься>"
+	L.lightself_bar = "<Ты Взорвешься>"
 
 	L.lighttank = "Гаснущий свет на Танках"
 	L.lighttank_desc = "Только для танков. Если Гаснущий свет на танке, показывет полосу взрыва и Мигание/Тряску."
@@ -93,15 +94,14 @@ L = BigWigs:NewBossLocale("Warmaster Blackhorn", "ruRU")
 if L then
     L.warmup = "Начало боя"
 	L.warmup_desc = "Время до начала боя."
-	L.warmup_trigger = "Быстрее! Полный вперед! Мы не должны упустить его!"
-	
+
 	L.sunder = "Раскол брони"
 	L.sunder_desc = "Только для танков. Считает стаки раскола брони и показывает их таймер."
 	L.sunder_message = "%2$dx Раскол на |3-5(%1$s)"
 
 	L.sapper_trigger = "Дракон пикирует на палубу, чтобы сбросить на нее сумеречного сапера!"
-	L.sapper = "Сапёр"
-	L.sapper_desc = "Сапёр наносит повреждения кораблю, если достигнет каюты"
+	L.sapper = "Сапер"
+	L.sapper_desc = "Сапер наносит повреждения кораблю, если достигнет каюты"
 
 	L.stage2_trigger = "Похоже, мне придется заняться этим самому. Чудесно!"
 end
@@ -123,9 +123,9 @@ end
 L = BigWigs:NewBossLocale("Madness of Deathwing", "ruRU")
 if L then
 	L.engage_trigger = "У вас НИЧЕГО не вышло. Я РАЗОРВУ ваш мир на куски."
-	
+
 	L.impale_desc = "Только для танков. "..select(2,EJ_GetSectionInfo(4114))
-	
+
 	L.bolt_explode = "<Взрыв Стрелы>"
 	L.parasite = "Паразит"
 	L.blobs_soon = "%d%% - Капли крови скоро!"

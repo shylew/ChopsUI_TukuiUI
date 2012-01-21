@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -7,7 +7,12 @@ if not mod then return end
 -- Goriona, Blackhorn, The Skyfire, Ka'anu Reevs, Sky Captain Swayze
 mod:RegisterEnableMob(56781, 56427, 56598, 42288, 55870)
 
-local canEnable = true
+--------------------------------------------------------------------------------
+-- Locales
+--
+
+local canEnable, warned = true, false
+local onslaughtCounter = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -18,7 +23,6 @@ if L then
 	L.warmup = "Warmup"
 	L.warmup_desc = "Time until combat starts."
 	L.warmup_icon = "achievment_boss_blackhorn"
-	L.warmup_trigger = "All ahead full. Everything depends on our speed! We can't let the Destroyer get away."
 
 	L.sunder = "Sunder Armor"
 	L.sunder_desc = "Tank alert only. Count the stacks of sunder armor and show a duration bar."
@@ -60,18 +64,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TwilightOnslaught", 107588)
 	self:Log("SPELL_CAST_START", "Shockwave", 108046)
 	self:Log("SPELL_AURA_APPLIED", "Sunder", 108043)
+	self:Log("SPELL_AURA_APPLIED", "PreStage2", 108040)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "Sunder", 108043)
 	self:Log("SPELL_CAST_SUCCESS", "Roar", 109228, 108044, 109229, 109230) --LFR/25N, 10N, ??, ??
 	self:Emote("Sapper", L["sapper_trigger"])
 	self:Yell("Stage2", L["stage2_trigger"])
-	self:Yell("Warmup", L["warmup_trigger"])
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 56427)
-end
-
-function mod:Warmup()
-	self:Bar("warmup", _G["COMBAT"], 20, L["warmup_icon"])
 end
 
 function mod:OnEngage(diff)
@@ -79,6 +79,10 @@ function mod:OnEngage(diff)
 	if not self:LFR() then
 		self:Bar("sapper", L["sapper"], 70, L["sapper_icon"])
 	end
+	onslaughtCounter = 1
+	self:Bar("warmup", _G["COMBAT"], 20, L["warmup_icon"])
+	self:DelayedMessage("warmup", 20, CL["phase"]:format(1), "Positive", L["warmup_icon"])
+	warned = false
 end
 
 function mod:OnWin()
@@ -91,16 +95,26 @@ end
 
 function mod:Sapper()
 	self:Message("sapper", L["sapper"], "Important", L["sapper_icon"], "Info")
+	if warned then return end
 	self:Bar("sapper", L["sapper"], 40, L["sapper_icon"])
 end
 
-function mod:Stage2()
-	self:SendMessage("BigWigs_StopBar", self, (GetSpellInfo(108862))) -- Twilight Onslaught
-	self:SendMessage("BigWigs_StopBar", self, L["sapper"])
-	self:Bar(108046, "~"..GetSpellInfo(108046), 14, 108046) -- Shockwave
-	self:Message("bosskill", self.displayName, "Positive", "achievment_boss_blackhorn")
-	if self:Difficulty() > 2 then
-		self:Berserk(240)
+do
+	function mod:PreStage2()
+		if not warned then
+			warned = true
+			self:Bar("warmup", self.displayName, 9, L["warmup_icon"])
+			self:Message("warmup", CL["custom_sec"]:format(self.displayName, 9), "Positive", L["warmup_icon"])
+		end
+	end
+	function mod:Stage2()
+		self:SendMessage("BigWigs_StopBar", self, (GetSpellInfo(108862))) -- Twilight Onslaught
+		self:SendMessage("BigWigs_StopBar", self, L["sapper"])
+		self:Bar(108046, "~"..GetSpellInfo(108046), 14, 108046) -- Shockwave
+		self:Message("warmup", CL["phase"]:format(2) .. ": " .. self.displayName, "Positive", L["warmup_icon"])
+		if not self:LFR() then
+			self:Berserk(240, true)
+		end
 	end
 end
 
@@ -127,7 +141,9 @@ end
 
 function mod:TwilightOnslaught(_, spellId, _, _, spellName)
 	self:Message(108862, spellName, "Urgent", spellId, "Alarm")
-	self:Bar(108862, spellName, 35, spellId)
+	onslaughtCounter = onslaughtCounter + 1
+	if warned then return end
+	self:Bar(108862, ("%s (%d)"):format(spellName, onslaughtCounter), 35, spellId)
 end
 
 do

@@ -7,8 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(55265)
 
 local kohcrom = EJ_GetSectionInfo(4262)
-local fmtStr = "~%s - %s"
-local crystalCount = 0
+local crystalCount, stompCount = 0, 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -36,6 +35,7 @@ if L then
 	L.blood = "Black Blood"
 
 	L.explosion = "Explosion"
+	L.crystal = "Crystal"
 end
 L = mod:GetLocale()
 L.crush = L.crush.." "..INLINE_TANK_ICON
@@ -47,12 +47,12 @@ L.crush = L.crush.." "..INLINE_TANK_ICON
 function mod:GetOptions()
 	return {
 		"stomp_boss", "crystal_boss",
-		109017, "stomp_add", "crystal_add",
-		{103851, "FLASHSHAKE"}, "crush", 103846, "berserk", "bosskill",
+		"stomp_add", "crystal_add",
+		109017, {103851, "FLASHSHAKE"}, "crush", 103846, "berserk", "bosskill",
 	}, {
 		stomp_boss = self.displayName,
-		[109017] = kohcrom,
-		[103851] = "general",
+		stomp_add = kohcrom,
+		[109017] = "general",
 	}
 end
 
@@ -61,7 +61,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SummonKohcrom", 109017)
 
 	--Normal
-	self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP", "Blood")
+	self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP", "BloodOver")
 	self:Log("SPELL_CAST_START", "Stomp", 108571, 109033, 109034, 103414)
 	self:Log("SPELL_CAST_START", "BlackBlood", 103851)
 	self:Log("SPELL_AURA_APPLIED", "Furious", 103846)
@@ -79,43 +79,48 @@ end
 function mod:OnEngage(diff)
 	self:Berserk(420) -- confirmed
 	self:Bar("stomp_boss", L["stomp_boss"], 11, L["stomp_boss_icon"])
-	self:Bar("crystal_boss", L["crystal_boss"], 16, L["crystal_boss_icon"])
-	crystalCount = 0
+	self:Bar("crystal_boss", L["crystal"], 16, L["crystal_boss_icon"])
+	crystalCount, stompCount = 0, 1
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:SummonKohcrom(_, spellId)
-	self:Bar("stomp_boss", (fmtStr):format(self.displayName, L["stomp_boss"]), 6, L["stomp_boss_icon"])
-	self:Bar("stomp_add", (fmtStr):format(kohcrom, L["stomp_add"]), 12, L["stomp_add_icon"])
+function mod:SummonKohcrom(_, spellId, _, _, spellName)
+	self:Bar("stomp_boss", "~"..self.displayName.." - "..L["stomp_boss"], 6, L["stomp_boss_icon"])
+	self:Bar("stomp_add", "~"..kohcrom.." - "..L["stomp_add"], 12, L["stomp_add_icon"])
 	self:Message(109017, spellName, "Positive", spellId)
+	self:SendMessage("BigWigs_StopBar", self, L["crystal"])
+	self:SendMessage("BigWigs_StopBar", self, "~"..L["stomp_boss"])
 end
 
 -- I know it's ugly to use this, but if we were to start bars at :BlackBlood then we are subject to BlackBlood duration changes
-function mod:Blood(_, unit, _, _, _, spellId)
+function mod:BloodOver(_, unit, _, _, _, spellId)
 	if unit == "boss1" and spellId == 103851 then
-		crystalCount = 0
+		crystalCount, stompCount = 0, 1
 		if self:Difficulty() > 2 then
-			self:Bar("stomp_boss", (fmtStr):format(self.displayName, L["stomp_boss"]), 15, L["stomp_boss_icon"])
-			self:Bar("crystal_boss", (fmtStr):format(self.displayName, L["crystal_boss"]), 22, L["crystal_boss_icon"])
+			self:Bar("stomp_boss", "~"..self.displayName.." - "..L["stomp_boss"], 15, L["stomp_boss_icon"])
+			self:Bar("crystal_boss", "~"..self.displayName.." - "..L["crystal"], 22, L["crystal_boss_icon"])
 		else
 			self:Bar("stomp_boss", "~"..L["stomp_boss"], 5, L["stomp_boss_icon"])
-			self:Bar("crystal_boss", L["crystal_boss"], 29, L["crystal_boss_icon"])
+			self:Bar("crystal_boss", L["crystal"], 29, L["crystal_boss_icon"])
 		end
 	end
 end
 
 function mod:Stomp(_, spellId, source, _, spellName)
-	if self:Difficulty() > 2 then
-		if UnitExists("boss2") and source ~= kohcrom then -- Since we trigger kohcrom bar off morchok for more accuracy, we gotta make sure he exists and he isn't caster to avoid bad timers.
-			self:Bar("stomp_add", (fmtStr):format(kohcrom, spellName), (self:Difficulty() == 3) and 6 or 5, spellId) -- 6sec after on 10 man, 5 sec on 25
-		else -- It's not kohcrom casting, start morchoks normal bar.
-			self:Bar("stomp_boss", (fmtStr):format(source, spellName), 12, spellId)
+	if self:Difficulty() > 2 and UnitExists("boss2") then -- Check if heroic and if kohncrom has spawned yet.
+		if source ~= kohcrom and stompCount < 4 then -- Since we trigger bars off morchok casts, we gotta make sure kohcrom isn't caster to avoid bad timers.
+			self:Bar("stomp_add", "~"..kohcrom.." - "..spellName, (self:Difficulty() == 3) and 6 or 5, spellId) -- 6sec after on 10 man, 5 sec on 25
+			self:Bar("stomp_boss", "~"..source.." - "..spellName, 12, spellId)
+			stompCount = stompCount + 1
 		end
-	else
-		self:Bar("stomp_boss", "~"..spellName, 12, spellId)
+	else -- Not heroic, or Kohcrom isn't out yet, just do normal bar.
+		if stompCount < 4 then
+			self:Bar("stomp_boss", "~"..spellName, 12, spellId)
+			stompCount = stompCount + 1
+		end
 	end
 end
 
@@ -148,12 +153,12 @@ do
 end
 
 function mod:ResonatingCrystal(_, spellId, source, _, spellName)
-	if source ~= kohcrom then crystalCount = crystalCount + 1 end -- Only incriment count off morchok casts.
+	if source ~= kohcrom then crystalCount = crystalCount + 1 end -- Only increment count off morchok casts.
 	if self:Difficulty() > 2 then
-		self:Message((source == kohcrom) and "crystal_add" or "crystal_boss", source.." - "..spellName, "Urgent", spellId, "Alarm")
+		self:Message((source == kohcrom) and "crystal_add" or "crystal_boss", source.." - "..L["crystal"], "Urgent", spellId, "Alarm")
 		self:Bar((source == kohcrom) and "crystal_add" or "crystal_boss", source.." - "..(L["explosion"]), 12, spellId)
 		if UnitExists("boss2") and crystalCount == 2 then -- The CD bar will only start off morchok's 2nd crystal, if kohcrom is already summoned. Explosion bar will be CD for kohcrom's 3rd so redundant to have both.
-			self:Bar("crystal_add", (fmtStr):format(kohcrom, spellName), (self:Difficulty() == 3) and 6 or 5, spellId) -- Same as stomp, 6/5
+			self:Bar("crystal_add", "~"..kohcrom.." - "..L["crystal"], (self:Difficulty() == 3) and 6 or 5, spellId) -- Same as stomp, 6/5
 		end
 	else
 		self:Message("crystal_boss", spellName, "Urgent", spellId, "Alarm")

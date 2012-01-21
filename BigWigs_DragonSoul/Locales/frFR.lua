@@ -4,12 +4,13 @@ if L then
 	L.engage_trigger = "Vous cherchez à arrêter l'avalanche. Je vais vous ensevelir."
 
 	L.crush = "Ecraser armure"
-	L.crush_desc = "Alerte pour tanks uniquement. Compte les cumuls d'écraser armure et affiche une barre de durée."
+	L.crush_desc = "Alerte pour tanks uniquement. Compte les cumuls d'Ecraser armure et affiche une barre de durée."
 	L.crush_message = "%2$dx Ecraser sur %1$s"
 
-	L.blood = "Sang"
+	L.blood = "Sang noir"
 
 	L.explosion = "Explosion"
+	L.crystal = "Cristal"
 end
 
 L = BigWigs:NewBossLocale("Warlord Zon'ozz", "frFR")
@@ -19,11 +20,11 @@ if L then
 	L.ball = "Boule de Vide"
 	L.ball_desc = "Boule de Vide qui rebondit contre les joueurs et le boss."
 
-	L.bounce = "Rebond de la boule de Vide"
-	L.bounce_desc = "Compteur des rebonds de la boule de Vide."
+	L.bounce = "Rebond de la Boule de Vide"
+	L.bounce_desc = "Compteur des rebonds de la Boule de Vide."
 
-	L.darkness = "La boum des tentacules !"
-	L.darkness_desc = "Cette phase commence quand la boule de Vide touche le boss."
+	L.darkness = "Ténèbres"
+	L.darkness_desc = "Cette phase commence quand la Boule de Vide touche le boss."
 
 	L.shadows = "Ombres"
 end
@@ -32,7 +33,7 @@ L = BigWigs:NewBossLocale("Yor'sahj the Unsleeping", "frFR")
 if L then
 	L.engage_trigger = "Iilth qi'uothk shn'ma yeh'glu Shath'Yar! H'IWN IILTH!"
 
-	L.bolt_desc = "Alerte pour tanks uniquement. Compte les cumuls d'éclairs de Vide et affiche une barre de durée."
+	L.bolt_desc = "Alerte pour tanks uniquement. Compte les cumuls d'Eclairs de Vide et affiche une barre de durée."
 	L.bolt_message = "%2$dx Éclairs sur %1$s"
 
 	L.blue = "|cFF0080FFBleu|r"
@@ -77,7 +78,7 @@ if L then
 
 	L.twilight = "Crépuscule"
 	L.cast = "Barre d'incantation d'Heure du Crépuscule"
-	L.cast_desc = "Affiche une barre de 5 secondes pour l'incantation d'Heure du Crépuscule."
+	L.cast_desc = "Affiche une barre de 5 (Normal) ou 3 (Héroïque) secondes pour l'incantation d'Heure du Crépuscule."
 
 	L.lightself = "Lumière faiblissante sur vous"
 	L.lightself_desc = "Affiche une barre indiquant le temps restant avant que Lumière faiblissante ne vous fasse exploser."
@@ -93,10 +94,9 @@ L = BigWigs:NewBossLocale("Warmaster Blackhorn", "frFR")
 if L then
 	L.warmup = "Échauffement"
 	L.warmup_desc = "Délai avant que le combat ne commence."
-	L.warmup_trigger = "En avant toute ! Tout dépend de notre vitesse ! Nous ne devons pas laisser le Destructeur s'échapper." -- à vérifier
 
 	L.sunder = "Fracasser armure"
-	L.sunder_desc = "Alerte pour tanks uniquement. Compte les cumuls de fracasser armure et affiche une barre de durée."
+	L.sunder_desc = "Alerte pour tanks uniquement. Compte les cumuls de Fracasser armure et affiche une barre de durée."
 	L.sunder_message = "%2$dx Fracasser sur %1$s"
 
 	L.sapper_trigger = "Un drake plonge et dépose un sapeur du Crépuscule sur le pont !"
@@ -123,8 +123,10 @@ end
 L = BigWigs:NewBossLocale("Madness of Deathwing", "frFR")
 if L then
 	L.engage_trigger = "Vous n'avez RIEN fait. Je vais mettre votre monde en PIÈCES."
+
 	L.impale_desc = "Alerte pour tank uniquement. "..select(2,EJ_GetSectionInfo(4114))
-	L.bolt_explode = "<Explosion de l'éclair>"
+
+	L.bolt_explode = "<Explosion de l'Eclair>"
 	L.parasite = "Parasite"
 	L.blobs_soon = "%d%% - Sang coagulant imminent !"
 end
