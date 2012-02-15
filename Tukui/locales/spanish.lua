@@ -92,6 +92,8 @@ if T.client == "esES" or T.client == "esMX" then
 	L.datatext_gatesdestroyed = "Puertas Destruidas:"
 	L.datatext_totalmemusage = "Total de Memoria Usada:"
 	L.datatext_control = "Controlado por:"
+	L.datatext_cta_allunavailable = "Could not get Call To Arms information."
+	L.datatext_cta_nodungeons = "No dungeons are currently offering a Call To Arms."
  
 	L.Slots = {
 		[1] = {1, "Cabeza", 1000},

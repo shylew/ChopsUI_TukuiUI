@@ -92,6 +92,8 @@ if T.client == "deDE" then
 	L.datatext_gatesdestroyed = "Tore zerstört:"
 	L.datatext_totalmemusage = "Gesamte Speichernutzung:"
 	L.datatext_control = "Kontrolliert von:"
+	L.datatext_cta_allunavailable = "Could not get Call To Arms information."
+	L.datatext_cta_nodungeons = "No dungeons are currently offering a Call To Arms."
  
 	L.Slots = {
 		[1] = {1, "Kopf", 1000},
