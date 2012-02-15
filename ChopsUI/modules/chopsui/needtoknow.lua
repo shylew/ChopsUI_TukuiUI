@@ -168,6 +168,11 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
       ChopsUI.modules.needtoknow.PlayerBuff(4, "Adrenaline Rush", { 0.80, 0.01, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(5, "Blade Flurry", { 0.01, 0.53, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(6, "Slice and Dice", { 0.86, 0.67, 0 }, true)
+    elseif T.Spec == "SUBTLETY" then
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Feint", { 0, 0.57, 6 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Cloak of Shadows", { 0.6, 0, 0.49 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Recuperate", { 0.01, 0.53, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Slice and Dice", { 0.86, 0.67, 0 }, true)
     end
 
   elseif T.myclass == "SHAMAN" then
@@ -340,6 +345,11 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
       ChopsUI.modules.needtoknow.TargetDebuff(4, "Revealing Strike", { 0.64, 1, 0.94 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(5, "Rupture", { 0.68, 0.04, 0 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(6, "Deadly Poison", { 0.01, 0.53, 0 }, true)
+    elseif T.Spec == "SUBTLETY" then
+      ChopsUI.modules.needtoknow.TargetDebuff(3, "Find Weakness", { 0.64, 1, 0.94 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(4, "89775", { 0.92, 0.39, 0 }, true) -- Glyph of Hemorrhage debuff
+      ChopsUI.modules.needtoknow.TargetDebuff(5, "Rupture", { 0.68, 0.04, 0 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(6, "Deadly Poison", { 0.01, 0.53, 0 }, true)
     end
 
   elseif T.myclass == "SHAMAN" then
@@ -403,6 +413,8 @@ function ChopsUI.modules.needtoknow.ConfigureCooldowns()
   if T.CheckRole() == "Caster" then
     ChopsUI.modules.needtoknow.Cooldown(5, "Volcanic Destruction", { 0, 0.45, 0.6 }, 45)
     ChopsUI.modules.needtoknow.Cooldown(6, "Power Torrent", { 0.03, 0.88, 1 }, 45)
+  elseif T.CheckRole() == "Melee" then
+    ChopsUI.modules.needtoknow.Cooldown(6, "Tol'vir Agility, Golem's Strength", { 0, 0.45, 0.6 }, 45)
   end
 
   if T.myclass == "DRUID" then
@@ -411,6 +423,12 @@ function ChopsUI.modules.needtoknow.ConfigureCooldowns()
       ChopsUI.modules.needtoknow.Cooldown(3, "Starfall", { 0.91, 0.91, 0.91 })
       ChopsUI.modules.needtoknow.Cooldown(2, "Starsurge", { 0.6, 0, 0.54 })
       ChopsUI.modules.needtoknow.Cooldown(1, "Nature's Grace", { 0.28, 0.79, 0.30 }, 60)
+    end
+  elseif T.myclass == "ROGUE" then
+    if T.Spec == "SUBTLETY" then
+      ChopsUI.modules.needtoknow.Cooldown(1, "Shadow Dance", { 0.53, 0, 0.78 })
+      ChopsUI.modules.needtoknow.Cooldown(2, "Vanish", { 0.91, 0.91, 0.91 })
+      ChopsUI.modules.needtoknow.Cooldown(3, "Preparation", { 0.75, 0.58, 0 })
     end
   end
 
