@@ -12,7 +12,7 @@ mod:RegisterEnableMob(53879, 56575, 56341, 53891, 56161, 56162)
 --
 
 local gripTargets = mod:NewTargetList()
-local fieryGrip, residue = GetSpellInfo(109457), GetSpellInfo(105223)
+local fieryGrip = GetSpellInfo(109457)
 local bloodCount = 0
 
 -- Locals for Fiery Grip, described in comments below
@@ -26,7 +26,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_trigger = "The plates! He's coming apart! Tear up the plates and we've got a shot at bringing him down!"
 	L.roll, L.roll_desc = EJ_GetSectionInfo(4050)
-	L.roll_icon = "ACHIEVEMENT_BG_RETURNXFLAGS_DEF_WSG"
+	L.roll_icon = "achievement_bg_returnxflags_def_wsg"
 
 	L.left_start = "about to roll left"
 	L.right_start = "about to roll right"
@@ -38,6 +38,11 @@ if L then
 	L.level_message = "Nevermind, he leveled out!"
 
 	L.exposed = "Armor Exposed"
+
+	L.residue = "Unabsorbed Residue"
+	L.residue_desc = "Messages informing you of how much blood residue is remaining on the floor, waiting to be absorbed."
+	L.residue_icon = 105223
+	L.residue_message = "Residue: %d"
 end
 L = mod:GetLocale()
 
@@ -47,10 +52,8 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		105248, 105223, 109457, {105845, "FLASHSHAKE"}, {"roll", "FLASHSHAKE"},
+		105248, "residue", 109457, {105845, "FLASHSHAKE"}, {"roll", "FLASHSHAKE"},
 		105848, "bosskill",
-	}, {
-		[105248] = "general",
 	}
 end
 
@@ -58,23 +61,30 @@ function mod:OnBossEnable()
 	self:Emote("AboutToRoll", L["left_start"], L["right_start"])
 	self:Emote("Rolls", L["left"], L["right"])
 	self:Emote("Level", L["level_trigger"])
+
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AbsorbedBlood", 105248)
 	self:Log("SPELL_CAST_SUCCESS", "FieryGripCast", 109457, 109458, 109459, 105490)
 	self:Log("SPELL_CAST_START", "SearingPlasmaCast", 109379) -- Only one id in both modes
 	self:Death("CorruptionDeath", 56161, 56162, 53891)
+
 	self:Log("SPELL_AURA_APPLIED", "FieryGripApplied", 109457, 109458, 109459, 105490)
 	self:Log("SPELL_CAST_SUCCESS", "ResidueChange", 105248, 109371, 109372, 109373, 105219) -- Absorbed Blood, Burst (x4)
+	self:Log("SPELL_AURA_APPLIED", "BloodCheckDest", 6343, 77758, 55095, 26017) -- Thunder Clap, Thrash, Frost Fever, Vindication
+	self:Log("SWING_DAMAGE", "BloodCheckSource", "*")
+	self:Log("SWING_MISSED", "BloodCheckSource", "*")
 	self:Log("SPELL_CAST_START", "Nuclear", 105845)
 	self:Log("SPELL_CAST_START", "Seal", 105847, 105848) -- Left, Right
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Yell("Engage", L["engage_trigger"])
 	self:Death("Deaths", 53879, 56575, 56341)
 end
 
 -- Note: Engage is not called as early as you may expect. It is about 4s from the start of combat
 function mod:OnEngage()
-	self:Reset()
+	wipe(corruptionStatus)
+	lastBar = true
+	bloodCount = 0
 
 	if not self:LFR() then
 		-- Initial bars for grip since we cannot trigger off of it (pad by -5s)
@@ -86,18 +96,6 @@ function mod:OnEngage()
 			self:Bar(109457, "~"..fieryGrip, 27, 109457)
 		end
 	end
-end
-
-function mod:OnBossDisable()
-	-- OnEngage triggers on a yell, which needs to be localized, and this must
-	-- be run or else much of the module will not run as expected
-	self:Reset()
-end
-
-function mod:Reset()
-	wipe(corruptionStatus)
-	lastBar = true
-	bloodCount = 0
 end
 
 --------------------------------------------------------------------------------
@@ -131,16 +129,34 @@ do
 		timer = nil
 	end
 	function mod:Level()
-		self:Message("roll", L["level_message"], "Attention", L["roll_icon"])
+		self:Message("roll", L["level_message"], "Positive", L["roll_icon"])
 		self:SendMessage("BigWigs_StopBar", self, L["roll"])
 		self:CancelTimer(timer, true)
 		timer = nil
 	end
 end
 
-function mod:AbsorbedBlood(_, spellId, _, _, spellName, stack)
-	if stack > 5 then
-		self:Message(105248, ("%s (%d)"):format(spellName, stack), "Urgent", spellId)
+do
+	local timers = {}
+	function mod:AbsorbedBlood(_, spellId, _, _, spellName, stack, _, _, _, dGUID)
+		-- Cancel old timer
+		if timers[dGUID] ~= nil then
+			self:CancelTimer(timers[dGUID], true)
+			timers[dGUID] = nil
+		end
+
+		-- Create closure to retain stack count, spell name, and GUID
+		local printStacks = function(level)
+			self:Message(105248, ("%s (%d)"):format(spellName, stack), level, spellId)
+			timers[dGUID] = nil
+		end
+
+		-- Throttle message by 0.5s, or print immediately if we hit 9 stacks
+		if stack < 9 then
+			timers[dGUID] = self:ScheduleTimer(printStacks, 0.5, "Urgent")
+		else
+			printStacks("Important")
+		end
 	end
 end
 
@@ -205,19 +221,12 @@ do
 	-- many are up to prevent spamming when the mob picks up a bunch
 	local scheduled = nil
 	local function reportBloods()
-		mod:Message(105223, ("%s (%d)"):format(residue, bloodCount), "Attention", 105223)
+		mod:Message("residue", L["residue_message"]:format(bloodCount), "Attention", 105223)
 		scheduled = nil
 	end
 	local haltPrinting = true
-	function mod:ResidueChange(_, spellId, _, _, spellName)
-		if spellId == 109371 or spellId == 109372 or spellId == 109373 or spellId == 105219 then
-			-- Burst (+1)
-			bloodCount = bloodCount + 1
-		elseif spellId == 105248 then
-			-- Absorbed Blood (-1)
-			bloodCount = bloodCount - 1
-		end
-
+	local deadBlood = {}
+	local function residuePrint()
 		-- start printing if we're over 3
 		if bloodCount > 3 then
 			haltPrinting = false
@@ -226,16 +235,48 @@ do
 		-- We are only printing if the haltPrinting flag has been turned off
 		if not haltPrinting then
 			if scheduled then
-				self:CancelTimer(scheduled, true)
+				mod:CancelTimer(scheduled, true)
 			end
-			scheduled = self:ScheduleTimer(reportBloods, 1) 
+			scheduled = mod:ScheduleTimer(reportBloods, 1) 
 		end
 
 		-- once we reach 0, we will hold until we pass the threshold again
-		-- this must be after the print so we know when we drop to 0
+		-- this must be after the print so we print the (0) warning
 		if bloodCount == 0 then
 			haltPrinting = true
 		end
+	end
+	local function residueDecrease(GUID)
+		bloodCount = bloodCount - 1
+		deadBlood[GUID] = nil
+	end
+	function mod:ResidueChange(_, spellId, _, _, _, _, _, _, _, _, sGUID)
+		if spellId == 109371 or spellId == 109372 or spellId == 109373 or spellId == 105219 then
+			-- Burst (+1)
+			bloodCount = bloodCount + 1
+			-- Mark this blood as dead so we know if he revives
+			deadBlood[sGUID] = GetTime()
+		elseif spellId == 105248 then
+			residueDecrease(sGUID)
+		end
+
+		residuePrint()
+	end
+	-- Here we're using the four common tank AoE threat auras: Thunder Clap,
+	-- Thrash, Frost Fever, and Vindication. At some point one of these should
+	-- be applied to a blood, and if it is at least 5s after death, we know that
+	-- it revived.
+	local function bloodCheck(GUID, debug)
+		if deadBlood[GUID] and GetTime() - deadBlood[GUID] > 5 then
+			residueDecrease(GUID)
+			residuePrint()
+		end
+	end
+	function mod:BloodCheckDest(_, _, _, _, spellName, _, _, _, _, dGUID)
+		bloodCheck(dGUID, spellName)
+	end
+	function mod:BloodCheckSource(_, _, _, _, _, _, _, _, _, _, sGUID)
+		bloodCheck(sGUID, "Melee")
 	end
 end
 

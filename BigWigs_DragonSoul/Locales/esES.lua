@@ -56,7 +56,7 @@ if L then
 	L.ice_next = "Fase de Hielo"
 	L.lightning_next = "Fase de Relámpago"
 
-	L.assault_desc = "Alerta para tanques. "..select(2, EJ_GetSectionInfo(4159))
+	L.assault_desc = "Alerta solo para Tanques & Sanadores. "..select(2, EJ_GetSectionInfo(4159))
 
 	L.nextphase = "Siguiente Fase"
 	L.nextphase_desc = "Avisos para la siguiente fase"
@@ -108,6 +108,8 @@ end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "esES") or BigWigs:NewBossLocale("Spine of Deathwing", "esMX")
 if L then
+	L.engage_trigger = "¡Las placas! ¡Se está deshaciendo! ¡Destrozad las placas y tendremos una oportunidad de derribarlo!"
+
 	L.left_start = "a punto de girar a la izquierda"
 	L.right_start = "a punto de girar a la derecha"
 	L.left = "gira a la izquierda"
@@ -118,6 +120,10 @@ if L then
 	L.level_message = "¡Bueno, se ha estabilizado!"
 
 	L.exposed = "Armadura expuesta"
+
+	L.residue = "Residuos no absorbidos"
+	L.residue_desc = "Mensajes que te informan cuanto residuo de sangre queda en el suelo."
+	L.residue_message = "Residuos no absorbidos: %d"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "esES") or BigWigs:NewBossLocale("Madness of Deathwing", "esMX")

@@ -56,7 +56,7 @@ if L then
 	L.ice_next = "Ледяная фаза"
 	L.lightning_next = "Грозовая фаза"
 
-	L.assault_desc = "Только для танков. "..select(2, EJ_GetSectionInfo(4159))
+	L.assault_desc = "Только для танков/лекарей. "..select(2, EJ_GetSectionInfo(4159))
 
 	L.nextphase = "Следующая Фаза"
 	L.nextphase_desc = "Предупреждения для следующей фазы"
@@ -108,6 +108,8 @@ end
 
 L = BigWigs:NewBossLocale("Spine of Deathwing", "ruRU")
 if L then
+	L.engage_trigger = "Смотрите, он разваливается! Оторвите пластины, и у нас появится шанс сбить его!"
+
 	L.left_start = "собирается накрениться влево"
 	L.right_start = "собирается накрениться вправо"
 	L.left = "наклоняется влево"
@@ -118,6 +120,10 @@ if L then
 	L.level_message = "Неважно, он выравнивается!"
 
 	L.exposed = "Броня Вскрыта"
+
+	L.residue = "Непоглощенный Осадок"
+	L.residue_desc = "Сообщения, информирующие вас о том, сколько ещё осадков крови осталось на полу."
+	L.residue_message = "Осадков осталось: %d"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "ruRU")

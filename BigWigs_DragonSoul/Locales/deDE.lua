@@ -18,7 +18,7 @@ if L then
 	L.engage_trigger = "Zzof Shuul'wah. Thoq fssh N'Zoth!"
 
 	L.ball = "Leere der Apokalypse"
-	L.ball_desc = "Leere der Apokalypse, welche von den Spielern und abprallt und den Boss schwächt."
+	L.ball_desc = "Leere der Apokalypse, welche von den Spielern abprallt und den Boss schwächt."
 
 	L.bounce = "Abprallen der Leerenkugel"
 	L.bounce_desc = "Zählt, wie häufig die Leerenkugel abprallt."
@@ -56,7 +56,7 @@ if L then
 	L.ice_next = "Eisphase"
 	L.lightning_next = "Blitzphase"
 
-	L.assault_desc = "Nur für Tanks. "..select(2, EJ_GetSectionInfo(4159))
+	L.assault_desc = "Nur für Tanks & Heiler. "..select(2, EJ_GetSectionInfo(4159))
 
 	L.nextphase = "Nächste Phase"
 	L.nextphase_desc = "Warnungen für die nächste Phase"
@@ -120,6 +120,10 @@ if L then
 	L.level_message = "Wieder ausgeglichen!"
 
 	L.exposed = "Rüstung freigelegt"
+
+	L.residue = "Nicht absorbierte Rückstände"
+	L.residue_desc = "Teilt mit, wie viele nicht absorbierte Rückstände noch auf dem Rücken liegen."
+	L.residue_message = "Rückstände übrig: %d"
 end
 
 L = BigWigs:NewBossLocale("Madness of Deathwing", "deDE")
