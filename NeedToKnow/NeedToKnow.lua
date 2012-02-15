@@ -76,7 +76,7 @@ NeedToKnow.scratch.bar_entry =
     }
 -- NEEDTOKNOW = {} is defined in the localization file, which must be loaded before this file
 
-NEEDTOKNOW.VERSION = "4.0.00"
+NEEDTOKNOW.VERSION = "4.0.02"
 NEEDTOKNOW.UPDATE_INTERVAL = 0.05
 NEEDTOKNOW.MAXBARS = 20
 
@@ -161,6 +161,113 @@ NEEDTOKNOW.PROFILE_DEFAULTS = {
     FontSize    = 12,
 }
 
+NEEDTOKNOW.SHORTENINGS= {
+    Enabled         = "On",
+    AuraName        = "Aura",
+    --Unit            = "Unit",
+    BuffOrDebuff    = "Typ",
+    OnlyMine        = "Min",
+    BarColor        = "Clr",
+    MissingBlink    = "BCl",
+    TimeFormat      = "TF",
+    vct_enabled     = "VOn",
+    vct_color       = "VCl",
+    vct_spell       = "VSp",
+    vct_extra       = "VEx",
+    bDetectExtends  = "Ext",
+    show_text       = "sTx",
+    show_count      = "sCt",
+    show_time       = "sTm",
+    show_spark      = "sSp",
+    show_icon       = "sIc",
+    show_mypip      = "sPp",
+    show_all_stacks = "All",
+    show_text_user  = "sUr",
+    blink_enabled   = "BOn",
+    blink_ooc       = "BOC",
+    blink_boss      = "BBs",
+    blink_label     = "BTx",
+    buffcd_duration = "cdd",
+    buffcd_reset_spells = "cdr",
+    usable_duration = "udr",
+    append_cd       = "acd",
+    append_usable   = "aus",
+    --NumberBars       = "NmB",
+    --Scale            = "Scl",
+    --Width            = "Cx",
+    --Bars             = "Brs",
+    --Position         = "Pos",
+    --FixedDuration    = "FxD", 
+    --Version       = "Ver",
+    --OldVersion  = "OVr",
+    --Profiles    = "Pfl",
+    --Chars       = "Chr",
+    --Specs       = "Spc",
+    --Locked      = "Lck",
+    --name        = "nam",
+    --nGroups     = "nGr",
+    --Groups      = "Grp",
+    --BarTexture  = "Tex",
+    --BarFont     = "Fnt",
+    --BkgdColor   = "BgC",
+    --BarSpacing  = "BSp",
+    --BarPadding  = "BPd",
+    --FontSize    = "FSz",
+}
+
+NEEDTOKNOW.LENGTHENINGS= {
+   On = "Enabled",
+   Aura = "AuraName",
+--   Unit = "Unit",
+   Typ = "BuffOrDebuff",
+   Min = "OnlyMine",
+   Clr = "BarColor",
+   BCl = "MissingBlink",
+   TF  = "TimeFormat",
+   VOn = "vct_enabled",
+   VCl = "vct_color",
+   VSp = "vct_spell",
+   VEx = "vct_extra",
+   Ext = "bDetectExtends",
+   sTx = "show_text",
+   sCt = "show_count",
+   sTm = "show_time",
+   sSp = "show_spark",
+   sIc = "show_icon",
+   sPp = "show_mypip",
+   All = "show_all_stacks",
+   sUr = "show_text_user",
+   BOn = "blink_enabled",
+   BOC = "blink_ooc",
+   BBs = "blink_boss",
+   BTx = "blink_label",
+   cdd = "buffcd_duration",
+   cdr = "buffcd_reset_spells",
+   udr = "usable_duration",
+   acd = "append_cd",
+   aus = "append_usable",
+    --NumberBars       = "NmB",
+    --Scale            = "Scl",
+    --Width            = "Cx",
+    --Bars             = "Brs",
+    --Position         = "Pos",
+    --FixedDuration    = "FxD", 
+    --Version       = "Ver",
+    --OldVersion  = "OVr",
+    --Profiles    = "Pfl",
+    --Chars       = "Chr",
+    --Specs       = "Spc",
+    --Locked      = "Lck",
+    --name        = "nam",
+    --nGroups     = "nGr",
+    --Groups      = "Grp",
+    --BarTexture  = "Tex",
+    --BarFont     = "Fnt",
+    --BkgdColor   = "BgC",
+    --BarSpacing  = "BSp",
+    --BarPadding  = "BPd",
+    --FontSize    = "FSz",
+}
 
 -- -------------------
 -- SharedMedia Support
@@ -288,6 +395,12 @@ function NeedToKnow.ExecutiveFrame_PLAYER_LOGIN()
 
     NeedToKnow_ExecutiveFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
     NeedToKnow_ExecutiveFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+    NeedToKnow_ExecutiveFrame:RegisterEvent("UNIT_TARGET")
+    NeedToKnow_ExecutiveFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
+    NeedToKnow_ExecutiveFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+    if ( NeedToKnow.is_DK ) then
+        NeedToKnow_ExecutiveFrame:RegisterEvent("UNIT_SPELLCAST_SENT")
+    end
     NeedToKnow.Update()
     
     NeedToKnow_ExecutiveFrame:UnregisterEvent("PLAYER_LOGIN")
@@ -300,8 +413,6 @@ function NeedToKnow.ExecutiveFrame_PLAYER_LOGIN()
 end
 
 
-
-
 function NeedToKnow.ExecutiveFrame_ACTIVE_TALENT_GROUP_CHANGED()
     -- This is the only event we're guaranteed to get on a talent switch,
     -- so we have to listen for it.  However, the client may not yet have
@@ -310,6 +421,7 @@ function NeedToKnow.ExecutiveFrame_ACTIVE_TALENT_GROUP_CHANGED()
     -- and try again later
     NeedToKnow.ExecutiveFrame_PLAYER_TALENT_UPDATE()
 end
+
 
 function NeedToKnow.ExecutiveFrame_PLAYER_TALENT_UPDATE()
     if NeedToKnow.CharSettings then
@@ -322,6 +434,74 @@ function NeedToKnow.ExecutiveFrame_PLAYER_TALENT_UPDATE()
         end
     
         NeedToKnow.ChangeProfile(profile_key);
+    end
+end
+
+
+function NeedToKnow.ExecutiveFrame_UNIT_TARGET(unitTargeting)
+    if NeedToKnow.bInCombat and not NeedToKnow.bCombatWithBoss then
+        if UnitLevel(unitTargeting .. 'target') == -1 then
+            NeedToKnow.bCombatWithBoss = true
+            if NeedToKnow.BossStateBars then
+                for bar, unused in pairs(NeedToKnow.BossStateBars) do
+                    NeedToKnow.Bar_AuraCheck(bar)
+                end
+            end
+        end
+    end
+end
+
+
+function NeedToKnow.ExecutiveFrame_PLAYER_REGEN_DISABLED(unitTargeting)
+    NeedToKnow.bInCombat = true
+    NeedToKnow.bCombatWithBoss = false
+    if GetNumRaidMembers() > 0 then
+        for i = 1, 40 do
+            if UnitLevel("raid"..i.."target") == -1 then
+                NeedToKnow.bCombatWithBoss = true;
+                break;
+            end
+        end
+    elseif GetNumPartyMembers() > 0 then
+        for i = 1, 5 do
+            if UnitLevel("party"..i.."target") == -1 then
+                NeedToKnow.bCombatWithBoss = true;
+                break;
+            end
+        end
+    elseif UnitLevel("target") == -1 then
+        NeedToKnow.bCombatWithBoss = true
+    end
+    if NeedToKnow.BossStateBars then
+        for bar, unused in pairs(NeedToKnow.BossStateBars) do
+            NeedToKnow.Bar_AuraCheck(bar)
+        end
+    end
+end
+
+
+function NeedToKnow.ExecutiveFrame_PLAYER_REGEN_ENABLED(unitTargeting)
+    NeedToKnow.bInCombat = false
+    NeedToKnow.bCombatWithBoss = false
+    if NeedToKnow.BossStateBars then
+        for bar, unused in pairs(NeedToKnow.BossStateBars) do
+            NeedToKnow.Bar_AuraCheck(bar)
+        end
+    end
+end
+
+
+function NeedToKnow.ExecutiveFrame_UNIT_SPELLCAST_SENT(unit, spell)
+    if NeedToKnow.is_DK then
+        -- TODO: I hate that DKs have to pay this memory cost for every "spell" they ever cast.
+        --       Would be nice to at least garbage collect this data at some point, but that
+        --       may add more overhead than just keeping track of a 100 spells.
+        if unit == "player" then
+            if not NeedToKnow.last_sent then
+                NeedToKnow.last_sent = {}
+            end
+            NeedToKnow.last_sent[spell] = GetTime()
+        end
     end
 end
 
@@ -340,7 +520,7 @@ function NeedToKnow.RemoveDefaultValues(t, def, k)
     -- An array, like Groups or Bars. Compare each element against def[1]
     for i,v in ipairs(t)do
       local rhs = def[i]
-      if not rhs then rhs = def[1] end
+      if rhs == nil then rhs = def[1] end
       if NeedToKnow.RemoveDefaultValues(v, rhs, k .. " " .. i) then
         t[i] = nil
       end
@@ -372,7 +552,6 @@ function NeedToKnow.CompressProfile(profileSettings)
     NeedToKnow.RemoveDefaultValues(profileSettings, NEEDTOKNOW.PROFILE_DEFAULTS);
 end
 
-
 -- DEBUG: remove k, it's just for debugging
 function NeedToKnow.AddDefaultsToTable(t, def, k)
     if type(t) ~= "table" then return end
@@ -382,27 +561,27 @@ function NeedToKnow.AddDefaultsToTable(t, def, k)
     if not k then k = "" end
     local n = table.maxn(t)
     if n > 0 then
-    for i=1,n do
-        local rhs = def[i]
-        if rhs == nil then rhs = def[1] end
-        if t[i] == nil then
-            t[i] = NeedToKnow.DeepCopy(rhs)
-        else
-            NeedToKnow.AddDefaultsToTable(t[i], rhs, k .. " " .. i)
-        end
-    end
-    else
-    for kD,vD in pairs(def) do
-        if t[kD] == nil then
-            if type(vD) == "table" then
-                t[kD] = NeedToKnow.DeepCopy(vD)
+        for i=1,n do
+            local rhs = def[i]
+            if rhs == nil then rhs = def[1] end
+            if t[i] == nil then
+                t[i] = NeedToKnow.DeepCopy(rhs)
             else
-                t[kD] = vD
+                NeedToKnow.AddDefaultsToTable(t[i], rhs, k .. " " .. i)
             end
-        else
-            NeedToKnow.AddDefaultsToTable(t[kD], vD, k .. " " .. kD)
         end
-    end
+        else
+        for kD,vD in pairs(def) do
+            if t[kD] == nil then
+                if type(vD) == "table" then
+                    t[kD] = NeedToKnow.DeepCopy(vD)
+                else
+                    t[kD] = vD
+                end
+            else
+                NeedToKnow.AddDefaultsToTable(t[kD], vD, k .. " " .. kD)
+            end
+        end
     end
 end
 
@@ -479,7 +658,7 @@ function NeedToKnow.ChangeProfile(profile_key)
         NeedToKnow.Update()
         NeedToKnowOptions.UIPanel_Update()
     elseif not NeedToKnow_Profiles[profile_key] then
-        print("NeedToKnow profile",profile_key,"does not exist!") -- FIXME: Localization!
+        print("NeedToKnow profile",profile_key,"does not exist!") -- LOCME!
     end
 end
 
@@ -760,7 +939,7 @@ function NeedToKnow.RestoreTableFromCopy(dest, source)
         end
     end
     for key,value in pairs(dest) do
-        if not source[key] then
+        if source[key] == nil then
             dest[key] = nil
         end
     end
@@ -1109,7 +1288,7 @@ function NeedToKnow.Bar_Update(groupID, barID)
             if "" ~= barSettings.show_text_user then
                 txt = barSettings.show_text_user
             else
-                txt = txt .. bar.auraName
+                txt = txt .. NeedToKnow.PrettyName(barSettings)
             end
 
             if ( barSettings.append_cd
@@ -1182,12 +1361,14 @@ function NeedToKnow.SetScripts(bar)
         end
     end
     
-    if bar.settings.bDetectExtends or NeedToKnow.is_DK then
+    if bar.settings.bDetectExtends then
         bar:RegisterEvent("UNIT_SPELLCAST_SENT")
     end
-    if not bar.settings.blink_ooc then
-        bar:RegisterEvent("PLAYER_REGEN_DISABLED")
-        bar:RegisterEvent("PLAYER_REGEN_ENABLED")
+    if bar.settings.blink_enabled and bar.settings.blink_boss then
+        if not NeedToKnow.BossStateBars then
+            NeedToKnow.BossStateBars = {}
+        end
+        NeedToKnow.BossStateBars[bar] = 1;
     end
 end
 
@@ -1202,11 +1383,12 @@ function NeedToKnow.ClearScripts(bar)
     bar:UnregisterEvent("UNIT_INVENTORY_CHANGED")
     bar:UnregisterEvent("UNIT_TARGET")
     bar:UnregisterEvent("UNIT_SPELLCAST_SENT")
-    bar:UnregisterEvent("PLAYER_REGEN_DISABLED")
-    bar:UnregisterEvent("PLAYER_REGEN_ENABLED")
     bar:UnregisterEvent("START_AUTOREPEAT_SPELL")
     bar:UnregisterEvent("STOP_AUTOREPEAT_SPELL")
     bar:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+    if NeedToKnow.BossStateBars then
+        NeedToKnow.BossStateBars[bar] = nil;
+    end
 end
 
 function NeedToKnow.Bar_OnMouseUp(self, button)
@@ -1218,17 +1400,17 @@ end
 
 function NeedToKnow.Bar_OnSizeChanged(self)
     if (self.bar1.cur_value) then SetStatusBarValue(self, self.bar1, self.bar1.cur_value) end
-    if (self.bar2) then SetStatusBarValue(self, self.bar2, self.bar2.cur_value, self.bar1.cur_value) end
+    if (self.bar2 and self.bar2.cur_value) then SetStatusBarValue(self, self.bar2, self.bar2.cur_value, self.bar1.cur_value) end
 end
 
-function NeedToKnow.Bar_OnEvent(self, event, ...)
+function NeedToKnow.Bar_OnEvent(self, event, unit, ...)
     if ( event == "COMBAT_LOG_EVENT_UNFILTERED") then
-        local combatEvent = select(2, ...)
+        local combatEvent = select(1, ...)
 
         if ( NEEDTOKNOW.AURAEVENTS[combatEvent] ) then
-            local guidTarget = select(8, ...)
+            local guidTarget = select(7, ...)
             if ( guidTarget == UnitGUID(self.unit) ) then
-                local idSpell, nameSpell = select(12, ...)
+                local idSpell, nameSpell = select(11, ...)
                 if (self.auraName:find(idSpell) or
                      self.auraName:find(nameSpell)) 
                 then 
@@ -1236,7 +1418,7 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
                 end
             end
         elseif ( combatEvent == "UNIT_DIED" ) then
-            local guidDeceased = select(8, ...) 
+            local guidDeceased = select(7, ...) 
             if ( guidDeceased == UnitGUID(self.unit) ) then
                 NeedToKnow.Bar_AuraCheck(self)
             end
@@ -1244,14 +1426,12 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
     elseif ( event == "PLAYER_TOTEM_UPDATE"  ) or
            ( event == "ACTIONBAR_UPDATE_COOLDOWN" ) or
            ( event == "SPELL_UPDATE_COOLDOWN" ) or
-           ( event == "SPELL_UPDATE_USABLE" ) or
-           ( event == "PLAYER_REGEN_ENABLED"  ) or
-           ( event == "PLAYER_REGEN_DISABLED"  )
+           ( event == "SPELL_UPDATE_USABLE" )  
     then
         NeedToKnow.Bar_AuraCheck(self)
-    elseif ( event == "UNIT_AURA" ) and ( select(1, ...) == self.unit ) then
+    elseif ( event == "UNIT_AURA" ) and ( unit == self.unit ) then
         NeedToKnow.Bar_AuraCheck(self)
-    elseif ( event == "UNIT_INVENTORY_CHANGED" and select(1, ...) == "player" ) then
+    elseif ( event == "UNIT_INVENTORY_CHANGED" and unit == "player" ) then
         NeedToKnow.UpdateWeaponEnchants()
         NeedToKnow.Bar_AuraCheck(self)
     elseif ( event == "PLAYER_TARGET_CHANGED" ) or ( event == "PLAYER_FOCUS_CHANGED" ) then
@@ -1259,15 +1439,15 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
             NeedToKnow.CheckCombatLogRegistration(self)
         end
         NeedToKnow.Bar_AuraCheck(self)
-    elseif ( event == "UNIT_TARGET" and select(1, ...) == "target" ) then 
+    elseif ( event == "UNIT_TARGET" and unit == "target" ) then 
         if self.unit == "targettarget" then
             NeedToKnow.CheckCombatLogRegistration(self)
         end
         NeedToKnow.Bar_AuraCheck(self)
-    elseif ( event == "UNIT_PET" and select(1, ...) == "player" ) then
+    elseif ( event == "UNIT_PET" and unit == "player" ) then
         NeedToKnow.Bar_AuraCheck(self)
     elseif ( event == "UNIT_SPELLCAST_SENT" ) then
-        local unit, spell = select(1, ...)
+        local spell = select(1, ...)
         if ( self.settings.bDetectExtends ) then
             -- FIXME: This really does not belong on the individual bar
             if unit == "player" then --and self.buffName == spell then
@@ -1279,22 +1459,13 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
                 end
             end
         end
-        if NeedToKnow.is_DK then
-            -- TODO: I hate that DKs have to pay this memory cost for every "spell" they ever cast
-            if unit == "player" then
-                if not NeedToKnow.last_sent then
-                    NeedToKnow.last_sent = {}
-                end
-                NeedToKnow.last_sent[spell] = GetTime()
-            end
-        end
     elseif ( event == "START_AUTOREPEAT_SPELL" ) then
         self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
     elseif ( event == "STOP_AUTOREPEAT_SPELL" ) then
         self:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
     elseif ( event == "UNIT_SPELLCAST_SUCCEEDED" ) then
-        local caster, spell = select(1,...)
-        if ( self.settings.bAutoShot and caster == "player" and spell == NEEDTOKNOW.AUTO_SHOT ) then
+        local spell = select(1,...)
+        if ( self.settings.bAutoShot and unit == "player" and spell == NEEDTOKNOW.AUTO_SHOT ) then
             local interval = UnitRangedDamage("player")
             self.tAutoShotCD = interval
             self.tAutoShotStart = GetTime()
@@ -1302,6 +1473,8 @@ function NeedToKnow.Bar_OnEvent(self, event, ...)
         end
     end
 end
+
+
 
 -- AuraCheck calls on this to compute the "text" of the bar
 -- It is separated out like this in part to be hooked by other addons
@@ -1387,6 +1560,14 @@ function NeedToKnow.CreateBar2(bar)
         bar.bar2:SetPoint("TOPLEFT", bar.bar1, "TOPRIGHT")
         bar.bar2:SetPoint("BOTTOM", bar, "BOTTOM")
         bar.bar2:SetWidth(bar:GetWidth())
+    end
+end
+
+function NeedToKnow.PrettyName(barSettings)
+    if ( barSettings.BuffOrDebuff == "EQUIPSLOT" ) then
+        return NEEDTOKNOW.ITEM_NAMES[tonumber(barSettings.AuraName)]
+    else
+        return barSettings.AuraName
     end
 end
 
@@ -2250,9 +2431,10 @@ function NeedToKnow.Bar_AuraCheck(bar)
             end
         end
         if ( bBlink and settings.blink_boss ) then
-            local lvl = UnitLevel(bar.unit)
-            if not lvl or lvl > 0 then
-                bBlink = false
+            if UnitIsFriend(bar.unit, "player") then
+                bBlink = NeedToKnow.bCombatWithBoss
+            else
+                bBlink = (UnitLevel(bar.unit) == -1)
             end
         end
         if ( bBlink ) then

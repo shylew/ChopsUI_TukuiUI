@@ -8,6 +8,30 @@ Thanks a bunch!
 
 NEEDTOKNOW = {};
 
+-- Seems like this should already exist somewhere
+NEEDTOKNOW.ITEM_NAMES = 
+{
+    HEADSLOT,
+    NECKSLOT,
+    SHOULDERSLOT,
+    SHIRTSLOT,
+    CHESTSLOT,
+    WAISTSLOT,
+    LEGSSLOT,
+    FEETSLOT,
+    WRISTSLOT,
+    HANDSSLOT,
+    FINGER0SLOT_UNIQUE,
+    FINGER1SLOT_UNIQUE,
+    TRINKET0SLOT_UNIQUE,
+    TRINKET1SLOT_UNIQUE,
+    BACKSLOT,
+    MAINHANDSLOT,
+    SECONDARYHANDSLOT,
+    RANGEDSLOT.."/"..RELICSLOT,
+    TABARDSLOT
+};
+
 -- Define defaults in enUS
     NEEDTOKNOW.BAR_TOOLTIP1 = "NeedToKnow";
     NEEDTOKNOW.BAR_TOOLTIP2 = "Right click bars to configure. More options in the Blizzard interface options menu. Type /needtoknow to lock and enable.";
@@ -15,8 +39,10 @@ NEEDTOKNOW = {};
     NEEDTOKNOW.RESIZE_TOOLTIP = "Click and drag to change size";
 
     NEEDTOKNOW.BARMENU_ENABLE = "Enable bar";
-    NEEDTOKNOW.BARMENU_CHOOSENAME = "Choose buff/debuff to time";
+    NEEDTOKNOW.BARMENU_CHOOSENAME = "Choose buff/debuff to time...";
+    NEEDTOKNOW.BARMENU_CHOOSESLOT = "Choose Equipment Slot...";
     NEEDTOKNOW.CHOOSENAME_DIALOG = "Enter the name of the buff or debuff to time with this bar"
+    NEEDTOKNOW.IMPORTEXPORT_DIALOG = "The current settings for the bar appear below.  To copy these settings to the clipboard, press Ctrl+C. To paste the last settings you copied (such as from another bar), press Ctrl+V. Clear this text to reset the bar to the defaults.";
     NEEDTOKNOW.CHOOSE_OVERRIDE_TEXT = "Normally, the name of the aura/item/spell that activated the bar is displayed.  By entering text here, you can override that text with something else.  Leave this blank to use the default behavior."
     NEEDTOKNOW.BARMENU_CHOOSEUNIT = "Unit to monitor";
     NEEDTOKNOW.BARMENU_PLAYER = "Player";
@@ -32,6 +58,15 @@ NEEDTOKNOW = {};
     NEEDTOKNOW.BARMENU_ONLYMINE = "Only show if cast by self";
     NEEDTOKNOW.BARMENU_BARCOLOR = "Bar color";
     NEEDTOKNOW.BARMENU_CLEARSETTINGS = "Clear settings";
+    NEEDTOKNOW.BARMENU_SHOW = "Show";
+    NEEDTOKNOW.BARMENU_SHOW_ICON = "Icon";
+    NEEDTOKNOW.BARMENU_SHOW_TEXT = "Aura Name";
+    NEEDTOKNOW.BARMENU_SHOW_COUNT = "Stack Count";
+    NEEDTOKNOW.BARMENU_SHOW_TIME = "Time Remaining";
+    NEEDTOKNOW.BARMENU_SHOW_SPARK = "Spark";
+    NEEDTOKNOW.BARMENU_SHOW_MYPIP = "Indicator If Mine";
+    NEEDTOKNOW.BARMENU_SHOW_TEXT_USER = "Override Aura Name...";
+
 
     NEEDTOKNOW.UIPANEL_SUBTEXT1 = "These options allow you to customize NeedToKnow's timer bar groups.";
 --    NEEDTOKNOW.UIPANEL_SUBTEXT2 = "Bars work when locked. When unlocked, you can move/size bar groups and right click individual bars for more settings. You can also type '/needtoknow' or '/ntk' to lock/unlock.";
@@ -80,7 +115,7 @@ NEEDTOKNOW = {};
     NEEDTOKNOW.BARMENU_TOTEM = "Totem";
     NEEDTOKNOW.BARMENU_CASTCD = "Spell Cooldown";
     NEEDTOKNOW.BARMENU_BUFFCD = "Internal Cooldown";
-    NEEDTOKNOW.BARMENU_USABLE = "Spell Usable";
+    NEEDTOKNOW.BARMENU_USABLE = "Conditional Spell";
     NEEDTOKNOW.BARMENU_EQUIPSLOT = "Equipment Slot";
     NEEDTOKNOW.CMD_HIDE = "hide";
     NEEDTOKNOW.CMD_PROFILE = "profile";
@@ -92,8 +127,8 @@ NEEDTOKNOW = {};
     NEEDTOKNOW.BARMENU_VISUALCASTTIME = "Visual Cast Time";
     NEEDTOKNOW.BARMENU_VCT_ENABLE = "Enable for this bar";
     NEEDTOKNOW.BARMENU_VCT_COLOR = "Overlay color";
-    NEEDTOKNOW.BARMENU_VCT_SPELL = "Choose cast time by spell";
-    NEEDTOKNOW.BARMENU_VCT_EXTRA = "Set additional time";
+    NEEDTOKNOW.BARMENU_VCT_SPELL = "Choose cast time by spell...";
+    NEEDTOKNOW.BARMENU_VCT_EXTRA = "Set additional time...";
     NEEDTOKNOW.BARMENU_MAIN_HAND = "Main Hand";
     NEEDTOKNOW.BARMENU_OFF_HAND = "Off Hand";
     NEEDTOKNOW.CHOOSE_VCT_SPELL_DIALOG = "Enter the name of a spell (in your spellbook) whose cast time will determine the base length of the visual cast time.  If left blank, the aura name will be used as the spell name.  To force this to be 0, type 0.";

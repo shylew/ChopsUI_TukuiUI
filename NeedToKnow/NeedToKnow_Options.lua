@@ -32,7 +32,7 @@ function NeedToKnow.SlashCommand(cmd)
             for k,t in pairs(NeedToKnow_Profiles) do
                 if t.name == profileName then
                     if key then
-                        printf("Warning! Ambiguity between account-wide and per-character profile.")
+                        print("Warning! Ambiguity between account-wide and per-character profile.")
                     end
                     key = k
                 end
@@ -46,7 +46,7 @@ function NeedToKnow.SlashCommand(cmd)
         else
             local spec = GetActiveTalentGroup()
             local profile = NeedToKnow.CharSettings.Specs[spec]
-            print("Current NeedToKnow profile is \""..profile.."\"") -- FIXME: localization!
+            print("Current NeedToKnow profile is \""..profile.."\"") -- LOCME!
         end
     else
         print("Unknown NeedToKnow command",cmd)
@@ -115,6 +115,9 @@ end
 function NeedToKnowOptions.GroupEnableButton_OnClick(self)
     local groupID = self:GetParent():GetID();
     if ( self:GetChecked() ) then
+        if groupID > NeedToKnow.ProfileSettings.nGroups then
+            NeedToKnow.ProfileSettings.nGroups = groupID
+        end
         NeedToKnow.ProfileSettings.Groups[groupID]["Enabled"] = true;
     else
         NeedToKnow.ProfileSettings.Groups[groupID]["Enabled"] = false;
@@ -203,8 +206,8 @@ function NeedToKnowOptions.UIPanel_Appearance_OnLoad(self)
     end
     self.Fonts.List.update = NeedToKnowOptions.UpdateBarFontDropDown
 
-    _G[panelName.."TexturesTitle"]:SetText("Texture:") -- FIXME localization
-    _G[panelName.."FontsTitle"]:SetText("Font:") -- FIXME localization
+    _G[panelName.."TexturesTitle"]:SetText("Texture:") -- LOCME
+    _G[panelName.."FontsTitle"]:SetText("Font:") -- LOCME
 end
 
 function NeedToKnowOptions.UIPanel_Appearance_OnShow(self)
@@ -334,7 +337,7 @@ function NeedToKnowOptions.RebuildProfileList(profilePanel)
             n = n + 1
             local profName
             if NeedToKnow_Globals.Profiles[profKey] == rProfile then
-                profName = 'Account: '..rProfile.name -- FIXME: Localization
+                profName = 'Account: '..rProfile.name -- LOCME
             else
                 profName = 'Character: '..rProfile.name -- Fixme: Character-Server:
             end
@@ -456,10 +459,10 @@ function NeedToKnowOptions.UIPanel_Profile_DeleteSelected(panel)
             else
                 NeedToKnow_Profiles[k] = nil;
                 if NeedToKnow_Globals.Profiles[k] then 
-                    print("NeedToKnow: deleted account-wide profile", NeedToKnow_Globals.Profiles[k].name) -- FIXME: Localization
+                    print("NeedToKnow: deleted account-wide profile", NeedToKnow_Globals.Profiles[k].name) -- LOCME
                     NeedToKnow_Globals.Profiles[k] = nil;
                 elseif NeedToKnow_CharSettings.Profiles[k] then 
-                    print("NeedToKnow: deleted character profile", NeedToKnow_CharSettings.Profiles[k].name) -- FIXME: Localization
+                    print("NeedToKnow: deleted character profile", NeedToKnow_CharSettings.Profiles[k].name) -- LOCME
                     NeedToKnow_CharSettings.Profiles[k] = nil;
                 end
                 NeedToKnowOptions.RebuildProfileList(panel)
@@ -672,7 +675,8 @@ StaticPopupDialogs["NEEDTOKNOW.CHOOSENAME_DIALOG"] = {
     button1 = ACCEPT,
     button2 = CANCEL,
     hasEditBox = 1,
-    maxLetters = 255,
+    editBoxWidth = 300,
+    --maxLetters = 255,
     OnAccept = function(self)
         local text = self.editBox:GetText();
         local variable = self.variable;
@@ -708,10 +712,12 @@ NeedToKnowRMB.BarMenu_MoreOptions = {
     { VariableName = "Options", MenuText = "Settings", Type = "Submenu" },
     {},
     { VariableName = "TimeFormat", MenuText = NEEDTOKNOW.BARMENU_TIMEFORMAT, Type = "Submenu" }, 
-    { VariableName = "Show", MenuText = "Show...", Type = "Submenu" }, -- FIXME: Localization
+    { VariableName = "Show", MenuText = NEEDTOKNOW.BARMENU_SHOW, Type = "Submenu" }, 
     { VariableName = "VisualCastTime", MenuText = NEEDTOKNOW.BARMENU_VISUALCASTTIME, Type = "Submenu" },
-    { VariableName = "BlinkSettings", MenuText = "Blink Settings", Type = "Submenu" }, -- FIXME: Localization
+    { VariableName = "BlinkSettings", MenuText = "Blink Settings", Type = "Submenu" }, -- LOCME
     { VariableName = "BarColor", MenuText = NEEDTOKNOW.BARMENU_BARCOLOR, Type = "Color" },
+    {},
+    { VariableName = "ImportExport", MenuText = "Import/Export Bar Settings", Type = "Dialog", DialogText = "IMPORTEXPORT_DIALOG" },
 }
 
 NeedToKnowRMB.BarMenu_SubMenus = {
@@ -740,54 +746,68 @@ NeedToKnowRMB.BarMenu_SubMenus = {
         { Setting = "mhand", MenuText = NEEDTOKNOW.BARMENU_MAIN_HAND },
         { Setting = "ohand", MenuText = NEEDTOKNOW.BARMENU_OFF_HAND },
     },
+    DebuffUnit = {
+        { Setting = "player", MenuText = NEEDTOKNOW.BARMENU_PLAYER }, 
+        { Setting = "target", MenuText = NEEDTOKNOW.BARMENU_TARGET }, 
+        { Setting = "targettarget", MenuText = NEEDTOKNOW.BARMENU_TARGETTARGET }, 
+        { Setting = "focus", MenuText = NEEDTOKNOW.BARMENU_FOCUS }, 
+        { Setting = "pet", MenuText = NEEDTOKNOW.BARMENU_PET }, 
+        { Setting = "vehicle", MenuText = NEEDTOKNOW.BARMENU_VEHICLE },
+    },
     Opt_HELPFUL = {
       { VariableName = "Unit", MenuText = NEEDTOKNOW.BARMENU_CHOOSEUNIT, Type = "Submenu" },
-      { VariableName = "bDetectExtends", MenuText = "Track duration increases" }, -- FIXME: Localization
+      { VariableName = "bDetectExtends", MenuText = "Track duration increases" }, -- LOCME
+      { VariableName = "OnlyMine", MenuText = NEEDTOKNOW.BARMENU_ONLYMINE },
+      { VariableName = "show_all_stacks", MenuText = "Sum stacks from all casters" },
+    },
+    Opt_HARMFUL = {
+      { VariableName = "DebuffUnit", MenuText = NEEDTOKNOW.BARMENU_CHOOSEUNIT, Type = "Submenu" },
+      { VariableName = "bDetectExtends", MenuText = "Track duration increases" }, -- LOCME
       { VariableName = "OnlyMine", MenuText = NEEDTOKNOW.BARMENU_ONLYMINE },
       { VariableName = "show_all_stacks", MenuText = "Sum stacks from all casters" },
     },
     Opt_TOTEM = {},
     Opt_CASTCD = 
     {
-        { VariableName = "append_cd", MenuText = "Append \"CD\"" }, -- FIXME: Localization
+        { VariableName = "append_cd", MenuText = "Append \"CD\"" }, -- LOCME
     },
     Opt_EQUIPSLOT = 
     {
-        { VariableName = "append_cd", MenuText = "Append \"CD\"" }, -- FIXME: Localization
+        { VariableName = "append_cd", MenuText = "Append \"CD\"" }, -- LOCME
     },
     Opt_BUFFCD = 
     {
         { VariableName = "buffcd_duration", MenuText = "Cooldown duration...", Type = "Dialog", DialogText = "BUFFCD_DURATION_DIALOG", Numeric=true },
         { VariableName = "buffcd_reset_spells", MenuText = "Reset on buff...", Type = "Dialog", DialogText = "BUFFCD_RESET_DIALOG" },
-        { VariableName = "append_cd", MenuText = "Append \"CD\"" }, -- FIXME: Localization
+        { VariableName = "append_cd", MenuText = "Append \"CD\"" }, -- LOCME
     },
     Opt_USABLE =
     {
         { VariableName = "usable_duration", MenuText = "Usable duration...",  Type = "Dialog", DialogText = "USABLE_DURATION_DIALOG", Numeric=true },
-        { VariableName = "append_usable", MenuText = "Append \"Usable\"" }, -- FIXME: Localization
+        { VariableName = "append_usable", MenuText = "Append \"Usable\"" }, -- LOCME
     },
-    --EquipmentSlotList =
-    --{
-        --{ VariableName = "AuraName", Setting = "1", MenuText = "Head" },
-        --{ VariableName = "AuraName", Setting = "2", MenuText = "Neck" },
-        --{ VariableName = "AuraName", Setting = "3", MenuText = "Shoulder" },
-        --{ VariableName = "AuraName", Setting = "4", MenuText = "Shirt" },
-        --{ VariableName = "AuraName", Setting = "5", MenuText = "Chest" },
-        --{ VariableName = "AuraName", Setting = "6", MenuText = "Belt" },
-        --{ VariableName = "AuraName", Setting = "7", MenuText = "Legs" },
-        --{ VariableName = "AuraName", Setting = "8", MenuText = "Feet" },
-        --{ VariableName = "AuraName", Setting = "9", MenuText = "Wrist" },
-        --{ VariableName = "AuraName", Setting = "10", MenuText = "Gloves" },
-        --{ VariableName = "AuraName", Setting = "11", MenuText = "Ring1" },
-        --{ VariableName = "AuraName", Setting = "12", MenuText = "Ring2" },
-        --{ VariableName = "AuraName", Setting = "13", MenuText = "Trinket1" },
-        --{ VariableName = "AuraName", Setting = "14", MenuText = "Trinket2" },
-        --{ VariableName = "AuraName", Setting = "15", MenuText = "Back" },
-        --{ VariableName = "AuraName", Setting = "16", MenuText = "Main Hand" },
-        --{ VariableName = "AuraName", Setting = "17", MenuText = "Off Hand" },
-        --{ VariableName = "AuraName", Setting = "18", MenuText = "Ranged/Relic" },
-        --{ VariableName = "AuraName", Setting = "19", MenuText = "Tabard" },
-    --},
+    EquipmentSlotList =
+    {
+        { Setting = "1", MenuText = NEEDTOKNOW.ITEM_NAMES[1] },
+        { Setting = "2", MenuText = NEEDTOKNOW.ITEM_NAMES[2] },
+        { Setting = "3", MenuText = NEEDTOKNOW.ITEM_NAMES[3] },
+        { Setting = "4", MenuText = NEEDTOKNOW.ITEM_NAMES[4] },
+        { Setting = "5", MenuText = NEEDTOKNOW.ITEM_NAMES[5] },
+        { Setting = "6", MenuText = NEEDTOKNOW.ITEM_NAMES[6] },
+        { Setting = "7", MenuText = NEEDTOKNOW.ITEM_NAMES[7] },
+        { Setting = "8", MenuText = NEEDTOKNOW.ITEM_NAMES[8] },
+        { Setting = "9", MenuText = NEEDTOKNOW.ITEM_NAMES[9] },
+        { Setting = "10", MenuText = NEEDTOKNOW.ITEM_NAMES[10] },
+        { Setting = "11", MenuText = NEEDTOKNOW.ITEM_NAMES[11] },
+        { Setting = "12", MenuText = NEEDTOKNOW.ITEM_NAMES[12] },
+        { Setting = "13", MenuText = NEEDTOKNOW.ITEM_NAMES[13] },
+        { Setting = "14", MenuText = NEEDTOKNOW.ITEM_NAMES[14] },
+        { Setting = "15", MenuText = NEEDTOKNOW.ITEM_NAMES[15] },
+        { Setting = "16", MenuText = NEEDTOKNOW.ITEM_NAMES[16] },
+        { Setting = "17", MenuText = NEEDTOKNOW.ITEM_NAMES[17] },
+        { Setting = "18", MenuText = NEEDTOKNOW.ITEM_NAMES[18] },
+        { Setting = "19", MenuText = NEEDTOKNOW.ITEM_NAMES[19] },
+    },
     VisualCastTime = {
         { VariableName = "vct_enabled", MenuText = NEEDTOKNOW.BARMENU_VCT_ENABLE },
         { VariableName = "vct_color", MenuText = NEEDTOKNOW.BARMENU_VCT_COLOR, Type = "Color" },
@@ -795,24 +815,28 @@ NeedToKnowRMB.BarMenu_SubMenus = {
         { VariableName = "vct_extra", MenuText = NEEDTOKNOW.BARMENU_VCT_EXTRA, Type = "Dialog", DialogText = "CHOOSE_VCT_EXTRA_DIALOG", Numeric=true },
     },
     Show = {
-        { VariableName = "show_icon", MenuText = "Icon" },
-        { VariableName = "show_text", MenuText = "Aura Name" },
-        { VariableName = "show_count", MenuText = "Stack Count" },
-        { VariableName = "show_time", MenuText = "Time Remaining" },
-        { VariableName = "show_spark", MenuText = "Spark" },
-        { VariableName = "show_mypip", MenuText = "Indicator if mine" },
-        { VariableName = "show_text_user", MenuText = "Override Aura Name", Type = "Dialog", DialogText = "CHOOSE_OVERRIDE_TEXT", Checked = function(settings) return "" ~= settings.show_text_user end },
+        { VariableName = "show_icon",      MenuText = NEEDTOKNOW.BARMENU_SHOW_ICON },
+        { VariableName = "show_text",      MenuText = NEEDTOKNOW.BARMENU_SHOW_TEXT },
+        { VariableName = "show_count",     MenuText = NEEDTOKNOW.BARMENU_SHOW_COUNT },
+        { VariableName = "show_time",      MenuText = NEEDTOKNOW.BARMENU_SHOW_TIME },
+        { VariableName = "show_spark",     MenuText = NEEDTOKNOW.BARMENU_SHOW_SPARK },
+        { VariableName = "show_mypip",     MenuText = NEEDTOKNOW.BARMENU_SHOW_MYPIP },
+        { VariableName = "show_text_user", MenuText = NEEDTOKNOW.BARMENU_SHOW_TEXT_USER, Type = "Dialog", DialogText = "CHOOSE_OVERRIDE_TEXT", Checked = function(settings) return "" ~= settings.show_text_user end },
     },
     BlinkSettings = {
         { VariableName = "blink_enabled", MenuText = NEEDTOKNOW.BARMENU_VCT_ENABLE },
         { VariableName = "blink_label", MenuText = "Bar text while blinking...", Type = "Dialog", DialogText="CHOOSE_BLINK_TITLE_DIALOG" }, 
-        { VariableName = "MissingBlink", MenuText = "Bar color when blinking...", Type = "Color" }, -- FIXME: Localization
-        { VariableName = "blink_ooc", MenuText = "Blink out of combat" }, -- FIXME: Localization
-        { VariableName = "blink_boss", MenuText = "Blink only for bosses" }, -- FIXME: Localization
+        { VariableName = "MissingBlink", MenuText = "Bar color when blinking...", Type = "Color" }, -- LOCME
+        { VariableName = "blink_ooc", MenuText = "Blink out of combat" }, -- LOCME
+        { VariableName = "blink_boss", MenuText = "Blink only for bosses" }, -- LOCME
     },
 };
 
-NeedToKnowRMB.BarMenu_SubMenus.Opt_HARMFUL = NeedToKnowRMB.BarMenu_SubMenus.Opt_HELPFUL;
+NeedToKnowRMB.VariableRedirects = 
+{
+  DebuffUnit = "Unit",
+  EquipmentSlotList = "AuraName",
+}
 
 function NeedToKnowRMB.ShowMenu(bar)
     NeedToKnowRMB.CurrentBar["barID"] = bar:GetID();
@@ -833,15 +857,16 @@ function NeedToKnowRMB.BarMenu_AddButton(barSettings, i_desc, i_parent)
     info = UIDropDownMenu_CreateInfo();
     local item_type = i_desc["Type"];
     info.text = i_desc["MenuText"];
-    info.value = i_desc["VariableName"];
+    local varSettings
     if ( nil ~= i_desc["Setting"]) then
-        if ( nil == info.value ) then
-            info.value = i_parent;
-        end
-        item_type = "SetVar";
-    end;
+        item_type = "SetVar"
+        local v = NeedToKnowRMB.VariableRedirects[i_parent] or i_parent
+        varSettings = barSettings[v]
+    else
+        info.value = i_desc["VariableName"];
+        varSettings = barSettings[info.value];
+    end
     
-    local varSettings = barSettings[info.value];
     if ( not varSettings and (item_type == "Check" or item_type == "Color") ) then
         print (string.format("NTK: Could not find %s in", info.value), barSettings); 
         return
@@ -856,8 +881,10 @@ function NeedToKnowRMB.BarMenu_AddButton(barSettings, i_desc, i_parent)
             info.checked = b
         end
     end
-    --info.notCheckable = true; -- Doesn't prevent checking, just formats the line differently
+
     info.keepShownOnClick = true;
+    info.notCheckable = false; -- indent everything
+    info.hideUnCheck = true; -- but hide the empty checkbox/radio
 
     if ( not item_type and not text and not info.value ) then
         info.func = NeedToKnowRMB.BarMenu_IgnoreToggle;
@@ -865,18 +892,16 @@ function NeedToKnowRMB.BarMenu_AddButton(barSettings, i_desc, i_parent)
     elseif ( nil == item_type or item_type == "Check" ) then
         info.func = NeedToKnowRMB.BarMenu_ToggleSetting;
         info.checked = (nil ~= varSettings and varSettings);
-        info.notCheckable = false;
+        info.hideUnCheck = nil;
         info.isNotRadio = true;
     elseif ( item_type == "SetVar" ) then
         info.func = NeedToKnowRMB.BarMenu_ChooseSetting;
         info.value = i_desc["Setting"];
         info.checked = (varSettings == info.value);
-        info.notCheckable = false;
+        info.hideUnCheck = nil;
         info.keepShownOnClick = false;
     elseif ( item_type == "Submenu" ) then
         info.hasArrow = true;
-        --info.notCheckable = true;
-        -- The above doesn't really do what we want, so hack it
         info.isNotRadio = true;
         info.func = NeedToKnowRMB.BarMenu_IgnoreToggle;
     elseif ( item_type == "Dialog" ) then
@@ -900,15 +925,20 @@ function NeedToKnowRMB.BarMenu_AddButton(barSettings, i_desc, i_parent)
   
     UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
     
+    -- Code to get the button copied from UIDropDownMenu_AddButton
+    local level = UIDROPDOWNMENU_MENU_LEVEL;
+    local listFrame = _G["DropDownList"..level];
+    local index = listFrame and (listFrame.numButtons) or 1;
+    local listFrameName = listFrame:GetName();
+    local buttonName = listFrameName.."Button"..index;
     if ( item_type == "Color" ) then
         -- Sadly, extraInfo isn't a field propogated to the button
-        -- Code to get the button copied from UIDropDownMenu_AddButton
-        local level = UIDROPDOWNMENU_MENU_LEVEL;
-        local listFrame = _G["DropDownList"..level];
-        local index = listFrame and (listFrame.numButtons) or 1;
-        local listFrameName = listFrame:GetName();
-        local button = _G[listFrameName.."Button"..index];
+        local button = _G[buttonName];
         button.extraInfo = info.value;
+    end
+    if ( info.hideUnCheck ) then
+        local checkBG = _G[buttonName.."UnCheck"];
+        checkBG:Hide();
     end
 end
 
@@ -940,9 +970,11 @@ function NeedToKnowRMB.BarMenu_Initialize()
                 local info = UIDropDownMenu_CreateInfo();
                 info.text = title;
                 info.isTitle = true;
+                info.notCheckable = true; -- unindent
                 UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
             end
         end
+        
         local subMenus = NeedToKnowRMB.BarMenu_SubMenus;
         for index, value in ipairs(subMenus[UIDROPDOWNMENU_MENU_VALUE]) do
             NeedToKnowRMB.BarMenu_AddButton(barSettings, value, UIDROPDOWNMENU_MENU_VALUE);
@@ -957,8 +989,9 @@ function NeedToKnowRMB.BarMenu_Initialize()
     -- show name
     if ( barSettings.AuraName ) and ( barSettings.AuraName ~= "" ) then
         local info = UIDropDownMenu_CreateInfo();
-        info.text = barSettings.AuraName;
+        info.text = NeedToKnow.PrettyName(barSettings);
         info.isTitle = true;
+        info.notCheckable = true; --unindent
         UIDropDownMenu_AddButton(info);
     end
 
@@ -966,16 +999,6 @@ function NeedToKnowRMB.BarMenu_Initialize()
     for index, value in ipairs(moreOptions) do
         NeedToKnowRMB.BarMenu_AddButton(barSettings, moreOptions[index]);
     end
-
-    info = UIDropDownMenu_CreateInfo();
-    info.disabled = true;
-    UIDropDownMenu_AddButton(info);
-
-    -- clear settings
-    info = UIDropDownMenu_CreateInfo();
-    info.text = NEEDTOKNOW.BARMENU_CLEARSETTINGS;
-    info.func = NeedToKnowRMB.BarMenu_ClearSettings;
-    UIDropDownMenu_AddButton(info);
 
     NeedToKnowRMB.BarMenu_UpdateSettings(barSettings);
 end
@@ -1027,7 +1050,12 @@ function NeedToKnowRMB.BarMenu_GetItem(i_level, i_valueName)
     local n = listFrame.numButtons;
     for index=1,n do
         local button = _G[listFrameName.."Button"..index];
-        local txt = button.value;
+        local txt;
+        if ( type(button.value) == "table" ) then
+            txt = button.value.variable;
+        else
+            txt = button.value;
+        end
         if ( txt == i_valueName ) then
             return button;
         end
@@ -1068,6 +1096,8 @@ end
 
 function NeedToKnowRMB.BarMenu_UpdateSettings(barSettings)
     local type = barSettings.BuffOrDebuff;
+    
+    -- Set up the options submenu to the corrent name and contents
     local Opt = NeedToKnowRMB.BarMenu_SubMenus["Opt_"..type];
     if ( not Opt ) then Opt = {} end
     NeedToKnowRMB.BarMenu_SubMenus.Options = Opt;
@@ -1083,8 +1113,31 @@ function NeedToKnowRMB.BarMenu_UpdateSettings(barSettings)
             button:Enable();
             arrow:Show();
         end
+        -- LOCME
         lbl = lbl .. NEEDTOKNOW["BARMENU_"..type].. " Settings";
         button:SetText(lbl);
+    end
+
+    -- Set up the aura name menu option to behave the right way
+    if ( type == "EQUIPSLOT" ) then
+        button = NeedToKnowRMB.BarMenu_GetItem(1, "AuraName");
+        if ( button ) then
+            local arrow = _G[button:GetName().."ExpandArrow"]
+            arrow:Show();
+            button.hasArrow = true
+            button.oldvalue = button.value
+            button.value = "EquipmentSlotList"
+            button:SetText(NEEDTOKNOW.BARMENU_CHOOSESLOT)
+        end
+    else
+        button = NeedToKnowRMB.BarMenu_GetItem(1, "EquipmentSlotList");
+        if ( button ) then
+            local arrow = _G[button:GetName().."ExpandArrow"]
+            arrow:Hide();
+            button.hasArrow = false
+            if button.oldvalue then button.value = button.oldvalue end
+            button:SetText(NEEDTOKNOW.BARMENU_CHOOSENAME)
+        end
     end
 end
 
@@ -1092,10 +1145,11 @@ function NeedToKnowRMB.BarMenu_ChooseSetting(self, a1, a2, checked)
     local groupID = NeedToKnowRMB.CurrentBar["groupID"];
     local barID = NeedToKnowRMB.CurrentBar["barID"];
     local barSettings = NeedToKnow.ProfileSettings.Groups[groupID]["Bars"][barID]
-    barSettings[UIDROPDOWNMENU_MENU_VALUE] = self.value;
+    local v = NeedToKnowRMB.VariableRedirects[UIDROPDOWNMENU_MENU_VALUE] or UIDROPDOWNMENU_MENU_VALUE
+    barSettings[v] = self.value;
     NeedToKnow.Bar_Update(groupID, barID);
     
-    if ( UIDROPDOWNMENU_MENU_VALUE == "BuffOrDebuff" ) then
+    if ( v == "BuffOrDebuff" ) then
         NeedToKnowRMB.BarMenu_UpdateSettings(barSettings)
     end
 end
@@ -1121,6 +1175,232 @@ function NeedToKnowRMB.EditBox_Numeric_OnTextChanged(self, isUserInput)
     end
 end
 
+NeedToKnowIE = {}
+function NeedToKnowIE.CombineKeyValue(key,value)
+    local vClean = value
+    if type(vClean) == "string" and value:byte(1) ~= 123 then
+        if (tostring(tonumber(vClean)) == vClean) or vClean == "true" or vClean == "false" then
+            vClean = '"' .. vClean .. '"'
+        elseif (vClean:find(",") or vClean:find("}") or vClean:byte(1) == 34) then
+            vClean = '"' .. tostring(value):gsub('"', '\\"') .. '"'
+        end
+    end
+
+    if key then
+        -- not possible for key to contain = right now, so we don't have to sanitize it
+        return key .. "=" .. tostring(vClean)
+    else
+        return vClean
+    end
+end
+
+function NeedToKnowIE.TableToString(v)
+    local i = 1
+    local ret= "{"
+    for index, value in pairs(v) do
+        if i ~= 1 then
+            ret = ret .. ","
+        end
+        local k
+        if index ~= i then
+            k = NEEDTOKNOW.SHORTENINGS[index] or index 
+        end
+        if  type(value) == "table" then
+            value = NeedToKnowIE.TableToString(value)
+        end
+        ret = ret .. NeedToKnowIE.CombineKeyValue(k, value)
+        i = i+1;
+    end
+    ret = ret .. "}"
+    return ret
+end
+
+function NeedToKnowIE.ExportBarSettingsToString(barSettings)
+    local pruned = CopyTable(barSettings)
+    NeedToKnow.RemoveDefaultValues(pruned, NEEDTOKNOW.BAR_DEFAULTS)
+    return 'bv1:' .. NeedToKnowIE.TableToString(pruned);
+end
+
+--[[ Test Cases
+/script MemberDump( NeedToKnowIE.StringToTable( '{a,b,c}' ) )
+    members
+      1 a
+      2 b
+      3 c
+
+/script MemberDump( NeedToKnowIE.StringToTable( '{Aura=Frost Fever,Unit=target,Clr={g=0.4471,r=0.2784},Typ=HARMFUL}' ) )
+    members
+      BuffOrDebuff HARMFUL
+      BarColor table: 216B04C0
+      |  g 0.4471
+      |  r 0.2784
+      AuraName Frost Fever
+      Unit target
+
+/script MemberDump( NeedToKnowIE.StringToTable( '{"a","b","c"}' ) )
+    members
+      1 a
+      2 b
+      3 c
+
+/script MemberDump( NeedToKnowIE.StringToTable( '{"a,b","b=c","{c={d}}"}' ) )
+    members
+      1 a,b
+      2 b=c
+      3 {c={d}}
+
+/script local t = {'\\",\'','}'} local p = NeedToKnowIE.TableToString(t) print (p) MemberDump( NeedToKnowIE.StringToTable( p ) )
+    {"\\",'","}"}
+    members
+      1 \",'
+      2 }
+
+/script local p = NeedToKnowIE.TableToString( {} ) print (p) MemberDump( NeedToKnowIE.StringToTable( p ) )
+    {}
+    members
+
+    I don't think this can come up, but might as well be robust
+/script local p = NeedToKnowIE.TableToString( {{{}}} ) print (p) MemberDump( NeedToKnowIE.StringToTable( p ) )
+    {{{}}}
+    members
+      1 table: 216A2428
+      |  1 table: 216A0510
+
+    I don't think this can come up, but might as well be robust
+/script local p = NeedToKnowIE.TableToString( {{{"a"}}} ) print (p) MemberDump( NeedToKnowIE.StringToTable( p ) )
+    {{{a}}}
+    members
+      1 table: 27D68048
+      |  1 table: 27D68098
+      |  |  1 a
+
+    User Error                                   1234567890123456789012
+/script MemberDump( NeedToKnowIE.StringToTable( '{"a,b","b=c","{c={d}}",{' ) )
+    Unexpected end of string
+    nil
+
+    User Error                                   1234567890123456789012
+/script MemberDump( NeedToKnowIE.StringToTable( '{"a,b","b=c""{c={d}}"' ) )
+    Illegal quote at 12
+    nil
+]]--
+function NeedToKnowIE.StringToTable(text, ofs)
+    local cur = ofs or 1
+
+    if text:byte(cur+1) == 125 then
+        return {},cur+1
+    end
+
+    local i = 0
+    local ret = {}
+    while text:byte(cur) ~= 125 do
+        if not text:byte(cur) then
+            print("Unexpected end of string")
+            return nil,nil
+        end
+        i = i + 1
+        cur = cur + 1 -- advance past the { or ,
+        local hasKey, eq, delim
+        -- If it's not a quote or a {, it should be a key+equals or value+delimeter
+        if text:byte(cur) ~= 34 and text:byte(cur) ~= 123 then 
+            eq = text:find("=", cur)
+            local comma = text:find(",", cur) 
+            delim = text:find("}", cur) or comma
+            if comma and delim > comma then
+                delim = comma 
+            end
+
+            if not delim then 
+                print("Unexpected end of string")
+                return nil, nil
+            end
+            hasKey = (eq and eq < delim)
+        end
+
+        local k,v
+        if not hasKey then
+            k = i
+        else
+            k = text:sub(cur,eq-1)
+            k = NEEDTOKNOW.LENGTHENINGS[k] or k
+            if not k or k == "" then
+                print("Error parsing key at", cur)
+                return nil,nil
+            end
+            cur = eq+1
+        end
+
+        if not text:byte(cur) then 
+            print("Unexpected end of string")
+            return nil,nil
+        elseif text:byte(cur) == 123 then -- '{'
+            v, cur = NeedToKnowIE.StringToTable(text, cur)
+            if not v then return nil,nil end
+            cur = cur+1
+        else
+            if text:byte(cur) == 34 then -- '"'
+                -- find the closing quote
+                local endq = cur
+                delim=nil
+                while not delim do
+                    endq = text:find('"', endq+1)
+                    if not endq then
+                        print("Could not find closing quote begun at", cur)
+                        return nil, nil
+                    end
+                    if text:byte(endq-1) ~= 92 then -- \
+                        delim = endq+1
+                        if text:byte(delim) ~= 125 and text:byte(delim) ~= 44 then
+                            print("Illegal quote at", endq)
+                            return nil, nil
+                        end
+                    end
+                end
+                v = text:sub(cur+1,delim-2)
+                v = gsub(v, '\\"', '"')
+            else
+                v = text:sub(cur,delim-1)
+                local n = tonumber(v)
+                if tostring(n) == v  then
+                    v = n
+                elseif v == "true" then
+                    v = true
+                elseif v == "false" then
+                    v = false
+                end
+            end
+            if v==nil or v == "" then
+                print("Error parsing value at",cur)
+            end
+            cur = delim
+        end
+
+        ret[k] = v
+    end
+
+    return ret,cur
+end
+
+function NeedToKnowIE.ImportBarSettingsFromString(text, bars, barID)
+    local pruned
+    if text and text ~= "" then
+        local ver, packed = text:match("bv(%d+):(.*)")
+        if not ver then
+            print("Could not find bar settings header")
+        elseif not packed then
+            print("Could not find bar settings")
+        end
+        pruned = NeedToKnowIE.StringToTable(packed)
+    else
+        pruned = {}
+    end
+
+    if pruned then
+        NeedToKnow.AddDefaultsToTable(pruned, NEEDTOKNOW.BAR_DEFAULTS)
+        bars[barID] = pruned
+    end
+end
+
 function NeedToKnowRMB.BarMenu_ShowNameDialog(self, a1, a2, checked)
     StaticPopupDialogs["NEEDTOKNOW.CHOOSENAME_DIALOG"].text = NEEDTOKNOW[self.value.text];
     local dialog = StaticPopup_Show("NEEDTOKNOW.CHOOSENAME_DIALOG");
@@ -1130,12 +1410,6 @@ function NeedToKnowRMB.BarMenu_ShowNameDialog(self, a1, a2, checked)
     local groupID = NeedToKnowRMB.CurrentBar["groupID"];
     local barID = NeedToKnowRMB.CurrentBar["barID"];
     local barSettings = NeedToKnow.ProfileSettings.Groups[groupID]["Bars"][barID];
-    local curval;
-    if ( dialog.variable ~= "ImportExport" ) then
-        curval = barSettings[dialog.variable];
---    else
---        curval = NeedToKnow.ExportSettingsToString(barSettings);
-    end
 
     local numeric = self.value.numeric or false;
     -- TODO: There has to be a better way to do this, this has pretty bad user  feel
@@ -1149,7 +1423,12 @@ function NeedToKnowRMB.BarMenu_ShowNameDialog(self, a1, a2, checked)
     end
     
     edit:SetFocus();
-    edit:SetText(curval);
+    if ( dialog.variable ~= "ImportExport" ) then
+        edit:SetText( barSettings[dialog.variable] );
+    else
+        edit:SetText( NeedToKnowIE.ExportBarSettingsToString(barSettings) );
+        edit:HighlightText();
+    end
 end
 
 function NeedToKnowRMB.BarMenu_ChooseName(text, variable)
@@ -1158,22 +1437,26 @@ function NeedToKnowRMB.BarMenu_ChooseName(text, variable)
     local barSettings = NeedToKnow.ProfileSettings.Groups[groupID]["Bars"][barID];
     if ( variable ~= "ImportExport" ) then
         barSettings[variable] = text;
---    else
---        NeedToKnow.ImportSettingsFromString(text, barSettings);
+    else
+        NeedToKnowIE.ImportBarSettingsFromString(text, NeedToKnow.ProfileSettings.Groups[groupID]["Bars"], barID);
     end
 
     NeedToKnow.Bar_Update(groupID, barID);
 end
 
-function MemberDump(v, bIndex, filter)
-    if not v then 
+function MemberDump(v, bIndex, filter, indent, recurse)
+    if v == nil then 
         print("nil")
         return
     elseif type(v) == "table" then
-    print("members")
+    if not indent then 
+        indent = " " 
+        print("members")
+    end
     for index, value in pairs(v) do
         if (not filter) or (type(index) == "string" and index:find(filter)) then
-            print(" ", index, value);
+            print(indent, index, value);
+            if (recurse and type(value) == "table") then MemberDump(value, nil, nil, indent.." | ",true) end
         end
     end
     local mt = getmetatable(v)
@@ -1181,20 +1464,21 @@ function MemberDump(v, bIndex, filter)
         print("metatable")
         for index, value in pairs(mt) do
             if (not filter) or (type(index) == "string" and index:find(filter)) then
-                print(" ", index, value);
+                print(indent, index, value);
             end
         end
         if ( mt.__index and bIndex) then
             print("__index")
             for index, value in pairs(mt.__index) do
                 if (not filter) or (type(index) == "string" and index:find(filter)) then
-                    print(" ", index, value);
+                    print(indent, index, value);
                 end
             end
         end
     end
     else
-        print(v)
+        if not indent then indent = "" end
+        print(indent,v)
     end
     
 end
@@ -1229,14 +1513,6 @@ function NeedToKnowRMB.BarMenu_CancelColor(previousValues)
         varSettings.a = 1 - previousValues.opacity;
         NeedToKnow.Bar_Update(groupID, barID);
     end
-end
-
-function NeedToKnowRMB.BarMenu_ClearSettings()
-    local groupID = NeedToKnowRMB.CurrentBar["groupID"];
-    local barID = NeedToKnowRMB.CurrentBar["barID"];
-    NeedToKnow.ProfileSettings.Groups[groupID]["Bars"][barID] = CopyTable(NEEDTOKNOW.BAR_DEFAULTS);
-    NeedToKnow.Bar_Update(groupID, barID);
-    CloseDropDownMenus();
 end
 
 
