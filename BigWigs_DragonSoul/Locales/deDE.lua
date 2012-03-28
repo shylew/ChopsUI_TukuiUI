@@ -19,6 +19,7 @@ if L then
 
 	L.ball = "Leere der Apokalypse"
 	L.ball_desc = "Leere der Apokalypse, welche von den Spielern abprallt und den Boss schwächt."
+	L.ball_yell = "Gul'kafh an'qov N'Zoth."
 
 	L.bounce = "Abprallen der Leerenkugel"
 	L.bounce_desc = "Zählt, wie häufig die Leerenkugel abprallt."
@@ -110,10 +111,8 @@ L = BigWigs:NewBossLocale("Spine of Deathwing", "deDE")
 if L then
 	L.engage_trigger = "Die Platten! Es zerreißt ihn! Zerlegt die Platten und wir können ihn vielleicht runterbringen."
 
-	L.left_start = "gleich nach links rollen"
-	L.right_start = "gleich nach rechts rollen"
-	L.left = "rollt nach links"
-	L.right = "rollt nach rechts"
+	L.about_to_roll = "gleich nach"
+	L.rolling = "rollt nach"
 	L.not_hooked = "DU bist >NICHT< befestigt!"
 	L.roll_message = "Er rollt, rollt, rollt!"
 	L.level_trigger = "stabilisiert sich"
@@ -130,7 +129,7 @@ L = BigWigs:NewBossLocale("Madness of Deathwing", "deDE")
 if L then
 	L.engage_trigger = "Ihr habt NICHTS erreicht. Ich werde Eure Welt in STÜCKE reißen."
 
-	L.impale_desc = "Nur für Tanks. "..select(2,EJ_GetSectionInfo(4114))
+	L.smalltentacles_desc = "Bei 70% und 40% verbleibender Gesundheit sprießen aus den Tentakeln mehrere blasige Tentakel, die gegen Flächenschadenfertigkeiten immun sind."
 
 	L.bolt_explode = "<Blitz Explodiert>"
 	L.parasite = "Parasit"

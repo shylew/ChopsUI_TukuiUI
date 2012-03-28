@@ -12,6 +12,7 @@ local cataclysm = GetSpellInfo(110044)
 local impale = GetSpellInfo(106400)
 local canEnable = true
 local curPercent = 100
+local paraCount = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -21,8 +22,7 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_trigger = "You have done NOTHING. I will tear your world APART."
 
-	L.impale = EJ_GetSectionInfo(4114)
-	L.impale_desc = "Tank alert only. "..select(2,EJ_GetSectionInfo(4114))
+	L.impale, L.impale_desc = EJ_GetSectionInfo(4114)
 	L.impale_icon = 106400
 
 	L.last_phase = GetSpellInfo(106708)
@@ -32,7 +32,9 @@ if L then
 	L.bigtentacle, L.bigtentacle_desc = EJ_GetSectionInfo(4112)
 	L.bigtentacle_icon = 105563
 
-	L.smalltentacles, L.smalltentacles_desc = EJ_GetSectionInfo(4103)
+	L.smalltentacles = EJ_GetSectionInfo(4103)
+	-- Copy & Paste from Encounter Journal with correct health percentages (type '/dump EJ_GetSectionInfo(4103)' in the game)
+	L.smalltentacles_desc = "At 70% and 40% remaining health the Limb Tentacle sprouts several Blistering Tentacles that are immune to Area of Effect abilities."
 	L.smalltentacles_icon = 109588
 
 	L.hemorrhage, L.hemorrhage_desc = EJ_GetSectionInfo(4108)
@@ -49,7 +51,6 @@ if L then
 	L.blobs_soon = "%d%% - Congealing Blood soon!"
 end
 L = mod:GetLocale()
-L.impale = L.impale.." "..INLINE_TANK_ICON
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -81,7 +82,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AgonizingPain", 106548)
 	self:Log("SPELL_CAST_START", "AssaultAspects", 107018)
 	self:Log("SPELL_CAST_START", "Cataclysm", 110044, 106523, 110042, 110043)
-	self:Log("SPELL_AURA_APPLIED", "LastPhase", 109592) -- Corrupted Blood
+	self:Log("SPELL_AURA_APPLIED", "LastPhase", 109592, 109593, 106834, 109594) -- 25/LFR, 10HC, 10N, 25HC (Phase 2: Corrupted Blood)
 	self:Log("SPELL_AURA_APPLIED", "Shrapnel", 106794, 110141, 110140, 110139) -- 106794 10N, 110141 LFR
 	self:Log("SPELL_AURA_APPLIED", "Parasite", 108649)
 	self:Log("SPELL_AURA_REMOVED", "ParasiteRemoved", 108649)
@@ -105,10 +106,8 @@ end
 --
 
 function mod:Impale(_, spellId, _, _, spellName)
-	if self:Tank() then
-		self:LocalMessage("impale", spellName, "Urgent", spellId, "Alarm")
-		self:Bar("impale", spellName, 35, spellId)
-	end
+	self:LocalMessage("impale", spellName, "Urgent", spellId, "Alarm")
+	self:Bar("impale", spellName, 35, spellId)
 end
 
 function mod:TentacleKilled()
@@ -146,6 +145,7 @@ function mod:LastPhase(_, spellId)
 end
 
 function mod:AssaultAspects()
+	paraCount = 0
 	if curPercent == 100 then
 		curPercent = 20
 		if self:Tank() then
@@ -204,9 +204,9 @@ function mod:Shrapnel(player, spellId, _, _, spellName)
 end
 
 function mod:Parasite(player, spellId)
+	paraCount = paraCount + 1
 	self:TargetMessage("ej:4347", L["parasite"], player, "Urgent", spellId)
 	self:PrimaryIcon("ej:4347", player)
-	self:Bar("ej:4347", L["parasite"], 60, 108649)
 	if UnitIsUnit(player, "player") then
 		self:FlashShake("ej:4347")
 		self:Bar("ej:4347", CL["you"]:format(L["parasite"]), 10, spellId)
@@ -215,12 +215,15 @@ function mod:Parasite(player, spellId)
 	else
 		self:Bar("ej:4347", CL["other"]:format(L["parasite"], player), 10, spellId)
 	end
+	if paraCount < 2 then
+		self:Bar("ej:4347", L["parasite"], 60, 108649)
+	end
 end
 
 function mod:ParasiteRemoved(player)
 	self:PrimaryIcon("ej:4347")
 	if UnitIsUnit(player, "player") then
-		self:CloseProximity()
+		self:CloseProximity("ej:4347")
 	end
 end
 

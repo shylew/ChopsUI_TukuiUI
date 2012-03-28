@@ -24,7 +24,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("9014")
+	releaseRevision = tonumber("9056")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -110,7 +110,13 @@ function GetMapID(name)
 end
 function GetBossID(name)
 	for i=1,1000 do
-		local fetchedName, _, id = EJ_GetEncounterInfo(i)
+		local fetchedName = EJ_GetEncounterInfo(i)
+		if fetchedName and (fetchedName):find(name) then print(fetchedName, i) end
+	end
+end
+function GetSectionID(name)
+	for i=1,10000 do
+		local fetchedName = EJ_GetSectionInfo(i)
 		if fetchedName and (fetchedName):find(name) then print(fetchedName, i) end
 	end
 end
@@ -356,9 +362,6 @@ function loader:OnEnable()
 	self:RegisterMessage("BigWigs_CoreEnabled")
 	self:RegisterMessage("BigWigs_CoreDisabled")
 
-	-- XXX Hack to make the zone ID available when reloading/relogging inside an instance
-	SetMapToCurrentZone()
-
 	self:CheckRoster()
 	self:ZoneChanged()
 end
@@ -403,9 +406,9 @@ do
 				warnedOutOfDate = true
 				-- Adapt the out-of-date nag according to release type
 				if BIGWIGS_RELEASE_TYPE == RELEASE then
-					sysprint(L["There is a new release of Big Wigs available(/bwv). You can visit curse.com, wowinterface.com, wowace.com or use the Curse Updater to get the new release."])
+					sysprint(L["There is a new release of Big Wigs available (/bwv). You can visit curse.com, wowinterface.com, wowace.com or use the Curse Updater to get the new release."])
 				elseif BIGWIGS_RELEASE_TYPE == ALPHA then
-					sysprint(L["Your alpha version of Big Wigs is out of date(/bwv)."])
+					sysprint(L["Your alpha version of Big Wigs is out of date (/bwv)."])
 				end
 			end
 		elseif prefix == "VR" then
@@ -442,6 +445,11 @@ end
 
 function loader:ZoneChanged()
 	if not grouped then return end
+	-- Hack to make the zone ID available when reloading/relogging inside an instance.
+	-- This was moved from OnEnable to here because Astrolabe likes to screw with map setting in rare situations, so we need to force an update.
+	if IsInInstance() then
+		SetMapToCurrentZone()
+	end
 	local id = GetCurrentMapAreaID()
 	-- load party content in raid, but don't load raid content in a party...
 	if enableZones[id] and enableZones[id] <= grouped then

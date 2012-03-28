@@ -15,10 +15,11 @@ end
 
 L = BigWigs:NewBossLocale("Warlord Zon'ozz", "zhCN")
 if L then
-	L.engage_trigger = "Zzof Shuul'wah. Thoq fssh N'Zoth!"
+	L.engage_trigger = "Zzof Shuul'wah。Thoq fssh N'Zoth！"
 
 	L.ball = "末日黑洞"
 	L.ball_desc = "末日黑洞在玩家和首领之间来回弹跳时发出警报。"
+	L.ball_yell = "Gul'kafh an'qov N'Zoth。"
 
 	L.bounce = "末日黑洞弹跳"
 	L.bounce_desc = "末日黑洞弹跳计数。"
@@ -31,7 +32,7 @@ end
 
 L = BigWigs:NewBossLocale("Yor'sahj the Unsleeping", "zhCN")
 if L then
-	L.engage_trigger = "Iilth qi'uothk shn'ma yeh'glu Shath'Yar! H'IWN IILTH!"
+	L.engage_trigger = "Iilth qi'uothk shn'ma yeh'glu Shath'Yar！H'IWN IILTH！"
 
 	L.bolt_desc = "只警报坦克。虚空箭堆叠计数并显示持续条。"
 	L.bolt_message = "%2$d层虚空箭：>%1$s<！"
@@ -110,10 +111,8 @@ L = BigWigs:NewBossLocale("Spine of Deathwing", "zhCN")
 if L then
 	L.engage_trigger = "看那些装甲！他正在解体！摧毁那些装甲，我们就能给他最后一击！"
 
-	L.left_start = "即将左侧翻滚"
-	L.right_start = "即将右侧翻滚"
-	L.left = "左侧翻滚"
-	L.right = "右侧翻滚"
+	L.about_to_roll = "感觉到玩家在他的"
+	L.rolling = "%%s往[左右]+侧"
 	L.not_hooked = ">你< 没有抓牢！"
 	L.roll_message = "他开始滚了！滚了，滚啦！"
 	L.level_trigger = "平衡"
@@ -129,7 +128,10 @@ end
 L = BigWigs:NewBossLocale("Madness of Deathwing", "zhCN")
 if L then
 	L.engage_trigger = "你们什么都没做到。我要撕碎你们的世界。"
-	L.impale_desc = "只警报坦克。"..select(2,EJ_GetSectionInfo(4114))
+
+	-- Copy & Paste from Encounter Journal with correct health percentages (type '/dump EJ_GetSectionInfo(4103)' in the game)
+	L.smalltentacles_desc = "在生命值降至70%和40%时，肢体触须会衍生出许多灼疮触须，这些触须对具有范围效果的技能免疫。"
+
 	L.bolt_explode = "<源质箭爆炸>"
 	L.parasite = "腐蚀寄生虫"
 	L.blobs_soon = "%d%% - 即将凝固之血！"

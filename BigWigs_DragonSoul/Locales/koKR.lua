@@ -19,6 +19,7 @@ if L then
 
 	L.ball = "공허 구슬"
 	L.ball_desc = "플레이어와 보스 사이를 오가는 공허 구슬입니다."
+	L.ball_yell = "굴카와스 언고브 느조스."
 
 	L.bounce = "공허 구슬 튕김"
 	L.bounce_desc = "구슬이 튕긴 횟수를 카운트합니다."
@@ -80,9 +81,9 @@ if L then
 	L.cast = "황혼의 시간 시전 바"
 	L.cast_desc = "황혼의 시간  5(일반) 또는 3(영웅-하드)초 시전 바를 표시합니다."
 
-	L.lightyou = "당신에 대한 사그라지는 빛"
-	L.lightyou_desc = "당신이 사그라지는 빛일때 폭발까지 남은 시간을 바에 표시합니다."
-	L.lightyou_bar = "<폭발>"
+	L.lightself = "당신에 대한 사그라지는 빛"
+	L.lightself_desc = "당신이 사그라지는 빛일때 폭발까지 남은 시간을 바에 표시합니다."
+	L.lightself_bar = "<당신의 폭발>"
 
 	L.lighttank = "탱커에 대한 사그라지는 빛"
 	L.lighttank_desc = "!탱거만 경고! 탱커일경우 사그라지는 빛일때 번쩍임과 진동, 폭발까지 남은 시간을 바에 표시합니다."
@@ -110,10 +111,8 @@ L = BigWigs:NewBossLocale("Spine of Deathwing", "koKR")
 if L then
 	L.engage_trigger = "저 갑옷! 놈의 갑옷이 벗겨지는군! 갑옷을 뜯어내면 놈을 쓰러뜨릴 기회가 생길 거요!"
 
-	L.left_start = "왼쪽으로 회전합니다"
-	L.right_start = "오른쪽으로 회전합니다"
-	L.left = "왼쪽으로 회전"
-	L.right = "오른쪽으로 회전"
+	L.about_to_roll = "회전하려고 합니다!"
+	L.rolling = "회전합니다!"
 	L.not_hooked = "당신은 등에 >고정 상태< 아님!"
 	L.roll_message = "데스윙 회전, 회전!"
 	L.level_trigger = "수평으로 균형을 잡습니다"
@@ -130,7 +129,8 @@ L = BigWigs:NewBossLocale("Madness of Deathwing", "koKR")
 if L then
 	L.engage_trigger = "넌 아무것도 못 했다. 내가 이 세상을 조각내주마."
 
-	L.impale_desc = "!탱거만 경고! "..select(2,EJ_GetSectionInfo(4114))
+	-- Copy & Paste from Encounter Journal with correct health percentages (type '/dump EJ_GetSectionInfo(4103)' in the game)
+	L.smalltentacles_desc = "체력이 70% 그리고 40% 가 남았을시 촉수에 대하여 알립니다."
 
 	L.bolt_explode = "<화살 폭발>"
 	L.parasite = "기생충"

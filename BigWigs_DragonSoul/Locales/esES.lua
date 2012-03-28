@@ -19,6 +19,7 @@ if L then
 
 	L.ball = "Esfera de vacío"
 	L.ball_desc = "Una esfera de vacío que rebota entre jugadores y el jefe."
+	L.ball_yell = "Gul'kafh an'qov N'Zoth."
 
 	L.bounce = "Rebotar Esfera de vacío"
 	L.bounce_desc = "Contador para el rebote de la Esfera de vacío."
@@ -110,10 +111,8 @@ L = BigWigs:NewBossLocale("Spine of Deathwing", "esES") or BigWigs:NewBossLocale
 if L then
 	L.engage_trigger = "¡Las placas! ¡Se está deshaciendo! ¡Destrozad las placas y tendremos una oportunidad de derribarlo!"
 
-	L.left_start = "a punto de girar a la izquierda"
-	L.right_start = "a punto de girar a la derecha"
-	L.left = "gira a la izquierda"
-	L.right = "gira a la derecha"
+	L.about_to_roll = "a punto de girar"
+	L.rolling = "rueda hacia la"
 	L.not_hooked = "¡>NO< estás enganchado!"
 	L.roll_message = "¡Está girando, girando, girando!"
 	L.level_trigger = "se estabiliza."
@@ -129,7 +128,10 @@ end
 L = BigWigs:NewBossLocale("Madness of Deathwing", "esES") or BigWigs:NewBossLocale("Madness of Deathwing", "esMX")
 if L then
 	L.engage_trigger = "No habéis hecho nada. Destruiré vuestro mundo."
-	L.impale_desc = "Alerta para tanques. "..select(2,EJ_GetSectionInfo(4114))
+
+	-- Copy & Paste from Encounter Journal with correct health percentages (type '/dump EJ_GetSectionInfo(4103)' in the game)
+	L.smalltentacles_desc = "At 70% and 40% remaining health the Limb Tentacle sprouts several Blistering Tentacles that are immune to Area of Effect abilities."
+
 	L.bolt_explode = "<Descarga Explota>"
 	L.parasite = "Parásito"
 	L.blobs_soon = "%d%% - Sangre coagulante inminente!"

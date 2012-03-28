@@ -19,6 +19,7 @@ if L then
 
 	L.ball = "Boule de Vide"
 	L.ball_desc = "Boule de Vide qui rebondit contre les joueurs et le boss."
+	L.ball_yell = "Gul'kafh an'qov N'Zoth."
 
 	L.bounce = "Rebond de la Boule de Vide"
 	L.bounce_desc = "Compteur des rebonds de la Boule de Vide."
@@ -56,7 +57,7 @@ if L then
 	L.ice_next = "Phase de glace"
 	L.lightning_next = "Phase de foudre"
 
-	L.assault_desc = "Tank & Healer alert only. "..select(2, EJ_GetSectionInfo(4159))
+	L.assault_desc = "Alerte pour tanks & soigneurs uniquement. "..select(2, EJ_GetSectionInfo(4159))
 
 	L.nextphase = "Prochaine phase"
 	L.nextphase_desc = "Prévient quand arrive la phase suivante."
@@ -110,10 +111,8 @@ L = BigWigs:NewBossLocale("Spine of Deathwing", "frFR")
 if L then
 	L.engage_trigger = "Les plaques ! Il tombe en morceaux ! Arrachez les plaques et on aura une chance de le descendre !"
 
-	L.left_start = "va faire un tonneau à gauche"
-	L.right_start = "va faire un tonneau à droite"
-	L.left = "fait un tonneau à gauche"
-	L.right = "fait un tonneau à droite"
+	L.about_to_roll = "va faire un tonneau"
+	L.rolling = "fait un tonneau"
 	L.not_hooked = "Vous n'êtes >PAS< accroché !"
 	L.roll_message = "Et il tourne, tourne, tourne !"
 	L.level_trigger = "se redresse"
@@ -130,7 +129,8 @@ L = BigWigs:NewBossLocale("Madness of Deathwing", "frFR")
 if L then
 	L.engage_trigger = "Vous n'avez RIEN fait. Je vais mettre votre monde en PIÈCES."
 
-	L.impale_desc = "Alerte pour tank uniquement. "..select(2,EJ_GetSectionInfo(4114))
+	-- Copy & Paste from Encounter Journal with correct health percentages (type '/dump EJ_GetSectionInfo(4103)' in the game)
+	L.smalltentacles_desc = "À 70% et 40% de points de vie restants au Tentacule membre, plusieurs Tentacules caustiques surgissent de lui. Ils sont insensibles aux techniques à zone d'effet."
 
 	L.bolt_explode = "<Explosion de l'Eclair>"
 	L.parasite = "Parasite"

@@ -19,6 +19,7 @@ if L then
 
 	L.ball = "壞滅虛無"
 	L.ball_desc = "壞滅虛無在玩家和首領之間來回彈跳時發出警報。"
+	L.ball_yell = "Gul'kafh an'qov N'Zoth."
 
 	L.bounce = "壞滅虛無彈跳"
 	L.bounce_desc = "壞滅虛無彈跳計數。"
@@ -110,10 +111,8 @@ L = BigWigs:NewBossLocale("Spine of Deathwing", "zhTW")
 if L then
 	L.engage_trigger = "他的護甲!他正在崩壞!破壞他的護甲，我們就有機會打贏他了!"
 
-	L.left_start = "即將左側翻滾"
-	L.right_start = "即將右側翻滾"
-	L.left = "左側翻滾"
-	L.right = "右側翻滾"
+	L.about_to_roll = "感覺到玩家在他的"
+	L.rolling = "%%s往[左右]+侧"
 	L.not_hooked = ">你< 沒有抓牢！"
 	L.roll_message = "他開始滾了，滾了，滾啦！"
 	L.level_trigger = "平衡"
@@ -129,7 +128,10 @@ end
 L = BigWigs:NewBossLocale("Madness of Deathwing", "zhTW")
 if L then
 	L.engage_trigger = "你們都徒勞無功。我會撕裂你們的世界。"
-	L.impale_desc = "只警報坦克。"..select(2,EJ_GetSectionInfo(4114))
+
+	-- Copy & Paste from Encounter Journal with correct health percentages (type '/dump EJ_GetSectionInfo(4103)' in the game)
+	L.smalltentacles_desc = "生命力降低為70%與40% 時，肢體觸手將會生長出數隻免疫範圍效果的極熾觸手。"
+
 	L.bolt_explode = "<源質箭爆炸>"
 	L.parasite = "腐化寄生體"
 	L.blobs_soon = "%d%% - 即將凝結之血！"

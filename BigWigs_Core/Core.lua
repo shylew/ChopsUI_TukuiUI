@@ -76,6 +76,8 @@ local function zoneChanged()
 		for _, module in addon:IterateBossModules() do
 			if module.isEngaged then module:Reboot() end
 		end
+	else
+		SetMapToCurrentZone() -- Hack because Astrolabe likes to screw with map setting in rare situations, so we need to force an update.
 	end
 	if enablezones[GetCurrentMapAreaID()] then
 		if not monitoring then
@@ -304,6 +306,7 @@ function addon:OnInitialize()
 			broadcast = false,
 			showBlizzardWarnings = false,
 			blockmovies = true,
+			ignorerole = false,
 		},
 		global = {
 			optionShiftIndexes = {},
