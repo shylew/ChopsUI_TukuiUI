@@ -728,7 +728,9 @@ NeedToKnowRMB.BarMenu_SubMenus = {
           { Setting = "TOTEM", MenuText = NEEDTOKNOW.BARMENU_TOTEM },
           { Setting = "CASTCD", MenuText = NEEDTOKNOW.BARMENU_CASTCD },
           { Setting = "BUFFCD", MenuText = NEEDTOKNOW.BARMENU_BUFFCD },
-          { Setting = "USABLE", MenuText = NEEDTOKNOW.BARMENU_USABLE },
+-- Now that Victory Rush adds a buff when you can use it, this confusing option is being removed.
+-- The code that drives it remains so that any existing users' bars won't break.
+--          { Setting = "USABLE", MenuText = NEEDTOKNOW.BARMENU_USABLE },
           { Setting = "EQUIPSLOT", MenuText = NEEDTOKNOW.BARMENU_EQUIPSLOT },
     },
     TimeFormat = {
@@ -745,6 +747,7 @@ NeedToKnowRMB.BarMenu_SubMenus = {
         { Setting = "vehicle", MenuText = NEEDTOKNOW.BARMENU_VEHICLE }, 
         { Setting = "mhand", MenuText = NEEDTOKNOW.BARMENU_MAIN_HAND },
         { Setting = "ohand", MenuText = NEEDTOKNOW.BARMENU_OFF_HAND },
+        { Setting = "lastraid", MenuText = NEEDTOKNOW.BARMENU_LAST_RAID },
     },
     DebuffUnit = {
         { Setting = "player", MenuText = NEEDTOKNOW.BARMENU_PLAYER }, 

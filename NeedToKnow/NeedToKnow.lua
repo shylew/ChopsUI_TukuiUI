@@ -76,7 +76,7 @@ NeedToKnow.scratch.bar_entry =
     }
 -- NEEDTOKNOW = {} is defined in the localization file, which must be loaded before this file
 
-NEEDTOKNOW.VERSION = "4.0.02"
+NEEDTOKNOW.VERSION = "4.0.03"
 NEEDTOKNOW.UPDATE_INTERVAL = 0.05
 NEEDTOKNOW.MAXBARS = 20
 
@@ -302,27 +302,70 @@ function NeedToKnow.ExecutiveFrame_OnEvent(self, event, ...)
     end
 end
 
-function NeedToKnow.ExecutiveFrame_UNIT_SPELLCAST_SUCCEEDED(unit, spell, rank)
+function NeedToKnow.ExecutiveFrame_UNIT_SPELLCAST_SENT(unit, spell, rank_str, tgt, serialno)
     if unit == "player" then
-        local r = NeedToKnow.last_cast[spell]
-        if ( r and r.state == 1 ) then
-            r.state = 2
-            
-            -- A little extra safety just in case we get two SUCCEEDED entries
-            -- before we get the combat log events for them (though I don't
-            -- think this is possible.)
-            NeedToKnow.last_success = spell
-            
-            -- We need the actual target, which we can only get from the combat log.
-            -- Thankfully, the combat log event always comes after this one, so we
-            -- don't need to register for the combat log for long at all.
-            NeedToKnow_ExecutiveFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+        -- TODO: I hate to pay this memory cost for every "spell" ever cast.
+        --       Would be nice to at least garbage collect this data at some point, but that
+        --       may add more overhead than just keeping track of 100 spells.
+        if not NeedToKnow.last_sent then
+            NeedToKnow.last_sent = {}
+        end
+        NeedToKnow.last_sent[spell] = GetTime()
 
-            if ( NeedToKnow.nSent > 1 ) then
-                NeedToKnow.nSent = NeedToKnow.nSent - 1
+        -- How expensive a second check do we need?
+        if ( NeedToKnow.last_guid[spell] or NeedToKnow.BarsForPSS ) then
+            local r = NeedToKnow.last_cast[NeedToKnow.last_cast_tail]
+            if not r then
+                r = { spell=spell, target=tgt, serial=serialno }
+                NeedToKnow.last_cast[NeedToKnow.last_cast_tail] = r
             else
-                NeedToKnow.nSent = 0
+                r.spell = spell
+                r.target = tgt
+                r.serial = serialno
+            end
+            NeedToKnow.last_cast_tail = NeedToKnow.last_cast_tail + 1
+            if ( NeedToKnow.last_cast_tail == 2 ) then
+                NeedToKnow.last_cast_head = 1
+                if ( NeedToKnow.last_guid[spell] ) then
+                    NeedToKnow_ExecutiveFrame:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+                    NeedToKnow_ExecutiveFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+                else
+                    NeedToKnow_ExecutiveFrame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+                end
+            end
+        end
+    end
+end
+
+
+function NeedToKnow.ExecutiveFrame_UNIT_SPELLCAST_SUCCEEDED(unit, spell, rank_str, serialno, spellid)
+    if unit == "player" then
+        local found
+        local t = NeedToKnow.last_cast
+        local last = NeedToKnow.last_cast_tail-1
+        local i
+        for i = last,NeedToKnow.last_cast_head,-1  do
+            if t[i].spell == spell and t[i].serial == serialno then
+                found = i
+                break
+            end
+        end
+
+        if found then
+            if ( NeedToKnow.BarsForPSS ) then
+                local bar,one
+                for bar,one in pairs(NeedToKnow.BarsForPSS) do
+                    local unitTarget = NeedToKnow.raid_members[t[found].target or ""]
+                    NeedToKnow.Bar_OnEvent(bar, "PLAYER_SPELLCAST_SUCCEEDED", "player", spell, spellid, unitTarget);
+                end
+            end
+
+            if ( found == last ) then
+                NeedToKnow.last_cast_tail = 1
+                NeedToKnow.last_cast_head = 1
                 NeedToKnow_ExecutiveFrame:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+            else
+                NeedToKnow.last_cast_head = found+1
             end
         end
     end
@@ -332,31 +375,48 @@ function NeedToKnow.ExecutiveFrame_COMBAT_LOG_EVENT_UNFILTERED(tod, event, hideC
     -- the time that's passed in appears to be time of day, not game time like everything else.
     local time = GetTime() 
     -- TODO: Is checking r.state sufficient or must event be checked instead?
-    if ( guidCaster == NeedToKnow.guidPlayer ) then
-        local guidTarget, _, _, _, _, spell = select(4, ...)
-        local r = NeedToKnow.last_cast[spell]
-        if ( r and r.state == 2) then
-            r.state = 0
-            -- record this spellcast
-            if ( not r[guidTarget] ) then
-                r[guidTarget] = { time = time, dur = 0 }
-            else
-                r[guidTarget].time = time
-                r[guidTarget].dur = 0
-            end
-            
-            -- Use this event to expire some targets. This should limit us to 
-            -- two combats' worth of targets (since GC doesn't happen in combat)
-            for kG, vG in pairs(r) do
-                if ( type(vG) == "table" and ( vG.time + 300 < time ) ) then
-                    r[kG] = nil
-                end
+    if ( guidCaster == NeedToKnow.guidPlayer and event=="SPELL_CAST_SUCCESS") then
+        local guidTarget, nameTarget, _, _, spellid, spell = select(4, ...) -- source_name, source_flags, source_flags2, 
+
+        local found
+        local t = NeedToKnow.last_cast
+        local last = NeedToKnow.last_cast_tail-1
+        local i
+        for i = last,NeedToKnow.last_cast_head,-1  do
+            if t[i].spell == spell then
+                found = i
+                break
             end
         end
+        if found then
+            if ( NeedToKnow.BarsForPSS ) then
+                local bar,one
+                for bar,one in pairs(NeedToKnow.BarsForPSS) do
+                    local unitTarget = NeedToKnow.raid_members[t[found].target or ""]
+                    NeedToKnow.Bar_OnEvent(bar, "PLAYER_SPELLCAST_SUCCEEDED", "player", spell, spellid, unitTarget);
+                end
+            end
 
-        if ( spell == NeedToKnow.last_success ) then
-            -- We saw our spell, we can disconnect from the spam hose
-            NeedToKnow_ExecutiveFrame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+            local rBySpell = NeedToKnow.last_guid[spell]
+            if ( rBySpell ) then
+                local rByGuid = rBySpell[guidTarget]
+                if not rByGuid then
+                    rByGuid = { time=time, dur=0, expiry=0 }
+                    rBySpell[guidTarget] = rByGuid
+                else
+                    rByGuid.time= time
+                    rByGuid.dur = 0
+                    rByGuid.expiry = 0
+                end
+            end
+
+            if ( found == last ) then
+                NeedToKnow.last_cast_tail = 1
+                NeedToKnow.last_cast_head = 1
+                NeedToKnow_ExecutiveFrame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+            else
+                NeedToKnow.last_cast_head = found+1
+            end
         end
     end
 end
@@ -368,8 +428,10 @@ function NeedToKnow.ExecutiveFrame_ADDON_LOADED(addon)
             NeedToKnow_Visible = true
         end
         
-        NeedToKnow.last_cast = {} -- [spell][guidTarget] = { time, dur }
-        NeedToKnow.nSent = 0
+        NeedToKnow.last_cast = {} -- [n] = { spell, target, serial }
+        NeedToKnow.last_cast_head = 1
+        NeedToKnow.last_cast_tail = 1
+        NeedToKnow.last_guid = {} -- [spell][guidTarget] = { time, dur, expiry }
         NeedToKnow.totem_drops = {} -- array 1-4 of precise times the totems appeared
         NeedToKnow.weapon_enchants = { mhand = {}, ohand = {} }
         
@@ -398,8 +460,10 @@ function NeedToKnow.ExecutiveFrame_PLAYER_LOGIN()
     NeedToKnow_ExecutiveFrame:RegisterEvent("UNIT_TARGET")
     NeedToKnow_ExecutiveFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
     NeedToKnow_ExecutiveFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
+    NeedToKnow_ExecutiveFrame:RegisterEvent("PARTY_MEMBERS_CHANGED")
+    
     if ( NeedToKnow.is_DK ) then
-        NeedToKnow_ExecutiveFrame:RegisterEvent("UNIT_SPELLCAST_SENT")
+        NeedToKnow.RegisterSpellcastSent();
     end
     NeedToKnow.Update()
     
@@ -409,9 +473,30 @@ function NeedToKnow.ExecutiveFrame_PLAYER_LOGIN()
     NeedToKnow.ExecutiveFrame_PLAYER_LOGIN = nil
     NeedToKnowLoader = nil
 
+    NeedToKnow.RefreshRaidMemberNames()
     NeedToKnow.UpdateWeaponEnchants()
 end
 
+function NeedToKnow.RegisterSpellcastSent()
+    if ( NeedToKnow.nRegisteredSent ) then
+        NeedToKnow.nRegisteredSent = NeedToKnow.nRegisteredSent + 1
+    else
+        NeedToKnow.nRegisteredSent = 1
+        NeedToKnow_ExecutiveFrame:RegisterEvent("UNIT_SPELLCAST_SENT")
+    end
+end
+
+function NeedToKnow.UnregisterSpellcastSent()
+    if ( NeedToKnow.nRegisteredSent ) then
+        NeedToKnow.nRegisteredSent = NeedToKnow.nRegisteredSent - 1
+        if ( 0 == NeedToKnow.nRegisteredSent ) then
+            NeedToKnow.nRegisteredSent = nil
+            NeedToKnow_ExecutiveFrame:UnregisterEvent("UNIT_SPELLCAST_SENT")
+            NeedToKnow_ExecutiveFrame:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+            NeedToKnow_ExecutiveFrame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+        end
+    end
+end
 
 function NeedToKnow.ExecutiveFrame_ACTIVE_TALENT_GROUP_CHANGED()
     -- This is the only event we're guaranteed to get on a talent switch,
@@ -452,6 +537,38 @@ function NeedToKnow.ExecutiveFrame_UNIT_TARGET(unitTargeting)
 end
 
 
+function NeedToKnow.RefreshRaidMemberNames()
+    NeedToKnow.raid_members = {}
+
+    if GetNumRaidMembers() > 0 then
+        for i = 1, 40 do
+            local unit = "raid"..i
+            local name = UnitName(unit)
+            if ( name ) then NeedToKnow.raid_members[name] = unit end
+        end
+    elseif GetNumPartyMembers() > 0 then
+        for i = 1, 5 do
+            local unit = "party"..i
+            local name = UnitName(unit)
+            if ( name ) then NeedToKnow.raid_members[name] = unit end
+        end
+    end
+    local unit = "player"
+    local name = UnitName(unit)
+    NeedToKnow.raid_members[name] = unit
+    unit = "pet"
+    name = UnitName(unit)
+    if ( name ) then
+        NeedToKnow.raid_members[name] = unit
+    end
+end
+
+
+function NeedToKnow.ExecutiveFrame_PARTY_MEMBERS_CHANGED()
+    NeedToKnow.RefreshRaidMemberNames();
+end
+
+
 function NeedToKnow.ExecutiveFrame_PLAYER_REGEN_DISABLED(unitTargeting)
     NeedToKnow.bInCombat = true
     NeedToKnow.bCombatWithBoss = false
@@ -486,21 +603,6 @@ function NeedToKnow.ExecutiveFrame_PLAYER_REGEN_ENABLED(unitTargeting)
     if NeedToKnow.BossStateBars then
         for bar, unused in pairs(NeedToKnow.BossStateBars) do
             NeedToKnow.Bar_AuraCheck(bar)
-        end
-    end
-end
-
-
-function NeedToKnow.ExecutiveFrame_UNIT_SPELLCAST_SENT(unit, spell)
-    if NeedToKnow.is_DK then
-        -- TODO: I hate that DKs have to pay this memory cost for every "spell" they ever cast.
-        --       Would be nice to at least garbage collect this data at some point, but that
-        --       may add more overhead than just keeping track of a 100 spells.
-        if unit == "player" then
-            if not NeedToKnow.last_sent then
-                NeedToKnow.last_sent = {}
-            end
-            NeedToKnow.last_sent[spell] = GetTime()
         end
     end
 end
@@ -1055,27 +1157,34 @@ end
 -- This may fail for valid names if the client doesn't have the data for
 -- that spell yet (just logged in or changed talent specs), in which case 
 -- we mark that spell to try again later
-function NeedToKnow.SetupSpellCooldown(bar, idx, barSpell)
-    local isSpellID = barSpell:match("%d+") == barSpell
-    if ( barSpell == "Auto Shot" or
-            barSpell == NEEDTOKNOW.AUTO_SHOT or
-            barSpell == "75" ) 
-    then
-        bar.settings.bAutoShot = true
-        bar.cd_functions[idx] = NeedToKnow.GetAutoShotCooldown
-    elseif not isSpellID then
-        local item_id = NeedToKnow.GetItemIDString(barSpell)
-        if item_id then
-            bar.spells[idx] = item_id
-            bar.cd_functions[idx] = NeedToKnow.GetItemCooldown
+function NeedToKnow.SetupSpellCooldown(bar, entry)
+    local id = entry.id
+    local name = entry.name
+    local idx = entry.idxName
+    if not id then
+        if ( name == "Auto Shot" or
+             name == NEEDTOKNOW.AUTO_SHOT ) 
+        then
+            bar.settings.bAutoShot = true
+            bar.cd_functions[idx] = NeedToKnow.GetAutoShotCooldown
         else
-            local betterSpell = barSpell
-            betterSpell = NeedToKnow.TryToFindSpellWithCD(barSpell)
-            if nil ~= betterSpell then
-                bar.spells[idx] = betterSpell
-                bar.cd_functions[idx] = NeedToKnow.GetSpellCooldown
-            elseif not GetSpellCooldown(barSpell) then
-                bar.cd_functions[idx] = NeedToKnow.GetUnresolvedCooldown
+            local item_id = NeedToKnow.GetItemIDString(name)
+            if item_id then
+                entry.id = item_id
+                entry.name = nil
+                bar.cd_functions[idx] = NeedToKnow.GetItemCooldown
+            else
+                local betterSpellID
+                betterSpellID = NeedToKnow.TryToFindSpellWithCD(name)
+                if nil ~= betterSpell then
+                    entry.id = betterSpell
+                    entry.name = nil
+                    bar.cd_functions[idx] = NeedToKnow.GetSpellCooldown
+                elseif not GetSpellCooldown(name) then
+                    bar.cd_functions[idx] = NeedToKnow.GetUnresolvedCooldown
+                else
+                    bar.cd_functions[idx] = NeedToKnow.GetSpellCooldown
+                end
             end
         end
     end
@@ -1192,9 +1301,16 @@ function NeedToKnow.Bar_Update(groupID, barID)
             -- Split the spell names    
             bar.spells = {}
             bar.cd_functions = {}
+            local iSpell = 0
             for barSpell in bar.auraName:gmatch("([^,]+)") do
+                iSpell = iSpell+1
                 barSpell = strtrim(barSpell)
-                table.insert(bar.spells, barSpell)
+                local _, nDigits = barSpell:find("^%d+")
+                if ( nDigits == barSpell:len() ) then
+                    table.insert(bar.spells, { idxName=iSpell, id=tonumber(barSpell) } )
+                else
+                    table.insert(bar.spells, { idxName=iSpell, name=barSpell } )
+                end
             end
 
             -- split the user name overrides
@@ -1208,9 +1324,16 @@ function NeedToKnow.Bar_Update(groupID, barID)
             if barSettings.buffcd_reset_spells and barSettings.buffcd_reset_spells ~= "" then
                 bar.reset_spells = {}
                 bar.reset_start = {}
+                iSpell = 0
                 for resetSpell in barSettings.buffcd_reset_spells:gmatch("([^,]+)") do
+                    iSpell = iSpell+1
                     resetSpell = strtrim(resetSpell)
-                    table.insert(bar.reset_spells, resetSpell)
+                    local _, nDigits = resetSpell:find("^%d+")
+                    if ( nDigits == resetSpell:len() ) then
+                        table.insert(bar.reset_spells, { idxName = iSpell, id=tonumber(resetSpell) } )
+                    else
+                        table.insert(bar.reset_spells, { idxName = iSpell, name=resetSpell} )
+                    end
                     table.insert(bar.reset_start, 0)
                 end
             else
@@ -1231,9 +1354,9 @@ function NeedToKnow.Bar_Update(groupID, barID)
                 bar.fnCheck = NeedToKnow.AuraCheck_EQUIPSLOT
             elseif "CASTCD" == barSettings.BuffOrDebuff then
                 bar.fnCheck = NeedToKnow.AuraCheck_CASTCD
-                for idx, barSpell in ipairs(bar.spells) do
+                for idx, entry in ipairs(bar.spells) do
                     table.insert(bar.cd_functions, NeedToKnow.GetSpellCooldown)
-                    NeedToKnow.SetupSpellCooldown(bar, idx, barSpell)
+                    NeedToKnow.SetupSpellCooldown(bar, entry)
                 end
             elseif "mhand" == barSettings.Unit or "ohand" == barSettings.Unit then
                 bar.fnCheck = NeedToKnow.AuraCheck_Weapon
@@ -1344,7 +1467,7 @@ function NeedToKnow.SetScripts(bar)
         bar:RegisterEvent("SPELL_UPDATE_USABLE")
     elseif ( "mhand" == bar.settings.Unit or "ohand" == bar.settings.Unit ) then
         bar:RegisterEvent("UNIT_INVENTORY_CHANGED")
-    elseif ( bar.unit == "targettarget" ) then
+    elseif ( bar.settings.Unit == "targettarget" ) then
         -- WORKAROUND: PLAYER_TARGET_CHANGED happens immediately, UNIT_TARGET every couple seconds
         bar:RegisterEvent("PLAYER_TARGET_CHANGED")
         bar:RegisterEvent("UNIT_TARGET")
@@ -1358,11 +1481,35 @@ function NeedToKnow.SetScripts(bar)
             bar:RegisterEvent("PLAYER_TARGET_CHANGED")
         elseif ( bar.unit == "pet" ) then
             bar:RegisterEvent("UNIT_PET")
+        elseif ( "lastraid" == bar.settings.Unit ) then
+            if ( not NeedToKnow.BarsForPSS ) then
+                NeedToKnow.BarsForPSS = {}
+            end
+            NeedToKnow.BarsForPSS[bar] = true
+            NeedToKnow.RegisterSpellcastSent()
         end
     end
+
     
     if bar.settings.bDetectExtends then
-        bar:RegisterEvent("UNIT_SPELLCAST_SENT")
+        local idx,entry
+        for idx, entry in ipairs(bar.spells) do
+            local spellName
+            if ( entry.id ) then
+                spellName = GetSpellInfo(entry.id)
+            else
+                spellName = entry.name
+            end
+            if spellName then
+                local r = NeedToKnow.last_guid[spellName]
+                if not r then
+                    NeedToKnow.last_guid[spellName] = { time=0, dur=0, expiry=0 }
+                end
+            else
+                print("Warning! NTK could not get name for ", entry.id)
+            end
+        end
+        NeedToKnow.RegisterSpellcastSent()
     end
     if bar.settings.blink_enabled and bar.settings.blink_boss then
         if not NeedToKnow.BossStateBars then
@@ -1382,12 +1529,22 @@ function NeedToKnow.ClearScripts(bar)
     bar:UnregisterEvent("UNIT_AURA")
     bar:UnregisterEvent("UNIT_INVENTORY_CHANGED")
     bar:UnregisterEvent("UNIT_TARGET")
-    bar:UnregisterEvent("UNIT_SPELLCAST_SENT")
     bar:UnregisterEvent("START_AUTOREPEAT_SPELL")
     bar:UnregisterEvent("STOP_AUTOREPEAT_SPELL")
     bar:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
     if NeedToKnow.BossStateBars then
         NeedToKnow.BossStateBars[bar] = nil;
+    end
+
+    if bar.settings.bDetectExtends then
+        NeedToKnow.UnregisterSpellcastSent()
+    end
+    if NeedToKnow.BarsForPSS and NeedToKnow.BarsForPSS[bar] then
+        NeedToKnow.BarsForPSS[bar] = nil
+        if nil == next(NeedToKnow.BarsForPSS) then
+            NeedToKnow.BarsForPSS = nil
+            NeedToKnow.UnregisterSpellcastSent();
+        end
     end
 end
 
@@ -1446,17 +1603,15 @@ function NeedToKnow.Bar_OnEvent(self, event, unit, ...)
         NeedToKnow.Bar_AuraCheck(self)
     elseif ( event == "UNIT_PET" and unit == "player" ) then
         NeedToKnow.Bar_AuraCheck(self)
-    elseif ( event == "UNIT_SPELLCAST_SENT" ) then
-        local spell = select(1, ...)
-        if ( self.settings.bDetectExtends ) then
-            -- FIXME: This really does not belong on the individual bar
-            if unit == "player" then --and self.buffName == spell then
-                local r = NeedToKnow.last_cast[spell]
-                if ( r and r.state == 0 ) then
-                    r.state = 1
-                    NeedToKnow.nSent = NeedToKnow.nSent + 1
-                    NeedToKnow_ExecutiveFrame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-                end
+    elseif ( event == "PLAYER_SPELLCAST_SUCCEEDED" ) then
+        local spellName, spellID, tgt = select(1,...)
+        local i,entry
+        for i,entry in ipairs(self.spells) do
+            if entry.id == spellID or entry.name == spellName then
+                self.unit = tgt or "unknown"
+                --trace("Updating",self:GetName(),"since it was recast on",self.unit)
+                NeedToKnow.Bar_AuraCheck(self)
+                break;
             end
         end
     elseif ( event == "START_AUTOREPEAT_SPELL" ) then
@@ -1565,7 +1720,9 @@ end
 
 function NeedToKnow.PrettyName(barSettings)
     if ( barSettings.BuffOrDebuff == "EQUIPSLOT" ) then
-        return NEEDTOKNOW.ITEM_NAMES[tonumber(barSettings.AuraName)]
+        local idx = tonumber(barSettings.AuraName)
+        if idx then return NEEDTOKNOW.ITEM_NAMES[idx] end
+        return ""
     else
         return barSettings.AuraName
     end
@@ -1846,19 +2003,19 @@ end
 
 
 -- Helper for NeedToKnow.AuraCheck_CASTCD for names we haven't figured out yet
-function NeedToKnow.GetUnresolvedCooldown(bar, barSpell, idxName)
-    NeedToKnow.SetupSpellCooldown(bar, idxName, barSpell)
-    local fn = bar.cd_functions[idxName]
+function NeedToKnow.GetUnresolvedCooldown(bar, entry)
+    NeedToKnow.SetupSpellCooldown(bar, entry)
+    local fn = bar.cd_functions[entry.idxName]
     if NeedToKnow.GetUnresolvedCooldown ~= fn then
-        -- Have to re-evaluate barSpell since SetupSpellCooldown may have changed bar.spells
-        return fn(bar, bar.spells[idxName], idxName)
+        return fn(bar, entry)
     end
 end
 
 
 -- Wrapper around GetSpellCooldown with extra sauce
 -- Expected to return start, cd_len, enable, buffName, iconpath
-function NeedToKnow.GetSpellCooldown(bar, barSpell)
+function NeedToKnow.GetSpellCooldown(bar, entry)
+    local barSpell = entry.id or entry.name
     local start, cd_len, enable = GetSpellCooldown(barSpell)
     if start and start > 0 then
         local spellName, spellRank, spellIconPath, _, _, spellPower = GetSpellInfo(barSpell)
@@ -1867,10 +2024,10 @@ function NeedToKnow.GetSpellCooldown(bar, barSpell)
                 NeedToKnow.GSIBroken = {} 
             end
             if  not NeedToKnow.GSIBroken[barSpell] then
-                print("NeedToKnow: Warning! Unable to get spell info for "..barSpell..".  Try using Spell ID instead.")
+                print("NeedToKnow: Warning! Unable to get spell info for",barSpell,".  Try using Spell ID instead.")
                 NeedToKnow.GSIBroken[barSpell] = true;
             end
-            spellName = barSpell
+            spellName = tostring(barSpell)
         end
 
         if 0 == enable then 
@@ -1884,7 +2041,7 @@ function NeedToKnow.GetSpellCooldown(bar, barSpell)
                     -- We've already seen the correct CD for this; keep using it
                     start = bar.expirationTime - bar.duration
                     cd_len = bar.duration
-                elseif NeedToKnow.last_sent and NeedToKnow.last_sent[barSpell] and NeedToKnow.last_sent[barSpell] > (tNow - 1.5) then
+                elseif NeedToKnow.last_sent and NeedToKnow.last_sent[spellName] and NeedToKnow.last_sent[spellName] > (tNow - 1.5) then
                     -- We think the spell was just cast, and a CD just started but it's short.
                     -- Look at the tooltip to tell what the correct CD should be. If it's supposed
                     -- to be short (Ghoul Frenzy, Howling Blast), then start a CD bar
@@ -1908,10 +2065,10 @@ end
 
 -- Wrapper around GetItemCooldown
 -- Expected to return start, cd_len, enable, buffName, iconpath
-function NeedToKnow.GetItemCooldown(bar, item_id, idx)
-    local start, cd_len, enable = GetItemCooldown(item_id)
+function NeedToKnow.GetItemCooldown(bar, entry)
+    local start, cd_len, enable = GetItemCooldown(entry.id)
     if start then
-        local name, _, _, _, _, _, _, _, icon = GetItemInfo(item_id)
+        local name, _, _, _, _, _, _, _, icon = GetItemInfo(entry.id)
         return start, cd_len, enable, name, icon
     end
 end
@@ -1982,17 +2139,12 @@ end
 
 
 -- Bar_AuraCheck helper for Totem bars, this returns data if
--- a totem matching barSpell is currently out. 
+-- a totem matching bar_entry is currently out. 
 function NeedToKnow.AuraCheck_TOTEM(bar, bar_entry, all_stacks)
-    local idxName, barSpell, isSpellID = bar_entry.idxName, bar_entry.barSpell, bar_entry.isSpellID
-    local spellName, spellRank, spellIconPath
-    if ( isSpellID ) then
-        spellName, spellRank, spellIconPath = GetSpellInfo(barSpell)
-    end
+    local idxName = bar_entry.idxName
+    local sComp = bar_entry.name or GetSpellInfo(bar_entry.id)
     for iSlot=1, 4 do
         local haveTotem, totemName, startTime, totemDuration, totemIcon = GetTotemInfo(iSlot)
-        local sComp = barSpell
-        if isSpellID then sComp = spellName end
         if ( totemName and totemName:find(sComp) ) then
             -- WORKAROUND: The startTime reported here is both cast to an int and off by 
             -- a latency meaning it can be significantly low.  So we cache the GetTime 
@@ -2025,13 +2177,13 @@ end
 -- Bar_AuraCheck helper for tracking usable gear based on the slot its in
 -- rather than the equipment name
 function NeedToKnow.AuraCheck_EQUIPSLOT(bar, bar_entry, all_stacks)
-    local idxName, barSpell, isSpellID = bar_entry.idxName, bar_entry.barSpell, bar_entry.isSpellID
     local spellName, spellRank, spellIconPath
-    if ( isSpellID ) then
-        local slot = tonumber(bar_entry.barSpell)
-        local id = GetInventoryItemID("player",slot)
+    if ( bar_entry.id ) then
+        local id = GetInventoryItemID("player",bar_entry.id)
         if id then
-            local start, cd_len, enable, name, icon = NeedToKnow.GetItemCooldown(bar, id, idx)
+            local item_entry = NeedToKnow.scratch.bar_entry
+            item_entry.id = id
+            local start, cd_len, enable, name, icon = NeedToKnow.GetItemCooldown(bar, item_entry)
 
             if ( start and start > 0 ) then
                 AddInstanceToStacks(all_stacks, bar_entry, 
@@ -2052,9 +2204,8 @@ end
 -- (computed by UpdateWeaponEnchants) for the given spell.
 -- FIXME: this is the only bar type that does not work with spell ids.
 function NeedToKnow.AuraCheck_Weapon(bar, bar_entry, all_stacks)
-    local idxName, barSpell, isSpellID = bar_entry.idxName, bar_entry.barSpell, bar_entry.isSpellID;
     local data = NeedToKnow.weapon_enchants[bar.settings.Unit]
-    if ( data.present and data.name and data.name:find(barSpell) ) then
+    if ( data.present and data.name and data.name:find(bar_entry.name) ) then
         AddInstanceToStacks( all_stacks, bar_entry,
                1800,                                       -- duration TODO: Get real duration?
                data.name,                                  -- name
@@ -2069,11 +2220,15 @@ end
 -- Bar_AuraCheck helper that checks for spell/item use cooldowns
 -- Relies on NeedToKnow.GetAutoShotCooldown, NeedToKnow.GetSpellCooldown 
 -- and NeedToKnow.GetItemCooldown. Bar_Update will have already pre-processed 
--- this list so that bar.cd_functions[idxName] can do something with barSpell
+-- this list so that bar.cd_functions[idxName] can do something with bar_entry
 function NeedToKnow.AuraCheck_CASTCD(bar, bar_entry, all_stacks)
-    local idxName, barSpell, isSpellID = bar_entry.idxName, bar_entry.barSpell, bar_entry.isSpellID;
+    local idxName = bar_entry.idxName
     local func = bar.cd_functions[idxName]
-    local start, cd_len, should_cooldown, buffName, iconPath = func(bar, barSpell, idxName)
+    if ( not func ) then
+        print("NTK ERROR setting up index",idxName,"on bar",bar:GetName(),bar.settings.AuraName);
+        return;
+    end
+    local start, cd_len, should_cooldown, buffName, iconPath = func(bar, bar_entry)
 
     -- filter out the GCD, we only care about actual spell CDs
     if start and cd_len <= 1.5 and func ~= NeedToKnow.GetAutoShotCooldown then
@@ -2104,10 +2259,8 @@ end
 -- Bar_AuraCheck helper for watching "Is Usable", which means that the action
 -- bar button for the spell lights up.  This is mostly useful for Victory Rush
 function NeedToKnow.AuraCheck_USABLE(bar, bar_entry, all_stacks)
-    local idxName, barSpell, isSpellID = bar_entry.idxName, bar_entry.barSpell, bar_entry.isSpellID;
-    local key
+    local key = bar_entry.id or bar_entry.name
     local settings = bar.settings
-    if ( isSpellID ) then key = tonumber(barSpell) else key = barSpell end
     if ( not key ) then key = "" end
     local spellName, _, iconPath = GetSpellInfo(key)
     if ( spellName ) then
@@ -2142,7 +2295,6 @@ end
 -- cooldown for spells cast automatically (procs).  The "reset on buff" logic
 -- is still handled by 
 function NeedToKnow.AuraCheck_BUFFCD(bar, bar_entry, all_stacks)
-    local idxName, barSpell, isSpellID = bar_entry.idxName, bar_entry.barSpell, bar_entry.isSpellID;
     local buff_stacks = NeedToKnow.scratch.buff_stacks
     buff_stacks.total = 0
     NeedToKnow.AuraCheck_Single(bar, bar_entry, buff_stacks)
@@ -2193,17 +2345,16 @@ end
 -- Bar_AuraCheck helper that looks for the first instance of a buff
 -- Uses the UnitAura filters exclusively if it can
 function NeedToKnow.AuraCheck_Single(bar, bar_entry, all_stacks)
-    local idxName, barSpell, isSpellID = bar_entry.idxName, bar_entry.barSpell, bar_entry.isSpellID;
     local settings = bar.settings
     local filter = settings.BuffOrDebuff
     if settings.OnlyMine then
         filter = filter .. "|PLAYER"
     end
 
-    if isSpellID then
+    if bar_entry.id then
         -- WORKAROUND: The second parameter to UnitAura can't be a spellid, so I have 
         --             to walk them all
-        local barID = tonumber(barSpell)
+        local barID = bar_entry.id
         local j = 1
         while true do
             local buffName, _, iconPath, count, _, duration, expirationTime, caster, _, _, spellID 
@@ -2226,8 +2377,7 @@ function NeedToKnow.AuraCheck_Single(bar, bar_entry, all_stacks)
         end
     else
         local buffName, _ , iconPath, count, _, duration, expirationTime, caster 
-          = UnitAura(bar.unit, barSpell, nil, filter)
-
+          = UnitAura(bar.unit, bar_entry.name, nil, filter)
           AddInstanceToStacks( all_stacks, bar_entry,
                duration,                               -- duration
                buffName,                               -- name
@@ -2242,10 +2392,7 @@ end
 -- Bar_AuraCheck helper that updates bar.all_stacks (but returns nil)
 -- by scanning all the auras on the unit
 function NeedToKnow.AuraCheck_AllStacks(bar, bar_entry, all_stacks)
-    local idxName, barSpell, isSpellID = bar_entry.idxName, bar_entry.barSpell, bar_entry.isSpellID;
     local j = 1
-    local matchID 
-    if isSpellID then matchID = tonumber(barSpell) end
     local settings = bar.settings
     local filter = settings.BuffOrDebuff
     
@@ -2256,14 +2403,15 @@ function NeedToKnow.AuraCheck_AllStacks(bar, bar_entry, all_stacks)
             break
         end
         
-        if (isSpellID and spellID == matchID) or (not isSpellID and barSpell == buffName) then
-        AddInstanceToStacks(all_stacks, bar_entry, 
-            duration,
-            buffName,
-            count,
-            expirationTime,
-            iconPath,
-            caster )
+        if (spellID == bar_entry.id) or (bar_entry.name == buffName) 
+        then
+            AddInstanceToStacks(all_stacks, bar_entry, 
+                duration,
+                buffName,
+                count,
+                expirationTime,
+                iconPath,
+                caster )
         end
 
         j = j+1
@@ -2281,6 +2429,8 @@ function NeedToKnow.Bar_AuraCheck(bar)
         bUnitExists = true
     elseif "player" == settings.Unit then
         bUnitExists = true
+    elseif "lastraid" == settings.Unit then
+        bUnitExists = bar.unit and UnitExists(bar.unit)
     else
         bUnitExists = UnitExists(settings.Unit)
     end
@@ -2291,16 +2441,10 @@ function NeedToKnow.Bar_AuraCheck(bar)
     if ( bUnitExists ) then         
         all_stacks = NeedToKnow.scratch.all_stacks
         all_stacks.total = 0
-        local bar_entry = NeedToKnow.scratch.bar_entry
 
         -- Call the helper function for each of the spells in the list
-        for idx, barSpell in ipairs(bar.spells) do
-            local _, nDigits = barSpell:find("^%d+")
-            bar_entry.idxName = idx
-            bar_entry.barSpell = barSpell
-            bar_entry.isSpellID = ( nDigits == barSpell:len() )
-
-            bar.fnCheck(bar, bar_entry, all_stacks);
+        for idx, entry in ipairs(bar.spells) do
+            bar.fnCheck(bar, entry, all_stacks);
             
             if all_stacks.total > 0 and not settings.show_all_stacks then
                 idxName = idx
@@ -2328,15 +2472,9 @@ function NeedToKnow.Bar_AuraCheck(bar)
         buff_stacks.total = 0
         -- Keep track of when the reset auras were last applied to the player
         for idx, resetSpell in ipairs(bar.reset_spells) do
-            local _, nDigits = resetSpell:find("^%d+")
-            local bar_entry = NeedToKnow.scratch.bar_entry
-            bar_entry.idxName = idx
-            bar_entry.barSpell = resetSpell
-            bar_entry.isSpellID = ( nDigits == resetSpell:len() )
-
             -- Note this relies on BUFFCD setting the target to player, and that the onlyMine will work either way
             local resetDuration, _, _, resetExpiration
-              = NeedToKnow.AuraCheck_Single(bar, bar_entry, buff_stacks)
+              = NeedToKnow.AuraCheck_Single(bar, resetSpell, buff_stacks)
             local tStart
             if buff_stacks.total > 0 then
                if 0 == buff_stacks.max.duration then 
@@ -2367,20 +2505,32 @@ function NeedToKnow.Bar_AuraCheck(bar)
         if (settings.bDetectExtends) then
             local curStart = expirationTime - duration
             local guidTarget = UnitGUID(bar.unit)
-            if ( not NeedToKnow.last_cast[buffName] ) then
-                NeedToKnow.last_cast[buffName] = { state=0 }
-            end
-            local r = NeedToKnow.last_cast[buffName] 
+            local r = NeedToKnow.last_guid[buffName] 
             
-            if ( not r[guidTarget] ) then
-                r[guidTarget] = { time=curStart, dur=duration }
-            elseif ( r[guidTarget].dur == 0 ) then
-                r[guidTarget].dur = duration
+            if ( not r[guidTarget] ) then -- Should only happen from /reload or /ntk while the aura is active
+                -- This went off for me, but I don't know a repro yet.  I suspect it has to do with bear/cat switching
+                --trace("WARNING! allocating guid slot for ", buffName, "on", guidTarget, "due to UNIT_AURA");
+                r[guidTarget] = { time=curStart, dur=duration, expiry=expirationTime }
             else
-                local rStart = r[guidTarget]
-                extended = expirationTime - rStart.time - rStart.dur
-                if ( extended > 1 ) then
-                    duration = rStart.dur 
+                r = r[guidTarget]
+                local oldExpiry = r.expiry
+                -- This went off for me, but I don't know a repro yet.  I suspect it has to do with bear/cat switching
+                --if ( oldExpiry > 0 and oldExpiry < curStart ) then
+                    --trace("WARNING! stale entry for ",buffName,"on",guidTarget,curStart-r.time,curStart-oldExpiry)
+                --end
+
+                if ( oldExpiry < curStart ) then
+                    r.time = curStart
+                    r.dur = duration 
+                    r.expiry= expirationTime
+                else
+                    r.expiry= expirationTime
+                    extended =  expirationTime - (r.time + r.dur)
+                    if ( extended > 1 ) then
+                        duration = r.dur 
+                    else
+                        extended = nil
+                    end
                 end
             end
         end
@@ -2405,10 +2555,10 @@ function NeedToKnow.Bar_AuraCheck(bar)
         bar:Show()
     else
         if (settings.bDetectExtends and bar.buffName) then
-            if ( NeedToKnow.last_cast[bar.buffName] ) then
+            local r = NeedToKnow.last_guid[bar.buffName]
+            if ( r ) then
                 local guidTarget = UnitGUID(bar.unit)
                 if guidTarget then
-                    local r = NeedToKnow.last_cast[bar.buffName]
                     r[guidTarget] = nil
                 end
             end

@@ -12,7 +12,7 @@ NeedToKnow allows you to monitor specific buffs and debuffs of your choosing as 
 Instructions
 ------------
 
-General options are available in the Blizzard interface options menu.  You can type "/needtoknow" or "/ntk" to lock/unlock the addon.  To configure individual bars, right click them while unlocked.  Bars work while locked.  
+General options are available in the Blizzard interface options menu.  You can type "/needtoknow" or "/ntk" to lock/unlock the addon.  To configure individual bars, right click them while unlocked.  Bars work while locked.  (The bars should be unlocked the first time you log in with NTK.)
 
 When entering your settings, be careful with your spelling and capitalization.  Also remember that buffs and debuffs sometimes have different names than the items and abilities that apply them.  The Death Knight ability Icy Touch, for example, applies a DoT called Frost Fever.   
 
@@ -20,8 +20,22 @@ When entering your settings, be careful with your spelling and capitalization.  
 ----------
 Change log
 ----------
+4.0.03
+ - Added "Last Raid Recipient" as a target for buff bars.  Great for spells like Beacon of Light, Lifebloom, Earth Shield, etc.
+ - Improved the system used for "Detect Extends".  Hopefully this will fix the occasional occurrance of wildly incorrect extends.  This also improves performance of those bars a little.
+
+4.0.02
+ - Fixed: Cancelling out of the interface options could cause values set to false to reset to true the next time the profile was loaded
+ - Tweaked "boss only" blink bars so that if the target is friendly, NTK will track if anyone in the raid is in combat with a boss
+ - Improved the look of the per-bar configuration menu, getting rid of radio button backgrounds 
+ - Improved the usability of the equipment slot feature, changing the buff/debuff name into a submenu when equipment slot is chosen
+ - New feature: Import/Export bar settings. This allows settings to be copy and pasted between bars, or shared between users, or with me as tech support. This replaces the old "clear settings" menu option. To clear the settings now, just blank out the import/export string.
+
+4.0.01
+ - Fixed: Characters which had never used NTK before could only use the first bar group (Ticket 116)
+
 4.0.00
- - Major update to support profiles
+ -Major update to support profiles
  - Greatly improved the UI for selecting fonts and bar textures
  - New bar type: Equipment slot
  - Increased the maximum bars per group 
