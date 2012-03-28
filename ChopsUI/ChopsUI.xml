@@ -25,5 +25,4 @@
   <Script file="modules\chopsui\needtoknow.lua" />
   <Script file="modules\chopsui\postal.lua" />
   <Script file="modules\chopsui\skada.lua" />
-  <Script file="modules\chopsui\movie_frame_disabler.lua" />
 </Ui>
