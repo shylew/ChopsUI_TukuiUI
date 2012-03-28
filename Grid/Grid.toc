@@ -1,7 +1,7 @@
-## Interface: 40200
-## Version: 4.3.0.1453
-## X-ReleaseDate: "$Date: 2011-10-15 22:49:11 +0000 (Sat, 15 Oct 2011) $"
-## X-Curse-Packaged-Version: 4.3.0.1453
+## Interface: 40300
+## Version: 4.3.2.1458
+## X-ReleaseDate: "$Date: 2012-02-20 11:25:08 +0000 (Mon, 20 Feb 2012) $"
+## X-Curse-Packaged-Version: 4.3.2.1458
 ## X-Curse-Project-Name: Grid
 ## X-Curse-Project-ID: grid
 ## X-Curse-Repository-ID: wow/grid/mainline

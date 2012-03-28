@@ -368,7 +368,7 @@ L["Unit Name"] = "Namen"
 --	GridStatusRange
 
 L["Out of Range"] = "Außer Reichweite"
-L["Range"] = "Entfernung" -- Needs review
+L["Range"] = "Entfernung"
 L["Range check frequency"] = "Häufigkeit der Reichweitenmessung"
 L["Seconds between range checks"] = "Sekunden zwischen den Reichweitenmessungen"
 
