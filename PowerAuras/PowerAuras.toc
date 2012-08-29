@@ -1,0 +1,23 @@
+## Interface: 50001
+## Title: Power Auras Classic
+## Notes: Cool effects around the player for ingame events.
+## Author: Smacker & Meorawr, Driizt, Garstiger, Sinsthar
+## Version: 5.0.0.O
+## DefaultState: Enabled
+## SavedVariables: PowerAurasGlobalDB, PowaGlobalSet
+## SavedVariablesPerCharacter: PowerAurasCharacterDB, PowaSet
+
+# Library files.
+Libs\ForAllIndentsAndPurposes\indent.lua
+
+# AddOn files.
+Main.lua
+Constants.lua
+Utils.lua
+Localisation\Locales.xml
+Modules\Modules.xml
+Types\Types.xml
+Variables.lua
+Dispatcher.lua
+Media.lua
+Classes\Classes.xml

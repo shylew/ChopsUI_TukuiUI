@@ -1,0 +1,49 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
+
+  <!-- 
+       Type filenames should be kept standardised for ease of management.
+       Only use the following script names if you need them, and if it
+       makes sense for the type in question.
+
+          Interface.lua: Used for type class registration and validation.
+          Loader.lua:    Used for loading and instantiating classes.
+          Types.xml:    Additional scripts to load for this type.
+          Variables.lua: Helper methods for dealing with saved variables.
+  -->
+
+  <Script file="Actions\Interface.lua" />
+  <Script file="Actions\Loader.lua" />
+  <Script file="Actions\Variables.lua" />
+
+  <Script file="Animations\Interface.lua" />
+  <Script file="Animations\Loader.lua" />
+  <Script file="Animations\Variables.lua" />
+  
+  <Script file="Auras\Loader.lua" />
+  <Script file="Auras\Variables.lua" />
+  
+  <Script file="Displays\Interface.lua" />
+  <Script file="Displays\Loader.lua" />
+  <Script file="Displays\Variables.lua" />
+  
+  <Script file="Layouts\Interface.lua" />
+  <Script file="Layouts\Loader.lua" />
+  <Script file="Layouts\Variables.lua" />
+  
+  <Script file="Profiles\Loader.lua" />
+  <Script file="Profiles\Variables.lua" />
+  
+  <Script file="Sequences\Variables.lua" />
+  
+  <Script file="Services\Interface.lua" />
+  <Script file="Services\Loader.lua" />
+  <Script file="Services\Variables.lua" />
+  <Include file="Services\Types.xml" />
+  
+  <Script file="Triggers\Interface.lua" />
+  <Script file="Triggers\Loader.lua" />
+  <Script file="Triggers\Variables.lua" />
+
+</Ui>
