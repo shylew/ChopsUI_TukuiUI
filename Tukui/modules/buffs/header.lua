@@ -1,4 +1,4 @@
-local T, C, L = unpack(select(2, ...))
+local T, C, L, G = unpack(select(2, ...))
 
 if not C.auras.player then return end
 
@@ -20,17 +20,23 @@ for _, frame in next, {
 	end
 	
 	if(frame == "TukuiAurasPlayerConsolidate") then
-		header = CreateFrame("Frame", frame, UIParent, "SecureFrameTemplate")
+		header = CreateFrame("Frame", frame, TukuiPetBattleHider, "SecureFrameTemplate")
 		header:SetAttribute("wrapAfter", 1)
 		header:SetAttribute("wrapYOffset", -35)
 	else
-		header = CreateFrame("Frame", frame, UIParent, "SecureAuraHeaderTemplate")
+		header = CreateFrame("Frame", frame, TukuiPetBattleHider, "SecureAuraHeaderTemplate")
 		header:SetClampedToScreen(true)
 		header:SetMovable(true)
 		header:SetAttribute("minHeight", 30)
 		header:SetAttribute("wrapAfter", wrap)
 		header:SetAttribute("wrapYOffset", -67.5)
 		header:SetAttribute("xOffset", -35)
+		header:CreateBackdrop()
+		header.backdrop:SetBackdropBorderColor(1,0,0)
+		header.backdrop:FontString("text", C.media.uffont, 12)
+		header.backdrop.text:SetPoint("CENTER")
+		header.backdrop.text:SetText(L.move_buffs)
+		header.backdrop:SetAlpha(0)
 	end
 	header:SetAttribute("minWidth", wrap * 35)
 	header:SetAttribute("template", "TukuiAurasAuraTemplate")
@@ -44,10 +50,13 @@ for _, frame in next, {
 end
 
 local buffs = TukuiAurasPlayerBuffs
+G.Auras.Buffs = buffs
 local debuffs = TukuiAurasPlayerDebuffs
+G.Auras.Debuffs = Debuffs
 local consolidate = TukuiAurasPlayerConsolidate
-local filter = 0
+G.Auras.Consolidate = consolidate
 
+local filter = 0
 if C.auras.consolidate then
 	filter = 1
 end
@@ -57,12 +66,9 @@ buffs:SetPoint("TOPRIGHT", UIParent, -184, -22)
 buffs:SetAttribute("filter", "HELPFUL")
 buffs:SetAttribute("consolidateProxy", CreateFrame("Frame", buffs:GetName() .. "ProxyButton", buffs, "TukuiAurasProxyTemplate"))
 buffs:SetAttribute("consolidateHeader", consolidate)
+buffs:SetAttribute("consolidateTo", filter)
+buffs:SetAttribute("includeWeapons", 1)
 
--- blizzard introduced bugs with secure aura headers in 4.3, disabling it until fixed
-if T.toc < 40300 then
-	buffs:SetAttribute("consolidateTo", filter)
-	buffs:SetAttribute("includeWeapons", 1)
-end
 
 buffs:SetAttribute("consolidateDuration", -1)
 buffs:Show()
@@ -112,3 +118,44 @@ SecureHandlerSetFrameRef(proxy, "header", consolidate)
 debuffs:SetPoint("TOP", buffs, "BOTTOM", 0, -84)
 debuffs:SetAttribute("filter", "HARMFUL")
 debuffs:Show()
+
+---------------------------------------------------------
+-- WORKAROUND FIX FOR BUGGED SECURE AURA HEADER ON 4.3
+---------------------------------------------------------
+
+-- TODO
+	-- Do a check for weapons enchants with and without consolidate buff enabled if bug happen. (I don't have a rogue available)
+	-- Tooltip sometime can be show on a invisible buffs. This buffs can be seen sometime at the end of the row on mouseover, an invisible buff. (Little minor bug)
+	
+local function WorkAround(self, event, unit)
+	local num, i, count = 0, 0, 0
+
+	-- MATH!
+	while true do
+		local name, _, _, _, _, _, _, _, _, consolidate = UnitAura("player", i + 1)
+		if not name then break end
+		if not consolidate or not C.auras.consolidate then
+			num = num + 1
+		else
+			count = count + 1
+		end
+		i = i + 1
+	end
+	
+	-- This fix the last buff(s) icon not cleared
+	for i, button in self:ActiveButtons() do
+		if button.Animation then button.Animation:Stop() end
+		button:SetAlpha(i > num and 0 or 1)
+	end
+end
+buffs:HookScript("OnEvent", WorkAround)
+
+local function Child(self, i)
+	i = i + 1
+	local child = self:GetAttribute("child" .. i)
+	if child and child:IsShown() then
+		return i, child, child:GetAttribute("index")
+	end
+end
+
+function buffs:ActiveButtons() return Child, self, 0 end

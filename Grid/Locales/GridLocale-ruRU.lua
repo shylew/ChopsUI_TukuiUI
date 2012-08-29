@@ -1,6 +1,16 @@
 --[[--------------------------------------------------------------------
-	Grid Localization
-	ruRU | Russian | Русский
+	Grid
+	Compact party and raid unit frames.
+	Copyright (c) 2006-2012 Kyle Smith (a.k.a. Pastamancer), A. Kinley (a.k.a. Phanx) <addons@phanx.net>
+	All rights reserved.
+	See the accompanying README and LICENSE files for more information.
+	http://www.wowinterface.com/downloads/info5747-Grid.html
+	http://www.wowace.com/addons/grid/
+	http://www.curse.com/addons/wow/grid
+------------------------------------------------------------------------
+	GridLocale-ruRU.lua
+	Russian (Русский) localization.
+	Contributors: Moschkara, nightik, onyxmaster, StingerSoft
 ----------------------------------------------------------------------]]
 
 if GetLocale() ~= "ruRU" then return end
@@ -43,6 +53,7 @@ L["Center Text 2"] = "Текст в центре 2"
 L["Center Text Length"] = "Длина текста в центре"
 -- L["Color the healing bar using the active status color instead of the health bar color."] = ""
 L["Corner Size"] = "Размер Углов"
+-- L["Darken the text color to match the inverted bar."] = ""
 L["Enable Mouseover Highlight"] = "Выделение при наведении мышки."
 L["Enable %s"] = "Включено %s"
 L["Enable %s indicator"] = "Включить %s индикатор"
@@ -68,11 +79,13 @@ L["Icon Size"] = "Размер иконки"
 L["Icon Stack Text"] = "Текст множества значков"
 L["Indicators"] = "Индикаторы"
 L["Invert Bar Color"] = "Обратить цвет полос"
+-- L["Invert Text Color"] = ""
+-- L["Make the healing bar use the status color instead of the health bar color."] = ""
 L["Never"] = "Никогда"
 L["None"] = "нету"
 L["Number of characters to show on Center Text indicator."] = "Количество символов для отображения текста в центре."
 L["OOC"] = "Вне боя"
-L["Options for assigning statuses to indicators."] = "Опция для присвоения статусов индикаторам" -- Needs review
+L["Options for assigning statuses to indicators."] = "Опция для присвоения статусов индикаторам"
 L["Options for GridFrame."] = "Опции фреймов Grid"
 L["Options for %s indicator."] = "Опции для %s индикаторов."
 L["Options related to bar indicators."] = "Настройки связанные с индикатором панели."
@@ -90,8 +103,8 @@ L["Swap foreground/background colors on bars."] = "Поменять местам
 L["Text Options"] = "Настройки текста"
 L["Thick"] = "Толстый"
 L["Thin"] = "Тонкий"
-L["Throttle Updates"] = "оптимальные обновления" -- Needs review
-L["Throttle updates on group changes. This option may cause delays in updating frames, so you should only enable it if you're experiencing temporary freezes or lockups when people join or leave your group."] = "Оптимальные обновления на изменение группы. Данный вариант может привести к снижению к частоте кадров, вы можете включить данный параметр если у вас возникли временные \"зависания\" в момент присоединения людей к группе или когда люди покидают группу" -- Needs review
+L["Throttle Updates"] = "Оптимальные обновления"
+L["Throttle updates on group changes. This option may cause delays in updating frames, so you should only enable it if you're experiencing temporary freezes or lockups when people join or leave your group."] = "Оптимальные обновления на изменение группы. Данный вариант может привести к снижению к частоте кадров, вы можете включить данный параметр если у вас возникли временные \"зависания\" в момент присоединения людей к группе или когда люди покидают группу"
 L["Toggle center icon's cooldown frame."] = "Показывать фрейм перерыва значка в центре"
 L["Toggle center icon's stack count text."] = "Показывать количество значков в множестве"
 L["Toggle mouseover highlight."] = "Вкл/Выкл выделение при наведении курсора мыши."
@@ -232,7 +245,7 @@ L["Priority for %s"] = "Приоритет для %s"
 L["Range filter"] = "Фильтр радиуса"
 L["Reset class colors"] = "Сбросс окраски классов"
 L["Reset class colors to defaults."] = "Сбросить окраску классов на значение по умолчанию."
-L["Show status only if the unit is in range."] = "Фильтр радиуса для %s" -- Needs review
+L["Show status only if the unit is in range."] = "Фильтр радиуса для %s"
 L["Status"] = "Статус"
 L["Status: %s"] = "Статус: %s"
 L["Text"] = "Текст"
@@ -300,7 +313,7 @@ L["Show duration"] = "Длительность"
 L["Show if mine"] = "Показать если моё"
 L["Show if missing"] = "Показывать если пропущен"
 -- L["Show on pets and vehicles."] = ""
-L["Show on %s players."] = "Показать на %s." -- Needs review
+L["Show on %s players."] = "Показать на %s."
 L["Show status for the selected classes."] = "Показывает статус для выбранных классов."
 -- L["Show the time left to tenths of a second, instead of only whole seconds."] = ""
 L["Show the time remaining, for use with the center icon cooldown."] = "Показывать в центре иконки остаток времени."

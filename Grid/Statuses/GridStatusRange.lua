@@ -1,4 +1,13 @@
 --[[--------------------------------------------------------------------
+	Grid
+	Compact party and raid unit frames.
+	Copyright (c) 2006-2012 Kyle Smith (a.k.a. Pastamancer), A. Kinley (a.k.a. Phanx) <addons@phanx.net>
+	All rights reserved.
+	See the accompanying README and LICENSE files for more information.
+	http://www.wowinterface.com/downloads/info5747-Grid.html
+	http://www.wowace.com/addons/grid/
+	http://www.curse.com/addons/wow/grid
+------------------------------------------------------------------------
 	GridStatusRange.lua
 	GridStatus module for tracking unit range.
 	Created by neXter, modified by Pastamancer, modified by Phanx.
@@ -13,7 +22,6 @@ local GridStatusRange = Grid:NewStatusModule("GridStatusRange", "AceTimer-3.0")
 GridStatusRange.menuName = L["Out of Range"]
 
 GridStatusRange.defaultDB = {
-	debug = false,
 	alert_range = {
 		enable = true,
 		text = L["Range"],
@@ -60,31 +68,41 @@ function GridStatusRange:PostInitialize()
 end
 
 function GridStatusRange:OnStatusEnable(status)
-	self.timer = self:ScheduleRepeatingTimer("CheckRange", self.db.profile.alert_range.frequency)
+	self:StartTimer("CheckRange", self.db.profile.alert_range.frequency, true)
 end
 
 function GridStatusRange:OnStatusDisable(status)
-	self:CancelTimer(self.timer, true)
+	self:StopTimer("CheckRange")
 	self.core:SendStatusLostAllUnits("alert_range")
 end
 
 local resSpell
 do
 	local _, class = UnitClass("player")
-	if class == "PALADIN" then
-		resSpell = GetSpellInfo(7328)
+	if class == "DEATHKNIGHT" then
+		resSpell = GetSpellInfo(61999)  -- Raise Ally
+	elseif class == "DRUID" then
+		resSpell = GetSpellInfo(50769)  -- Revive
+	elseif class == "MONK" then
+		resSpell = GetSpellInfo(115178) -- Resuscitate
+	elseif class == "PALADIN" then
+		resSpell = GetSpellInfo(7328)   -- Redemption
 	elseif class == "PRIEST" then
-		resSpell = GetSpellInfo(2006)
+		resSpell = GetSpellInfo(2006)   -- Resurrection
 	elseif class == "SHAMAN" then
-		resSpell = GetSpellInfo(2008)
+		resSpell = GetSpellInfo(2008)   -- Ancestral Spirit
+	elseif class == "WARLOCK" then
+		resSpell = GetSpellInfo(20707)  -- Soulstone
 	end
 end
+
+local IsSpellInRange, UnitInRange, UnitIsUnit = IsSpellInRange, UnitInRange, UnitIsUnit
 
 function GridStatusRange:UnitInRange(unit)
 	if UnitIsUnit(unit, "player") then
 		return true
 	elseif resSpell and UnitIsDead(unit) and not UnitIsDead("player") then
-		return IsSpellInRange(resSpell, unit)
+		return IsSpellInRange(resSpell, unit) == 1
 	else
 		return UnitInRange(unit)
 	end

@@ -1,4 +1,13 @@
 --[[--------------------------------------------------------------------
+	Grid
+	Compact party and raid unit frames.
+	Copyright (c) 2006-2012 Kyle Smith (a.k.a. Pastamancer), A. Kinley (a.k.a. Phanx) <addons@phanx.net>
+	All rights reserved.
+	See the accompanying README and LICENSE files for more information.
+	http://www.wowinterface.com/downloads/info5747-Grid.html
+	http://www.wowace.com/addons/grid/
+	http://www.curse.com/addons/wow/grid
+------------------------------------------------------------------------
 	GridStatusAuras.lua
 	GridStatus module for tracking buffs/debuffs.
 ----------------------------------------------------------------------]]
@@ -14,19 +23,23 @@ local GridStatusAuras = Grid:NewStatusModule("GridStatusAuras", "AceTimer-3.0")
 GridStatusAuras.menuName = L["Auras"]
 
 local BS = {
-	["Beacon of Light"] = GetSpellInfo(53563),
-	["Earth Shield"] = GetSpellInfo(974),
-	["Forbearance"] = GetSpellInfo(25771),
+-- All
 	["Ghost"] = GetSpellInfo(8326),
-	["Grace"] = GetSpellInfo(47930),
-	["Lifebloom"] = GetSpellInfo(33763),
 	["Mortal Strike"] = GetSpellInfo(12294),
-	["Power Word: Shield"] = GetSpellInfo(17),
+-- Druids
+	["Lifebloom"] = GetSpellInfo(33763),
 	["Regrowth"] = GetSpellInfo(8936),
 	["Rejuvenation"] = GetSpellInfo(774),
+-- Paladins
+	["Beacon of Light"] = GetSpellInfo(53563),
+	["Forbearance"] = GetSpellInfo(25771),
+-- Priests
+	["Power Word: Shield"] = GetSpellInfo(17),
 	["Renew"] = GetSpellInfo(139),
-	["Riptide"] = GetSpellInfo(61295),
 	["Weakened Soul"] = GetSpellInfo(6788),
+-- Shamans
+	["Earth Shield"] = GetSpellInfo(974),
+	["Riptide"] = GetSpellInfo(61295),
 }
 
 -- data used by aura scanning
@@ -35,10 +48,10 @@ local player_buff_names = {}
 local debuff_names = {}
 
 local debuff_types = {
-	["Poison"] = true,
+	["Curse"] = true,
 	["Disease"] = true,
 	["Magic"] = true,
-	["Curse"] = true,
+	["Poison"] = true,
 }
 
 function GridStatusAuras.StatusForSpell(spell, isBuff)
@@ -95,15 +108,14 @@ function GridStatusAuras:CopyDefaults(settings, defaults)
 end
 
 GridStatusAuras.defaultDB = {
-	debug = false,
 	advancedOptions = false,
-	["debuff_poison"] = {
-		desc = string.format(L["Debuff type: %s"], L["Poison"]),
-		text = L["Poison"],
-		color = { r =  0, g = .6, b =  0, a = 1 },
-		durationColorLow = { r = 0, g = .18, b = 0, a = 1 },
-		durationColorMiddle = { r = 0, g = .42, b = 0, a = 1 },
-		durationColorHigh = { r = 0, g = .6, b = 0, a = 1 },
+	["debuff_curse"] = {
+		desc = string.format(L["Debuff type: %s"], L["Curse"]),
+		text = L["Curse"],
+		color = { r = .6, g =  0, b =  1, a = 1 },
+		durationColorLow = { r = .18, g =  0, b =  .3, a = 1 },
+		durationColorMiddle = { r = .42, g =  0, b =  .7, a = 1 },
+		durationColorHigh = { r = .6, g =  0, b =  1, a = 1 },
 		order = 25,
 	},
 	["debuff_disease"] = {
@@ -124,13 +136,13 @@ GridStatusAuras.defaultDB = {
 		durationColorHigh = { r = .2, g = .6, b =  1, a = 1 },
 		order = 25,
 	},
-	["debuff_curse"] = {
-		desc = string.format(L["Debuff type: %s"], L["Curse"]),
-		text = L["Curse"],
-		color = { r = .6, g =  0, b =  1, a = 1 },
-		durationColorLow = { r = .18, g =  0, b =  .3, a = 1 },
-		durationColorMiddle = { r = .42, g =  0, b =  .7, a = 1 },
-		durationColorHigh = { r = .6, g =  0, b =  1, a = 1 },
+	["debuff_poison"] = {
+		desc = string.format(L["Debuff type: %s"], L["Poison"]),
+		text = L["Poison"],
+		color = { r =  0, g = .6, b =  0, a = 1 },
+		durationColorLow = { r = 0, g = .18, b = 0, a = 1 },
+		durationColorMiddle = { r = 0, g = .42, b = 0, a = 1 },
+		durationColorHigh = { r = 0, g = .6, b = 0, a = 1 },
 		order = 25,
 	},
 	[GridStatusAuras.StatusForSpell(BS["Ghost"])] = {
@@ -165,18 +177,15 @@ GridStatusAuras.defaultDB = {
 		durationColorMiddle = { r = .35, g = .35, b = .35, a = 1 },
 		durationColorHigh = { r = .5, g = .5, b = .5, a = 1 },
 	},
-	[GridStatusAuras.StatusForSpell(BS["Grace"], true)] = {
-		desc = string.format(L["Buff: %s"], BS["Grace"]),
-		text = BS["Grace"],
-		color = { r =  .7, g = .3, b = 0, a = 1 },
-		durationColorLow = { r = .21, g = .09, b = 0, a = 1 },
-		durationColorMiddle = { r = .49, g = .21, b = 0, a = 1 },
-		durationColorHigh = { r =  .7, g = .3, b = 0, a = 1 },
-		countColorLow = { r = 1, g = 0, b = 0, a = 1 },
-		countColorMiddle = { r = 1, g = 1, b = 0, a = 1 },
-		countColorHigh = { r = 0, g = 1, b = 0, a = 1 },
-		countLow = 1,
-		countHigh = 2,
+	[GridStatusAuras.StatusForSpell(BS["Beacon of Light"], true)] = {
+		desc = string.format(L["Buff: %s"], BS["Beacon of Light"]),
+		text = BS["Beacon of Light"],
+		color = { r = .5, g = 0.7, b = 0.3, a = 1 },
+		durationColorLow = { r = 1, g = 0, b = 0, a = 1 },
+		durationColorMiddle = { r = .49, g = .49, b = 0, a = 1 },
+		durationColorHigh = { r = .7, g = .7, b = 0, a = 1 },
+		durationLow = 5,
+		durationHigh = 10,
 	},
 	[GridStatusAuras.StatusForSpell(BS["Power Word: Shield"], true)] = {
 		desc = string.format(L["Buff: %s"], BS["Power Word: Shield"]),
@@ -223,14 +232,6 @@ GridStatusAuras.defaultDB = {
 		durationColorMiddle = { r =  0, g = .21, b = .49, a = 1 },
 		durationColorHigh = { r =  0, g = .3, b = .7, a = 1 },
 	},
-	[GridStatusAuras.StatusForSpell(BS["Riptide"], true)] = {
-		desc = string.format(L["Buff: %s"], BS["Riptide"]),
-		text = BS["Riptide"],
-		color = { r = .4, g = 0, b = .8, a = 1 },
-		durationColorLow = { r = 1, g = 0, b = 0, a = 1 },
-		durationColorMiddle = { r = .28, g = 0, b = .56, a = 1 },
-		durationColorHigh = { r = .4, g = 0, b = .8, a = 1 },
-	},
 	[GridStatusAuras.StatusForSpell(BS["Earth Shield"], true)] = {
 		desc = string.format(L["Buff: %s"], BS["Earth Shield"]),
 		text = BS["Earth Shield"],
@@ -244,23 +245,21 @@ GridStatusAuras.defaultDB = {
 		countLow = 1,
 		countHigh = 4,
 	},
-	[GridStatusAuras.StatusForSpell(BS["Beacon of Light"], true)] = {
-		desc = string.format(L["Buff: %s"], BS["Beacon of Light"]),
-		text = BS["Beacon of Light"],
-		color = { r = .5, g = 0.7, b = 0.3, a = 1 },
+	[GridStatusAuras.StatusForSpell(BS["Riptide"], true)] = {
+		desc = string.format(L["Buff: %s"], BS["Riptide"]),
+		text = BS["Riptide"],
+		color = { r = .4, g = 0, b = .8, a = 1 },
 		durationColorLow = { r = 1, g = 0, b = 0, a = 1 },
-		durationColorMiddle = { r = .49, g = .49, b = 0, a = 1 },
-		durationColorHigh = { r = .7, g = .7, b = 0, a = 1 },
-		durationLow = 5,
-		durationHigh = 10,
+		durationColorMiddle = { r = .28, g = 0, b = .56, a = 1 },
+		durationColorHigh = { r = .4, g = 0, b = .8, a = 1 },
 	},
 }
 
 local defaultDebuffs = { }
 do
-	for status, statusTbl in pairs(GridStatusAuras.defaultDB) do
-		if type(statusTbl) == "table" and statusTbl.text then
-			GridStatusAuras:CopyDefaults(statusTbl, statusDefaultDB)
+	for status, settings in pairs(GridStatusAuras.defaultDB) do
+		if type(settings) == "table" and settings.text then
+			GridStatusAuras:CopyDefaults(settings, statusDefaultDB)
 			defaultDebuffs[status] = true
 		end
 	end
@@ -324,6 +323,7 @@ function GridStatusAuras:PostReset()
 	self:UnregisterStatuses()
 	self:RegisterStatuses()
 	self:CreateRemoveOptions()
+	self:ResetDurationStatuses()
 	self:UpdateAuraScanList()
 end
 
@@ -343,12 +343,14 @@ function GridStatusAuras:OnStatusEnable(status)
 	self:RegisterMessage("Grid_UnitJoined")
 	self:RegisterEvent("UNIT_AURA", "ScanUnitAuras")
 
+	self:DeleteDurationStatus(status)
 	self:UpdateAuraScanList()
 	self:UpdateAllUnitAuras()
 end
 
 function GridStatusAuras:OnStatusDisable(status)
 	self.core:SendStatusLostAllUnits(status)
+	self:DeleteDurationStatus(status)
 	self:UpdateAuraScanList()
 
 	if self:EnabledStatusCount() == 0 then
@@ -358,19 +360,19 @@ function GridStatusAuras:OnStatusDisable(status)
 end
 
 function GridStatusAuras:RegisterStatuses()
-	for status, statusTbl in pairs(self.db.profile) do
-		if type(statusTbl) == "table" and statusTbl.text then
-			local name = statusTbl.text
-			local desc = statusTbl.desc or name
+	for status, settings in pairs(self.db.profile) do
+		if type(settings) == "table" and settings.text then
+			local name = settings.text
+			local desc = settings.desc or name
 			local isBuff = GridStatusAuras.StatusForSpell(name, true) == status
-			local order = statusTbl.order or (isBuff and 15 or 35)
+			local order = settings.order or (isBuff and 15 or 35)
 
 			self:Debug("registering", status, desc)
 			if not self.defaultDB[status] then
 				self.defaultDB[status] = { }
 				self:CopyDefaults(self.defaultDB[status], statusDefaultDB)
 			end
-			self:CopyDefaults(statusTbl, self.defaultDB[status])
+			self:CopyDefaults(settings, self.defaultDB[status])
 			self:RegisterStatus(status, desc, self:OptionsForStatus(status, isBuff), false, order)
 		end
 	end
@@ -670,6 +672,7 @@ function GridStatusAuras:OptionsForStatus(status, isBuff)
 				end,
 			set = function(_, v)
 					GridStatusAuras.db.profile[status].mine = v
+					GridStatusAuras:DeleteDurationStatus(status)
 					GridStatusAuras:UpdateAuraScanList()
 					GridStatusAuras:UpdateAllUnitAuras()
 				end,
@@ -694,10 +697,10 @@ function GridStatusAuras:OptionsForStatus(status, isBuff)
 end
 
 function GridStatusAuras:CreateRemoveOptions()
-	for status, statusTbl in pairs(self.db.profile) do
+	for status, settings in pairs(self.db.profile) do
 		local status = status
-		if type(statusTbl) == "table" and statusTbl.text and not defaultDebuffs[status] then
-			local debuffName = (statusTbl.desc or statusTbl.text)
+		if type(settings) == "table" and settings.text and not defaultDebuffs[status] then
+			local debuffName = settings.desc or settings.text
 			self.options.args["delete_debuff"].args[status] = {
 				name = debuffName,
 				desc = string.format(L["Remove %s from the menu"], debuffName),
@@ -709,7 +712,7 @@ function GridStatusAuras:CreateRemoveOptions()
 	end
 end
 
-function GridStatusAuras:AddAura(name, isBuff) print("AddAura", name, tostring(isBuff))
+function GridStatusAuras:AddAura(name, isBuff)
 	local status = GridStatusAuras.StatusForSpell(name, isBuff)
 
 	-- status already exists
@@ -730,8 +733,8 @@ function GridStatusAuras:AddAura(name, isBuff) print("AddAura", name, tostring(i
 	self:CopyDefaults(self.db.profile[status], self.defaultDB[status])
 
 	self.options.args["delete_debuff"].args[status] = {
-		name = name,
-		desc = string.format(L["Remove %s from the menu"], name),
+		name = desc,
+		desc = string.format(L["Remove %s from the menu"], desc),
 		width = "double",
 		type = "execute",
 		func = function()
@@ -745,7 +748,7 @@ function GridStatusAuras:AddAura(name, isBuff) print("AddAura", name, tostring(i
 	self:OnStatusEnable(status)
 end
 
-function GridStatusAuras:DeleteAura(status) print("DeleteAura", status)
+function GridStatusAuras:DeleteAura(status)
 	self:UnregisterStatus(status)
 	self.options.args[status] = nil
 	self.options.args["delete_debuff"].args[status] = nil
@@ -753,6 +756,7 @@ function GridStatusAuras:DeleteAura(status) print("DeleteAura", status)
 	for indicator, indicatorTbl in pairs(GridFrame.db.profile.statusmap) do
 		indicatorTbl[status] = nil
 	end
+	self:DeleteDurationStatus(status)
 	self:UpdateAuraScanList()
 end
 
@@ -802,11 +806,53 @@ GridStatusAuras.durationTimer = {
 	minRefresh = nil,
 }
 
-local durationThreshold = 60
 local GetTime = GetTime
 local now = GetTime()
 
 local texCoords = { left = 0.06, right = 0.94, top = 0.06, bottom = 0.94 }
+
+-- Simple resource pool implemented as a singly-linked list.
+local Pool = {
+	pool = nil,
+	new = function(self, obj) -- create new Pool object
+		obj = obj or {}
+		setmetatable(obj, self)
+		self.__index = self
+		return obj
+	end,
+	get = function(self) -- get a cleaned item from the pool
+		if not self.pool then self.pool = { nextPoolItem = self.pool } end
+		local item = self.pool
+		self.pool = self.pool.nextPoolItem
+		item.nextPoolItem = nil
+		if self.clean then
+			self:clean(item)
+		end
+		return item
+	end,
+	put = function(self, item) -- put an item back into the pool; caller shall remove references to item
+		item.nextPoolItem = self.pool
+		self.pool = item
+	end,
+	clean = nil, -- called in Pool:new() to return a "cleaned" pool item
+	empty = function(self) -- empty the pool
+		while self.pool do
+			local l = self.pool
+			self.pool = self.pool.nextPoolItem
+			l = nil
+		end
+	end,
+}
+
+-- durationAuraPool is a Pool of tables used by durationAuras[status][guid]
+local durationAuraPool = Pool:new(
+	{
+		clean = function(self, item)
+			item.duration = nil
+			item.expirationTime = nil
+		end
+	}
+)
 
 function GridStatusAuras:UnitGainedDurationStatus(status, guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
 	local timer = self.durationTimer
@@ -816,6 +862,9 @@ function GridStatusAuras:UnitGainedDurationStatus(status, guid, class, name, ran
 	if settings.enable and (settings.statusText == "duration" or settings.statusColor == "duration") then
 		if not self.durationAuras[status] then
 			self.durationAuras[status] = {}
+		end
+		if not self.durationAuras[status][guid] then
+			self.durationAuras[status][guid] = durationAuraPool:get()
 		end
 		self.durationAuras[status][guid] = {
 			class = class,
@@ -831,24 +880,39 @@ function GridStatusAuras:UnitGainedDurationStatus(status, guid, class, name, ran
 			timer.minRefresh = settings.refresh
 		end
 	else
-		if self.durationAuras[status] then
-			self.durationAuras[status][guid] = nil
-		end
+		self:UnitLostDurationStatus(status, guid, class, name)
 	end
 end
 
 function GridStatusAuras:UnitLostDurationStatus(status, guid, class, name)
-	if self.durationAuras[status] and self.durationAuras[status][guid] then
-		if self.durationAuras[status][guid].expirationTime > now then
-			self.durationAuras[status][guid].expirationTime = now
-		end
+	local auras = self.durationAuras[status]
+	if auras and auras[guid] then
+		durationAuraPool:put(auras[guid])
+		auras[guid] = nil
 	end
 end
 
+function GridStatusAuras:DeleteDurationStatus(status)
+	local auras = self.durationAuras[status]
+	if not auras then return end
+	for guid in auras do
+		durationAuraPool:put(auras[guid])
+		auras[guid] = nil
+	end
+	self.durationAuras[status] = nil
+end
+
+function GridStatusAuras:ResetDurationStatuses()
+	for status in pairs(self.durationAuras) do
+		self:DeleteDurationStatus(status)
+	end
+	durationAuraPool:empty()
+end
+
 function GridStatusAuras:HasActiveDurations()
-	for status, statusTbl in pairs(self.durationAuras) do
-		for guid, guidTbl in pairs(statusTbl) do
-			if guidTbl then return true end
+	for status, auras in pairs(self.durationAuras) do
+		for guid in pairs(auras) do
+			return true
 		end
 	end
 	return false
@@ -915,6 +979,39 @@ function GridStatusAuras:StatusTextColor(settings, count, timeLeft)
 	end
 
 	return text, color
+end
+
+function GridStatusAuras:RefreshActiveDurations()
+	now = GetTime()
+
+	self:Debug("RefreshActiveDurations", now)
+
+	for status, auras in pairs(self.durationAuras) do
+		local settings = self.db.profile[status]
+		if settings and settings.enable and not settings.missing and settings[class] ~= false then
+			for guid, aura in pairs(auras) do
+				local count, duration, expirationTime, icon = aura.count, aura.duration, aura.expirationTime, aura.icon
+				local start = expirationTime and (expirationTime - duration)
+				local timeLeft = expirationTime and expirationTime > now and (expirationTime - now) or 0
+				local text, color = self:StatusTextColor(settings, count, timeLeft)
+				self.core:SendStatusGained(guid,
+					status,
+					settings.priority,
+					(settings.range and 40),
+					color,
+					text,
+					count,
+					nil,
+					icon,
+					start,
+					duration,
+					count,
+					texCoords)
+			end
+		else
+			self.core:SendStatusLost(guid, status)
+		end
+	end
 end
 
 function GridStatusAuras:UnitGainedBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
@@ -1180,8 +1277,11 @@ function GridStatusAuras:ScanUnitAuras(event, unit)
 
 	now = GetTime()
 
-	for status, statusTbl in pairs(self.durationAuras) do
-		statusTbl[guid] = nil
+	for status, auras in pairs(self.durationAuras) do
+		if auras[guid] then
+			durationAuraPool:put(auras[guid])
+			auras[guid] = nil
+		end
 	end
 
 	-- scan for buffs
@@ -1260,59 +1360,4 @@ function GridStatusAuras:ScanUnitAuras(event, unit)
 	end
 
 	self:ResetDurationTimer(self:HasActiveDurations())
-end
-
-function GridStatusAuras:RefreshActiveDurations()
-	local class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable
-	local isBuff, settings
-	local hasActiveDurations = false
-
-	now = GetTime()
-
-	self:Debug("RefreshActiveDurations", now)
-
-	for status, statusTbl in pairs(self.durationAuras) do
-		local gcStatus = true
-		settings = self.db.profile[status]
-		if settings then
-			for guid, guidTbl in pairs(statusTbl) do
-				class = guidTbl.class
-				name = settings.text
-				rank = guidTbl.rank
-				icon = settings.icon
-				count = guidTbl.count
-				debuffType = guidTbl.debuffType
-				duration = guidTbl.duration
-				expirationTime = guidTbl.expirationTime
-				caster = guidTbl.caster
-				isStealable = guidTbl.isStealable
-
-				if expirationTime > now then
-					gcStatus = false
-					hasActiveDurations = true
-					isBuff = self.StatusForSpell(name, true) == status
-					if isBuff then
-						if buff_names[name] then
-							self:UnitGainedBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
-						elseif player_buff_names[name] then
-							self:UnitGainedPlayerBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
-						end
-					elseif debuff_names[name] then
-						self:UnitGainedDebuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
-					elseif debuff_types[debuffType] then
-						self:UnitGainedDebuffType(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
-					end
-				elseif now - expirationTime > durationThreshold then
-					self.durationAuras[status][guid] = nil
-				else
-					gcStatus = false
-				end
-			end
-		end
-		if gcStatus then
-			self.durationAuras[status] = nil
-		end
-	end
-
-	self:ResetDurationTimer(hasActiveDurations)
 end

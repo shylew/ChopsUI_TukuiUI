@@ -1,0 +1,69 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
+
+  <Script file="enUS.lua" />
+  <Script file="Changelog\enUS.lua" />
+  <Script file="HelpPlates\enUS.lua" />
+  <Script file="Tutorials\enUS.lua" />
+
+  <Script file="deDE.lua" />
+  <Script file="Changelog\deDE.lua" />
+  <Script file="HelpPlates\deDE.lua" />
+  <Script file="Tutorials\deDE.lua" />
+
+  <Script file="enCN.lua" />
+  <Script file="Changelog\enCN.lua" />
+  <Script file="HelpPlates\enCN.lua" />
+  <Script file="Tutorials\enCN.lua" />
+
+  <Script file="enTW.lua" />
+  <Script file="Changelog\enTW.lua" />
+  <Script file="HelpPlates\enTW.lua" />
+  <Script file="Tutorials\enTW.lua" />
+
+  <Script file="esES.lua" />
+  <Script file="Changelog\esES.lua" />
+  <Script file="HelpPlates\esES.lua" />
+  <Script file="Tutorials\esES.lua" />
+
+  <Script file="esMX.lua" />
+  <Script file="Changelog\esMX.lua" />
+  <Script file="HelpPlates\esMX.lua" />
+  <Script file="Tutorials\esMX.lua" />
+
+  <Script file="frFR.lua" />
+  <Script file="Changelog\frFR.lua" />
+  <Script file="HelpPlates\frFR.lua" />
+  <Script file="Tutorials\frFR.lua" />
+
+  <Script file="koKR.lua" />
+  <Script file="Changelog\koKR.lua" />
+  <Script file="HelpPlates\koKR.lua" />
+  <Script file="Tutorials\koKR.lua" />
+
+  <Script file="ptBR.lua" />
+  <Script file="Changelog\ptBR.lua" />
+  <Script file="HelpPlates\ptBR.lua" />
+  <Script file="Tutorials\ptBR.lua" />
+
+  <Script file="ptPT.lua" />
+  <Script file="Changelog\ptPT.lua" />
+  <Script file="HelpPlates\ptPT.lua" />
+  <Script file="Tutorials\ptPT.lua" />
+
+  <Script file="ruRU.lua" />
+  <Script file="Changelog\ruRU.lua" />
+  <Script file="HelpPlates\ruRU.lua" />
+  <Script file="Tutorials\ruRU.lua" />
+
+  <Script file="zhCN.lua" />
+  <Script file="Changelog\zhCN.lua" />
+  <Script file="HelpPlates\zhCN.lua" />
+  <Script file="Tutorials\zhCN.lua" />
+
+  <Script file="zhTW.lua" />
+  <Script file="Changelog\zhTW.lua" />
+  <Script file="HelpPlates\zhTW.lua" />
+  <Script file="Tutorials\zhTW.lua" />
+</Ui>

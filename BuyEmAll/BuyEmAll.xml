@@ -1,17 +1,15 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
-..\UI.xsd">
-	<!-- Template for the Okay and Cancel buttons -->
-	<Button name="BuyEmAllButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
-		<Size x="64" y="24"/>
+﻿<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\UI.xsd" xmlns="http://www.blizzard.com/wow/ui/">
+	<Button name="BuyEmAllButtonTemplate" virtual="true" inherits="UIPanelButtonTemplate">
+		<Size>
+			<AbsDimension x="64" y="24" />
+		</Size>
 		<Scripts>
 			<OnClick>
 				BuyEmAll:OnClick(self,button)
 			</OnClick>
 		</Scripts>
 	</Button>
-
-	<!-- Template for the max and stack buttons -->
-	<Button name="BuyEmAllTooltipButtonTemplate" inherits="BuyEmAllButtonTemplate" virtual="true">
+	<Button name="BuyEmAllTooltipButtonTemplate" virtual="true" inherits="BuyEmAllButtonTemplate">
 		<Scripts>
 			<OnEnter>
 				BuyEmAll:OnEnter(self)
@@ -21,67 +19,77 @@
 			</OnLeave>
 		</Scripts>
 	</Button>
-
-	<Frame name="BuyEmAllFrame" frameStrata="HIGH" parent="UIParent" toplevel="true" enableMouse="true" enableKeyboard="true" hidden="true">
-		<Size x="172" y="134"/>
+	<Frame name="BuyEmAllFrame" hidden="true" parent="UIParent" toplevel="true" frameStrata="HIGH" enableMouse="true" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="230" y="134" />
+		</Size>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<!-- The top border of the money frame. -->
 				<Texture name="$parentTopTex" file="Interface\MoneyFrame\UI-MoneyFrame2">
-					<Size x="172" y="14"/>
+					<Size>
+						<AbsDimension x="230" y="14" />
+					</Size>
 					<Anchors>
-						<Anchor point="TOP"/>
+						<Anchor point="TOP" />
 					</Anchors>
-					<TexCoords left="0" right="0.671875" top="0" bottom=".109375"/>
+					<TexCoords left="0" right="0.671875" top="0" bottom="0.109375" />
 				</Texture>
-
-				<!-- The bottom border -->
 				<Texture name="$parentBottomTex" file="Interface\MoneyFrame\UI-MoneyFrame2">
-					<Size x="172" y="20"/>
+					<Size>
+						<AbsDimension x="230" y="20" />
+					</Size>
 					<Anchors>
-						<Anchor point="BOTTOM"/>
+						<Anchor point="BOTTOM" />
 					</Anchors>
-					<TexCoords left="0" right="0.671875" top=".59375" bottom=".75"/>
+					<TexCoords left="0" right="0.671875" top="0.59375" bottom="0.75" />
 				</Texture>
-
-				<!-- The background behind the buttons -->
 				<Texture name="$parentBackTex" file="Interface\MoneyFrame\UI-MoneyFrame2">
 					<Anchors>
-						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTopTex"/>
-						<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" relativeTo="$parentBottomTex"/>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopTex" relativePoint="BOTTOMLEFT">
+							<Offset x="0" y="0" />
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomTex" relativePoint="TOPRIGHT">
+							<Offset x="0" y="0" />
+						</Anchor>
 					</Anchors>
-					<TexCoords left="0" right="0.671875" top=".109375" bottom=".59375"/>
+					<TexCoords left="0" right="0.671875" top="0.109375" bottom="0.59375" />
 				</Texture>
 			</Layer>
 			<Layer level="BORDER">
-				<!-- The actual box where the amount you will be buying goes -->
 				<Texture name="$parentMoneyTex" file="Interface\MoneyFrame\UI-MoneyFrame">
-					<Size x="121" y="33"/>
+					<Size>
+						<AbsDimension x="121" y="33" />
+					</Size>
 					<Anchors>
 						<Anchor point="TOP">
-							<Offset x="1" y="-14"/>
+							<Offset>
+								<AbsDimension x="1" y="-14" />
+							</Offset>
 						</Anchor>
 					</Anchors>
-					<TexCoords left=".10546875" right="0.578125" top=".109375" bottom=".3671875"/>
+					<TexCoords left="0.10546875" right="0.578125" top="0.109375" bottom="0.3671875" />
 				</Texture>
-
-				<!-- This is the number that goes inside $parentMoneyTex -->
 				<FontString name="BuyEmAllText" inherits="GameFontHighlight" justifyH="RIGHT">
 					<Anchors>
 						<Anchor point="RIGHT" relativeTo="$parentMoneyTex">
-							<Offset x="-12" y="2"/>
+							<Offset>
+								<AbsDimension x="-12" y="2" />
+							</Offset>
 						</Anchor>
 					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
 		<Frames>
-			<!-- These are the left and right arrows used for changing the amount -->
 			<Button name="BuyEmAllLeftButton">
-				<Size x="16" y="16"/>
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
 				<Anchors>
-					<Anchor point="TOPRIGHT" relativePoint="TOP" relativeTo="$parentMoneyTex">
-						<Offset x="-60" y="-8"/>
+					<Anchor point="TOPRIGHT" relativeTo="$parentMoneyTex" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-60" y="-8" />
+						</Offset>
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -89,15 +97,19 @@
 						BuyEmAll:Left_Click()
 					</OnClick>
 				</Scripts>
-				<NormalTexture file="Interface\MoneyFrame\Arrow-Left-Up"/>
-				<PushedTexture file="Interface\MoneyFrame\Arrow-Left-Down"/>
-				<DisabledTexture file="Interface\MoneyFrame\Arrow-Left-Disabled"/>
+				<NormalTexture file="Interface\MoneyFrame\Arrow-Left-Up" />
+				<PushedTexture file="Interface\MoneyFrame\Arrow-Left-Down" />
+				<DisabledTexture file="Interface\MoneyFrame\Arrow-Left-Disabled" />
 			</Button>
 			<Button name="BuyEmAllRightButton">
-				<Size x="16" y="16"/>
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativePoint="TOP" relativeTo="$parentMoneyTex">
-						<Offset x="63" y="-8"/>
+					<Anchor point="TOPLEFT" relativeTo="$parentMoneyTex" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="63" y="-8" />
+						</Offset>
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -105,46 +117,43 @@
 						BuyEmAll:Right_Click()
 					</OnClick>
 				</Scripts>
-				<NormalTexture file="Interface\MoneyFrame\Arrow-Right-Up"/>
-				<PushedTexture file="Interface\MoneyFrame\Arrow-Right-Down"/>
-				<DisabledTexture file="Interface\MoneyFrame\Arrow-Right-Disabled"/>
+				<NormalTexture file="Interface\MoneyFrame\Arrow-Right-Up" />
+				<PushedTexture file="Interface\MoneyFrame\Arrow-Right-Down" />
+				<DisabledTexture file="Interface\MoneyFrame\Arrow-Right-Disabled" />
 			</Button>
-
-			<!-- The money frame where the cost of the purchase is displayed -->
-			<Frame name="BuyEmAllMoneyFrame" inherits="SmallMoneyFrameTemplate">
-				<Size x="120" y="24"/>
-				<Anchors>
-					<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentMoneyTex">
-						<Offset x="7" y="2"/>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						BuyEmAll:MoneyFrame_OnLoad(self)
-					</OnLoad>
-				</Scripts>
-			</Frame>
-
 			<Button name="BuyEmAllOkayButton" inherits="BuyEmAllButtonTemplate" text="OKAY">
+				<Size>
+					<AbsDimension x="78" y="24" />
+				</Size>
 				<Anchors>
 					<Anchor point="RIGHT" relativePoint="BOTTOM">
-						<Offset x="-3" y="30"/>
+						<Offset>
+							<AbsDimension x="-3" y="30" />
+						</Offset>
 					</Anchor>
 				</Anchors>
 			</Button>
 			<Button name="BuyEmAllCancelButton" inherits="BuyEmAllButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="78" y="24" />
+				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativePoint="BOTTOM">
-						<Offset x="5" y="30"/>
+						<Offset>
+							<AbsDimension x="5" y="30" />
+						</Offset>
 					</Anchor>
 				</Anchors>
 			</Button>
-
-			<!-- The Max and Stack buttons -->
 			<Button name="BuyEmAllStackButton" inherits="BuyEmAllTooltipButtonTemplate" text="BUYEMALL_STACK">
+				<Size>
+					<AbsDimension x="78" y="24" />
+				</Size>
 				<Anchors>
-					<Anchor point="BOTTOM" relativePoint="TOP" relativeTo="BuyEmAllOkayButton">
-						<Offset x="0" y="2"/>
+					<Anchor point="BOTTOM" relativeTo="BuyEmAllOkayButton" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -154,12 +163,98 @@
 				</Scripts>
 			</Button>
 			<Button name="BuyEmAllMaxButton" inherits="BuyEmAllTooltipButtonTemplate" text="BUYEMALL_MAX">
+				<Size>
+					<AbsDimension x="78" y="24" />
+				</Size>
 				<Anchors>
-					<Anchor point="BOTTOM" relativePoint="TOP" relativeTo="BuyEmAllCancelButton">
-						<Offset x="0" y="2"/>
+					<Anchor point="BOTTOM" relativeTo="BuyEmAllCancelButton" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
 					</Anchor>
 				</Anchors>
 			</Button>
+			<Frame name="BuyEmAllCurrencyFrame">
+				<Size>
+					<AbsDimension x="204" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset x="2" y="-45" />
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="" edgeFile="">
+					<BackgroundInsets>
+						<AbsInset left="0" right="0" top="0" bottom="0" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Layers>
+					<Layer>
+						<Texture name="BuyEmAllCurrency1" file="">
+							<Size>
+								<AbsDimension x="16" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset x="48" y="0" />
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="BuyEmAllCurrency2" file="">
+							<Size>
+								<AbsDimension x="16" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset x="116" y="0" />
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="BuyEmAllCurrency3" file="">
+							<Size>
+								<AbsDimension x="16" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset x="184" y="0" />
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<FontString name="BuyEmAllCurrencyAmt1" inherits="GameFontNormal" text="">
+							<Size>
+								<AbsDimension x="52" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset x="-2" y="0" />
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="BuyEmAllCurrencyAmt2" inherits="GameFontNormal" text="">
+							<Size>
+								<AbsDimension x="52" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset x="66" y="0" />
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="BuyEmAllCurrencyAmt3" inherits="GameFontNormal" text="">
+							<Size>
+								<AbsDimension x="52" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset x="134" y="0" />
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
 		</Frames>
 		<Scripts>
 			<OnLoad>

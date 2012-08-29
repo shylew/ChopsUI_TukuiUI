@@ -31,6 +31,8 @@ if not trace then trace = print end
 -- ADDON GLOBALS
 -- -------------
 
+local GetActiveTalentGroup = _G.GetActiveSpecGroup
+
 NeedToKnow = {}
 NeedToKnowLoader = {}
 NeedToKnow.scratch = {}
@@ -76,7 +78,7 @@ NeedToKnow.scratch.bar_entry =
     }
 -- NEEDTOKNOW = {} is defined in the localization file, which must be loaded before this file
 
-NEEDTOKNOW.VERSION = "4.0.03"
+NEEDTOKNOW.VERSION = "4.0.06"
 NEEDTOKNOW.UPDATE_INTERVAL = 0.05
 NEEDTOKNOW.MAXBARS = 20
 
@@ -540,13 +542,13 @@ end
 function NeedToKnow.RefreshRaidMemberNames()
     NeedToKnow.raid_members = {}
 
-    if GetNumRaidMembers() > 0 then
+    if IsInRaid() then
         for i = 1, 40 do
             local unit = "raid"..i
             local name = UnitName(unit)
             if ( name ) then NeedToKnow.raid_members[name] = unit end
         end
-    elseif GetNumPartyMembers() > 0 then
+    elseif IsInGroup() then
         for i = 1, 5 do
             local unit = "party"..i
             local name = UnitName(unit)
@@ -572,14 +574,14 @@ end
 function NeedToKnow.ExecutiveFrame_PLAYER_REGEN_DISABLED(unitTargeting)
     NeedToKnow.bInCombat = true
     NeedToKnow.bCombatWithBoss = false
-    if GetNumRaidMembers() > 0 then
+    if IsInRaid() then
         for i = 1, 40 do
             if UnitLevel("raid"..i.."target") == -1 then
                 NeedToKnow.bCombatWithBoss = true;
                 break;
             end
         end
-    elseif GetNumPartyMembers() > 0 then
+    elseif IsInGroup() then
         for i = 1, 5 do
             if UnitLevel("party"..i.."target") == -1 then
                 NeedToKnow.bCombatWithBoss = true;
@@ -2068,11 +2070,34 @@ end
 function NeedToKnow.GetItemCooldown(bar, entry)
     local start, cd_len, enable = GetItemCooldown(entry.id)
     if start then
-        local name, _, _, _, _, _, _, _, icon = GetItemInfo(entry.id)
+        local name, _, _, _, _, _, _, _, _, icon = GetItemInfo(entry.id)
         return start, cd_len, enable, name, icon
     end
 end
 
+
+function NeedToKnow.UpdateWeaponEnchantData(data, slot)
+    local oldname = data.name
+    data.name = NeedToKnow.DetermineTempEnchantFromTooltip(slot)
+    if not data.name then
+        data.name = "Unknown"
+        data.icon = nil
+        --trace("Warning: NTK couldn't figure out what enchant is on weapon slot",slot)
+    end
+    data.expiration = GetTime() + data.expiration/1000
+    if oldname ~= data.name then
+        _,_,data.icon = GetSpellInfo(data.name)
+        if nil == data.icon then
+            _,_,data.icon = GetSpellInfo(data.name .. " Weapon")
+        end
+        if nil == data.icon then
+            _,_,_,_,_,_,_,_,_,data.icon = GetItemInfo(data.name)
+        end
+        if nil == data.icon then
+            data.icon=GetInventoryItemTexture("player",slot)
+        end
+    end
+end
 
 -- Scrapes the current tooltips for the player's weapons to tease out
 -- the name of the current weapon imbue (and not just the name of the 
@@ -2087,31 +2112,13 @@ function NeedToKnow.UpdateWeaponEnchants()
       = GetWeaponEnchantInfo()
       
     if ( mdata.present ) then
-       local oldname = mdata.name
-       mdata.name = NeedToKnow.DetermineTempEnchantFromTooltip(16)
-       if not mdata.name then
-           mdata.name = "Unknown"
-           print("Warning: NTK couldn't figure out what enchant is on the main hand weapon")
-       end
-       mdata.expiration = GetTime() + mdata.expiration/1000
-       if oldname ~= mdata.name then
-         _,_,mdata.icon = GetSpellInfo(mdata.name)
-       end
+        NeedToKnow.UpdateWeaponEnchantData(mdata, 16)
     else
         mdata.name=nil
     end
 
     if ( odata.present ) then
-       local oldname = odata.name
-       odata.name = NeedToKnow.DetermineTempEnchantFromTooltip(17)
-       if not odata.name then
-           odata.name = "Unknown"
-           print("Warning: NTK couldn't figure out what enchant is on the off-hand weapon")
-       end
-       odata.expiration = GetTime() + odata.expiration/1000
-       if oldname ~= odata.name then
-         _,_,odata.icon = GetSpellInfo(odata.name)
-       end
+        NeedToKnow.UpdateWeaponEnchantData(odata, 17)
     else
         odata.name = nil
     end

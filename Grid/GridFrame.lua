@@ -1,5 +1,12 @@
 --[[--------------------------------------------------------------------
-	GridFrame.lua
+	Grid
+	Compact party and raid unit frames.
+	Copyright (c) 2006-2012 Kyle Smith (a.k.a. Pastamancer), A. Kinley (a.k.a. Phanx) <addons@phanx.net>
+	All rights reserved.
+	See the accompanying README and LICENSE files for more information.
+	http://www.wowinterface.com/downloads/info5747-Grid.html
+	http://www.wowace.com/addons/grid/
+	http://www.curse.com/addons/wow/grid
 ----------------------------------------------------------------------]]
 
 local GRID, Grid = ...
@@ -8,9 +15,14 @@ local L = Grid.L
 local GridStatus
 
 local media = LibStub("LibSharedMedia-3.0", true)
-if media then media:Register("statusbar", "Gradient", "Interface\\Addons\\Grid\\gradient32x32") end
+if media then
+	media:Register("statusbar", "Blizzard Raid Bar", "Interface\\RaidFrame\\Raid-Bar-Hp-Fill")
+	media:Register("statusbar", "Gradient", "Interface\\Addons\\Grid\\gradient32x32")
+end
 
 local GridFrame = Grid:NewModule("GridFrame", "AceBucket-3.0", "AceTimer-3.0")
+
+local format, gsub, pairs, tonumber, type = format, gsub, pairs, tonumber, type
 
 ------------------------------------------------------------------------
 
@@ -62,8 +74,8 @@ function GridFrame:InitializeFrame(frame)
 
 	-- create border
 	frame:SetBackdrop({
-		bgFile = "Interface\\Addons\\Grid\\white16x16", tile = true, tileSize = 16,
-		edgeFile = "Interface\\Addons\\Grid\\white16x16", edgeSize = 1,
+		bgFile = "Interface\\BUTTONS\\WHITE8X8", tile = true, tileSize = 8,
+		edgeFile = "Interface\\BUTTONS\\WHITE8X8", edgeSize = 1,
 		insets = {left = 1, right = 1, top = 1, bottom = 1},
 	})
 	frame:SetBackdropBorderColor(0,0,0,0)
@@ -78,6 +90,7 @@ function GridFrame:InitializeFrame(frame)
 
 	-- create healing bar
 	frame.HealingBar = CreateFrame("StatusBar", nil, frame)
+	frame.HealingBar:SetFrameLevel(frame:GetFrameLevel() + 1)
 	frame.HealingBar:SetStatusBarTexture(texture)
 
 	local bar_texture = frame.HealingBar:GetStatusBarTexture()
@@ -95,6 +108,7 @@ function GridFrame:InitializeFrame(frame)
 
 	-- create bar
 	frame.Bar = CreateFrame("StatusBar", nil, frame)
+	frame.Bar:SetFrameLevel(frame:GetFrameLevel() + 2)
 	frame.Bar:SetStatusBarTexture(texture)
 
 	bar_texture = frame.Bar:GetStatusBarTexture()
@@ -132,14 +146,22 @@ function GridFrame:InitializeFrame(frame)
 		frame.Text2:SetShadowOffset(0, 0)
 	end
 
+	if GridFrame.db.profile.invertBarColor and GridFrame.db.profile.invertTextColor then
+		frame.Text:SetShadowColor(1, 1, 1)
+		frame.Text2:SetShadowColor(1, 1, 1)
+	else
+		frame.Text:SetShadowColor(0, 0, 0)
+		frame.Text2:SetShadowColor(0, 0, 0)
+	end
+
 	-- create icon background/border
 	frame.IconBG = CreateFrame("Frame", nil, frame)
 	frame.IconBG:SetWidth(GridFrame.db.profile.iconSize)
 	frame.IconBG:SetHeight(GridFrame.db.profile.iconSize)
 	frame.IconBG:SetPoint("CENTER", frame, "CENTER")
 	frame.IconBG:SetBackdrop({
-			-- bgFile = "Interface\\Addons\\Grid\\white16x16", tile = true, tileSize = 16,
-			edgeFile = "Interface\\Addons\\Grid\\white16x16", edgeSize = 2,
+			-- bgFile = "Interface\\BUTTONS\\WHITE8X8", tile = true, tileSize = 8,
+			edgeFile = "Interface\\BUTTONS\\WHITE8X8", edgeSize = 2,
 			insets = { left = 2, right = 2, top = 2, bottom = 2 },
 		})
 	frame.IconBG:SetBackdropBorderColor(1, 1, 1, 1)
@@ -179,7 +201,7 @@ function GridFrame:InitializeFrame(frame)
 	frame.IconStackText:SetJustifyV("BOTTOM")
 
 	-- set texture
-	frame:SetNormalTexture(1, 1, 1, 0)
+	frame:SetNormalTexture("")
 	frame:EnableMouseoverHighlight(GridFrame.db.profile.enableMouseoverHighlight)
 
 	if frame:CanChangeAttribute() then
@@ -444,8 +466,11 @@ function GridFrame.prototype:SetBar(value, max)
 		max = 100
 	end
 
+	self.Bar:SetMinMaxValues(0, max)
+	self.Bar:SetValue(value)
+
 	local perc = value / max
-	self.Bar:SetValue(perc * 100)
+	--print("SetBar", math.floor(perc * 100))
 
 	local coord = (perc > 0 and perc <= 1) and perc or 1
 	if GridFrame.db.profile.orientation == "VERTICAL" then
@@ -460,8 +485,11 @@ function GridFrame.prototype:SetHealingBar(value, max)
 		max = 100
 	end
 
+	self.HealingBar:SetMinMaxValues(0, max)
+	self.HealingBar:SetValue(value)
+
 	local perc = value / max
-	self.HealingBar:SetValue(perc * 100)
+	--print("SetHealingBar", math.floor(perc * 100))
 
 	local coord = (perc > 0 and perc <= 1) and perc or 1
 	if GridFrame.db.profile.orientation == "VERTICAL" then
@@ -469,45 +497,80 @@ function GridFrame.prototype:SetHealingBar(value, max)
 	else
 		self.Bar:GetStatusBarTexture():SetTexCoord(0, coord, 0, 1)
 	end
-
-	self:UpdateHealingBarColor()
 end
 
 function GridFrame.prototype:SetBarColor(r, g, b, a)
+	--print("SetBarColor", math.floor(r*100)/100, math.floor(g*100)/100, math.floor(g*100)/100)
 	if GridFrame.db.profile.invertBarColor then
-		self.Bar:SetStatusBarColor(r, g, b, a)
+		self.Bar:SetStatusBarColor(r, g, b, 1)
 		self.BarBG:SetVertexColor(r * 0.2, g * 0.2, b * 0.2, 1)
 	else
-		self.Bar:SetStatusBarColor(0, 0, 0, 0.8)
-		self.BarBG:SetVertexColor(r, g, b, a)
+		self.Bar:SetStatusBarColor(r * 0.2, g * 0.2, b * 0.2, 1)
+		self.BarBG:SetVertexColor(r, g, b, 1)
 	end
-
-	self:UpdateHealingBarColor()
 end
 
-function GridFrame.prototype:UpdateHealingBarColor()
+function GridFrame.prototype:SetHealingBarColor(r, g, b, a)
+	--print("SetHealingBarColor", math.floor(r*100)/100, math.floor(g*100)/100, math.floor(g*100)/100, GridFrame.db.profile.healingBar_intensity)
 	if GridFrame.db.profile.invertBarColor then
-		local r, g, b, a = self.Bar:GetStatusBarColor()
-		self.HealingBar:SetStatusBarColor(r, g, b, a * GridFrame.db.profile.healingBar_intensity)
-	elseif self.HealingBar:GetValue() > 0 then
-		local alpha = 0.8
-		local healingBar_alpha = GridFrame.db.profile.healingBar_intensity * alpha
-		local bar_alpha = 1 - (1 - alpha) / (1 - healingBar_alpha)
-		self.Bar:SetStatusBarColor(0, 0, 0, bar_alpha)
-		self.HealingBar:SetStatusBarColor(0, 0, 0, healingBar_alpha)
+		self.HealingBar:SetStatusBarColor(r, g, b, GridFrame.db.profile.healingBar_intensity)
 	else
-		self.Bar:SetStatusBarColor(0, 0, 0, 0.8)
+		local int = GridFrame.db.profile.healingBar_intensity
+		self.HealingBar:SetStatusBarColor(r * int, g * int, b * int, int)
 	end
 end
 
 function GridFrame.prototype:InvertBarColor()
-	local r, g, b, a
 	if GridFrame.db.profile.invertBarColor then
-		r, g, b, a = self.BarBG:GetVertexColor()
+		self:SetBarColor(self.BarBG:GetVertexColor())
+
+		local r, g, b = self.HealingBar:GetStatusBarColor()
+		local int = GridFrame.db.profile.healingBar_intensity
+		self:SetHealingBarColor(r / int, g / int, b / int)
+
+		if GridFrame.db.profile.invertTextColor then
+			r, g, b = self.Text:GetTextColor()
+			self.Text:SetTextColor(r * 0.2, g * 0.2, b * 0.2)
+			self.Text:SetShadowColor(1, 1, 1)
+
+			r, g, b = self.Text2:GetTextColor()
+			self.Text2:SetTextColor(r * 0.2, g * 0.2, b * 0.2)
+			self.Text2:SetShadowColor(1, 1, 1)
+		end
 	else
-		r, g, b, a = self.Bar:GetStatusBarColor()
+		self:SetBarColor(self.Bar:GetStatusBarColor())
+
+		if GridFrame.db.profile.invertTextColor then
+			local r, g, b = self.Text:GetTextColor()
+			self.Text:SetTextColor(r * 5, g * 5, b * 5)
+			self.Text:SetShadowColor(0, 0, 0)
+
+			r, g, b = self.Text2:GetTextColor()
+			self.Text2:SetTextColor(r * 5, g * 5, b * 5)
+			self.Text2:SetShadowColor(0, 0, 0)
+		end
 	end
-	self:SetBarColor(r, g, b, a)
+end
+
+function GridFrame.prototype:InvertTextColor()
+	local r, g, b
+	if GridFrame.db.profile.invertTextColor then
+		r, g, b = self.Text:GetTextColor()
+		self.Text:SetTextColor(r * 0.2, g * 0.2, b * 0.2)
+		self.Text:SetShadowColor(1, 1, 1)
+
+		r, g, b = self.Text2:GetTextColor()
+		self.Text2:SetTextColor(r * 0.2, g * 0.2, b * 0.2)
+		self.Text2:SetShadowColor(1, 1, 1)
+	else
+		r, g, b = self.Text:GetTextColor()
+		self.Text:SetTextColor(r * 5, g * 5, b * 5)
+		self.Text:SetShadowColor(0, 0, 0)
+
+		r, g, b = self.Text2:GetTextColor()
+		self.Text2:SetTextColor(r * 5, g * 5, b * 5)
+		self.Text2:SetShadowColor(0, 0, 0)
+	end
 end
 
 function GridFrame.prototype:SetText(text, color)
@@ -523,7 +586,11 @@ function GridFrame.prototype:SetText(text, color)
 		self.Text:Hide()
 	end
 	if color then
-		self.Text:SetTextColor(color.r, color.g, color.b, color.a or 1)
+		if GridFrame.db.profile.invertBarColor and GridFrame.db.profile.invertTextColor then
+			self.Text:SetTextColor(color.r * 0.2, color.g * 0.2, color.b * 0.2, color.a or 1)
+		else
+			self.Text:SetTextColor(color.r, color.g, color.b, color.a or 1)
+		end
 	end
 end
 
@@ -550,8 +617,8 @@ function GridFrame.prototype:CreateIndicator(indicator)
 	f:SetWidth(GridFrame.db.profile.cornerSize)
 	f:SetHeight(GridFrame.db.profile.cornerSize)
 	f:SetBackdrop({
-		bgFile = "Interface\\Addons\\Grid\\white16x16", tile = true, tileSize = 16,
-		edgeFile = "Interface\\Addons\\Grid\\white16x16", edgeSize = 1,
+		bgFile = "Interface\\BUTTONS\\WHITE8X8", tile = true, tileSize = 8,
+		edgeFile = "Interface\\BUTTONS\\WHITE8X8", edgeSize = 1,
 		insets = {left = 1, right = 1, top = 1, bottom = 1},
 	})
 	f:SetBackdropBorderColor(0,0,0,1)
@@ -629,14 +696,23 @@ function GridFrame.prototype:SetIndicator(indicator, color, text, value, maxValu
 		end
 		if not GridFrame.db.profile.enableBarColor and type(color) == "table" then
 			self:SetBarColor(color.r, color.g, color.b, color.a or 1)
+			if not GridFrame.db.profile.healingBar_useStatusColor then
+				self:SetHealingBarColor(color.r, color.g, color.b, color.a or 1)
+			end
 		end
 	elseif indicator == "barcolor" then
 		if GridFrame.db.profile.enableBarColor and type(color) == "table" then
 			self:SetBarColor(color.r, color.g, color.b, color.a or 1)
+			if not GridFrame.db.profile.healingBar_useStatusColor then
+				self:SetHealingBarColor(color.r, color.g, color.b, color.a or 1)
+			end
 		end
 	elseif indicator == "healingBar" then
 		if value and maxValue then
 			self:SetHealingBar(value, maxValue)
+		end
+		if GridFrame.db.profile.healingBar_useStatusColor and type(color) == "table" then
+			self:SetHealingBarColor(color.r, color.g, color.b, color.a or 1)
 		end
 	elseif indicator == "icon" then
 		if texture then
@@ -739,7 +815,7 @@ GridFrame.defaultDB = {
 	enableText2 = false,
 	enableBarColor = false,
 	font = "Friz Quadrata TT",
-	fontSize = 11,
+	fontSize = 12,
 	fontOutline = "NONE",
 	fontShadow = true,
 	texture = "Gradient",
@@ -748,11 +824,12 @@ GridFrame.defaultDB = {
 	enableIconStackText = true,
 	enableIconCooldown = true,
 	enableMouseoverHighlight = true,
-	debug = false,
 	invertBarColor = false,
+	invertTextColor = false,
 	showTooltip = "OOC",
 	textlength = 4,
 	healingBar_intensity = 0.5,
+	healingBar_useStatusColor = false,
 	throttleUpdates = false,
 	statusmap = {
 		["text"] = {
@@ -836,10 +913,10 @@ GridFrame.options = {
 			desc = L["Adjust the width of each unit's frame."],
 			order = 10, width = "double",
 			type = "range", min = 10, max = 100, step = 1,
-			get = function()
+			get = function(info)
 				return GridFrame.db.profile.frameWidth
 			end,
-			set = function(_, v)
+			set = function(info, v)
 				GridFrame.db.profile.frameWidth = v
 				GridFrame:ResizeAllFrames()
 				GridFrame:ScheduleTimer("Grid_ReloadLayout", 0.5)
@@ -927,7 +1004,7 @@ GridFrame.options = {
 			end,
 		},
 		["mouseoverhighlight"] = {
-			name = string.format(L["Enable Mouseover Highlight"]),
+			name = format(L["Enable Mouseover Highlight"]),
 			desc = L["Toggle mouseover highlight."],
 			order = 80, width = "double",
 			type = "toggle",
@@ -939,22 +1016,9 @@ GridFrame.options = {
 				GridFrame:WithAllFrames(function(f) f:EnableMouseoverHighlight(v) end)
 			end,
 		},
-		["barcolor"] = {
-			name = string.format(L["Enable %s indicator"], L["Health Bar Color"]),
-			desc = string.format(L["Toggle the %s indicator."], L["Health Bar Color"]),
-			order = 90, width = "double",
-			type = "toggle",
-			get = function()
-				return GridFrame.db.profile.enableBarColor
-			end,
-			set = function(_, v)
-				GridFrame.db.profile.enableBarColor = v
-				GridFrame:UpdateOptionsMenu()
-			end,
-		},
 		["text2"] = {
-			name = string.format(L["Enable %s indicator"], L["Center Text 2"]),
-			desc = string.format(L["Toggle the %s indicator."], L["Center Text 2"]),
+			name = format(L["Enable %s indicator"], L["Center Text 2"]),
+			desc = format(L["Toggle the %s indicator."], L["Center Text 2"]),
 			order = 100, width = "double",
 			type = "toggle",
 			get = function()
@@ -1003,15 +1067,39 @@ GridFrame.options = {
 					end,
 					set = function(_, v)
 						GridFrame.db.profile.healingBar_intensity = v
-						GridFrame:WithAllFrames(function(f)
-							f:UpdateHealingBarColor()
-						end)
+						GridFrame:UpdateAllFrames()
 					end,
 				},
-				["invert"] = {
+				["healingBar_useStatusColor"] = {
+					name = L["Healing Bar Uses Status Color"],
+					desc = L["Make the healing bar use the status color instead of the health bar color."],
+					order = 40, width = "double",
+					type = "toggle",
+					get = function()
+						return GridFrame.db.profile.healingBar_useStatusColor
+					end,
+					set = function(_, v)
+						GridFrame.db.profile.healingBar_useStatusColor = v
+						GridFrame:UpdateAllFrames()
+					end,
+				},
+				["barcolor"] = {
+					name = format(L["Enable %s indicator"], L["Health Bar Color"]),
+					desc = format(L["Toggle the %s indicator."], L["Health Bar Color"]),
+					order = 30, width = "double",
+					type = "toggle",
+					get = function()
+						return GridFrame.db.profile.enableBarColor
+					end,
+					set = function(_, v)
+						GridFrame.db.profile.enableBarColor = v
+						GridFrame:UpdateOptionsMenu()
+					end,
+				},
+				["invertBarColor"] = {
 					name = L["Invert Bar Color"],
 					desc = L["Swap foreground/background colors on bars."],
-					order = 30, width = "double",
+					order = 50, width = "double",
 					type = "toggle",
 					get = function()
 						return GridFrame.db.profile.invertBarColor
@@ -1019,6 +1107,25 @@ GridFrame.options = {
 					set = function(_, v)
 						GridFrame.db.profile.invertBarColor = v
 						GridFrame:InvertBarColor()
+					end,
+				},
+				["invertTextColor"] = {
+					name = L["Invert Text Color"],
+					desc = L["Darken the text color to match the inverted bar."],
+					order = 50, width = "double",
+					type = "toggle",
+					get = function()
+						return GridFrame.db.profile.invertTextColor
+					end,
+					set = function(_, v)
+						GridFrame.db.profile.invertTextColor = v
+						GridFrame:InvertTextColor()
+					end,
+					disabled = function()
+						return not GridFrame.db.profile.invertBarColor
+					end,
+					hidden = function()
+						return not GridFrame.db.profile.invertBarColor
 					end,
 				},
 			},
@@ -1059,7 +1166,7 @@ GridFrame.options = {
 					end,
 				},
 				["cooldown"] = {
-					name = string.format(L["Enable %s"], L["Icon Cooldown Frame"]),
+					name = format(L["Enable %s"], L["Icon Cooldown Frame"]),
 					desc = L["Toggle center icon's cooldown frame."],
 					order = 30, width = "double",
 					type = "toggle",
@@ -1072,7 +1179,7 @@ GridFrame.options = {
 					end,
 				},
 				["stacktext"] = {
-					name = string.format(L["Enable %s"], L["Icon Stack Text"]),
+					name = format(L["Enable %s"], L["Icon Stack Text"]),
 					desc = L["Toggle center icon's stack count text."],
 					order = 40, width = "double",
 					type = "toggle",
@@ -1152,15 +1259,13 @@ GridFrame.options = {
 }
 
 if media then
-	local mediaWidgets = media and LibStub("AceGUISharedMediaWidgets-1.0", true)
-
 	GridFrame.options.args.text.args.font = {
 		name = L["Font"],
 		desc = L["Adjust the font settings"],
 		order = 10, width = "double",
 		type = "select",
 		values = media:HashTable("font"),
-		dialogControl = mediaWidgets and "LSM30_Font" or nil,
+		dialogControl = "LSM30_Font",
 		get = function()
 			return GridFrame.db.profile.font
 		end,
@@ -1176,7 +1281,7 @@ if media then
 		order = 10, width = "double",
 		type = "select",
 		values = media:HashTable("statusbar"),
-		dialogControl = mediaWidgets and "LSM30_Statusbar" or nil,
+		dialogControl = "LSM30_Statusbar",
 		get = function()
 			return GridFrame.db.profile.texture
 		end,
@@ -1200,8 +1305,6 @@ Grid.options.args["Indicators"] = {
 
 function GridFrame:PostInitialize()
 	GridStatus = Grid:GetModule("GridStatus")
-
-	self.debugging = self.db.profile.debug
 
 	self.frames = {}
 	self.registeredFrames = {}
@@ -1268,6 +1371,10 @@ function GridFrame:PostReset()
 	self:ResetAllFrames()
 	self:UpdateFrameUnits()
 	self:UpdateAllFrames()
+
+	-- different fix for ticket #556, maybe fixes #603 too
+	self:ResizeAllFrames()
+	self:ScheduleTimer("Grid_ReloadLayout", 0.1)
 end
 
 ------------------------------------------------------------------------
@@ -1313,6 +1420,12 @@ function GridFrame:InvertBarColor()
 	end)
 end
 
+function GridFrame:InvertTextColor()
+	self:WithAllFrames(function(f)
+		f:InvertTextColor()
+	end)
+end
+
 ------------------------------------------------------------------------
 
 function GridFrame:UpdateFrameUnits()
@@ -1321,7 +1434,7 @@ function GridFrame:UpdateFrameUnits()
 			local old_unit = frame.unit
 			local old_guid = frame.unitGUID
 			local unitid = SecureButton_GetModifiedUnit(frame)
-				  unitid = unitid and unitid:gsub("petpet", "pet") -- http://forums.wowace.com/showpost.php?p=307619&postcount=3174
+				  unitid = unitid and gsub(unitid, "petpet", "pet") -- http://forums.wowace.com/showpost.php?p=307619&postcount=3174
 			local guid = unitid and UnitGUID(unitid) or nil
 
 			if old_unit ~= unitid or old_guid ~= guid then
@@ -1377,7 +1490,7 @@ end
 function GridFrame:UpdateIndicator(frame, indicator)
 	local status = self:StatusForIndicator(frame.unit, frame.unitGUID, indicator)
 	if status then
-		-- self:Debug("Showing status", status.text, "for", name, "on", indicator)
+		self:Debug("Showing status", status.text, "for", name, "on", indicator)
 		frame:SetIndicator(indicator,
 			status.color,
 			status.text,
@@ -1389,7 +1502,7 @@ function GridFrame:UpdateIndicator(frame, indicator)
 			status.stack,
 			status.texCoords)
 	else
-		-- self:Debug("Clearing indicator", indicator, "for", name)
+		self:Debug("Clearing indicator", indicator, "for", name)
 		frame:ClearIndicator(indicator)
 	end
 end
@@ -1415,11 +1528,6 @@ function GridFrame:StatusForIndicator(unitid, guid, indicator)
 				valid = false
 			end
 
-			if status.range and type(status.range) ~= "number" then
-				self:Debug("range not number for", statusName)
-				valid = false
-			end
-
 			if status.priority and type(status.priority) ~= "number" then
 				self:Debug("priority not number for", statusName)
 				valid = false
@@ -1427,9 +1535,9 @@ function GridFrame:StatusForIndicator(unitid, guid, indicator)
 
 			-- only check range for valid statuses
 			if valid then
-				local inRange = not status.range or self:UnitInRange(unitid, status.range)
+				local inRange = not status.range or self:UnitInRange(unitid)
 
-				if ((status.priority or 99) > topPriority) and inRange then
+				if inRange and ((status.priority or 99) > topPriority) then
 					topStatus = status
 					topPriority = topStatus.priority
 				end
@@ -1441,14 +1549,22 @@ function GridFrame:StatusForIndicator(unitid, guid, indicator)
 end
 
 local GridStatusRange
-function GridFrame:UnitInRange(id, yrds)
-	if not id or not UnitExists(id) then return false end
+function GridFrame:UnitInRange(unit)
+	if not unit or not UnitExists(unit) then return false end
+	--print("GridFrame:UnitInRange", unit)
+
+	if UnitIsUnit(unit, "player") then
+		return true
+	end
 
 	if not GridStatusRange then
 		GridStatusRange = Grid:GetModule("GridStatus"):GetModule("GridStatusRange")
 	end
+	if GridStatusRange then
+		return GridStatusRange:UnitInRange(unit)
+	end
 
-	return GridStatusRange and GridStatusRange:UnitInRange(id) or UnitInRange(id)
+	return UnitInRange(unit)
 end
 
 ------------------------------------------------------------------------
@@ -1511,7 +1627,7 @@ function GridFrame:UpdateOptionsForIndicator(indicator, name, order)
 	if not menu[indicator] then
 		menu[indicator] = {
 			name = name,
-			desc = string.format(L["Options for %s indicator."], name),
+			desc = format(L["Options for %s indicator."], name),
 			order = order and (order + 1) or nil,
 			type = "group",
 			args = {
@@ -1543,7 +1659,7 @@ function GridFrame:UpdateOptionsForIndicator(indicator, name, order)
 		local indicatorType = indicator
 		local statusKey = status
 
-		-- self:Debug(indicator.type, status)
+		self:Debug(indicator.type, status)
 
 		if not indicatorMenu[status] then
 			indicatorMenu[status] = {
@@ -1559,7 +1675,7 @@ function GridFrame:UpdateOptionsForIndicator(indicator, name, order)
 					GridFrame:UpdateAllFrames()
 				end,
 			}
-			-- self:Debug("Added", indicator.type, status)
+			self:Debug("Added", indicator.type, status)
 		end
 	end
 end

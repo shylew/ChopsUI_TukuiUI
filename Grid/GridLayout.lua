@@ -1,5 +1,12 @@
 --[[--------------------------------------------------------------------
-	GridLayout.lua
+	Grid
+	Compact party and raid unit frames.
+	Copyright (c) 2006-2012 Kyle Smith (a.k.a. Pastamancer), A. Kinley (a.k.a. Phanx) <addons@phanx.net>
+	All rights reserved.
+	See the accompanying README and LICENSE files for more information.
+	http://www.wowinterface.com/downloads/info5747-Grid.html
+	http://www.wowace.com/addons/grid/
+	http://www.curse.com/addons/wow/grid
 ----------------------------------------------------------------------]]
 
 local GRID, Grid = ...
@@ -10,22 +17,23 @@ local media = LibStub("LibSharedMedia-3.0", true)
 
 local GridLayout = Grid:NewModule("GridLayout", "AceBucket-3.0", "AceTimer-3.0")
 
+local floor, next, pairs, select, tinsert, tonumber, tostring = floor, next, pairs, select, tinsert, tonumber, tostring
+
 ------------------------------------------------------------------------
 
-local config_mode
 CONFIGMODE_CALLBACKS = CONFIGMODE_CALLBACKS or {}
 CONFIGMODE_CALLBACKS["Grid"] = function(action)
 	if action == "ON" then
-		config_mode = true
+		GridLayout.config_mode = true
 	elseif action == "OFF" then
-		config_mode = nil
+		GridLayout.config_mode = nil
 	end
 	GridLayout:UpdateTabVisibility()
 end
 
 ------------------------------------------------------------------------
 
-GridLayout.prototype = { }
+GridLayout.prototype = {}
 
 function GridLayout.prototype:Reset()
 	self:Hide()
@@ -123,6 +131,7 @@ function GridLayout_InitialConfigFunction(frame)
 end
 
 function GridLayout:CreateHeader(isPetGroup)
+	--self:Debug("CreateHeader")
 	NUM_HEADERS = NUM_HEADERS + 1
 
 	local header = CreateFrame("Frame", "GridLayoutHeader" .. NUM_HEADERS, GridLayoutFrame, (isPetGroup and "SecureGroupPetHeaderTemplate" or "SecureGroupHeaderTemplate"))
@@ -172,8 +181,6 @@ end
 ------------------------------------------------------------------------
 
 GridLayout.defaultDB = {
-	debug = false,
-
 	layouts = {
 		solo = L["By Group 5"],
 		party = L["By Group 5"],
@@ -500,6 +507,7 @@ end
 GridLayout.layoutSettings = {}
 
 function GridLayout:PostInitialize()
+	--self:Debug("PostInitialize")
 	self.layoutGroups = {}
 	self.layoutPetGroups = {}
 
@@ -509,6 +517,7 @@ function GridLayout:PostInitialize()
 end
 
 function GridLayout:PostEnable()
+	--self:Debug("PostEnable")
 	self:Debug("OnEnable")
 
 	self:UpdateTabVisibility()
@@ -532,10 +541,12 @@ function GridLayout:PostEnable()
 end
 
 function GridLayout:PostDisable()
+	--self:Debug("PostDisable")
 	self.frame:Hide()
 end
 
 function GridLayout:PostReset()
+	--self:Debug("PostReset")
 	self:ReloadLayout()
 	-- position and scale frame
 	self:RestorePosition()
@@ -548,17 +559,20 @@ end
 local reloadLayoutQueued
 local updateSizeQueued
 function GridLayout:EnteringOrLeavingCombat()
+	--self:Debug("EnteringOrLeavingCombat")
 	if reloadLayoutQueued then return self:PartyTypeChanged() end
 	if updateSizeQueued then return self:PartyMembersChanged() end
 end
 
 function GridLayout:CombatFix()
+	--self:Debug("CombatFix")
 	self:Debug("CombatFix")
 	self.forceRaid = false
 	return self:ReloadLayout()
 end
 
 function GridLayout:PartyMembersChanged()
+	--self:Debug("PartyMembersChanged")
 	self:Debug("PartyMembersChanged")
 	if InCombatLockdown() then
 		updateSizeQueued = true
@@ -569,6 +583,7 @@ function GridLayout:PartyMembersChanged()
 end
 
 function GridLayout:PartyTypeChanged()
+	--self:Debug("PartyTypeChanged")
 	self:Debug("PartyTypeChanged")
 
 	if InCombatLockdown() then
@@ -583,13 +598,15 @@ end
 ------------------------------------------------------------------------
 
 function GridLayout:StartMoveFrame()
-	if config_mode or not self.db.profile.FrameLock then
+	--self:Debug("StartMoveFrame")
+	if self.config_mode or not self.db.profile.FrameLock then
 		self.frame:StartMoving()
 		self.frame.isMoving = true
 	end
 end
 
 function GridLayout:StopMoveFrame()
+	--self:Debug("StopMoveFrame")
 	if self.frame.isMoving then
 		self.frame:StopMovingOrSizing()
 		self:SavePosition()
@@ -601,17 +618,18 @@ function GridLayout:StopMoveFrame()
 end
 
 function GridLayout:UpdateTabVisibility()
+	--self:Debug("UpdateTabVisibility")
 	local settings = self.db.profile
 
 	if not InCombatLockdown() then
-		if not settings.hideTab or (not config_mode and settings.FrameLock) then
+		if not settings.hideTab or (not self.config_mode and settings.FrameLock) then
 			self.frame:EnableMouse(false)
 		else
 			self.frame:EnableMouse(true)
 		end
 	end
 
-	if settings.hideTab or (not config_mode and settings.FrameLock) then
+	if settings.hideTab or (not self.config_mode and settings.FrameLock) then
 		self.frame.tab:Hide()
 	else
 		self.frame.tab:Show()
@@ -626,7 +644,7 @@ local function GridLayout_OnMouseDown(frame, button)
 		else
 			GridLayout:StartMoveFrame()
 		end
-	elseif button == "RightButton" and frame == GridLayoutFrameTab and not InCombatLockdown() then
+	elseif button == "RightButton" and frame == GridLayoutFrame.tab and not InCombatLockdown() then
 		local dialog = LibStub("AceConfigDialog-3.0")
 		if dialog.OpenFrames["Grid"] then
 			dialog:Close("Grid")
@@ -655,6 +673,7 @@ local function GridLayout_OnLeave(frame)
 end
 
 function GridLayout:CreateFrames()
+	--self:Debug("CreateFrames")
 	-- create main frame to hold all our gui elements
 	local f = CreateFrame("Frame", "GridLayoutFrame", UIParent)
 	f:SetMovable(true)
@@ -673,24 +692,10 @@ function GridLayout:CreateFrames()
 		insets = {left = 4, right = 4, top = 4, bottom = 4},
 	})
 
-	-- create bg texture
-	-- f.texture = f:CreateTexture(nil, "BORDER")
-	-- f.texture:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
-	-- f.texture:SetPoint("TOPLEFT", f, "TOPLEFT", 4, -4)
-	-- f.texture:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -4, 4)
-	-- f.texture:SetBlendMode("ADD")
-	-- f.texture:SetGradientAlpha("VERTICAL", .1, .1, .1, 0, .2, .2, .2, 0.5)
-
-	local tab_width = 33
-	local tab_side_width = 16
-	local tab_middle_width = tab_width - tab_side_width * 2
-	local tab_height = 18
-	local tab_alpha = 0.9
-
 	-- create drag handle
-	f.tab = CreateFrame("Frame", "GridLayoutFrameTab", f)
-	f.tab:SetWidth(tab_width)
-	f.tab:SetHeight(tab_height)
+	f.tab = CreateFrame("Frame", nil, f)
+	f.tab:SetWidth(48)
+	f.tab:SetHeight(24)
 	f.tab:EnableMouse(true)
 	f.tab:RegisterForDrag("LeftButton")
 	f.tab:SetPoint("BOTTOMLEFT", f, "TOPLEFT", 1, -4)
@@ -700,35 +705,35 @@ function GridLayout:CreateFrames()
 	f.tab:SetScript("OnLeave", GridLayout_OnLeave)
 	f.tab:Hide()
 
-	-- Handle/Tab Background
-	f.tabBgLeft = f.tab:CreateTexture("GridLayoutFrameTabBgLeft", "BACKGROUND")
+	-- Tab Background
+	f.tabBgLeft = f.tab:CreateTexture(nil, "BACKGROUND")
 	f.tabBgLeft:SetTexture("Interface\\ChatFrame\\ChatFrameTab")
 	f.tabBgLeft:SetTexCoord(0, 0.25, 0, 1)
-	f.tabBgLeft:SetAlpha(tab_alpha)
-	f.tabBgLeft:SetWidth(tab_side_width)
-	f.tabBgLeft:SetHeight(tab_height + 5)
+	f.tabBgLeft:SetPoint("TOPLEFT", f.tab, "TOPLEFT", 0, 5)
 	f.tabBgLeft:SetPoint("BOTTOMLEFT", f.tab, "BOTTOMLEFT", 0, 0)
+	f.tabBgLeft:SetWidth(16)
+	f.tabBgLeft:SetAlpha(0.9)
 
-	f.tabBgMiddle = f.tab:CreateTexture("GridLayoutFrameTabBgMiddle", "BACKGROUND")
-	f.tabBgMiddle:SetTexture("Interface\\ChatFrame\\ChatFrameTab")
-	f.tabBgMiddle:SetTexCoord(0.25, 0.75, 0, 1)
-	f.tabBgMiddle:SetAlpha(tab_alpha)
-	f.tabBgMiddle:SetWidth(tab_middle_width)
-	f.tabBgMiddle:SetHeight(tab_height + 5)
-	f.tabBgMiddle:SetPoint("LEFT", f.tabBgLeft, "RIGHT", 0, 0)
-
-	f.tabBgRight = f.tab:CreateTexture("GridLayoutFrameTabBgRight", "BACKGROUND")
+	f.tabBgRight = f.tab:CreateTexture(nil, "BACKGROUND")
 	f.tabBgRight:SetTexture("Interface\\ChatFrame\\ChatFrameTab")
 	f.tabBgRight:SetTexCoord(0.75, 1, 0, 1)
-	f.tabBgRight:SetAlpha(tab_alpha)
-	f.tabBgRight:SetWidth(tab_side_width)
-	f.tabBgRight:SetHeight(tab_height + 5)
-	f.tabBgRight:SetPoint("LEFT", f.tabBgMiddle, "RIGHT", 0, 0)
+	f.tabBgRight:SetPoint("TOPRIGHT", f.tab, "TOPRIGHT", 0, 5)
+	f.tabBgRight:SetPoint("BOTTOMRIGHT", f.tab, "BOTTOMRIGHT", 0, 0)
+	f.tabBgRight:SetWidth(16)
+	f.tabBgRight:SetAlpha(0.9)
+
+	f.tabBgMiddle = f.tab:CreateTexture(nil, "BACKGROUND")
+	f.tabBgMiddle:SetTexture("Interface\\ChatFrame\\ChatFrameTab")
+	f.tabBgMiddle:SetTexCoord(0.25, 0.75, 0, 1)
+	f.tabBgMiddle:SetPoint("BOTTOMLEFT", f.tabBgLeft, "BOTTOMRIGHT", 0, 0)
+	f.tabBgMiddle:SetPoint("BOTTOMRIGHT", f.tabBgRight, "BOTTOMLEFT", 0, 0)
+	f.tabBgMiddle:SetPoint("TOP", f.tab, "TOP", 0, 5)
 
 	-- Tab Label
-	f.tabText = f.tab:CreateFontString("GridLayoutFrameTabText", "BACKGROUND", "GameFontNormalSmall")
+	f.tabText = f.tab:CreateFontString(nil, "BACKGROUND", "GameFontNormalSmall")
 	f.tabText:SetText("Grid")
-	f.tabText:SetPoint("TOP", f.tab, "TOP", 0, -5)
+	f.tabText:SetPoint("LEFT", f.tab, "LEFT", 0, -5)
+	f.tabText:SetPoint("RIGHT", f.tab, "RIGHT", 0, -5)
 
 	self.frame = f
 end
@@ -763,6 +768,7 @@ end
 
 local previousGroup
 function GridLayout:PlaceGroup(layoutGroup, groupNumber)
+	--self:Debug("PlaceGroup", groupNumber)
 	local frame = layoutGroup.frame
 
 	local settings = self.db.profile
@@ -792,6 +798,7 @@ function GridLayout:PlaceGroup(layoutGroup, groupNumber)
 end
 
 function GridLayout:AddLayout(layoutName, layout)
+	--self:Debug("AddLayout", layoutName)
 	self.layoutSettings[layoutName] = layout
 	for i = 1, #GridRoster.party_states do
 		local party_type_layout = GridRoster.party_states[i] .. "layout"
@@ -803,10 +810,12 @@ function GridLayout:AddLayout(layoutName, layout)
 end
 
 function GridLayout:SetClamp()
+	--self:Debug("SetClamp")
 	self.frame:SetClampedToScreen(self.db.profile.clamp)
 end
 
 function GridLayout:ReloadLayout()
+	--self:Debug("ReloadLayout")
 	local party_type = GridRoster:GetPartyState()
 	self:LoadLayout(self.db.profile.layouts[party_type])
 end
@@ -829,6 +838,7 @@ local function getColumnAnchorPoint(point, horizontal)
 end
 
 function GridLayout:LoadLayout(layoutName)
+	--self:Debug("LoadLayout", layoutName)
 	self.db.profile.layout = layoutName
 	if InCombatLockdown() then
 		reloadLayoutQueued = true
@@ -858,11 +868,11 @@ function GridLayout:LoadLayout(layoutName)
 
 	-- create groups as needed
 	while groupsNeeded > groupsAvailable do
-		table.insert(self.layoutGroups, self:CreateHeader(false))
+		tinsert(self.layoutGroups, self:CreateHeader(false))
 		groupsAvailable = groupsAvailable + 1
 	end
 	while petGroupsNeeded > petGroupsAvailable do
-		table.insert(self.layoutPetGroups, self:CreateHeader(true))
+		tinsert(self.layoutPetGroups, self:CreateHeader(true))
 		petGroupsAvailable = petGroupsAvailable + 1
 	end
 
@@ -951,12 +961,14 @@ function GridLayout:LoadLayout(layoutName)
 end
 
 function GridLayout:UpdateDisplay()
+	--self:Debug("UpdateDisplay")
 	self:UpdateColor()
 	self:UpdateVisibility()
 	self:UpdateSize()
 end
 
 function GridLayout:UpdateVisibility()
+	--self:Debug("UpdateVisibility")
 	local party_type = GridRoster:GetPartyState()
 	if self.db.profile.layouts[party_type] == L["None"] then
 		self.frame:Hide()
@@ -966,17 +978,18 @@ function GridLayout:UpdateVisibility()
 end
 
 function GridLayout:UpdateSize()
+	--self:Debug("UpdateSize")
 	local p = self.db.profile
 	local layoutGroup
-	local groupCount, curWidth, curHeight, maxWidth, maxHeight
 	local x, y
 
-	groupCount, curWidth, curHeight, maxWidth, maxHeight = -1, 0, 0, 0, 0
+	local groupCount, curWidth, curHeight, maxWidth, maxHeight = -1, 0, 0, 0, 0
 
 	local Padding, Spacing = p.Padding, p.Spacing * 2
 
 	for i = 1, #self.layoutGroups do
 		local layoutGroup = self.layoutGroups[i]
+
 		if layoutGroup:IsVisible() then
 			groupCount = groupCount + 1
 			local width, height = layoutGroup:GetWidth(), layoutGroup:GetHeight()
@@ -1012,6 +1025,7 @@ function GridLayout:UpdateSize()
 end
 
 function GridLayout:UpdateColor()
+	--self:Debug("UpdateColor")
 	local settings = self.db.profile
 
 	if media then
@@ -1023,10 +1037,10 @@ function GridLayout:UpdateColor()
 
 	self.frame:SetBackdropBorderColor(settings.BorderR, settings.BorderG, settings.BorderB, settings.BorderA)
 	self.frame:SetBackdropColor(settings.BackgroundR, settings.BackgroundG, settings.BackgroundB, settings.BackgroundA)
-	-- self.frame.texture:SetGradientAlpha("VERTICAL", .1, .1, .1, 0, .2, .2, .2, settings.BackgroundA/2 )
 end
 
 function GridLayout:SavePosition()
+	self:Debug("SavePosition")
 	local f = self.frame
 	local s = f:GetEffectiveScale()
 	local uiScale = UIParent:GetEffectiveScale()
@@ -1071,19 +1085,21 @@ function GridLayout:SavePosition()
 	end
 
 	if x and y and s then
+		x, y = floor(x + 0.5), floor(y + 0.5)
 		self.db.profile.PosX = x
 		self.db.profile.PosY = y
 		--self.db.profile.anchor = point
 		self.db.profile.anchorRel = relativePoint
-		self:Debug("Saved Position", anchor, x, y)
+		self:Debug("Saved position", anchor, x, y)
 	end
 end
 
 function GridLayout:ResetPosition()
+	self:Debug("ResetPosition")
 	local uiScale = UIParent:GetEffectiveScale()
 
-	self.db.profile.PosX = UIParent:GetWidth() / 2 * uiScale
-	self.db.profile.PosY = - UIParent:GetHeight() / 2 * uiScale
+	self.db.profile.PosX = UIParent:GetWidth() / 2 * uiScale + 0.5
+	self.db.profile.PosY = -UIParent:GetHeight() / 2 * uiScale + 0.5
 	self.db.profile.anchor = "TOPLEFT"
 
 	self:RestorePosition()
@@ -1091,20 +1107,21 @@ function GridLayout:ResetPosition()
 end
 
 function GridLayout:RestorePosition()
+	self:Debug("RestorePosition")
 	local f = self.frame
 	local s = f:GetEffectiveScale()
 	local x = self.db.profile.PosX
 	local y = self.db.profile.PosY
 	local point = self.db.profile.anchor
-
-	x, y = x/s, y/s
+	self:Debug("Loaded position", point, x, y)
+	x, y = floor(x / s + 0.5), floor(y / s + 0.5)
 	f:ClearAllPoints()
 	f:SetPoint(point, UIParent, point, x, y)
-
-	self:Debug("Restored Position", point, x, y)
+	self:Debug("Restored position", point, x, y)
 end
 
 function GridLayout:Scale()
+	--self:Debug("Scale")
 	self:SavePosition()
 	self.frame:SetScale(self.db.profile.ScaleSize)
 	self:RestorePosition()
@@ -1117,7 +1134,7 @@ local function findVisibleUnitFrame(f)
 		return f
 	end
 
-	for i = 1, select('#', f:GetChildren()) do
+	for i = 1, select("#", f:GetChildren()) do
 		local child = select(i, f:GetChildren())
 		local good = findVisibleUnitFrame(child)
 
@@ -1128,6 +1145,7 @@ local function findVisibleUnitFrame(f)
 end
 
 function GridLayout:FakeSize(width, height)
+	self:Debug("FakeSize", width, height)
 	local p = self.db.profile
 
 	local f = findVisibleUnitFrame(self.frame)
@@ -1136,7 +1154,7 @@ function GridLayout:FakeSize(width, height)
 		self:Debug("No suitable frame found.")
 		return
 	else
-		self:Debug(("Using %s"):format(f:GetName()))
+		self:Debug(format("Using %s", f:GetName()))
 	end
 
 	local frameWidth = f:GetWidth()
@@ -1152,13 +1170,12 @@ end
 SLASH_GRIDLAYOUT1 = "/gridlayout"
 
 SlashCmdList.GRIDLAYOUT = function(cmd)
-	local width, height = cmd:trim():match("^(%d+) ?(%d*)$")
+	local width, height = strmatch(strtrim(cmd), "^(%d+) ?(%d*)$")
 	width, height = tonumber(width), tonumber(height)
 
 	if not width then return end
 	if not height then height = width end
 
-	GridLayout:Debug("/gridlayout", width, height)
-
+	--GridLayout:Debug("/gridlayout", width, height)
 	GridLayout:FakeSize(width, height)
 end

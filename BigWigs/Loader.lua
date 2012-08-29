@@ -24,7 +24,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("9056")
+	releaseRevision = tonumber("9108")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -97,19 +97,23 @@ local loadOnCoreLoaded = {} -- BigWigs modulepacks that should load when the cor
 local menus = {} -- contains the main menus for BigWigs, once the core is loaded they will get injected
 local enableZones = {} -- contains the zones in which BigWigs will enable
 
+-- XXX MOP
+local GetNumSubgroupMembers = GetNumSubgroupMembers or GetRealNumPartyMembers
+local GetNumGroupMembers = GetNumGroupMembers or GetRealNumRaidMembers
+
 -----------------------------------------------------------------------
 -- Utility
 --
 
 --[[
 function GetMapID(name)
-	for i=1,1000 do
+	for i=1,1500 do
 		local fetchedName = GetMapNameByID(i)
-		if name == fetchedName then return i end
+		if fetchedName and (fetchedName):find(name) then print(fetchedName, i) end
 	end
 end
 function GetBossID(name)
-	for i=1,1000 do
+	for i=1,1500 do
 		local fetchedName = EJ_GetEncounterInfo(i)
 		if fetchedName and (fetchedName):find(name) then print(fetchedName, i) end
 	end
@@ -121,7 +125,7 @@ function GetSectionID(name)
 	end
 end
 function PrintNewBossIDs() 
-	for i=200,1000 do
+	for i=200,1500 do
 		local n,_,id = EJ_GetEncounterInfo(i)
 		if n then print(n,id) end
 	end
@@ -135,8 +139,8 @@ local getGroupMembers = nil
 do
 	local members = {}
 	function getGroupMembers()
-		local raid = GetRealNumRaidMembers()
-		local party = GetRealNumPartyMembers()
+		local raid = GetNumGroupMembers(1)
+		local party = GetNumSubgroupMembers(1)
 		if raid == 0 and party == 0 then return end
 		wipe(members)
 		if raid > 0 then
@@ -350,8 +354,12 @@ function loader:OnEnable()
 	end
 
 	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "ZoneChanged")
-	self:RegisterEvent("RAID_ROSTER_UPDATE", "CheckRoster")
-	self:RegisterEvent("PARTY_MEMBERS_CHANGED", "CheckRoster")
+	if GetSpecialization then
+		self:RegisterEvent("GROUP_ROSTER_UPDATE", "CheckRoster")
+	else
+		self:RegisterEvent("RAID_ROSTER_UPDATE", "CheckRoster")
+		self:RegisterEvent("PARTY_MEMBERS_CHANGED", "CheckRoster")
+	end
 
 	self:RegisterEvent("CHAT_MSG_ADDON")
 	self:RegisterMessage("BigWigs_AddonMessage")
@@ -464,8 +472,8 @@ function loader:ZoneChanged()
 end
 
 function loader:CheckRoster()
-	local raid = GetRealNumRaidMembers()
-	local party = GetRealNumPartyMembers()
+	local raid = GetNumGroupMembers(1)
+	local party = GetNumSubgroupMembers(1)
 	if not grouped and raid > 0 then
 		grouped = BWRAID
 		self:SendMessage("BigWigs_JoinedGroup", grouped)

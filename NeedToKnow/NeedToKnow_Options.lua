@@ -1,6 +1,8 @@
 ﻿NEEDTOKNOW.MAXBARSPACING = 24;
 NEEDTOKNOW.MAXBARPADDING = 12;
 
+local GetActiveTalentGroup = _G.GetActiveSpecGroup
+
 local LSM = LibStub("LibSharedMedia-3.0", true);
 local textureList = LSM:List("statusbar");
 local fontList = LSM:List("font");

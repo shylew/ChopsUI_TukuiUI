@@ -1,10 +1,11 @@
 local T, C, L = unpack(Tukui)
 
-local classTalentMap = {
+local classSpecializationMap = {
   ["DEATHKNIGHT"] = { "BLOOD", "FROST", "UNHOLY" },
-  ["DRUID"] = { "BALANCE", "FERALCOMBAT", "RESTORATION" },
+  ["DRUID"] = { "BALANCE", "FERAL", "GUARDIAN", "RESTORATION" },
   ["HUNTER"] = { "BEASTMASTERY", "MARKSMANSHIP", "SURVIVAL" },
   ["MAGE"] = { "ARCANE", "FIRE", "FROST" },
+  ["MONK"] = { "BREWMASTER", "MISTWEAVER", "WINDWALKER" },
   ["PALADIN"] = { "HOLY", "PROTECTION", "RETRIBUTION" },
   ["PRIEST"] = { "DISCIPLINE", "HOLY", "SHADOW" },
   ["ROGUE"] = { "ASSASSINATION", "COMBAT", "SUBTLETY" },
@@ -14,29 +15,29 @@ local classTalentMap = {
 }
 
 -- Check the players spec.
-local SpecCheckFrame = CreateFrame("Frame")
-local function CheckSpec(self, event, unit)
+local SpecializationCheckFrame = CreateFrame("Frame")
+local function CheckSpecialization(self, event, unit)
 
-  local tree = GetPrimaryTalentTree()
+  local spec = GetSpecialization()
 
-  spec = "UNKNOWN"
-  talentTree = 1
+  specName = "UNKNOWN"
+  specId = 1
 
-  if tree then
-    spec = classTalentMap[T.myclass][tree]
-    talentTree = tree
+  if spec then
+    specName = classSpecializationMap[T.myclass][spec]
+    specId = spec
   end
 
   T.Spec = spec
-  T.TalentTree = talentTree
+  T.SpecId = specId
 
 end
 
-SpecCheckFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-SpecCheckFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-SpecCheckFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
-SpecCheckFrame:RegisterEvent("CHARACTER_POINTS_CHANGED")
-SpecCheckFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
-SpecCheckFrame:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
-SpecCheckFrame:SetScript("OnEvent", CheckSpec)
-CheckSpec()
+SpecializationCheckFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+SpecializationCheckFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+SpecializationCheckFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
+SpecializationCheckFrame:RegisterEvent("CHARACTER_POINTS_CHANGED")
+SpecializationCheckFrame:RegisterEvent("UNIT_INVENTORY_CHANGED")
+SpecializationCheckFrame:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
+SpecializationCheckFrame:SetScript("OnEvent", CheckSpecialization)
+CheckSpecialization()
