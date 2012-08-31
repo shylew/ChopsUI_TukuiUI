@@ -1,3 +1,4 @@
+-- $Id$
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -2503,7 +2504,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 10, "s27944", "Spell_Holy_GreaterHeal", "=ds=Enchant Shield - Tough Shield", "=ds=#sr# 310", "=ds="..AL["Trainer"]};
 				{ 11, "s20016", "inv_enchant_formulagood_01", "=ds=Enchant Shield - Vitality", "=ds=#sr# 280", "=ds="..AL["Trainer"]};
 				{ 12, "s13933", "inv_enchant_formulagood_01", "=ds=Enchant Shield - Frost Resistance", "=ds=#sr# 235", "=ds="..AL["World Drop"]};
-				{ 13, "s13689", "inv_enchant_formulagood_01", "=ds=Enchant Shield - Lesser Block", "=ds=#sr# 195", "=ds="..AL["World Drop"]};
+				{ 13, "s13689", "inv_enchant_formulagood_01", "=ds=Enchant Shield - Lesser Parry", "=ds=#sr# 195", "=ds="..AL["World Drop"]};
 				{ 14, "s13464", "inv_enchant_formulagood_01", "=ds=Enchant Shield - Lesser Protection", "=ds=#sr# 115", "=ds="..AL["World Drop"]};
 				{ 16, 0, "INV_Box_01", "=q6="..AL["Stamina"], ""};
 				{ 17, "s34009", "inv_misc_note_01", "=ds=Enchant Shield - Major Stamina", "=ds=#sr# 325", "=ds="..AL["Vendor"]};
@@ -3108,10 +3109,9 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 2, "s3938", "4371", "=q1=Bronze Tube", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
 				{ 3, "s3973", "4404", "=q1=Silver Contact", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
 				{ 4, "s3929", "4364", "=q1=Coarse Blasting Powder", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
-				{ 5, "s3926", "4363", "=q1=Copper Modulator", "=ds=#sr# 65", "=ds="..AL["Trainer"] };
-				{ 6, "s3924", "4361", "=q1=Copper Tube", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
-				{ 7, "s3922", "4359", "=q1=Handful of Copper Bolts", "=ds=#sr# 30", "=ds="..AL["Trainer"] };
-				{ 8, "s3918", "4357", "=q1=Rough Blasting Powder", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
+				{ 5, "s3924", "4361", "=q1=Copper Tube", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
+				{ 6, "s3922", "4359", "=q1=Handful of Copper Bolts", "=ds=#sr# 30", "=ds="..AL["Trainer"] };
+				{ 7, "s3918", "4357", "=q1=Rough Blasting Powder", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
 			};
 		};
 		info = {
@@ -5899,14 +5899,14 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 19, "s70524", "12655", "=q1=Enchanted Thorium", "=ds=#sr# 250", "=ds="..AL["Trainer"] };
 				{ 20, "s14891", "11371", "=q1=Smelt Dark Iron", "=ds=#sr# 230", "=ds=#QUESTID:4083#"};
 				{ 21, "s16153", "12359", "=q1=Smelt Thorium", "=ds=#sr# 230", "=ds="..AL["Trainer"] };
-				{ 22, "s10098", "6037", "=q2=Smelt Truesilver", "=ds=#sr# 230", "=ds="..AL["Trainer"] };
-				{ 23, "s10097", "3860", "=q1=Smelt Mithril", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
-				{ 24, "s3569", "3859", "=q1=Smelt Steel", "=ds=#sr# 165", "=ds="..AL["Trainer"] };
-				{ 25, "s3308", "3577", "=q2=Smelt Gold", "=ds=#sr# 155", "=ds="..AL["Trainer"] };
-				{ 26, "s3307", "3575", "=q1=Smelt Iron", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
-				{ 27, "s2658", "2842", "=q2=Smelt Silver", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
-				{ 28, "s2659", "2841", "=q1=Smelt Bronze", "=ds=#sr# 65", "=ds="..AL["Trainer"] };
-				{ 29, "s3304", "3576", "=q1=Smelt Tin", "=ds=#sr# 65", "=ds="..AL["Trainer"] };
+				{ 22, "s10098", "6037", "=q2=Smelt Truesilver", "=ds=#sr# 165", "=ds="..AL["Trainer"] };
+				{ 23, "s10097", "3860", "=q1=Smelt Mithril", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 24, "s3569", "3859", "=q1=Smelt Steel", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
+				{ 25, "s3308", "3577", "=q2=Smelt Gold", "=ds=#sr# 115", "=ds="..AL["Trainer"] };
+				{ 26, "s3307", "3575", "=q1=Smelt Iron", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
+				{ 27, "s2658", "2842", "=q2=Smelt Silver", "=ds=#sr# 65", "=ds="..AL["Trainer"] };
+				{ 28, "s2659", "2841", "=q1=Smelt Bronze", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
+				{ 29, "s3304", "3576", "=q1=Smelt Tin", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
 				{ 30, "s2657", "2840", "=q1=Smelt Copper", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
 			};
 		};

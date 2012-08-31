@@ -78,13 +78,17 @@ end
 
 --- Creates all preview frames.
 function Workspace:CreatePreviews()
-	for id, vars in PowerAuras:GetAllDisplays() do
-		local frame = self.Displays[id];
-		if(frame) then
-			-- Get the layout too.
-			local layout = self.Layouts[vars["Layout"]["ID"]];
-			if(layout) then
-				layout:AttachDisplay(id);
+	local auraID = PowerAuras:GetCurrentAura();
+	if(auraID and PowerAuras:HasAura(auraID)) then
+		for i, vars in ipairs(PowerAuras:GetAura(auraID).Displays) do
+			local id = PowerAuras:GetAuraDisplayID(auraID, i);
+			local frame = self.Displays[id];
+			if(frame) then
+				-- Get the layout too.
+				local layout = self.Layouts[vars["Layout"]["ID"]];
+				if(layout) then
+					layout:AttachDisplay(id);
+				end
 			end
 		end
 	end
@@ -170,6 +174,9 @@ function Workspace:OnOptionsEvent(event, ...)
 			display:SetChecked(id == (...));
 			display:UpdateBackdrop();
 		end
+	elseif(event == "SELECTED_AURA_CHANGED") then
+		self:DestroyPreviews();
+		self:CreatePreviews();
 	elseif(event == "WS_PARENTING_UPDATE") then
 		-- Run over displays.
 		local mode, source = ...;

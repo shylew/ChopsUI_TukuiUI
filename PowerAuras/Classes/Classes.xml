@@ -90,7 +90,8 @@
   <Script file="Triggers\Totems.lua" />
   <Script file="Triggers\UnitAura.lua" />
   <Script file="Triggers\UnitAuraType.lua" />
-  <Script file="Triggers\UnitData.lua" />
+  <!-- <Script file="Triggers\UnitData.lua" /> -->
+  <Script file="Triggers\UnitExists.lua" />
   <Script file="Triggers\UnitHealth.lua" />
   <Script file="Triggers\UnitPower.lua" />
   <Script file="Triggers\WeaponEnchant.lua" />

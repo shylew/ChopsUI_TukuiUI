@@ -14,7 +14,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("GridStatusShield")
 
 local LOCALISATIONS = {
     ["zhTW"] = "可吸收.- (%d+) .-點傷害",
-    ["ruRU"] = "поглотить.- (%d+) .-урона",
+    ["ruRU"] = "[пП]оглощ.- (%d+) .-урона",
 }
 
 local SHIELD_AMOUNT_PATTERN = LOCALISATIONS[GetLocale()] or L["[aA]bsorbs.- (%d+) .-damage"]
@@ -98,7 +98,7 @@ local amountOptions = {
 		type = "range",
 		name = L["Low shield threshold"],
 		desc = L["The threshold below which a shield is considered low."],
-        max = 3000,
+        max = 30000,
         min = 50,
         step = 1,
 		get = function()
@@ -112,7 +112,7 @@ local amountOptions = {
 		type = "range",
 		name = L["Medium shield threshold"],
 		desc = L["The threshold below which a shield is considered medium."],
-        max = 6000,
+        max = 60000,
         min = 100,
         step = 1,
 		get = function()
@@ -289,32 +289,30 @@ local shieldCache = {}
 function GridStatusShield:ScanBuffToolTip(unit, buffIndex, id)
     local cacheEntry = shieldCache[id]
     if cacheEntry == nil then        
-        if self.Tooltip ~= nil then 
-          self.Tooltip:SetUnitBuff(unit, buffIndex)
-          
-          -- find the tooltip line and determine absorb 
-          local tooltipLine = self.TooltipTextLeft2
-          local tooltipText = tooltipLine:GetText()
-          if tooltipText then
-              local _,_,shieldSize = string.find(tooltipText, SHIELD_AMOUNT_PATTERN)
-              
-              if shieldSize then
-                  shieldCache[id] = tooltipLine --cache line
-                  return tonumber(shieldSize)        
-              end
-          end
-          tooltipLine = self.TooltipTextLeft3
-          tooltipText = tooltipLine:GetText()
-          if tooltipText then
-              local _,_,shieldSize = string.find(tooltipText, SHIELD_AMOUNT_PATTERN)
-              
-              if shieldSize then
-                  shieldCache[id] = tooltipLine
-                  return tonumber(shieldSize)        
-              end
-          end
-          shieldCache[id] = false --not a shield
+        self.Tooltip:SetUnitBuff(unit, buffIndex)
+        
+        -- find the tooltip line and determine absorb 
+        local tooltipLine = self.TooltipTextLeft2
+        local tooltipText = tooltipLine:GetText()
+        if tooltipText then
+            local _,_,shieldSize = string.find(tooltipText, SHIELD_AMOUNT_PATTERN)
+            
+            if shieldSize then
+                shieldCache[id] = tooltipLine --cache line
+                return tonumber(shieldSize)        
+            end
         end
+        tooltipLine = self.TooltipTextLeft3
+        tooltipText = tooltipLine:GetText()
+        if tooltipText then
+            local _,_,shieldSize = string.find(tooltipText, SHIELD_AMOUNT_PATTERN)
+            
+            if shieldSize then
+                shieldCache[id] = tooltipLine
+                return tonumber(shieldSize)        
+            end
+        end
+        shieldCache[id] = false --not a shield
     elseif cacheEntry then
         self.Tooltip:SetUnitBuff(unit, buffIndex)
         local tooltipLine = cacheEntry
@@ -440,7 +438,7 @@ EventParse["SPELL_AURA_REMOVED"] = GridStatusShield.AuraRemoved
 EventParse["SPELL_AURA_BROKEN"] = GridStatusShield.AuraBroken
 EventParse["SPELL_AURA_BROKEN_SPELL"] = GridStatusShield.AuraBrokenSpell
 
-function GridStatusShield:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, eventtype, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)   
+function GridStatusShield:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, eventtype, hideCaster, srcGUID, srcName, srcFlags, srcRaidFlags, dstGUID, dstName, dstFlags, dstRaidFlags, ...)   
     if not GridRoster:IsGUIDInRaid(dstGUID) then
         return
     end

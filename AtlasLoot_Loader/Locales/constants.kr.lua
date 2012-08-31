@@ -1,4 +1,4 @@
-﻿-- $Id: constants.kr.lua 3607 2011-10-18 10:35:15Z hegarol $
+-- $Id: constants.kr.lua 3726 2012-04-27 18:50:30Z hegarol $
 --[[
 constants.en.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -555,7 +555,6 @@ if AL then
 
 	-- General titles
 	AL["Achievement"] = true;
-	AL["Promotional & Card Game"] = true;
 
 	-- Companions
 	AL["Achievement & Faction Reward Companions"] = true;

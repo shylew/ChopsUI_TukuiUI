@@ -36,6 +36,16 @@ function PowerAuras:DeleteAuraActionSequence(id, index)
 	return true;
 end
 
+--- Fixes an operator string to remove common issues.
+-- @param data The data to modify and return.
+function PowerAuras:FixOperatorString(data)
+	return data:gsub("[&|! ]+%)", ")")
+		:gsub("%([&| ]+", "(") -- An ! after ( is valid, so don't replace.
+		:gsub("^[&| ]*", "")
+		:gsub("[&|! ]*$", "")
+		:gsub("[|&][|&]+", "&");
+end
+
 --- Removes any references to a trigger from all sequences within an action.
 -- @param id    The ID of the action.
 -- @param index The index of the trigger.
@@ -64,12 +74,10 @@ function PowerAuras:RemoveTriggerFromSequences(id, index)
 				return ("%s%d%s"):format(s, tid, e);
 			end
 		end);
+
 		-- Fix issues such as invalid operators.
-		ops = ops:gsub("[&|! ]+%)", ")")
-			:gsub("%([&| ]+", "(") -- An ! after ( is valid, so don't replace.
-			:gsub("^[&| ]", "")
-			:gsub("[&|! ]$", "")
-		seq["Operators"] = ops;
+		seq["Operators"] = self:FixOperatorString(ops);
+
 		-- Callbacks.
 		self.OnOptionsEvent("SEQUENCE_UPDATED", id, index);
 	end

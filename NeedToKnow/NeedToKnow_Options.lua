@@ -383,7 +383,7 @@ function NeedToKnowOptions.UpdateProfileList()
             end
         end
 
-        if not scrollPanel.curSel then
+	if not scrollPanel.curSel or not scrollPanel.profileMap[scrollPanel.curSel] then
             scrollPanel.curSel = curProfile
         end
         local curSel = scrollPanel.curSel
@@ -482,7 +482,7 @@ function NeedToKnowOptions.UIPanel_Profile_CopySelected(panel)
     edit:ClearFocus()
     if scrollPanel.curSel and NeedToKnowOptions.IsProfileNameAvailable(newName) then
         local keyNew = NeedToKnow.CreateProfile(CopyTable(scrollPanel.profileMap[curSel].ref), nil, newName)
-        NeedToKnow.ChangeProfile(NeedToKnow_Globals[keyNew])
+        NeedToKnow.ChangeProfile(keyNew)
         NeedToKnowOptions.RebuildProfileList(panel)
         edit:SetText("");
         print("NeedToKnow: Copied",curSel,"to",newName,"and made it the active profile")

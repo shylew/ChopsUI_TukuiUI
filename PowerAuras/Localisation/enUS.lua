@@ -190,12 +190,24 @@ LayoutClasses = wrapLocalisationTable({
 ServiceClasses = wrapLocalisationTable({
 	["ActionTimer"] = {
 		["Name"]    = "Time Activated (Action)",
-		["Tooltip"] = "The amount of a time the specified action has been active.",
 		["Timer"]   = "Use Activation Time for Timer",
+	},
+	["ItemOffCooldown"] = {
+		["Name"]    = "Stance",
+		["Stacks"]  = "Use Item Stacks",
+		["Text"]    = "Use Item Text",
+		["Texture"] = "Use Item Texture",
+		["Timer"]   = "Use Item Timer",
+	},
+	["SpellOffCooldown"] = {
+		["Name"]    = "Stance",
+		["Stacks"]  = "Use Spell Stacks",
+		["Text"]    = "Use Spell Text",
+		["Texture"] = "Use Spell Texture",
+		["Timer"]   = "Use Spell Timer",
 	},
 	["Stance"] = {
 		["Name"]    = "Stance",
-		["Tooltip"] = "Uses information based upon your current stance.",
 		["Stacks"]  = "Use for Stacks",
 		["Text"]    = "Use for Text",
 		["Texture"] = "Use for Texture",
@@ -203,7 +215,6 @@ ServiceClasses = wrapLocalisationTable({
 	},
 	["Static"] = {
 		["Name"]    = "Static",
-		["Tooltip"] = "Uses static figures for all services.",
 		["Stacks"]  = "Use for Stacks",
 		["Text"]    = "Use for Text",
 		["Texture"] = "Use for Texture",
@@ -211,7 +222,6 @@ ServiceClasses = wrapLocalisationTable({
 	},
 	["TriggerData"] = {
 		["Name"]    = "Trigger Data",
-		["Tooltip"] = "Uses data collected and stored by a trigger.",
 		["Stacks"]  = "Use for Stacks",
 		["Text"]    = "Use for Text",
 		["Texture"] = "Use for Texture",
@@ -219,7 +229,6 @@ ServiceClasses = wrapLocalisationTable({
 	},
 	["UnitAura"] = {
 		["Name"]    = "Unit Buff/Debuff",
-		["Tooltip"] = "Uses data from a buff/debuff on a unit.",
 		["Stacks"]  = "Use Buff/Debuff Stacks",
 		["Text"]    = "Use Buff/Debuff Text",
 		["Texture"] = "Use Buff/Debuff Texture",
@@ -342,6 +351,10 @@ TriggerClasses = wrapLocalisationTable({
 	["UnitData"] = {
 		["Name"]    = "Unit Information",
 		["Tooltip"] = "Activates based upon the information of a unit, such as their class.",
+	},
+	["UnitExists"] = {
+		["Name"]    = "Unit Exists",
+		["Tooltip"] = "Activates based upon whether or not a unit exists.",
 	},
 	["UnitHealth"] = {
 		["Name"]    = "Unit Health",

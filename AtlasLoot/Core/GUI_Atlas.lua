@@ -1,3 +1,4 @@
+-- $Id: GUI_Atlas.lua 3729 2012-07-31 13:38:29Z lag123 $
 local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
 
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
@@ -27,7 +28,7 @@ function AtlasLoot:CreateAtlasInfoFrame()
 	Frame.Info:SetWidth(Frame.Info:GetStringWidth() < 180 and Frame.Info:GetStringWidth()+5 or 180)
 	Frame.Info:SetHeight(10)
 
-	Frame.Button = CreateFrame("Button","AtlasLoot_AtlasInfoFrame_ToggleALButton",Frame,"UIPanelButtonTemplate2")
+	Frame.Button = CreateFrame("Button","AtlasLoot_AtlasInfoFrame_ToggleALButton",Frame,"UIPanelButtonTemplate")
 	Frame.Button:SetText(AL["Toggle AL Panel"])
 	Frame.Button:SetWidth(Frame.Button:GetTextWidth() + 30)
 	Frame.Button:SetHeight(20)

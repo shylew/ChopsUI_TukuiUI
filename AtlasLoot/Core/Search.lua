@@ -1,3 +1,4 @@
+-- $Id: Search.lua 3729 2012-07-31 13:38:29Z lag123 $
 local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
 
 local GREY = "|cff999999";
@@ -11,15 +12,6 @@ local ORANGE = "|cffFF8400";
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 
 local openName = nil
-
-AtlasLoot.Modules = {
-	{"AtlasLootClassicWoW", "AtlasLoot_ClassicWoW", false, "", AL["Classic WoW"] },
-	{"AtlasLootBurningCrusade", "AtlasLoot_BurningCrusade", false, "", AL["Burning Crusade"] },
-	{"AtlasLootWotLK", "AtlasLoot_WrathoftheLichKing", false, "", AL["Wrath of the Lich King"] },
-	{"AtlasLootCataclysm", "AtlasLoot_Cataclysm", false, "", AL["Cataclysm"] },
-	{"AtlasLootCrafting", "AtlasLoot_Crafting", false, ""},
-	{"AtlasLootWorldEvents", "AtlasLoot_WorldEvents", false, ""},
-}
 
 -- Shows the DropDown
 local function showDropDown(self)

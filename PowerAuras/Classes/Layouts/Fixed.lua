@@ -202,11 +202,31 @@ function Fixed:PositionDisplayPreview(frame, id)
 	frame:ClearAllPoints();
 	local params = PowerAuras:GetAuraDisplay(id)["Layout"]["Parameters"];
 	local point, parent, rel, x, y = unpack(params["Anchor"]);
+
 	-- Fix the parent.
 	parent = type(parent) == "number"
 		and PowerAuras.Workspace.Displays[parent]
 		or UIParent;
-	frame:SetPoint(point, parent, rel, x, y);
+
+	-- Displays have a 20 pixel gap from their real position, so fix it.
+	if(point:find("TOP")) then
+		y = y + 20;
+	elseif(point:find("BOTTOM")) then
+		y = y - 20;
+	end
+
+	if(point:find("LEFT")) then
+		x = x - 19;
+	elseif(point:find("RIGHT")) then
+		x = x + 20;
+	end
+
+	-- Safely position the display.
+	local state, res = pcall(frame.SetPoint, frame, point, parent, rel, x, y);
+	if(not state) then
+		frame:SetPoint("CENTER", 0, 0);
+		PowerAuras:PrintError(L("Error", res));
+	end
 end
 
 --- Registers a display with the layout instance. Registered displays should

@@ -18,6 +18,10 @@ Metadata.DISPLAY_SOURCE_TRIGGER = 0x00000004; -- Semi-automatic source config.
 Metadata.DISPLAY_LINKMASK = 0x00000008;
 Metadata.DISPLAY_LINK     = 0x00000008; -- Tie activation to parent.
 
+--- Flags for inverted linked displays.
+Metadata.DISPLAY_INVMASK    = 0x00000010;
+Metadata.DISPLAY_INV_INVERT = 0x00000010;
+
 -- More source flags. These ones are for determining what optional services
 -- are enabled.
 Metadata.DISPLAY_OPTMASK     = 0x000000F0;
@@ -101,8 +105,13 @@ local function ConfigureActivationForDisplay(id)
 		-- Configure it?
 		local seq = aVars.Sequences[i];
 		if(seq and conf) then
-			-- Start with operators.
-			seq.Operators = lSeq.Operators;
+			-- Start with operators. Invert if needed.
+			if(bit.band(vars.Flags, Metadata.DISPLAY_INVMASK) > 0) then
+				seq.Operators = ("!(%s)"):format(lSeq.Operators);
+			else
+				seq.Operators = lSeq.Operators;
+			end
+
 			-- Now parameters.
 			wipe(seq.Parameters);
 			for k, v in ipairs(lSeq.Parameters) do
@@ -223,77 +232,27 @@ function ConfigureSourceForDisplay(id)
 
 	-- What type of configuration are we doing?
 	local configured = false;
-	if(sFlags == Metadata.DISPLAY_SOURCE_AUTO) then
-		-- Iterate over the triggers on the activate action.
-		for i = 1, #(aVars["Triggers"]) do
-			-- Right, can this trigger be configured into our
-			-- required services?
-			local tri = aVars["Triggers"][i];
-			local tParams = tri["Parameters"];
-			local tClass = PowerAuras:GetTriggerClass(tri["Type"]);
-			local invalidTrigger = false;
+	-- Iterate over the triggers on the activate action.
+	for i = 1, #(aVars["Triggers"]) do
+		-- Right, can this trigger be configured into our
+		-- required services?
+		local tri = aVars["Triggers"][i];
+		local tParams = tri["Parameters"];
+		local tClass = PowerAuras:GetTriggerClass(tri["Type"]);
+		local invalidTrigger = false;
 
-			for int, req in pairs(services) do
-				local sName = tClass:SupportsServiceConversion(int);
-				if(not sName and req) then
-					-- Can't make this service.
-					invalidTrigger = true;
-					break;
-				end
-			end
-
-			-- Full match?
-			if(not invalidTrigger) then
-				-- Set up the interfaces.
-				for int, req in pairs(services) do
-					-- Is this required or optional? If optional, only include
-					-- if configured to.
-					local optFlag = Metadata["DISPLAY_OPT_" .. int:upper()];
-					local sName = tClass:SupportsServiceConversion(int);
-					if((req or bit.band(optFlags, optFlag) > 0) and sName) then
-						-- Set up the service.
-						pVars[int].Type = sName;
-						-- Now tell the trigger class to configure it.
-						local pParams = pVars[int]["Parameters"];
-						wipe(pParams);
-						tClass:ConvertToService(int, tParams, pParams, aID, i);
-					end
-					-- In addition, if required, update the flags.
-					if(req) then
-						vars["Flags"] = bit.bor(vars["Flags"], optFlag);
-					end
-				end
-				-- Done.
-				configured = true;
-				-- Store the used trigger index.
-				vars["Flags"] = bit.bor(
-					bit.band(vars["Flags"],
-						bit.bnot(Metadata.ID_TRIGGERMASK)),
-					bit.lshift(i, Metadata.ID_TRIGGERSHIFT)
-				);
+		for int, req in pairs(services) do
+			local sName = tClass:SupportsServiceConversion(int);
+			if(not sName and req) then
+				-- Can't make this service.
+				invalidTrigger = true;
 				break;
 			end
 		end
-	elseif(sFlags == Metadata.DISPLAY_SOURCE_TRIGGER) then
-		-- Verify this trigger will work.
-		local fTri = Metadata:GetFlagID(vars["Flags"], "Trigger");
-		local tri = aVars["Triggers"][fTri];
-		local tClass = (tri and PowerAuras:GetTriggerClass(tri["Type"]));
-		local invalidTrigger = (not tri);
-		if(tri) then
-			-- Check for all required services.
-			for int, req in pairs(services) do
-				local sName = tClass:SupportsServiceConversion(int);
-				if(not sName and req) then
-					invalidTrigger = true;
-					break;
-				end
-			end
-		end
 
-		-- Did it remain valid?
+		-- Full match?
 		if(not invalidTrigger) then
-			-- Configure.
+			-- Set up the interfaces.
 			for int, req in pairs(services) do
 				-- Is this required or optional? If optional, only include
 				-- if configured to.
@@ -305,12 +264,19 @@ function ConfigureSourceForDisplay(id)
 					-- Now tell the trigger class to configure it.
 					local pParams = pVars[int]["Parameters"];
 					wipe(pParams);
-					tClass:ConvertToService(
-						int, tri["Parameters"], pParams, aID, fTri
-					);
+					tClass:ConvertToService(int, tParams, pParams, aID, i);
+				end
+				-- In addition, if required, update the flags.
+				if(req) then
+					vars["Flags"] = bit.bor(vars["Flags"], optFlag);
 				end
 			end
+			-- Done.
 			configured = true;
+			-- Store the used trigger index.
+			local flags = Metadata:SetFlagID(vars["Flags"], i, "Trigger");
+			vars["Flags"] = flags;
+			break;
 		end
 	end
 
@@ -401,61 +367,53 @@ local function ConfigureSourceForTrigger(aID, tID, dID)
 
 	-- So what configuration mode?
 	local configured = false;
-	if(sFlags == Metadata.TRIGGER_SOURCE_AUTO) then
-		-- TODO
-
-	elseif(sFlags == Metadata.TRIGGER_SOURCE_TRIGGER) then
-		-- TODO
-
-	elseif(sFlags == Metadata.TRIGGER_SOURCE_AUTODISP) then
-		-- Use the main trigger of the activate action of the owning display.
-		if(PowerAuras:HasAuraDisplay(dID)) then
-			-- Get the main trigger on this display.
-			local disp = PowerAuras:GetAuraDisplay(dID);
-			local mAID = disp.Actions["DisplayActivate"];
-			local mAct = PowerAuras:GetAuraAction(mAID);
-			for mTID, mTri in ipairs(mAct.Triggers) do
-				-- Is this a main trigger?
-				local mCls = PowerAuras:GetTriggerClass(mTri.Type);
-				if(not mCls:IsSupportTrigger()) then
-					-- Does it support converting to all our services?
-					local supported = true;
-					for int, _ in pairs(prov) do
-						if(not mCls:SupportsServiceConversion(int)) then
-							supported = false;
-							break;
-						end
-					end
-
-					-- So will it work?
-					if(supported) then
-						-- We're done then.
-						for int, svc in pairs(prov) do
-							-- Convert.
-							mCls:ConvertToService(
-								int, mTri.Parameters, svc.Parameters, mAID, mTID
-							);
-
-							-- Store type.
-							svc.Type = mCls:SupportsServiceConversion(int);
-						end
-						configured = true;
+	-- Use the main trigger of the activate action of the owning display.
+	if(PowerAuras:HasAuraDisplay(dID)) then
+		-- Get the main trigger on this display.
+		local disp = PowerAuras:GetAuraDisplay(dID);
+		local mAID = disp.Actions["DisplayActivate"];
+		local mAct = PowerAuras:GetAuraAction(mAID);
+		for mTID, mTri in ipairs(mAct.Triggers) do
+			-- Is this a main trigger?
+			local mCls = PowerAuras:GetTriggerClass(mTri.Type);
+			if(not mCls:IsSupportTrigger()) then
+				-- Does it support converting to all our services?
+				local supported = true;
+				for int, _ in pairs(prov) do
+					if(not mCls:SupportsServiceConversion(int)) then
+						supported = false;
 						break;
 					end
 				end
+
+				-- So will it work?
+				if(supported) then
+					-- We're done then.
+					for int, svc in pairs(prov) do
+						-- Convert.
+						mCls:ConvertToService(
+							int, mTri.Parameters, svc.Parameters, mAID, mTID
+						);
+
+						-- Store type.
+						svc.Type = mCls:SupportsServiceConversion(int);
+					end
+					configured = true;
+					break;
+				end
 			end
 		end
+	end
 
-		-- Did it get configured?
-		if(not configured and next(reqServices)) then
-			PowerAuras:PrintError(
-				L("TSourceAutoConfFail", L["TSourceAutoConfFailNoMain"])
-			);
-		elseif(not configured and not next(reqServices)) then
-			-- Just delete the provider.
-			PowerAuras:DeleteAuraProvider(tri.Provider);
-			tri.Provider = nil;
-		end
+	-- Did it get configured?
+	if(not configured and next(reqServices)) then
+		PowerAuras:PrintError(
+			L("TSourceAutoConfFail", L["TSourceAutoConfFailNoMain"])
+		);
+	elseif(not configured and not next(reqServices)) then
+		-- Just delete the provider.
+		PowerAuras:DeleteAuraProvider(tri.Provider);
+		tri.Provider = nil;
 	end
 end
 
@@ -714,7 +672,9 @@ do
 		local vars = PowerAuras:GetAuraDisplay(id);
 		-- Now set the flags.
 		vars["Flags"] = WriteFlags(vars["Flags"], "Display", value, ...);
-		PowerAuras.OnOptionsEvent("DISPLAY_METADATA_CHANGED", id, vars["Flags"]);
+		PowerAuras.OnOptionsEvent(
+			"DISPLAY_METADATA_CHANGED", id, vars["Flags"]
+		);
 		return vars["Flags"];
 	end
 

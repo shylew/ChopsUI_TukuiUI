@@ -1,4 +1,5 @@
-﻿--[[
+﻿-- $Id: Info.lua 3697 2012-01-31 15:17:37Z lag123 $
+--[[
 Atlasloot Enhanced
 Author Hegarol
 Loot browser associating loot with instance bosses
@@ -19,7 +20,7 @@ AtlasLoot.AddonInfo = {
 	authors = {
 		["Hegarol"] = {
 			email = "hegarol@atlasloot.net",
-			ingame = {"Hegarol@Dun Morogh"},
+			ingame = {"Hegarol@Dun Morogh", "Areghol@Dun Morogh"},
 		},
 		["Lag"] = {
 			email = "lag@atlasloot.net",

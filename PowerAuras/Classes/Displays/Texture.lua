@@ -274,6 +274,12 @@ function Texture:CreatePreview(frame, id)
 	local display = PowerAuras:GetAuraDisplay(id);
 	Styler(frame, display["Parameters"], false);
 	-- Get the provider.
+	if(not PowerAuras:HasAuraProvider(display["Provider"])) then
+		-- Not got one.
+		return;
+	end
+
+	-- Get it.
 	local prov = PowerAuras:GetAuraProvider(display["Provider"]);
 	prov = prov["Texture"];
 	if(prov) then
@@ -298,8 +304,7 @@ function Texture:CreateStyleEditor(frame, ...)
 	local texture = PowerAuras:Create("DialogBox", frame, nil, "TextureDialog");
 	texture:SetUserTooltip("DTexture_Path");
 	texture:SetRelativeWidth(1.0);
-	texture:SetMargins(0, 20, -28, 0);
-	texture:SetPadding(4, 0, 28, 0);
+	texture:SetPadding(4, 0, 4, 0);
 	texture:SetTitle(L["Texture"]);
 	texture:SetText(PowerAuras:GetParameter("Display", "Texture", ...));
 	texture:ConnectParameter("Display", "Texture", texture.SetText, ...);
@@ -307,16 +312,6 @@ function Texture:CreateStyleEditor(frame, ...)
 		local self, value = ...;
 		PowerAuras:SetParameter("Display", "Texture", value, ${...});
 	]], ...));
-
-	-- Help text for the ability icon thing.
-	local helpIcon = PowerAuras:Create("Label", frame);
-	helpIcon:SetUserTooltip("WhereIsAbilityIcon");
-	helpIcon:SetFixedSize(24, 16);
-	helpIcon:SetMargins(4, 24, 0, 0);
-	helpIcon:SetPadding(2, 0, 4, 0);
-	helpIcon:SetText(
-		"|TInterface\\Common\\help-i:16:16:0:0:64:64:16:48:16:48:255:255:255|t"
-	);
 
 	-- Width.
 	local sizeX = PowerAuras:Create("P_NumberBox");
@@ -424,11 +419,11 @@ function Texture:CreateStyleEditor(frame, ...)
 	scale:SetUserTooltip("Scale");
 	scale:SetRelativeWidth(0.35);
 	scale:SetPadding(2, 0, 4, 0);
+	scale:SetMinMaxValues(1, 1000);
 	scale:LinkParameter("Display", "Scale", ...);
 
 	-- Add widgets to layout.
 	frame:AddWidget(texture);
-	frame:AddWidget(helpIcon);
 	frame:AddRow(4);
 	frame:AddWidget(sizeX);
 	frame:AddWidget(sizeY);

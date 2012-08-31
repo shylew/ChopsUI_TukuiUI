@@ -1329,7 +1329,7 @@ end
 -- ****************************************************************************
 function eventFrame:UNIT_COMBO_POINTS(unitID)
  -- Ignore the event if it's not for the player.
- if (arg1 ~= "player") then return end
+ if (unitID ~= "player") then return end
  local numCP = GetComboPoints("player")
  if (numCP ~= 0) then HandleComboPoints(numCP) end
 end

@@ -1,4 +1,5 @@
-﻿--[[
+﻿-- $Id: AtlasLoot_Loader.lua 3740 2012-08-28 19:35:32Z lag123 $
+--[[
 Atlasloot Enhanced
 Author Hegarol
 Loot browser associating loot with instance bosses
@@ -19,6 +20,7 @@ AtlasLoot.Modules = {
 	{"AtlasLootBurningCrusade", "AtlasLoot_BurningCrusade", false, "", AL["Burning Crusade"] },
 	{"AtlasLootWotLK", "AtlasLoot_WrathoftheLichKing", false, "", AL["Wrath of the Lich King"] },
 	{"AtlasLootCataclysm", "AtlasLoot_Cataclysm", false, "", AL["Cataclysm"] },
+	--{"AtlasLootMoP", "AtlasLoot_MistsofPandoria", false, "", AL["Mists of Pandoria"] },
 	{"AtlasLootCrafting", "AtlasLoot_Crafting", false, ""},
 	{"AtlasLootWorldEvents", "AtlasLoot_WorldEvents", false, ""},
 }
@@ -152,11 +154,17 @@ function AtlasLoot:LoadModule(module)
 	return loadedRET,reasonRET
 end
 
+local slashCalled = false
 -- This only loads the AtlasLoot Core
 -- After first call this function is replaced
 function AtlasLoot:SlashCommand(msg)
-	self:LoadModule("AtlasLoot")
-	self:SlashCommand(msg)
+	if slashCalled then
+		slashCalled = false
+	else
+		self:LoadModule("AtlasLoot")
+		self:SlashCommand(msg)
+		slashCalled = true
+	end
 end
 
 -- Create the Slashs /al and /atlasloot

@@ -1,4 +1,4 @@
--- $Id: constants.en.lua 3628 2011-11-09 10:04:43Z hegarol $
+-- $Id: constants.en.lua 3736 2012-08-14 18:31:11Z hegarol $
 --[[
 constants.en.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -44,6 +44,7 @@ if AL then
 	AL["Select Stats list"] = true;
 	AL["You cant set more then %d item stats."] = true;
 	AL["Slot"] = true;
+	AL["AtlasLoot has detected some corrupted items on your Wishlist. You can now run an automatic check to fix it. Please be aware that this could take a few moments."] = true;
 
 	-- Stats short
 	AL["iLvl"] = true;	-- Item lvl
@@ -246,12 +247,11 @@ if AL then
 	AL["ilvl 226"] = true;
 	AL["ilvl 245"] = true;
 	AL["ilvl 264"] = true;
-	AL["ilvl 359"] = true;
-	AL["ilvl 372"] = true;
-	AL["ilvl 378"] = true;
-	AL["ilvl 391"] = true;
 	AL["ilvl 397"] = true;
-	AL["ilvl 410"] = true;
+	AL["Gladiator"] = true;
+	AL["Vengeful"] = true;
+	AL["Merciless"] = true;
+	AL["Brutal"] = true;
 
 	-- #######################################
 	-- UI things END
@@ -268,6 +268,7 @@ if AL then
 	AL["Level 70"] = true;
 	AL["Level 80"] = true;
 	AL["Level 85"] = true;
+	AL["Level 90"] = true;
 	AL["|cffff0000(unsafe)"] = true;
 	AL["Misc"] = true;
 	AL["Rewards"] = true;
@@ -355,8 +356,8 @@ if AL then
 	AL["Tier 10 Set"] = true;
 	AL["Tier 11/12 Set"] = true;
 	AL["Tier 13 Set"] = true;
+	AL["Tier 14 Set"] = true;
 	AL["TCG Items"] = true; -- Trading Card Game Items
-	AL["Transformation Items"] = true;
 
 	-- PvP Menu
 	AL["Arathi Basin Sets"] = true;
@@ -531,6 +532,7 @@ if AL then
 	AL["Burning Crusade"] = true;
 	AL["Wrath of the Lich King"] = true;
 	AL["Cataclysm"] = true;
+	AL["Mists of Pandoria"] = true;
 	AL["Entrance"] = true;
 	AL["Dungeon Set 1"] = true;
 	AL["Dungeon Set 2"] = true;
@@ -677,7 +679,8 @@ if AL then
 
 	-- General titles
 	AL["Achievement"] = true;
-	AL["Promotional & Card Game"] = true;
+	AL["Dungeon"] = true;
+	AL["Outdoor"] = true;
 
 	-- Companions
 	AL["Achievement & Faction Reward Companions"] = true;
@@ -719,6 +722,12 @@ if AL then
 	AL["Horde Tabards"] = true;
 	AL["PvP Tabards"] = true;
 	AL["Unobtainable Tabards"] = true;
+
+	-- Transformation Items
+	AL["Transformation Items"] = true;
+	AL["Additional Effects Transformation Items"] = true;
+	AL["Consumable Transformation Items"] = true;
+	AL["Non-consumed Transformation Items"] = true;
 
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = true;
@@ -822,6 +831,9 @@ if AL then
 
 	-- Eighteenth set
 	AL["Tomb of the Forgotten"] = true;
+
+	-- Nineteenth set
+	AL["War of the Ancients"] = true;
 
 	-- Battleground Brackets
 	AL["Old PvP Rewards"] = true;
@@ -930,6 +942,9 @@ if AL then
 	AL["Destruction"] = true;
 	AL["Tanking"] = true;
 	AL["DPS"] = true;
+	AL["Mistweaver"] = true;
+	AL["Brewmaster"] = true;
+	AL["Windwalker"] = true;
 
 	-- NPCs missing from BabbleBoss
 	AL["Trash Mobs"] = true;
@@ -1052,6 +1067,7 @@ if AL then
 	AL["Varlan Highbough"] = true;
 	AL["Firestone Vendor"] = true;
 	AL["Poseidus"] = true;
+	AL["Burgy Blackheart"] = true;
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = true;
@@ -1119,6 +1135,10 @@ if AL then
 	AL["Bag of Heart Candies"] = true;
 	AL["Hidden Stash"] = true;
 	AL["The Cache of Madness"] = true;
+	AL["Stolen Present"] = true;
+	AL["Annual Pass"] = true;
+	AL["Scroll of Resurrection"] = true;
+	AL["Recruit-A-Friend"] = true;
 
 	-- Error Messages and warnings
 	AL["AtlasLoot Error!"] = true;

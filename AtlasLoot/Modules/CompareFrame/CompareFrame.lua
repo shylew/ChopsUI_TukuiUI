@@ -1,4 +1,5 @@
-﻿local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
+﻿-- $Id: CompareFrame.lua 3729 2012-07-31 13:38:29Z lag123 $
+local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
 
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 
@@ -257,6 +258,7 @@ local CURRENT_ITEM_LIST_TYPE
 -- #####################################################
 -- Options
 StaticPopupDialogs["ATLASLOOT_COMPAREFRAME_ITEMSTATSERROR"] = {
+			preferredIndex = 3,
 			text = string.format(AL["You cant set more then %d item stats."], NUM_ITEMS_TO_DISPLAY),
 			button1 = OKAY,
 			timeout = 0,
@@ -801,6 +803,21 @@ end
 
 -- ###########################################
 -- Wishlist
+StaticPopupDialogs["ATLASLOOT_COMPAREFRAME_WLITEMERROR"] = {
+	text = AL["AtlasLoot has detected some corrupted items on your Wishlist. You can now run an automatic check to fix it. Please be aware that this could take a few moments."],
+	button1 = AL["OK"],
+	button2 = AL["Cancel"],
+	OnAccept = function()
+		if lastWishList then
+			AtlasLoot:Wishlist_FixWishlist(lastWishList)
+			AtlasLoot:OpenWishlist(lastWishList)
+		end
+	end,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = 1
+};
+		
 local function GetItemPrice(dataID, tableType, itemID )
 	if not itemID then return end
 	if tableType and dataID and AtlasLoot_Data[dataID] and AtlasLoot_Data[dataID][tableType] then
@@ -828,6 +845,7 @@ function AtlasLoot:CompareFrame_LoadWishList(itemTab, wishlistID, wishlistName, 
 		AtlasLoot:CompareFrame_Clear()
 		return 
 	end
+	lastWishList = wishlistID
 	CURRENT_ITEM_LIST_TYPE = "wishlist"
 	LIST_MAINFILTERS = {}
 	LIST_SUBFILTERS = {}
@@ -847,7 +865,7 @@ function AtlasLoot:CompareFrame_LoadWishList(itemTab, wishlistID, wishlistName, 
 										}]]--
 	--{ 2, 58155, "", "=q3=Cowl of Pleasant Gloom", "=ds=#s1#, #a1#", "#JUSTICE:2200#" },
 	
-	local tableType, dataID
+	local tableType, dataID, iniName
 	for itemNum,item in ipairs(itemTab) do
 		if type(item[3]) == "number" then
 			dataID = AtlasLoot:FormatDataID(item[6])
@@ -857,6 +875,8 @@ function AtlasLoot:CompareFrame_LoadWishList(itemTab, wishlistID, wishlistName, 
 			if dataID and tableType and iniName then
 				table.insert(itemCache, { dataID, tableType, iniName, item = { 0, "s"..item[3], item[2], item[4], item[5], GetItemPrice(dataID,tableType,item[2])} })
 			else
+				StaticPopup_Show("ATLASLOOT_COMPAREFRAME_WLITEMERROR")
+				return
 				-- Verbugtes item
 				--table.remove(itemTab, itemNum)
 				--return AtlasLoot:CompareFrame_LoadWishList(itemTab, wishlistID, wishlistName, refresh)
@@ -869,6 +889,8 @@ function AtlasLoot:CompareFrame_LoadWishList(itemTab, wishlistID, wishlistName, 
 			if dataID and tableType and iniName then
 				table.insert(itemCache, { dataID, tableType, iniName, item = { 0, item[2], "", item[4], item[5], GetItemPrice(dataID,tableType,item[2])} })
 			else
+				StaticPopup_Show("ATLASLOOT_COMPAREFRAME_WLITEMERROR")
+				return
 				-- Verbugtes item
 				--table.remove(itemTab, itemNum)
 				--return AtlasLoot:CompareFrame_LoadWishList(itemTab, wishlistID, wishlistName, refresh)
@@ -1730,7 +1752,7 @@ function AtlasLoot:CompareFrame_Create()
 							SearchFrame.SearchBox:ClearFocus()
 						end)
 	
-	SearchFrame.Search = CreateFrame("Button","AtlasLootCompareFrameSearch_SearchButton",Frame,"UIPanelButtonTemplate2")
+	SearchFrame.Search = CreateFrame("Button","AtlasLootCompareFrameSearch_SearchButton",Frame,"UIPanelButtonTemplate")
 	SearchFrame.Search:SetText(AL["Search"])
 	SearchFrame.Search:SetWidth(69)
 	SearchFrame.Search:SetHeight(20)
@@ -1740,7 +1762,7 @@ function AtlasLoot:CompareFrame_Create()
 							SearchFrame.SearchBox:ClearFocus()
 						end)
 						
-	SearchFrame.Clear = CreateFrame("Button","AtlasLootCompareFrameSearch_ClearButton",Frame,"UIPanelButtonTemplate2")
+	SearchFrame.Clear = CreateFrame("Button","AtlasLootCompareFrameSearch_ClearButton",Frame,"UIPanelButtonTemplate")
 	SearchFrame.Clear:SetText(AL["Clear"])
 	SearchFrame.Clear:SetWidth(80)
 	SearchFrame.Clear:SetHeight(22)
@@ -1792,7 +1814,7 @@ function AtlasLoot:CompareFrame_Create()
 	
 	-- ############################################
 	-- 3er button Leiste#
-	Frame.Close2 = CreateFrame("Button","AtlasLootCompareFrame_CloseButton2",Frame,"UIPanelButtonTemplate2")
+	Frame.Close2 = CreateFrame("Button","AtlasLootCompareFrame_CloseButton2",Frame,"UIPanelButtonTemplate")
 	Frame.Close2:SetText(CLOSE)
 	Frame.Close2:SetWidth(80)
 	Frame.Close2:SetHeight(22)

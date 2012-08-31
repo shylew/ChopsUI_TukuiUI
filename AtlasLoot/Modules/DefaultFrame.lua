@@ -1,3 +1,4 @@
+-- $Id: DefaultFrame.lua 3742 2012-08-29 08:37:59Z lag123 $
 --[[
 Atlasloot Enhanced
 Author Hegarol
@@ -115,7 +116,7 @@ do
 	
 	local function onDragStop(self)
 		self:StopMovingOrSizing()
-		local a,b,c,d,e = AtlasLootItemsFrame:GetPoint()
+		local a,b,c,d,e = self:GetPoint()
 		db.NEWpoint = { a, nil, c, d, e }
 	end
 	
@@ -305,7 +306,7 @@ do
 		
 		Frame.ScrollFrame.Buttons = {}
 		
-		Frame.CompareFrame = CreateFrame("Button", frameName.."_CompareFrame", Frame, "UIPanelButtonTemplate2")
+		Frame.CompareFrame = CreateFrame("Button", frameName.."_CompareFrame", Frame, "UIPanelButtonTemplate")
 		Frame.CompareFrame:SetWidth(200)
 		Frame.CompareFrame:SetHeight(20)
 		Frame.CompareFrame:SetPoint("TOPLEFT", Frame, "TOPLEFT", 545, -560)
@@ -580,7 +581,9 @@ do
 		for ini,iniTab in SortTable(AtlasLoot_LootTableRegister["Instances"]) do
 			if iniTab["Info"] and iniTab["Info"][2] and type(iniTab["Info"][2]) == "table" then
 				for k,v in ipairs(iniTab["Info"][2]) do
-					instances[ v ][#instances[ v ] + 1] = {ini, iniTab["Info"].raid}
+					if instances[ v ] then
+						instances[ v ][#instances[ v ] + 1] = {ini, iniTab["Info"].raid}
+					end
 				end
 			elseif iniTab["Info"] and instances[ iniTab["Info"][2] ] then
 				instances[ iniTab["Info"][2] ][#instances[ iniTab["Info"][2] ] + 1] = {ini, iniTab["Info"].raid}

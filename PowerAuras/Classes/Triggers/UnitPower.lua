@@ -102,8 +102,12 @@ local function CheckValue(unit, op, match, resource, abs)
 	-- Get the minimum bound.
 	local min = PowerTypeMinimums[resource];
 
+	-- Burning embers are terrible.
+	local badDesign = (resource == "BurningEmbers");
+
 	-- Get current/max values.
-	local cur, max = GetPower(unit, realRes), GetMaxPower(unit, realRes);
+	local cur = GetPower(unit, realRes, badDesign);
+	local max = GetMaxPower(unit, realRes, badDesign);
 	cur = (cur or 0);
 	max = (max or 0);
 	-- Check the value.

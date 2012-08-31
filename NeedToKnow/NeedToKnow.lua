@@ -78,7 +78,7 @@ NeedToKnow.scratch.bar_entry =
     }
 -- NEEDTOKNOW = {} is defined in the localization file, which must be loaded before this file
 
-NEEDTOKNOW.VERSION = "4.0.06"
+NEEDTOKNOW.VERSION = "4.0.07"
 NEEDTOKNOW.UPDATE_INTERVAL = 0.05
 NEEDTOKNOW.MAXBARS = 20
 

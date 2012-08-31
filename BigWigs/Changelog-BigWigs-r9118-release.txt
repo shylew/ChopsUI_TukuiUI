@@ -1,9 +1,73 @@
 ------------------------------------------------------------------------
-r9109 | funkydude | 2012-08-28 19:42:26 +0000 (Tue, 28 Aug 2012) | 1 line
+r9118 | funkydude | 2012-08-30 21:21:54 +0000 (Thu, 30 Aug 2012) | 1 line
 Changed paths:
-   A /tags/r9109-release (from /trunk:9108)
+   A /tags/r9118-release (from /trunk:9117)
 
-Tagging as r9109-release
+Tagging as r9118-release
+------------------------------------------------------------------------
+r9117 | durcyn | 2012-08-30 21:18:14 +0000 (Thu, 30 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingMadness.lua
+
+Elementium Blast spell IDs were merged too, use 110628 over 109624
+------------------------------------------------------------------------
+r9115 | funkydude | 2012-08-30 21:14:53 +0000 (Thu, 30 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/Bastion/Chogall.lua
+   M /trunk/Bastion/DoubleDragon.lua
+   M /trunk/Bastion/Halfus.lua
+   M /trunk/Bastion/Sinestra.lua
+   M /trunk/Bastion/TwilightAscendants.lua
+   M /trunk/BigWigs.toc
+   M /trunk/Blackwing/Atramedes.lua
+   M /trunk/Blackwing/Chimaeron.lua
+   M /trunk/Blackwing/Magmaw.lua
+   M /trunk/Blackwing/Maloriak.lua
+   M /trunk/Blackwing/Nefarian.lua
+   M /trunk/Blackwing/Omnotron.lua
+   M /trunk/DragonSoul/Blackhorn.lua
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/DeathwingSpine.lua
+   M /trunk/DragonSoul/Hagara.lua
+   M /trunk/DragonSoul/Morchok.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+   M /trunk/DragonSoul/Yorsahj.lua
+   M /trunk/DragonSoul/Zonozz.lua
+   M /trunk/Firelands/Alysrazor.lua
+   M /trunk/Firelands/Baleroc.lua
+   M /trunk/Firelands/Bethtilac.lua
+   M /trunk/Firelands/Ragnaros.lua
+   M /trunk/Firelands/Rhyolith.lua
+   M /trunk/Firelands/Shannox.lua
+   M /trunk/Firelands/Staghelm.lua
+   M /trunk/Throne/Alakir.lua
+   M /trunk/Throne/Conclave.lua
+
+Fix all the difficulty checks
+------------------------------------------------------------------------
+r9114 | funkydude | 2012-08-30 20:43:22 +0000 (Thu, 30 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: Add a heroic API call
+------------------------------------------------------------------------
+r9113 | durcyn | 2012-08-30 14:37:41 +0000 (Thu, 30 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/DeathwingSpine.lua
+
+Grasping Tendrils spell ID changed in the patch, for some damn reason (old: 109454, new: 105563)
+------------------------------------------------------------------------
+r9111 | funkydude | 2012-08-30 12:49:46 +0000 (Thu, 30 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+
+bump version
+------------------------------------------------------------------------
+r9110 | funkydude | 2012-08-30 10:38:24 +0000 (Thu, 30 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/Options/BigWigs_Options.toc
+
+Options: Can't see why the plugins module isn't loading for certain people (GetAddOnMetadata still buggy?) but lets add the core and plugins to the req deps.
 ------------------------------------------------------------------------
 r9108 | funkydude | 2012-08-28 19:32:00 +0000 (Tue, 28 Aug 2012) | 1 line
 Changed paths:

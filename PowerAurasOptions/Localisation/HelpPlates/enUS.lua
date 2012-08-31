@@ -130,7 +130,7 @@ SpellOffCooldown_Match = "Spell Name/ID";
 SpellOffCooldown_MatchText = "The spell name (or ID) to match. Enter it here, and press enter to save it.";
 
 SpellOffCooldown_Usable = "Usable";
-SpellOffCooldown_UsableText = "Checks to see if the spell is also usable.\n\nThis only checks to see if you have the required resources (eg. Mana) to cast the ability, and does not perform range checks."
+SpellOffCooldown_UsableText = "Checks to see if the spell is also usable.\n\nThis only checks to see if you have the required resources (eg. Mana) to cast the ability, and does not perform range checks.\n\n|cFFFFD000Note: |rThis should be unchecked if you invert the trigger, otherwise the behaviour may not be what you expect.";
 
 SpellOffCooldown_IgnoreGCD = "Ignore GCD";
 SpellOffCooldown_IgnoreGCDText = "Ignores the cooldown of the spell if the cooldown matches that of the global cooldown.";
@@ -139,7 +139,7 @@ SpellOffCooldown_IgnoreGCDEnd = "Ignore GCD End";
 SpellOffCooldown_IgnoreGCDEndText = "If checked, then the trigger will activate if the spell will come off cooldown once any current active global cooldown is over.";
 
 SpellOffCooldown_Known = "Known";
-SpellOffCooldown_KnownText = "Checks to see if the spell is known to you, or your pet.";
+SpellOffCooldown_KnownText = "Checks to see if the spell is known to you, or your pet.\n\n|cFFFFD000Note: |rThis will cause issues with spells that replace other spells (Mage Bombs, Symbiosis, etc). Only check this option if you're sure you need it.";
 
 Stance_Match = "Stance";
 Stance_MatchText = "The stance to match. Select a stance from the dropdown.";
@@ -148,7 +148,7 @@ Totems_Totem = "Totem";
 Totems_TotemText = "The totem to match in this slot. Select the totems to check for in this slot by using the dropdown.";
 
 UnitAura_MatchDlg = "Buff/Debuff Matches";
-UnitAura_MatchDlgText = "The buffs and debuffs to match.\n\nlicking this will open a dialog for configuring the effects that should cause this trigger to activate.";
+UnitAura_MatchDlgText = "The buffs and debuffs to match.\n\nClicking this will open a dialog for configuring the effects that should cause this trigger to activate.";
 
 UnitAura_MatchType = "Type";
 UnitAura_MatchTypeText = "The type of effect to match.";
@@ -221,6 +221,12 @@ WeaponEnchant_OffHandText = "The effect to match in the off hand weapon slot. Cl
 
 WeaponEnchant_Count = "Count";
 WeaponEnchant_CountText = "The time remaining that this effect must have.";
+
+WeaponEnchant_CheckOff = "Check Offhand";
+WeaponEnchant_CheckOffText = "Enables checking of the off hand weapon.";
+
+WeaponEnchant_CheckMain = "Check Mainhand";
+WeaponEnchant_CheckMainText = "Enables checking of the main hand weapon.";
 
 DTexture_Path = "Texture";
 DTexture_PathText = "The path to a texture to use. Click the button inside of the textbox to open the texture picking dialog.";
@@ -416,5 +422,10 @@ SupportTriggersHelp2 = "You can cycle through other support triggers by using th
 
 WhereIsAbilityIcon = "Ability Icon"
 WhereIsAbilityIconText = "The 'Use Ability Icon' setting is available in the 'Advanced Options' category, check the 'Use for Texture' checkbox.";
+
+LinkedDisplayHelp = "This display is currently linked to a parent, and as such automatically inherits its activation criteria.";
+
+LinkedDisplayInvert = "Invert";
+LinkedDisplayInvertText = "Inverts the criteria, effectively making this display show whenever the parent is not showing.";
 
 -- Browser/Editor help plate definitions.

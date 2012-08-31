@@ -79,14 +79,14 @@ function mod:OnBossEnable()
 end
 
 -- Note: Engage is not called as early as you may expect. It is about 4s from the start of combat
-function mod:OnEngage()
+function mod:OnEngage(diff)
 	wipe(corruptionStatus)
 	lastBar = true
 	bloodCount = 0
 
 	if not self:LFR() then
 		-- Initial bars for grip since we cannot trigger off of it (pad by -5s)
-		if self:Difficulty() % 2 == 0 then
+		if diff % 2 == 0 then
 			-- 25 man has 2 casts of 8s
 			self:Bar(105490, "~"..fieryGrip, 11, 105490)
 		else
@@ -101,7 +101,7 @@ end
 --
 
 do
-	local tendrils = GetSpellInfo(109454)
+	local tendrils = GetSpellInfo(105563)
 	local timer = nil
 	local function graspCheck()
 		if not mod.isEngaged then
@@ -109,7 +109,7 @@ do
 			mod:CancelTimer(timer, true)
 		end
 		if not UnitDebuff("player", tendrils) and not UnitIsDead("player") then -- Grasping Tendrils
-			mod:LocalMessage("roll", L["not_hooked"], "Personal", 109454, "Alert")
+			mod:LocalMessage("roll", L["not_hooked"], "Personal", 105563, "Alert")
 		end
 	end
 

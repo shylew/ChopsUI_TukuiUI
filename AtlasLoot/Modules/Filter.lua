@@ -1,3 +1,4 @@
+-- $Id: Filter.lua 3697 2012-01-31 15:17:37Z lag123 $
 --[[
 Atlasloot Enhanced
 Author Hegarol
@@ -133,7 +134,7 @@ local ClassHides = {
 		["WeaponsMeeleTwoHand"] = {true,false,false},
 		["WeaponsRanged"] = {false,false,false,false,false},
 		["Other"] = {true,true,true,true,true},
-		["Stats"] = {true,true,false,true,true,true,false,true,true,false,true,true,true}
+		["Stats"] = {true,true,false,true,true,true,false,true,true,true,false,true,true,true}
 	},
 	["MAGE"] = {
 		["Armor"] = {true,false,false,false},

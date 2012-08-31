@@ -1,6 +1,6 @@
 InspectFix = CreateFrame("Button", "InspectFixHiddenFrame", UIParent)
 local addonName = "InspectFix"
-local revision = tonumber(("$Revision: 40 $"):match("%d+"))
+local revision = tonumber(("$Revision: 43 $"):match("%d+"))
 
 local BlizzardNotifyInspect = _G.NotifyInspect
 local InspectPaperDollFrame_SetLevel = nil
@@ -29,12 +29,13 @@ local function inspectfilter(self, event, ...)
     elseif event == nil and not inspectable then
        return false
     elseif event == "PLAYER_TARGET_CHANGED" then -- suppress close on change 
-       if inspectable then
+       if inspectable and InspectFix.UserInspecting() then
           InspectFrame_UnitChanged(InspectFrame);
        end
        return false
     end
     if inspectable and lastUINITime and not lastUIIRTime and 
+       InspectFix.UserInspecting() and 
        (lastUINITime + serverTimeout) < GetTime() then
        debug("Re-issuing dropped notify")
        InspectFrame_UnitChanged(InspectFrame);
@@ -138,6 +139,7 @@ local function UserInspecting()
      return nil
   end
 end
+InspectFix.UserInspecting = UserInspecting
 
 -- prevent NotifyInspect interference from other addons
 local function NIhook(unit)

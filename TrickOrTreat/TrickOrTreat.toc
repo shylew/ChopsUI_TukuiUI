@@ -2,9 +2,10 @@
 ## Title: TrickOrTreat
 ## Notes: Tricks of the Trade Tracker
 ## Author: tuxedobob, originally by falconindy, intial 4.0 fixes and ongoing support by sp00n
-## Revision: 2.5.2
+## Revision: 2.5.3
 ## SavedVariables: ToTDB
-## X-Curse-Packaged-Version: 2.5.2
+## X-LoadOn-Class: Rogue
+## X-Curse-Packaged-Version: 2.5.3
 ## X-Curse-Project-Name: Trick Or Treat
 ## X-Curse-Project-ID: trick or treat
 ## X-Curse-Repository-ID: wow/trick-or-treat/mainline

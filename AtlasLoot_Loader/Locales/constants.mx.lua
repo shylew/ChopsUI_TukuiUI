@@ -1,4 +1,4 @@
-﻿-- $Id: constants.mx.lua 3604 2011-10-17 16:34:06Z hegarol $
+-- $Id: constants.mx.lua 3725 2012-04-23 23:39:19Z lag123 $
 --[[
 constants.es.lua --- Traduction ES por maqjav
 This file defines an AceLocale table for all the various text strings needed

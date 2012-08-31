@@ -1,14 +1,54 @@
-AtlasLoot Enhanced
+﻿AtlasLoot Enhanced
 
 This mod is distributed under Version 2 of the GPL.  A copy of the GPL is included in this zip file with links to non-english translations.
 
 -Hegarol
 
 Patch Notes
-v6.05.00_RC (Nov 22, 2011)
-Note: This version does NOT work with Atlas 1.20.1!
+v7.00.01 (Aug 29, 2012)
+Fixed a nasty bug with AtlasLoot_Loader.
+Minor additions.
+
+v7.00.00 (Aug 28, 2012)
+Compatible with Patch 5.0.4.
+Added loot for revamped Ragefire Chasm, Scarlet Monastery and Scholomance.
+Added various preparations for Mists of Pandaria.
+Added Dungeon Journal to Classic, BC and WotLK instances.
+Removed all relics and thrown weapons.
+Many minor additions, fixes and translations.
+
+v6.05.04 (Mar 05, 2012)
+Added an About page.
+Added an Auto-Fix for corrupted Wishlists.
+Fixed a bug with 10/25 Man Buttons.
+Some minor fixes and additions.
+
+v6.05.03 (Feb 04, 2012)
+New feature: Wishlist items are shown in boss tooltip (Beta).
+Added new TCG loot from War of the Ancients (not yet released).
+Updated Winter Veil section.
+Some minor fixes, additions and translations.
+
+v6.05.02 (Dec 14, 2011)
+Added missing PvP gems.
+Added Season 1-3 weapons.
+The default frame now properly saves its position.
+Removed various LFR weapons as these items are not ingame.
+Some minor fixes and additions.
+
+v6.05.01 (Dec 06, 2011)
+Added missing trash loot for Dragon Soul.
+Added Season 11 items.
+Added new prices for Season 1-3 sets.
+Added some missing mounts and revamped rare mounts section.
+Updated Transformation Items.
+Added autoselect for missing cataclysm instances. 
+Added ptBR translation (Thanks Reiyr).
+Some minor fixes and additions.
+
+v6.05.00 (Nov 29, 2011)
 Compatible with Patch 4.3.
-Added support for Atlas 1.21.0. (Currently in Beta)
+Added support for Atlas 1.21.0.
 Added loot for Endtime.
 Added loot for Hours of Twilight.
 Added loot for Well of Eternity.
@@ -16,8 +56,7 @@ Added loot for Dragon Soul.
 Added new Baradin Hold boss.
 Added new Valor Points items.
 Added Tier 13 Raid Set.
-Added new Companions.
-Added new Mounts.
+Added new Mounts and Companions.
 Revamped Darkmoon Faire section.
 Updated Hallow's End.
 Added new TCG loot from Throne of the Tides.
@@ -27,7 +66,7 @@ Added new epic gems to the Jewelcrafting section.
 Added new items to other professions.
 Added Spells to the Archaeology section.
 Added linkable currencies.
-Fixed a bug that prevented search results to be added to a wishlist.
+Fixed a bug that prevented search results from being added to the wishlist.
 Many minor fixes, additions and translations.
 
 v6.04.04 (Sep 11, 2011)

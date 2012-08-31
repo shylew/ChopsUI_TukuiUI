@@ -1,6 +1,6 @@
 --[[
 Name: TreatOrTreat
-Revision: 2.5.2
+Revision: 2.5.3
 Author(s): falconindy, tuxedobob, initial 4.0 fixes and ongoing support by sp00n
 Description: Warnings for targets and recipient rogues of Tricks of the Trade.
 Inspired by: SimpleMD and Misdrection Helper
@@ -161,7 +161,7 @@ end
 
 function addon:CheckForTricksGlyph(event)
 	--Checks to see if Tricks of the Trade glyph is active. If so, changes damageMod to 1.0 (no bonus in MOP)
-	--Major glyph sockets are IDs 1, 4, and 6
+	--Major glyph sockets are IDs 1, 4, and 6. Well, at least they were during Cata
 	--Active glyph spellID is 63256
 	--http://www.wowpedia.org/API_GetGlyphSocketInfo
 	local tricksGlyphActive = 0
@@ -190,7 +190,7 @@ function addon:CheckForTricksGlyph(event)
 		damageMod = 1.15
 	end
 	
-	self:Print(tricksGlyphActive.."    "..damageMod.."    "..event.."    "..1.15) --DEBUG
+--	self:Print(tricksGlyphActive.."    "..damageMod.."    "..event.."    "..1.15) --DEBUG
 	return damageMod
 end
 

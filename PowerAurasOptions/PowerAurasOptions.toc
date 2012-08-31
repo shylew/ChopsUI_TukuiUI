@@ -2,7 +2,7 @@
 ## Title: Power Auras Classic Options
 ## Notes: Options and configuration GUI for Power Auras Classic.
 ## Author: Smacker & Meorawr
-## Version: 5.0.0.O
+## Version: 5.0.0.P
 ## DefaultState: Enabled
 ## Dependencies: PowerAuras
 ## LoadOnDemand: 1

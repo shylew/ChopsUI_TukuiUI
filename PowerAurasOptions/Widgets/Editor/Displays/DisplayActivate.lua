@@ -2,6 +2,9 @@
 local PowerAuras = _G["PowerAuras"];
 setfenv(1, PowerAuras);
 
+-- Modules.
+local Metadata = PowerAuras:GetModules("Metadata");
+
 -- Scoped functions.
 local GetAllSubTriggers, IsTriggerInverted, RemoveSubTrigger;
 
@@ -59,6 +62,7 @@ local function AddTriggerToSequence(id, trigger, invert)
 		end
 	end
 	-- Update sequence.
+	ops = PowerAuras:FixOperatorString(ops);
 	PowerAuras:SetParameter("SequenceOp", "", ops, actionID, 1);
 end
 
@@ -399,6 +403,38 @@ function PowerAuras:CreateActivationEditor(frame, node)
 	local display = self:GetAuraDisplay(id);
 	local actionID = display["Actions"]["DisplayActivate"];
 	local action = self:GetAuraAction(actionID);
+
+	-- Does this display have a parent?
+	local lID = Metadata:GetFlagID(display.Flags, "Display");
+	if(lID > 0) then
+		-- Aight, that's coo'.
+		local l = PowerAuras:Create("Label", frame);
+		l:SetRelativeWidth(1.0);
+		l:SetPadding(4, 8, 4, 0);
+		l:SetJustifyH("LEFT");
+		l:SetJustifyV("TOP");
+		l:SetFixedHeight(40);
+		l:SetFontObject(GameFontNormal);
+		l:SetText(L["LinkedDisplayHelp"]);
+		frame:AddWidget(l);
+		frame:AddRow(4);
+
+		-- Invert checkbox.
+		local inv = PowerAuras:Create("Checkbox", frame);
+		inv:SetRelativeWidth(0.5);
+		inv:SetPadding(4, 0, 4, 0);
+		inv:SetText(L["LinkedDisplayInvert"]);
+		inv:SetUserTooltip("LinkedDisplayInvert");
+		local state = bit.band(display.Flags, Metadata.DISPLAY_INVMASK);
+		inv:SetChecked(state == Metadata.DISPLAY_INV_INVERT);
+		inv.OnValueUpdated:Connect(function(_, state)
+			local value = (state and Metadata.DISPLAY_INV_INVERT or 0);
+			Metadata:SetDisplayFlags(id, value, "INV");
+		end);
+		frame:AddWidget(inv);
+
+		return;
+	end
 
 	-- Determine if advanced mode is required.
 	local state, reason = PowerAuras:IsAdvancedActivationRequired(id);

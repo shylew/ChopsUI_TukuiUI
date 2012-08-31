@@ -1,6 +1,6 @@
-﻿-- $Id: constants.fr.lua 3630 2011-11-09 13:42:52Z trasher $
+-- $Id: constants.fr.lua 3737 2012-08-15 17:53:45Z TrAsHeR $
 --[[
-constants.fr.lua --- Traduction frFR par Trasher (Tchoupie / Nerz'hul-EU). Merci à KKram pour les premières traductions & Pettigrow pour ses quelques traductions.
+constants.fr.lua --- Traduction frFR par TrAsHeR (Tchoupie @ Nerz'hul-EU). Merci à KKram pour les premières traductions & Pettigrow pour ses quelques traductions.
 This file defines an AceLocale table for all the various text strings needed
 by AtlasLoot.  In this implementation, if a translation is missing, it will fall
 back to the English translation.
@@ -44,6 +44,7 @@ if AL then
 	AL["Select Stats list"] = "Sélectionnez la liste de statistiques";
 	AL["You cant set more then %d item stats."] = "Vous ne pouvez pas définir plus de %d statistiques différentes.";
 	--AL["Slot"] = true;
+	AL["AtlasLoot has detected some corrupted items on your Wishlist. You can now run an automatic check to fix it. Please be aware that this could take a few moments."] = "AtlasLoot a détecté certains objets corrompus dans votre liste de souhaits. Vous pouvez lancer une vérification automatique pour tenter de réparer. Cela pourrait prendre un petit moment.";
 
 	-- Stats short
 	--AL["iLvl"] = true;	-- Item lvl
@@ -246,12 +247,11 @@ if AL then
 	--AL["ilvl 226"] = true;
 	--AL["ilvl 245"] = true;
 	--AL["ilvl 264"] = true;
-	--AL["ilvl 359"] = true;
-	--AL["ilvl 372"] = true;
-	--AL["ilvl 378"] = true;
-	--AL["ilvl 391"] = true;
 	--AL["ilvl 397"] = true;
-	--AL["ilvl 410"] = true;
+	AL["Gladiator"] = "Gladiateur";
+	AL["Vengeful"] = "Vengeur";
+	AL["Merciless"] = "Impitoyable";
+	AL["Brutal"] = "Brutale";
 
 	-- #######################################
 	-- UI things END
@@ -268,6 +268,7 @@ if AL then
 	AL["Level 70"] = "Niveau 70";
 	AL["Level 80"] = "Niveau 80";
 	AL["Level 85"] = "Niveau 85";
+	AL["Level 90"] = "Niveau 90";
 	AL["|cffff0000(unsafe)"] = "|cffff0000(invalide)";
 	AL["Misc"] = "Divers";
 	AL["Rewards"] = "Récompenses";
@@ -289,7 +290,7 @@ if AL then
 	AL["Minimap Button Options"] = "Options du boutton de la mini-carte";
 
 	-- Text for Options Panel
-	AL["Atlasloot Options"] = "Options d'Atlasloot";
+	AL["Atlasloot Options"] = "Options d'AtlasLoot";
 	AL["Default Tooltips"] = "Infobulles par défault";
 	AL["Lootlink Tooltips"] = "Infobulles de Lootlink";
 	AL["|cff9d9d9dLootlink Tooltips|r"] = "|cff9d9d9dInfobulles de Lootlink";
@@ -297,7 +298,7 @@ if AL then
 	AL["|cff9d9d9dItemSync Tooltips|r"] = "|cff9d9d9dInfobulles d'ItemSync";
 	AL["Use EquipCompare"] = "Utiliser EquipCompare";
 	AL["|cff9d9d9dUse EquipCompare|r"] = "|cff9d9d9dUtiliser EquipCompare";
-	AL["Show itemIDs at all times"] = "Toujours afficher l'ID sur les objets";
+	AL["Show itemIDs at all times"] = "Toujours afficher l'ID des objets";
 	AL["Hide AtlasLoot Panel"] = "Masquer le panneau d'AtlasLoot";
 	AL["Show Basic Minimap Button"] = "Afficher le bouton sur la mini-carte";
 	AL["|cff9d9d9dShow Basic Minimap Button|r"] = "|cff9d9d9dAfficher le bouton sur la mini-carte|r";
@@ -307,9 +308,9 @@ if AL then
 	AL["Button Position: "] = "Position du boutton :";
 	AL["Button Radius: "] = "Rayon du boutton";
 	AL["Done"] = "Fait";
-	AL["FuBar Toggle"] = "Active ou non FuBar";
+	AL["FuBar Toggle"] = "Activer ou non FuBar";
 	AL["Search Result: %s"] = "Résultat(s) de la recherche : %s";
-	AL["Search on"] = "Recherche activé";
+	AL["Search on"] = "Recherche activée";
 	AL["All modules"] = "Tous les modules";
 	AL["If checked, AtlasLoot will load and search across all the modules."] = "Si coché, AtlasLoot chargera et recherchera dans tous les modules.";
 	AL["Search options"] = "Options de la recherche";
@@ -355,8 +356,8 @@ if AL then
 	--AL["Tier 10 Set"] = true;
 	--AL["Tier 11/12 Set"] = true;
 	--AL["Tier 13 Set"] = true;
+	--AL["Tier 14 Set"] = true;
 	AL["TCG Items"] = "Objets des cartes à jouer"; -- Trading Card Game Items
-	AL["Transformation Items"] = "Objets de transformation";
 
 	-- PvP Menu
 	AL["Arathi Basin Sets"] = "Sets du Bassin d'Arathi";
@@ -531,6 +532,7 @@ if AL then
 	--AL["Burning Crusade"] = true;
 	--AL["Wrath of the Lich King"] = true;
 	AL["Cataclysm"] = "Cataclysme";
+	--AL["Mists of Pandoria"] = true;
 	AL["Entrance"] = "Entrée";
 	AL["Dungeon Set 1"] = "Set de donjon 1";
 	AL["Dungeon Set 2"] = "Set de donjon 2";
@@ -677,7 +679,8 @@ if AL then
 
 	-- General titles
 	AL["Achievement"] = "Haut fait";
-	AL["Promotional & Card Game"] = "Promotionnel & Jeu de cartes";
+	AL["Dungeon"] = "Donjon";
+	AL["Outdoor"] = "Plein air";
 
 	-- Companions
 	AL["Achievement & Faction Reward Companions"] = "Haut fait & mascottes de récompenses de factions";
@@ -719,6 +722,13 @@ if AL then
 	AL["Horde Tabards"] = "Tabards de la Horde";
 	AL["PvP Tabards"] = "Tabards JcJ";
 	AL["Unobtainable Tabards"] = "Tabards imposssibles à obtenir";
+
+
+	-- Transformation Items
+	AL["Transformation Items"] = "Objets de transformation";
+	AL["Additional Effects Transformation Items"] = "Effets supplémentaires pour les objets de transformation";
+	AL["Consumable Transformation Items"] = "Objets consommables de transformation";
+	AL["Non-consumed Transformation Items"] = "Objets non-consommables de transformation";
 
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "Récompenses Foire de Sombrelune";
@@ -1052,6 +1062,7 @@ if AL then
 	AL["Varlan Highbough"] = "Varlan Hautebranche";
 	AL["Firestone Vendor"] = "Vendeur des Terres de Feu";
 	AL["Poseidus"] = "Poséidus";
+	AL["Burgy Blackheart"] = "Burgy Cœur-Noir";
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = "L'épreuve du grand croisé";
@@ -1119,6 +1130,10 @@ if AL then
 	AL["Bag of Heart Candies"] = "Sachet de bonbons en forme de cœur";
 	AL["Hidden Stash"] = "Fortune cachée";
 	AL["The Cache of Madness"] = "L'antre de la Folie";
+	AL["Stolen Present"] = "Cadeau volé";
+	AL["Annual Pass"] = "Pass annuel";
+	AL["Scroll of Resurrection"] = "Sort de résurrection";
+	AL["Recruit-A-Friend"] = "Parrainer un ami";
 
 	-- Error Messages and warnings
 	AL["AtlasLoot Error!"] = "Erreur AtlasLoot !";

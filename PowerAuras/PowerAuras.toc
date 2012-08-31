@@ -2,7 +2,7 @@
 ## Title: Power Auras Classic
 ## Notes: Cool effects around the player for ingame events.
 ## Author: Smacker & Meorawr, Driizt, Garstiger, Sinsthar
-## Version: 5.0.0.O
+## Version: 5.0.0.P
 ## DefaultState: Enabled
 ## SavedVariables: PowerAurasGlobalDB, PowaGlobalSet
 ## SavedVariablesPerCharacter: PowerAurasCharacterDB, PowaSet

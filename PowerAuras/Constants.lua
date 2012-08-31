@@ -172,7 +172,7 @@ UnitPowerTypeBounds = {
 	HolyPower     = 5,          -- Minimum: 0, Maximum: 3 (5: API internal)
 	LightForce    = 5,          -- Minimum: 0, Maximum: 4 (5: Ascension talent)
 	ShadowOrbs    = 3,          -- Minimum: 0, Maximum: 3
-	BurningEmbers = 0xC0008000, -- Unknown min/max.
+	BurningEmbers = 40,         -- Minimum: 0, Maximum: 40
 	DemonicFury   = 1000,       -- Minimum: 0, Maximum: 1000
 };
 

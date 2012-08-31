@@ -1,3 +1,4 @@
+-- $Id: WishList.lua 3729 2012-07-31 13:38:29Z lag123 $
 --[[
 Atlasloot Enhanced
 Author Hegarol
@@ -27,6 +28,7 @@ WishList.Info = Wishlists_Info
 do
 	--StaticPopup_Show ("ATLASLOOT_SEND_WISHLIST",AtlasLootWishList["Own"][tab2][tabname]["info"][1]);
 	StaticPopupDialogs["ATLASLOOT_SEND_WISHLIST"] = {
+		preferredIndex = 3,
 		text = AL["Send Wishlist (%s) to"],
 		button1 = AL["Send"],
 		button2 = CANCEL,
@@ -446,9 +448,10 @@ do
 	local lastButton = 1
 	local newIcon, selectedIcon = ""
 	local curInfo
+	local MACRO_ICON_FILENAMES = {}
 
 	local function onVerticalScroll(self)
-		local numMacroIcons = GetNumMacroIcons()
+		local numMacroIcons = #MACRO_ICON_FILENAMES
 		local wlIcon, wlButton
 		local index
 		local offset = FauxScrollFrame_GetOffset(AL_WishList_IconSelect)
@@ -458,7 +461,8 @@ do
 			wlIcon = _G["AL_WishList_Button_"..i.."Icon"]
 			wlButton = _G["AL_WishList_Button_"..i]
 			index = (offset * 5) + i;
-			texture = GetMacroIconInfo(index);
+			--texture = GetMacroIconInfo(index);
+			texture = "INTERFACE\\ICONS\\"..MACRO_ICON_FILENAMES[index]
 			
 			if ( index <= numMacroIcons ) then
 				wlIcon:SetTexture(texture);
@@ -491,7 +495,7 @@ do
 	end
 
 	local function SelectTexture(selectedIcon)
-		newIcon = GetMacroIconInfo(selectedIcon)
+		newIcon = "INTERFACE\\ICONS\\"..MACRO_ICON_FILENAMES[selectedIcon]
 		WishList.IconSelect.selectedIcon = selectedIcon
 		WishList.IconSelect.selectedIconTexture = nil
 		
@@ -609,7 +613,13 @@ do
 		end)
 		
 		IconSelect:SetScript("OnShow", onVerticalScroll) 
+		
+		MACRO_ICON_FILENAMES[1] = "INV_MISC_QUESTIONMARK"
+		GetMacroIcons( MACRO_ICON_FILENAMES );
+  		GetMacroItemIcons( MACRO_ICON_FILENAMES );
+  
 		onVerticalScroll()
+
 	end
 
 end
@@ -827,6 +837,87 @@ end
 function AtlasLoot:Wishlist_GetWishlistName(id)
 	return "TEST"--WishList:GetWishlistNameByID(id)
 end
+
+function AtlasLoot:Wishlist_GetItemListFromBoss(bossName)
+	if bossName and type(bossName) == "string" and bossName ~= "" then
+		
+		
+		
+	end
+end
+
+-- Fix a wishlist with wrong/corrupt entrys
+function AtlasLoot:Wishlist_FixWishlist(wishlist)
+	if type(wishlist) == "string" then
+		wishlist = self:GetWishlistIDByName(wishlist)
+	elseif type(wishlist) == "number" then
+		wishlist = wishlist
+	else
+		return nil
+	end
+	
+	local errors = {}
+	local dataID
+	wishlist = WishList.ownWishLists[wishlist][1]
+	if not wishlist then return end
+	
+	-- Nach defekten items in wishliste suchen
+	for k,v in ipairs(wishlist) do
+		if v[2] and v[6] then
+			dataID = AtlasLoot:FormatDataID(v[6])
+			if not dataID then
+				errors[ v[2] ] = k
+			end
+		else
+			errors[ v[2] ] = k
+		end
+	end
+	
+	-- AtlasLoot daten nach items durchsuchen
+	for dataID, data in pairs(AtlasLoot_Data) do		
+		for _,tableType in ipairs(AtlasLoot.lootTableTypes) do			
+			if data[tableType] then
+				for _,itemTable in ipairs(data[tableType]) do
+					for itemNum,item in ipairs(itemTable) do
+						if item[2] then
+							if errors[ item[2] ] then
+								errors[ item[2] ] = dataID.."#"..tableType
+							end
+						end
+					end
+				end
+			end			
+		end		
+	end
+	
+	-- Wishliste aktuallisieren
+	for k,v in ipairs(wishlist) do
+		if v[2] and v[6] then
+			if errors[ v[2] ] and type(errors[ v[2] ]) == "string" then
+				wishlist[k][6] = errors[ v[2] ]
+			end
+		end
+	end	
+	
+	-- Defekten items löschen
+	for k,v in pairs(errors) do
+		if v and type(v) == "number" then
+			local tmpNum
+			for i,j in ipairs(wishlist) do
+				if j[2] == k then
+					tmpNum = i
+					break
+				end
+			end
+			if tmpNum then
+				table.remove(wishlist, tmpNum)
+				tmpNum = nil
+			end
+		end
+	end
+
+end
+
 --- Searchs a wishlist
 -- @param name the wishlist name you want to search
 function WishList:SearchWishlist(name)
@@ -848,6 +939,8 @@ function WishList:OpenWishlist(nameOrId)
 	WishList:ShowWishlist(nameOrId)
 	
 end
+
+AtlasLoot.OpenWishlist = WishList.OpenWishlist
 -- ###################################
 -- Add/delete Item
 -- ###################################
@@ -1416,7 +1509,7 @@ function WishList:CreateCompareFrameWishListSelect()
 	
 	-- Wishlist frame
 	-- ###########################################
-	Frame.WishlistButton = CreateFrame("Button","AtlasLootCompareFrame_WishlistButton",Frame,"UIPanelButtonTemplate2")
+	Frame.WishlistButton = CreateFrame("Button","AtlasLootCompareFrame_WishlistButton",Frame,"UIPanelButtonTemplate")
 	Frame.WishlistButton:SetText(AL["Wishlist"])
 	Frame.WishlistButton:SetWidth(160)
 	Frame.WishlistButton:SetHeight(22)

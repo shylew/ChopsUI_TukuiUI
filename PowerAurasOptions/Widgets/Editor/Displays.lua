@@ -783,10 +783,8 @@ do
 
 			-- Activation editor. Skip if this display is linked to another.
 			local pID = Metadata:GetFlagID(vars["Flags"], "Display");
-			if(pID == 0) then
-				local nID = PowerAuras:GetNodeID("Display", id, 0, 0x20, 0, 0);
-				self:AddNode(nID, L["Activation"], root);
-			end
+			local nID = PowerAuras:GetNodeID("Display", id, 0, 0x20, 0, 0);
+			self:AddNode(nID, L["Activation"], root);
 
 			-- Style editor.
 			local nID = PowerAuras:GetNodeID("Style", id, 0, 0, 0, 0);
@@ -915,7 +913,10 @@ function Displays:RefreshSidebar()
 			elseif(f1 == 1) then
 				editorType = "Sources.Root";
 			elseif(s1 == 0x20) then
-				editorType = "Activation.Basic";
+				local vars = PowerAuras:GetAuraDisplay(id);
+				if(Metadata:GetFlagID(vars.Flags, "Display") == 0) then
+					editorType = "Activation.Basic";
+				end
 			end
 		elseif(rtype == "Style") then
 			editorType = "Style";

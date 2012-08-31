@@ -10,7 +10,7 @@ local SpellOffCooldown = PowerAuras:RegisterTriggerClass("SpellOffCooldown", {
 		IgnoreGCD = true,
 		IgnoreGCDEnd = true,
 		Usable = true,
-		Known = true,
+		Known = false,
 	},
 	--- Dictionary of events this trigger responds to.
 	Events = {

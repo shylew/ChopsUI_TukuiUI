@@ -1,3 +1,4 @@
+-- $Id: worldevents.lua 3730 2012-07-31 18:20:13Z hegarol $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -284,6 +285,30 @@ local moduleName = "AtlasLoot_WorldEvents"
 		};
 	};
 
+--[[	AtlasLoot_Data["CorenDirebrewMoP"] = {
+		["Normal"] = {
+			{
+				{ 1, 87573, "", "=q4=Thousand-Year Pickled Egg", "=ds=#s14#"};
+				{ 2, 87575, "", "=q4=Bubbliest Brightbrew Charm", "=ds=#s14#"};
+				{ 3, 87576, "", "=q4=Bitterest Balebrew Charm", "=ds=#s14#"};
+				{ 4, 87571, "", "=q4=Brawler's Statue", "=ds=#s14#"};
+				{ 5, 87574, "", "=q4=Coren's Cold Chromium Coaster", "=ds=#s14#"};
+				{ 6, 87572, "", "=q4=Mithril Wristwatch", "=ds=#s14#"};
+				{ 8, 38281, "", "=q1=Direbrew's Dire Brew", "=ds=#m2#"};
+				{ 16, 54535, "", "=q3=Keg-Shaped Treasure Chest", "=q5="..AL["Daily Reward"]};
+				{ 17, 71331, "", "=q4=Direbrew's Bloodied Shanker", "=ds=#h1#, #w4#"};
+				{ 18, 71332, "", "=q4=Tremendous Tankard O' Terror", "=ds=#h1#, #w6#"};
+				{ 19, 37828, "", "=q4=Great Brewfest Kodo", "=ds=#e26#"};
+				{ 20, 33977, "", "=q4=Swift Brewfest Ram", "=ds=#e26#"};
+				{ 22, 37863, "", "=q3=Direbrew's Remote", "=ds="};
+			};
+		};
+		info = {
+			name = BabbleBoss["Coren Direbrew"],
+			module = moduleName, menu = "BREWFESTMENU",
+		};
+	};]]--
+
 		-----------------------
 		--- Children's Week ---
 		-----------------------
@@ -374,26 +399,33 @@ local moduleName = "AtlasLoot_WorldEvents"
 				{ 30, 17307, "", "=q1=Purple Ribboned Wrapping Paper", "=ds=#e6#"};
 			};
 			{
-				{ 1, 0, "INV_Holiday_Christmas_Present_01", "=q6="..AL["Gaily Wrapped Present"], ""};
-				{ 2, 21301, "", "=q1=Green Helper Box", "=ds=#e13#"};
-				{ 3, 21308, "", "=q1=Jingling Bell", "=ds=#e13#"};
-				{ 4, 21305, "", "=q1=Red Helper Box", "=ds=#e13#"};
-				{ 5, 21309, "", "=q1=Snowman Kit", "=ds=#e13#"};
-				{ 7, 0, "INV_Holiday_Christmas_Present_01", "=q6="..AL["Winter Veil Gift"], ""};
-				{ 8, 70923, "", "=q2=Gaudy Winter Veil Sweater", "#ACHIEVEMENTID:6061#"};
-				{ 9, 46709, "", "=q3=MiniZep Controller", "#ACHIEVEMENTID:6060#"};
-				{ 10, 46725, "", "=q3=Red Rider Air Rifle", "#ACHIEVEMENTID:6059#"};
-				{ 11, 37710, "", "=q3=Crashin' Thrashin' Racer Controller", "#ACHIEVEMENTID:1706#"};
-				{ 12, 34425, "", "=q3=Clockwork Rocket Bot", "#ACHIEVEMENTID:1705#"};
-				{ 16, 0, "INV_Holiday_Christmas_Present_01", "=q6="..AL["Ticking Present"], ""};
-				{ 17, 21325, "", "=q2=Mechanical Greench", "=ds=#e22#"};
-				{ 18, 21213, "", "=q2=Preserved Holly", "=ds=#m20#"};
-				{ 19, 17706, "", "=q2=Plans: Edge of Winter", "=ds=#p2# (190)"};
-				{ 20, 17725, "", "=q2=Formula: Enchant Weapon - Winter's Might", "=ds=#p4# (190)"};
-				{ 21, 17720, "", "=q2=Schematic: Snowmaster 9000", "=ds=#p5# (190)"};
-				{ 22, 17722, "", "=q2=Pattern: Gloves of the Greatfather", "=ds=#p7# (190)"};
-				{ 23, 17709, "", "=q1=Recipe: Elixir of Frost Power", "=ds=#p1# (190)"};
-				{ 24, 17724, "", "=q1=Pattern: Green Holiday Shirt", "=ds=#p8# (190)"};
+				{ 1, 0, "INV_Holiday_Christmas_Present_01", "=q6="..AL["Stolen Present"], "#QUESTID:7043#"};
+				{ 2, 66450, "", "=q4=Miniature Winter Veil Tree", "=ds=#h1#, #w4#"};
+				{ 3, 34425, "", "=q3=Clockwork Rocket Bot", "#ACHIEVEMENTID:1705#"};
+				{ 4, 73797, "", "=q3=Lump of Coal", "=ds=#e13#"};
+				{ 5, 46709, "", "=q3=MiniZep Controller", ""};
+				{ 6, 46725, "", "=q2=Red Rider Air Rifle", ""};
+				{ 7, 37710, "", "=q3=Crashin' Thrashin' Racer Controller", ""};
+				{ 9, 0, "INV_Holiday_Christmas_Present_01", "=q6="..AL["Winter Veil Gift"], ""};
+				{ 10, 70923, "", "=q2=Gaudy Winter Veil Sweater", "#ACHIEVEMENTID:6061#"};
+				{ 11, 46709, "", "=q3=MiniZep Controller", "#ACHIEVEMENTID:6060#"};
+				{ 12, 46725, "", "=q2=Red Rider Air Rifle", "#ACHIEVEMENTID:6059#"};
+				{ 13, 37710, "", "=q3=Crashin' Thrashin' Racer Controller", "#ACHIEVEMENTID:1706#"};
+				{ 14, 34425, "", "=q3=Clockwork Rocket Bot", "#ACHIEVEMENTID:1705#"};
+				{ 16, 0, "INV_Holiday_Christmas_Present_01", "=q6="..AL["Gaily Wrapped Present"], ""};
+				{ 17, 21301, "", "=q1=Green Helper Box", "=ds=#e13#"};
+				{ 18, 21308, "", "=q1=Jingling Bell", "=ds=#e13#"};
+				{ 19, 21305, "", "=q1=Red Helper Box", "=ds=#e13#"};
+				{ 20, 21309, "", "=q1=Snowman Kit", "=ds=#e13#"};
+				{ 22, 0, "INV_Holiday_Christmas_Present_01", "=q6="..AL["Ticking Present"], ""};
+				{ 23, 21325, "", "=q2=Mechanical Greench", "=ds=#e22#"};
+				{ 24, 21213, "", "=q2=Preserved Holly", "=ds=#m20#"};
+				{ 25, 17706, "", "=q2=Plans: Edge of Winter", "=ds=#p2# (190)"};
+				{ 26, 17725, "", "=q2=Formula: Enchant Weapon - Winter's Might", "=ds=#p4# (190)"};
+				{ 27, 17720, "", "=q2=Schematic: Snowmaster 9000", "=ds=#p5# (190)"};
+				{ 28, 17722, "", "=q2=Pattern: Gloves of the Greatfather", "=ds=#p7# (190)"};
+				{ 29, 17709, "", "=q1=Recipe: Elixir of Frost Power", "=ds=#p1# (190)"};
+				{ 30, 17724, "", "=q1=Pattern: Green Holiday Shirt", "=ds=#p8# (190)"};
 			};
 			{
 				{ 1, 0, "INV_Holiday_Christmas_Present_01", "=q6="..AL["Festive Gift"], ""};
@@ -523,18 +555,19 @@ local moduleName = "AtlasLoot_WorldEvents"
 	AtlasLoot_Data["Valentineday"] = {
 		["Normal"] = {
 			{
-				{ 1, 34480, "", "=q3=Romantic Picnic Basket", "=ds=#m20#", "#VALENTINEDAY:10#"};
-				{ 2, 21815, "", "=q1=Love Token", "=ds=#m20#", "1 #valentineday2#"};
-				{ 3, 50163, "", "=q1=Lovely Rose", "=ds=#m20#", "#VALENTINEDAY:5#"};
-				{ 4, 22218, "", "=q1=Handful of Rose Petals", "=ds=#m20#", "#VALENTINEDAY:2#"};
-				{ 5, 22200, "", "=q1=Silver Shafted Arrow", "=ds=#e13#", "#VALENTINEDAY:5#"};
-				{ 6, 22235, "", "=q1=Truesilver Shafted Arrow", "=ds=#e13#", "#VALENTINEDAY:40#"};
-				{ 7, 21813, "", "=q1=Bag of Heart Candies", "=ds=#m20#", "#VALENTINEDAY:2#"};
-				{ 8, 21812, "", "=q1=Box of Chocolates", "=ds=#m20#", "#VALENTINEDAY:10#"};
-				{ 9, 50160, "", "=q1=Lovely Dress Box", "=ds=#m20#", "#VALENTINEDAY:20#"};
-				{ 10, 50161, "", "=q1=Dinner Suit Box", "=ds=#m20#", "#VALENTINEDAY:20#"};
-				{ 11, 34258, "", "=q1=Love Rocket", "=ds=#e23#", "#VALENTINEDAY:5#"};
-				{ 12, 22261, "", "=q1=Love Fool", "=ds=#e22#", "#VALENTINEDAY:10#"};
+				{ 1, 72146, "", "=q4=Swift Lovebird", "=ds=#e26#", "#VALENTINEDAY:270#"};
+				{ 2, 34480, "", "=q3=Romantic Picnic Basket", "=ds=#m20#", "#VALENTINEDAY:10#"};
+				{ 3, 21815, "", "=q1=Love Token", "=ds=#m20#", "1 #valentineday2#"};
+				{ 4, 50163, "", "=q1=Lovely Rose", "=ds=#m20#", "#VALENTINEDAY:5#"};
+				{ 5, 22218, "", "=q1=Handful of Rose Petals", "=ds=#m20#", "#VALENTINEDAY:2#"};
+				{ 6, 22200, "", "=q1=Silver Shafted Arrow", "=ds=#e13#", "#VALENTINEDAY:5#"};
+				{ 7, 22235, "", "=q1=Truesilver Shafted Arrow", "=ds=#e13#", "#VALENTINEDAY:40#"};
+				{ 8, 21813, "", "=q1=Bag of Heart Candies", "=ds=#m20#", "#VALENTINEDAY:2#"};
+				{ 9, 21812, "", "=q1=Box of Chocolates", "=ds=#m20#", "#VALENTINEDAY:10#"};
+				{ 10, 50160, "", "=q1=Lovely Dress Box", "=ds=#m20#", "#VALENTINEDAY:20#"};
+				{ 11, 50161, "", "=q1=Dinner Suit Box", "=ds=#m20#", "#VALENTINEDAY:20#"};
+				{ 12, 34258, "", "=q1=Love Rocket", "=ds=#e23#", "#VALENTINEDAY:5#"};
+				{ 13, 22261, "", "=q1=Love Fool", "=ds=#e22#", "#VALENTINEDAY:10#"};
 				{ 16, 49859, "", "=q1=\"Bravado\" Cologne", "=ds=#m20#", "#VALENTINEDAY:1#"};
 				{ 17, 49861, "", "=q1=\"STALWART\" Cologne", "=ds=#m20#", "#VALENTINEDAY:1#"};
 				{ 18, 49860, "", "=q1=\"Wizardry\" Cologne", "=ds=#m20#", "#VALENTINEDAY:1#"};
@@ -711,13 +744,14 @@ local moduleName = "AtlasLoot_WorldEvents"
 	AtlasLoot_Data["Noblegarden"] = {
 		["Normal"] = {
 			{
-				{ 2, 44793, "", "=q3=Tome of Polymorph: Rabbit", "=ds=#e10#", "#NOBLEGARDEN:100#"};
-				{ 3, 44794, "", "=q3=Spring Rabbit's Foot", "=ds=#e13#", "#NOBLEGARDEN:100#"};
-				{ 4, 45073, "", "=q1=Spring Flowers", "=ds=#h1#", "#NOBLEGARDEN:50#"};
-				{ 5, 44792, "", "=q1=Blossoming Branch", "=ds=", "#NOBLEGARDEN:10#"};
-				{ 6, 44818, "", "=q1=Noblegarden Egg", "=ds=", "#NOBLEGARDEN:5#"};
-				{ 8, 45067, "", "=q1=Egg Basket", "=q1=#m4#: =ds=#s15#"};
-				{ 9, 44791, "", "=q1=Noblegarden Chocolate", "=ds=#e3#"};
+				{ 2, 72145, "", "=q4=Swift Springstrider", "=ds=#e26#", "#NOBLEGARDEN:500#"},
+				{ 3, 44793, "", "=q3=Tome of Polymorph: Rabbit", "=ds=#e10#", "#NOBLEGARDEN:100#"};
+				{ 4, 44794, "", "=q3=Spring Rabbit's Foot", "=ds=#e13#", "#NOBLEGARDEN:100#"};
+				{ 5, 45073, "", "=q1=Spring Flowers", "=ds=#h1#", "#NOBLEGARDEN:50#"};
+				{ 6, 44792, "", "=q1=Blossoming Branch", "=ds=", "#NOBLEGARDEN:10#"};
+				{ 7, 44818, "", "=q1=Noblegarden Egg", "=ds=", "#NOBLEGARDEN:5#"};
+				{ 9, 45067, "", "=q1=Egg Basket", "=q1=#m4#: =ds=#s15#"};
+				{ 10, 44791, "", "=q1=Noblegarden Chocolate", "=ds=#e3#"};
 				{ 17, 44803, "", "=q1=Spring Circlet", "=ds=#s1#", "#NOBLEGARDEN:50#"};
 				{ 18, 74282, "", "=q1=Black Spring Circlet", "=ds=#s1#", "#NOBLEGARDEN:50#"};
 				{ 19, 74283, "", "=q1=Pink Spring Circlet", "=ds=#s1#", "#NOBLEGARDEN:50#"};

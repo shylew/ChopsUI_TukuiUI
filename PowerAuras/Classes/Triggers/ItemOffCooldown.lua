@@ -29,16 +29,7 @@ local ItemOffCooldown = PowerAuras:RegisterTriggerClass("ItemOffCooldown", {
 -- @param parameters The parameters to construct the trigger from.
 function ItemOffCooldown:New(parameters)
 	-- Extract parameters.
-	local match     = parameters["Match"];
-	-- local ignoreGCD = parameters["IgnoreGCD"];
-	-- local ignoreEnd = parameters["IgnoreGCDEnd"];
-	-- local usable    = parameters["Usable"];
-	-- local known     = parameters["Known"];
-
-	-- -- GCD detection.
-	-- local gcdSpell = PowerAuras.GCDSpells[select(2, UnitClass("player"))];
-	-- gcdSpell = tonumber(gcdSpell) or tostring(gcdSpell);
-	-- local classGCD = 0;
+	local match = parameters["Match"];
 
 	-- Store the item ID here.
 	local itemID = (tonumber(match) or PowerAuras.ItemIDLookup[match] or 0);

@@ -1,4 +1,4 @@
-﻿-- $Id: constants.de.lua 3629 2011-11-09 12:20:29Z dynaletik $
+-- $Id: constants.de.lua 3736 2012-08-14 18:31:11Z hegarol $
 --[[
 constants.de.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -7,7 +7,6 @@ back to the English translation.
 
 The AL["text"] = true; shortcut can ONLY be used for English (the root translation).
 ]]
-
 	-- Table holding all loot tables is initialised here as it loads early
 	--AtlasLoot_Data = {};
 	--AtlasLoot_TableNames = {};
@@ -44,6 +43,7 @@ if AL then
 	AL["Select Stats list"] = "Werteliste auswählen";
 	AL["You cant set more then %d item stats."] = "Sie können nicht mehr als %d Gegenstandswerte festlegen.";
 	-- AL["Slot"] = true;
+	AL["AtlasLoot has detected some corrupted items on your Wishlist. You can now run an automatic check to fix it. Please be aware that this could take a few moments."] = "AtlasLoot hat einige beschädigte Einträge auf Ihrem Wunschzettel gefunden. Sie können jetzt eine automatische Überprüfung zur Behebung des Problems ausführen. Dies kann einige Zeit in Anspruch nehmen.";
 
 	-- Stats short
 	-- AL["iLvl"] = true;	-- Item lvl
@@ -246,12 +246,11 @@ if AL then
 	AL["ilvl 226"] = "Gegenstandsstufe 226";
 	AL["ilvl 245"] = "Gegenstandsstufe 245";
 	AL["ilvl 264"] = "Gegenstandsstufe 264";
-	AL["ilvl 359"] = "Gegenstandsstufe 359";
-	AL["ilvl 372"] = "Gegenstandsstufe 372";
-	AL["ilvl 378"] = "Gegenstandsstufe 378";
-	AL["ilvl 391"] = "Gegenstandsstufe 391";
 	AL["ilvl 397"] = "Gegenstandsstufe 397";
-	AL["ilvl 410"] = "Gegenstandsstufe 410";
+	-- AL["Gladiator"] = true;
+	AL["Vengeful"] = "Rachsüchtig";
+	AL["Merciless"] = "Erbarmungslos";
+	-- AL["Brutal"] = true;
 
 	-- #######################################
 	-- UI things END
@@ -356,7 +355,6 @@ if AL then
 	-- AL["Tier 11/12 Set"] = true;
 	-- AL["Tier 13 Set"] = true;
 	AL["TCG Items"] = "TCG Gegenstände";
-	AL["Transformation Items"] = "Transformations-Gegenstände";
 
 	-- PvP Menu
 	AL["Arathi Basin Sets"] = "Arathibecken (Sets)";
@@ -677,7 +675,8 @@ if AL then
 
 	-- General titles
 	AL["Achievement"] = "Erfolg";
-	AL["Promotional & Card Game"] = "Promotion & Kartenspiel";
+	-- AL["Dungeon"] = true;
+	AL["Outdoor"] = "Außenwelt";
 
 	-- Companions
 	AL["Achievement & Faction Reward Companions"] = "Erfolgs & Fraktionsbelohnungen";
@@ -719,6 +718,12 @@ if AL then
 	AL["Horde Tabards"] = "Horde Wappenröcke";
 	AL["PvP Tabards"] = "PvP Wappenröcke";
 	AL["Unobtainable Tabards"] = "Nicht mehr erhältlich";
+
+	-- Transformation Items
+	AL["Transformation Items"] = "Transformations-Gegenstände";
+	AL["Additional Effects Transformation Items"] = "Mit zusätzlichen Effekten";
+	AL["Consumable Transformation Items"] = "Verbrauchbar";
+	AL["Non-consumed Transformation Items"] = "Nicht verbrauchbar";
 
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "Dunkelmond-Jahrmarkt Belohnungen";
@@ -764,7 +769,7 @@ if AL then
 	AL["Papa Hummel's Old-fashioned Pet Biscuit"] = "Papa Hummels altmodischer Tierkuchen";
 
 	-- Sixth set
-	AL["Hunt for Illidan"] = "Die Jagd nach Illidan";
+	AL["Hunt for Illidan"] = "Jagd nach Illidan";
 	AL["The Footsteps of Illidan"] = "Die Fußspuren von Illidan";
 	AL["Disco Inferno!"] = "Disko-Inferno";
 	AL["Ethereal Plunderer"] = "Astraler Brandschatzer";
@@ -822,6 +827,9 @@ if AL then
 
 	-- Eighteenth set
 	AL["Tomb of the Forgotten"] = "Gruft der Vergessenen";
+
+	-- Nineteenth set
+	AL["War of the Ancients"] = "Zeitwandler: Der Krieg der Ahnen";
 
 	-- Battleground Brackets
 	AL["Old PvP Rewards"] = "Alte PvP Belohnungen";
@@ -1052,6 +1060,7 @@ if AL then
 	AL["Varlan Highbough"] = "Varlan Hochblatt";
 	AL["Firestone Vendor"] = "Händler für Feuersteine";
 	-- AL["Poseidus"] = true;
+	AL["Burgy Blackheart"] = "Bürgi Schwarzherz";
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = "Prüfung des Obersten Kreuzfahrers";
@@ -1119,6 +1128,10 @@ if AL then
 	AL["Bag of Heart Candies"] = "Tüte mit Zuckerherzen";
 	AL["Hidden Stash"] = "Gebunkerte Güter";
 	AL["The Cache of Madness"] = "Der Hort des Wahnsinns";
+	AL["Stolen Present"] = "Gestohlenes Geschenk";
+	AL["Annual Pass"] = "Jahrespass";
+	AL["Scroll of Resurrection"] = "Rolle der Auferstehung";
+	AL["Recruit-A-Friend"] = "Werbt einen Freund";
 
 	-- Error Messages and warnings
 	AL["AtlasLoot Error!"] = "AtlasLoot Fehler!";

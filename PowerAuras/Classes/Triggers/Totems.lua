@@ -28,6 +28,9 @@ local TotemBitSlots = {
 	["DEATHKNIGHT"] = {
 	},
 	["DRUID"] = {
+		[1] = 88747,
+		[2] = 88747,
+		[3] = 88747,
 	},
 	["MONK"] = {
 	},
@@ -41,7 +44,7 @@ for class, totems in pairs(TotemBitSlots) do
 	-- Create reverse table.
 	local new = {};
 	for slot, id in pairs(totems) do
-		new[id] = slot;
+		new[id] = bit.bor(new[id] or 0, 2^(slot - 1));
 	end
 	-- Store.
 	ReverseTotemBits[class] = new;
@@ -82,6 +85,15 @@ local TotemsByUISlot = {
 	["DEATHKNIGHT"] = {
 	},
 	["DRUID"] = {
+		[1] = {
+			[1] = 1,
+		},
+		[2] = {
+			[1] = 2,
+		},
+		[3] = {
+			[1] = 3,
+		},
 	},
 	["MONK"] = {
 	},
@@ -200,7 +212,7 @@ function Totems:New(params)
 					-- Right, are we matching this totem?
 					local offset = ReverseTotemBits[class][id] or 0;
 					-- 2^0 = 0.5, which will never match anything.
-					if(bit.band(match, 2^(offset - 1)) == 0) then
+					if(bit.band(match, offset) == 0) then
 						-- We didn't hit a totem, and we required one.
 						return false;
 					else

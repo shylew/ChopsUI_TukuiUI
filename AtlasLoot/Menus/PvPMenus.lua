@@ -1,3 +1,4 @@
+-- $Id: PvPMenus.lua 3736 2012-08-14 18:31:11Z hegarol $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleInventory = AtlasLoot_GetLocaleLibBabble("LibBabble-Inventory-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -7,19 +8,12 @@ local BabbleZone = AtlasLoot_GetLocaleLibBabble("LibBabble-Zone-3.0")
 		["Normal"] = {
 			{
 				{ 2, "PVP85Accessories", "inv_jewelry_ring_80", "=ds="..AL["PvP Accessories"], "=q5="..AL["Level 85"]};
-				{ 3, "PVP85Trinkets", "inv_misc_token_argentdawn3", "=ds="..AL["PvP Trinkets"], "=q5="..AL["Level 85"]};
-				{ 4, "PVP85SET", "inv_helm_plate_pvppaladin_c_01", "=ds="..AL["PvP Armor Sets"], "=q5="..AL["Level 85"]};
-				{ 5, "PVP85NonSet", "inv_bracer_mail_pvphunter_c_01", "=ds="..AL["PvP Non-Set Epics"], "=q5="..AL["Level 85"]};
-				{ 7, "PVP80Accessories", "INV_Jewelry_Necklace_36", "=ds="..AL["PvP Accessories"], "=q5="..AL["Level 80"]};
-				{ 8, "PVP80SET", "INV_Boots_01", "=ds="..AL["PvP Armor Sets"], "=q5="..AL["Level 80"]};
-				{ 10, "PVPMENU2", "INV_Jewelry_Necklace_21", "=ds="..AL["BG/Open PvP Rewards"], ""};
-				{ 17, "PVP85Weapons", "inv_weapon_shortblade_107", "=ds="..AL["PvP Weapons"].. " - " ..AL["ilvl 359"], "=q5="..AL["Level 85"]};
-				{ 18, "PVP85Weapons2", "inv_staff_2h_pvp410_c_03", "=ds="..AL["PvP Weapons"].. " - " ..AL["ilvl 378"], "=q5="..AL["Level 85"]};
-				{ 19, "PVP85Weapons3", "inv_hand_1h_pvp400_c_01", "=ds="..AL["PvP Weapons"].. " - " ..AL["ilvl 391"], "=q5="..AL["Level 85"]};
-				{ 20, "PVP85Misc", "ability_warrior_rampage", "=ds="..AL["Misc"], "=q5="..AL["Level 85"]};
-				{ 22, "PVP80NONSETEPICS", "inv_bracer_51", "=ds="..AL["PvP Non-Set Epics"], "=q5="..AL["Level 80"]};
-				{ 23, "PVP80Weapons", "INV_Sword_86", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 80"] };
-				{ 25, "PVPMENU3", "inv_belt_13", "=ds="..AL["Old PvP Rewards"], "=q5="..AL["Level 60"].. " / " ..AL["Level 70"]};
+				{ 3, "PVP85SET", "inv_helm_plate_pvppaladin_c_01", "=ds="..AL["PvP Armor Sets"], "=q5="..AL["Level 85"]};
+				{ 4, "PVP85NonSet", "inv_bracer_mail_pvphunter_c_01", "=ds="..AL["PvP Non-Set Epics"], "=q5="..AL["Level 85"]};
+				{ 6, "PVPMENU2", "INV_Jewelry_Necklace_21", "=ds="..AL["BG/Open PvP Rewards"], ""};
+				{ 17, "PVP85Weapons4", "inv_hand_1h_pvp400_c_01", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 85"]};
+				{ 18, "PVP85Misc", "ability_warrior_rampage", "=ds="..AL["Misc"], "=q5="..AL["Level 85"]};
+				{ 21, "PVPMENU3", "inv_belt_13", "=ds="..AL["Old PvP Rewards"], "=q5="};
 			};
 		};
 		info = {
@@ -56,14 +50,21 @@ local BabbleZone = AtlasLoot_GetLocaleLibBabble("LibBabble-Zone-3.0")
 	AtlasLoot_Data["PVPMENU3"] = {
 		["Normal"] = {
 			{
-				{ 2, "PVP60Accessories", "inv_jewelry_trinketpvp_01", "=ds="..AL["PvP Accessories"], "=q5="..AL["Level 60"]};
-				{ 3, "PVP60SET", "INV_Axe_02", "=ds="..AL["PvP Armor Sets"], "=q5="..AL["Level 60"]};
+				{ 2, "PVP80Accessories", "INV_Jewelry_Necklace_36", "=ds="..AL["PvP Accessories"], "=q5="..AL["Level 80"]};
+				{ 3, "PVP80SET", "INV_Boots_01", "=ds="..AL["PvP Armor Sets"], "=q5="..AL["Level 80"]};
 				{ 5, "PVP70Accessories", "inv_jewelry_ring_60", "=ds="..AL["PvP Accessories"], "=q5="..AL["Level 70"]};
 				{ 6, "PVP70RepSET", "INV_Axe_02", "=ds="..AL["PvP Reputation Sets"], "=q5="..AL["Level 70"]};
-				{ 7, "PVP70SET", "inv_gauntlets_29", "=ds="..AL["PvP Armor Sets"], "=q5="..AL["Level 70"]};
-				{ 17, "PVP60Weapons", "INV_Weapon_Bow_08", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 60"]};
+				{ 7, "PVPGladiatorWeapons", "inv_weapon_hand_13", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 70"].." - "..AL["Gladiator"]};
+				{ 8, "PVPMercilessWeapons", "inv_staff_53", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 70"].." - "..AL["Merciless"]};
+				{ 10, "PVP60Accessories", "inv_jewelry_trinketpvp_01", "=ds="..AL["PvP Accessories"], "=q5="..AL["Level 60"]};
+				{ 11, "PVP60SET", "INV_Axe_02", "=ds="..AL["PvP Armor Sets"], "=q5="..AL["Level 60"]};
+				{ 17, "PVP80NONSETEPICS", "inv_bracer_51", "=ds="..AL["PvP Non-Set Epics"], "=q5="..AL["Level 80"]};
+				{ 18, "PVP80Weapons", "INV_Sword_86", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 80"] };
 				{ 20, "PVP70NonSet", "inv_belt_13", "=ds="..AL["PvP Non-Set Epics"], "=q5="..AL["Level 70"]};
-				{ 21, "PVP70Weapons", "INV_Weapon_Crossbow_10", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 70"]};
+				{ 21, "PVP70SET", "inv_gauntlets_29", "=ds="..AL["PvP Armor Sets"], "=q5="..AL["Level 70"]};
+				{ 22, "PVPVengefulWeapons", "inv_weapon_shortblade_62", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 70"].." - "..AL["Vengeful"]};
+				{ 23, "PVP70Weapons", "INV_Weapon_Crossbow_10", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 70"].." - "..AL["Brutal"]};
+				{ 25, "PVP60Weapons", "INV_Weapon_Bow_08", "=ds="..AL["PvP Weapons"], "=q5="..AL["Level 60"]};
 			};
 		};
 		info = {
@@ -146,7 +147,6 @@ local BabbleZone = AtlasLoot_GetLocaleLibBabble("LibBabble-Zone-3.0")
 			{
 				{ 2, "PVP80NonSet#1", "INV_Boots_Cloth_12", "=ds="..BabbleInventory["Cloth"], ""};
 				{ 3, "PVP80NonSet#3", "INV_Boots_Plate_06", "=ds="..BabbleInventory["Mail"], ""};
-				{ 4, "PVP80NonSet#5", "Spell_Frost_SummonWaterElemental", "=ds="..BabbleInventory["Relic"], "" };
 				{ 17, "PVP80NonSet#2", "INV_Boots_08", "=ds="..BabbleInventory["Leather"], ""};
 				{ 18, "PVP80NonSet#4", "INV_Boots_Plate_04", "=ds="..BabbleInventory["Plate"], ""};
 			};

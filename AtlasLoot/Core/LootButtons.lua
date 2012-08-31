@@ -1,4 +1,5 @@
-﻿local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
+﻿-- $Id: LootButtons.lua 3697 2012-01-31 15:17:37Z lag123 $
+local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot")
 local GREY = "|cff999999"
 local RED = "|cffff0000"
@@ -602,11 +603,11 @@ do
 								extraText2 = extraText2..", |T"..icon..":15:15|t"..v[1]
 							end	
 						end
-						--if newPrice and newPrice ~= "" then
-							--tempText = extraText2..", "..newPrice
-						--else
+						if newPrice and newPrice ~= "" then
+							tempText = extraText2..", "..newPrice
+						else
 							tempText = extraText2
-						--end
+						end
 					else
 						tempText, isQuest, isAchievement, isItem = GetExtraTextLink(price)
 						if not tempText then

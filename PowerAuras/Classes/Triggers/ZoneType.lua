@@ -2,6 +2,9 @@
 local PowerAuras = select(2, ...);
 setfenv(1, PowerAuras);
 
+-- Import zone data.
+local ZoneFlags = PowerAuras.ZoneTypes;
+
 --- Called when a UI frame has a state/item state update.
 -- @param frame The UI widget.
 -- @param ...   Arguments based upon the widget type.

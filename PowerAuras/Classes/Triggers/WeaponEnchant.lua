@@ -7,6 +7,8 @@ local WeaponEnchant = PowerAuras:RegisterTriggerClass("WeaponEnchant", {
 	--- Dictionary of default parameters this trigger uses.
 	Parameters = {
 		-- Each slot is a match.
+		CheckMain = true,
+		CheckOff = true,
 		[1] = PowerAuras:EncodeMatch({
 			[0] = {
 				Effect = "<Enchant Name>",
@@ -57,8 +59,12 @@ function WeaponEnchant:New(params)
 
 	-- Generate the function.
 	return function(self, buffer, action, store)
+		-- Determine for limits.
+		local start = (params.CheckMain and 1 or 4);
+		local finish = (params.CheckOff and 6 or 3);
+
 		-- Check the enchant.
-		for i = 1, 6, 3 do
+		for i = start, finish, 3 do
 			local state, exp, charge = select(i, GetWeaponEnchantInfo());
 			local matches = slots[(i + 2) / 3];
 			local data = enchantData[(i + 2) / 3];
@@ -172,34 +178,63 @@ end
 -- @param frame The frame to apply controls to.
 -- @param ... ID's to use for Get/SetParameter calls.
 function WeaponEnchant:CreateTriggerEditor(frame, ...)
-	-- Match box for each slot.
-	local mainHand = PowerAuras:Create("WeaponEnchantDialog", frame,
-		"Trigger", 1, ...);
-	mainHand:SetUserTooltip("WeaponEnchant_MainHand");
-	mainHand:SetTitle(L["MainHand"]);
-	mainHand:SetRelativeWidth(0.5);
-	mainHand:SetPadding(4, 0, 2, 0);
-	mainHand:SetText(PowerAuras:GetParameter("Trigger", 1, ...));
-	mainHand:ConnectParameter("Trigger", 1, mainHand.SetText, ...);
-	mainHand.OnValueUpdated:Connect(PowerAuras:FormatString([[
-		local self, value = ...;
-		PowerAuras:SetParameter("Trigger", 1, value, ${...});
-	]], ...));
-	frame:AddWidget(mainHand);
+	-- Check and match box for each slot.
+	local chkMain = PowerAuras:Create("P_Checkbox", frame);
+	chkMain:SetUserTooltip("WeaponEnchant_CheckMain");
+	chkMain:SetRelativeWidth(0.5);
+	chkMain:SetPadding(4, 0, 2, 0);
+	chkMain:SetMargins(0, 20, 0, 0);
+	chkMain:SetText(L["WeaponEnchant_CheckMain"]);
+	chkMain:LinkParameter("Trigger", "CheckMain", ...);
+	chkMain:ConnectParameter("Trigger", "CheckMain", function()
+		PowerAuras.Editor:Refresh()
+	end, ...);
+	frame:AddWidget(chkMain);
 
-	local offHand = PowerAuras:Create("WeaponEnchantDialog", frame,
-		"Trigger", 2, ...);
-	offHand:SetUserTooltip("WeaponEnchant_OffHand");
-	offHand:SetTitle(L["OffHand"]);
-	offHand:SetRelativeWidth(0.5);
-	offHand:SetPadding(4, 0, 2, 0);
-	offHand:SetText(PowerAuras:GetParameter("Trigger", 2, ...));
-	offHand:ConnectParameter("Trigger", 2, offHand.SetText, ...);
-	offHand.OnValueUpdated:Connect(PowerAuras:FormatString([[
-		local self, value = ...;
-		PowerAuras:SetParameter("Trigger", 2, value, ${...});
-	]], ...));
-	frame:AddWidget(offHand);
+	if(PowerAuras:GetParameter("Trigger", "CheckMain", ...)) then
+		local mainHand = PowerAuras:Create("WeaponEnchantDialog", frame,
+			"Trigger", 1, ...);
+		mainHand:SetUserTooltip("WeaponEnchant_MainHand");
+		mainHand:SetTitle(L["MainHand"]);
+		mainHand:SetRelativeWidth(0.5);
+		mainHand:SetPadding(2, 0, 4, 0);
+		mainHand:SetText(PowerAuras:GetParameter("Trigger", 1, ...));
+		mainHand:ConnectParameter("Trigger", 1, mainHand.SetText, ...);
+		mainHand.OnValueUpdated:Connect(PowerAuras:FormatString([[
+			local self, value = ...;
+			PowerAuras:SetParameter("Trigger", 1, value, ${...});
+		]], ...));
+		frame:AddWidget(mainHand);
+	end
+
+	local chkOff = PowerAuras:Create("P_Checkbox", frame);
+	chkOff:SetUserTooltip("WeaponEnchant_CheckOff");
+	chkOff:SetRelativeWidth(0.5);
+	chkOff:SetPadding(4, 0, 2, 0);
+	chkOff:SetMargins(0, 20, 0, 0);
+	chkOff:SetText(L["WeaponEnchant_CheckOff"]);
+	chkOff:LinkParameter("Trigger", "CheckOff", ...);
+	chkOff:ConnectParameter("Trigger", "CheckOff", function()
+		PowerAuras.Editor:Refresh()
+	end, ...);
+	frame:AddRow(4);
+	frame:AddWidget(chkOff);
+
+	if(PowerAuras:GetParameter("Trigger", "CheckOff", ...)) then
+		local offHand = PowerAuras:Create("WeaponEnchantDialog", frame,
+			"Trigger", 2, ...);
+		offHand:SetUserTooltip("WeaponEnchant_OffHand");
+		offHand:SetTitle(L["OffHand"]);
+		offHand:SetRelativeWidth(0.5);
+		offHand:SetPadding(4, 0, 2, 0);
+		offHand:SetText(PowerAuras:GetParameter("Trigger", 2, ...));
+		offHand:ConnectParameter("Trigger", 2, offHand.SetText, ...);
+		offHand.OnValueUpdated:Connect(PowerAuras:FormatString([[
+			local self, value = ...;
+			PowerAuras:SetParameter("Trigger", 2, value, ${...});
+		]], ...));
+		frame:AddWidget(offHand);
+	end
 end
 
 --- Initialises the per-trigger data store. This can be used to hold
@@ -232,6 +267,11 @@ end
 -- @param version The version to upgrade from.
 -- @param params  The trigger parameters to upgrade.
 function WeaponEnchant:Upgrade(version, params)
+	-- 5.0.0.A to 5.0.0.P
+	if(version < PowerAuras.Version("5.0.0.P")) then
+		params.CheckMain = true;
+		params.CheckOff = true;
+	end
 end
 
 -- Listen to UI options creation.

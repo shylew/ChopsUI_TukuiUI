@@ -1,4 +1,4 @@
-﻿-- $Id: constants.tw.lua 3633 2011-11-11 17:22:52Z arith $
+-- $Id: constants.tw.lua 3736 2012-08-14 18:31:11Z hegarol $
 --[[
 constants.tw.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -44,14 +44,15 @@ if AL then
 	AL["Select Stats list"] = "選擇屬性列表";
 	AL["You cant set more then %d item stats."] = "您可以設定多達 %d 個物品狀態.";
 	AL["Slot"] = "空位";
+	AL["AtlasLoot has detected some corrupted items on your Wishlist. You can now run an automatic check to fix it. Please be aware that this could take a few moments."] = "AtlasLoot 已檢測到願望列表存在一些損壞的物品。現在可以運行自動檢查修復它。請注意，這可能需要一會兒。";
 
 	-- Stats short
 	AL["iLvl"] = "等級";	-- Item lvl
-	AL["str"] = "力";	-- Strength
-	AL["agi"] = "敏";	-- Agility
-	AL["sta"] = "耐";	-- Stamina
-	AL["int"] = "智";	-- Intellect
-	AL["spi"] = "精";	-- Spirit
+	AL["str"] = "力量";	-- Strength
+	AL["agi"] = "敏捷";	-- Agility
+	AL["sta"] = "耐力";	-- Stamina
+	AL["int"] = "智力";	-- Intellect
+	AL["spi"] = "精力";	-- Spirit
 	AL["Crit"] = "致命";	-- Crit Rating
 	AL["Dodge"] = "閃躲";	-- Dodge Rating
 	AL["Exp"] = "熟練";	-- Expertise Rating
@@ -246,12 +247,11 @@ if AL then
 	AL["ilvl 226"] = "等級 226";
 	AL["ilvl 245"] = "等級 245";
 	AL["ilvl 264"] = "等級 264";
-	AL["ilvl 359"] = "等級 359";
-	AL["ilvl 372"] = "等級 372";
-	AL["ilvl 378"] = "等級 378";
-	AL["ilvl 391"] = "等級 391";
 	AL["ilvl 397"] = "等級 397";
-	AL["ilvl 410"] = "等級 410";
+	AL["Gladiator"] = "鬥士";
+	AL["Vengeful"] = "復仇";
+	AL["Merciless"] = "殘忍";
+	AL["Brutal"] = "野蠻";
 
 	-- #######################################
 	-- UI things END
@@ -356,7 +356,6 @@ if AL then
 	AL["Tier 11/12 Set"] = "T11/T12 套裝";
 	AL["Tier 13 Set"] = "T13 套裝";
 	AL["TCG Items"] = "卡片遊戲物品"; -- Trading Card Game Items
-	AL["Transformation Items"] = "變形物品";
 
 	-- PvP Menu
 	AL["Arathi Basin Sets"] = "阿拉希盆地套裝";
@@ -422,7 +421,7 @@ if AL then
 	AL[" seconds before you can send a new Wishlist to "] = " 秒後才可以將願望清單傳送給";
 	AL["Cancel"] = "取消";
 	AL["Delete Wishlist %s?"] = "是否刪除 '%s' 願望清單?";
-	AL["%s sends you a Wishlist. Accept?"] = "%s傳送了一個願望清單給你，是否接受?";
+	AL["%s sends you a Wishlist. Accept?"] = "%s 傳送了一個願望清單給你，是否接受?";
 	AL[" tried to send you a Wishlist. Rejected because you are in combat."] = "嘗試傳送一個願望清單給你，因你正在戰鬥中而系統自動拒絕了。";
 	AL[" rejects your Wishlist."] = "拒絕了你的願望清單";
 	AL["You can't send Wishlists to yourself"] = "你不能將願望清單傳送給自己。";
@@ -677,7 +676,8 @@ if AL then
 
 	-- General titles
 	AL["Achievement"] = "成就";
-	AL["Promotional & Card Game"] = "促銷活動和卡牌遊戲";
+	AL["Dungeon"] = "副本";
+	AL["Outdoor"] = "野外";
 
 	-- Companions
 	AL["Achievement & Faction Reward Companions"] = "成就/聲望獎勵夥伴";
@@ -720,6 +720,12 @@ if AL then
 	AL["PvP Tabards"] = "PvP 外袍";
 	AL["Unobtainable Tabards"] = "無法取得的外袍";
 
+	-- Transformation Items
+	AL["Transformation Items"] = "變形物品";
+	AL["Additional Effects Transformation Items"] = "具額外效果的變形物品";
+	AL["Consumable Transformation Items"] = "消耗性變形物品";
+	AL["Non-consumed Transformation Items"] = "非消耗性變形物品";
+
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "暗月馬戲團獎勵";
 	AL["Low Level Decks"] = "低階套牌";
@@ -734,73 +740,73 @@ if AL then
 	AL["UDE Items"] = "兌換商品";
 
 	-- First set
-	AL["Heroes of Azeroth"] = "艾澤拉斯的英雄"; -- confirmed
+	AL["Heroes of Azeroth"] = "艾澤拉斯的英雄";
 	AL["Landro Longshot"] = "藍卓·長射"; -- confirmed
 	AL["Thunderhead Hippogryph"] = "雷首角鷹獸"; -- confirmed
 	AL["Saltwater Snapjaw"] = "海水鉗嘴龜"; -- confirmed
 
 	-- Second set
-	AL["Through The Dark Portal"] = "通過黑暗之門"; -- confirmed
+	AL["Through The Dark Portal"] = "通過黑暗之門";
 	AL["King Mukla"] = "穆克拉"; -- confirmed
 	AL["Rest and Relaxation"] = "休息與放鬆"; -- confirmed
 	AL["Fortune Telling"] = "算命";
 
 	-- Third set
-	AL["Fires of Outland"] = "外域之火"; -- confirmed
+	AL["Fires of Outland"] = "外域之火";
 	AL["Spectral Tiger"] = "鬼靈之虎"; -- confirmed
 	AL["Gone Fishin'"] = "去釣魚"; -- confirmed
 	AL["Goblin Gumbo"] = "哥布林燴肉"; -- confirmed
 
 	-- Fourth set
-	AL["March of the Legion"] = "軍團行軍"; -- confirmed
+	AL["March of the Legion"] = "燃燒軍團的進軍";
 	AL["Kiting"] = "風箏";
 	AL["Robotic Homing Chicken"] = "寵物機械小雞";
 	AL["Paper Airplane"] = "紙飛機";
 
 	-- Fifth set
-	AL["Servants of the Betrayer"] = "背叛者之奴"; -- confirmed
+	AL["Servants of the Betrayer"] = "背叛者之奴";
 	AL["X-51 Nether-Rocket"] = "X51型虛空火箭";
 	AL["Personal Weather Machine"] = "個人氣象儀";
 	AL["Papa Hummel's Old-fashioned Pet Biscuit"] = "休莫爾老爹的老派寵物軟餅";
 
 	-- Sixth set
-	AL["Hunt for Illidan"] = "獵殺者伊利丹"; -- confirmed
+	AL["Hunt for Illidan"] = "獵殺伊利丹";
 	AL["The Footsteps of Illidan"] = "伊利丹的腳步";
 	--AL["Disco Inferno!"] = "Disco Inferno!";
 	AL["Ethereal Plunderer"] = "伊斯利掠奪者";
 
 	-- Seventh set
-	AL["Drums of War"] = "戰爭之鼓"; -- confirmed
+	AL["Drums of War"] = "戰爭之鼓";
 	--AL["The Red Bearon"] = true;
 	--AL["Owned!"] = true;
 	--AL["Slashdance"] = true;
 
 	-- Eighth set
-	AL["Blood of Gladiators"] = "鬥士之血"; -- confirmed
+	AL["Blood of Gladiators"] = "鬥士之血";
 	AL["Sandbox Tiger"] = "沙池虎"; -- confirmed
 	--AL["Center of Attention"] = true;
 	AL["Foam Sword Rack"] = "泡沫之劍架"; -- confirmed
 
 	-- Ninth set
-	AL["Fields of Honor"] = "榮譽原野"; -- confirmed
+	AL["Fields of Honor"] = "榮譽原野";
 	AL["Path of Cenarius"] = "塞納留斯之徑"; -- confirmed
 	AL["Pinata"] = "巨魔糖果玩偶"; -- confirmed
 	AL["El Pollo Grande"] = "艾伯格蘭德";
 
 	-- Tenth set
-	AL["Scourgewar"] = "天譴戰爭"; -- confirmed
+	AL["Scourgewar"] = "天譴戰爭";
 	AL["Tiny"] = "迷你坐騎"; -- confirmed
 	AL["Tuskarr Kite"] = "巨牙海民風箏"; -- confirmed
 	AL["Spectral Kitten"] = "鬼靈貓";
 
 	-- Eleventh set
-	AL["Wrathgate"] = "憤怒之門"; -- confirmed
+	AL["Wrathgate"] = "憤怒之門";
 	AL["Statue Generator"] = "速成雕像"; -- confirmed
 	AL["Landro's Gift"] = "藍卓的禮物盒"; -- confirmed
 	AL["Blazing Hippogryph"] = "熾熱的角鷹獸"; -- confirmed
 
 	-- Twelvth set
-	AL["Icecrown"] = "寒冰皇冠"; -- confirmed
+	AL["Icecrown"] = "寒冰皇冠";
 	AL["Wooly White Rhino"] = "蓬毛犀牛坐騎"; -- confirmed
 	AL["Ethereal Portal"] = "傳送門之石"; -- confirmed
 	AL["Paint Bomb"] = "漆彈"; -- confirmed
@@ -815,13 +821,16 @@ if AL then
 	AL["War of the Elements"] = "元素之戰";
 
 	-- Fifteenth set
-	AL["Twilight of the Dragons"] = "暮光之龍";
+	AL["Twilight of the Dragons"] = "龍之暮光";
 
 	-- Seventeenth set
 	AL["Crown of Heaven"] = "天堂之冠";
 
 	-- Eighteenth set
-	AL["Tomb of the Forgotten"] = "Tomb of the Forgotten";
+	AL["Tomb of the Forgotten"] = "遺忘之墓";
+
+	-- Nineteenth set
+	AL["War of the Ancients"] = "時間行者：先祖之戰";
 
 	-- Battleground Brackets
 	AL["Old PvP Rewards"] = "舊 PvP 獎勵";
@@ -1052,6 +1061,7 @@ if AL then
 	AL["Varlan Highbough"] = "瓦蘭·高枝";
 	AL["Firestone Vendor"] = "火石商人";
 	AL["Poseidus"] = "波賽達斯";
+	AL["Burgy Blackheart"] = "伯吉·黑心";
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = "大十字軍試煉";
@@ -1119,6 +1129,9 @@ if AL then
 	AL["Bag of Heart Candies"] = "心願糖果袋";
 	AL["Hidden Stash"] = "隱密藏匿物";
 	AL["The Cache of Madness"] = "瘋狂之緣";
+	AL["Stolen Present"] = "失竊的禮物";
+	AL["Annual Pass"] = "年卡";
+	AL["Scroll of Resurrection"] = "重返榮耀";
 
 	-- Error Messages and warnings
 	AL["AtlasLoot Error!"] = "AtlasLoot 錯誤!";

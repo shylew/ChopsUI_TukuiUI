@@ -1,4 +1,4 @@
-﻿-- $Id: constants.cn.lua 3607 2011-10-18 10:35:15Z hegarol $
+-- $Id: constants.cn.lua 3736 2012-08-14 18:31:11Z hegarol $
 --[[
 constants.cn.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -44,6 +44,7 @@ if AL then
 	AL["Select Stats list"] = "选择属性列表";
 	AL["You cant set more then %d item stats."] = "您可以设定多达 %d 个物品状态.";
 	AL["Slot"] = "空位";
+	AL["AtlasLoot has detected some corrupted items on your Wishlist. You can now run an automatic check to fix it. Please be aware that this could take a few moments."] = "AtlasLoot 已检测到愿望列表存在一些损坏的物品。现在可以运行自动检查修复它。请注意，这可能需要一会儿。";
 
 	-- Stats short
 	AL["iLvl"] = "等级";	-- Item lvl
@@ -168,8 +169,8 @@ if AL then
 	AL[" already in the WishList!"] = " 已在愿望列表内！";
 	AL[" deleted from the WishList."] = " 已从愿望列表删除。";
 	AL["Are you sure you want to delete Wishlist |cff1eff00%s|r?"] = "确定要输出愿望列表|cff1eff00%s|r？";
-	AL["default"] = "default";
-	AL[" |cff999999<default>"] = " |cff999999<default>";
+	AL["default"] = "默认";
+	AL[" |cff999999<default>"] = " |cff999999<默认>";
 	AL["Use as default wishlist"] = "将其设为默认愿望列表";
 	AL["Add Wishlist"] = "新增愿望列表";
 	AL["Always use default Wishlist"] = "永远使用默认愿望列表";
@@ -214,7 +215,7 @@ if AL then
 	AL["Show unused QuickLooks in the Panel"] = "在面板显示未使用的快捷浏览";
 	AL["Shows unused QuickLooks as grey buttons in the AtlasLoot Panel"] = "在 AtlasLoot 面板以灰色按钮显示未使用的快捷浏览";
 	-- Single options
-	AL["unused"] = "unused";
+	AL["unused"] = "未使用";
 	AL["QuickLook name:"] = "快捷浏览名称：";
 	AL["Use Boss name"] = "使用首领名称";
 	AL["Use Instance name"] = "使用副本名称";
@@ -246,12 +247,11 @@ if AL then
 	AL["ilvl 226"] = "等级226";
 	AL["ilvl 245"] = "等级245";
 	AL["ilvl 264"] = "等级264";
-	AL["ilvl 359"] = "等级359";
-	AL["ilvl 372"] = "等级372";
-	AL["ilvl 378"] = "等级378";
-	AL["ilvl 391"] = "等级391";
 	AL["ilvl 397"] = "等级397";
-	AL["ilvl 410"] = "等级410";
+	AL["Gladiator"] = "角斗士";
+	AL["Vengeful"] = "复仇";
+	AL["Merciless"] = "残酷";
+	AL["Brutal"] = "野蛮";
 
 	-- #######################################
 	-- UI things END
@@ -355,8 +355,7 @@ if AL then
 	AL["Tier 10 Set"] = "等级10套装";
 	AL["Tier 11/12 Set"] = "等级11/12套装";
 	AL["Tier 13 Set"] = "等级13套装";
-	AL["TCG Items"] = "Upper Deck 集换卡游戏物品";
-	AL["Transformation Items"] = "变形物品";
+	AL["TCG Items"] = "集换式卡牌物品";
 
 	-- PvP Menu
 	AL["Arathi Basin Sets"] = "阿拉希盆地套装";
@@ -535,7 +534,9 @@ if AL then
 	AL["Dungeon Set 1"] = "地下城套装1";
 	AL["Dungeon Set 2"] = "地下城套装2";
 	AL["Dungeon Set 1/2"] = "地下城套装1/2";
+	AL["Replica"] = "复制品";
 	AL["Dungeon Set 3"] = "地下城套装3";
+	AL["Dungeon Set 4"] = "地下城套装4";
 	AL["Tier 1"] = "等级1";
 	AL["Tier 2"] = "等级2";
 	AL["Tier 3"] = "等级3";
@@ -587,6 +588,7 @@ if AL then
 	AL["Accessories"] = "附件";
 	AL["Rare"] = "稀有";
 	AL["Specializations"] = "特殊";
+	AL["Raid Finder"] = "团队查找器";
 
 	-- Loot Table Names
 	AL["Level 30-39"] = "等级30-39";
@@ -594,7 +596,8 @@ if AL then
 	AL["Level 50-60"] = "等级50-60";
 	AL["Summon"] = "召唤";
 	AL["Random"] = "随机";
-	AL["Brew of the Month Club"] = "每月啤酒俱乐部";
+	AL["Brew of the Month Club"] = "本月美酒俱乐部";
+	AL["Food and Drinks"] = "食物与饮料";
 
 	-- Profession descriptions
 	AL["Buff"] = "增益";
@@ -669,10 +672,12 @@ if AL then
 	AL["Trial of the Crusader Patterns/Plans"] = "十字军的试炼图样/设计图";
 	AL["BRD Blacksmithing Plans"] = "黑石深渊锻造设计图";
 	AL["Firelands Patterns/Plans"] = "火焰之地图样/设计图";
+	AL["Dragon Soul Patterns/Plans"] = "巨龙之魂图样/设计图";
 
 	-- General titles
 	AL["Achievement"] = "成就";
-	AL["Promotional & Card Game"] = "促销和集换卡游戏";
+	AL["Dungeon"] = "副本";
+	AL["Outdoor"] = "野外";
 
 	-- Companions
 	AL["Achievement & Faction Reward Companions"] = "成就和阵营奖励小伙伴";
@@ -715,6 +720,12 @@ if AL then
 	AL["PvP Tabards"] = "PvP 战袍";
 	AL["Unobtainable Tabards"] = "已绝版战袍";
 
+	-- Transformation Items
+	AL["Transformation Items"] = "变形物品";
+	AL["Additional Effects Transformation Items"] = "具额外效果的变形物品";
+	AL["Consumable Transformation Items"] = "消耗性变形物品";
+	AL["Non-consumed Transformation Items"] = "非消耗性变形物品";
+
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "暗月马戏团奖励";
 	AL["Low Level Decks"] = "低级卡片";
@@ -735,19 +746,19 @@ if AL then
 	AL["Saltwater Snapjaw"] = "海水钳嘴龟";
 
 	-- Second set
-	AL["Through The Dark Portal"] = "跨越黑暗之门";
-	AL["King Mukla"] = "穆克拉";
+	AL["Through The Dark Portal"] = "穿越黑暗之门";
+	AL["King Mukla"] = "国王穆克拉";
 	AL["Rest and Relaxation"] = "休息与放松";
 	AL["Fortune Telling"] = "预言";
 
 	-- Third set
-	AL["Fires of Outland"] = "外域之门";
+	AL["Fires of Outland"] = "外域之火";
 	AL["Spectral Tiger"] = "幽灵虎";
 	AL["Gone Fishin'"] = "去钓鱼";
 	AL["Goblin Gumbo"] = "地精泡泡";
 
 	-- Fourth set
-	AL["March of the Legion"] = "燃烧军团的进攻";
+	AL["March of the Legion"] = "军团的远征";
 	AL["Kiting"] = "风筝";
 	AL["Robotic Homing Chicken"] = "机械自动导航小鸡";
 	AL["Paper Airplane"] = "纸飞机";
@@ -759,7 +770,7 @@ if AL then
 	AL["Papa Hummel's Old-fashioned Pet Biscuit"] = "赫墨尔老爹的老式宠物饼干";
 
 	-- Sixth set
-	AL["Hunt for Illidan"] = "追捕伊利丹";
+	AL["Hunt for Illidan"] = "猎杀伊利丹";
 	AL["The Footsteps of Illidan"] = "伊利丹的足迹";
 	AL["Disco Inferno!"] = "迪斯科地狱！";
 	AL["Ethereal Plunderer"] = "虚灵掠夺者";
@@ -771,15 +782,15 @@ if AL then
 	AL["Slashdance"] = "跳舞";
 
 	-- Eighth set
-	AL["Blood of Gladiators"] = "鲜血竞技场";
+	AL["Blood of Gladiators"] = "角斗士之血";
 	AL["Sandbox Tiger"] = "摇摇虎";
 	AL["Center of Attention"] = "众人瞩目";
 	AL["Foam Sword Rack"] = "泡沫塑料剑架";
 
 	-- Ninth set
-	AL["Fields of Honor"] = "荣耀战场";
+	AL["Fields of Honor"] = "荣耀之地";
 	AL["Path of Cenarius"] = "塞纳留斯之路";
-	AL["Pinata"] = "食人魔皮纳塔";
+	AL["Pinata"] = "皮纳塔";
 	AL["El Pollo Grande"] = "魔法公鸡";
 
 	-- Tenth set
@@ -789,7 +800,7 @@ if AL then
 	AL["Spectral Kitten"] = "幽灵虎宝宝";
 
 	-- Eleventh set
-	AL["Wrathgate"] = "愤怒之门";
+	AL["Wrathgate"] = "天谴之门";
 	AL["Statue Generator"] = "雕像生成器";
 	AL["Landro's Gift"] = "兰德鲁的礼物";
 	AL["Blazing Hippogryph"] = "炽焰角鹰兽";
@@ -801,7 +812,7 @@ if AL then
 	AL["Paint Bomb"] = "彩弹";
 
 	-- Thirtheenth set
-	AL["Worldbreaker"] = "世界击碎者";
+	AL["Worldbreaker"] = "灭世者";
 	AL["Mottled Drake"] = "斑纹幼龙";
 	AL["Grim Campfire"] = "幽暗的营火";
 	AL["Landro's Lil' XT"] = "兰铎的小拆";
@@ -810,13 +821,16 @@ if AL then
 	AL["War of the Elements"] = "元素之战";
 
 	-- Fifteenth set
-	AL["Twilight of the Dragons"] = "暮光之龙";
+	AL["Twilight of the Dragons"] = "巨龙暮光";
 
 	-- Seventeenth set
-	AL["Crown of Heaven"] = "天堂之冠 - PH";
+	AL["Crown of Heaven"] = "苍穹之冠";
 
 	-- Eighteenth set
-	AL["Tomb of the Forgotten"] = "墓之遗忘 - PH";
+	AL["Tomb of the Forgotten"] = "被遗忘者的墓冢";
+
+	-- Nineteenth set
+	AL["War of the Ancients"] = "时间行者：远古之战";
 
 	-- Battleground Brackets
 	AL["Old PvP Rewards"] = "旧 PvP 奖励";
@@ -1047,6 +1061,7 @@ if AL then
 	AL["Varlan Highbough"] = "瓦尔兰·高枝";
 	AL["Firestone Vendor"] = "火石结晶商人";
 	AL["Poseidus"] = "波塞冬斯";
+	AL["Burgy Blackheart"] = "布尔吉·黑心";
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = "大十字军的试炼";
@@ -1106,11 +1121,17 @@ if AL then
 	AL["Ripe Disgusting Jar"] = "酿好的恶心罐装酒";
 	AL["Cracked Egg"] = "裂开的卵";
 	AL["Small Spice Bag"] = "小香料袋";
+	AL["Handful of Treats"] = "一把糖果";
+	AL["Consumable Wands & Masks"] = "可消耗的魔杖与面具";
+	AL["Permanent Masks"] = "永久的面具";
 	AL["Lovely Dress Box"] = "可爱的裙装盒";
 	AL["Dinner Suit Box"] = "晚宴礼服箱";
 	AL["Bag of Heart Candies"] = "一袋糖果";
 	AL["Hidden Stash"] = "藏匿物";
 	AL["The Cache of Madness"] = "疯狂之缘";
+	AL["Stolen Present"] = "被窃的礼物";
+	AL["Annual Pass"] = "年卡";
+	AL["Scroll of Resurrection"] = "复活卷轴";
 
 	-- Error Messages and warnings
 	AL["AtlasLoot Error!"] = "AtlasLoot 发生错误！";

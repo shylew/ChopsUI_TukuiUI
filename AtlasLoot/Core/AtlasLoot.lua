@@ -1,10 +1,9 @@
-﻿--[[
+-- $Id: AtlasLoot.lua 3739 2012-08-27 18:29:55Z hegarol $
+--[[
 Atlasloot Enhanced
 Author Hegarol
 Loot browser associating loot with instance bosses
 Can be integrated with Atlas (http://www.atlasmod.com)
-
-Functions:
 ]]
 local addonname = ...
 local AtlasLoot = _G.AtlasLoot
@@ -13,16 +12,16 @@ local AtlasLoot = _G.AtlasLoot
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 
 --Establish version number and compatible version of Atlas
-local VERSION_MAJOR = "6";
-local VERSION_MINOR = "05";
+local VERSION_MAJOR = "7";
+local VERSION_MINOR = "00";
 local VERSION_BOSSES = "00";
 ATLASLOOT_VERSION = "|cffFF8400AtlasLoot Enhanced v"..VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES.."|r";
 ATLASLOOT_VERSION_NUM = VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES
 
 --Now allows for multiple compatible Atlas versions.  Always put the newest first
 ATLASLOOT_MIN_ATLAS = "1.21.0"
-ATLASLOOT_CURRENT_ATLAS = {"1.21.0"};
-ATLASLOOT_PREVIEW_ATLAS = {"1.22.0", "1.21.1"};
+ATLASLOOT_CURRENT_ATLAS = {"1.21.1"};
+ATLASLOOT_PREVIEW_ATLAS = {"1.22.0", "1.21.2"};
 
 --ATLASLOOT_POSITION = AL["Position:"];
 ATLASLOOT_DEBUGMESSAGES = false;
@@ -71,48 +70,48 @@ AtlasLoot.IgnoreList = {
 
 AtlasLoot.imagePath = "Interface\\AddOns\\"..addonname.."\\Images\\"
 --AtlasLootCharDB={};
-local AtlasLootDBDefaults = { 
-    profile = {
-        SavedTooltips = {},
+local AtlasLootDBDefaults = {
+	profile = {
+		SavedTooltips = {},
 		LootTableType = "Normal",
-        --SafeLinks = true,
-        DefaultTT = true,
+		--SafeLinks = true,
+		DefaultTT = true,
 		DropRate = true,
-        EquipCompare = false,
+		EquipCompare = false,
 		Opaque = false,
-        ItemIDs = false,
-        MiniMapButton = {
+		ItemIDs = false,
+		MiniMapButton = {
 			hide = false,
 		},
-        HidePanel = false,
-        AtlasLootVersion = nil,
-        AtlasNaggedVersion = "",
-        AutoQuery = false,
-        LoadAllLoDStartup = false,
-        PartialMatching = true,
-        CraftingLink = 1,
-        MinimapButtonAngle = 240,
-        MinimapButtonRadius = 75,
-        LootBrowserScale = 1.0,
+		HidePanel = false,
+		AtlasLootVersion = nil,
+		AtlasNaggedVersion = "",
+		AutoQuery = false,
+		LoadAllLoDStartup = false,
+		PartialMatching = true,
+		CraftingLink = 1,
+		MinimapButtonAngle = 240,
+		MinimapButtonRadius = 75,
+		LootBrowserScale = 1.0,
 		LootBrowserAlpha = 1.0,
 		LootBrowserAlphaOnLeave = false,
-        SearchModule = {
-        	["*"] = true,
-        },
-        CompareFrame = {
-        	showBaseSort = true,
-        	showExtraSort = true,
-        	lastSortType = "BASE",
-        	ownSortLists = {
-        		["*"] = {
-        			["*"] = false,
-        		}
-        	},
-        	statsColor = {
-        		["*"] = { r = 1.0, g = 1.0, b = 1.0 }
-        	},
-        },
-        AtlasType = "Release",
+		SearchModule = {
+			["*"] = true,
+		},
+		CompareFrame = {
+			showBaseSort = true,
+			showExtraSort = true,
+			lastSortType = "BASE",
+			ownSortLists = {
+				["*"] = {
+					["*"] = false,
+				}
+			},
+			statsColor = {
+				["*"] = { r = 1.0, g = 1.0, b = 1.0 }
+			},
+		},
+		AtlasType = "Release",
 		modules = { ["*"] = true },
 		sortFuncs = { ["*"] = { ["*"] = false },},
 		QuickLooks = { ["*"] = { locked = false, lootPage = nil, lootPageType = nil, customName = nil, useInstanceName = false, useBossName = false }},
@@ -123,13 +122,15 @@ local AtlasLootDBDefaults = {
 		ShowLootTablePrice = true,
 		ShowPriceAndDesc = false,
 		UseGameTooltip = false,
+		ShowBossTooltip = true,
 		LastMinAtlasVersion = 0,
 		EnableMouseOverDesc = true,
-    }
+	}
 }
 
 -- Popup Box for first time users
 StaticPopupDialogs["ATLASLOOT_SETUP"] = {
+	preferredIndex = 3,
 	text = AL["Welcome to Atlasloot Enhanced.  Please take a moment to set your preferences."],
 	button1 = AL["Setup"],
 	OnAccept = function()
@@ -142,6 +143,7 @@ StaticPopupDialogs["ATLASLOOT_SETUP"] = {
 
 --Popup Box for an old version of Atlas
 StaticPopupDialogs["ATLASLOOT_OLD_ATLAS"] = {
+	preferredIndex = 3,
 	text = AL["It has been detected that your version of Atlas does not match the version that Atlasloot is tuned for ("]..ATLASLOOT_CURRENT_ATLAS[1].."/"..ATLASLOOT_PREVIEW_ATLAS[1]..AL[").  Depending on changes, there may be the occasional error, so please visit http://www.atlasmod.com as soon as possible to update."],
 	button1 = AL["OK"],
 	OnAccept = function()
@@ -154,10 +156,11 @@ StaticPopupDialogs["ATLASLOOT_OLD_ATLAS"] = {
 
 --Popup Box for the bug with saved variables >.<
 StaticPopupDialogs["ATLASLOOT_SAVED_VARIABLES"] = {
+	preferredIndex = 3,
 	text = "AtlasLoot should now work fine with Patch 4.2. If you still got problems please delete the file AtlasLoot.lua in your WoW folder: WTF/Account/AccountName/SavedVariables while logged out of the game.",
 	button1 = AL["OK"],
 	OnAccept = function()
-		
+
 	end,
 	timeout = 0,
 	whileDead = 1,
@@ -245,11 +248,11 @@ function AtlasLoot:OnLoaderLoad()
 		--AtlasLoot:LoadModule("all")
 	--end
 	collectgarbage("collect")
-    --if LibStub:GetLibrary("LibAboutPanel", true) then
-        --LibStub("LibAboutPanel").new(AL["AtlasLoot"], "AtlasLoot");
-   -- end    
-   loaded = true
-   if AtlasLootDB then
+    if LibStub:GetLibrary("LibAboutPanel", true) then
+    	LibStub("LibAboutPanel").new(AL["AtlasLoot"], "AtlasLoot");
+	end    
+   	loaded = true
+   	if AtlasLootDB then
 		AtlasLootDB.showWarning = true
 	end
 end
