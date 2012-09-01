@@ -200,6 +200,7 @@ function BuyEmAll:AltCurrencyHandling(itemIndex, frame)
 
 	self.NumAltCurrency = NumAltCurrency;
 	if (NumAltCurrency == 1) or (NumAltCurrency == 2) or (NumAltCurrency == 3) then
+    
 		if (select(3,GetMerchantItemCostItem(itemIndex, 1)) == nil) then -- Itemlink check
 			self.AltCurrency1Type = 0; -- 0 = Pure currency, 1 = Item/Currency, possibly more later
 			self.AltCurrency1Tex = select(1,GetMerchantItemCostItem(itemIndex, 1)); -- Grabs texture path, hopefully the same no matter the language
@@ -210,6 +211,16 @@ function BuyEmAll:AltCurrencyHandling(itemIndex, frame)
 			self.AltCurrency1Type = 1;
 			self.AltCurrency1 = tonumber(strmatch(select(3,GetMerchantItemCostItem(itemIndex, 1)), "item:(%d+):"));
 			self.AltCurrency1Tex = select(10, GetItemInfo(self.AltCurrency1));
+
+      -- If we have Ink of Dreams as the currency, hack it to use Blackfallow
+      -- Ink instead since that trade is still possible - but it's not possible
+      -- via BuyEmAll since it can't find enough currency on the character when
+      -- buying.
+      if self.AltCurrency1 == 79254 then
+        self.AltCurrency1 = 61978
+        self.AltCurrency1Tex = select(10, GetItemInfo(self.AltCurrency1))
+      end
+
 			price1 = select(2,GetMerchantItemCostItem(itemIndex, 1));
 			Afford1 = floor(GetItemCount(self.AltCurrency1) / price1) * self.preset;
 		end

@@ -1,9 +1,41 @@
 ------------------------------------------------------------------------
-r9118 | funkydude | 2012-08-30 21:21:54 +0000 (Thu, 30 Aug 2012) | 1 line
+r9124 | funkydude | 2012-08-31 16:26:07 +0000 (Fri, 31 Aug 2012) | 1 line
 Changed paths:
-   A /tags/r9118-release (from /trunk:9117)
+   A /tags/r9124-release (from /trunk:9123)
 
-Tagging as r9118-release
+Tagging as r9124-release
+------------------------------------------------------------------------
+r9123 | funkydude | 2012-08-31 16:23:44 +0000 (Fri, 31 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+
+bump version
+------------------------------------------------------------------------
+r9122 | funkydude | 2012-08-31 00:57:55 +0000 (Fri, 31 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+Firelands/Ragnaros: Add a difficulty check to wrath.
+------------------------------------------------------------------------
+r9121 | funkydude | 2012-08-31 00:21:46 +0000 (Fri, 31 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/Plugins/Tips.lua
+
+Plugins/Tips: UIPanelButtonTemplate2 > UIPanelButtonTemplate
+------------------------------------------------------------------------
+r9120 | nebula169 | 2012-08-31 00:19:00 +0000 (Fri, 31 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+Firelands/Ragnaros: update lava wave bar label, wrath spell id, and deluge spell id
+------------------------------------------------------------------------
+r9119 | pettigrow | 2012-08-30 22:37:25 +0000 (Thu, 30 Aug 2012) | 1 line
+Changed paths:
+   M /trunk/EndlessSpring/Locales/frFR.lua
+   M /trunk/HeartOfFear/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+
+frFR Update
 ------------------------------------------------------------------------
 r9117 | durcyn | 2012-08-30 21:18:14 +0000 (Thu, 30 Aug 2012) | 1 line
 Changed paths:
