@@ -8,7 +8,8 @@
   <Script file="modules\blizzard\kill.lua" />
   <Script file="modules\blizzard\vehicle.lua" />
   <Script file="modules\buffs\header.lua" />
-  <Script file="modules\actionbars\extra.lua" />
+  <Script file="modules\actionbars\Extra.lua" />
+  <Script file="modules\actionbars\BarShift.lua" />
   <Script file="modules\chat\chatframes.lua" />
   <Script file="modules\chat\profanity.lua" />
   <Script file="modules\loot\rollframe.lua" />

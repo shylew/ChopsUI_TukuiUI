@@ -1,8 +1,14 @@
 local T, C, L = unpack(Tukui)
 if C.unitframes.enable ~= true then return end
 
-local frame = TukuiPlayer
+local frame = CreateFrame("Frame")
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:SetScript("OnEvent", function(self)
 
--- Reposition the player frame.
-frame:ClearAllPoints()
-frame:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 125, 8)
+  -- Reposition the player frame.
+  TukuiPlayer:ClearAllPoints()
+  TukuiPlayer:SetPoint("BOTTOM", ChopsUIInvViewportBackground, "TOP", -130, 25)
+
+  self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+
+end)

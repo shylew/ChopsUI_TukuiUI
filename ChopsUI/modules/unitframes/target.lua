@@ -1,27 +1,33 @@
 local T, C, L = unpack(Tukui)
 if C.unitframes.enable ~= true then return end
 
-local frame = TukuiTarget
+local frame = CreateFrame("Frame")
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:SetScript("OnEvent", function(self)
 
--- Reposition the target frame.
-frame:ClearAllPoints()
-frame:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -125, 8)
+  local unitFrame = TukuiTarget
 
--- Remove debuffs from the target frame.
-frame.Debuffs:Kill()
+  -- Reposition the target unitFrame.
+  unitFrame:ClearAllPoints()
+  unitFrame:SetPoint("BOTTOM", ChopsUIInvViewportBackground, "TOP", 130, 25)
 
--- Move the buff frame to the right of the target frame instead of at the top.
-frame.Buffs:ClearAllPoints()
-frame.Buffs:SetPoint('LEFT', frame, 'RIGHT', 6, -28)
-frame.Buffs:SetWidth(54)
-frame.Buffs:SetHeight(54)
-frame.Buffs.size = 26
-frame.Buffs.num = 4
-frame.Buffs.spacing = 2
-frame.Buffs.InitialAnchor = 'TOPLEFT'
+  -- Remove debuffs from the target unitFrame.
+  unitFrame.Debuffs:Kill()
 
--- Stub out the anchoring methods of the buff frame to prevent OnUpdate events
--- from moving them.
-frame.Buffs.ClearAllPoints = T.dummy
-frame.Buffs.SetPoint = T.dummy
-frame.Buffs.Point = T.dummy
+  -- Move the buff unitFrame to the right of the target unitFrame instead of at the top.
+  unitFrame.Buffs:ClearAllPoints()
+  unitFrame.Buffs:SetPoint('LEFT', unitFrame, 'RIGHT', 6, -28)
+  unitFrame.Buffs:SetWidth(54)
+  unitFrame.Buffs:SetHeight(54)
+  unitFrame.Buffs.size = 26
+  unitFrame.Buffs.num = 4
+  unitFrame.Buffs.spacing = 2
+  unitFrame.Buffs.InitialAnchor = 'TOPLEFT'
+
+  -- Stub out the anchoring methods of the buff unitFrame to prevent OnUpdate events
+  -- from moving them.
+  unitFrame.Buffs.ClearAllPoints = T.dummy
+  unitFrame.Buffs.SetPoint = T.dummy
+  unitFrame.Buffs.Point = T.dummy
+
+end)
