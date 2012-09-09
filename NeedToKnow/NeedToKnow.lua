@@ -78,7 +78,7 @@ NeedToKnow.scratch.bar_entry =
     }
 -- NEEDTOKNOW = {} is defined in the localization file, which must be loaded before this file
 
-NEEDTOKNOW.VERSION = "4.0.07"
+NEEDTOKNOW.VERSION = "4.0.08"
 NEEDTOKNOW.UPDATE_INTERVAL = 0.05
 NEEDTOKNOW.MAXBARS = 20
 
@@ -462,7 +462,7 @@ function NeedToKnow.ExecutiveFrame_PLAYER_LOGIN()
     NeedToKnow_ExecutiveFrame:RegisterEvent("UNIT_TARGET")
     NeedToKnow_ExecutiveFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
     NeedToKnow_ExecutiveFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
-    NeedToKnow_ExecutiveFrame:RegisterEvent("PARTY_MEMBERS_CHANGED")
+    NeedToKnow_ExecutiveFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
     
     if ( NeedToKnow.is_DK ) then
         NeedToKnow.RegisterSpellcastSent();
@@ -566,7 +566,7 @@ function NeedToKnow.RefreshRaidMemberNames()
 end
 
 
-function NeedToKnow.ExecutiveFrame_PARTY_MEMBERS_CHANGED()
+function NeedToKnow.ExecutiveFrame_GROUP_ROSTER_UPDATE()
     NeedToKnow.RefreshRaidMemberNames();
 end
 
