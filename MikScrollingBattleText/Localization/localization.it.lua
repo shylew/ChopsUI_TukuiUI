@@ -1,17 +1,17 @@
 -------------------------------------------------------------------------------
--- Title: Mik's Scrolling Battle Text French Localization
+-- Title: Mik's Scrolling Battle Text Italian Localization
 -- Author: Mikord
--- French Translation by: Calthas, Devfool
+-- Italian Translation by: Kelhar@Runetotem-EU
 -------------------------------------------------------------------------------
 
--- Don't do anything if the locale isn't French.
-if (GetLocale() ~= "frFR") then return end
+-- Don't do anything if the locale isn't Italian.
+if (GetLocale() ~= "itIT") then return end
 
 -- Local reference for faster access.
 local L = MikSBT.translations
 
 -------------------------------------------------------------------------------
--- French localization
+-- Italian localization
 -------------------------------------------------------------------------------
 
 ------------------------------
@@ -38,14 +38,20 @@ L.DEFAULT_FONT_NAME = "MSBT Porky"
 -- Commands
 ------------------------------
 
+L.COMMAND_RESET		= "reset"
+L.COMMAND_DISABLE	= "disabilita"
+L.COMMAND_ENABLE	= "abilita"
+L.COMMAND_SHOWVER	= "versione"
+L.COMMAND_HELP		= "aiuto"
+
 L.COMMAND_USAGE = {
  "Usage: " .. MikSBT.COMMAND .. " <command> [params]",
- " Commande:",
- "  " .. L.COMMAND_RESET .. " - Restaure les paramètres par défaut.",
- "  " .. L.COMMAND_DISABLE .. " - Désactive l'addon.",
- "  " .. L.COMMAND_ENABLE .. " - Active l'addon.",
- "  " .. L.COMMAND_SHOWVER .. " - Affiche la version actuelle.",
- "  " .. L.COMMAND_HELP .. " - Affiche l'aide des commandes.",
+ " Commands:",
+ "  " .. L.COMMAND_RESET .. " - REimposta il profilo corrente alle impostazioni di base.",
+ "  " .. L.COMMAND_DISABLE .. " - Disabilita l'addon.",
+ "  " .. L.COMMAND_ENABLE .. " - Abilita l'addon.",
+ "  " .. L.COMMAND_SHOWVER .. " - Mostra la versione corrente.",
+ "  " .. L.COMMAND_HELP .. " - Mostra come usare i comandi.",
 }
 
 
@@ -53,38 +59,38 @@ L.COMMAND_USAGE = {
 -- Output messages
 ------------------------------
 
-L.MSG_DISABLE				= "Addon désactivé."
-L.MSG_ENABLE				= "Addon activé."
-L.MSG_PROFILE_RESET			= "Profil réinitialisé"
-L.MSG_HITS					= "Coups"
-L.MSG_CRIT					= "Crit"
-L.MSG_CRITS					= "Crits"
-L.MSG_MULTIPLE_TARGETS		= "Multiples"
-L.MSG_READY_NOW				= "Disponible"
+L.MSG_DISABLE				= "Addon Disabilitato."
+L.MSG_ENABLE				= "Addon Abilitato."
+L.MSG_PROFILE_RESET			= "Profilo Reimpostato"
+L.MSG_HITS					= "Colpi"
+L.MSG_CRIT					= "Critico"
+L.MSG_CRITS					= "Critici"
+L.MSG_MULTIPLE_TARGETS		= "Multipli"
+L.MSG_READY_NOW				= "Pronto Ora"
 
 
 ------------------------------
--- Scroll area messages
+-- Scroll area names
 ------------------------------
 
-L.MSG_INCOMING			= "Entrant"
-L.MSG_OUTGOING			= "Sortant"
-L.MSG_NOTIFICATION		= "Alertes"
-L.MSG_STATIC			= "Statique"
+L.MSG_INCOMING			= "In Arrivo"
+L.MSG_OUTGOING			= "In Uscita"
+L.MSG_NOTIFICATION		= "Notifiche"
+L.MSG_STATIC			= "Statico"
 
 
----------------------------------------
+----------------------------------------
 -- Master profile event output messages
----------------------------------------
+----------------------------------------
 
-L.MSG_COMBAT					= "Combat"
-L.MSG_DISPEL					= "Dissiper"
+L.MSG_COMBAT					= "Combattimento"
+L.MSG_DISPEL					= "Dissipare"
 --L.MSG_CHI_FULL					= "Full Chi"
-L.MSG_CP						= "CP"
-L.CP_FULL						= "Finissez-le"
-L.MSG_HOLY_POWER_FULL			= "Full Holy Power"
+L.MSG_CP						= "PC"
+L.MSG_CP_FULL					= "FINISCILO"
+L.MSG_HOLY_POWER_FULL			= "Potere Benedetto Pieno"
 --L.MSG_SHADOW_ORBS_FULL			= "Full Shadow Orbs"
-L.MSG_KILLING_BLOW				= "Coup Fatal"
-L.MSG_TRIGGER_LOW_HEALTH		= "Vie Faible"
-L.MSG_TRIGGER_LOW_MANA			= "Mana Faible"
-L.MSG_TRIGGER_LOW_PET_HEALTH	= "Vie du familier faible"
+L.MSG_KILLING_BLOW				= "Colpo Mortale"
+L.MSG_TRIGGER_LOW_HEALTH		= "Vita Bassa"
+L.MSG_TRIGGER_LOW_MANA			= "Mana Basso"
+L.MSG_TRIGGER_LOW_PET_HEALTH	= "Vita Famiglio Bassa"
