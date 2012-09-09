@@ -164,36 +164,58 @@ local function Shared(self, unit)
 
 		-- portraits
 		if (C["unitframes"].charportrait == true) then
-			local portrait = CreateFrame("PlayerModel", self:GetName().."_Portrait", self)
-			portrait:SetFrameLevel(4)
-			if T.lowversion then
-				portrait:SetHeight(51)
+			local graphic = GetCVar("gxapi")
+			local isMac = IsMacClient()
+			if isMac or graphic == "D3D11" then
+				local portrait = CreateFrame("PlayerModel", self:GetName().."_Portrait", self)
+				portrait:SetFrameLevel(8)
+				if T.lowversion then
+					portrait:SetHeight(51)
+				else
+					portrait:SetHeight(57)
+				end
+				portrait:SetWidth(33)
+				portrait:SetAlpha(1)
+				if unit == "player" then
+					portrait:SetPoint("TOPLEFT", health, "TOPLEFT", -34,0)
+					panel:Point("TOPLEFT", power, "BOTTOMLEFT", 0, -1)
+					panel:Point("TOPRIGHT", power, "BOTTOMRIGHT", 0, -1)
+				elseif unit == "target" then
+					portrait:SetPoint("TOPRIGHT", health, "TOPRIGHT", 34,0)
+					panel:Point("TOPRIGHT", power, "BOTTOMRIGHT", 0, -1)
+					panel:Point("TOPLEFT", power, "BOTTOMLEFT", 0, -1)
+				end
+				panel:SetWidth(panel:GetWidth() - 34) -- panel need to be resized if charportrait is enabled
+				table.insert(self.__elements, T.HidePortrait)
+				portrait.PostUpdate = T.PortraitUpdate --Worgen Fix (Hydra)
+				self.Portrait = portrait
 			else
-				portrait:SetHeight(57)
+				portrait = self:CreateTexture(nil, "ARTWORK")
+				portrait:SetPoint("CENTER")
+				portrait:SetPoint("CENTER")
+				portrait:SetHeight(35)
+				portrait:SetWidth(33)
+				portrait:SetTexCoord(0.1,0.9,0.1,0.9)
+				if unit == "player" then
+					portrait:SetPoint("TOPLEFT", health, "TOPLEFT", -34,0)
+				elseif unit == "target" then
+					portrait:SetPoint("TOPRIGHT", health, "TOPRIGHT", 34,0)
+				end	
+
+				self.Portrait = portrait
 			end
-			portrait:SetWidth(33)
-			portrait:SetAlpha(1)
+			
 			if unit == "player" then
 				health:SetPoint("TOPLEFT", 34,0)
 				health:SetPoint("TOPRIGHT")
 				power:Point("TOPLEFT", health, "BOTTOMLEFT", 0, -1)
 				power:Point("TOPRIGHT", health, "BOTTOMRIGHT", 0, -1)
-				panel:Point("TOPLEFT", power, "BOTTOMLEFT", 0, -1)
-				panel:Point("TOPRIGHT", power, "BOTTOMRIGHT", 0, -1)
-				portrait:SetPoint("TOPLEFT", health, "TOPLEFT", -34,0)
 			elseif unit == "target" then
 				health:SetPoint("TOPRIGHT", -34,0)
 				health:SetPoint("TOPLEFT")
 				power:Point("TOPRIGHT", health, "BOTTOMRIGHT", 0, -1)
 				power:Point("TOPLEFT", health, "BOTTOMLEFT", 0, -1)
-				panel:Point("TOPRIGHT", power, "BOTTOMRIGHT", 0, -1)
-				panel:Point("TOPLEFT", power, "BOTTOMLEFT", 0, -1)
-				portrait:SetPoint("TOPRIGHT", health, "TOPRIGHT", 34,0)
 			end
-			panel:SetWidth(panel:GetWidth() - 34) -- panel need to be resized if charportrait is enabled
-			table.insert(self.__elements, T.HidePortrait)
-			portrait.PostUpdate = T.PortraitUpdate --Worgen Fix (Hydra)
-			self.Portrait = portrait
 		end
 		
 		if T.myclass == "PRIEST" and C["unitframes"].weakenedsoulbar then
@@ -570,6 +592,7 @@ local function Shared(self, unit)
 						
 						bars[i].bg:SetTexture(normTex)					
 						bars[i].bg:SetAlpha(.15)
+						bars[i].width = bars[i]:GetWidth()
 					end
 					
 					bars.Override = T.UpdateHoly
@@ -1864,11 +1887,11 @@ local function Shared(self, unit)
 		
 		self:Tag(Name, "[Tukui:getnamecolor][Tukui:nameshort]")
 		self.Name = Name
+		
+		-- post update for main assist and maintank, for editors.
+		self.PostUpdateUnit = T.PostUpdateUnit or T.dummy
+		self:PostUpdateUnit(unit)
 	end
-	
-	-- post update for editors
-	self.PostUpdateUnit = T.PostUpdateUnit or T.dummy
-	self:PostUpdateUnit(unit)
 	
 	return self
 end
@@ -2051,54 +2074,6 @@ if C["unitframes"].showboss then
 	end
 end
 
-local assisttank_width = 100
-local assisttank_height  = 20
-if C["unitframes"].maintank == true then
-	local function GetAttributes()
-		return
-		"TukuiMainTank", nil, "raid",
-		"oUF-initialConfigFunction", ([[
-			self:SetWidth(%d)
-			self:SetHeight(%d)
-		]]):format(assisttank_width, assisttank_height),
-		"showRaid", true,
-		"groupFilter", "MAINTANK",
-		"yOffset", 7,
-		"point" , "BOTTOM",
-		"template", "oUF_TukuiMtt"		
-	end
-	T.MainTankAttributes = GetAttributes
-	
-	local tank = oUF:SpawnHeader(T.MainTankAttributes())
-	tank:SetParent(TukuiPetBattleHider)
-	tank:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-end
- 
-if C["unitframes"].mainassist == true then
-	local function GetAttributes()
-		return
-		"TukuiMainAssist", nil, "raid",
-		"oUF-initialConfigFunction", ([[
-			self:SetWidth(%d)
-			self:SetHeight(%d)
-		]]):format(assisttank_width, assisttank_height),
-		"showRaid", true,
-		"groupFilter", "MAINASSIST",
-		"yOffset", 7,
-		"point" , "BOTTOM",
-		"template", "oUF_TukuiMtt"
-	end
-	T.MainAssistAttributes = GetAttributes
-	
-	local assist = oUF:SpawnHeader(T.MainAssistAttributes())
-	assist:SetParent(TukuiPetBattleHider)
-	if C["unitframes"].maintank == true then
-		assist:SetPoint("TOPLEFT", TukuiMainTank, "BOTTOMLEFT", 2, -50)
-	else
-		assist:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-	end
-end
-
 ------------------------------------------------------------------------
 -- Right-Click on unit frames menu. 
 -- Removing some useless stuff and tainting stuff
@@ -2238,6 +2213,12 @@ if C.unitframes.raid == true then
 		ReadyCheck:Width(12*C["unitframes"].gridscale*T.raidscale)
 		ReadyCheck:SetPoint("CENTER") 	
 		self.ReadyCheck = ReadyCheck
+		
+		local LFDRole = health:CreateTexture(nil, "OVERLAY")
+		LFDRole:SetInside(panel)
+		LFDRole:SetTexture(0,0,0,0)
+		LFDRole.Override = T.SetGridGroupRole
+		self.LFDRole = LFDRole
 		
 		--local picon = self.Health:CreateTexture(nil, "OVERLAY")
 		--picon:SetPoint("CENTER", self.Health)
@@ -2427,6 +2408,54 @@ if C.unitframes.raid == true then
 	end
 		
 	oUF:Factory(function(self)
+		local assisttank_width = 100
+		local assisttank_height  = 20
+		if C["unitframes"].maintank == true then
+			local function GetAttributes()
+				return
+				"TukuiMainTank", nil, "raid",
+				"oUF-initialConfigFunction", ([[
+					self:SetWidth(%d)
+					self:SetHeight(%d)
+				]]):format(assisttank_width, assisttank_height),
+				"showRaid", true,
+				"groupFilter", "MAINTANK",
+				"yOffset", 7,
+				"point" , "BOTTOM",
+				"template", "oUF_TukuiMtt"		
+			end
+			T.MainTankAttributes = GetAttributes
+			
+			local tank = oUF:SpawnHeader(T.MainTankAttributes())
+			tank:SetParent(TukuiPetBattleHider)
+			tank:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+		end
+		 
+		if C["unitframes"].mainassist == true then
+			local function GetAttributes()
+				return
+				"TukuiMainAssist", nil, "raid",
+				"oUF-initialConfigFunction", ([[
+					self:SetWidth(%d)
+					self:SetHeight(%d)
+				]]):format(assisttank_width, assisttank_height),
+				"showRaid", true,
+				"groupFilter", "MAINASSIST",
+				"yOffset", 7,
+				"point" , "BOTTOM",
+				"template", "oUF_TukuiMtt"
+			end
+			T.MainAssistAttributes = GetAttributes
+			
+			local assist = oUF:SpawnHeader(T.MainAssistAttributes())
+			assist:SetParent(TukuiPetBattleHider)
+			if C["unitframes"].maintank == true then
+				assist:SetPoint("TOPLEFT", TukuiMainTank, "BOTTOMLEFT", 2, -50)
+			else
+				assist:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+			end
+		end
+		
 		if T.isAltRaidFrame then return end
 		
 		oUF:SetActiveStyle("TukuiRaid")
@@ -2441,6 +2470,42 @@ if C.unitframes.raid == true then
 			pet:SetParent(TukuiPetBattleHider)
 			pet:Point(pa1, raid, pa2, px, py)
 			G.UnitFrames.RaidPets = pet
+		end
+		
+		if C.unitframes.maxraidplayers then
+			-- Max number of group according to Instance max players
+			local ten = "1,2"
+			local twentyfive = "1,2,3,4,5"
+			local forty = "1,2,3,4,5,6,7,8"
+
+			local MaxGroup = CreateFrame("Frame", "TukuiRaidMaxGroup")
+			MaxGroup:RegisterEvent("PLAYER_ENTERING_WORLD")
+			MaxGroup:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+			MaxGroup:SetScript("OnEvent", function(self)
+				local filter
+				local inInstance, instanceType = IsInInstance()
+				local _, _, _, _, maxPlayers, _, _ = GetInstanceInfo()
+				
+				if maxPlayers == 25 then
+					filter = twentyfive
+				elseif maxPlayers == 10 then
+					filter = ten
+				else
+					filter = forty
+				end
+
+				if inInstance and instanceType == "raid" then
+					TukuiRaid:SetAttribute("groupFilter", filter)
+					if C.unitframes.showraidpets then
+						TukuiRaidPet:SetAttribute("groupFilter", filter)
+					end
+				else
+					TukuiRaid:SetAttribute("groupFilter", "1,2,3,4,5,6,7,8")
+					if C.unitframes.showraidpets then
+						TukuiRaidPet:SetAttribute("groupFilter", "1,2,3,4,5,6,7,8")
+					end
+				end
+			end)
 		end
 	end)
 end

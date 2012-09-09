@@ -65,6 +65,11 @@ local function UpdateTooltip(self)
 	
 	-- mouseover
 	if self:GetAnchorType() == "ANCHOR_CURSOR" then
+		if InCombatLockdown() and C["tooltip"].hidecombat == true then
+			self:Hide()
+			return
+		end
+		
 		-- h4x for world object tooltip border showing last border color 
 		-- or showing background sometime ~blue :x		
 		if NeedBackdropBorderRefresh then
@@ -77,6 +82,7 @@ local function UpdateTooltip(self)
 		end
 	elseif self:GetAnchorType() == "ANCHOR_NONE" and InCombatLockdown() and C["tooltip"].hidecombat == true then
 		self:Hide()
+		return
 	end
 	
 	if name and (TukuiPlayerBuffs or TukuiPlayerDebuffs) then
@@ -342,6 +348,7 @@ local BorderColor = function(self)
 	local tappedbyme = unit and UnitIsTappedByPlayer(unit)
 	local connected = unit and UnitIsConnected(unit)
 	local dead = unit and UnitIsDead(unit)
+	local r, g, b
 
 	if player then
 		local class = select(2, UnitClass(unit))

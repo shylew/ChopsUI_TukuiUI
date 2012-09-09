@@ -168,6 +168,7 @@ local function LoadSkin()
 	FriendsTabHeaderSoRButton.icon:ClearAllPoints()
 	FriendsTabHeaderSoRButton.icon:Point("TOPLEFT", 2, -2)
 	FriendsTabHeaderSoRButton.icon:Point("BOTTOMRIGHT", -2, 2)
+	FriendsTabHeaderSoRButton.icon:SetDrawLayer('ARTWORK')
 
 	ScrollOfResurrectionSelectionFrame:StripTextures()
 	ScrollOfResurrectionSelectionFrameList:StripTextures()
@@ -248,6 +249,19 @@ local function LoadSkin()
 			child:SkinButton()
 		end
 	end
+	
+	FriendsFrameIgnoreScrollFrameScrollBar:SkinScrollBar()
+	FriendsFrameIgnoreScrollFrame:SetHeight(294)
+	FriendsFrameIgnoreScrollFrameScrollBar:SetPoint("TOPLEFT", FriendsFrameIgnoreScrollFrame, "TOPRIGHT", 42, -10)
+	
+	-- bn report
+	BNetReportFrame:StripTextures()
+	BNetReportFrame:SetTemplate()
+	BNetReportFrameCommentScrollFrameScrollBar:SkinScrollBar()
+	BNetReportFrameComment:StripTextures()
+	BNetReportFrameComment:SetTemplate()
+	BNetReportFrameReportButton:SkinButton()
+	BNetReportFrameCancelButton:SkinButton()
 	
 	FriendsFrame:SetTemplate("Default")
 end

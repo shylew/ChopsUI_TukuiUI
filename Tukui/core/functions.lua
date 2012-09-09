@@ -773,9 +773,9 @@ T.HidePortrait = function(self, unit)
 		else
 			self.Portrait:SetAlpha(1)
 		end
-		-- weird bug, need to set level everytime to fix a portrait issue on dx9. :X
-		self.Portrait:SetFrameLevel(4)
 	end
+	-- weird bug, need to set level everytime to fix a portrait issue on dx9. :X
+	self.Portrait:SetFrameLevel(4)
 end
 
 -- This is mostly just a fix for worgen male portrait because of a bug found in default Blizzard UI.
@@ -835,8 +835,33 @@ T.UpdateHoly = function(self, event, unit, powerType)
 	if(self.unit ~= unit or (powerType and powerType ~= 'HOLY_POWER')) then return end
 	local num = UnitPower(unit, SPELL_POWER_HOLY_POWER)
 	local numMax = UnitPowerMax('player', SPELL_POWER_HOLY_POWER)
+	local barWidth = self.HolyPower:GetWidth()
+	local spacing = select(4, self.HolyPower[4]:GetPoint())
+	local lastBar = 0
+	
+	if numMax ~= self.HolyPower.maxPower then
+		if numMax == 3 then
+			self.HolyPower[4]:Hide()
+			self.HolyPower[5]:Hide()
+			for i = 1, 3 do
+				if i ~= 3 then
+					self.HolyPower[i]:SetWidth(barWidth / 3)
+					lastBar = lastBar + (barWidth / 3 + spacing)
+				else
+					self.HolyPower[i]:SetWidth(barWidth - lastBar)
+				end
+			end
+		else
+			self.HolyPower[4]:Show()
+			self.HolyPower[5]:Show()
+			for i = 1, 5 do
+				self.HolyPower[i]:SetWidth(self.HolyPower[i].width)
+			end
+		end
+		self.HolyPower.maxPower = numMax
+	end
 
-	for i = 1, numMax do
+	for i = 1, 5 do
 		if(i <= num) then
 			self.HolyPower[i]:SetAlpha(1)
 		else
@@ -1053,6 +1078,25 @@ T.UpdateThreat = function(self, event, unit)
 			self.Name:SetTextColor(1,1,1)
 		end
 	end 
+end
+
+T.SetGridGroupRole = function(self, role)
+	local lfdrole = self.LFDRole
+	
+	local role = UnitGroupRolesAssigned(self.unit)
+	
+	if role == "TANK" then
+		lfdrole:SetTexture(0,0,1,.3)
+		lfdrole:Show()
+	elseif role == "HEALER" then
+		lfdrole:SetTexture(.3,  1, .3, .3)
+		lfdrole:Show()
+	elseif role == "DAMAGER" then
+		lfdrole:SetTexture(1, .3, .3, .3)
+		lfdrole:Show()
+	else
+		lfdrole:Hide()
+	end
 end
 
 --------------------------------------------------------------------------------------------
