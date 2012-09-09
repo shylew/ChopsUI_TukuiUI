@@ -17,7 +17,8 @@ C["unitframes"] = {
   ["showtotalhpmp"] = true, -- Show total HP/MP on unit frames.
   ["maintank"] = true, -- Show main tank frames.
   ["onlyselfdebuffs"] = true, -- Only show own debuffs on target.
-  ["weakenedsoulbar"] = false -- Disable the Weakened Soul bar.
+  ["weakenedsoulbar"] = false, -- Disable the Weakened Soul bar.
+  ["raid"] = false
 }
 
 -- Override TukUI aura settings.
