@@ -1,8 +1,11 @@
 local T, C, L = unpack(Tukui)
 if C.unitframes.enable ~= true then return end
 
-local frame = TukuiMainTank
+-- FIXME: Disabled for now since it's broken since te most recent Tukui update.
+-- Fix later.
 
--- Reposition the main tank frame.
-frame:ClearAllPoints()
-frame:SetPoint("TOPLEFT", TukuiWatchFrameAnchor, "BOTTOMLEFT", 0, 0)
+--local frame = TukuiMainTank
+--
+---- Reposition the main tank frame.
+--frame:ClearAllPoints()
+--frame:SetPoint("TOPLEFT", TukuiWatchFrameAnchor, "BOTTOMLEFT", 0, 0)

@@ -3,11 +3,10 @@ local C = {}
 -- Override TukUI general settings.
 C["general"] = {
   ["autoscale"] = false, -- Disable auto scaling.
-  ["uiscale"] = 0.69, -- Lower the UI scale a bit.
+  ["uiscale"] = 0.60, -- Lower the UI scale a bit.
   ["overridelowtohigh"] = true, -- Always use high resolution UI, regardless of screen resolution.
   ["bordercolor"] = { .36, .36, .36 }, -- Use a brighter border color than the default UI.
-  ["blizzardreskin"] = false, -- Don't reskin Blizzard frames.
-  ["skadareskin"] = false -- Don't reskin Skada for now, its interfering with the ChopsUI Skada module.
+  ["blizzardreskin"] = false -- Don't reskin Blizzard frames.
 }
 
 -- Override TukUI unit frame settings.
@@ -37,9 +36,9 @@ C["loot"] = {
 }
 
 -- Override TukUI chat settings.
-C["chat"] = {
-  ["background"] = true -- Use background panels behind chat frames.
-}
+--C["chat"] = {
+--  ["background"] = false -- Use background panels behind chat frames.
+--}
 
 -- Override TukUI nameplate settings.
 C["nameplate"] = {
