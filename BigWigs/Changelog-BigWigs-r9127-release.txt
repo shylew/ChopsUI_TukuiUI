@@ -1,9 +1,22 @@
 ------------------------------------------------------------------------
-r9124 | funkydude | 2012-08-31 16:26:07 +0000 (Fri, 31 Aug 2012) | 1 line
+r9127 | funkydude | 2012-09-03 17:02:25 +0000 (Mon, 03 Sep 2012) | 1 line
 Changed paths:
-   A /tags/r9124-release (from /trunk:9123)
+   A /tags/r9127-release (from /trunk:9126)
 
-Tagging as r9124-release
+Tagging as r9127-release
+------------------------------------------------------------------------
+r9126 | funkydude | 2012-09-03 16:51:17 +0000 (Mon, 03 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/Plugins/Bars.lua
+
+Plugins/Bars: Instead of erroring when a bar style isn't found just print the error message, so that we can properly revert to the default style and not just kill bar functionality.
+------------------------------------------------------------------------
+r9125 | durcyn | 2012-09-02 22:17:58 +0000 (Sun, 02 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/EndlessSpring/Protector.lua
+
+clean up leaked bossDead global
 ------------------------------------------------------------------------
 r9123 | funkydude | 2012-08-31 16:23:44 +0000 (Fri, 31 Aug 2012) | 1 line
 Changed paths:
@@ -298,36 +311,4 @@ Changed paths:
    M /trunk/Mogushan/Garajal.lua
 
 Mogushan/Garajal: final change to syncing
-------------------------------------------------------------------------
-r9090 | funkydude | 2012-08-01 15:25:34 +0000 (Wed, 01 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/Mogushan/Garajal.lua
-
-Mogushan/Garajal: don't call self in a local function
-------------------------------------------------------------------------
-r9089 | funkydude | 2012-08-01 15:21:18 +0000 (Wed, 01 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/Mogushan/Garajal.lua
-
-Mogushan/Garajal: better way to handle the syncing
-------------------------------------------------------------------------
-r9088 | funkydude | 2012-08-01 14:57:12 +0000 (Wed, 01 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/Mogushan/Garajal.lua
-
-Mogushan/Garajal: fix syncing
-------------------------------------------------------------------------
-r9087 | Maat | 2012-08-01 12:38:20 +0000 (Wed, 01 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/Mogushan/Garajal.lua
-
-populate Gara'jal module, need to test voodoo doll syncing
-------------------------------------------------------------------------
-r9086 | funkydude | 2012-07-05 15:01:04 +0000 (Thu, 05 Jul 2012) | 1 line
-Changed paths:
-   M /trunk/Bastion/Sinestra.lua
-   M /trunk/Firelands/Staghelm.lua
-   M /trunk/Plugins/Tips.lua
-
-more MoP fixes
 ------------------------------------------------------------------------
