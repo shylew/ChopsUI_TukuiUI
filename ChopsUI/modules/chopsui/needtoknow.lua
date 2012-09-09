@@ -36,21 +36,6 @@ NeedToKnow.Update = function()
 
 end
 
--- Returns the current role of the player
-function ChopsUI.modules.needtoknow.PlayerRole()
-
-  -- Do some work on the role returned by TukUI here; if we get melee returned
-  -- on a druid, and the Pulverize talent has been specced, then override the
-  -- role to tank.
-  playerRole = T.CheckRole()
-  if T.myclass == "DRUID" and playerRole == "Melee" and select(5, GetTalentInfo(2, 21)) > 0 then
-    playerRole = "Tank"
-  end
-
-  return playerRole
-
-end
-  
 -- Configure the NeedToKnow player buff bars
 function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
 
@@ -81,22 +66,20 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
       ChopsUI.modules.needtoknow.PlayerBuff(3, "Shooting Stars", { 0, 0.10, 0.96 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(4, "Lunar Shower", { 0, 0.60, 0.74 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(5, "Nature's Grace", { 0.6, 0, 0.55 }, true)
-    elseif T.Spec == "FERALCOMBAT" then
-      if ChopsUI.modules.needtoknow.PlayerRole() == "Melee" then
-        ChopsUI.modules.needtoknow.PlayerBuff(1, "Predator's Swiftness", { 0.6, 0.38, 0 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(2, "Barkskin", { 0.70, 0.68, 0 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(3, "Survival Instincts", { 0.25, 0.6, 0.45 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(4, "Berserk", { 0.71, 0, 1 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(5, "Stampede", { 0.74, 0.33, 0 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(6, "Savage Roar", { 0.92, 0.76, 0 }, true)
-      elseif ChopsUI.modules.needtoknow.PlayerRole() == "Tank" then
-        ChopsUI.modules.needtoknow.PlayerBuff(1, "Barkskin", { 0.19, 0.71, 0.78 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(2, "Survival Instincts", { 0.75, 0.58, 0 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(3, "Earthen Armor", { 0.25, 0.25, 0.25 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(4, "Savage Defense", { 0.91, 0.91, 0.91 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(5, "Pulverize", { 0.14, 0.6, 0.2 }, true)
-        ChopsUI.modules.needtoknow.PlayerBuff(6, "Berserk", { 0.6, 0, 0.05 }, true)
-      end
+    elseif T.Spec == "FERAL" then
+      ChopsUI.modules.needtoknow.PlayerBuff(1, "Predator's Swiftness", { 0.6, 0.38, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Barkskin", { 0.70, 0.68, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Survival Instincts", { 0.25, 0.6, 0.45 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Berserk", { 0.71, 0, 1 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Stampede", { 0.74, 0.33, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Savage Roar", { 0.92, 0.76, 0 }, true)
+    elseif T.Spec == "GUARDIAN" then
+      ChopsUI.modules.needtoknow.PlayerBuff(1, "Barkskin", { 0.19, 0.71, 0.78 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Survival Instincts", { 0.75, 0.58, 0 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Earthen Armor", { 0.25, 0.25, 0.25 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Savage Defense", { 0.91, 0.91, 0.91 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Pulverize", { 0.14, 0.6, 0.2 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Berserk", { 0.6, 0, 0.05 }, true)
     end
 
   elseif T.myclass == "HUNTER" then
@@ -226,13 +209,18 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
 
   elseif T.myclass == "WARRIOR" then
 
-    if T.Spec == "ARMS" then
+    if T.Spec == "ARMS" or T.Spec == "FURY" then
       ChopsUI.modules.needtoknow.PlayerBuff(1, "Recklessness", { 0.91, 0.54, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(2, "Golem's Strength", { 0.86, 0.67, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(3, "Deadly Calm", { 0.41, 1, 0 }, true)
+    end
+
+    if T.Spec == "ARMS" then
       ChopsUI.modules.needtoknow.PlayerBuff(4, "Executioner", { 0.6, 0.01, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(5, "Inner Rage", { 0.91, 0.91, 0.91 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(6, "Sweeping Strikes", { 0.14, 0.6, 0.2 }, true)
+    elseif T.Spec == "FURY" then
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Bloodsurge", { 0.6, 0.01, 0 }, true)
     elseif T.Spec == "PROTECTION" then
       ChopsUI.modules.needtoknow.PlayerBuff(1, "Shield Wall", { 0.19, 0.71, 0.78 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(2, "Last Stand", { 0.75, 0.58, 0 }, true)
@@ -270,25 +258,21 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
   elseif T.myclass == "DRUID" then
 
     if T.Spec == "BALANCE" then
-
       ChopsUI.modules.needtoknow.TargetDebuff(1, "Insect Swarm", { 0.03, 0.72, 0.05 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(2, "Moonfire, Sunfire", { 0.82, 0.8, 0.8 }, true)
-
-    elseif T.Spec == "FERALCOMBAT" then
-      if ChopsUI.modules.needtoknow.PlayerRole() == "Melee" then
-        ChopsUI.modules.needtoknow.TargetDebuff(2, "Pounce", { 0, 0.44, 0.6 }, true)
-        ChopsUI.modules.needtoknow.TargetDebuff(3, "Rip", { 0.89, 0.38, 0 }, true)
-        ChopsUI.modules.needtoknow.TargetDebuff(4, "Rake", { 0.6, 0.02, 0 }, true)
-        ChopsUI.modules.needtoknow.TargetDebuff(5, "Faerie Fire, Expose Armor, Sunder Armor", { 0.6, 0, 0.55 }, false)
-        ChopsUI.modules.needtoknow.TargetDebuff(6, "Mangle, Trauma", { 0.6, 0.34, 0 }, false)
-      elseif ChopsUI.modules.needtoknow.PlayerRole() == "Tank" then
-        ChopsUI.modules.needtoknow.TargetDebuff(1, "Thrash", { 0.04, 0.29, 0.6 }, true)
-        ChopsUI.modules.needtoknow.TargetDebuff(2, "Mangle, Trauma", { 0.6, 0.34, 0 }, false)
-        ChopsUI.modules.needtoknow.TargetDebuff(3, "Lacerate", { 0.6, 0.01, 0 }, true)
-        ChopsUI.modules.needtoknow.TargetDebuff(4, "Faerie Fire, Sunder Armor, Expose Armor", { 0.75, 0.58, 0 }, false)
-        ChopsUI.modules.needtoknow.TargetDebuff(5, "Demoralizing Roar, Demoralizing Shout, Vindication, Curse of Weakness, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
-        ChopsUI.modules.needtoknow.TargetDebuff(6, "Infected Wounds, Thunder Clap, Frost Fever, Judgements of the Just", { 0.28, 0.79, 0.30 }, false)
-      end
+    elseif T.Spec == "FERAL" then
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Pounce", { 0, 0.44, 0.6 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(3, "Rip", { 0.89, 0.38, 0 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(4, "Rake", { 0.6, 0.02, 0 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(5, "Faerie Fire, Expose Armor, Sunder Armor", { 0.6, 0, 0.55 }, false)
+      ChopsUI.modules.needtoknow.TargetDebuff(6, "Mangle, Trauma", { 0.6, 0.34, 0 }, false)
+    elseif T.Spec == "GUARDIAN" then
+      ChopsUI.modules.needtoknow.TargetDebuff(1, "Thrash", { 0.04, 0.29, 0.6 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Mangle, Trauma", { 0.6, 0.34, 0 }, false)
+      ChopsUI.modules.needtoknow.TargetDebuff(3, "Lacerate", { 0.6, 0.01, 0 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(4, "Faerie Fire, Sunder Armor, Expose Armor", { 0.75, 0.58, 0 }, false)
+      ChopsUI.modules.needtoknow.TargetDebuff(5, "Demoralizing Roar, Demoralizing Shout, Vindication, Curse of Weakness, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
+      ChopsUI.modules.needtoknow.TargetDebuff(6, "Infected Wounds, Thunder Clap, Frost Fever, Judgements of the Just", { 0.28, 0.79, 0.30 }, false)
     end
 
   elseif T.myclass == "HUNTER" then
@@ -401,10 +385,9 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
 
   elseif T.myclass == "WARRIOR" then
 
-    if T.Spec == "ARMS" then
-      ChopsUI.modules.needtoknow.TargetDebuff(1, "Rend", { 0.6, 0.01, 0 }, true)
-      ChopsUI.modules.needtoknow.TargetDebuff(2, "Colossus Smash", { 0.75, 0.58, 0 }, true)
-      ChopsUI.modules.needtoknow.TargetDebuff(3, "Deep Wounds", { 0.91, 0.54, 0 }, true)
+    if T.Spec == "ARMS" or T.Spec == "FURY" then
+      ChopsUI.modules.needtoknow.TargetDebuff(1, "Colossus Smash", { 0.75, 0.58, 0 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Deep Wounds", { 0.91, 0.54, 0 }, true)
     elseif T.Spec == "PROTECTION" then
       ChopsUI.modules.needtoknow.TargetDebuff(1, "Shockwave", { 0.04, 0.29, 0.6 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(2, "Concussion Blow", { 0.91, 0.91, 0.91 }, true)
@@ -425,11 +408,9 @@ function ChopsUI.modules.needtoknow.ConfigureCooldowns()
     NeedToKnow.ProfileSettings.Groups[3].Bars[i].Enabled = false
   end
 
-  if ChopsUI.modules.needtoknow.PlayerRole() == "Caster" then
-    ChopsUI.modules.needtoknow.Cooldown(5, "Volcanic Destruction", { 0, 0.45, 0.6 }, 45)
-    ChopsUI.modules.needtoknow.Cooldown(6, "Power Torrent", { 0.03, 0.88, 1 }, 45)
-  elseif ChopsUI.modules.needtoknow.PlayerRole() == "Melee" then
-    ChopsUI.modules.needtoknow.Cooldown(6, "Tol'vir Agility, Golem's Strength", { 0, 0.45, 0.6 }, 45)
+  if T.CheckRole() == "DAMAGER" then
+    ChopsUI.modules.needtoknow.Cooldown(5, "Volcanic Destruction, Tol'vir Agility, Golem's Strength", { 0, 0.45, 0.6 }, 45)
+    ChopsUI.modules.needtoknow.Cooldown(6, "Power Torrent, Landslide", { 0.03, 0.88, 1 }, 45)
   end
 
   if T.myclass == "DRUID" then

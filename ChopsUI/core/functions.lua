@@ -28,7 +28,7 @@ local function CheckSpecialization(self, event, unit)
     specId = spec
   end
 
-  T.Spec = spec
+  T.Spec = specName
   T.SpecId = specId
 
 end
