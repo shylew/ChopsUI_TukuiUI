@@ -1,6 +1,6 @@
-## Interface: 40300
+## Interface: 50001
 ## Author: Trond Arve Nordheim
-## Version: 1.1
+## Version: 1.2
 ## Title: |cffC495DDChopsUI|r
 ## RequiredDeps: Tukui, BigWigs, Grid, GridIndicatorCornerIcons, GridIndicatorCornerText, GridIndicatorSideIcons, GridManaBars, GridStatusRaidDebuff, InspectFix, MikScrollingBattleText, NeedToKnow, Postal, Skada
 
