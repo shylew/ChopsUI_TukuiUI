@@ -6,7 +6,7 @@ local GridLayout = Grid:GetModule("GridLayout")
 GridLayout.RestorePosition = function()
   local f = GridLayout.frame
   f:ClearAllPoints()
-  f:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 85)
+  f:SetPoint("TOP", ChopsUIInvViewportBackground, "TOP", 0, -7)
 end
 
 -- Configure Grid indicators
@@ -228,8 +228,8 @@ function ChopsUI.modules.grid.Reset()
   GridFrame.db.profile["cornerSize"] = 16
 
   -- Scale the frames
-  GridFrame.db.profile["frameWidth"] = 100
-  GridFrame.db.profile["frameHeight"] = 45
+  GridFrame.db.profile["frameWidth"] = 110
+  GridFrame.db.profile["frameHeight"] = 40
 
   -- Set up some frame defaults
   GridFrame.db.profile["statusmap"] = {

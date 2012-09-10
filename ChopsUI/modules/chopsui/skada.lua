@@ -28,14 +28,14 @@ function ChopsUI.modules.skada.Reset()
   Skada.db.profile.hidesolo = false
 
   -- Calculate the width of the skada window.
-  local remainingWidth = TukuiInfoRight:GetWidth() - TukuiMinimap:GetWidth() - 9
+  local remainingWidth = TukuiInfoRight:GetWidth() - TukuiMinimap:GetWidth() - 10
 
   -- Create and configure the Skada window
   Skada:CreateWindow("Skada")
   Skada.db.profile.windows[1].set = "current"
   Skada.db.profile.windows[1].barwidth = remainingWidth
   Skada.db.profile.windows[1].barheight = 14
-  Skada.db.profile.windows[1].background.height = 125
+  Skada.db.profile.windows[1].background.height = 146
   Skada.db.profile.windows[1].barslocked = true
 
 end

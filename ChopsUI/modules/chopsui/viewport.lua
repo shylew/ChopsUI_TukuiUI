@@ -1,5 +1,5 @@
 local T, C, L = unpack(Tukui)
-local viewportHeight = 130
+local viewportHeight = 143
 
 ViewportFrame = CreateFrame("Frame", "ChopsUIInvViewportBackground")
 ViewportFrame:SetFrameStrata("BACKGROUND")
@@ -15,4 +15,15 @@ border:SetHeight(1)
 border:SetAlpha(0.3)
 border:SetFrameStrata("BACKGROUND")
 
-WorldFrame:SetPoint("BOTTOMRIGHT", 0, viewportHeight)
+WorldFrame:SetUserPlaced(false)
+
+local h, w = GetScreenHeight(), GetScreenWidth()
+if(GetCVarBool'useUiScale') then
+  local s = GetCVar'uiscale' or 1
+  h, w = h * s, w * s
+end
+WorldFrame:SetWidth(w)
+WorldFrame:SetHeight(h)
+
+WorldFrame:SetPoint("TOP")
+WorldFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, viewportHeight)
