@@ -1,5 +1,5 @@
 local T, C, L = unpack(Tukui)
-local viewportHeight = 135
+local viewportHeight = 130
 
 ViewportFrame = CreateFrame("Frame", "ChopsUIInvViewportBackground")
 ViewportFrame:SetFrameStrata("BACKGROUND")
