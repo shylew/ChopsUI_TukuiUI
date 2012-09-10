@@ -15,7 +15,7 @@ hooksecurefunc("FCF_RestorePositionAndDimensions", moveLootFrameCallback)
 
 -- Show the chat tabs.
 local ChopsUIChat = CreateFrame("Frame", "ChopsUIChat")
-local overrideChatTabCallback = function(frame)
+local overrideChatTabCallback = function()
   for i = 1, NUM_CHAT_WINDOWS do
     local chat = "ChatFrame" .. i
     local tab = _G[chat .. "Tab"]
@@ -26,10 +26,18 @@ local overrideChatTabCallback = function(frame)
     tab:HookScript("OnLeave", function() text:Show() end)
   end
 end
+local resizeChatWindowsCallback = function()
+  for i = 1, NUM_CHAT_WINDOWS do
+    local chat = _G["ChatFrame" .. i]
+    chat:SetHeight(122)
+    FCF_SavePositionAndDimensions(chat)	
+  end
+end
 ChopsUIChat:RegisterEvent("ADDON_LOADED")
 ChopsUIChat:SetScript("OnEvent", function(self, event, addon)
   if addon == "Blizzard_CombatLog" then
     self:UnregisterEvent("ADDON_LOADED")
     overrideChatTabCallback()
+    resizeChatWindowsCallback()
   end
 end)

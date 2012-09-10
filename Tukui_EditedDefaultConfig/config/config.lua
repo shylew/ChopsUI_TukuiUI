@@ -61,5 +61,11 @@ C["media"] = {
   ["dmgfont"] = [=[Interface\Addons\Tukui\medias\fonts\normal_font.ttf]=] -- Change the combat text font.
 }
 
+-- Override TukUI data text settings.
+C["datatext"] = {
+  ["wowtime"] = 6, -- Show the current time in the bottom right corner.
+  ["gold"] = 0, -- Hide gold display
+}
+
 -- Make the configuration changes public.
 TukuiEditedDefaultConfig = C
