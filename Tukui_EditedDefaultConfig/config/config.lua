@@ -63,8 +63,8 @@ C["media"] = {
 
 -- Override TukUI data text settings.
 C["datatext"] = {
-  ["wowtime"] = 6, -- Show the current time in the bottom right corner.
-  ["gold"] = 0, -- Hide gold display
+  ["bags"] = 12, -- Show bag status in the left part of the second data text container on the right.
+  ["wowtime"] = 13, -- Show the current time in the right part of the second data text container on the right.
 }
 
 -- Make the configuration changes public.

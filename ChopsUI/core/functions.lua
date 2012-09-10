@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 
 local classSpecializationMap = {
   ["DEATHKNIGHT"] = { "BLOOD", "FROST", "UNHOLY" },

@@ -29,7 +29,7 @@ end
 local resizeChatWindowsCallback = function()
   for i = 1, NUM_CHAT_WINDOWS do
     local chat = _G["ChatFrame" .. i]
-    chat:SetHeight(122)
+    chat:SetHeight(120)
     FCF_SavePositionAndDimensions(chat)	
   end
 end

@@ -1,17 +1,18 @@
 local T, C, L = unpack(Tukui)
+local viewportHeight = 135
 
---ViewportOverlay = WorldFrame:CreateTexture(nil, "BACKGROUND")
---ViewportOverlay:SetTexture(0, 0, 0, 1)
---ViewportOverlay:SetPoint("TOPLEFT", UIParent, "TOPLEFT", -1, 1)
---ViewportOverlay:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 1, -1)
 ViewportFrame = CreateFrame("Frame", "ChopsUIInvViewportBackground")
 ViewportFrame:SetFrameStrata("BACKGROUND")
 ViewportFrame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 0, 0)
 ViewportFrame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0)
-ViewportFrame:SetHeight(130)
---local t = ViewportFrame:CreateTexture(nil,"BACKGROUND")
---t:SetTexture("Interface\\Glues\\CharacterCreate\\UI-CharacterCreate-Factions.blp")
---t:SetAllPoints(ViewportFrame)
---ViewportFrame.texture = t
+ViewportFrame:SetHeight(viewportHeight)
 
-WorldFrame:SetPoint("BOTTOMRIGHT", 0, 130)
+local border = CreateFrame("Frame", "ChopsUIViewportBorder")
+border:SetTemplate()
+border:SetPoint("TOPLEFT", ChopsUIInvViewportBackground, "TOPLEFT", -2, 0)
+border:SetPoint("TOPRIGHT", ChopsUIInvViewportBackground, "TOPRIGHT", 2, 0)
+border:SetHeight(1)
+border:SetAlpha(0.3)
+border:SetFrameStrata("BACKGROUND")
+
+WorldFrame:SetPoint("BOTTOMRIGHT", 0, viewportHeight)
