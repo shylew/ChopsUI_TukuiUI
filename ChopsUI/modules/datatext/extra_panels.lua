@@ -35,7 +35,6 @@ end
 
 for dataTextName, dataTextFrame in pairs(G.DataText) do
   if dataTextFrame and dataTextFrame.Option then
-    DEFAULT_CHAT_FRAME:AddMessage("Working on " .. dataTextName)
     DataTextPosition(dataTextFrame.Option, G.DataText[dataTextName].Text)
   end
 end

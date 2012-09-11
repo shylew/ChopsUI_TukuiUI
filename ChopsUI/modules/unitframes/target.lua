@@ -9,7 +9,7 @@ frame:SetScript("OnEvent", function(self)
 
   -- Reposition the target unitFrame.
   unitFrame:ClearAllPoints()
-  unitFrame:SetPoint("BOTTOM", ChopsUIInvViewportBackground, "TOP", 130, 25)
+  unitFrame:SetPoint("BOTTOM", ChopsUIInvViewportBackground, "TOP", 130, 32)
 
   -- Remove debuffs from the target unitFrame.
   unitFrame.Debuffs:Kill()

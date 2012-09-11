@@ -1,11 +1,16 @@
 local T, C, L = unpack(Tukui)
 local viewportHeight = 143
 
-ViewportFrame = CreateFrame("Frame", "ChopsUIInvViewportBackground")
-ViewportFrame:SetFrameStrata("BACKGROUND")
-ViewportFrame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 0, 0)
-ViewportFrame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0)
-ViewportFrame:SetHeight(viewportHeight)
+local frame = CreateFrame("Frame", "ChopsUIInvViewportBackground")
+frame:SetFrameStrata("BACKGROUND")
+frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", 0, 0)
+frame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, 0)
+frame:SetHeight(viewportHeight)
+
+local texture = frame:CreateTexture(nil, "BACKGROUND")
+texture:SetTexture(0, 0, 0)
+texture:SetAllPoints(frame)
+frame.texture = texture
 
 local border = CreateFrame("Frame", "ChopsUIViewportBorder")
 border:SetTemplate()
@@ -26,4 +31,8 @@ WorldFrame:SetWidth(w)
 WorldFrame:SetHeight(h)
 
 WorldFrame:SetPoint("TOP")
-WorldFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, viewportHeight)
+
+-- Some times getting some weird artifacts above the viewport, so make the
+-- viewport less than the full requested height, and cheese it with an
+-- overlaying frame hiding the artifacts.
+WorldFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, viewportHeight - 23)

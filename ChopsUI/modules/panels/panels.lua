@@ -87,3 +87,12 @@ TukuiBar4:SetHeight((T.buttonsize * 2) + (T.buttonspacing * 3))
 
 -- Hide the action bar expander.
 TukuiBar4Button:Hide()
+
+-- Create a background panel for the stance bar.
+local stancePanel = CreateFrame("Frame", "ChopsUIStancePanel", UIParent)
+stancePanel:SetTemplate()
+stancePanel:SetWidth((T.buttonsize * NUM_STANCE_SLOTS) + (T.buttonspacing * (NUM_STANCE_SLOTS + 1)))
+stancePanel:SetHeight((T.buttonsize * 1) + (T.buttonspacing * 2))
+stancePanel:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 215)
+stancePanel:SetFrameLevel(2)
+stancePanel:SetFrameStrata("BACKGROUND")
