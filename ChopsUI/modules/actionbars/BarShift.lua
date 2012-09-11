@@ -26,4 +26,16 @@ frame:SetScript("OnEvent", function(self)
   -- active.
   ChopsUIStancePanel:SetWidth(stanceWidth)
 
+  -- Hide the panel by default, but show it on mouseover.
+  ChopsUIStancePanel:SetAlpha(0)
+  ChopsUIStancePanel:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
+  ChopsUIStancePanel:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
+  for i = 1, NUM_STANCE_SLOTS do
+    local button = _G["StanceButton" .. i]
+    if button:IsVisible() then
+      button:SetScript("OnEnter", function(self) ChopsUIStancePanel:SetAlpha(1) end)
+      button:SetScript("OnLeave", function(self) ChopsUIStancePanel:SetAlpha(0) end)
+    end
+  end
+
 end)

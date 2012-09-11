@@ -6,7 +6,7 @@ local health = frame.Health
 
 -- Reposition the ToT frame.
 frame:ClearAllPoints()
-frame:SetPoint("LEFT", TukuiTarget, "RIGHT", 67, 0)
+frame:SetPoint("LEFT", TukuiTarget, "RIGHT", 80, 0)
 
 -- Change the size of the pet frame.
 frame:Size(129, 57)

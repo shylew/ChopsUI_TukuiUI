@@ -7,6 +7,6 @@ frame:SetScript("OnEvent", function(self)
 
   -- Reposition the player frame.
   TukuiPlayer:ClearAllPoints()
-  TukuiPlayer:SetPoint("BOTTOM", ChopsUIInvViewportBackground, "TOP", -130, 32)
+  TukuiPlayer:SetPoint("BOTTOM", ChopsUIInvViewportBackground, "TOP", -130, -5)
 
 end)
