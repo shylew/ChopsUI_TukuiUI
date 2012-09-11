@@ -19,7 +19,7 @@ function ChopsUI.modules.bigwigs.RepositionAnchor()
 
   frame = _G["BigWigsAnchor"]
   frame:ClearAllPoints()
-  frame:SetPoint("LEFT", UIParent, "LEFT", 40, 0)
+  frame:SetPoint("LEFT", UIParent, "LEFT", 20, 0)
 
 end
 
@@ -28,7 +28,7 @@ function ChopsUI.modules.bigwigs.RepositionEmphasisAnchor()
 
   frame = _G["BigWigsEmphasizeAnchor"]
   frame:ClearAllPoints()
-  frame:SetPoint("BOTTOMLEFT", TukuiChatBackgroundLeft, "TOPLEFT", 27, 100)
+  frame:SetPoint("BOTTOMLEFT", ChopsUIInvViewportBackground, "TOPLEFT", 20, 20)
 
 end
 
