@@ -11,6 +11,7 @@
 	<Script file="locales\korean.lua"/>	
 	<Script file="locales\chinese.lua"/>
 	<Script file="locales\portuguese.lua"/>
+	<Script file="locales\italian.lua"/>
 	<Script file="config\config.lua"/>
 	<Script file="config\profiles.lua"/>
 	<Script file="core\customconfig.lua"/>
@@ -36,6 +37,7 @@
 	<Script file="modules\unitframes\plugins\oUF_WildMushroom\oUF_WildMushroom.lua"/>
 	<Script file="modules\unitframes\plugins\oUF_PVPSpecIcons\oUF_PVPSpecIcons.lua"/>
 	<Script file="modules\unitframes\plugins\oUF_Statue\oUF_Statue.lua"/>
+	<Script file="modules\unitframes\plugins\oUF_HolyPowerBar\oUF_HolyPowerBar.lua"/>
 	<Script file="modules\unitframes\templates\colors.lua"/>
 	<Script file="core\video.lua"/>
 	<Script file="core\deprecated.lua"/>

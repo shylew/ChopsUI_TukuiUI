@@ -562,14 +562,13 @@ local function Shared(self, unit)
 					bars:SetBackdropBorderColor(0,0,0,0)
 					
 					for i = 1, 5 do					
-						bars[i]=CreateFrame("StatusBar", self:GetName().."_Shard"..i, bars)
+						bars[i]=CreateFrame("StatusBar", self:GetName().."_HolyPower"..i, bars)
 						bars[i]:Height(8)					
 						bars[i]:SetStatusBarTexture(normTex)
 						bars[i]:GetStatusBarTexture():SetHorizTile(false)
+						bars[i]:SetStatusBarColor(228/255,225/255,16/255)
 
 						bars[i].bg = bars[i]:CreateTexture(nil, "BORDER")
-
-						bars[i]:SetStatusBarColor(228/255,225/255,16/255)
 						bars[i].bg:SetTexture(228/255,225/255,16/255)
 						
 						if i == 1 then
@@ -592,10 +591,8 @@ local function Shared(self, unit)
 						
 						bars[i].bg:SetTexture(normTex)					
 						bars[i].bg:SetAlpha(.15)
-						bars[i].width = bars[i]:GetWidth()
 					end
 					
-					bars.Override = T.UpdateHoly
 					self.HolyPower = bars
 				end
 
@@ -641,6 +638,33 @@ local function Shared(self, unit)
 					end
 
 					self.Runes = Runes
+					
+					-- statue bar
+					local bar = CreateFrame("StatusBar", "TukuiStatueBar", self)
+					bar:SetWidth((T.lowversion and 186) or 250)
+					bar:SetHeight(8)
+					bar:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 10)
+					bar:SetStatusBarTexture(C.media.normTex)
+					bar.bg = bar:CreateTexture(nil, 'ARTWORK')
+					
+					bar.background = CreateFrame("Frame", "TukuiStatue", bar)
+					bar.background:SetAllPoints()
+					bar.background:SetFrameLevel(bar:GetFrameLevel() - 1)
+					bar.background:SetBackdrop(backdrop)
+					bar.background:SetBackdropColor(0, 0, 0)
+					bar.background:SetBackdropBorderColor(0,0,0)
+					
+					bar:SetScript("OnShow", function(self) 
+						local f = self:GetParent()
+						f.shadow:Point("TOPLEFT", -4, 22)
+					end)
+					
+					bar:SetScript("OnHide", function(self)
+						local f = self:GetParent()
+						f.shadow:Point("TOPLEFT", -4, 12)
+					end)
+
+					self.Statue = bar
 				end
 				
 				if T.myclass == "WARRIOR" then

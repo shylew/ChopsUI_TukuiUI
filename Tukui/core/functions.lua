@@ -830,46 +830,6 @@ T.Phasing = function(self, event)
 	-- TO BE COMPLETED
 end
 
--- update holy charge display on paladin
-T.UpdateHoly = function(self, event, unit, powerType)
-	if(self.unit ~= unit or (powerType and powerType ~= 'HOLY_POWER')) then return end
-	local num = UnitPower(unit, SPELL_POWER_HOLY_POWER)
-	local numMax = UnitPowerMax('player', SPELL_POWER_HOLY_POWER)
-	local barWidth = self.HolyPower:GetWidth()
-	local spacing = select(4, self.HolyPower[4]:GetPoint())
-	local lastBar = 0
-	
-	if numMax ~= self.HolyPower.maxPower then
-		if numMax == 3 then
-			self.HolyPower[4]:Hide()
-			self.HolyPower[5]:Hide()
-			for i = 1, 3 do
-				if i ~= 3 then
-					self.HolyPower[i]:SetWidth(barWidth / 3)
-					lastBar = lastBar + (barWidth / 3 + spacing)
-				else
-					self.HolyPower[i]:SetWidth(barWidth - lastBar)
-				end
-			end
-		else
-			self.HolyPower[4]:Show()
-			self.HolyPower[5]:Show()
-			for i = 1, 5 do
-				self.HolyPower[i]:SetWidth(self.HolyPower[i].width)
-			end
-		end
-		self.HolyPower.maxPower = numMax
-	end
-
-	for i = 1, 5 do
-		if(i <= num) then
-			self.HolyPower[i]:SetAlpha(1)
-		else
-			self.HolyPower[i]:SetAlpha(.2)
-		end
-	end
-end
-
 -- druid eclipse bar direction :P
 T.EclipseDirection = function(self)
 	if ( GetEclipseDirection() == "sun" ) then
@@ -1086,13 +1046,13 @@ T.SetGridGroupRole = function(self, role)
 	local role = UnitGroupRolesAssigned(self.unit)
 	
 	if role == "TANK" then
-		lfdrole:SetTexture(0,0,1,.3)
+		lfdrole:SetTexture(67/255, 110/255, 238/255,.3)
 		lfdrole:Show()
 	elseif role == "HEALER" then
-		lfdrole:SetTexture(.3,  1, .3, .3)
+		lfdrole:SetTexture(130/255,  255/255, 130/255, .15)
 		lfdrole:Show()
 	elseif role == "DAMAGER" then
-		lfdrole:SetTexture(1, .3, .3, .3)
+		lfdrole:SetTexture(176/255, 23/255, 31/255, .27)
 		lfdrole:Show()
 	else
 		lfdrole:Hide()
