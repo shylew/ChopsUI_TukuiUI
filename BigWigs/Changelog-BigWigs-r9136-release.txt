@@ -1,9 +1,150 @@
 ------------------------------------------------------------------------
-r9127 | funkydude | 2012-09-03 17:02:25 +0000 (Mon, 03 Sep 2012) | 1 line
+r9136 | funkydude | 2012-09-12 14:59:51 +0000 (Wed, 12 Sep 2012) | 1 line
 Changed paths:
-   A /tags/r9127-release (from /trunk:9126)
+   A /tags/r9136-release (from /trunk:9135)
 
-Tagging as r9127-release
+Tagging as r9136-release
+------------------------------------------------------------------------
+r9135 | funkydude | 2012-09-12 14:56:23 +0000 (Wed, 12 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+
+more itIT
+------------------------------------------------------------------------
+r9134 | funkydude | 2012-09-12 12:49:41 +0000 (Wed, 12 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/itIT.lua
+   M /trunk/Locales/common.itIT.lua
+   M /trunk/Locales/itIT.lua
+   M /trunk/Plugins/Locales/itIT.lua
+
+add itIT
+------------------------------------------------------------------------
+r9133 | funkydude | 2012-09-12 12:40:12 +0000 (Wed, 12 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Core/Core.lua
+   M /trunk/Loader.lua
+   M /trunk/Plugins/Broadcast.lua
+
+Fix not loading zones when joining LFR solo.
+------------------------------------------------------------------------
+r9132 | funkydude | 2012-09-11 12:51:02 +0000 (Tue, 11 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Baradin/Argaloth.lua
+   M /trunk/Baradin/BigWigs_Baradin.toc
+   M /trunk/Baradin/Locales/deDE.lua
+   M /trunk/Baradin/Locales/esES.lua
+   M /trunk/Baradin/Locales/frFR.lua
+   A /trunk/Baradin/Locales/itIT.lua
+   M /trunk/Baradin/Locales/koKR.lua
+   M /trunk/Baradin/Locales/ptBR.lua
+   M /trunk/Baradin/Locales/ruRU.lua
+   M /trunk/Baradin/Locales/zhCN.lua
+   M /trunk/Baradin/Locales/zhTW.lua
+   M /trunk/Baradin/Occuthar.lua
+   M /trunk/Baradin/locales.xml
+   M /trunk/Baradin/modules.xml
+   M /trunk/Bastion/Locales/deDE.lua
+   M /trunk/Bastion/Locales/esES.lua
+   A /trunk/Bastion/Locales/itIT.lua
+   M /trunk/Bastion/Locales/ptBR.lua
+   M /trunk/Bastion/Locales/ruRU.lua
+   M /trunk/Bastion/locales.xml
+   M /trunk/Bastion/modules.xml
+   M /trunk/Blackwing/Locales/deDE.lua
+   M /trunk/Blackwing/Locales/esES.lua
+   A /trunk/Blackwing/Locales/itIT.lua
+   M /trunk/Blackwing/Locales/ptBR.lua
+   M /trunk/Blackwing/Locales/ruRU.lua
+   M /trunk/Blackwing/Omnotron.lua
+   M /trunk/Blackwing/locales.xml
+   M /trunk/Core/libs.xml
+   A /trunk/DragonSoul/Locales/itIT.lua
+   M /trunk/DragonSoul/Locales/ptBR.lua
+   M /trunk/DragonSoul/locales.xml
+   M /trunk/EndlessSpring/Locales/esES.lua
+   A /trunk/EndlessSpring/Locales/itIT.lua
+   M /trunk/EndlessSpring/locales.xml
+   A /trunk/Firelands/Locales/itIT.lua
+   M /trunk/Firelands/Locales/ptBR.lua
+   M /trunk/Firelands/locales.xml
+   A /trunk/HeartOfFear/Locales/itIT.lua
+   M /trunk/HeartOfFear/locales.xml
+   A /trunk/Locales/common.itIT.lua
+   M /trunk/Locales/common.ptBR.lua
+   A /trunk/Locales/itIT.lua
+   M /trunk/Locales/ptBR.lua
+   A /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/locales.xml
+   A /trunk/Pandaria/Locales/itIT.lua
+   M /trunk/Pandaria/locales.xml
+   A /trunk/Plugins/Locales/itIT.lua
+   M /trunk/Plugins/Locales/ptBR.lua
+   M /trunk/Plugins/locales.xml
+   M /trunk/Throne/Locales/deDE.lua
+   A /trunk/Throne/Locales/itIT.lua
+   M /trunk/Throne/Locales/ptBR.lua
+   M /trunk/Throne/Locales/ruRU.lua
+   M /trunk/Throne/locales.xml
+   M /trunk/globals.sh
+   M /trunk/locales.xml
+
+Add itIT files
+------------------------------------------------------------------------
+r9131 | nebula169 | 2012-09-09 21:33:23 +0000 (Sun, 09 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Firelands/Alysrazor: update firestorm bar label
+------------------------------------------------------------------------
+r9130 | funkydude | 2012-09-08 12:42:11 +0000 (Sat, 08 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Core/Constants.lua
+
+Core/Constants: fix green config icons
+------------------------------------------------------------------------
+r9129 | Maat | 2012-09-04 08:42:56 +0000 (Tue, 04 Sep 2012) | 23 lines
+Changed paths:
+   M /trunk/EndlessSpring/Tsulong.lua
+   M /trunk/HeartOfFear/Meljarak.lua
+   M /trunk/HeartOfFear/Tayak.lua
+   M /trunk/HeartOfFear/Unsok.lua
+   M /trunk/Mogushan/Feng.lua
+   M /trunk/Mogushan/Garajal.lua
+   M /trunk/Mogushan/TheSpiritKings.lua
+   M /trunk/Mogushan/TheStoneGuard.lua
+
+TheStoneGuard.lua:
+   Add Amethyst Pool
+   some cleanup
+TheSpiritKings.lua:
+   Add heroic abilities
+Garajal.lua:
+   Add Frenzy
+Feng.lua:
+   Add Wildfire under you
+Unsok.lua:
+   Remove boss explosion bar on start of phase 3
+Tayak.lua:
+   Add Blade Tempest
+   Add phase 2 warning
+Meljarak.lua:
+   Add Resin Pool Damage
+   Add Mending
+   Add Impaling Spear
+Tsulong.lua:
+   Add Dark of Night
+
+
+
+------------------------------------------------------------------------
+r9128 | funkydude | 2012-09-03 20:10:49 +0000 (Mon, 03 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Throne/Conclave.lua
+
+Throne/Conclave: fix another merged spell id
 ------------------------------------------------------------------------
 r9126 | funkydude | 2012-09-03 16:51:17 +0000 (Mon, 03 Sep 2012) | 1 line
 Changed paths:
@@ -224,91 +365,4 @@ Feng:
    Add warning for Shroud of Reversal
    Add Nullification Barrier duration bar
    Fix Arcane Resonance marking
-------------------------------------------------------------------------
-r9101 | funkydude | 2012-08-10 22:34:09 +0000 (Fri, 10 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/Plugins/BigWigs_Plugins.toc
-
-add the core as a dependency for plugins.
-------------------------------------------------------------------------
-r9100 | pettigrow | 2012-08-10 18:23:59 +0000 (Fri, 10 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/EndlessSpring/BigWigs_EndlessSpring.toc
-   M /trunk/HeartOfFear/BigWigs_HeartOfFear.toc
-   M /trunk/Mogushan/BigWigs_Mogushan.toc
-
-frFR Update
-------------------------------------------------------------------------
-r9099 | Maat | 2012-08-10 15:58:52 +0000 (Fri, 10 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/Plugins/Proximity.lua
-
-remove duplicate entry of Heart of Fear map data
-------------------------------------------------------------------------
-r9098 | Maat | 2012-08-10 15:45:48 +0000 (Fri, 10 Aug 2012) | 3 lines
-Changed paths:
-   M /trunk/EndlessSpring/LeiShi.lua
-   M /trunk/EndlessSpring/Protector.lua
-   M /trunk/EndlessSpring/ShaOfFear.lua
-   M /trunk/EndlessSpring/Tsulong.lua
-   M /trunk/HeartOfFear/Garalon.lua
-   M /trunk/HeartOfFear/Meljarak.lua
-   M /trunk/HeartOfFear/Shekzeer.lua
-   M /trunk/HeartOfFear/Tayak.lua
-   M /trunk/HeartOfFear/Unsok.lua
-   M /trunk/HeartOfFear/Zorlok.lua
-   M /trunk/Mogushan/Elegon.lua
-   M /trunk/Mogushan/Feng.lua
-   M /trunk/Mogushan/Garajal.lua
-   M /trunk/Mogushan/TheSpiritKings.lua
-   M /trunk/Mogushan/TheStoneGuard.lua
-   M /trunk/Mogushan/WillOfTheEmperor.lua
-   M /trunk/Plugins/Proximity.lua
-
-Populate all of the mop modules (except world bosses) (Everything is rudimentary).
-Add map data for mop raids.
-
-------------------------------------------------------------------------
-r9096 | funkydude | 2012-08-08 13:29:01 +0000 (Wed, 08 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/BigWigs.toc
-
-bump version
-------------------------------------------------------------------------
-r9095 | funkydude | 2012-08-03 19:38:31 +0000 (Fri, 03 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/Options/Options.lua
-
-Options: temp names for MoP modules
-------------------------------------------------------------------------
-r9094 | funkydude | 2012-08-03 19:21:26 +0000 (Fri, 03 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/.pkgmeta
-
-fix unpacking for endless spring
-------------------------------------------------------------------------
-r9093 | funkydude | 2012-08-03 19:09:15 +0000 (Fri, 03 Aug 2012) | 1 line
-Changed paths:
-   A /trunk/EndlessSpring/BigWigs_EndlessSpring.toc
-   M /trunk/EndlessSpring/modules.xml
-   A /trunk/HeartOfFear/BigWigs_HeartOfFear.toc
-   M /trunk/HeartOfFear/modules.xml
-   A /trunk/Mogushan/BigWigs_Mogushan.toc
-   M /trunk/Mogushan/modules.xml
-
-add toc files
-------------------------------------------------------------------------
-r9092 | funkydude | 2012-08-03 18:35:11 +0000 (Fri, 03 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/.pkgmeta
-   M /trunk/modules.xml
-   D /trunk/temp.lua
-
-remove MoP force load hack & make MoP modules LoD again
-------------------------------------------------------------------------
-r9091 | funkydude | 2012-08-01 16:05:05 +0000 (Wed, 01 Aug 2012) | 1 line
-Changed paths:
-   M /trunk/Mogushan/Garajal.lua
-
-Mogushan/Garajal: final change to syncing
 ------------------------------------------------------------------------
