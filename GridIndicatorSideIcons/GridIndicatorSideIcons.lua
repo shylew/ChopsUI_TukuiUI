@@ -421,7 +421,7 @@ function GridIndicatorSideIcons.CreateIndicator(f, indicator)
 		f.icontopBG:SetHeight(wh + (2*borderSize))
 		f.icontopBG:SetPoint("TOP", f, "TOP", xoffsetTB, yoffsetTB)
 		f.icontopBG:SetBackdrop( {
-					edgeFile = "Interface\\Addons\\Grid\\white16x16", edgeSize = 2,
+					edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 2,
 					insets = {left = 2, right = 2, top = 2, bottom = 2},
 					})
 		f.icontopBG:SetBackdropBorderColor(1, 1, 1, 0)
@@ -472,7 +472,7 @@ function GridIndicatorSideIcons.CreateIndicator(f, indicator)
 		f.iconbottomBG:SetHeight(wh + (2*borderSize))
 		f.iconbottomBG:SetPoint("BOTTOM", f, "BOTTOM", xoffsetTB, (yoffsetTB*-1))
 		f.iconbottomBG:SetBackdrop( {
-					edgeFile = "Interface\\Addons\\Grid\\white16x16", edgeSize = 2,
+					edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 2,
 					insets = {left = 2, right = 2, top = 2, bottom = 2},
 					})
 		f.iconbottomBG:SetBackdropBorderColor(1, 1, 1, 0)
@@ -523,7 +523,7 @@ function GridIndicatorSideIcons.CreateIndicator(f, indicator)
 		f.iconleftBG:SetHeight(wh + (2*borderSize))
 		f.iconleftBG:SetPoint("LEFT", f, "LEFT", (xoffsetLR*-1), yoffsetLR)
 		f.iconleftBG:SetBackdrop( {
-					edgeFile = "Interface\\Addons\\Grid\\white16x16", edgeSize = 2,
+					edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 2,
 					insets = {left = 2, right = 2, top = 2, bottom = 2},
 					})
 		f.iconleftBG:SetBackdropBorderColor(1, 1, 1, 0)
@@ -574,7 +574,7 @@ function GridIndicatorSideIcons.CreateIndicator(f, indicator)
 		f.iconrightBG:SetHeight(wh + (2*borderSize))
 		f.iconrightBG:SetPoint("RIGHT", f, "RIGHT", xoffsetLR, yoffsetLR)
 		f.iconrightBG:SetBackdrop( {
-					edgeFile = "Interface\\Addons\\Grid\\white16x16", edgeSize = 2,
+					edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 2,
 					insets = {left = 2, right = 2, top = 2, bottom = 2},
 					})
 		f.iconrightBG:SetBackdropBorderColor(1, 1, 1, 0)

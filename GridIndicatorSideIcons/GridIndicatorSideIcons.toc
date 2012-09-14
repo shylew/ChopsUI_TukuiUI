@@ -5,9 +5,9 @@
 ## Notes-deDE: Erweitert Grid um vier Symbolindikatoren (oben, unten, links und rechts).
 ## Notes-zhTW: [Grid] 在 Grid 框架中加入4個圖標提示（上部、下部、左部與右部）。
 ## Notes-zhCN: [Grid] 在 Grid 框体中加入4个图标提示（上部、下部、左部和右部）。
-## Version: 50001-1
+## Version: 50001-2
 ## Dependencies: Grid
-## X-Curse-Packaged-Version: 50001-1
+## X-Curse-Packaged-Version: 50001-2
 ## X-Curse-Project-Name: GridIndicatorSideIcons
 ## X-Curse-Project-ID: grid-indicator-side-icons
 ## X-Curse-Repository-ID: wow/grid-indicator-side-icons/mainline
