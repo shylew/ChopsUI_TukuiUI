@@ -30,6 +30,7 @@
   <Script file="modules\unitframes\tot.lua" />
   <Script file="modules\unitframes\maintank.lua" />
   <Script file="modules\chopsui\init.lua" />
+  <Script file="modules\chopsui\error.lua" />
   <Script file="modules\chopsui\bigwigs.lua" />
   <Script file="modules\chopsui\grid.lua" />
   <Script file="modules\chopsui\msbt.lua" />
