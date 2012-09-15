@@ -11,6 +11,7 @@ local filtered_errors = {
   [ERR_NO_ATTACK_TARGET] = true,
   [ERR_ABILITY_COOLDOWN] = true,
   [ERR_CLIENT_LOCKED_OUT] = true,
+  [ERR_BADATTACKPOS] = true,
   [SPELL_FAILED_SPELL_IN_PROGRESS] = true,
   ["Not enough Chi"] = true -- FIXME: Find the translation key for this one
 }
