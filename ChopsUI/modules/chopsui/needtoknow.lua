@@ -152,6 +152,7 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
       ChopsUI.modules.needtoknow.PlayerBuff(2, "Tiger Power", COLOR_CODES.green, true)
       ChopsUI.modules.needtoknow.PlayerBuff(3, "Sparring", COLOR_CODES.orange, true)
       ChopsUI.modules.needtoknow.PlayerBuff(4, "Fortifying Brew", COLOR_CODES.yellow, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Energizing Brew", COLOR_CODES.greenlight, true)
     end
 
   elseif T.myclass == "PALADIN" then
