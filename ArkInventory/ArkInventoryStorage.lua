@@ -1551,7 +1551,7 @@ function ArkInventory.ScanBag( blizzard_id )
 			i.q = ArkInventory.ObjectInfoQuality( h )
 			i.new = new
 			
-			i.cat = ArkInventory.ItemCategoryGet( i )
+			i.cat = nil --ArkInventory.ItemCategoryGet( i )
 			
 			--ArkInventory.Output( "h=", h, ", count[", i.count, "], q[", i.q, "]" )
 			
