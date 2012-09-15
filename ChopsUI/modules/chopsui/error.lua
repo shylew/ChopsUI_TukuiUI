@@ -7,7 +7,10 @@ local filtered_errors = {
   [ERR_OUT_OF_FOCUS] = true,
   [ERR_OUT_OF_MANA] = true,
   [ERR_OUT_OF_RAGE] = true,
-  [ERR_OUT_OF_RANGE] = true
+  [ERR_OUT_OF_RANGE] = true,
+  [ERR_NO_ATTACK_TARGET] = true,
+  [ERR_CLIENT_LOCKED_OUT] = true,
+  [SPELL_FAILED_SPELL_IN_PROGRESS] = true
 }
 
 local frame = CreateFrame("Frame")
