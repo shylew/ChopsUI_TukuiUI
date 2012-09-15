@@ -1,6 +1,35 @@
 local T, C, L = unpack(Tukui)
 ChopsUI.RegisterModule("needtoknow", NeedToKnow)
 
+-- Easy access color codes.
+local COLOR_CODES = {
+  ["red"] = { 0.69, 0.0, 0.0 }, -- af0000
+  ["reddark"] = { 0.47, 0.0, 0.0 }, -- 780000
+  ["redlight"] = { 0.98, 0.0, 0.0 }, -- fb0000
+  ["purple"] = { 0.56, 0.0, 0.69 }, -- 9000af
+  ["purpledark"] = { 0.3, 0.0, 0.47 }, -- 4c0078
+  ["purplelight"] = { 0.79, 0.0, 0.98 }, -- c900fb
+  ["blue"] = { 0.0, 0.29, 0.69 }, -- 004aaf
+  ["bluedark"] = { 0.0, 0.15, 0.47 }, -- 002578
+  ["bluelight"] = { 0.0, 0.37, 0.98 }, -- 005ffb
+  ["teal"] = { 0.0, 0.69, 0.63 }, -- 00afa1
+  ["tealdark"] = { 0.0, 0.47, 0.42 }, -- 00786b
+  ["teallight"] = { 0.0, 0.98, 0.9 }, -- 00fbe6
+  ["green"] = { 0.0, 0.69, 0.26 }, -- 00af42
+  ["greendark"] = { 0.05, 0.47, 0.0 }, -- 0e7800
+  ["greenlight"] = { 0.02, 0.98, 0.0 }, -- 06fb00
+  ["lime"] = { 0.5, 0.69, 0.0 }, -- 80af00
+  ["limedark"] = { 0.35, 0.47, 0.0 }, -- 587800
+  ["limelight"] = { 0.65, 0.98, 0.0 }, -- a5fb00
+  ["yellow"] = { 0.69, 0.66, 0.0 }, -- afa900
+  ["yellowdark"] = { 0.47, 0.43, 0.0 }, -- 786e00
+  ["yellowlight"] = { 0.97, 0.98, 0.0 }, -- f8fb00
+  ["orange"] = { 0.69, 0.37, 0.0 }, -- af5f00
+  ["orangedark"] = { 0.47, 0.3, 0.0 }, -- 784c00
+  ["orangelight"] = { 0.98, 0.58, 0.0 }, -- fb9400
+  ["white"] = { 1, 1, 1 }, -- ffffff
+}
+
 -- Override the Update event in NeedToKnow to assign the proper buffs/debuffs
 -- and position the frames.
 NeedToKnow.Update_ = NeedToKnow.Update
@@ -46,16 +75,16 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
   if T.myclass == "DEATHKNIGHT" then
 
     if T.Spec == "BLOOD" then
-      ChopsUI.modules.needtoknow.PlayerBuff(3, "Icebound Fortitude", { 0.01, 0.56, 0.6 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(4, "Vampiric Blood", { 0.74, 0, 0.02 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(5, "Bone Shield", { 0.04, 0.46, 0.98 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(6, "Blade Barrier", { 0.6, 0, 0.07 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Icebound Fortitude", COLOR_CODES.blue, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Vampiric Blood", COLOR_CODES.red, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Bone Shield", COLOR_CODES.green, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Blade Barrier", COLOR_CODES.purple, true)
     elseif T.Spec == "FROST" then
-      ChopsUI.modules.needtoknow.PlayerBuff(5, "Pillar of Frost", { 0, 1, 0.91 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(6, "Killing Machine", { 0, 0.68, 1 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Pillar of Frost", COLOR_CODES.bluelight, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Killing Machine", COLOR_CODES.blue, true)
     elseif T.Spec == "UNHOLY" then
-      ChopsUI.modules.needtoknow.PlayerBuff(5, "Icebound Fortitude", { 0.01, 0.56, 0.6 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(6, "Shadow Infusion, Dark Transformation", { 0, 0.6, 0.03 }, true, "pet")
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Icebound Fortitude", COLOR_CODES.blue, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Shadow Infusion, Dark Transformation", COLOR_CODES.purple, true, "pet")
     end
 
   elseif T.myclass == "DRUID" then
@@ -114,16 +143,27 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
       ChopsUI.modules.needtoknow.PlayerBuff(6, "Brain Freeze", { 0.87, 0.48, 0 }, true)
     end
 
+  elseif T.myclass == "MONK" then
+
+    if T.Spec == "BREWMASTER" then
+    elseif T.Spec == "MISTWEAVER" then
+    elseif T.Spec == "WINDWALKER" then
+      ChopsUI.modules.needtoknow.PlayerBuff(1, "Tiger Strikes", COLOR_CODES.red, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Tiger Power", COLOR_CODES.green, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Sparring", COLOR_CODES.orange, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Fortifying Brew", COLOR_CODES.yellow, true)
+    end
+
   elseif T.myclass == "PALADIN" then
 
-    ChopsUI.modules.needtoknow.PlayerBuff(1, "Divine Shield, Divine Protection", { 0.78, 0, 0.06 }, true)
-    ChopsUI.modules.needtoknow.PlayerBuff(5, "Avenging Wrath", { 0.91, 0.85, 0 }, true)
-    ChopsUI.modules.needtoknow.PlayerBuff(6, "Judgements of the Pure", { 0.6, 0.44, 0 }, true)
+    ChopsUI.modules.needtoknow.PlayerBuff(1, "Divine Shield, Divine Protection", COLOR_CODES.red, true)
+    ChopsUI.modules.needtoknow.PlayerBuff(5, "Avenging Wrath", COLOR_CODES.yellow, true)
+    ChopsUI.modules.needtoknow.PlayerBuff(6, "Judgements of the Pure", COLOR_CODES.yellowlight, true)
     
     if T.Spec == "HOLY" then
-      ChopsUI.modules.needtoknow.PlayerBuff(2, "Conviction", { 0.6, 0.23, 0.09 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(3, "Divine Plea", { 0.74, 0.59, 0 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(4, "Divine Favor", { 0.86, 0.86, 0.86 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Conviction", COLOR_CODES.orangedark, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Divine Plea", COLOR_CODES.orange, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Divine Favor", COLOR_CODES.white, true)
     elseif T.Spec == "PROTECTION" then
       ChopsUI.modules.needtoknow.PlayerBuff(2, "Guardian of Ancient Kings", { 1, 0.30, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(3, "Ardent Defender", { 0.6, 0.44, 0 }, true)
