@@ -1,6 +1,6 @@
 -- (c) 2006-2012, all rights reserved.
--- $Revision: 975 $
--- $Date: 2012-09-15 11:48:27 +1000 (Sat, 15 Sep 2012) $
+-- $Revision: 977 $
+-- $Date: 2012-09-16 19:44:15 +1000 (Sun, 16 Sep 2012) $
 
 
 ArkInventory = LibStub( "AceAddon-3.0" ):NewAddon( "ArkInventory", "AceConsole-3.0", "AceHook-3.0", "AceEvent-3.0", "AceBucket-3.0" )
@@ -32,8 +32,8 @@ ArkInventory.Const = { -- constants
 	
 	Program = {
 		Name = "ArkInventory",
-		Version = 30308,
-		UIVersion = "3.3.8",
+		Version = 30309,
+		UIVersion = "3.3.9",
 		--Beta = "BETA 11-11-01-50",
 	},
 	
@@ -3201,7 +3201,7 @@ function ArkInventory.ItemCategoryGetDefaultActual( i )
 	end
 	
 	-- everything else
-	local class, _, itemName, _, itemRarity, _, _, itemType, itemSubType, _, itemEquipLoc = ArkInventory.ObjectInfo( i.h )
+	local class, _, itemName, _, itemRarity, _, _, itemType, itemSubType, _, equipSlot = ArkInventory.ObjectInfo( i.h )
 	
 	-- battle pets
 	if class == "battlepet" then
@@ -3231,12 +3231,12 @@ function ArkInventory.ItemCategoryGetDefaultActual( i )
 	end
 	
 	-- bags / containers
-	if itemEquipLoc == "INVTYPE_BAG" or ArkInventory.PT_ItemInSets( i.h, ArkInventory.Localise["PT_CATEGORY_CONTAINER"] ) then
+	if equipSlot == "INVTYPE_BAG" or ArkInventory.PT_ItemInSets( i.h, ArkInventory.Localise["PT_CATEGORY_CONTAINER"] ) then	
 		return ArkInventory.CategoryGetSystemID( "SYSTEM_CONTAINER" )
 	end
 	
 	-- equipment
-	if itemType == ArkInventory.Localise["WOW_AH_WEAPON"] or itemType == ArkInventory.Localise["WOW_AH_ARMOR"] or itemEquipLoc ~= "" then
+	if itemType == ArkInventory.Localise["WOW_AH_WEAPON"] or itemType == ArkInventory.Localise["WOW_AH_ARMOR"] or equipSlot ~= "" then
 		if i.sb then
 			return ArkInventory.CategoryGetSystemID( "SYSTEM_EQUIPMENT_SOULBOUND" )
 		else
@@ -6138,8 +6138,8 @@ function ArkInventory.Frame_Item_Update_Texture( frame )
 		
 		-- item is readable?
 		if loc_id ~= ArkInventory.Const.Location.Vault then
-			if ArkInventory.Global.Location[loc_id].isOffline == false then
-				frame.readable = i.readable
+			if not ArkInventory.Global.Location[loc_id].isOffline then
+				frame.readable = i.r
 			end
 		else
 			frame.readable = nil
@@ -6446,7 +6446,7 @@ function ArkInventory.Frame_Item_Update_Empty( frame )
 	local i = ArkInventory.Frame_Item_GetDB( frame )
 	
 	if i and not i.h then
-	
+		
 		local bt = cp.location[loc_id].bag[bag_id].type
 	
 		-- slot background
@@ -6468,7 +6468,6 @@ function ArkInventory.Frame_Item_Update_Empty( frame )
 			
 			-- solid colour
 			local colour = ArkInventory.LocationOptionGet( loc_id, "slot", "data", bt, "colour" )
-			--ArkInventory.SetItemButtonTexture( frame, [[Interface\Buttons\WHITE8X8]], colour.r * 0.25, colour.g * 0.25, colour.b * 0.25 )
 			ArkInventory.SetItemButtonTexture( frame, [[Interface\Buttons\WHITE8X8]], colour.r, colour.g, colour.b )
 			
 		end
@@ -6662,7 +6661,6 @@ function ArkInventory.Frame_Item_Update_Cooldown( frame, arg1 )
 		assert( obj, string.format( "xml element '%s' is missing the sub element %s", framename, obj_name ) )
 		
 		if ArkInventory.Global.Location[loc_id].isOffline then
-			SetItemButtonTextureVertexColor( frame, 1, 1, 1 )
 			obj:Hide( )
 			return
 		end
@@ -6702,13 +6700,13 @@ function ArkInventory.Frame_Item_Update_Lock( frame )
 	
 	if i and i.h then
 		
-		local locked, readable, quality
+		local locked
 		
 		if loc_id == ArkInventory.Const.Location.Vault then
 			locked = select( 3, GetGuildBankItemInfo( i.bag_id, i.slot_id ) )
 		else
 			local blizzard_id = ArkInventory.BagID_Blizzard( loc_id, i.bag_id )
-			locked, quality, readable = select( 3, GetContainerItemInfo( blizzard_id, i.slot_id ) )
+			locked = select( 3, GetContainerItemInfo( blizzard_id, i.slot_id ) )
 		end
 		
 		
@@ -6726,12 +6724,10 @@ function ArkInventory.Frame_Item_Update_Lock( frame )
 		ArkInventory.SetItemButtonDesaturate( frame, locked, r, g, b )
 		
 		frame.locked = locked
-		frame.readable = readable
 		
 	else
 		
 		frame.locked = false
-		frame.readable = false
 		
 	end
 
