@@ -12,18 +12,9 @@ frame:SetScript("OnEvent", function(self)
     if i == 1 then
       button:SetPoint("TOPLEFT", TukuiBar1, T.buttonspacing, -T.buttonspacing)
     elseif i == 7 then
-      --button:Hide()
       button:SetPoint("BOTTOMLEFT", TukuiBar1, T.buttonspacing, T.buttonspacing)
     else
-      --button:Hide()
       button:SetPoint("LEFT", button2, "RIGHT", T.buttonspacing, 0)
     end
-    --if i == 1 then
-    --  button:SetPoint("TOPLEFT", TukuiBar1, T.buttonspacing, T.buttonspacing)
-    --elseif i == 7 then
-    --  button:SetPoint("TOPLEFT", TukuiBar1, T.buttonspacing, -T.buttonspacing)
-    --else
-    --  button:SetPoint("LEFT", button2, "RIGHT", T.buttonspacing, 0)
-    --end
   end
 end)
