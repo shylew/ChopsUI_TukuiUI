@@ -122,12 +122,14 @@ function WoWPro.Dailies:NextStep(k, skip)
 	if WoWPro.ach[k] then
 		local achnum, achitem = string.split(";",WoWPro.ach[k])
 		local count = GetAchievementNumCriteria(achnum)
-		if count == 0 then 
+		if achitem == nil then 
 			local IDNumber, Name, Points, Completed, Month, Day, Year, Description, Flags, Image, RewardText, isGuildAch = GetAchievementInfo(achnum) 
 			if Completed then skip=true WoWProCharDB.Guide[GID].skipped[k] = true end
-		else 
+		elseif achitem then
 			local description, type, completed, quantity, requiredQuantity, characterName, flags, assetID, quantityString, criteriaID = GetAchievementCriteriaInfo(achnum, achitem) 
 			if completed then skip=true WoWProCharDB.Guide[GID].skipped[k] = true end
+		else
+		    WoWPro:Print("Malformed Achievement tag on step %d: Ach [%s] AchCount %d",k,WoWPro.ach[k],count)
 		end 
 	end
 
@@ -234,10 +236,6 @@ function WoWPro.Dailies:LoadGuide()
 	WoWPro:dbp(string.format("Running: WoWPro.Dailies:LoadGuide(%s)",WoWProDB.char.currentguide))
 	local GID = WoWProDB.char.currentguide
 
-	-- Server query for completed quests --
-	WoWPro.Dailies.DailiesReset = true
-    WoWPro.Dailies:CheckDailiesReset()
- 	WoWPro.QueryQuestsCompleted()
  	 
 	-- Parsing quests --
 	local sequence = WoWPro.Guides[GID].sequence
@@ -265,6 +263,16 @@ function WoWPro.Dailies:LoadGuide()
 			else
 				QID = nil
 			end
+		
+		    -- Daily Quest Query, always ask the silly client
+		    if WoWPro:IsQuestFlaggedCompleted(QID,true) then
+			    WoWProCharDB.Guide[GID].completion[i] = true
+			    WoWProCharDB.completedQIDs[QID] = true
+			else
+			    WoWProCharDB.Guide[GID].completion[i] = false
+			    WoWProCharDB.completedQIDs[QID] = false
+			end
+
 		
 			-- Quest Accepts --
 			if not completion and action == "A" then 

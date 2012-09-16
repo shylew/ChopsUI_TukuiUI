@@ -1,0 +1,163 @@
+------------------------------------------------------------------------
+r360 | arkayenro | 2012-09-16 09:51:38 +0000 (Sun, 16 Sep 2012) | 5 lines
+Changed paths:
+   A /tags/3.03.09 (from /trunk:359)
+
+*3.03.09 (16-SEP-2012)*
+ * fixed - issue with empty bag slot custom colour reverting to grey when displayed offline
+ * fixed - issue with soulbound status, item quality and default category assignment during scan
+ * note - all saved data has been erased, please login to each character to update its data
+
+------------------------------------------------------------------------
+r359 | arkayenro | 2012-09-16 09:46:24 +0000 (Sun, 16 Sep 2012) | 5 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventoryRestack.lua
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/ArkInventoryUpgrades.lua
+   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.lua
+   M /trunk/ReadMe.txt
+   M /trunk/VersionHistory.txt
+
+*3.03.09 (16-SEP-2012)*
+ * fixed - issue with empty bag slot custom colour reverting to grey when displayed offline
+ * fixed - issue with soulbound status, item quality and default category assignment during scan
+ * note - all saved data has been erased, please login to each character to update its data
+
+------------------------------------------------------------------------
+r357 | arkayenro | 2012-09-15 01:51:37 +0000 (Sat, 15 Sep 2012) | 3 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventory.xml
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/Modules/ArkInventoryRulesExample/ArkInventoryRulesExample.toc
+   M /trunk/VersionHistory.txt
+
+*3.03.08 (15-SEP-2012)*
+ * fixed - window drawing when in combat will draw slower but it will complete
+
+------------------------------------------------------------------------
+r355 | arkayenro | 2012-09-14 02:11:13 +0000 (Fri, 14 Sep 2012) | 3 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/VersionHistory.txt
+
+*3.03.06 (14-SEP-2012)*
+ * changed - default category; all trade goods reverted to trade goods category
+
+------------------------------------------------------------------------
+r353 | arkayenro | 2012-09-13 23:41:19 +0000 (Thu, 13 Sep 2012) | 5 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/ArkInventoryUpgrades.lua
+   M /trunk/Locale/game.lua
+   M /trunk/VersionHistory.txt
+
+*3.03.05 (14-SEP-2012)*
+ * added - forge master and transmogrify npcs are now treated as merchants in regards to your auto open/close options
+ * fixed - issue with item quality not updating in bags
+ * fixed - issue where jewelcrafting didnt appear under the skill menu
+ * note - all bag data has been erased, please login to each character to update its data
+------------------------------------------------------------------------
+r351 | arkayenro | 2012-09-12 23:34:21 +0000 (Wed, 12 Sep 2012) | 3 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/Locale/game.lua
+   M /trunk/VersionHistory.txt
+
+*3.03.04 (13-SEP-2012)*
+ * fixed - error with profession scanning code
+ * changed - default category assignment code
+------------------------------------------------------------------------
+r349 | arkayenro | 2012-09-12 09:13:07 +0000 (Wed, 12 Sep 2012) | 7 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventory.xml
+   M /trunk/ArkInventoryConfig.lua
+   M /trunk/ArkInventoryLDB.lua
+   M /trunk/ArkInventoryMenu.lua
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/ArkInventoryTooltip.lua
+   M /trunk/ArkInventoryTranslate.lua
+   M /trunk/Locale/deDE.lua
+   M /trunk/Locale/enUS.lua
+   M /trunk/Locale/esES.lua
+   M /trunk/Locale/esMX.lua
+   M /trunk/Locale/frFR.lua
+   M /trunk/Locale/game.lua
+   M /trunk/Locale/koKR.lua
+   M /trunk/Locale/ruRU.lua
+   M /trunk/Locale/zhCN.lua
+   M /trunk/Locale/zhTW.lua
+   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.lua
+   M /trunk/VersionHistory.txt
+
+*3.03.03 (12-SEP-2012)*
+ * fixed - issue with profession scanning code
+ * fixed - issue where internal sort keys were always recalculated every bag opening
+ * fixed - issue when outfitter initialised after ai
+ * changed - some translations reverted to blizzard internal values
+ * changed - edit mode now ignores the tint unusable option
+ * changed - bag highlight now uses the searchoverlay layer, custom layer removed
+------------------------------------------------------------------------
+r347 | arkayenro | 2012-09-01 10:48:09 +0000 (Sat, 01 Sep 2012) | 4 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/ArkInventoryTranslate.lua
+   M /trunk/Locale/game.lua
+   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.lua
+   M /trunk/Modules/ArkInventoryRulesExample/ArkInventoryRulesExample.toc
+   M /trunk/VersionHistory.txt
+
+*3.03.02 (01-SEP-2012)*
+ * fixed - issue with herbalism skill translation
+ * fixed - issue with fishing skill translation
+
+------------------------------------------------------------------------
+r345 | arkayenro | 2012-08-29 07:25:08 +0000 (Wed, 29 Aug 2012) | 6 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventory.toc
+   M /trunk/ArkInventoryCompanion.lua
+   M /trunk/ArkInventoryLDB.lua
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/ArkInventoryTranslate.lua
+   M /trunk/ArkInventoryUpgrades.lua
+   M /trunk/Bindings.xml
+   M /trunk/Locale/game.lua
+   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.lua
+   M /trunk/ReadMe.txt
+   M /trunk/VersionHistory.txt
+
+*3.03.01 (29-AUG-2012)*
+ * changed - toc set to 50001
+ * added - battle pet category
+ * added - battle pet item and tooltip support
+ * removed - ability to summon pets (via window and ldb, will return in a later version)
+
+------------------------------------------------------------------------
+r343 | arkayenro | 2012-08-21 01:18:30 +0000 (Tue, 21 Aug 2012) | 7 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventory.toc
+   M /trunk/ArkInventoryCompanion.lua
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/ArkInventoryTranslate.lua
+   M /trunk/Bindings.xml
+   M /trunk/Locale/game.lua
+   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.lua
+   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.toc
+   M /trunk/ReadMe.txt
+   M /trunk/VersionHistory.txt
+
+*3.03.00 (21-AUG-2012) BETA 08-21-11-00*
+ * changed - toc set to 50001
+ * changed - will not load on live servers
+ * fixed - caged battlepet items and offline tooltips
+ * removed (temporarily) - pets (theyre now account wide so i need to decide what to do with them)
+ * removed (temporarily) - mounts
+
+------------------------------------------------------------------------
