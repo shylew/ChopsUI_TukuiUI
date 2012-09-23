@@ -346,6 +346,14 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
       ChopsUI.modules.needtoknow.TargetDebuff(6, "Frostbolt", { 0, 0.45, 0.6 }, true)
     end
 
+  elseif T.myclass == "MONK" then
+
+    if T.Spec == "WINDWALKER" then
+      ChopsUI.modules.needtoknow.TargetDebuff(1, "Touch of Karma", COLOR_CODES.bluelight, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Paralysis", COLOR_CODES.purple, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(3, "Rising Sun Kick", COLOR_CODES.orangelight, true)
+    end
+
   elseif T.myclass == "PALADIN" then
 
     if T.Spec == "HOLY" then
