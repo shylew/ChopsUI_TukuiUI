@@ -67,6 +67,9 @@ NEEDTOKNOW.ITEM_NAMES =
     NEEDTOKNOW.BARMENU_SHOW_SPARK = "Spark";
     NEEDTOKNOW.BARMENU_SHOW_MYPIP = "Indicator If Mine";
     NEEDTOKNOW.BARMENU_SHOW_TEXT_USER = "Override Aura Name...";
+    NEEDTOKNOW.BARMENU_SHOW_TTN1 = "First Tooltip Number";
+    NEEDTOKNOW.BARMENU_SHOW_TTN2 = "Second Tooltip Number";
+    NEEDTOKNOW.BARMENU_SHOW_TTN3 = "Third Tooltip Number";
 
 
     NEEDTOKNOW.UIPANEL_SUBTEXT1 = "These options allow you to customize NeedToKnow's timer bar groups.";
