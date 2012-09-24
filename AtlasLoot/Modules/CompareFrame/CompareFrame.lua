@@ -1,4 +1,5 @@
-﻿-- $Id: CompareFrame.lua 3729 2012-07-31 13:38:29Z lag123 $
+﻿-- $Id: CompareFrame.lua 3757 2012-09-17 12:37:34Z lag123 $
+local _
 local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
 
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");

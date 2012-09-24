@@ -1,4 +1,4 @@
--- $Id: constants.pt.lua 3726 2012-04-27 18:50:30Z hegarol $
+-- $Id: constants.pt.lua 3753 2012-09-14 19:56:56Z hegarol $
 --[[
 constants.pt.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -551,7 +551,6 @@ if AL then
 
 	-- Companions
 	AL["Achievement"] = "Conquista";
-	AL["Achievement & Faction Reward Companions"] = "Mascotes de Recompensa por Conquista e Facção";
 	AL["Card Game Companions"] = "Mascotes por Jogo de Cartas";
 	AL["Companion Accessories"] = "Acessórios para Mascotes";
 	AL["Crafted Companions"] = "Mascotes Criados";
@@ -565,9 +564,7 @@ if AL then
 	AL["Unobtainable Companions"] = "Mascotes Impossíveis de se Obter";
 
 	-- Mounts
-	AL["Alliance Flying Mounts"] = "Montarias Voadoras da Aliança";
 	AL["Alliance Mounts"] = "Montarias da Aliança";
-	AL["Horde Flying Mounts"] = "Montarias Voadoras da Horda";
 	AL["Horde Mounts"] = "Montarias da Horda";
 	AL["Card Game Mounts"] = "Montarias por Jogo de Cartas";
 	AL["Crafted Mounts"] = "Montarias Criadas";

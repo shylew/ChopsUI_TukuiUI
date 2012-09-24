@@ -1,4 +1,4 @@
--- $Id: constants.fr.lua 3737 2012-08-15 17:53:45Z TrAsHeR $
+-- $Id: constants.fr.lua 3780 2012-09-24 00:25:05Z TrAsHeR $
 --[[
 constants.fr.lua --- Traduction frFR par TrAsHeR (Tchoupie @ Nerz'hul-EU). Merci à KKram pour les premières traductions & Pettigrow pour ses quelques traductions.
 This file defines an AceLocale table for all the various text strings needed
@@ -73,6 +73,8 @@ if AL then
 	AL["Module \"%s\" is disabled."] = "Le module \"%s\" est désactivé.";
 	AL["Module \"%s\" is missing."] = "Le module \"%s\" est manquant.";
 
+	AL["|cffFF0000Click: |cffFFFFFFOpen AtlasLoot\n|cffFF0000Shift+Click: |cffFFFFFFOpen AtlasLoot-Options "] = "|cffFF0000Clic: |cffFFFFFFOuvrir AtlasLoot\n|cffFF0000Maj+Clic: |cffFFFFFFOuvrir les options d'AtlasLoot";
+
 	-- AtlasLootFu 
 	AL["AtlasLootFu is no longer in use.\nDelete it from your AddOns folder"] = "AtlasLootFu n'est plus utilisé.\nVeuillez le supprimer de votre dossier AddOns.";
 
@@ -84,6 +86,7 @@ if AL then
 	AL["Show Droprates"] = "Afficher les pourcentages de drop";
 	AL["Safe Chat Links"] = "Liens sûrs, sur le canal";
 	AL["Comparison TT"] = "Infobulles comparatives";
+	AL["Show Boss Tooltip"] = "Afficher les infosbulles des boss";
 	AL["Show Comparison Tooltips"] = "Afficher les infobulles comparatives";
 	--AL["Opaque"] = true;
 	AL["Make Loot Table Opaque"] = "Fond de liste opaque";
@@ -133,9 +136,10 @@ if AL then
 	AL["Drop Rate: "] = "Chance de tomber : ";
 	--AL["DKP"] = true;
 	AL["Priority:"] = "Priorité :";
-	AL["Show price and slot if possible"] = "Voir le prix et le slot, si possible";
-	AL["Use GameTooltip"] = "Utilisez l'infobulle du jeu";
-	AL["Use the standard GameTooltip instead of the custom AtlasLoot tooltip"] = "Utilisez l'infobulle standard du jeu au lieu de celle personnalisée d'AtlasLoot";
+	AL["Show price and slot if possible"] = "Afficher le prix et le slot, si possible";
+	AL["Show wishlist items in bosses tooltip"] = "Affiche les objets de la liste de souhaits dans les infosbulles des boss";
+	AL["Use GameTooltip"] = "Utiliser l'infobulle du jeu";
+	AL["Use the standard GameTooltip instead of the custom AtlasLoot tooltip"] = "Utiliser l'infobulle standard du jeu au lieu de celle personnalisée d'AtlasLoot";
 	AL["%d / %d ( Bank: %d )"] = "%d / %d ( Banque : %d)";
 	-- Unsafe Item
 	AL["Item Unavailable"] = "Objet indisponible";
@@ -532,7 +536,7 @@ if AL then
 	--AL["Burning Crusade"] = true;
 	--AL["Wrath of the Lich King"] = true;
 	AL["Cataclysm"] = "Cataclysme";
-	--AL["Mists of Pandoria"] = true;
+	--AL["Mists of Pandaria"] = true;
 	AL["Entrance"] = "Entrée";
 	AL["Dungeon Set 1"] = "Set de donjon 1";
 	AL["Dungeon Set 2"] = "Set de donjon 2";
@@ -557,6 +561,9 @@ if AL then
 	AL["10/25 Man"] = "10 / 25 Joueurs";
 	AL["Epic Set"] = "Set épique";
 	AL["Rare Set"] = "Set rare";
+	AL["Season 6"] = "Saison 6";
+	AL["Season 7"] = "Saison 7";
+	AL["Season 8"] = "Saison 8";
 	AL["Season 9"] = "Saison 9";
 	AL["Season 10"] = "Saison 10";
 	AL["Season 11"] = "Saison 11";
@@ -579,7 +586,7 @@ if AL then
 	AL["Hard Mode"] = "Mode difficile";
 	AL["Bonus Loot"] = "Bonus de loot";
 	AL["Arena Reward"] = "Récompense d'arène";
-	AL["Achievement Reward"] = "Récompense des hauts faits";
+	AL["Achievement Reward"] = "Récompenses des hauts faits";
 	--AL["Phase 1"] = true;
 	--AL["Phase 2"] = true;
 	--AL["Phase 3"] = true;
@@ -654,6 +661,8 @@ if AL then
 	--AL["Troll"] = true;
 	--AL["Tol'vir"] = true;
 	--AL["Orc"] = true;
+	--AL["Pandaren"] = true;
+	--AL["Mogu"] = true;
 	--AL["Stats"] = true;
 	AL["Resilience"] = "Résilience";
 	--AL["Professions"] = true;
@@ -683,9 +692,9 @@ if AL then
 	AL["Outdoor"] = "Plein air";
 
 	-- Companions
-	AL["Achievement & Faction Reward Companions"] = "Haut fait & mascottes de récompenses de factions";
-	AL["Achievement & Faction Reward"] = "Haut fait & récompense de faction";
-	AL["Card Game Companions"] = "Mascottes des jeux de cartes";
+	AL["Achievement Companions"] = "Mascottes des hauts faits";
+	AL["Faction Companions"] = "Mascottes des factions";
+	AL["Card Game Companions"] = "Mascottes du jeu de cartes";
 	AL["Companion Accessories"] = "Accessoires pour mascottes";
 	AL["Blizzard Store"] = "Boutique Blizzard";
 	AL["Crafted Companions"] = "Mascottes de l'artisanat";
@@ -696,17 +705,17 @@ if AL then
 	AL["Promotional Companions"] = "Mascottes promotionnelles";
 	AL["Quest Reward Companions"] = "Mascottes des récompenses de quêtes";
 	AL["Rare Companions"] = "Mascottes rares";
-	AL["Unobtainable Companions"] = "Mascottes impossible à obtenir";
+	AL["Unobtainable Companions"] = "Mascottes impossibles à obtenir";
+	AL["New Companions"] = "Nouvelles mascottes";
 
 	-- Mounts
-	AL["Alliance Flying Mounts"] = "Montures volantes de l'Alliance";
 	AL["Alliance Mounts"] = "Montures de l'Alliance";
-	AL["Horde Flying Mounts"] = "Montures volantes de la Horde";
 	AL["Horde Mounts"] = "Montures de la Horde";
+	AL["Flying Mounts"] = "Montures volantes";
 	AL["Card Game Mounts"] = "Montures du jeu de cartes";
 	AL["Crafted Mounts"] = "Montures frabiquées";
 	AL["Event Mounts"] = "Montures d'événements";
-	AL["Neutral Faction Mounts"] = "Montures de factions neutres";
+	AL["Neutral Faction Mounts"] = "Montures des factions neutres";
 	AL["PvP Mounts"] = "Montures JcJ";
 	AL["Alliance PvP Mounts"] = "Montures JcJ de l'Alliance";
 	AL["Horde PvP Mounts"] = "Montures JcJ de la Horde";
@@ -714,15 +723,16 @@ if AL then
 	AL["Promotional Mounts"] = "Montures promotionnelles";
 	AL["Rare Mounts"] = "Montures rares";
 	AL["Unobtainable Mounts"] = "Montures impossibles à obtenir";
+	AL["New Mounts"] = "Nouvelles montures";
 
 	-- Tabards
-	AL["Achievement & Quest Reward Tabards"] = "Tabards de hauts faits & récompenses de quêtes";
+	AL["Achievement & Quest Reward Tabards"] = "Tabards des hauts faits & récompenses de quêtes";
 	AL["Alliance Tabards"] = "Tabards de l'Alliance";
 	AL["Card Game Tabards"] = "Tabards du jeu de cartes";
 	AL["Horde Tabards"] = "Tabards de la Horde";
+	AL["Neutral Faction Tabards"] = "Tabards des factions neutres";
 	AL["PvP Tabards"] = "Tabards JcJ";
-	AL["Unobtainable Tabards"] = "Tabards imposssibles à obtenir";
-
+	AL["Unobtainable Tabards"] = "Tabards impossibles à obtenir";
 
 	-- Transformation Items
 	AL["Transformation Items"] = "Objets de transformation";
@@ -740,7 +750,7 @@ if AL then
 	AL["Level 85 Trinkets"] = "Bijoux niveau 85";
 
 	-- Card Game Decks and descriptions
-	AL["Loot Card Items"] = "Objets des cartes à jouer";
+	AL["Loot Card Items"] = "Objets du jeu de cartes";
 	AL["UDE Items"] = "Objets (points UDE)";
 
 	-- First set
@@ -832,6 +842,9 @@ if AL then
 
 	-- Eighteenth set
 	--AL["Tomb of the Forgotten"] = true;
+
+	-- Nineteenth set
+	--AL["War of the Ancients"] = true;
 
 	-- Battleground Brackets
 	AL["Old PvP Rewards"] = "Anciennes récompenses JcJ";
@@ -940,6 +953,9 @@ if AL then
 	--AL["Destruction"] = true;
 	--AL["Tanking"] = true;
 	--AL["DPS"] = true;
+	AL["Mistweaver"] = "Tisse-brume";
+	AL["Brewmaster"] = "Maître brasseur";
+	AL["Windwalker"] = "Marche-vent";
 
 	-- NPCs missing from BabbleBoss
 	--AL["Trash Mobs"] = true,

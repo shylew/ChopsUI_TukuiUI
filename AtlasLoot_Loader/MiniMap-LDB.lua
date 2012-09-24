@@ -1,4 +1,4 @@
--- $Id: MiniMap-LDB.lua 3697 2012-01-31 15:17:37Z lag123 $
+-- $Id: MiniMap-LDB.lua 3768 2012-09-21 14:47:34Z lag123 $
 --[[
 Atlasloot Enhanced
 Author Hegarol
@@ -14,6 +14,10 @@ local MiniMapLDB = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("AtlasL
     type = "launcher",
 	text = AL["AtlasLoot"],
     icon = "Interface\\Icons\\INV_Box_01",
+	OnTooltipShow = function(tooltip)
+		tooltip:AddLine("|cff00FF00"..AL["AtlasLoot"].."|r");
+		tooltip:AddLine(AL["|cffFF0000Click: |cffFFFFFFOpen AtlasLoot\n|cffFF0000Shift+Click: |cffFFFFFFOpen AtlasLoot-Options "]);
+	end
 })
 
 local MiniMapIcon = LibStub("LibDBIcon-1.0")

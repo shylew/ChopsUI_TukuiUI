@@ -1,4 +1,4 @@
--- $Id: constants.cn.lua 3736 2012-08-14 18:31:11Z hegarol $
+-- $Id: constants.cn.lua 3777 2012-09-23 08:25:49Z ananhaid $
 --[[
 constants.cn.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -72,6 +72,9 @@ if AL then
 	AL["Load AtlasLoot"] = "加载 AtlasLoot";
 	AL["Module \"%s\" is disabled."] = "\"%s\"模块已禁用。";
 	AL["Module \"%s\" is missing."] = "\"%s\"模组缺失。";
+	
+	-- MiniMap-Button
+	AL["|cffFF0000Click: |cffFFFFFFOpen AtlasLoot\n|cffFF0000Shift+Click: |cffFFFFFFOpen AtlasLoot-Options "] = "|cffFF0000点击：|cffFFFFFF打开 AtlasLoot\n|cffFF0000Shift+点击：|cffFFFFFF打开 AtlasLoot 选项";
 
 	-- AtlasLootFu 
 	AL["AtlasLootFu is no longer in use.\nDelete it from your AddOns folder"] = "AtlasLootFu 已经没有任何用处。\n请将其从 AddOns 文件夹移除。";
@@ -84,10 +87,11 @@ if AL then
 	AL["Show Droprates"] = "显示掉落率";
 	AL["Safe Chat Links"] = "使用安全物品连接";
 	AL["Comparison TT"] = "装备对比";
+	AL["Show Boss Tooltip"] = "显示首领提示";
 	AL["Show Comparison Tooltips"] = "显示装备对比";
 	AL["Opaque"] = "不透明";
 	AL["Make Loot Table Opaque"] = "禁用掉落表格背景透明";
-	AL["Treat Crafted Items:"] = "交易技能呈现方式：";
+	AL["Treat Crafted Items:"] = "商业技能呈现方式：";
 	AL["As Crafting Spells"] = "商业技能";
 	AL["As Items"] = "物品";
 	AL["Reset"] = "重置";
@@ -134,6 +138,7 @@ if AL then
 	AL["DKP"] = "DKP";
 	AL["Priority:"] = "优先：";
 	AL["Show price and slot if possible"] = "显示可用价格与部位";
+	AL["Show wishlist items in bosses tooltip"] = "在首领提示显示愿望列表物品";
 	AL["Use GameTooltip"] = "使用游戏内提示";
 	AL["Use the standard GameTooltip instead of the custom AtlasLoot tooltip"] = "使用标准游戏内提示而不使用 AtlasLoot 提示";
 	AL["%d / %d ( Bank: %d )"] = "%d / %d ( 银行：%d )";
@@ -268,6 +273,7 @@ if AL then
 	AL["Level 70"] = "等级70";
 	AL["Level 80"] = "等级80";
 	AL["Level 85"] = "等级85";
+	AL["Level 90"] = "等级90";
 	AL["|cffff0000(unsafe)"] = "|cffff0000（不安全）";
 	AL["Misc"] = "其它";
 	AL["Rewards"] = "奖励";
@@ -355,6 +361,7 @@ if AL then
 	AL["Tier 10 Set"] = "等级10套装";
 	AL["Tier 11/12 Set"] = "等级11/12套装";
 	AL["Tier 13 Set"] = "等级13套装";
+	AL["Tier 14 Set"] = "等级14套装";
 	AL["TCG Items"] = "集换式卡牌物品";
 
 	-- PvP Menu
@@ -530,6 +537,7 @@ if AL then
 	AL["Burning Crusade"] = "燃烧的远征";
 	AL["Wrath of the Lich King"] = "巫妖王之怒";
 	AL["Cataclysm"] = "大地的裂变";
+	AL["Mists of Pandaria"] = "熊猫人之谜";
 	AL["Entrance"] = "入口";
 	AL["Dungeon Set 1"] = "地下城套装1";
 	AL["Dungeon Set 2"] = "地下城套装2";
@@ -550,10 +558,14 @@ if AL then
 	AL["Tier 11"] = "等级11";
 	AL["Tier 12"] = "等级12";
 	AL["Tier 13"] = "等级13";
+	AL["Tier 14"] = "等级14";
 	AL["10 Man"] = "10人";
 	AL["10/25 Man"] = "10/25人";
 	AL["Epic Set"] = "史诗套装";
 	AL["Rare Set"] = "精良套装";
+	AL["Season 6"] = "第6季";
+	AL["Season 7"] = "第7季";
+	AL["Season 8"] = "第8季";
 	AL["Season 9"] = "第9季";
 	AL["Season 10"] = "第10季";
 	AL["Season 11"] = "第11季";
@@ -651,6 +663,8 @@ if AL then
 	AL["Troll"] = "巨魔";
 	AL["Tol'vir"] = "托维尔";
 	AL["Orc"] = "兽人";
+	AL["Pandaren"] = "熊猫人";
+	AL["Mogu"] = "魔古族";
 	AL["Stats"] = "属性";
 	AL["Resilience"] = "韧性";
 	AL["Professions"] = "专业技能";
@@ -680,12 +694,12 @@ if AL then
 	AL["Outdoor"] = "野外";
 
 	-- Companions
-	AL["Achievement & Faction Reward Companions"] = "成就和阵营奖励小伙伴";
-	AL["Achievement & Faction Reward"] = "成就和阵营奖励";
+	AL["Achievement Companions"] = "成就小伙伴";
+	AL["Faction Companions"] = "阵营小伙伴";
 	AL["Card Game Companions"] = "集换卡奖励小伙伴";
 	AL["Companion Accessories"] = "小伙伴附件";
 	AL["Blizzard Store"] = "暴雪商店";
-	AL["Crafted Companions"] = "制作的小伙伴";
+	AL["Crafted Companions"] = "制造的小伙伴";
 	AL["Dungeon/Raid"] = "副本/团队";
 	AL["Faction"] = "阵营";
 	AL["Merchant Sold Companions"] = "商人出售的小伙伴";
@@ -694,12 +708,12 @@ if AL then
 	AL["Quest Reward Companions"] = "任务奖励小伙伴";
 	AL["Rare Companions"] = "稀有小伙伴";
 	AL["Unobtainable Companions"] = "已绝版小伙伴";
+	AL["New Companions"] = "新小伙伴";
 
 	-- Mounts
-	AL["Alliance Flying Mounts"] = "联盟飞行坐骑";
 	AL["Alliance Mounts"] = "联盟坐骑";
-	AL["Horde Flying Mounts"] = "部落飞行坐骑";
 	AL["Horde Mounts"] = "部落坐骑";
+	AL["Flying Mounts"] = "飞行坐骑";
 	AL["Card Game Mounts"] = "集换卡游戏坐骑";
 	AL["Crafted Mounts"] = "制造的坐骑";
 	AL["Event Mounts"] = "世界事件坐骑";
@@ -711,12 +725,14 @@ if AL then
 	AL["Promotional Mounts"] = "促销坐骑";
 	AL["Rare Mounts"] = "稀有坐骑";
 	AL["Unobtainable Mounts"] = "已绝版坐骑";
+	AL["New Mounts"] = "新坐骑";
 
 	-- Tabards
 	AL["Achievement & Quest Reward Tabards"] = "成就/任务奖励战袍";
 	AL["Alliance Tabards"] = "联盟战袍";
 	AL["Card Game Tabards"] = "集换卡战袍";
 	AL["Horde Tabards"] = "部落战袍";
+	AL["Neutral Faction Tabards"] = "中立阵营战袍";
 	AL["PvP Tabards"] = "PvP 战袍";
 	AL["Unobtainable Tabards"] = "已绝版战袍";
 
@@ -939,6 +955,9 @@ if AL then
 	AL["Destruction"] = "毁灭";
 	AL["Tanking"] = "坦克";
 	AL["DPS"] = "DPS";
+	AL["Mistweaver"] = "织雾";
+	AL["Brewmaster"] = "酿酒";
+	AL["Windwalker"] = "风行";
 
 	-- NPCs missing from BabbleBoss
 	AL["Trash Mobs"] = "普通怪物";
@@ -1132,6 +1151,7 @@ if AL then
 	AL["Stolen Present"] = "被窃的礼物";
 	AL["Annual Pass"] = "年卡";
 	AL["Scroll of Resurrection"] = "复活卷轴";
+	AL["Recruit-A-Friend"] = "战友招募";
 
 	-- Error Messages and warnings
 	AL["AtlasLoot Error!"] = "AtlasLoot 发生错误！";

@@ -1,4 +1,4 @@
--- $Id: AtlasLoot.lua 3739 2012-08-27 18:29:55Z hegarol $
+-- $Id: AtlasLoot.lua 3778 2012-09-23 10:00:13Z hegarol $
 --[[
 Atlasloot Enhanced
 Author Hegarol
@@ -13,15 +13,15 @@ local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 
 --Establish version number and compatible version of Atlas
 local VERSION_MAJOR = "7";
-local VERSION_MINOR = "00";
+local VERSION_MINOR = "01";
 local VERSION_BOSSES = "00";
 ATLASLOOT_VERSION = "|cffFF8400AtlasLoot Enhanced v"..VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES.."|r";
 ATLASLOOT_VERSION_NUM = VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES
 
 --Now allows for multiple compatible Atlas versions.  Always put the newest first
-ATLASLOOT_MIN_ATLAS = "1.21.0"
-ATLASLOOT_CURRENT_ATLAS = {"1.21.1"};
-ATLASLOOT_PREVIEW_ATLAS = {"1.22.0", "1.21.2"};
+ATLASLOOT_MIN_ATLAS = "1.22.0"
+ATLASLOOT_CURRENT_ATLAS = {"1.22.0"};
+ATLASLOOT_PREVIEW_ATLAS = {"1.22.1", "1.22.2"};
 
 --ATLASLOOT_POSITION = AL["Position:"];
 ATLASLOOT_DEBUGMESSAGES = false;
@@ -1416,6 +1416,20 @@ function AtlasLoot:CheckHeroic(itemTable)
 	end
 end
 
+--- Returns a MapName by ID
+-- This function only replace nil with a "error" string
+-- @param id MapId ( http://www.wowpedia.org/MapID )
+function AtlasLoot:GetMapNameByID(id)
+	if not id then 
+		return "NIL Map ID"
+	end
+	local name = GetMapNameByID(id)
+	if name then 
+		return name
+	else
+		return "No MapName found for ID "..id
+	end
+end 
 
 
 

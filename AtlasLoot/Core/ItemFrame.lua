@@ -1,4 +1,5 @@
--- $Id: ItemFrame.lua 3706 2012-03-02 22:49:20Z lag123 $
+-- $Id: ItemFrame.lua 3757 2012-09-17 12:37:34Z lag123 $
+local _
 local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
 
 -- Player faction

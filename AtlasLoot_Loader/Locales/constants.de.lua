@@ -1,4 +1,4 @@
--- $Id: constants.de.lua 3736 2012-08-14 18:31:11Z hegarol $
+-- $Id: constants.de.lua 3753 2012-09-14 19:56:56Z hegarol $
 --[[
 constants.de.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -679,8 +679,6 @@ if AL then
 	AL["Outdoor"] = "Außenwelt";
 
 	-- Companions
-	AL["Achievement & Faction Reward Companions"] = "Erfolgs & Fraktionsbelohnungen";
-	AL["Achievement & Faction Reward"] = "Erfolgs & Fraktionsbelohnungen";
 	AL["Card Game Companions"] = "Kartenspiel-Haustiere";
 	AL["Companion Accessories"] = "Haustierzubehör";
 	AL["Blizzard Store"] = "Blizzard Shop";
@@ -695,9 +693,7 @@ if AL then
 	AL["Unobtainable Companions"] = "Nicht mehr erhältlich";
 
 	-- Mounts
-	AL["Alliance Flying Mounts"] = "Allianz Flugreittiere";
 	AL["Alliance Mounts"] = "Allianz Reittiere";
-	AL["Horde Flying Mounts"] = "Horde Flugreittiere";
 	AL["Horde Mounts"] = "Horde Reittiere";
 	AL["Card Game Mounts"] = "Kartenspielreittiere";
 	AL["Crafted Mounts"] = "Herstellbar";

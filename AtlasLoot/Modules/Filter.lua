@@ -1,10 +1,11 @@
--- $Id: Filter.lua 3697 2012-01-31 15:17:37Z lag123 $
+-- $Id: Filter.lua 3767 2012-09-21 14:41:29Z lag123 $
 --[[
 Atlasloot Enhanced
 Author Hegarol
 Loot browser associating loot with instance bosses
 Can be integrated with Atlas (http://www.atlasmod.com)
 ]]
+local _
 local AtlasLoot = LibStub("AceAddon-3.0"):GetAddon("AtlasLoot")
 
 local BabbleInventory = AtlasLoot_GetLocaleLibBabble("LibBabble-Inventory-3.0")
@@ -68,7 +69,7 @@ local FilterTable = {
 		"#w2#",				-- Bow
 		"#w3#",				-- Crossbow
 		"#w5#",				-- Gun
-		"#w11#",			-- Thrown
+		-- "#w11#",			-- Thrown 	--REMOVED
 	},
 	
 	["Other"] = {
@@ -76,7 +77,7 @@ local FilterTable = {
 		"#s14#",			-- Trinket
 		"#s2#",				-- Neck
 		"#s4#",				-- Back
-		"#s16#",			-- Relic
+		-- "#s16#",			-- Relic 	--REMOVED
 	},
 
 	["ItemSlot"] = {
@@ -217,7 +218,7 @@ do
 	local function SortTable(t, slot)
 		if slot == "WeaponsMeele" or slot == "WeaponsRanged" or slot == "WeaponsMeeleTwoHand" then
 			local a,b = {}, {}
-			for m,n in ipairs(t) do a[#a + 1] = FilterTableNamesSlots[n] b[FilterTableNamesSlots[n]] = m end
+			for m,n in ipairs(t) do a[#a + 1] = FilterTableNamesSlots[n];b[FilterTableNamesSlots[n]] = m end
 			table.sort(a)
 			local i = 0
 			return function()

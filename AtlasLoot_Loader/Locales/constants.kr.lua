@@ -1,4 +1,4 @@
--- $Id: constants.kr.lua 3726 2012-04-27 18:50:30Z hegarol $
+-- $Id: constants.kr.lua 3753 2012-09-14 19:56:56Z hegarol $
 --[[
 constants.en.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -557,8 +557,6 @@ if AL then
 	AL["Achievement"] = true;
 
 	-- Companions
-	AL["Achievement & Faction Reward Companions"] = true;
-	AL["Achievement & Faction Reward"] = true;
 	AL["Card Game Companions"] = true;
 	AL["Companion Accessories"] = true;
 	AL["Crafted Companions"] = true;
@@ -572,9 +570,7 @@ if AL then
 	AL["Unobtainable Companions"] = true;
 
 	-- Mounts
-	AL["Alliance Flying Mounts"] = true;
 	AL["Alliance Mounts"] = true;
-	AL["Horde Flying Mounts"] = true;
 	AL["Horde Mounts"] = true;
 	AL["Card Game Mounts"] = true;
 	AL["Crafted Mounts"] = true;

@@ -1,4 +1,4 @@
--- $Id: constants.en.lua 3736 2012-08-14 18:31:11Z hegarol $
+-- $Id: constants.en.lua 3777 2012-09-23 08:25:49Z ananhaid $
 --[[
 constants.en.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -72,6 +72,9 @@ if AL then
 	AL["Load AtlasLoot"] = true;
 	AL["Module \"%s\" is disabled."] = true;
 	AL["Module \"%s\" is missing."] = true;
+	
+	-- MiniMap-Button
+	AL["|cffFF0000Click: |cffFFFFFFOpen AtlasLoot\n|cffFF0000Shift+Click: |cffFFFFFFOpen AtlasLoot-Options "] = true;
 
 	-- AtlasLootFu 
 	AL["AtlasLootFu is no longer in use.\nDelete it from your AddOns folder"] = true;
@@ -84,6 +87,7 @@ if AL then
 	AL["Show Droprates"] = true;
 	AL["Safe Chat Links"] = true;
 	AL["Comparison TT"] = true;
+	AL["Show Boss Tooltip"] = true;
 	AL["Show Comparison Tooltips"] = true;
 	AL["Opaque"] = true;
 	AL["Make Loot Table Opaque"] = true;
@@ -134,6 +138,7 @@ if AL then
 	AL["DKP"] = true;
 	AL["Priority:"] = true;
 	AL["Show price and slot if possible"] = true;
+	AL["Show wishlist items in bosses tooltip"] = true;
 	AL["Use GameTooltip"] = true;
 	AL["Use the standard GameTooltip instead of the custom AtlasLoot tooltip"] = true;
 	AL["%d / %d ( Bank: %d )"] = true;
@@ -532,7 +537,7 @@ if AL then
 	AL["Burning Crusade"] = true;
 	AL["Wrath of the Lich King"] = true;
 	AL["Cataclysm"] = true;
-	AL["Mists of Pandoria"] = true;
+	AL["Mists of Pandaria"] = true;
 	AL["Entrance"] = true;
 	AL["Dungeon Set 1"] = true;
 	AL["Dungeon Set 2"] = true;
@@ -553,10 +558,14 @@ if AL then
 	AL["Tier 11"] = true;
 	AL["Tier 12"] = true;
 	AL["Tier 13"] = true;
+	AL["Tier 14"] = true;
 	AL["10 Man"] = true;
 	AL["10/25 Man"] = true;
 	AL["Epic Set"] = true;
 	AL["Rare Set"] = true;
+	AL["Season 6"] = true;
+	AL["Season 7"] = true;
+	AL["Season 8"] = true;
 	AL["Season 9"] = true;
 	AL["Season 10"] = true;
 	AL["Season 11"] = true;
@@ -654,6 +663,8 @@ if AL then
 	AL["Troll"] = true;
 	AL["Tol'vir"] = true;
 	AL["Orc"] = true;
+	AL["Pandaren"] = true;
+	AL["Mogu"] = true;
 	AL["Stats"] = true;
 	AL["Resilience"] = true;
 	AL["Professions"] = true;
@@ -683,8 +694,8 @@ if AL then
 	AL["Outdoor"] = true;
 
 	-- Companions
-	AL["Achievement & Faction Reward Companions"] = true;
-	AL["Achievement & Faction Reward"] = true;
+	AL["Achievement Companions"] = true;
+	AL["Faction Companions"] = true;
 	AL["Card Game Companions"] = true;
 	AL["Companion Accessories"] = true;
 	AL["Blizzard Store"] = true;
@@ -697,12 +708,12 @@ if AL then
 	AL["Quest Reward Companions"] = true;
 	AL["Rare Companions"] = true;
 	AL["Unobtainable Companions"] = true;
+	AL["New Companions"] = true;
 
 	-- Mounts
-	AL["Alliance Flying Mounts"] = true;
 	AL["Alliance Mounts"] = true;
-	AL["Horde Flying Mounts"] = true;
 	AL["Horde Mounts"] = true;
+	AL["Flying Mounts"] = true;
 	AL["Card Game Mounts"] = true;
 	AL["Crafted Mounts"] = true;
 	AL["Event Mounts"] = true;
@@ -714,12 +725,14 @@ if AL then
 	AL["Promotional Mounts"] = true;
 	AL["Rare Mounts"] = true;
 	AL["Unobtainable Mounts"] = true;
+	AL["New Mounts"] = true;
 
 	-- Tabards
 	AL["Achievement & Quest Reward Tabards"] = true;
 	AL["Alliance Tabards"] = true;
 	AL["Card Game Tabards"] = true;
 	AL["Horde Tabards"] = true;
+	AL["Neutral Faction Tabards"] = true;
 	AL["PvP Tabards"] = true;
 	AL["Unobtainable Tabards"] = true;
 

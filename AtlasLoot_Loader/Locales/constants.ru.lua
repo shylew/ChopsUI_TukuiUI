@@ -1,4 +1,4 @@
--- $Id: constants.ru.lua 3726 2012-04-27 18:50:30Z hegarol $
+-- $Id: constants.ru.lua 3753 2012-09-14 19:56:56Z hegarol $
 --[[
 constants.ru.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -605,8 +605,6 @@ if AL then
 	AL["Achievement"] = "Достижение";
 	
 	-- Companions
-	AL["Achievement & Faction Reward Companions"] = "Спутники за достижения и фракции";
-	AL["Achievement & Faction Reward"] = "Награды за достижения и фракции";
 	AL["Card Game Companions"] = "Спутники с игровых карт";
 	AL["Companion Accessories"] = "Аксессуары спутников";
 	AL["Crafted Companions"] = "Созданные спутники";
@@ -620,9 +618,7 @@ if AL then
 	AL["Unobtainable Companions"] = "Недоступные спутники";
 
 	-- Mounts
-	AL["Alliance Flying Mounts"] = "Летающий транспорт Альянса";
 	AL["Alliance Mounts"] = "Транспорт Альянса";
-	AL["Horde Flying Mounts"] = "Летающий транспорт Орды";
 	AL["Horde Mounts"] = "Транспорт Орды";
 	AL["Card Game Mounts"] = "Транспорт с игральных карт";
 	AL["Crafted Mounts"] = "Созданный транспорт";

@@ -1,4 +1,4 @@
--- $Id: TextParsing.lua 3697 2012-01-31 15:17:37Z lag123 $
+-- $Id: TextParsing.lua 3755 2012-09-16 08:22:37Z hegarol $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -19,6 +19,7 @@ AtlasLoot_TextParsing = {
 	{ "#c8#", LOCALIZED_CLASS_NAMES_MALE["WARLOCK"] },
 	{ "#c9#", LOCALIZED_CLASS_NAMES_MALE["WARRIOR"] },
 	{ "#c10#", LOCALIZED_CLASS_NAMES_MALE["DEATHKNIGHT"] },
+	{ "#c11#", LOCALIZED_CLASS_NAMES_MALE["MONK"] },
 
 	-- Professions
 	{ "#p1#", GetSpellInfo(2259) },		-- Alchemy
@@ -77,7 +78,6 @@ AtlasLoot_TextParsing = {
 	{ "#s13#", BabbleInventory["Ring"] },
 	{ "#s14#", BabbleInventory["Trinket"] },
 	{ "#s15#", BabbleInventory["Held in Off-Hand"] },
-	{ "#s16#", BabbleInventory["Relic"] },
 
 	-- Weapon Weilding
 	{ "#h1#", BabbleInventory["One-Hand"] },
@@ -96,7 +96,6 @@ AtlasLoot_TextParsing = {
 	{ "#w8#", BabbleInventory["Shield"] },
 	{ "#w9#", BabbleInventory["Staff"] },
 	{ "#w10#", BabbleInventory["Sword"] },
-	{ "#w11#", BabbleInventory["Thrown"] },
 	{ "#w12#", BabbleInventory["Wand"] },
 	{ "#w13#", BabbleInventory["Fist Weapon"] },
 
@@ -118,6 +117,7 @@ AtlasLoot_TextParsing = {
 	{ "#e15#", AL["Token"] },
 	{ "#e16#", AL["Darkmoon Faire Card"] },
 	{ "#e17#", BabbleInventory["Enchant"] },
+	{ "#e18#", BabbleInventory["Consumable"] },
 	{ "#e20#", BabbleInventory["Fishing Pole"] },
 	{ "#e21#", BabbleInventory["Fish"] },
 	{ "#e22#", AL["Combat Pet"] },
@@ -609,10 +609,35 @@ AtlasLoot_TextParsing = {
 	{ "#t13s7_2#", BabbleItemSet["Spiritwalker's Battlegear"] },
 	{ "#t13s7_3#", BabbleItemSet["Spiritwalker's Regalia"] },
 	{ "#t13s8#", BabbleItemSet["Vestments of the Faceless Shroud"] },
-	{ "#t13s9_1#", BabbleItemSet["Necrotic Boneplate Battlegear"] },
-	{ "#t13s9_2#", BabbleItemSet["Necrotic Boneplate Armor"] },
-	{ "#t13s10_1#", BabbleItemSet["Colossal Dragonplate Battlegear"] },
-	{ "#t13s10_2#", BabbleItemSet["Colossal Dragonplate Armor"] },
+	{ "#t13s9_1#", BabbleItemSet["Colossal Dragonplate Battlegear"] },
+	{ "#t13s9_2#", BabbleItemSet["Colossal Dragonplate Armor"] },
+	{ "#t13s10_1#", BabbleItemSet["Necrotic Boneplate Battlegear"] },
+	{ "#t13s10_2#", BabbleItemSet["Necrotic Boneplate Armor"] },
+
+	-- Tier 14 Sets
+	{ "#t14s1_1#", BabbleItemSet["Vestments of the Eternal Blossom"] },
+	{ "#t14s1_2#", BabbleItemSet["Battlegear of the Eternal Blossom"] },
+	{ "#t14s1_3#", BabbleItemSet["Regalia of the Eternal Blossom"] },
+	{ "#t14s1_4#", BabbleItemSet["Armor of the Eternal Blossom"] },
+	{ "#t14s2#", BabbleItemSet["Yaungol Slayer Battlegear"] },
+	{ "#t14s3#", BabbleItemSet["Regalia of the Burning Scroll"] },
+	{ "#t14s4_1#", BabbleItemSet["White Tiger Vestments"] },
+	{ "#t14s4_2#", BabbleItemSet["White Tiger Plate"] },
+	{ "#t14s4_3#", BabbleItemSet["White Tiger Battlegear"] },
+	{ "#t14s5_1#", BabbleItemSet["Regalia of the Guardian Serpent"] },
+	{ "#t14s5_2#", BabbleItemSet["Vestments of the Guardian Serpent"] },
+	{ "#t14s6#", BabbleItemSet["Battlegear of the Thousandfold Blades"] },
+	{ "#t14s7_1#", BabbleItemSet["Vestments of the Firebird"] },
+	{ "#t14s7_2#", BabbleItemSet["Battlegear of the Firebird"] },
+	{ "#t14s7_3#", BabbleItemSet["Regalia of the Firebird"] },
+	{ "#t14s8#", BabbleItemSet["Sha-Skin Regalia"] },
+	{ "#t14s9_1#", BabbleItemSet["Battleplate of Resounding Rings"] },
+	{ "#t14s9_2#", BabbleItemSet["Plate of Resounding Rings"] },
+	{ "#t14s10_1#", BabbleItemSet["Battlegear of the Lost Catacomb"] },
+	{ "#t14s10_2#", BabbleItemSet["Plate of the Lost Catacomb"] },
+	{ "#t14s11_1#", BabbleItemSet["Armor of the Red Crane"] },
+	{ "#t14s11_2#", BabbleItemSet["Battlegear of the Red Crane"] },
+	{ "#t14s11_3#", BabbleItemSet["Vestments of the Red Crane"] },
 
 	-- Arathi Basin Sets - Alliance
 	{ "#absa1#", BabbleItemSet["The Highlander's Intent"] },

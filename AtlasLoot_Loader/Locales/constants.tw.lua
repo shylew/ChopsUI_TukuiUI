@@ -1,4 +1,4 @@
--- $Id: constants.tw.lua 3736 2012-08-14 18:31:11Z hegarol $
+-- $Id: constants.tw.lua 3753 2012-09-14 19:56:56Z hegarol $
 --[[
 constants.tw.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -680,8 +680,6 @@ if AL then
 	AL["Outdoor"] = "野外";
 
 	-- Companions
-	AL["Achievement & Faction Reward Companions"] = "成就/聲望獎勵夥伴";
-	AL["Achievement & Faction Reward"] = "成就/聲望獎勵";
 	AL["Card Game Companions"] = "卡牌遊戲獎勵夥伴";
 	AL["Companion Accessories"] = "夥伴飾品";
 	AL["Blizzard Store"] = "暴雪商城";
@@ -696,9 +694,7 @@ if AL then
 	AL["Unobtainable Companions"] = "無法取得的夥伴";
 
 	-- Mounts
-	AL["Alliance Flying Mounts"] = "聯盟飛行坐騎";
 	AL["Alliance Mounts"] = "聯盟坐騎";
-	AL["Horde Flying Mounts"] = "部落飛行坐騎";
 	AL["Horde Mounts"] = "部落坐騎";
 	AL["Card Game Mounts"] = "卡牌遊戲獎勵坐騎";
 	AL["Crafted Mounts"] = "製作的坐騎";
