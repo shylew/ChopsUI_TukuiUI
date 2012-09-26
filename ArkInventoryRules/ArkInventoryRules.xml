@@ -66,7 +66,9 @@
 		<Size x="2" y="30" />
 		
 		<Anchors>
-			<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP" x="0" y="-20" />
+			<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+				<Offset x="0" y="-20" />
+			</Anchor>
 			<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT" />
 			<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT" />
 		</Anchors>
@@ -96,7 +98,9 @@
 			<Button name="$parentOk" inherits="ARKINV_TemplateButtonMenuShort" text="ok">
 			
 				<Anchors>
-					<Anchor point="LEFT" x="5" y="0" />
+					<Anchor point="LEFT">
+						<Offset x="5" y="0" />
+					</Anchor>
 				</Anchors>
 				
 				<Scripts>
@@ -117,7 +121,9 @@
 			<Button name="$parentCancel" inherits="ARKINV_TemplateButtonMenuShort" text="cancel">
 			
 				<Anchors>
-					<Anchor point="RIGHT" x="-5" y="0" />
+					<Anchor point="RIGHT">
+						<Offset x="-5" y="0" />
+					</Anchor>
 				</Anchors>
 				
 				<Scripts>
@@ -146,9 +152,15 @@
 
 		<Anchors>
 			<Anchor point="TOP" />
-			<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT" x="20" y="0" />
-			<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT" x="-20" y="0" />
-			<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM" x="0" y="20" />
+			<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
+				<Offset x="20" y="0" />
+			</Anchor>
+			<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
+				<Offset x="-20" y="0" />
+			</Anchor>
+			<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+				<Offset x="0" y="20" />
+			</Anchor>
 		</Anchors>
 
 		<Layers>
@@ -163,7 +175,9 @@
 
 			<Frame name="$parentMenu" inherits="ARKINV_TemplateRuleFrameOkCancel">
 				<Anchors>
-					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM" x="0" y="20" />
+					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+						<Offset x="0" y="20" />
+					</Anchor>
 					<Anchor point="LEFT" />
 					<Anchor point="RIGHT" />
 				</Anchors>
@@ -184,7 +198,9 @@
 
 						<FontString name="$parentIdLabel" inherits="ARKINV_DataEntryLabelFont" text="rule:" justifyH="RIGHT">
 							<Anchors>
-								<Anchor point="LEFT" relativeTo="$parent" relativePoint="TOPLEFT" x="90" y="-30" />
+								<Anchor point="LEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset x="90" y="-30" />
+								</Anchor>
 							</Anchors>
 							<Scripts>
 								<OnLoad>
@@ -195,53 +211,77 @@
 
 						<FontString name="$parentId" inherits="ARKINV_DataEntryFontDisable">
 							<Anchors>
-								<Anchor point="LEFT" relativeTo="$parentIdLabel" relativePoint="RIGHT" x="10" y="0" />
+								<Anchor point="LEFT" relativeTo="$parentIdLabel" relativePoint="RIGHT">
+									<Offset x="10" y="0" />
+								</Anchor>
 							</Anchors>
 						</FontString>
 
 						<FontString name="$parentEnabledLabel" inherits="ARKINV_DataEntryLabelFont" text="enabled:" justifyH="RIGHT">
 							<Anchors>
-								<Anchor point="TOPRIGHT" relativeTo="$parentIdLabel" relativePoint="BOTTOMRIGHT" x="0" y="-20" />
+								<Anchor point="TOPRIGHT" relativeTo="$parentIdLabel" relativePoint="BOTTOMRIGHT">
+									<Offset x="0" y="-20" />
+								</Anchor>
 							</Anchors>
 						</FontString>
 
 						<FontString name="$parentOrderLabel" inherits="ARKINV_DataEntryLabelFont" text="order:" justifyH="RIGHT">
 							<Anchors>
-								<Anchor point="TOPRIGHT" relativeTo="$parentEnabledLabel" relativePoint="BOTTOMRIGHT" x="0" y="-20" />
+								<Anchor point="TOPRIGHT" relativeTo="$parentEnabledLabel" relativePoint="BOTTOMRIGHT">
+									<Offset x="0" y="-20" />
+								</Anchor>
 							</Anchors>
 						</FontString>
 
 						<FontString name="$parentOrderReadOnly" inherits="ARKINV_DataEntryFontDisable" justifyH="LEFT" hidden="true">
 							<Anchors>
-								<Anchor point="LEFT" relativeTo="$parentOrderLabel" relativePoint="RIGHT" x="10" y="0" />
-								<Anchor point="RIGHT" x="-30" y="0" />
+								<Anchor point="LEFT" relativeTo="$parentOrderLabel" relativePoint="RIGHT">
+									<Offset x="10" y="0" />
+								</Anchor>
+								<Anchor point="RIGHT">
+									<Offset x="-30" y="0" />
+								</Anchor>
 							</Anchors>
 						</FontString>
 
 						<FontString name="$parentDescriptionLabel" inherits="ARKINV_DataEntryLabelFont" text="description:" justifyH="RIGHT">
 							<Anchors>
-								<Anchor point="TOPRIGHT" relativeTo="$parentOrderLabel" relativePoint="BOTTOMRIGHT" x="0" y="-20" />
+								<Anchor point="TOPRIGHT" relativeTo="$parentOrderLabel" relativePoint="BOTTOMRIGHT">
+									<Offset x="0" y="-20" />
+								</Anchor>
 							</Anchors>
 						</FontString>
 
 						<FontString name="$parentDescriptionReadOnly" inherits="ARKINV_DataEntryFontDisable" justifyH="LEFT" hidden="true">
 							<Anchors>
-								<Anchor point="LEFT" relativeTo="$parentDescriptionLabel" relativePoint="RIGHT" x="10" y="0" />
-								<Anchor point="RIGHT" x="-30" y="0" />
+								<Anchor point="LEFT" relativeTo="$parentDescriptionLabel" relativePoint="RIGHT">
+									<Offset x="10" y="0" />
+								</Anchor>
+								<Anchor point="RIGHT">
+									<Offset x="-30" y="0" />
+								</Anchor>
 							</Anchors>
 						</FontString>
 
 						<FontString name="$parentFormulaLabel" inherits="ARKINV_DataEntryLabelFont" text="formula:" justifyH="RIGHT">
 							<Anchors>
-								<Anchor point="TOPRIGHT" relativeTo="$parentDescriptionLabel" relativePoint="BOTTOMRIGHT" x="0" y="-20" />
+								<Anchor point="TOPRIGHT" relativeTo="$parentDescriptionLabel" relativePoint="BOTTOMRIGHT">
+									<Offset x="0" y="-20" />
+								</Anchor>
 							</Anchors>
 						</FontString>
 
 						<FontString name="$parentFormulaReadOnly" inherits="ARKINV_DataEntryFontDisable" justifyH="LEFT" justifyV="TOP"  hidden="true">
 							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="$parentFormulaLabel" relativePoint="TOPRIGHT" x="10" y="0" />
-								<Anchor point="RIGHT" x="-30" y="0" />
-								<Anchor point="BOTTOM" x="0" y="20" />
+								<Anchor point="TOPLEFT" relativeTo="$parentFormulaLabel" relativePoint="TOPRIGHT">
+									<Offset x="10" y="0" />
+								</Anchor>
+								<Anchor point="RIGHT">
+									<Offset x="-30" y="0" />
+								</Anchor>
+								<Anchor point="BOTTOM">
+									<Offset x="0" y="20" />
+								</Anchor>
 							</Anchors>
 						</FontString>
 
@@ -253,13 +293,17 @@
 
 					<CheckButton name="$parentEnabled" inherits="OptionsCheckButtonTemplate" checked="true">
 						<Anchors>
-							<Anchor point="LEFT" relativeTo="$parentEnabledLabel" relativePoint="RIGHT" x="10" y="0" />
+							<Anchor point="LEFT" relativeTo="$parentEnabledLabel" relativePoint="RIGHT">
+								<Offset x="10" y="0" />
+							</Anchor>
 						</Anchors>
 					</CheckButton>
 				
 					<CheckButton name="$parentEnabledReadOnly" inherits="OptionsCheckButtonTemplate" disabled="true" hidden="true">
 						<Anchors>
-							<Anchor point="LEFT" relativeTo="$parentEnabledLabel" relativePoint="RIGHT" x="10" y="0" />
+							<Anchor point="LEFT" relativeTo="$parentEnabledLabel" relativePoint="RIGHT">
+								<Offset x="10" y="0" />
+							</Anchor>
 						</Anchors>
 					</CheckButton>
 				
@@ -268,7 +312,9 @@
 						<Size x="60" y="40" />
 						
 						<Anchors>
-							<Anchor point="LEFT" relativeTo="$parentOrderLabel" relativePoint="RIGHT" x="10" y="0" />
+							<Anchor point="LEFT" relativeTo="$parentOrderLabel" relativePoint="RIGHT">
+								<Offset x="10" y="0" />
+							</Anchor>
 						</Anchors>
 
 						<Scripts>
@@ -294,8 +340,12 @@
 						<Size x="2" y="40" />
 
 						<Anchors>
-							<Anchor point="LEFT" relativeTo="$parentDescriptionLabel" relativePoint="RIGHT" x="10" y="0" />
-							<Anchor point="RIGHT" x="-10" y="0" />
+							<Anchor point="LEFT" relativeTo="$parentDescriptionLabel" relativePoint="RIGHT">
+								<Offset x="10" y="0" />
+							</Anchor>
+							<Anchor point="RIGHT">
+								<Offset x="-10" y="0" />
+							</Anchor>
 						</Anchors>
 
 						<Scripts>
@@ -315,10 +365,18 @@
 					<ScrollFrame name="$parentScroll" inherits="UIPanelScrollFrameTemplate">
 						
 						<Anchors>
-							<Anchor point="TOP" relativeTo="$parentFormulaLabel" relativePoint="TOP" x="10" y="0" />
-							<Anchor point="LEFT" relativeTo="$parentFormulaLabel" relativePoint="RIGHT" x="10" y="0" />
-							<Anchor point="RIGHT" x="-35" y="0" />
-							<Anchor point="BOTTOM" x="0" y="15" />
+							<Anchor point="TOP" relativeTo="$parentFormulaLabel" relativePoint="TOP">
+								<Offset x="10" y="0" />
+							</Anchor>
+							<Anchor point="LEFT" relativeTo="$parentFormulaLabel" relativePoint="RIGHT">
+								<Offset x="10" y="0" />
+							</Anchor>
+							<Anchor point="RIGHT">
+								<Offset x="-35" y="0" />
+							</Anchor>
+							<Anchor point="BOTTOM">
+								<Offset x="0" y="15" />
+							</Anchor>
 						</Anchors>
 						
 						<ScrollChild>
@@ -371,9 +429,15 @@
 					<Frame name="$parentScrollTextBorder">
 						<Size x="1" y="1" />
 						<Anchors>
-							<Anchor point="TOPLEFT" relativeTo="$parentScroll" x="-6" y="6" />
-							<Anchor point="BOTTOM" relativeTo="$parentScroll" x="0" y="-6" />
-							<Anchor point="RIGHT" relativeTo="$parentScroll" x="6" y="0" />
+							<Anchor point="TOPLEFT" relativeTo="$parentScroll">
+								<Offset x="-6" y="6" />
+							</Anchor>
+							<Anchor point="BOTTOM" relativeTo="$parentScroll">
+								<Offset x="0" y="-6" />
+							</Anchor>
+							<Anchor point="RIGHT" relativeTo="$parentScroll">
+								<Offset x="6" y="0" />
+							</Anchor>
 						</Anchors>
 						<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border">
 							<EdgeSize>
@@ -397,8 +461,12 @@
 		<Size x="2" y="2" />
 
 		<Anchors>
-			<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT" x="5" y="0" />
-			<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT" x="-30" y="0" />
+			<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
+				<Offset x="5" y="0" />
+			</Anchor>
+			<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
+				<Offset x="-30" y="0" />
+			</Anchor>
 		</Anchors>
 
 		<Layers>
@@ -422,15 +490,23 @@
 			
 				<Texture name="$parentHighlight" inherits="ARKINV_TextureHighlight">
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" x="5" y="0" />
-						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" x="-5" y="0" />
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset x="5" y="0" />
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+							<Offset x="-5" y="0" />
+						</Anchor>
 					</Anchors>
 				</Texture>
 
 				<Texture name="$parentSelected" inherits="ARKINV_TextureSelected">
 					<Anchors>
-						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" x="5" y="0" />
-						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" x="-5" y="0" />
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset x="5" y="0" />
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+							<Offset x="-5" y="0" />
+						</Anchor>
 					</Anchors>
 				</Texture>
 
@@ -482,7 +558,9 @@
 
 			<Button name="$parentRow1" inherits="ARKINV_TemplateRuleTableRow" id="1">
 				<Anchors>
-					<Anchor point="TOP" x="0" y="-10" />
+					<Anchor point="TOP">
+						<Offset x="0" y="-10" />
+					</Anchor>
 				</Anchors>
 			</Button>
 
@@ -591,7 +669,9 @@
 			<ScrollFrame name="$parentScroll" inherits="FauxScrollFrameTemplate">
 
 				<Anchors>
-					<Anchor point="TOPRIGHT" x="-30" y="-10" />
+					<Anchor point="TOPRIGHT">
+						<Offset x="-30" y="-10" />
+					</Anchor>
 				</Anchors>
 
 				<Scripts>
@@ -629,9 +709,15 @@
 
 		<Anchors>
 			<Anchor point="TOP" />
-			<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT" x="20" y="0" />
-			<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT" x="-20" y="0" />
-			<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM" x="0" y="20" />
+			<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
+				<Offset x="20" y="0" />
+			</Anchor>
+			<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
+				<Offset x="-20" y="0" />
+			</Anchor>
+			<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+				<Offset x="0" y="20" />
+			</Anchor>
 		</Anchors>
 		
 		<Scripts>
@@ -668,7 +754,9 @@
 
 					<Button name="$parentClear" inherits="ARKINV_TemplateButtonClear">
 						<Anchors>
-							<Anchor point="RIGHT" x="-8" y="0" />
+							<Anchor point="RIGHT">
+								<Offset x="-8" y="0" />
+							</Anchor>
 						</Anchors>
 					</Button>
 					
@@ -677,8 +765,12 @@
 						<Size x="2" y="20" />
 
 						<Anchors>
-							<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT" x="80" y="0" />
-							<Anchor point="RIGHT" relativeTo="$parentClear" relativePoint="LEFT" x="-2" y="0" />
+							<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
+								<Offset x="80" y="0" />
+							</Anchor>
+							<Anchor point="RIGHT" relativeTo="$parentClear" relativePoint="LEFT">
+								<Offset x="-2" y="0" />
+							</Anchor>
 						</Anchors>
 
 						<Scripts>
@@ -793,7 +885,9 @@
 					<Button name="$parentAdd" inherits="ARKINV_TemplateButtonMenuShort" text="add">
 					
 						<Anchors>
-							<Anchor point="RIGHT" relativeTo="$parentEdit" relativePoint="LEFT" x="-5" y="0" />
+							<Anchor point="RIGHT" relativeTo="$parentEdit" relativePoint="LEFT">
+								<Offset x="-5" y="0" />
+							</Anchor>
 						</Anchors>
 						
 						<Scripts>
@@ -814,7 +908,9 @@
 					<Button name="$parentRemove" inherits="ARKINV_TemplateButtonMenuShort" text="remove">
 					
 						<Anchors>
-							<Anchor point="LEFT" relativeTo="$parentEdit" relativePoint="RIGHT" x="5" y="0" />
+							<Anchor point="LEFT" relativeTo="$parentEdit" relativePoint="RIGHT">
+								<Offset x="5" y="0" />
+							</Anchor>
 						</Anchors>
 						
 						<Scripts>
@@ -891,7 +987,9 @@
 						<NormalTexture file="Interface\Icons\INV_Misc_Book_10" />
 						
 						<Anchors>
-							<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT" x="6" y="0" />
+							<Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
+								<Offset x="6" y="0" />
+							</Anchor>
 						</Anchors>
 						
 					</Button>
@@ -899,7 +997,9 @@
 					<Button name="$parentClose" inherits="ARKINV_TemplateButtonClose">
 					
 						<Anchors>
-							<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT" x="-8" y="0" />
+							<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
+								<Offset x="-8" y="0" />
+							</Anchor>
 						</Anchors>
 						
 						<Scripts>
@@ -920,8 +1020,12 @@
 									<Anchors>
 										<Anchor point="TOP" relativeTo="$parentMenu" relativePoint="TOP" />
 										<Anchor point="BOTTOM" relativeTo="$parentMenu" relativePoint="BOTTOM" />
-										<Anchor point="LEFT" relativeTo="$parentMenu" relativePoint="RIGHT" x="5" y="0" />
-										<Anchor point="RIGHT" relativeTo="$parentClose" relativePoint="RIGHT" x="-20" y="0" />
+										<Anchor point="LEFT" relativeTo="$parentMenu" relativePoint="RIGHT">
+											<Offset x="5" y="0" />
+										</Anchor>
+										<Anchor point="RIGHT" relativeTo="$parentClose" relativePoint="RIGHT">
+											<Offset x="-20" y="0" />
+										</Anchor>
 									</Anchors>
 								</FontString>
 							</Layer>
@@ -934,11 +1038,13 @@
 			
 			<Frame name="$parentFrame" inherits="ARKINV_TemplateRuleMain">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT" x="0" y="2" />
+					<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
+						<Offset x="0" y="2" />
+					</Anchor>
 					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" />
 				</Anchors>
 			</Frame>
-			
+
 		</Frames>
 
 		<Scripts>

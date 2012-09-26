@@ -1,12 +1,3 @@
-local _G = _G
-local select = _G.select
-local pairs = _G.pairs
-local string = _G.string
-local type = _G.type
-local error = _G.error
-local table = _G.table
-
-
 ArkInventory.LDB = {
 	Bags = ArkInventory.Lib.DataBroker:NewDataObject( string.format( "%s_%s", ArkInventory.Const.Program.Name, "Bags" ), {
 		type = "data source",
@@ -20,7 +11,7 @@ ArkInventory.LDB = {
 	} ),
 	Companion = { },
 	Pets = ArkInventory.Lib.DataBroker:NewDataObject( string.format( "%s_%s", ArkInventory.Const.Program.Name, "Pets" ), {
-		type = "data source",
+--		type = "data source",
 		icon = ArkInventory.Global.Location[ArkInventory.Const.Location.Pet].Texture,
 		text = "",
 	} ),
@@ -32,12 +23,12 @@ ArkInventory.LDB = {
 	Tracking_Currency = ArkInventory.Lib.DataBroker:NewDataObject( string.format( "%s_%s_%s", ArkInventory.Const.Program.Name, "Tracking", "Currency" ), {
 		type = "data source",
 		icon = nil,
-		text = "Track Currency",
+		text = "Tracking - Currency",
 	} ),
 	Tracking_Item = ArkInventory.Lib.DataBroker:NewDataObject( string.format( "%s_%s_%s", ArkInventory.Const.Program.Name, "Tracking", "Item" ), {
 		type = "data source",
 		icon = nil,
-		text = "Track Items",
+		text = "Tracking - Items",
 	} ),
 }
 
@@ -93,9 +84,7 @@ function ArkInventory.LDB.Tracking_Currency:Update( )
 		local name, isHeader, isExpanded, isUnused, isWatched, count, icon = GetCurrencyListInfo( j )
 		
 		if not isHeader then
-			local h = GetCurrencyListLink( j )
-			local class, id = ArkInventory.ObjectStringDecode( h )
-			if ArkInventory.db.char.option.ldb.tracking.currency.tracked[id] then
+			if ArkInventory.db.char.option.ldb.tracking.currency.tracked[name] then
 				self.text = string.format( "%s  |T%s:0|t %d", self.text, icon or ArkInventory.Const.Texture.Missing, count or 0 )
 				hasText = true
 			end
@@ -125,7 +114,7 @@ function ArkInventory.LDB.Tracking_Currency:OnTooltipShow( )
 	
 	local numTokenTypes = GetCurrencyListSize( )
 	
-	-- expand all currency headers
+	-- expand all token headers
 	for j = numTokenTypes, 1, -1 do
 		name, isHeader, isExpanded = GetCurrencyListInfo( j )
 		if isHeader and not isExpanded then
@@ -143,11 +132,7 @@ function ArkInventory.LDB.Tracking_Currency:OnTooltipShow( )
 			self:AddLine( " " )
 			self:AddLine( name )
 		else
-			
-			local h = GetCurrencyListLink( j )
-			local class, id = ArkInventory.ObjectStringDecode( h )
-			
-			if ArkInventory.db.char.option.ldb.tracking.currency.tracked[id] then
+			if ArkInventory.db.char.option.ldb.tracking.currency.tracked[name] then
 				self:AddDoubleLine( name, count, 0, 1, 0, 0, 1, 0 )
 			else
 				self:AddDoubleLine( name, count, 1, 1, 1, 1, 1, 1 )
@@ -226,8 +211,6 @@ end
 
 function ArkInventory.LDB.Pets:Update( )
 	
-	if not C_PetJournal.IsJournalUnlocked( ) then return end
-	
 	local companionType = "CRITTER"
 	
 	ArkInventory.LDB.Pets.Cleanup( )
@@ -266,8 +249,6 @@ end
 
 function ArkInventory.LDB.Pets:OnTooltipShow( )
 	
-	if not C_PetJournal.IsJournalUnlocked( ) then return end
-	
 	local companionType = "CRITTER"
 	
 	local total = ArkInventory.LDB.Companion.GetTotal( companionType )
@@ -304,24 +285,7 @@ function ArkInventory.LDB.Pets:OnTooltipShow( )
 end
 
 function ArkInventory.LDB.Pets:OnClick( button )
-	
-	if not C_PetJournal.IsJournalUnlocked( ) then return end
-	
-	if IsModifiedClick( "CHATLINK" ) then
-		
-		-- dismiss current pet
-		
-		local petID = C_PetJournal.GetSummonedPetID( )
-		if petID then
-			C_PetJournal.SummonPetByID( petID )
-		end
-		
-		return
-		
-	end
-	
-	ArkInventory.LDB.Pets:Update( )
-	
+
 	if button == "RightButton" then
 		
 		ArkInventory.MenuPetsOpen( self )
@@ -330,19 +294,30 @@ function ArkInventory.LDB.Pets:OnClick( button )
 		
 		local companionType = "CRITTER"
 		
-		local n = ArkInventory.Lib.Pet:NumPets( )
+		local n = GetNumCompanions( companionType )
 		if n == 0 then return end
+		
+		for creatureIndex = 1, n do
+			
+			local companionID, companionName, companionSpellID, texture, active = GetCompanionInfo( companionType, creatureIndex )
+			
+			if active then
+				DismissCompanion( companionType )
+				return
+			end
+			
+		end
+		
 		
 		ArkInventory.LDB.Companion.GetUsable( companionType, true )
 		
-		--ArkInventory.Output( #companionTable, " usable pets" )
-		
 		if #companionTable == 0 then
-			-- no usable pets
+			--ArkInventory.Output( "no usable pets" )
 		elseif #companionTable == 1 then
-			C_PetJournal.SummonPetByID( companionTable[1] )
+			CallCompanion( companionType, companionTable[1] )
 		else
-			C_PetJournal.SummonPetByID( companionTable[random( 1, #companionTable )] )
+			ArkInventory.LDB.Companion.GetUsable( companionType )
+			CallCompanion( companionType, companionTable[random( 1, #companionTable )] )
 		end
 		
 	end
@@ -351,24 +326,15 @@ end
 
 function ArkInventory.LDB.Pets.Cleanup( )
 	
-	if not C_PetJournal.IsJournalUnlocked( ) then return end
-	
 	local companionType = "CRITTER"
 	
 	local companionData = ArkInventory.Const.CompanionData
 	
-	-- check for an remove any selected companions we no longer have (theyve either been caged or released)
+	-- remove any selected companions we no longer have
 	local selected = ArkInventory.db.char.option.ldb.pets.selected
 	for k, v in pairs( selected ) do
-		if v ~= nil then
-			local check = nil
-			for _, petID in ArkInventory.Lib.Pet:IteratePetIDs( ) do
-				if k == petID then
-					check = v
-					break
-				end
-			end
-			selected[k] = check
+		if v ~= nil and not companionData[k] then
+			selected[k] = nil
 		end
 	end
 	
@@ -629,7 +595,7 @@ function ArkInventory.LDB.Mounts.IsFlyable( useMapZone )
 		
 		-- player level
 		
-		if UnitLevel( "player" ) < ArkInventory.Const.PLAYER_MOUNT_LEVEL then
+		if UnitLevel( "player" ) < 20 then
 			
 			ArkInventory.IsFlyable = false
 			--ArkInventory.Output( "player level is too low for flying" )
@@ -653,7 +619,6 @@ function ArkInventory.LDB.Mounts.IsFlyable( useMapZone )
 			elseif GetSpellInfo( ( GetSpellInfo( 90265 ) ) ) then -- master
 				skill = 300
 				--ArkInventory.Output( "riding skill = ", skill, "/master" )
-			
 			end
 			
 			if skill < 225 then
@@ -669,15 +634,15 @@ function ArkInventory.LDB.Mounts.IsFlyable( useMapZone )
 					
 					SetMapToCurrentZone( ) -- wont work after a uireload, requires a zone change to kick in
 					local zone = GetCurrentMapContinent( )
+					
 					-- -1 = instance
 					--  0 = cosmic
-					--  1 = kalimdor
-					--  2 = eastern kingdoms
 					--  3 = outland
 					--  5 = maelstrom (deepholm)
-					--  6 = pandaria
 					
 					if zone == 1 or zone == 2 then
+						
+						-- azeroth, need flight masters licence
 						
 						if not GetSpellInfo( ( GetSpellInfo( 90267 ) ) ) then
 							--ArkInventory.Output( "azeroth but you dont know flight masters licence" )
@@ -686,18 +651,11 @@ function ArkInventory.LDB.Mounts.IsFlyable( useMapZone )
 						
 					elseif zone == 4 then
 						
+						-- northrend, needs cold weather flying
+						
 						if not GetSpellInfo( ( GetSpellInfo( 54197 ) ) ) then
 							
 							--ArkInventory.Output( "northrend but you dont know cold weather flying" )
-							ArkInventory.IsFlyable = false
-							
-						end
-						
-					elseif zone == 6 then
-						
-						if not GetSpellInfo( ( GetSpellInfo( 115913 ) ) ) then
-							
-							--ArkInventory.Output( "pandaria but you dont know wisdom of the four winds" )
 							ArkInventory.IsFlyable = false
 							
 						end
@@ -743,8 +701,6 @@ function ArkInventory.LDB.Companion.GetAvailable( companionType, ignoreActive, m
 	
 	local selected
 	
-	
-	
 	if mountType then
 		selected = ArkInventory.db.char.option.ldb.mounts[mountType].selected
 	else
@@ -756,8 +712,6 @@ function ArkInventory.LDB.Companion.GetAvailable( companionType, ignoreActive, m
 	--ArkInventory.Output( "selected[", selectedCount, "] = ", selected )
 	
 	local count = 0
-	
-	if companionType == "MOUNT" then
 	
 	for creatureIndex = 1, n do
 		
@@ -850,26 +804,6 @@ function ArkInventory.LDB.Companion.GetAvailable( companionType, ignoreActive, m
 		
 	end
 	
-	elseif companionType == "CRITTER" then
-		
-		-- pets
-		local activePet = C_PetJournal.GetSummonedPetID( )
-		local activeSpecies = activePet and C_PetJournal.GetPetInfoByPetID( activePet )
-		
-		for _, petID in ArkInventory.Lib.Pet:IteratePetIDs( ) do
-			
-			local speciesID = C_PetJournal.GetPetInfoByPetID( petID )
-			
-			if ( C_PetJournal.PetIsSummonable( petID ) ) and ( not active or ignoreActive ) and ( speciesID ~= activeSpecies ) and ( ( selectedCount == 0 and selected[petID] ~= false ) or ( selectedCount > 0 and selected[petID] == true ) ) then
-				-- must be summonable, ignore dead pets
-				-- cannot be same current species as active pet, if one was active
-				count = count + 1
-				companionTable[count] = petID
-			end
-		end
-		
-	end
-	
 end
 
 function ArkInventory.LDB.Companion.GetSelectedCount( selected )
@@ -917,13 +851,15 @@ end
 
 function ArkInventory.LDB.Companion.GetTotal( companionType, mountType )
 	
+	local n = GetNumCompanions( companionType )
+	
 	if companionType == "CRITTER" then
-		return ArkInventory.Lib.Pet:NumPets( )
+		return n
 	end
 	
 	local count = 0
 	
-	for companionIndex = 1, GetNumCompanions( companionType ) do
+	for companionIndex = 1, n do
 		
 		local companionID, companionName, companionSpellID, texture, active = GetCompanionInfo( companionType, companionIndex )
 		local companionData = ArkInventory.Const.CompanionData[companionSpellID]

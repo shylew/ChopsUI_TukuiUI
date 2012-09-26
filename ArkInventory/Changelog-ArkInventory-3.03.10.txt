@@ -1,60 +1,12 @@
 ------------------------------------------------------------------------
-r365 | arkayenro | 2012-09-26 08:52:08 +0000 (Wed, 26 Sep 2012) | 17 lines
+r363 | arkayenro | 2012-09-16 14:15:06 +0000 (Sun, 16 Sep 2012) | 4 lines
 Changed paths:
-   A /tags/3.03.11 (from /trunk:364)
+   A /tags/3.03.10 (from /trunk:362)
 
-*3.03.11 (26-SEP-2012)*
- * fixed - issue with clicking on gold amount in bag window
- * fixed - issue with rule caching
- * fixed - currency tokens now using blizzard linktype
- * fixed - currency tooltips now include item counts
- * fixed - the chatlink and dressup functions work for items in wearing, token, mail and void storage locations
- * fixed - pet window, summon/dismiss via left click, right click menu as per pet journal
- * fixed - ldb pet object, left click to summon next pet, shift left click to dismiss active pet, right click for setup
- * added - pets now break down into four categories, pet (bound), pet (tradeable), battle pet (bound) and battle pet (tradeable)
- * added - for sorting purposes item (stat) level = pet level, and item type and subtype = pet type
- * added - for rule purposes ilvl( ) matches pet level, and type( ) matches pet type
- * added - summoned/active pet has a pulsing glow
- * added - custom tooltip for battle pets, should override blizzard tooltip
- * added - option to not display source and description text from battlepet tooltip
- * note - all pet, mount and token saved data has been erased, please login to each character to update its data
- * note - pet, mount and currency tracking data for ldb has been erased, please login to each character to setup ldb
+*3.03.10 (17-SEP-2012)*
+ * fixed - outfitter support code should now work properly
+ * changed - outfit rule will now check against each supported addon and then lastly check the equipment manager
 
-------------------------------------------------------------------------
-r364 | arkayenro | 2012-09-26 07:00:49 +0000 (Wed, 26 Sep 2012) | 1 line
-Changed paths:
-   M /trunk/.pkgmeta
-   M /trunk/ArkInventory.lua
-   M /trunk/ArkInventory.toc
-   M /trunk/ArkInventory.xml
-   M /trunk/ArkInventoryCompanion.lua
-   M /trunk/ArkInventoryConfig.lua
-   M /trunk/ArkInventoryLDB.lua
-   M /trunk/ArkInventoryMenu.lua
-   M /trunk/ArkInventoryRestack.lua
-   M /trunk/ArkInventorySearch.lua
-   M /trunk/ArkInventorySearch.xml
-   M /trunk/ArkInventoryStorage.lua
-   M /trunk/ArkInventoryTooltip.lua
-   M /trunk/ArkInventoryTranslate.lua
-   M /trunk/ArkInventoryUpgrades.lua
-   M /trunk/Locale/deDE.lua
-   M /trunk/Locale/enUS.lua
-   M /trunk/Locale/esES.lua
-   M /trunk/Locale/esMX.lua
-   M /trunk/Locale/frFR.lua
-   M /trunk/Locale/game.lua
-   M /trunk/Locale/koKR.lua
-   M /trunk/Locale/ruRU.lua
-   M /trunk/Locale/zhCN.lua
-   M /trunk/Locale/zhTW.lua
-   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.lua
-   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.xml
-   M /trunk/Modules/ArkInventoryRulesExample/ArkInventoryRulesExample.toc
-   M /trunk/VersionHistory.txt
-   M /trunk/embeds.xml
-
-testing git lib works for curse users
 ------------------------------------------------------------------------
 r362 | arkayenro | 2012-09-16 14:10:33 +0000 (Sun, 16 Sep 2012) | 3 lines
 Changed paths:
@@ -202,5 +154,27 @@ Changed paths:
  * added - battle pet category
  * added - battle pet item and tooltip support
  * removed - ability to summon pets (via window and ldb, will return in a later version)
+
+------------------------------------------------------------------------
+r343 | arkayenro | 2012-08-21 01:18:30 +0000 (Tue, 21 Aug 2012) | 7 lines
+Changed paths:
+   M /trunk/ArkInventory.lua
+   M /trunk/ArkInventory.toc
+   M /trunk/ArkInventoryCompanion.lua
+   M /trunk/ArkInventoryStorage.lua
+   M /trunk/ArkInventoryTranslate.lua
+   M /trunk/Bindings.xml
+   M /trunk/Locale/game.lua
+   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.lua
+   M /trunk/Modules/ArkInventoryRules/ArkInventoryRules.toc
+   M /trunk/ReadMe.txt
+   M /trunk/VersionHistory.txt
+
+*3.03.00 (21-AUG-2012) BETA 08-21-11-00*
+ * changed - toc set to 50001
+ * changed - will not load on live servers
+ * fixed - caged battlepet items and offline tooltips
+ * removed (temporarily) - pets (theyre now account wide so i need to decide what to do with them)
+ * removed (temporarily) - mounts
 
 ------------------------------------------------------------------------

@@ -1,12 +1,3 @@
-local _G = _G
-local select = _G.select
-local pairs = _G.pairs
-local string = _G.string
-local type = _G.type
-local error = _G.error
-local table = _G.table
-
-
 ArkInventory.SearchRebuild = true
 ArkInventory.SearchTable = { }
 
