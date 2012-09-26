@@ -1,5 +1,5 @@
 ## Interface: 50001
-## X-Curse-Packaged-Version: 3.03.10
+## X-Curse-Packaged-Version: 3.03.11
 ## X-Curse-Project-Name: ArkInventory
 ## X-Curse-Project-ID: ark-inventory
 ## X-Curse-Repository-ID: wow/ark-inventory/mainline
@@ -15,7 +15,7 @@
 
 ## Notes: Allows you to view all items from all your characters on the same realm, when-ever and where-ever you want.
 
-## OptionalDeps: Blizzard_GuildBankUI, Blizzard_VoidStorageUI, Ace3, AceGUI-3.0-SharedMediaWidgets, LibPeriodicTable-3.1, LibSharedMedia-3.0
+## OptionalDeps: Blizzard_GuildBankUI, Blizzard_VoidStorageUI, Blizzard_PetJournal, Ace3, AceGUI-3.0-SharedMediaWidgets, LibPeriodicTable-3.1, LibSharedMedia-3.0
 ## X-Embeds: Ace3, AceGUI-3.0-SharedMediaWidgets, LibPeriodicTable-3.1, LibSharedMedia-3.0
 
 ## X-Category: Inventory
