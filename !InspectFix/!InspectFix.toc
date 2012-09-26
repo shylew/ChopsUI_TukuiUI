@@ -2,11 +2,11 @@
 ## Title: InspectFix
 ## Author: oscarucb
 ## Description: Fixes some bugs that arise in the Blizzard UI while inspecting characters
-## Version: 4.2 beta 1
+## Version: 4.2
 ## X-Build: 45
 ## X-ReleaseDate: 2012-09-12T15:34:24Z
 ## X-Revision: $Revision: 45 $
-## X-Curse-Packaged-Version: 4.2 beta 1
+## X-Curse-Packaged-Version: 4.2
 ## X-Curse-Project-Name: InspectFix
 ## X-Curse-Project-ID: inspectfix
 ## X-Curse-Repository-ID: wow/inspectfix/mainline

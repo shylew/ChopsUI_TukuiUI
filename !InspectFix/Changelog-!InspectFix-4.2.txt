@@ -1,0 +1,38 @@
+------------------------------------------------------------------------
+r47 | oscarucb | 2012-09-25 03:35:55 +0000 (Tue, 25 Sep 2012) | 1 line
+Changed paths:
+   A /tags/4.2 (from /trunk:46)
+
+Tagging as 4.2
+------------------------------------------------------------------------
+r45 | oscarucb | 2012-09-12 15:34:24 +0000 (Wed, 12 Sep 2012) | 2 lines
+Changed paths:
+   A /trunk/!InspectFix.toc (from /trunk/InspectFix.toc:44)
+   A /trunk/.pkgmeta
+   D /trunk/InspectFix.toc
+
+prioritize loading to handle early NotifyInspect capture
+
+------------------------------------------------------------------------
+r43 | oscarucb | 2012-08-29 22:58:04 +0000 (Wed, 29 Aug 2012) | 2 lines
+Changed paths:
+   M /trunk/InspectFix.lua
+
+ticket 6: inspect window opening unexpectedly
+
+------------------------------------------------------------------------
+r40 | oscarucb | 2012-08-25 16:31:06 +0000 (Sat, 25 Aug 2012) | 2 lines
+Changed paths:
+   M /trunk/InspectFix.lua
+
+detect server throttle of NotifyInspect and automatically re-issue
+
+------------------------------------------------------------------------
+r39 | oscarucb | 2012-08-25 15:45:55 +0000 (Sat, 25 Aug 2012) | 2 lines
+Changed paths:
+   M /trunk/InspectFix.lua
+   M /trunk/InspectFix.toc
+
+5.x support
+
+------------------------------------------------------------------------
