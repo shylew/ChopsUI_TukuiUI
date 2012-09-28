@@ -386,7 +386,7 @@ local function FormatEvent(message, amount, damageType, overhealAmount, overkill
  if (powerType and string_find(message, "%p", 1, true)) then
   local powerString = _G[powerTokens[powerType] or "UNKNOWN"]
   if (powerType == powerTypes["ECLIPSE"]) then powerString = amount and (amount > 0 and BALANCE_POSITIVE_ENERGY or BALANCE_NEGATIVE_ENERGY) or UNKNOWN end
-  message = string_gsub(message, "%%p", powerString)
+  message = string_gsub(message, "%%p", powerString or UNKNOWN)
  end
  
 
@@ -1454,6 +1454,7 @@ eventHandlers["extraattacks"] = ExtraAttacksHandler
 for powerToken, powerType in pairs(powerTypes) do
  powerTokens[powerType] = powerToken
 end
+powerTokens[SPELL_POWER_DARK_FORCE] = POWER_TYPE_DARK_POWER
 
 -- Create map of power types that are handled uniquely.
 uniquePowerTypes[powerTypes["HOLY_POWER"]] = true
