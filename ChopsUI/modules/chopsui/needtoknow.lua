@@ -146,6 +146,11 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
   elseif T.myclass == "MONK" then
 
     if T.Spec == "BREWMASTER" then
+      ChopsUI.modules.needtoknow.PlayerBuff(1, "Tiger Power", COLOR_CODES.green, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Shuffle", COLOR_CODES.blue, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Elusive Brew", COLOR_CODES.yellow, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Guard", COLOR_CODES.orangelight, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Fortifying Brew, Dampen Harm, Avert Harm, Zen Meditation", COLOR_CODES.orangedark, true)
     elseif T.Spec == "MISTWEAVER" then
     elseif T.Spec == "WINDWALKER" then
       ChopsUI.modules.needtoknow.PlayerBuff(1, "Tiger Strikes", COLOR_CODES.red, true)
@@ -348,7 +353,11 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
 
   elseif T.myclass == "MONK" then
 
-    if T.Spec == "WINDWALKER" then
+    if T.Spec == "BREWMASTER" then
+      ChopsUI.modules.needtoknow.TargetDebuff(1, "Dizzying Haze", COLOR_CODES.orangelight, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout, Scarlet Fever, Weakened Blows", COLOR_CODES.green, false)
+      ChopsUI.modules.needtoknow.TargetDebuff(3, "Breath of Fire", COLOR_CODES.red, true)
+    elseif T.Spec == "WINDWALKER" then
       ChopsUI.modules.needtoknow.TargetDebuff(1, "Touch of Karma", COLOR_CODES.bluelight, true)
       ChopsUI.modules.needtoknow.TargetDebuff(2, "Paralysis", COLOR_CODES.purple, true)
       ChopsUI.modules.needtoknow.TargetDebuff(3, "Rising Sun Kick", COLOR_CODES.orangelight, true)
@@ -361,7 +370,7 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
     elseif T.Spec == "PROTECTION" then
       ChopsUI.modules.needtoknow.TargetDebuff(3, "Hammer of Justice", { 0, 0.57, 0.6 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(4, "Censure", { 1, 0.98, 0 }, true)
-      ChopsUI.modules.needtoknow.TargetDebuff(5, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout, Scarlet Fever", { 0.19, 0.71, 0.78 }, false)
+      ChopsUI.modules.needtoknow.TargetDebuff(5, "Vindication, Demoralizing Roar, Curse of Weakness, Demoralizing Shout, Scarlet Fever, Weakened Blows", { 0.19, 0.71, 0.78 }, false)
       ChopsUI.modules.needtoknow.TargetDebuff(6, "Judgements of the Just, Frost Fever, Infected Wounds, Thunder Clap", { 0.28, 0.79, 0.30 }, false)
     elseif T.Spec == "RETRIBUTION" then
       ChopsUI.modules.needtoknow.TargetDebuff(4, "Hammer of Justice", { 0, 0.57, 0.6 }, true)
