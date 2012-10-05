@@ -1,3 +1,21 @@
+** v1.15
+
+- Fixed another small bug..
+
+** v1.14
+
+- Fixed a small bug in 1.13 that prevented loading presets
+
+** v1.13
+
+- Partially reworked interface, removed unneeded buttons.
+ Speed slider is gone (optimal speed is automatically determinted), saved result section is gone
+ (main result area now shows the best overall result).
+- Tanking mode was removed as CTC cap is gone and tanks will be more interested in other stats now
+- Added priority mode for more user friendly configuration
+- Updated all presets
+- Fixed some taint issues (hopefully?)
+
 ** v1.12
 
 - Now automatically deletes relic reforge data
