@@ -1,0 +1,14 @@
+tag v50001-1.0.4
+32a4e28228f90922b0dd794a1387b614df6fa58b
+James Whitehead II <jnwhiteh@gmail.com>
+2012-10-05 09:36:01 +0200
+
+Tagging v50001-1.0.4
+
+
+--------------------
+
+James Whitehead II:
+	- Register the TomTom addon prefix for waypoint comm
+	Fixes 47
+	- Updated zhTW localization thanks to BNSSNB
