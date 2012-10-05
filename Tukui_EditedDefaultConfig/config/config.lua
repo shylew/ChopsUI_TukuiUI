@@ -63,6 +63,7 @@ C["media"] = {
 
 -- Override TukUI data text settings.
 C["datatext"] = {
+  ["power"] = 10, -- Show attackpower/spellpower in the part of the second data text container on the left.
   ["bags"] = 12, -- Show bag status in the left part of the second data text container on the right.
   ["wowtime"] = 13, -- Show the current time in the right part of the second data text container on the right.
 }
