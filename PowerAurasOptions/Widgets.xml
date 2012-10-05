@@ -1,0 +1,80 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\..\FrameXML\UI.xsd">
+  
+  <!-- Widget scripts should be added to this file instead of the TOC. -->
+  <Script file="Widgets\Basic.lua" />
+  <Script file="Widgets\Button.lua" />
+  <Script file="Widgets\Frame.lua" />
+  <Script file="Widgets\Window.lua" />
+  <Script file="Widgets\LayoutHost.lua" />
+  <Script file="Widgets\Aura.lua" />
+  <Script file="Widgets\BreadcrumbFrame.lua" />
+  <Script file="Widgets\Checkbox.lua" />
+  <Script file="Widgets\ColorPicker.lua" />
+  <Script file="Widgets\Debug.lua" />
+  <Script file="Widgets\Dropdown.lua" />
+  <Script file="Widgets\EditBox.lua" />
+  <Script file="Widgets\Slider.lua" />
+  <Script file="Widgets\TabFrame.lua" />
+  <Script file="Widgets\Table.lua" />
+  <Script file="Widgets\TreeView.lua" />
+
+  <Script file="Widgets\Workspace.lua" />
+  <Script file="Widgets\Editor.lua" />
+  <Script file="Widgets\Editor\CommonParameters.lua" />
+  <Script file="Widgets\Editor\Displays.lua" />
+  <Script file="Widgets\Editor\Displays\Actions.lua" />
+  <Script file="Widgets\Editor\Displays\Animations.lua" />
+  <Script file="Widgets\Editor\Displays\DisplayActivate.lua" />
+  <Script file="Widgets\Editor\Displays\DisplaySound.lua" />
+  <Script file="Widgets\Editor\Displays\Preview.lua" />
+  <Script file="Widgets\Editor\Displays\Sources.lua" />
+  <Script file="Widgets\Editor\Displays\Style.lua" />
+  <Script file="Widgets\Editor\Triggers.lua" />
+  <Script file="Widgets\Editor\Triggers\Configuration.lua" />
+  <Script file="Widgets\Editor\Triggers\Dependencies.lua" />
+  <Script file="Widgets\Editor\Triggers\Events.lua" />
+  <Script file="Widgets\Editor\Triggers\Parameters.lua" />
+  <Script file="Widgets\Editor\Triggers\Sources.lua" />
+  <Script file="Widgets\Editor\Triggers\Trigger.lua" />
+  <Script file="Widgets\Editor\Tutorials.lua" />
+
+
+  <!-- As we can't set a backdrop to have an alpha blending mode via Lua,
+       we need this XML template. -->
+  <Frame name="PowerAurasGUIHelpPlateBox" virtual="true">
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture parentKey="Background">
+          <Anchors>
+            <Anchor point="TOPLEFT" x="2" y="-2" />
+            <Anchor point="BOTTOMRIGHT" x="-2" y="2" />
+          </Anchors>
+          <Color r="0" g="0" b="0" a="0.75" />
+        </Texture>
+      </Layer>
+    </Layers>
+    <Frames>
+      <Frame parentKey="Highlight" hidden="true">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="-2" y="2" />
+          <Anchor point="BOTTOMRIGHT" x="2" y="-2" />
+        </Anchors>
+        <Backdrop edgeFile="Interface\TutorialFrame\UI-TutorialFrame-CalloutGlow" alphaMode="ADD">
+          <EdgeSize>
+            <AbsValue val="8" />
+          </EdgeSize>
+        </Backdrop>
+      </Frame>
+      <Frame parentKey="Normal" hidden="false" setAllPoints="true">
+        <Backdrop edgeFile="Interface\Buttons\WHITE8X8">
+          <EdgeSize>
+            <AbsValue val="2" />
+          </EdgeSize>
+          <BorderColor r="1.0" g="0.8" b="0.0" a="1.0" />
+        </Backdrop>
+      </Frame>
+    </Frames>
+  </Frame>
+</Ui>
