@@ -1,4 +1,4 @@
--- $Id: constants.en.lua 3777 2012-09-23 08:25:49Z ananhaid $
+-- $Id: constants.en.lua 3823 2012-10-03 07:30:07Z hegarol $
 --[[
 constants.en.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -462,6 +462,7 @@ if AL then
 	AL["Guild"] = true;
 
 	-- Blacksmithing
+	AL["Mists of Pandaria Vendor Sold Plans"] = true;
 	AL["Cataclysm Vendor Sold Plans"] = true;
 	AL["Armor Enhancements"] = true;
 	AL["Weapon Enhancements"] = true;
@@ -473,7 +474,7 @@ if AL then
 	AL["Enchant Cloak"] = true;
 	AL["Enchant Gloves"] = true;
 	AL["Enchant Ring"] = true;
-	AL["Enchant Shield"] = true;
+	AL["Enchant Shield & Off-Hand"] = true;
 	AL["Enchant 2H Weapon"] = true;
 	AL["Enchant Weapon"] = true;
 	AL["Cataclysm Vendor Sold Formulas"] = true;
@@ -490,8 +491,7 @@ if AL then
 	AL["Recall"] = true;
 	AL["Scrolls"] = true;
 	AL["Off-Hand Items"] = true;
-	AL["Relics/Shoulder Enchants"] = true;
-	AL["Relics"] = true;
+	AL["Staves/Shoulder Enchants"] = true;
 	AL["Shoulder Enchants"] = true;
 	AL["Reagents"] = true;
 	AL["Book of Glyph Mastery"] = true;
@@ -516,6 +516,7 @@ if AL then
 	AL["Old Quest Item"] = true;
 	AL["Quest Reward"] = true;
 	AL["Old Quest Reward"] = true;
+	AL["Pet Battle Quests"] = true;
 	AL["Shared"] = true;
 	AL["Right Half"] = true;
 	AL["Left Half"] = true;
@@ -569,6 +570,7 @@ if AL then
 	AL["Season 9"] = true;
 	AL["Season 10"] = true;
 	AL["Season 11"] = true;
+	AL["Season 12"] = true;
 	AL["Fire"] = true;
 	AL["Water"] = true;
 	AL["Wind"] = true;
@@ -601,6 +603,8 @@ if AL then
 	AL["Rare"] = true;
 	AL["Specializations"] = true;
 	AL["Raid Finder"] = true;
+	AL["Pandaria World Bosses"] = true;
+	AL["Elite"] = true;
 
 	-- Loot Table Names
 	AL["Level 30-39"] = true;
@@ -632,8 +636,6 @@ if AL then
 	AL["Parry Rating"] = true;
 	AL["Other Ratings"] = true;
 	AL["Ratings"] = true;
-	AL["Resistance"] = true;
-	AL["Specific Resistance"] = true;
 	AL["Damage Absorption"] = true;
 	AL["Health / Second"] = true;
 	AL["Mana / Second"] = true;
@@ -650,7 +652,6 @@ if AL then
 	AL["Special"] = true;
 	AL["Feasts"] = true;
 	AL["Speed"] = true;
-	AL["Rod"] = true; -- Used in categorizing Enchating Misc, ex: Runed Elementium Rod, Runed Fel Iron Rod. "Rod" is used as a category name
 	AL["Oil"] = true; -- Used in categorizing Enchating Misc, ex: Superior Wizard Oil, Wizard Oil
 	AL["Culture"] = true;
 	AL["Description"] = true;
@@ -1081,27 +1082,24 @@ if AL then
 	AL["Firestone Vendor"] = true;
 	AL["Poseidus"] = true;
 	AL["Burgy Blackheart"] = true;
+	AL["Battle Pet Trainer"] = true;
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = true;
 	AL["Crusader's Square"] = true;
 	AL["The Gauntlet"] = true;
+	AL["Halfhill Farm"] = true;
 
 	-- Shortcuts for Bossname files
 	AL["Avatar"] = true; -- Avatar of the Martyred
 
 	-- Chests, etc
-	AL["Ring of Law"] = true;
-	AL["Monument of Franclorn Forgewright"] = true;
 	AL["The Grim Guzzler"] = true;
-	AL["Summoner's Tomb"] = true;
 	AL["The Secret Safe"] = true;
 	AL["The Vault"] = true;
 	AL["Ogre Tannin Basket"] = true;
-	AL["Fengus's Chest"] = true;
 	AL["Unfinished Painting"] = true;
 	AL["Felvine Shard"] = true;
-	AL["Baelog's Chest"] = true;
 	AL["Lorgalis Manuscript"] = true;
 	AL["Fathom Core"] = true;
 	AL["Gift of Adoration"] = true;
@@ -1149,6 +1147,10 @@ if AL then
 	AL["Hidden Stash"] = true;
 	AL["The Cache of Madness"] = true;
 	AL["Stolen Present"] = true;
+	AL["Oozing Bag"] = true;
+	AL["Ominous Seed"] = true;
+
+	-- Blizzard Promotions
 	AL["Annual Pass"] = true;
 	AL["Scroll of Resurrection"] = true;
 	AL["Recruit-A-Friend"] = true;

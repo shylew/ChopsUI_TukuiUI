@@ -1,4 +1,4 @@
--- $Id: constants.de.lua 3753 2012-09-14 19:56:56Z hegarol $
+﻿-- $Id: constants.de.lua 3824 2012-10-03 08:28:36Z Dynaletik $
 --[[
 constants.de.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -7,6 +7,7 @@ back to the English translation.
 
 The AL["text"] = true; shortcut can ONLY be used for English (the root translation).
 ]]
+
 	-- Table holding all loot tables is initialised here as it loads early
 	--AtlasLoot_Data = {};
 	--AtlasLoot_TableNames = {};
@@ -71,6 +72,9 @@ if AL then
 	AL["Load AtlasLoot"] = "AtlasLoot laden";
 	AL["Module \"%s\" is disabled."] = "Modul \"%s\" ist deaktiviert.";
 	AL["Module \"%s\" is missing."] = "Modul \"%s\" fehlt.";
+	
+	-- MiniMap-Button
+	AL["|cffFF0000Click: |cffFFFFFFOpen AtlasLoot\n|cffFF0000Shift+Click: |cffFFFFFFOpen AtlasLoot-Options "] = "|cffFF0000Klicken: |cffFFFFFFAtlasLoot öffnen\n|cffFF0000Shift+Klicken: |cffFFFFFFAtlasLoot-Optionen öffnen";
 
 	-- AtlasLootFu 
 	AL["AtlasLootFu is no longer in use.\nDelete it from your AddOns folder"] = "AtlasLootFu wird nicht mehr verwendet.\nLöschen Sie es aus Ihrem AddOns-Verzeichnis";
@@ -83,6 +87,7 @@ if AL then
 	AL["Show Droprates"] = "Dropraten anzeigen";
 	AL["Safe Chat Links"] = "Sichere Chatlinks";
 	AL["Comparison TT"] = "Vergleiche Item";
+	AL["Show Boss Tooltip"] = "Boss ToolTip anzeigen";
 	AL["Show Comparison Tooltips"] = "Zeige eigenes Item zum Vergleich";
 	AL["Opaque"] = "Undurchsichtig";
 	AL["Make Loot Table Opaque"] = "Schwarzer Hintergrund";
@@ -133,6 +138,7 @@ if AL then
 	-- AL["DKP"] = true;
 	AL["Priority:"] = "Priorität:";
 	AL["Show price and slot if possible"] = "Preis und Slot anzeigen wenn möglich";
+	AL["Show wishlist items in bosses tooltip"] = "Gegenstände des Wunschzettels im ToolTip des Bosses anzeigen";
 	AL["Use GameTooltip"] = "Spiel-ToolTip verwenden";
 	AL["Use the standard GameTooltip instead of the custom AtlasLoot tooltip"] = "Statt dem angepassten AtlasLoot-ToolTip den normalen Spiel-ToolTip verwenden";
 	-- AL["%d / %d ( Bank: %d )"] = true;
@@ -267,6 +273,7 @@ if AL then
 	AL["Level 70"] = "Stufe 70";
 	AL["Level 80"] = "Stufe 80";
 	AL["Level 85"] = "Stufe 85";
+	AL["Level 90"] = "Stufe 90";
 	AL["|cffff0000(unsafe)"] = " |cffff0000(unsicher)";
 	AL["Misc"] = "Sonstiges";
 	AL["Rewards"] = "Belohnungen";
@@ -354,6 +361,7 @@ if AL then
 	-- AL["Tier 10 Set"] = true;
 	-- AL["Tier 11/12 Set"] = true;
 	-- AL["Tier 13 Set"] = true;
+	-- AL["Tier 14 Set"] = true;
 	AL["TCG Items"] = "TCG Gegenstände";
 
 	-- PvP Menu
@@ -454,6 +462,7 @@ if AL then
 	AL["Guild"] = "Gilde";
 
 	-- Blacksmithing
+	AL["Mists of Pandaria Vendor Sold Plans"] = "MoP - Vom Händler verkaufte Pläne";
 	AL["Cataclysm Vendor Sold Plans"] = "Cataclysm - Vom Händler verkaufte Pläne";
 	AL["Armor Enhancements"] = "Rüstungsverbesserungen";
 	AL["Weapon Enhancements"] = "Waffenverbesserungen";
@@ -465,7 +474,7 @@ if AL then
 	AL["Enchant Cloak"] = "Umhang verzaubern";
 	AL["Enchant Gloves"] = "Handschuhe verzaubern";
 	AL["Enchant Ring"] = "Ring verzaubern";
-	AL["Enchant Shield"] = "Schild verzaubern";
+	AL["Enchant Shield & Off-Hand"] = "Schild & Nebenhand verzaubern";
 	AL["Enchant 2H Weapon"] = "2H Waffe verzaubern";
 	AL["Enchant Weapon"] = "Waffe verzaubern";
 	AL["Cataclysm Vendor Sold Formulas"] = "Cataclysm - Vom Händler verkaufte Formeln";
@@ -482,8 +491,7 @@ if AL then
 	AL["Recall"] = "Rückruf";
 	AL["Scrolls"] = "Rollen";
 	AL["Off-Hand Items"] = "Nebenhand-Gegenstände";
-	AL["Relics/Shoulder Enchants"] = "Relikte/Schulterverzauberungen";
-	AL["Relics"] = "Relikte";
+	AL["Staves/Shoulder Enchants"] = "Stäbe/Schulterverzauberungen";
 	AL["Shoulder Enchants"] = "Schulterverzauberungen";
 	AL["Reagents"] = "Reagenzien";
 	AL["Book of Glyph Mastery"] = "Buch der Glyphenbeherrschung";
@@ -508,6 +516,7 @@ if AL then
 	AL["Old Quest Item"] = "Alter Questgegenstand";
 	AL["Quest Reward"] = "Questbelohnung";
 	AL["Old Quest Reward"] = "Alte Questbelohnung";
+	AL["Pet Battle Quests"] = "Haustierkampf-Quest";
 	AL["Shared"] = "geteilter Loot";
 	AL["Right Half"] = "Rechte Hälfte";
 	AL["Left Half"] = "Linke Hälfte";
@@ -529,6 +538,7 @@ if AL then
 	-- AL["Burning Crusade"] = true;
 	-- AL["Wrath of the Lich King"] = true;
 	-- AL["Cataclysm"] = true;
+	-- AL["Mists of Pandaria"] = true;
 	AL["Entrance"] = "Eingang";
 	-- AL["Dungeon Set 1"] = true;
 	-- AL["Dungeon Set 2"] = true;
@@ -549,13 +559,18 @@ if AL then
 	-- AL["Tier 11"] = true;
 	-- AL["Tier 12"] = true;
 	-- AL["Tier 13"] = true;
+	-- AL["Tier 14"] = true;
 	AL["10 Man"] = "10 Spieler";
 	AL["10/25 Man"] = "10/25 Spieler";
 	AL["Epic Set"] = "Episches Set";
 	AL["Rare Set"] = "Seltenes Set";
+	AL["Season 6"] = "Saison 6";
+	AL["Season 7"] = "Saison 7";
+	AL["Season 8"] = "Saison 8";
 	AL["Season 9"] = "Saison 9";
 	AL["Season 10"] = "Saison 10";
 	AL["Season 11"] = "Saison 11";
+	AL["Season 12"] = "Saison 12";
 	AL["Fire"] = "Feuer";
 	AL["Water"] = "Wasser";
 	AL["Wind"] = "Wind";
@@ -588,6 +603,8 @@ if AL then
 	AL["Rare"] = "Selten";
 	AL["Specializations"] = "Spezialisierungen";
 	AL["Raid Finder"] = "Schlachtzugsbrowser";
+	AL["Pandaria World Bosses"] = "Pandaria Weltbosse";
+	-- AL["Elite"] = true;
 
 	-- Loot Table Names
 	AL["Level 30-39"] = "Stufe 30-39";
@@ -619,8 +636,6 @@ if AL then
 	AL["Parry Rating"] = "Parierwertung";
 	AL["Other Ratings"] = "Andere Wertungen";
 	AL["Ratings"] = "Wertungen";
-	AL["Resistance"] = "Widerstand";
-	AL["Specific Resistance"] = "Spezieller Widerstand";
 	AL["Damage Absorption"] = "Schadenssbsorption";
 	AL["Health / Second"] = "Gesundheit / Sekunde";
 	AL["Mana / Second"] = "Mana / Sekunde";
@@ -637,7 +652,6 @@ if AL then
 	AL["Special"] = "Speziell";
 	AL["Feasts"] = "Festmähler";
 	AL["Speed"] = "Tempo";
-	AL["Rod"] = "Rute";
 	AL["Oil"] = "Öl";
 	AL["Culture"] = "Volk";
 	AL["Description"] = "Beschreibung";
@@ -650,6 +664,8 @@ if AL then
 	AL["Troll"] = "Trolle";
 	-- AL["Tol'vir"] = true;
 	AL["Orc"] = "Orcs";
+	-- AL["Pandaren"] = true;
+	-- AL["Mogu"] = true;
 	AL["Stats"] = "Werte";
 	AL["Resilience"] = "Abhärtung";
 	AL["Professions"] = "Berufe";
@@ -679,6 +695,8 @@ if AL then
 	AL["Outdoor"] = "Außenwelt";
 
 	-- Companions
+	AL["Achievement Companions"] = "Erfolgs-Haustiere";
+	AL["Faction Companions"] = "Fraktions-Haustiere";
 	AL["Card Game Companions"] = "Kartenspiel-Haustiere";
 	AL["Companion Accessories"] = "Haustierzubehör";
 	AL["Blizzard Store"] = "Blizzard Shop";
@@ -691,10 +709,12 @@ if AL then
 	AL["Quest Reward Companions"] = "Questbelohnungs-Haustiere";
 	AL["Rare Companions"] = "Seltene Haustiere";
 	AL["Unobtainable Companions"] = "Nicht mehr erhältlich";
+	AL["New Companions"] = "Neue Haustiere";
 
 	-- Mounts
 	AL["Alliance Mounts"] = "Allianz Reittiere";
 	AL["Horde Mounts"] = "Horde Reittiere";
+	AL["Flying Mounts"] = "Flugreittiere";
 	AL["Card Game Mounts"] = "Kartenspielreittiere";
 	AL["Crafted Mounts"] = "Herstellbar";
 	AL["Event Mounts"] = "Eventreittiere";
@@ -706,12 +726,14 @@ if AL then
 	AL["Promotional Mounts"] = "Promotions-Reittiere";
 	AL["Rare Mounts"] = "Seltene Reittiere";
 	AL["Unobtainable Mounts"] = "Nicht mehr erhältlich";
+	AL["New Mounts"] = "Neue Reittiere";
 
 	-- Tabards
 	AL["Achievement & Quest Reward Tabards"] = "Erfolgs & Questbelohnungen";
 	AL["Alliance Tabards"] = "Allianz Wappenröcke";
 	AL["Card Game Tabards"] = "Kartenspiel Wappenröcke";
 	AL["Horde Tabards"] = "Horde Wappenröcke";
+	AL["Neutral Faction Tabards"] = "Wappenröcke neutraler Fraktionen";
 	AL["PvP Tabards"] = "PvP Wappenröcke";
 	AL["Unobtainable Tabards"] = "Nicht mehr erhältlich";
 
@@ -934,9 +956,12 @@ if AL then
 	AL["Destruction"] = "Zerstörung";
     	AL["Tanking"] = "Schutz";
 	AL["DPS"] = "Schaden";
+	AL["Mistweaver"] = "Nebelwirker";
+	AL["Brewmaster"] = "Braumeister";
+	AL["Windwalker"] = "Windläufer ";
 
 	-- NPCs missing from BabbleBoss
-	--AL["Trash Mobs"] = true;
+	-- AL["Trash Mobs"] = true;
 	AL["Dungeon Set 2 Summonable"] = "Beschworener Boss (DS2)";
 	-- AL["Theldren"] = true;
 	AL["Sothos and Jarien"] = "Sothos und Jarien";
@@ -1057,27 +1082,24 @@ if AL then
 	AL["Firestone Vendor"] = "Händler für Feuersteine";
 	-- AL["Poseidus"] = true;
 	AL["Burgy Blackheart"] = "Bürgi Schwarzherz";
+	AL["Battle Pet Trainer"] = "Kampfhaustiertrainer";
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = "Prüfung des Obersten Kreuzfahrers";
 	AL["Crusader's Square"] = "Kreuzzüglerpass";
 	AL["The Gauntlet"] = "Der Spießrutenlauf";
+	AL["Halfhill Farm"] = "Halbhügel Farm";
 
 	-- Shortcuts for Bossname files
 	-- AL["Avatar"] = true; Avatar of the Martyred
 
 	-- Chests, etc
-	AL["Ring of Law"] = "Ring des Gesetzes";
-	AL["Monument of Franclorn Forgewright"] = "Denkmal für Franclorn Schmiedevater";
 	AL["The Grim Guzzler"] = "Zum Grimmigen Säufer";
-	AL["Summoner's Tomb"] = "Grab des Beschwörers";
 	AL["The Secret Safe"] = "Geheimsafe";
 	AL["The Vault"] = "Der Tresor";
 	AL["Ogre Tannin Basket"] = "Gerbekorb der Oger";
-	AL["Fengus's Chest"] = "Fengus Truhe";
 	AL["Unfinished Painting"] = "Unvollendetes Gemälde";
 	AL["Felvine Shard"] = "Teufelsrankensplitter";
-	AL["Baelog's Chest"] = "Baelogs Truhe";
 	AL["Lorgalis Manuscript"] = "Manuskript von Lorgalis";
 	AL["Fathom Core"] = "Tiefenkern";
 	AL["Gift of Adoration"] = "Geschenke der Verehrung";
@@ -1125,6 +1147,10 @@ if AL then
 	AL["Hidden Stash"] = "Gebunkerte Güter";
 	AL["The Cache of Madness"] = "Der Hort des Wahnsinns";
 	AL["Stolen Present"] = "Gestohlenes Geschenk";
+	AL["Oozing Bag"] = "Schlammiger Beutel";
+	AL["Ominous Seed"] = "Ominöser Samen";
+
+	-- Blizzard Promotions
 	AL["Annual Pass"] = "Jahrespass";
 	AL["Scroll of Resurrection"] = "Rolle der Auferstehung";
 	AL["Recruit-A-Friend"] = "Werbt einen Freund";

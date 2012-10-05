@@ -1,4 +1,4 @@
--- $Id: constants.mx.lua 3725 2012-04-23 23:39:19Z lag123 $
+﻿-- $Id: constants.mx.lua 3818 2012-10-02 15:47:36Z Dynaletik $
 --[[
 constants.es.lua --- Traduction ES por maqjav
 This file defines an AceLocale table for all the various text strings needed
@@ -221,7 +221,7 @@ if AL then
 	AL["Enchant Cloak"] = "Encantamiento Capa";
 	AL["Enchant Gloves"] = "Encantamiento Guantes";
 	AL["Enchant Ring"] = "Encantamiento Anillo";
-	AL["Enchant Shield"] = "Encantamiento Escudo";
+	AL["Enchant Shield & Off-Hand"] = "Encantamiento Escudo";
 	AL["Enchant 2H Weapon"] = "Encantamiento Arma 2 Manos";
 	AL["Enchant Weapon"] = "Encantamiento Arma";
 
@@ -608,10 +608,8 @@ if AL then
 	AL["The Secret Safe"] = "El secreto seguro";
 	AL["The Vault"] = "La caja fuerte";
 	AL["Ogre Tannin Basket"] = "Cesta de Ogro Tanino";
-	AL["Fengus's Chest"] = "Cofre de Fengus";
 	AL["Unfinished Painting"] = "Pintura sin terminar"; --Comprobar
 	AL["Felvine Shard"] = "Fragmento de gangrevid";
-	AL["Baelog's Chest"] = "Cofre de Baelog";
 	AL["Lorgalis Manuscript"] = "Manuscrito de Lorgalis";
 	AL["Fathom Core"] = "Núcleo de las profundidades";
 	AL["Gift of Adoration"] = "Ofrenda de adoración";

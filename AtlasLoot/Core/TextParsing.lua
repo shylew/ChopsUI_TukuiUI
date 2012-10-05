@@ -1,4 +1,4 @@
--- $Id: TextParsing.lua 3755 2012-09-16 08:22:37Z hegarol $
+-- $Id: TextParsing.lua 3830 2012-10-03 18:41:48Z hegarol $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -152,6 +152,7 @@ AtlasLoot_TextParsing = {
 	{ "#m37#", AL["Tier 11"] },
 	{ "#m38#", AL["Tier 12"] },
 	{ "#m39#", AL["Tier 13"] },
+	{ "#m40#", AL["Tier 14"] },
 
 	-- Misc
 	{ "#j1#", AL["Normal Mode"] },
@@ -737,6 +738,8 @@ AtlasLoot_TextParsing = {
 	{ "#arenas8_2#", BabbleItemSet["Gladiator's Felshroud"] },
 	{ "#arenas9#", BabbleItemSet["Gladiator's Battlegear"] },
 	{ "#arenas10#", BabbleItemSet["Gladiator's Desecration"] },
+	{ "#arenas11_1#", BabbleItemSet["Gladiator's Ironskin"] },
+	{ "#arenas11_2#", BabbleItemSet["Gladiator's Copperskin"] },
 
 	-- Crafting
 	{ "#sr#", AL["Skill Required:"] },
@@ -801,15 +804,16 @@ AtlasLoot_TextParsing = {
 	{ "#winterfinclam#", "|TInterface\\Icons\\INV_Misc_Shell_03:0|t" },
 
 	-- Currency Icons - Crafting Recipes
-	{ "#elementiumbar#", "|TInterface\\Icons\\inv_misc_pyriumbar:0|t"},
-	{ "#hardenedelementiumbar#", "|TInterface\\Icons\\inv_misc_ebonsteelbar:0|t"},
-	{ "#pyriumbar#", "|TInterface\\Icons\\inv_misc_pyriumbar_02:0|t"},
-	{ "#heavenlyshard#", "|TInterface\\Icons\\inv_misc_largeshard_superior:0|t"},
-	{ "#hypnoticdust#", "|TInterface\\Icons\\inv_enchant_dust:0|t"},
-	{ "#maelstromcrystal#", "|TInterface\\Icons\\inv_misc_crystalepic:0|t"},
-	{ "#embersilkboltl#", "|TInterface\\Icons\\inv_misc_emberweavecloth_01:0|t"},
-	{ "#dreamcloth#", "|TInterface\\Icons\\inv_chest_cloth_57:0|t"},
-	{ "#heavysavageleather#", "|TInterface\\Icons\\item_savageleatherhide:0|t"},
+	{ "#spiritofharmony#", "|TInterface\\Icons\\inv_elemental_spiritofharmony_2:0|t"},		-- Spirit of Harmony (SmithingMoPVendor)
+	{ "#elementiumbar#", "|TInterface\\Icons\\inv_misc_pyriumbar:0|t"},						-- Elementium Bar (SmithingCataVendor)
+	{ "#hardenedelementiumbar#", "|TInterface\\Icons\\inv_misc_ebonsteelbar:0|t"},			-- Hardened Elementium Bar (SmithingCataVendor)
+	{ "#pyriumbar#", "|TInterface\\Icons\\inv_misc_pyriumbar_02:0|t"},						-- Pyrium Bar (SmithingCataVendor)
+	{ "#heavenlyshard#", "|TInterface\\Icons\\inv_misc_largeshard_superior:0|t"},			-- Heavenly Shard (EnchantingCataVendor)
+	{ "#hypnoticdust#", "|TInterface\\Icons\\inv_enchant_dust:0|t"},						-- Hypnotic Dust (EnchantingCataVendor)
+	{ "#maelstromcrystal#", "|TInterface\\Icons\\inv_misc_crystalepic:0|t"},				-- Maelstrom Crystal (EnchantingCataVendor)
+	{ "#embersilkbolt#", "|TInterface\\Icons\\inv_misc_emberweavecloth_01:0|t"},			-- Bolt of Embersilk Cloth (TailoringCataVendor)
+	{ "#dreamcloth#", "|TInterface\\Icons\\inv_chest_cloth_57:0|t"},						-- Dream Cloth (TailoringCataVendor)
+	{ "#heavysavageleather#", "|TInterface\\Icons\\item_savageleatherhide:0|t"},			-- Heavy Savage Leather (LeatherworkingCataVendor)
 }
 
 --------------------------------------------------------------------------------

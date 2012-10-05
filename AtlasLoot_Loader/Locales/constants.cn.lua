@@ -1,4 +1,4 @@
--- $Id: constants.cn.lua 3777 2012-09-23 08:25:49Z ananhaid $
+﻿-- $Id: constants.cn.lua 3826 2012-10-03 08:56:09Z ananhaid $
 --[[
 constants.cn.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -462,6 +462,7 @@ if AL then
 	AL["Guild"] = "公会";
 
 	-- Blacksmithing
+	AL["Mists of Pandaria Vendor Sold Plans"] = "熊猫人之谜商人出售图纸";
 	AL["Cataclysm Vendor Sold Plans"] = "大地的裂变商人出售图纸";
 	AL["Armor Enhancements"] = "护甲强化";
 	AL["Weapon Enhancements"] = "武器强化";
@@ -473,7 +474,7 @@ if AL then
 	AL["Enchant Cloak"] = "附魔披风";
 	AL["Enchant Gloves"] = "附魔手套";
 	AL["Enchant Ring"] = "附魔戒指";
-	AL["Enchant Shield"] = "附魔盾牌";
+	AL["Enchant Shield & Off-Hand"] = "附魔盾牌/副手";
 	AL["Enchant 2H Weapon"] = "附魔双手武器";
 	AL["Enchant Weapon"] = "附魔武器";
 	AL["Cataclysm Vendor Sold Formulas"] = "大地的裂变商人出售公式";
@@ -490,8 +491,7 @@ if AL then
 	AL["Recall"] = "召回";
 	AL["Scrolls"] = "卷轴";
 	AL["Off-Hand Items"] = "副手物品";
-	AL["Relics/Shoulder Enchants"] = "圣物/肩膀附魔";
-	AL["Relics"] = "圣物";
+	AL["Staves/Shoulder Enchants"] = "法杖/肩膀附魔";
 	AL["Shoulder Enchants"] = "肩膀附魔";
 	AL["Reagents"] = "材料";
 	AL["Book of Glyph Mastery"] = "雕文精通之书";
@@ -516,10 +516,11 @@ if AL then
 	AL["Old Quest Item"] = "旧任务物品";
 	AL["Quest Reward"] = "任务奖励";
 	AL["Old Quest Reward"] = "旧任务奖励";
-	AL["Shared"] = "已分享";
+	AL["Pet Battle Quests"] = "宠物对战任务";
+	AL["Shared"] = "共享";
 	AL["Right Half"] = "右半部分";
 	AL["Left Half"] = "左半部分";
-	AL["Currency"] = "购买";
+	AL["Currency"] = "货币";
 	AL["Used to summon boss"] = "用以召唤首领";
 	AL["Tradable for sunmote + item above"] = "太阳之尘与上面物品兑换";
 	AL["Card Game Item"] = "集换卡游戏物品";
@@ -569,6 +570,7 @@ if AL then
 	AL["Season 9"] = "第9季";
 	AL["Season 10"] = "第10季";
 	AL["Season 11"] = "第11季";
+	AL["Season 12"] = "第12季";
 	AL["Fire"] = "火";
 	AL["Water"] = "水";
 	AL["Wind"] = "风";
@@ -601,6 +603,8 @@ if AL then
 	AL["Rare"] = "稀有";
 	AL["Specializations"] = "特殊";
 	AL["Raid Finder"] = "团队查找器";
+	AL["Pandaria World Bosses"] = "潘达利亚世界首领";
+	AL["Elite"] = "精锐";
 
 	-- Loot Table Names
 	AL["Level 30-39"] = "等级30-39";
@@ -632,8 +636,6 @@ if AL then
 	AL["Parry Rating"] = "招架等级";
 	AL["Other Ratings"] = "其它等级";
 	AL["Ratings"] = "等级";
-	AL["Resistance"] = "抗性";
-	AL["Specific Resistance"] = "抗性类别";
 	AL["Damage Absorption"] = "吸收伤害";
 	AL["Health / Second"] = "每秒恢复生命";
 	AL["Mana / Second"] = "每秒恢复法力";
@@ -650,7 +652,6 @@ if AL then
 	AL["Special"] = "特殊";
 	AL["Feasts"] = "宴席";
 	AL["Speed"] = "速度";
-	AL["Rod"] = "附魔棒";
 	AL["Oil"] = "附魔油";
 	AL["Culture"] = "文化";
 	AL["Description"] = "描述";
@@ -1081,27 +1082,24 @@ if AL then
 	AL["Firestone Vendor"] = "火石结晶商人";
 	AL["Poseidus"] = "波塞冬斯";
 	AL["Burgy Blackheart"] = "布尔吉·黑心";
+	AL["Battle Pet Trainer"] = "宠物对战训练师";
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = "大十字军的试炼";
 	AL["Crusader's Square"] = "十字军广场";
 	AL["The Gauntlet"] = "街巷";
+	AL["Halfhill Farm"] = "半山农场";
 
 	-- Shortcuts for Bossname files
 	AL["Avatar"] = "殉难者的化身";
 
 	-- Chests, etc
-	AL["Ring of Law"] = "秩序竞技场";
-	AL["Monument of Franclorn Forgewright"] = "弗兰克罗恩·铸铁的雕像";
 	AL["The Grim Guzzler"] = "黑铁酒吧";
-	AL["Summoner's Tomb"] = "召唤者之墓";
 	AL["The Secret Safe"] = "秘密保险箱";
 	AL["The Vault"] = "黑色宝库";
 	AL["Ogre Tannin Basket"] = "食人魔鞣酸篮";
-	AL["Fengus's Chest"] = "芬古斯的箱子";
 	AL["Unfinished Painting"] = "未完成的油画";
 	AL["Felvine Shard"] = "魔藤碎片";
-	AL["Baelog's Chest"] = "巴尔洛戈的箱子";
 	AL["Lorgalis Manuscript"] = "洛迦里斯手稿";
 	AL["Fathom Core"] = "深渊之核";
 	AL["Gift of Adoration"] = "爱慕的礼物";
@@ -1149,6 +1147,10 @@ if AL then
 	AL["Hidden Stash"] = "藏匿物";
 	AL["The Cache of Madness"] = "疯狂之缘";
 	AL["Stolen Present"] = "被窃的礼物";
+	AL["Oozing Bag"] = "沾满淤泥的袋子";
+	AL["Ominous Seed"] = "不祥之种";
+
+	-- Blizzard Promotions
 	AL["Annual Pass"] = "年卡";
 	AL["Scroll of Resurrection"] = "复活卷轴";
 	AL["Recruit-A-Friend"] = "战友招募";

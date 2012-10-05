@@ -1,4 +1,4 @@
--- $Id: constants.es.lua 3753 2012-09-14 19:56:56Z hegarol $
+﻿-- $Id: constants.es.lua 3818 2012-10-02 15:47:36Z Dynaletik $
 --[[
 constants.es.lua --- Traduction ES por maqjav
 This file defines an AceLocale table for all the various text strings needed
@@ -385,7 +385,7 @@ if AL then
 	AL["Enchant Cloak"] = "Encantamiento Capa";
 	AL["Enchant Gloves"] = "Encantamiento Guantes";
 	AL["Enchant Ring"] = "Encantamiento Anillo";
-	AL["Enchant Shield"] = "Encantamiento Escudo";
+	AL["Enchant Shield & Off-Hand"] = "Encantamiento Escudo";
 	AL["Enchant 2H Weapon"] = "Encantamiento Arma 2 Manos";
 	AL["Enchant Weapon"] = "Encantamiento Arma";
 	AL["Cataclysm Vendor Sold Formulas"] = "Vendedor de fórmulas de Cataclysm";
@@ -516,7 +516,6 @@ if AL then
 	AL["Mastery Rating"] = "Índice de maestría";
 	AL["Parry Rating"] = "Índice de parada";
 	AL["Other Ratings"] = "Otros índices";
-	AL["Resistance"] = "Resistencia";
 	AL["Health / Second"] = "Vida / Segundo";
 	AL["Mana / Second"] = "Maná / Segundo";
 	AL["Tracking"] = "Rastreo";
@@ -913,17 +912,12 @@ if AL then
 	--AL["Avatar"] = true,	
 
 	--Chests, etc
-	--AL["Ring of Law"] = true; FALTA
-	AL["Monument of Franclorn Forgewright"] = "Monumento a Franclorn Forjador";
 	AL["The Grim Guzzler"] = "El Tragapenas";
-	AL["Summoner's Tomb"] = "La tumba de los invocadores"; --Comprobar
 	AL["The Secret Safe"] = "El secreto seguro";
 	AL["The Vault"] = "La caja fuerte";
 	AL["Ogre Tannin Basket"] = "Cesta de Ogro Tanino";
-	AL["Fengus's Chest"] = "Cofre de Fengus";
 	AL["Unfinished Painting"] = "Pintura sin terminar"; --Comprobar
 	AL["Felvine Shard"] = "Fragmento de gangrevid";
-	AL["Baelog's Chest"] = "Cofre de Baelog";
 	AL["Lorgalis Manuscript"] = "Manuscrito de Lorgalis";
 	AL["Fathom Core"] = "Núcleo de las profundidades";
 	AL["Gift of Adoration"] = "Ofrenda de adoración";

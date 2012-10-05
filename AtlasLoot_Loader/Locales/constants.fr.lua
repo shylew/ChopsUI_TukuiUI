@@ -1,4 +1,4 @@
--- $Id: constants.fr.lua 3780 2012-09-24 00:25:05Z TrAsHeR $
+﻿-- $Id: constants.fr.lua 3821 2012-10-03 06:40:44Z TrAsHeR $
 --[[
 constants.fr.lua --- Traduction frFR par TrAsHeR (Tchoupie @ Nerz'hul-EU). Merci à KKram pour les premières traductions & Pettigrow pour ses quelques traductions.
 This file defines an AceLocale table for all the various text strings needed
@@ -81,7 +81,7 @@ if AL then
 	-- Options
 	--AL["Options"] = true;
 	AL["Load Loot Modules at Startup"] = "Charger les modules de loot au démarrage";
-	AL["Minimap Button"] = "Afficher le boutton sur la mini-carte";
+	AL["Minimap Button"] = "Afficher le bouton sur la mini-carte";
 	AL["Show itemIDs"] = "Afficher les IDs des objets";
 	AL["Show Droprates"] = "Afficher les pourcentages de drop";
 	AL["Safe Chat Links"] = "Liens sûrs, sur le canal";
@@ -291,7 +291,7 @@ if AL then
 	AL["Right"] = "Droite";
 	AL["Hide Text"] = "Masquer le texte";
 	AL["Hide Icon"] = "Masquer l'icône";
-	AL["Minimap Button Options"] = "Options du boutton de la mini-carte";
+	AL["Minimap Button Options"] = "Options du bouton de la mini-carte";
 
 	-- Text for Options Panel
 	AL["Atlasloot Options"] = "Options d'AtlasLoot";
@@ -309,8 +309,8 @@ if AL then
 	AL["Set Minimap Button Position"] = "Position du bouton sur la mini-carte";
 	AL["Notify on LoD Module Load"] = "M'informer quand un module est chargé";
 	AL["Loot Browser Scale: "] = "Échelle du navigateur de loot : ";
-	AL["Button Position: "] = "Position du boutton :";
-	AL["Button Radius: "] = "Rayon du boutton";
+	AL["Button Position: "] = "Position du bouton :";
+	AL["Button Radius: "] = "Rayon du bouton";
 	AL["Done"] = "Fait";
 	AL["FuBar Toggle"] = "Activer ou non FuBar";
 	AL["Search Result: %s"] = "Résultat(s) de la recherche : %s";
@@ -461,6 +461,7 @@ if AL then
 	AL["Guild"] = "Guilde";
 
 	-- Blacksmithing
+	AL["Mists of Pandaria Vendor Sold Plans"] = "Vendeur de plans à Mist of Pandoria";
 	AL["Cataclysm Vendor Sold Plans"] = "Vendeur de plans à Cataclysme"
 	AL["Armor Enhancements"] = "Améliorations d'armure";
 	AL["Weapon Enhancements"] = "Améliorations d'arme";
@@ -472,7 +473,7 @@ if AL then
 	AL["Enchant Cloak"] = "Enchantement Cape";
 	AL["Enchant Gloves"] = "Enchantement Gants";
 	AL["Enchant Ring"] = "Enchantement Anneau";
-	AL["Enchant Shield"] = "Enchantement Bouclier";
+	AL["Enchant Shield & Off-Hand"] = "Enchantement Bouclier & Main gauche";
 	AL["Enchant 2H Weapon"] = "Enchantement Arme à deux mains";
 	AL["Enchant Weapon"] = "Enchantement Arme";
 	AL["Cataclysm Vendor Sold Formulas"] = "Vendeur de formules à Cataclysme";
@@ -488,9 +489,8 @@ if AL then
 	AL["Runescrolls"] = "Parchemins";
 	AL["Recall"] = "Rappel";
 	AL["Scrolls"] = "Parchemins";
-	AL["Off-Hand Items"] = "Objets Tenu(e) en main gauche";
-	AL["Relics/Shoulder Enchants"] = "Reliques / Enchantements d'épaule";
-	AL["Relics"] = "Reliques";
+	AL["Off-Hand Items"] = "Objets tenu en main gauche";
+	AL["Staves/Shoulder Enchants"] = "Enchantements Bâtons / épaules";
 	AL["Shoulder Enchants"] = "Enchantements d'épaule";
 	AL["Reagents"] = "Réactifs";
 	AL["Book of Glyph Mastery"] = "Livre de la maîtrise des glyphes";
@@ -515,6 +515,7 @@ if AL then
 	AL["Old Quest Item"] = "Ancien objet de quête";
 	AL["Quest Reward"] = "Récompense de quête";
 	AL["Old Quest Reward"] = "Ancienne récompense de quête";
+	AL["Pet Battle Quests"] = "Mascottes de combat des quêtes";
 	AL["Shared"] = "Partagé";
 	AL["Right Half"] = "Moitié droite";
 	AL["Left Half"] = "Moitié gauche";
@@ -572,11 +573,11 @@ if AL then
 	AL["Wind"] = "Vent";
 	AL["Earth"] = "Terre";
 	AL["Master Angler"] = "Meilleur pêcheur";
-	AL["Fire Resistance Gear"] = "Equipements de Résistance au Feu";
-	AL["Arcane Resistance Gear"] = "Equipements de Résistance aux Arcanes";
-	AL["Nature Resistance Gear"] = "Equipements de Résistance à la Nature";
-	AL["Frost Resistance Gear"] = "Equipements de Résistance au Froid";
-	AL["Shadow Resistance Gear"] = "Equipements de Résistance à l'Ombre";
+	AL["Fire Resistance Gear"] = "Équipements de Résistance au Feu";
+	AL["Arcane Resistance Gear"] = "Équipements de Résistance aux Arcanes";
+	AL["Nature Resistance Gear"] = "Équipements de Résistance à la Nature";
+	AL["Frost Resistance Gear"] = "Équipements de Résistance au Froid";
+	AL["Shadow Resistance Gear"] = "Équipements de Résistance à l'Ombre";
 
 	-- Labels for loot table sections
 	AL["Additional Heroic Loot"] = "Loot héroïque additionnel";
@@ -599,6 +600,8 @@ if AL then
 	--AL["Rare"] = true;
 	AL["Specializations"] = "Spécialisations";
 	AL["Raid Finder"] = "Recherche de raid";
+	AL["Pandaria World Bosses"] = "World Boss de Pandarie";
+	--AL["Elite"] = true;
 
 	-- Loot Table Names
 	AL["Level 30-39"] = "Niveau 30-39";
@@ -630,8 +633,6 @@ if AL then
 	AL["Parry Rating"] = "Score de parade";
 	AL["Other Ratings"] = "Autres scores";
 	AL["Ratings"] = "Scores";
-	AL["Resistance"] = "Résistance";
-	AL["Specific Resistance"] = "Résistance spécifique";
 	AL["Damage Absorption"] = "Absorption des dégâts";
 	AL["Health / Second"] = "Vie / seconde"
 	AL["Mana / Second"] = "Mana / seconde";
@@ -648,7 +649,6 @@ if AL then
 	AL["Special"] = "Spécial";
 	AL["Feasts"] = "Festins";
 	AL["Speed"] = "Vitesse";
-	AL["Rod"] = "Bâtonnet"; -- Used in categorizing Enchating Misc, ex: Runed Elementium Rod, Runed Fel Iron Rod. "Rod" is used as a category name
 	AL["Oil"] = "Huile";-- Used in categorizing Enchating Misc, ex: Superior Wizard Oil, Wizard Oil
 	--AL["Culture"] = true;
 	--AL["Description"] = true;
@@ -1079,27 +1079,24 @@ if AL then
 	AL["Firestone Vendor"] = "Vendeur des Terres de Feu";
 	AL["Poseidus"] = "Poséidus";
 	AL["Burgy Blackheart"] = "Burgy Cœur-Noir";
+	AL["Battle Pet Trainer"] = "Dresseur de mascottes de combat";
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = "L'épreuve du grand croisé";
 	AL["Crusader's Square"] = "Place des Croisés";
 	AL["The Gauntlet"] = "Le Défi";
+	AL["Halfhill Farm"] = "Marché de Micolline";
 
 	-- Shortcuts for Bossname files
 	--AL["Avatar"] = true; -- Avatar of the Martyred
 
 	-- Chests, etc
-	AL["Ring of Law"] = "Cercle de la loi";
-	AL["Monument of Franclorn Forgewright"] = "Monument de Franclorn Le Forgebusier";
 	AL["The Grim Guzzler"] = "Le Sinistre écluseur";
-	AL["Summoner's Tomb"] = "La tombe des invocateurs";
 	AL["The Secret Safe"] = "Coffre à relique";
 	AL["The Vault"] = "La Chambre forte";
 	AL["Ogre Tannin Basket"] = "Panier Ogre de tannin";
-	AL["Fengus's Chest"] = "Coffre de Fengus";
 	AL["Unfinished Painting"] = "Toile inachevée";
 	AL["Felvine Shard"] = "Fragment de la Gangrevigne";
-	AL["Baelog's Chest"] = "Coffre de Baelog";
 	AL["Lorgalis Manuscript"] = "Manuscrit de Lorgalis";
 	AL["Fathom Core"] = "Noyau de la Brasse";
 	AL["Gift of Adoration"] = "Cadeau d'adoration";
@@ -1147,6 +1144,10 @@ if AL then
 	AL["Hidden Stash"] = "Fortune cachée";
 	AL["The Cache of Madness"] = "L'antre de la Folie";
 	AL["Stolen Present"] = "Cadeau volé";
+	AL["Oozing Bag"] = "Sac vaseux";
+	AL["Ominous Seed"] = "Graine inquiétante";
+
+	-- Blizzard Promotions
 	AL["Annual Pass"] = "Pass annuel";
 	AL["Scroll of Resurrection"] = "Sort de résurrection";
 	AL["Recruit-A-Friend"] = "Parrainer un ami";

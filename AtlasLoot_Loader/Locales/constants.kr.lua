@@ -1,4 +1,4 @@
--- $Id: constants.kr.lua 3753 2012-09-14 19:56:56Z hegarol $
+﻿-- $Id: constants.kr.lua 3818 2012-10-02 15:47:36Z Dynaletik $
 --[[
 constants.en.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -392,7 +392,7 @@ if AL then
 	AL["Enchant Cloak"] = true;
 	AL["Enchant Gloves"] = true;
 	AL["Enchant Ring"] = true;
-	AL["Enchant Shield"] = true;
+	AL["Enchant Shield & Off-Hand"] = true;
 	AL["Enchant 2H Weapon"] = true;
 	AL["Enchant Weapon"] = true;
 	AL["Cataclysm Vendor Sold Formulas"] = true;
@@ -523,7 +523,6 @@ if AL then
 	AL["Mastery Rating"] = true;
 	AL["Parry Rating"] = true;
 	AL["Other Ratings"] = true;
-	AL["Resistance"] = true;
 	AL["Health / Second"] = true;
 	AL["Mana / Second"] = true;
 	AL["Tracking"] = true;
@@ -911,17 +910,12 @@ if AL then
 	AL["Avatar"] = true; -- Avatar of the Martyred
 
 	-- Chests, etc
-	AL["Ring of Law"] = true;
-	AL["Monument of Franclorn Forgewright"] = true;
 	AL["The Grim Guzzler"] = true;
-	AL["Summoner's Tomb"] = true;
 	AL["The Secret Safe"] = "검은 금고";
 	AL["The Vault"] = "검은 금고";
 	AL["Ogre Tannin Basket"] = "오우거 타닌 바구니";
-	AL["Fengus's Chest"] = "펜쿠스의 궤짝";
 	AL["Unfinished Painting"] = "완성되지 않은 그림";
 	AL["Felvine Shard"] = "악령덩쿨 조각";
-	AL["Baelog's Chest"] = "밸로그의 궤짝";
 	AL["Lorgalis Manuscript"] = "로르갈리스 초본";
 	AL["Fathom Core"] = "심연의 핵";
 	AL["Gift of Adoration"] = true;

@@ -1,4 +1,4 @@
--- $Id: constants.ru.lua 3753 2012-09-14 19:56:56Z hegarol $
+﻿-- $Id: constants.ru.lua 3819 2012-10-03 00:30:10Z celellach $
 --[[
 constants.ru.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -405,7 +405,7 @@ if AL then
 	AL["Enchant Cloak"] = "Чары для плаща";
 	AL["Enchant Gloves"] = "Чары для перчаток";
 	AL["Enchant Ring"] = "Чары для кольца";
-	AL["Enchant Shield"] = "Чары для щита";
+	AL["Enchant Shield & Off-Hand"] = "Чары для щита";
 	AL["Enchant 2H Weapon"] = "Чары для двуручного оружия";
 	AL["Enchant Weapon"] = "Чары для оружия";
 	AL["Cataclysm Vendor Sold Formulas"] = "Формулы Cataclysmа у торговцев";
@@ -422,8 +422,7 @@ if AL then
 	AL["Recall"] = "Возвраты";
 	AL["Scrolls"] = "Свитки";
 	AL["Off-Hand Items"] = "Предметы в левую руку";
-	AL["Relics/Shoulder Enchants"] = "Реликвии";
-	AL["Relics"] = "Реликвии";
+	AL["Staves/Shoulder Enchants"] = "Реликвии";
 	AL["Shoulder Enchants"] = "Наложения на плечи";
 	AL["Reagents"] = "Реагенты";
 	AL["Book of Glyph Mastery"] = "Книга познания символов";
@@ -552,8 +551,6 @@ if AL then
 	AL["Parry Rating"] = "Парирование";
 	AL["Other Ratings"] = "Другое";
 	AL["Ratings"] = "Рейтинги";
-	AL["Resistance"] = "Сопротивление";
-	AL["Specific Resistance"] = "Особое сопротивление";
 	AL["Damage Absorption"] = "Поглощение урона";
 	AL["Health / Second"] = "Здоровье / сек.";
 	AL["Mana / Second"] = "Мана / сек.";
@@ -570,7 +567,6 @@ if AL then
 	AL["Special"] = "Специальное";
 	AL["Feasts"] = "Пиры";
 	AL["Speed"] = "Скорость";
-	AL["Rod"] = "Жезл";
 	AL["Oil"] = "Масло";
 	AL["Dwarf"] = "Дворфы";
 	AL["Draenei"] = "Дренеи";
@@ -970,17 +966,12 @@ if AL then
 	AL["Avatar"] = "Аватара"; -- Avatar of the Martyred
 
 	-- Chests, etc
-	AL["Ring of Law"] = "Зал Правосудия";
-	AL["Monument of Franclorn Forgewright"] = "Монумент Франклорну Искуснику";
 	AL["The Grim Guzzler"] = "Угрюмый обжора";
-	AL["Summoner's Tomb"] = "Гробница Заклинателей";
 	AL["The Secret Safe"] = "Секретность";
 	AL["The Vault"] = "Чертог";
 	AL["Ogre Tannin Basket"] = "Огрский дубильный чан";
-	AL["Fengus's Chest"] = "Сундук Фенгуса";
 	AL["Unfinished Painting"] = "Незаконченная картина";
 	AL["Felvine Shard"] = "Сквернит";
-	AL["Baelog's Chest"] = "Сундук Бейлога";
 	AL["Lorgalis Manuscript"] = "Манускрипт Лоргалиса";
 	AL["Fathom Core"] = "Глубинный сердечник";
 	AL["Gift of Adoration"] = "Дар обожания";

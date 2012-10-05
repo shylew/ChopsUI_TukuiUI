@@ -1,4 +1,4 @@
-﻿-- $Id: Info.lua 3772 2012-09-23 01:30:54Z lag123 $
+﻿-- $Id: Info.lua 3829 2012-10-03 12:42:46Z lag123 $
 --[[
 Atlasloot Enhanced
 Author Hegarol
@@ -21,10 +21,11 @@ AtlasLoot.AddonInfo = {
 		["Hegarol"] = {
 			email = "hegarol@atlasloot.net",
 			ingame = {"Hegarol@Dun Morogh", "Areghol@Dun Morogh"},
+			friends = {"Dynaletik@Nera'thor"},
 		},
 		["Lag"] = {
 			email = "lag@atlasloot.net",
-			ingame = {"Lág@Ysera", "Calî@Arthas", "Shijera@Ysera", "Làg@Ysera", "Lâg@Ysera"},
+			ingame = {"Lág@Ysera", "Calî@Arthas", "Arilea@Ysera", "Shijera@Ysera", "Làg@Ysera", "Lâg@Ysera"},
 			--friends = {"Malina@Nera'thor", "Slýk@Nera'thor", "Hernandez@Arthas"},
 		},
 		["Celellach"] = {

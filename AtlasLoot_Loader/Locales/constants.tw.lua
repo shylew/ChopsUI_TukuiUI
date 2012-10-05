@@ -1,4 +1,4 @@
--- $Id: constants.tw.lua 3753 2012-09-14 19:56:56Z hegarol $
+﻿-- $Id: constants.tw.lua 3826 2012-10-03 08:56:09Z ananhaid $
 --[[
 constants.tw.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -73,6 +73,9 @@ if AL then
 	AL["Module \"%s\" is disabled."] = "\"%s\" 模組已停用.";
 	AL["Module \"%s\" is missing."] = "找不到 \"%s\" 模組.";
 
+	-- MiniMap-Button
+	AL["|cffFF0000Click: |cffFFFFFFOpen AtlasLoot\n|cffFF0000Shift+Click: |cffFFFFFFOpen AtlasLoot-Options "] = "|cffFF0000右鍵: |cffFFFFFF開啟 AtlasLoot\n|cffFF0000Shift + 右鍵: |cffFFFFFF開啟 AtlasLoot 選項";
+
 	-- AtlasLootFu 
 	AL["AtlasLootFu is no longer in use.\nDelete it from your AddOns folder"] = "AtlasLootFu 已不再包含在 AtlasLoot 裡, \n請將其從 Addons 目錄移除.";
 
@@ -84,6 +87,7 @@ if AL then
 	AL["Show Droprates"] = "顯示掉落率";
 	AL["Safe Chat Links"] = "安全物品連結";
 	AL["Comparison TT"] = "比較結果提示";
+	AL["Show Boss Tooltip"] = "顯示首領提示";
 	AL["Show Comparison Tooltips"] = "顯示物品比較結果的提示訊息";
 	AL["Opaque"] = "不透明";
 	AL["Make Loot Table Opaque"] = "使物品掉落表不透明";
@@ -134,6 +138,7 @@ if AL then
 	AL["DKP"] = "DKP";
 	AL["Priority:"] = "優先權：";
 	AL["Show price and slot if possible"] = "盡可能顯示價格與部位資訊";
+	AL["Show wishlist items in bosses tooltip"] = "在首領提示訊息中顯示願望清單中物品";
 	AL["Use GameTooltip"] = "使用內建提示訊息";
 	AL["Use the standard GameTooltip instead of the custom AtlasLoot tooltip"] = "使用遊戲內建提示訊息, 而不使用 AtlasLoot 提示訊息";
 	AL["%d / %d ( Bank: %d )"] = "%d / %d ( 銀行：%d )";
@@ -268,6 +273,7 @@ if AL then
 	AL["Level 70"] = "70 級";
 	AL["Level 80"] = "80 級";
 	AL["Level 85"] = "85 級";
+	AL["Level 90"] = "90 級";
 	AL["|cffff0000(unsafe)"] = "|cffff0000(不安全)";
 	AL["Misc"] = "雜項";
 	AL["Rewards"] = "獎勵";
@@ -355,6 +361,7 @@ if AL then
 	AL["Tier 10 Set"] = "T10 套裝";
 	AL["Tier 11/12 Set"] = "T11/T12 套裝";
 	AL["Tier 13 Set"] = "T13 套裝";
+	AL["Tier 14 Set"] = "T14 套裝";
 	AL["TCG Items"] = "卡片遊戲物品"; -- Trading Card Game Items
 
 	-- PvP Menu
@@ -455,6 +462,7 @@ if AL then
 	AL["Guild"] = "公會";
 
 	-- Blacksmithing
+	AL["Mists of Pandaria Vendor Sold Plans"] = "潘達利亞之謎供應商出售設計圖";
 	AL["Cataclysm Vendor Sold Plans"] = "浩劫與重生供應商出售設計圖";
 	AL["Armor Enhancements"] = "護甲附魔";
 	AL["Weapon Enhancements"] = "武器附魔";
@@ -466,7 +474,7 @@ if AL then
 	AL["Enchant Cloak"] = "附魔披風";
 	AL["Enchant Gloves"] = "附魔手套";
 	AL["Enchant Ring"] = "附魔戒指";
-	AL["Enchant Shield"] = "附魔盾牌";
+	AL["Enchant Shield & Off-Hand"] = "附魔盾牌/副手";
 	AL["Enchant 2H Weapon"] = "附魔雙手武器";
 	AL["Enchant Weapon"] = "附魔武器";
 	AL["Cataclysm Vendor Sold Formulas"] = "浩劫與重生供應商出售公式";
@@ -483,8 +491,7 @@ if AL then
 	AL["Recall"] = "召回";
 	AL["Scrolls"] = "卷軸";
 	AL["Off-Hand Items"] = "副手物品";
-	AL["Relics/Shoulder Enchants"] = "聖物/肩部附魔";
-	AL["Relics"] = "聖物";
+	AL["Staves/Shoulder Enchants"] = "法杖/肩部附魔";
 	AL["Shoulder Enchants"] = "肩部附魔";
 	AL["Reagents"] = "材料";
 	AL["Book of Glyph Mastery"] = "雕紋精通之書";
@@ -509,7 +516,8 @@ if AL then
 	AL["Old Quest Item"] = "舊任務物品";
 	AL["Quest Reward"] = "任務獎勵";
 	AL["Old Quest Reward"] = "舊任務獎勵";
-	AL["Shared"] = "隨機掉落";
+	AL["Pet Battle Quests"] = "寵物戰鬥任務";
+	AL["Shared"] = "共享";
 	AL["Right Half"] = "右半部份";
 	AL["Left Half"] = "左半部份";
 	AL["Currency"] = "貨幣";
@@ -530,6 +538,7 @@ if AL then
 	AL["Burning Crusade"] = "燃燒的遠征";
 	AL["Wrath of the Lich King"] = "巫妖王之怒";
 	AL["Cataclysm"] = "浩劫與重生";
+	AL["Mists of Pandaria"] = "潘達利亞之謎";
 	AL["Entrance"] = "入口";
 	AL["Dungeon Set 1"] = "副本套裝 1";
 	AL["Dungeon Set 2"] = "副本套裝 2";
@@ -550,13 +559,18 @@ if AL then
 	AL["Tier 11"] = "T11";
 	AL["Tier 12"] = "T12";
 	AL["Tier 13"] = "T13";
+	AL["Tier 14"] = "T14";
 	AL["10 Man"] = "10 人";
 	AL["10/25 Man"] = "10/25 人";
 	AL["Epic Set"] = "PvP 史詩套裝";
 	AL["Rare Set"] = "PvP 稀有套裝";
+	AL["Season 6"] = "第六季";
+	AL["Season 7"] = "第七季";
+	AL["Season 8"] = "第八季";
 	AL["Season 9"] = "第九季";
 	AL["Season 10"] = "第十季";
 	AL["Season 11"] = "第十一季";
+	AL["Season 12"] = "第十二季";
 	AL["Fire"] = "赤紅";
 	AL["Water"] = "碧藍";
 	AL["Wind"] = "蒼白";
@@ -589,6 +603,8 @@ if AL then
 	AL["Rare"] = "稀有";
 	AL["Specializations"] = "特殊";
 	AL["Raid Finder"] = "團隊搜尋器";
+	AL["Pandaria World Bosses"] = "潘達利亞世界首領";
+	AL["Elite"] = "菁英";
 
 	-- Loot Table Names
 	AL["Level 30-39"] = "等級 30～39";
@@ -620,8 +636,6 @@ if AL then
 	AL["Parry Rating"] = "招架等級";
 	AL["Other Ratings"] = "其他等級";
 	AL["Ratings"] = "等級";
-	AL["Resistance"] = "抗性";
-	AL["Specific Resistance"] = "抗性類別";
 	AL["Damage Absorption"] = "吸收傷害";
 	AL["Health / Second"] = "每秒恢復生命";
 	AL["Mana / Second"] = "每秒恢復法力";
@@ -638,7 +652,6 @@ if AL then
 	AL["Special"] = "特殊";
 	AL["Feasts"] = "宴類";
 	AL["Speed"] = "速度";
-	AL["Rod"] = "棒類/杖類"; -- Used in categorizing Enchating Misc, ex: Runed Elementium Rod, Runed Fel Iron Rod. "Rod" is used as a category name
 	AL["Oil"] = "油類"; -- Used in categorizing Enchating Misc, ex: Superior Wizard Oil, Wizard Oil
 	AL["Culture"] = "文化";
 	AL["Description"] = "描述";
@@ -651,6 +664,8 @@ if AL then
 	AL["Troll"] = "食人妖";
 	AL["Tol'vir"] = "托維爾";
 	AL["Orc"] = "獸人";
+	AL["Pandaren"] = "熊貓人";
+	AL["Mogu"] = "魔古";
 	AL["Stats"] = "屬性";
 	AL["Resilience"] = "韌性";
 	AL["Professions"] = "專業技能";
@@ -680,6 +695,8 @@ if AL then
 	AL["Outdoor"] = "野外";
 
 	-- Companions
+	AL["Achievement Companions"] = "成就夥伴";
+	AL["Faction Companions"] = "陣營夥伴";
 	AL["Card Game Companions"] = "卡牌遊戲獎勵夥伴";
 	AL["Companion Accessories"] = "夥伴飾品";
 	AL["Blizzard Store"] = "暴雪商城";
@@ -692,10 +709,12 @@ if AL then
 	AL["Quest Reward Companions"] = "任務獎勵夥伴";
 	AL["Rare Companions"] = "稀有夥伴";
 	AL["Unobtainable Companions"] = "無法取得的夥伴";
+	AL["New Companions"] = "新的夥伴";
 
 	-- Mounts
 	AL["Alliance Mounts"] = "聯盟坐騎";
 	AL["Horde Mounts"] = "部落坐騎";
+	AL["Flying Mounts"] = "飛行坐騎";
 	AL["Card Game Mounts"] = "卡牌遊戲獎勵坐騎";
 	AL["Crafted Mounts"] = "製作的坐騎";
 	AL["Event Mounts"] = "事件獎勵坐騎";
@@ -707,12 +726,14 @@ if AL then
 	AL["Promotional Mounts"] = "促銷活動坐騎";
 	AL["Rare Mounts"] = "稀有坐騎";
 	AL["Unobtainable Mounts"] = "無法取得的坐騎";
+	AL["New Mounts"] = "新的坐騎";
 
 	-- Tabards
 	AL["Achievement & Quest Reward Tabards"] = "成就/任務獎勵外袍";
 	AL["Alliance Tabards"] = "聯盟外袍";
 	AL["Card Game Tabards"] = "卡牌遊戲獎勵外袍";
 	AL["Horde Tabards"] = "部落外袍";
+	AL["Neutral Faction Tabards"] = "中立陣營外袍";
 	AL["PvP Tabards"] = "PvP 外袍";
 	AL["Unobtainable Tabards"] = "無法取得的外袍";
 
@@ -935,6 +956,9 @@ if AL then
 	AL["Destruction"] = "毀滅";
 	AL["Tanking"] = "防禦型";
 	AL["DPS"] = "傷害型";
+	AL["Mistweaver"] = "織霧";
+	AL["Brewmaster"] = "釀酒";
+	AL["Windwalker"] = "御風";
 
 	-- NPCs missing from BabbleBoss
 	AL["Trash Mobs"] = "小怪";
@@ -1058,27 +1082,24 @@ if AL then
 	AL["Firestone Vendor"] = "火石商人";
 	AL["Poseidus"] = "波賽達斯";
 	AL["Burgy Blackheart"] = "伯吉·黑心";
+	AL["Battle Pet Trainer"] = "寵物戰鬥訓練師";
 
 	-- Zones
 	AL["Trial of the Grand Crusader"] = "大十字軍試煉";
 	AL["Crusader's Square"] = "十字軍廣場";
 	AL["The Gauntlet"] = "街巷";
+	AL["Halfhill Farm"] = "半山農場";
 
 	-- Shortcuts for Bossname files
 	AL["Avatar"] = "馬丁瑞德的化身";  -- Avatar of the Martyred
 
 	-- Chests, etc
-	AL["Ring of Law"] = "秩序競技場";
-	AL["Monument of Franclorn Forgewright"] = "弗蘭克羅恩·鑄鐵的紀念碑";
 	AL["The Grim Guzzler"] = "黑鐵酒吧";
-	AL["Summoner's Tomb"] = "召喚師之墓";
 	AL["The Secret Safe"] = "隱密的保險箱";
 	AL["The Vault"] = "寶窟";
 	AL["Ogre Tannin Basket"] = "巨魔鞣酸籃";
-	AL["Fengus's Chest"] = "衛兵芬古斯的箱子";
 	AL["Unfinished Painting"] = "未完成的畫作";
 	AL["Felvine Shard"] = "魔藤碎片";
-	AL["Baelog's Chest"] = "巴爾洛戈的箱子";
 	AL["Lorgalis Manuscript"] = "洛迦里斯手稿";
 	AL["Fathom Core"] = "深淵之核";
 	AL["Gift of Adoration"] = "愛慕之禮";
@@ -1126,8 +1147,13 @@ if AL then
 	AL["Hidden Stash"] = "隱密藏匿物";
 	AL["The Cache of Madness"] = "瘋狂之緣";
 	AL["Stolen Present"] = "失竊的禮物";
+	AL["Oozing Bag"] = "沾滿淤泥的袋子";
+	AL["Ominous Seed"] = "不祥種子";
+
+	-- Blizzard Promotions
 	AL["Annual Pass"] = "年卡";
 	AL["Scroll of Resurrection"] = "重返榮耀";
+	AL["Recruit-A-Friend"] = "號召好友";
 
 	-- Error Messages and warnings
 	AL["AtlasLoot Error!"] = "AtlasLoot 錯誤!";
