@@ -291,7 +291,7 @@ function ReforgeLite:UpdateMethodStats (method)
       math.floor ((method.stats[self.STATS.SPIRIT] - oldspi) * self.s2hFactor / 100 + 0.5)
   end
   if self.s2eFactor and self.s2eFactor > 0 then
-    method.stats[self.STATS.EXPERTISE] = method.stats[self.STATS.EXPERTISE] +
+    method.stats[self.STATS.EXP] = method.stats[self.STATS.EXP] +
       math.floor ((method.stats[self.STATS.SPIRIT] - oldspi) * self.s2eFactor / 100 + 0.5)
   end
   if method.tankingModel then
@@ -391,9 +391,9 @@ function ReforgeLite:MakeReforgeOption (item, data, src, dst)
         end
       end
       if self.s2eFactor and self.s2eFactor > 0 then
-        if data.caps[1].stat == self.STATS.EXPERTISE then
+        if data.caps[1].stat == self.STATS.EXP then
           delta1 = delta1 - math.floor (amount * self.s2eFactor / 100 + math.random ())
-        elseif data.caps[2].stat == self.STATS.EXPERTISE then
+        elseif data.caps[2].stat == self.STATS.EXP then
           delta2 = delta2 - math.floor (amount * self.s2eFactor / 100 + math.random ())
         end
       end
@@ -420,9 +420,9 @@ function ReforgeLite:MakeReforgeOption (item, data, src, dst)
         end
       end
       if self.s2eFactor and self.s2eFactor > 0 then
-        if data.caps[1].stat == self.STATS.EXPERTISE then
+        if data.caps[1].stat == self.STATS.EXP then
           delta1 = delta1 + math.floor (amount * self.s2eFactor / 100 + math.random ())
-        elseif data.caps[2].stat == self.STATS.EXPERTISE then
+        elseif data.caps[2].stat == self.STATS.EXP then
           delta2 = delta2 + math.floor (amount * self.s2eFactor / 100 + math.random ())
         end
       end
@@ -573,7 +573,7 @@ function ReforgeLite:InitReforgeClassic ()
     data.initial[self.STATS.HIT] = data.initial[self.STATS.HIT] - math.floor (reforgedSpirit * self.spiritBonus * self.s2hFactor / 100 + 0.5)
   end
   if self.s2eFactor and self.s2eFactor > 0 then
-    data.initial[self.STATS.EXPERTISE] = data.initial[self.STATS.EXPERTISE] - math.floor (reforgedSpirit * self.spiritBonus * self.s2eFactor / 100 + 0.5)
+    data.initial[self.STATS.EXP] = data.initial[self.STATS.EXP] - math.floor (reforgedSpirit * self.spiritBonus * self.s2eFactor / 100 + 0.5)
   end
   if data.caps[1].stat > 0 then
     data.caps[1].init = data.initial[data.caps[1].stat]
@@ -604,7 +604,7 @@ function ReforgeLite:InitReforgeClassic ()
     end
   end
   if self.s2eFactor and self.s2eFactor > 0 then
-    if data.weights[self.STATS.SPIRIT] == 0 and (data.caps[1].stat == self.STATS.EXPERTISE or data.caps[2].stat == self.STATS.EXPERTISE) then
+    if data.weights[self.STATS.SPIRIT] == 0 and (data.caps[1].stat == self.STATS.EXP or data.caps[2].stat == self.STATS.EXP) then
       data.weights[self.STATS.SPIRIT] = 1
     end
   end
@@ -1064,7 +1064,7 @@ function ReforgeLite:ComputeReforge (initFunc, optionFunc, chooseFunc)
         end
       end
       if self.s2eFactor == 100 then
-        if opt.dst == self.STATS.EXPERTISE and data.method.items[i].stats[self.STATS.SPIRIT] == 0 then
+        if opt.dst == self.STATS.EXP and data.method.items[i].stats[self.STATS.SPIRIT] == 0 then
           opt.dst = self.STATS.SPIRIT
         end
       end
