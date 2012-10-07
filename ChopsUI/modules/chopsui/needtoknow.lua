@@ -152,6 +152,10 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
       ChopsUI.modules.needtoknow.PlayerBuff(4, "Guard", COLOR_CODES.orangelight, true)
       ChopsUI.modules.needtoknow.PlayerBuff(5, "Fortifying Brew, Dampen Harm, Avert Harm, Zen Meditation", COLOR_CODES.orangedark, true)
     elseif T.Spec == "MISTWEAVER" then
+      ChopsUI.modules.needtoknow.PlayerBuff(1, "Mana Tea", COLOR_CODES.green, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Serpent's Zeal", COLOR_CODES.greenlight, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Vital Mists", COLOR_CODES.white, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Tiger's Fury", COLOR_CODES.greendark, true)
     elseif T.Spec == "WINDWALKER" then
       ChopsUI.modules.needtoknow.PlayerBuff(1, "Tiger Strikes", COLOR_CODES.red, true)
       ChopsUI.modules.needtoknow.PlayerBuff(2, "Tiger Power", COLOR_CODES.green, true)

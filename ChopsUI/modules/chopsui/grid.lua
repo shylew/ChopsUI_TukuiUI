@@ -20,7 +20,7 @@ function ChopsUI.modules.grid.ConfigureIndicators()
   dispellableTypes = { ["poison"] = false, ["curse"] = false, ["disease"] = false, ["magic"] = false }
 
   -- Poison dispelling
-  if T.myclass == "DRUID" or T.myclass == "PALADIN" then
+  if T.myclass == "DRUID" or T.myclass == "PALADIN" or T.myclass == "MONK" then
     dispellableTypes["poison"] = true
   end
 
@@ -30,12 +30,12 @@ function ChopsUI.modules.grid.ConfigureIndicators()
   end
 
   -- Disease dispelling
-  if T.myclass == "PRIEST" or T.myclass == "PALADIN" then
+  if T.myclass == "PRIEST" or T.myclass == "PALADIN" or T.myclass == "MONK" then
     dispellableTypes["disease"] = true
   end
 
   -- Magic dispelling
-  if T.myclass == "PRIEST" or (T.myclass == "DRUID" and T.Spec == "RESTORATION") or (T.myclass == "PALADIN" and T.Spec == "HOLY") or (T.myclass == "SHAMAN" and T.Spec == "RESTORATION") then
+  if T.myclass == "PRIEST" or (T.myclass == "DRUID" and T.Spec == "RESTORATION") or (T.myclass == "PALADIN" and T.Spec == "HOLY") or (T.myclass == "SHAMAN" and T.Spec == "RESTORATION") or (T.myclass == "MONK" and T.Spec == "MISTWEAVER") then
     dispellableTypes["magic"] = true
   end
 
@@ -65,6 +65,13 @@ function ChopsUI.modules.grid.ConfigureIndicators()
       GridFrame.db.profile["statusmap"]["iconBLcornerright"]["buff_WildGrowth"] = true
       GridFrame.db.profile["statusmap"]["iconBRcornerleft"]["buff_LivingSeed"] = true
       
+    end
+
+  elseif T.myclass == "MONK" then
+
+    if T.Spec == "MISTWEAVER" then
+      GridFrame.db.profile["statusmap"]["iconTLcornerleft"]["buff_RenewingMist"] = true
+      GridFrame.db.profile["statusmap"]["iconTRcornerright"]["buff_EnvelopingMist"] = true
     end
 
   elseif T.myclass == "PALADIN" then
@@ -187,7 +194,6 @@ function ChopsUI.modules.grid.Reset()
   local GridIndicatorSideIcons = GridFrame:GetModule("GridIndicatorSideIcons")
   local GridIndicatorCornerText = GridFrame:GetModule("GridIndicatorCornerText")
   local GridStatusAuras = GridStatus:GetModule("GridStatusAuras")
-  -- TODO - this is disabled for now, GridStatusShield is having some issues.
   local GridStatusShield = GridStatus:GetModule("GridStatusShield")
 
   local gridProfile = UnitName("player") .. " - " .. GetRealmName()
@@ -267,6 +273,7 @@ function ChopsUI.modules.grid.Reset()
       ["buff_SurvivalInstincts"] = true,
       ["buff_DivineProtection"] = true,
       ["buff_AncientGuardian"] = true,
+      ["buff_LifeCocoon"] = true,
 
       -- Light damage reductions
       ["buff_BoneShield"] = true,
@@ -362,6 +369,10 @@ function ChopsUI.modules.grid.Reset()
   ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Lifebloom", true)
   ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Wild Growth", true)
   ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Living Seed", true)
+
+  -- Monk auras
+  ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Renewing Mist", true)
+  ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Enveloping Mist", true)
   
   -- Paladin auras
   ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Hand of Salvation")
@@ -401,6 +412,7 @@ function ChopsUI.modules.grid.Reset()
   ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Survival Instincts", false, gridColorStringDR, 97)
   ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Divine Protection", false, gridColorStringDR, 97)
   ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Ancient Guardian", false, gridColorStringDR, 97)
+  ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Life Cocoon", false, gridColorStringDR, 97)
 
   -- Light damage reduction
   ChopsUI.modules.grid.AddBuff(GridStatusAuras, "Bone Shield", false, gridColorLightDR, 96)
