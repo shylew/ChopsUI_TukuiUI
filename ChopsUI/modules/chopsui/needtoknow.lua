@@ -245,9 +245,6 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
   elseif T.myclass == "WARLOCK" then
 
     if T.Spec == "AFFLICTION" then
-
-      ChopsUI.modules.needtoknow.PlayerBuff(6, "Eradication", { 0.53, 0, 0.78 }, true)
-
     elseif T.Spec == "DEMONOLOGY" then
 
       ChopsUI.modules.needtoknow.PlayerBuff(4, "Demon Soul: Felhunter, Demon Soul: Felguard", { 0.74, 0, 0.06 }, true)
@@ -429,7 +426,7 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
 
   elseif T.myclass == "WARLOCK" then
 
-    ChopsUI.modules.needtoknow.TargetDebuff(3, "Bane of Agony, Bane of Doom", { 0, 0.38, 0.01 }, true)
+    ChopsUI.modules.needtoknow.TargetDebuff(3, "Agony, Doom", { 0, 0.38, 0.01 }, true)
     ChopsUI.modules.needtoknow.TargetDebuff(4, "Shadow and Flame", { 0, 0.10, 0.96 }, true)
     ChopsUI.modules.needtoknow.TargetDebuff(5, "Corruption", { 0.74, 0, 0.06 }, true)
     ChopsUI.modules.needtoknow.TargetDebuff(6, "Curse of the Elements, Curse of Tongues", { 0.53, 0, 0.78 }, true)
