@@ -68,6 +68,8 @@ end
 -- Configure the NeedToKnow player buff bars
 function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
 
+  if getn(NeedToKnow.ProfileSettings.Groups) < 1 then return end
+
   for i = 1, NeedToKnow.ProfileSettings.Groups[1].NumberBars do
     NeedToKnow.ProfileSettings.Groups[1].Bars[i].Enabled = false
   end
@@ -288,6 +290,8 @@ end
 -- Configure the NeedToKnow target debuff bars
 function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
 
+  if getn(NeedToKnow.ProfileSettings.Groups) < 2 then return end
+  
   for i = 1, NeedToKnow.ProfileSettings.Groups[2].NumberBars do
     NeedToKnow.ProfileSettings.Groups[2].Bars[i].Enabled = false
   end
@@ -467,6 +471,8 @@ end
 -- Configure the NeedToKnow cooldown bars
 function ChopsUI.modules.needtoknow.ConfigureCooldowns()
 
+  if getn(NeedToKnow.ProfileSettings.Groups) < 3 then return end
+  
   for i = 1, NeedToKnow.ProfileSettings.Groups[3].NumberBars do
     NeedToKnow.ProfileSettings.Groups[3].Bars[i].Enabled = false
   end
