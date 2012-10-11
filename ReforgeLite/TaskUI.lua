@@ -236,10 +236,10 @@ function ReforgeLite:AddPriorityItem(loading)
   self:PrioToWeights(self.pdb)
 end
 function ReforgeLite:RemovePriorityItem(row, loading)
-  self.task.prio:DeleteRow(row)
+  self.task.prio:DeleteRow(#self.pdb.prio)
   if not loading then
     table.remove(self.pdb.prio, row)
-    self:UpdateCapPoints(i)
+    self:UpdatePriorities(i)
     self:UpdateContentSize()
 
     self:PrioToWeights(self.pdb)
@@ -459,7 +459,7 @@ function ReforgeLite:CreateTaskUI()
 
   ------------------------
 
-  self.isWeights = GUI:CreateCheckButton(self.content, L["Specify weights"],
+  self.isWeights = GUI:CreateCheckButton(self.content, L["Advanced mode"],
       not self.pdb.prio, function (val)
     if val then
       self:PrioToWeights(self.pdb)

@@ -1,4 +1,4 @@
--- ReforgeLite v1.15 by d07.RiV (Iroared)
+-- ReforgeLite v1.17 by d07.RiV (Iroared)
 -- All rights reserved
 
 local function DeepCopy (t, cache)
@@ -1238,10 +1238,10 @@ function ReforgeLite:UpdateItems ()
     local texture = GetInventoryItemTexture ("player", v.slotId)
     local stats = {}
     local reforgeSrc, reforgeDst = nil, nil
-    if texture then
+    if item and texture then
       v.item = item
       v.texture:SetTexture (texture)
-      stats = GetItemStats (item)
+      stats = GetItemStats (item) or {}
       local reforge = self:GetReforgeID (item)
       if reforge then
         reforgeSrc, reforgeDst = self.itemStats[self.reforgeTable[reforge][1]].name, self.itemStats[self.reforgeTable[reforge][2]].name
@@ -1273,55 +1273,6 @@ function ReforgeLite:UpdateItems ()
     self.statTotals[i]:SetText (v.getter ())
   end
   self:UpdateTask()
-
-  self.s2hFactor = 0
-  self.s2eFactor = 0
-  local _, unitClass = UnitClass ("player")
-  if MOP then
-    local lvl = UnitLevel("player")
-    if unitClass == "PRIEST" then
-      if GetSpecialization() == 3 and lvl >= 20 then
-        self.s2hFactor = 100
-      end
-    elseif unitClass == "DRUID" then
-      if GetSpecialization() == 1 and lvl >= 64 then
-        self.s2hFactor = 100
-      end
-    elseif unitClass == "SHAMAN" then
-      if GetSpecialization() == 1 and lvl >= 10 then
-        self.s2hFactor = 100
-      end
-    elseif unitClass == "MONK" then
-      if GetSpecialization() == 2 and lvl >= 10 then
-        self.s2hFactor = 50
-        self.s2eFactor = 50
-      end
-    end
-  else
-    if unitClass == "PRIEST" then
-      local _, _, _, _, pts = GetTalentInfo (3, 7, false, false)
-      self.s2hFactor = pts * 50
-    elseif unitClass == "DRUID" and GetPrimaryTalentTree (false, false) ~= 2 then
-      local _, _, _, _, pts = GetTalentInfo (1, 6, false, false)
-      self.s2hFactor = pts * 50
-    elseif unitClass == "SHAMAN" and GetPrimaryTalentTree (false, false) ~= 2 then
-      local _, _, _, _, pts = GetTalentInfo (1, 7, false, false)
-      self.s2hFactor = (pts == 3 and 100 or pts * 33)
-    elseif unitClass == "PALADIN" then
-      local _, _, _, _, pts = GetTalentInfo (1, 11, false, false)
-      self.s2hFactor = pts * 50
-    end
-  end
-  if self.s2hFactor and self.s2hFactor > 0 then
-    if self.s2eFactor and self.s2eFactor > 0 then
-      self.convertSpirit.text:SetText (L["Spirit to hit and expertise"] .. ": " .. self.s2hFactor .. "%")
-    else
-      self.convertSpirit.text:SetText (L["Spirit to hit"] .. ": " .. self.s2hFactor .. "%")
-    end
-    self.convertSpirit.text:Show ()
-  else
-    self.convertSpirit.text:Hide ()
-  end
 
   self:RefreshMethodStats ()
 end
@@ -1552,8 +1503,11 @@ function ReforgeLite:IsReforgeMatching (item, reforge, override)
     deltas[dst] = deltas[dst] + amount
   end
 
+  local conv = self:GetConversion()
   deltas[self.STATS.SPIRIT] = math.floor (deltas[self.STATS.SPIRIT] * self.spiritBonus + 0.5)
-  deltas[self.STATS.HIT] = deltas[self.STATS.HIT] + math.floor (deltas[self.STATS.SPIRIT] * self.s2hFactor / 100 + 0.5)
+  deltas[self.STATS.HIT] = deltas[self.STATS.HIT] + math.floor(deltas[self.STATS.SPIRIT] * conv.s2h + 0.5) +
+                                                    math.floor(deltas[self.STATS.EXP] * conv.e2h + 0.5)
+  deltas[self.STATS.EXP] = deltas[self.STATS.EXP] + math.floor(deltas[self.STATS.SPIRIT] * conv.s2e + 0.5)
 
   for i = 1, #self.itemStats do
     if self:GetStatScore (i, self.pdb.method.stats[i]) ~= self:GetStatScore (i, self.pdb.method.stats[i] - deltas[i]) then
