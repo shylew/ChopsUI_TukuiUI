@@ -1,4 +1,4 @@
-﻿-- $Id: constants.ru.lua 3819 2012-10-03 00:30:10Z celellach $
+﻿-- $Id: constants.ru.lua 3865 2012-10-09 04:47:11Z Dynaletik $
 --[[
 constants.ru.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -414,15 +414,12 @@ if AL then
 	AL["Tinker"] = "Конструирование";
 
 	-- Inscription
-	AL["Glyph"] = "Символ";
-	AL["Prime Glyph"] = "Основной символ";
 	AL["Major Glyph"] = "Большой символ";
 	AL["Minor Glyph"] = "Малый символ";
 	AL["Runescrolls"] = "Рунические свитки";
 	AL["Recall"] = "Возвраты";
 	AL["Scrolls"] = "Свитки";
 	AL["Off-Hand Items"] = "Предметы в левую руку";
-	AL["Staves/Shoulder Enchants"] = "Реликвии";
 	AL["Shoulder Enchants"] = "Наложения на плечи";
 	AL["Reagents"] = "Реагенты";
 	AL["Book of Glyph Mastery"] = "Книга познания символов";
@@ -537,13 +534,11 @@ if AL then
 	AL["Strength"] = "Сила";
 	AL["Spirit"] = "Дух";
 	AL["Stamina"] = "Выносливость";
-	AL["Agility, Intellect, Strength"] = "Ловкость, Интеллект, Сила";
 	AL["Spell Power"] = "Сила заклинаний";
 	AL["Attack Power"] = "Сила атаки";
 	AL["Spell/Attack Power"] = "Сила атаки/заклинаний";
 	AL["Hit Rating"] = "Меткость";
 	AL["Crit Rating"] = "Крит";
-	AL["Crit/Hit Rating"] = "Крит/меткость";
 	AL["Haste Rating"] = "Скорость";
 	AL["Dodge Rating"] = "Уклонение";
 	AL["Expertise Rating"] = "Мастерство";
@@ -590,12 +585,9 @@ if AL then
 	AL["Tribute Run"] = "Заход почести";
 	AL["Dire Maul Books"] = "Книги Забытого Города";
 	AL["Random Boss Loot"] = "Трофеи случайных боссов";
-	AL["BT Patterns/Plans"] = "ЧХ - Выкройки/Чертежы";
-	AL["Hyjal Summit Designs"] = "Вершина Хиджала - эскизы";
-	AL["SP Patterns/Plans"] = "SP Выкройки/Чертежы";
-	AL["Ulduar Formula/Patterns/Plans"] = "Ульдуар - формулы/выкройки/чертежы";
-	AL["Trial of the Crusader Patterns/Plans"] = "Испытание крестоносца - выкройки/чертежы";
+	AL["Formula/Patterns/Plans"] = "формулы/выкройки/чертежы";
 	AL["BRD Blacksmithing Plans"] = "ГЧГ - Чертежи для кузнецов";
+	AL["Patterns/Plans"] = "выкройки/чертежы";
 
 	-- General titles
 	AL["Achievement"] = "Достижение";
@@ -639,11 +631,8 @@ if AL then
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "Награды Ярмарки Новолуния";
 	AL["Low Level Decks"] = "Низко уровневые колоды";
-	AL["Level 60 Trinkets"] = "Аксессуары на 60урв";
-	AL["Level 70 Trinkets"] = "Аксессуары на 70урв";
 	AL["Level 60 & 70 Trinkets"] = "Аксессуары на 60/70 урв";
-	AL["Level 80 Trinkets"] = "Аксессуары на 80 урв";
-	AL["Level 85 Trinkets"] = "Аксессуары на 85 урв";
+	AL["Trinkets"] = "Аксессуары";
 
 	-- Card Game Decks and descriptions
 	AL["Loot Card Items"] = "Предметы с карт";

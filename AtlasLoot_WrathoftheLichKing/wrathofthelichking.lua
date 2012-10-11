@@ -1,4 +1,4 @@
--- $Id: wrathofthelichking.lua 3812 2012-10-02 01:24:41Z Dynaletik $
+-- $Id: wrathofthelichking.lua 3848 2012-10-06 06:43:09Z Dynaletik $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleInventory = AtlasLoot_GetLocaleLibBabble("LibBabble-Inventory-3.0")
@@ -4880,7 +4880,7 @@ local moduleName = "AtlasLootWotLK"
 			};
 		};
 		info = {
-			name = AL["Ulduar Formula/Patterns/Plans"],
+			name = AtlasLoot:GetMapNameByID(529).. " "..AL["Formula/Patterns/Plans"],
 			module = moduleName, instance = "Ulduar",
 		};
 	}
@@ -5884,7 +5884,7 @@ local moduleName = "AtlasLootWotLK"
 			};
 		};
 		info = {
-			name = AL["Trial of the Crusader Patterns/Plans"],
+			name = AtlasLoot:GetMapNameByID(543).. " "..AL["Patterns/Plans"],
 			module = moduleName, instance = "TrialOfTheCrusader",
 		};
 	}

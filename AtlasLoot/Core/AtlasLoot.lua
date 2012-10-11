@@ -1,4 +1,4 @@
--- $Id: AtlasLoot.lua 3830 2012-10-03 18:41:48Z hegarol $
+-- $Id: AtlasLoot.lua 3870 2012-10-10 19:10:18Z hegarol $
 --[[
 Atlasloot Enhanced
 Author Hegarol
@@ -13,15 +13,15 @@ local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 
 --Establish version number and compatible version of Atlas
 local VERSION_MAJOR = "7";
-local VERSION_MINOR = "02";
+local VERSION_MINOR = "03";
 local VERSION_BOSSES = "00";
 ATLASLOOT_VERSION = "|cffFF8400AtlasLoot Enhanced v"..VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES.."|r";
 ATLASLOOT_VERSION_NUM = VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES
 
 --Now allows for multiple compatible Atlas versions.  Always put the newest first
 ATLASLOOT_MIN_ATLAS = "1.22.0"
-ATLASLOOT_CURRENT_ATLAS = {"1.22.0"};
-ATLASLOOT_PREVIEW_ATLAS = {"1.22.1", "1.22.2"};
+ATLASLOOT_CURRENT_ATLAS = {"1.22.1"};
+ATLASLOOT_PREVIEW_ATLAS = {"1.22.2", "1.22.3"};
 
 --ATLASLOOT_POSITION = AL["Position:"];
 ATLASLOOT_DEBUGMESSAGES = false;

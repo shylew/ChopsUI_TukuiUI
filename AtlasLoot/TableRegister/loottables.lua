@@ -1,4 +1,4 @@
--- $Id: loottables.lua 3823 2012-10-03 07:30:07Z hegarol $
+-- $Id: loottables.lua 3855 2012-10-07 00:54:46Z Dynaletik $
 --[[
 loottables.en.lua
 This file assigns a title to every loot table.  The primary use of this table
@@ -98,10 +98,10 @@ AtlasLoot_LootTableRegister = {
 
 		["GateoftheSettingSun"] = {
 			["Bosses"] = {
-				{ "GotSSKiptilak", 2, EncounterJournalID = 655 },
-				{ "GotSSGadok", 3, EncounterJournalID = 675 },
-				{ "GotSSRimok", 4, EncounterJournalID = 676 },
-				{ "GotSSRaigonn", 5, EncounterJournalID = 649 },
+				{ "GotSSKiptilak", 4, EncounterJournalID = 655 },
+				{ "GotSSGadok", 5, EncounterJournalID = 675 },
+				{ "GotSSRimok", 6, EncounterJournalID = 676 },
+				{ "GotSSRaigonn", 7, EncounterJournalID = 649 },
 			},
 			["Info"] = { BabbleZone["Gate of the Setting Sun"], "AtlasLootMoP", mapname = "Gate of the Setting Sun", EncounterJournalID = 303 },
 		},
@@ -142,6 +142,8 @@ AtlasLoot_LootTableRegister = {
 				{ "MSVSpiritKings", 10, EncounterJournalID = 687 },
 				{ "MSVElegon", 15, EncounterJournalID = 726 },
 				{ "MSVWilloftheEmperor", 16, EncounterJournalID = 677 },
+				{ "MoguShanVaultsPatterns", 20 },
+	
 			},
 			["Info"] = { BabbleZone["Mogu'shan Vaults"], "AtlasLootMoP", mapname = "MoguShanVaults", raid = true, EncounterJournalID = 317 },
 		},
@@ -338,9 +340,9 @@ AtlasLoot_LootTableRegister = {
 			["CoTDragonSoulA"] = {
 				{ "DragonSoulMorchok", 3, EncounterJournalID = 311 },
 				{ "DragonSoulUltraxion", 4, EncounterJournalID = 331, hide = true },
-				{ "DragonSoulShared", 6, hide = true },
-				{ "DragonSoulTrash", 7, hide = true },
-				{ "DragonSoulPatterns", 8, hide = true },
+				{ "DragonSoulShared", 8, hide = true },
+				{ "DragonSoulTrash", 9, hide = true },
+				{ "DragonSoulPatterns", 10, hide = true },
 			},
 			["CoTDragonSoulB"] = {
 				{ "DragonSoulZonozz", 2, EncounterJournalID = 324 },
@@ -1801,6 +1803,7 @@ AtlasLoot_LootTableRegister = {
 		
 		["WorldEpics"] = {
 			["Bosses"] = {
+				{ "WorldEpics90" },
 				{ "WorldEpics85" },
 				{ "WorldEpics80" },
 				{ "WorldEpics70" },

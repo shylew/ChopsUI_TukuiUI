@@ -1,4 +1,4 @@
-﻿-- $Id: constants.mx.lua 3818 2012-10-02 15:47:36Z Dynaletik $
+﻿-- $Id: constants.mx.lua 3856 2012-10-07 02:17:53Z Dynaletik $
 --[[
 constants.es.lua --- Traduction ES por maqjav
 This file defines an AceLocale table for all the various text strings needed
@@ -293,11 +293,8 @@ if AL then
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "Recompensas Feria de la Luna Negra";
 	AL["Low Level Decks"] = "Bajaras de bajo nivel";
-	--AL["Level 60 Trinkets"] = true;
-	--AL["Level 70 Trinkets"] = true;
 	--AL["Level 60 & 70 Trinkets"] = true;
-	--AL["Level 80 Trinkets"] = true;
-	--AL["Level 85 Trinkets"] = true;
+	--AL["Trinkets"] = true;
 
 	--Argent Tournament
 	AL["Argent Tournament"] = "Torneo Argenta";
@@ -454,9 +451,7 @@ if AL then
 	AL["Level 30-39"] = "Niveles 30-39";
 	AL["Level 40-49"] = "Niveles 40-49";
 	AL["Level 50-60"] = "Niveles 50-60";
-	AL["BT Patterns/Plans"] = "Recetas/Planos del Templo Oscuro";
-	AL["Hyjal Summit Designs"] = "Diseños de la Cumbre de Hyjal";
-	AL["SP Patterns/Plans"] = "Recinto de Esclavos Recetas/Planos";
+	AL["Patterns/Plans"] = "Recetas/Planos";
 	AL["Additional Heroic Loot"] = "Botin heróico adicional";
 
 	--Pets

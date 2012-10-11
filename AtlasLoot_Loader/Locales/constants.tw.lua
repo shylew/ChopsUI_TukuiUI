@@ -1,4 +1,4 @@
-﻿-- $Id: constants.tw.lua 3826 2012-10-03 08:56:09Z ananhaid $
+﻿-- $Id: constants.tw.lua 3867 2012-10-10 02:21:47Z ananhaid $
 --[[
 constants.tw.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -325,9 +325,9 @@ if AL then
 	AL["Panel"] = "面板";
 
 	-- Slash commands
-	AL["reset"] = "重設";
-	AL["options"] = "選項";
-	AL["Reset complete!"] = "重設完成";
+	AL["reset"] = "reset";
+	AL["options"] = "options";
+	AL["Reset complete!"] = "重設完成！";
 
 	-- AtlasLoot Panel - Search
 	AL["Clear"] = "清除";
@@ -343,6 +343,7 @@ if AL then
 	AL["Crafted Epic Weapons"] = "交易技能史詩武器";
 	AL["Dragon's Eye"] = "龍瞳石";
 	AL["Chimera's Eye"] = "奇美拉之瞳";
+	AL["Serpent's Eye"] = "蛟龍之瞳";
 
 	-- Sets/Collections Menu
 	AL["Sets"] = "套裝";
@@ -467,6 +468,15 @@ if AL then
 	AL["Armor Enhancements"] = "護甲附魔";
 	AL["Weapon Enhancements"] = "武器附魔";
 
+	-- Cooking
+	AL["Banquets/Feasts"] = "盛宴/大餐";
+	AL["Way of the Brew"] = "釀酒之道";
+	AL["Way of the Grill"] = "燒烤之道";
+	AL["Way of the Oven"] = "烘烤之道";
+	AL["Way of the Pot"] = "燉煮之道";
+	AL["Way of the Steamer"] = "清蒸之道";
+	AL["Way of the Wok"] = "快炒之道";
+
 	-- Enchanting
 	AL["Enchant Boots"] = "附魔靴子";
 	AL["Enchant Bracer"] = "附魔護腕";
@@ -483,15 +493,12 @@ if AL then
 	AL["Tinker"] = "工程師專屬";
 
 	-- Inscription
-	AL["Glyph"] = "雕紋";
-	AL["Prime Glyph"] = "主要雕紋";
 	AL["Major Glyph"] = "極效雕紋";
 	AL["Minor Glyph"] = "初階雕紋";
 	AL["Runescrolls"] = "符文卷軸";
 	AL["Recall"] = "召回";
 	AL["Scrolls"] = "卷軸";
 	AL["Off-Hand Items"] = "副手物品";
-	AL["Staves/Shoulder Enchants"] = "法杖/肩部附魔";
 	AL["Shoulder Enchants"] = "肩部附魔";
 	AL["Reagents"] = "材料";
 	AL["Book of Glyph Mastery"] = "雕紋精通之書";
@@ -605,6 +612,7 @@ if AL then
 	AL["Raid Finder"] = "團隊搜尋器";
 	AL["Pandaria World Bosses"] = "潘達利亞世界首領";
 	AL["Elite"] = "菁英";
+	AL["Vegetables"] = "蔬菜";
 
 	-- Loot Table Names
 	AL["Level 30-39"] = "等級 30～39";
@@ -618,17 +626,16 @@ if AL then
 	-- Profession descriptions
 	AL["Buff"] = "增益";
 	AL["Agility"] = "敏捷";
+	AL["Attributes"] = "屬性";
 	AL["Intellect"] = "智力";
 	AL["Strength"] = "力量";
 	AL["Spirit"] = "精神";
 	AL["Stamina"] = "耐力";
-	AL["Agility, Intellect, Strength"] = "敏捷, 智力, 力量";
 	AL["Spell Power"] = "法術能量";
 	AL["Attack Power"] = "攻擊強度";
 	AL["Spell/Attack Power"] = "法術能量攻擊強度";
 	AL["Hit Rating"] = "命中等級";
 	AL["Crit Rating"] = "致命一擊等級";
-	AL["Crit/Hit Rating"] = "致命一擊/命中等級";
 	AL["Haste Rating"] = "加速等級";
 	AL["Dodge Rating"] = "閃躲等級";
 	AL["Expertise Rating"] = "專精等級";
@@ -680,14 +687,9 @@ if AL then
 	AL["Tribute Run"] = "貢品";
 	AL["Dire Maul Books"] = "厄運書籍";
 	AL["Random Boss Loot"] = "首領隨機掉落";
-	AL["BT Patterns/Plans"] = "黑暗神廟卷軸";
-	AL["Hyjal Summit Designs"] ="海加爾山設計圖";
-	AL["SP Patterns/Plans"] = "特殊圖樣/卷軸";
-	AL["Ulduar Formula/Patterns/Plans"] = "奧杜亞公式/圖樣/設計圖";
-	AL["Trial of the Crusader Patterns/Plans"] = "十字軍試煉圖樣/設計圖";
+	AL["Formula/Patterns/Plans"] = "公式/圖樣/設計圖";
 	AL["BRD Blacksmithing Plans"] = "黑石深淵黑帖鍛造圖樣";
-	AL["Firelands Patterns/Plans"] = "火源之界圖樣/設計圖";
-	AL["Dragon Soul Patterns/Plans"] = "巨龍之魂圖樣/設計圖";
+	AL["Patterns/Plans"] = "圖樣/設計圖";
 
 	-- General titles
 	AL["Achievement"] = "成就";
@@ -746,11 +748,8 @@ if AL then
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "暗月馬戲團獎勵";
 	AL["Low Level Decks"] = "低階套牌";
-	AL["Level 60 Trinkets"] = "等級 60 飾品";
-	AL["Level 70 Trinkets"] = "等級 70 飾品";
 	AL["Level 60 & 70 Trinkets"] = "等級 60/70 飾品";
-	AL["Level 80 Trinkets"] = "等級 80 飾品";
-	AL["Level 85 Trinkets"] = "等級 85 飾品";
+	AL["Trinkets"] = "飾品";
 
 	-- Card Game Decks and descriptions
 	AL["Loot Card Items"] = "可換取的物品";
@@ -794,14 +793,14 @@ if AL then
 
 	-- Seventh set
 	AL["Drums of War"] = "戰爭之鼓";
-	--AL["The Red Bearon"] = true;
-	--AL["Owned!"] = true;
-	--AL["Slashdance"] = true;
+	--AL["The Red Bearon"] = "";
+	--AL["Owned!"] = "";
+	--AL["Slashdance"] = "";
 
 	-- Eighth set
 	AL["Blood of Gladiators"] = "鬥士之血";
 	AL["Sandbox Tiger"] = "沙池虎"; -- confirmed
-	--AL["Center of Attention"] = true;
+	--AL["Center of Attention"] = "";
 	AL["Foam Sword Rack"] = "泡沫之劍架"; -- confirmed
 
 	-- Ninth set
@@ -1149,6 +1148,7 @@ if AL then
 	AL["Stolen Present"] = "失竊的禮物";
 	AL["Oozing Bag"] = "沾滿淤泥的袋子";
 	AL["Ominous Seed"] = "不祥種子";
+	AL["Treasures of the Vale"] = "谷之寶藏";
 
 	-- Blizzard Promotions
 	AL["Annual Pass"] = "年卡";

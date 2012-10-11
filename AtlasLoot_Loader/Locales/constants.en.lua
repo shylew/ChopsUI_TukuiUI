@@ -1,4 +1,4 @@
--- $Id: constants.en.lua 3823 2012-10-03 07:30:07Z hegarol $
+-- $Id: constants.en.lua 3870 2012-10-10 19:10:18Z hegarol $
 --[[
 constants.en.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -72,7 +72,7 @@ if AL then
 	AL["Load AtlasLoot"] = true;
 	AL["Module \"%s\" is disabled."] = true;
 	AL["Module \"%s\" is missing."] = true;
-	
+
 	-- MiniMap-Button
 	AL["|cffFF0000Click: |cffFFFFFFOpen AtlasLoot\n|cffFF0000Shift+Click: |cffFFFFFFOpen AtlasLoot-Options "] = true;
 
@@ -253,6 +253,8 @@ if AL then
 	AL["ilvl 245"] = true;
 	AL["ilvl 264"] = true;
 	AL["ilvl 397"] = true;
+	AL["ilvl 470"] = true;
+	AL["ilvl 490"] = true;
 	AL["Gladiator"] = true;
 	AL["Vengeful"] = true;
 	AL["Merciless"] = true;
@@ -343,6 +345,7 @@ if AL then
 	AL["Crafted Epic Weapons"] = true;
 	AL["Dragon's Eye"] = true;
 	AL["Chimera's Eye"] = true;
+	AL["Serpent's Eye"] = true;
 
 	-- Sets/Collections Menu
 	AL["Sets"] = true;
@@ -467,6 +470,15 @@ if AL then
 	AL["Armor Enhancements"] = true;
 	AL["Weapon Enhancements"] = true;
 
+	-- Cooking
+	AL["Banquets/Feasts"] = true;
+	AL["Way of the Brew"] = true;
+	AL["Way of the Grill"] = true;
+	AL["Way of the Oven"] = true;
+	AL["Way of the Pot"] = true;
+	AL["Way of the Steamer"] = true;
+	AL["Way of the Wok"] = true;
+
 	-- Enchanting
 	AL["Enchant Boots"] = true;
 	AL["Enchant Bracer"] = true;
@@ -483,15 +495,12 @@ if AL then
 	AL["Tinker"] = true;
 
 	-- Inscription
-	AL["Glyph"] = true;
-	AL["Prime Glyph"] = true;
 	AL["Major Glyph"] = true;
 	AL["Minor Glyph"] = true;
 	AL["Runescrolls"] = true;
 	AL["Recall"] = true;
 	AL["Scrolls"] = true;
 	AL["Off-Hand Items"] = true;
-	AL["Staves/Shoulder Enchants"] = true;
 	AL["Shoulder Enchants"] = true;
 	AL["Reagents"] = true;
 	AL["Book of Glyph Mastery"] = true;
@@ -605,6 +614,7 @@ if AL then
 	AL["Raid Finder"] = true;
 	AL["Pandaria World Bosses"] = true;
 	AL["Elite"] = true;
+	AL["Vegetables"] = true;
 
 	-- Loot Table Names
 	AL["Level 30-39"] = true;
@@ -618,17 +628,16 @@ if AL then
 	-- Profession descriptions
 	AL["Buff"] = true;
 	AL["Agility"] = true;
+	AL["Attributes"] = true;
 	AL["Intellect"] = true;
 	AL["Strength"] = true;
 	AL["Spirit"] = true;
 	AL["Stamina"] = true;
-	AL["Agility, Intellect, Strength"] = true;
 	AL["Spell Power"] = true;
 	AL["Attack Power"] = true;
 	AL["Spell/Attack Power"] = true;
 	AL["Hit Rating"] = true;
 	AL["Crit Rating"] = true;
-	AL["Crit/Hit Rating"] = true;
 	AL["Haste Rating"] = true;
 	AL["Dodge Rating"] = true;
 	AL["Expertise Rating"] = true;
@@ -680,14 +689,9 @@ if AL then
 	AL["Tribute Run"] = true;
 	AL["Dire Maul Books"] = true;
 	AL["Random Boss Loot"] = true;
-	AL["BT Patterns/Plans"] = true;
-	AL["Hyjal Summit Designs"] = true;
-	AL["SP Patterns/Plans"] = true;
-	AL["Ulduar Formula/Patterns/Plans"] = true;
-	AL["Trial of the Crusader Patterns/Plans"] = true;
+	AL["Formula/Patterns/Plans"] = true;
 	AL["BRD Blacksmithing Plans"] = true;
-	AL["Firelands Patterns/Plans"] = true;
-	AL["Dragon Soul Patterns/Plans"] = true;
+	AL["Patterns/Plans"] = true;
 
 	-- General titles
 	AL["Achievement"] = true;
@@ -746,11 +750,8 @@ if AL then
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = true;
 	AL["Low Level Decks"] = true;
-	AL["Level 60 Trinkets"] = true;
-	AL["Level 70 Trinkets"] = true;
 	AL["Level 60 & 70 Trinkets"] = true;
-	AL["Level 80 Trinkets"] = true;
-	AL["Level 85 Trinkets"] = true;
+	AL["Trinkets"] = true;
 
 	-- Card Game Decks and descriptions
 	AL["Loot Card Items"] = true;
@@ -1149,6 +1150,7 @@ if AL then
 	AL["Stolen Present"] = true;
 	AL["Oozing Bag"] = true;
 	AL["Ominous Seed"] = true;
+	AL["Treasures of the Vale"] = true;
 
 	-- Blizzard Promotions
 	AL["Annual Pass"] = true;

@@ -2,12 +2,6 @@
 -- Prototype
 --
 
---XXX MoP temp
-local UnitIsGroupLeader = UnitIsGroupLeader or IsRaidLeader
-local UnitIsGroupAssistant = UnitIsGroupAssistant or IsRaidOfficer
-local GetSpecialization = GetSpecialization or GetPrimaryTalentTree
-local GetSpecializationRole = GetSpecializationRole or GetTalentTreeRoles
-
 local debug = false -- Set to true to get (very spammy) debug messages.
 local dbgStr = "[DBG:%s] %s"
 local function dbg(self, msg) print(dbgStr:format(self.displayName, msg)) end
@@ -24,8 +18,14 @@ local icons = setmetatable({}, {__index =
 	function(self, key)
 		if not key then return end
 		local value = nil
-		if type(key) == "number" then value = select(3, GetSpellInfo(key))
-		else value = "Interface\\Icons\\" .. key end
+		if type(key) == "number" then
+			value = select(3, GetSpellInfo(key))
+			if not value then
+				print(("Big Wigs: An invalid spell id (%d) is being used in a bar/message."):format(key))
+			end
+		else
+			value = "Interface\\Icons\\" .. key
+		end
 		self[key] = value
 		return value
 	end
@@ -90,6 +90,7 @@ do
 	local modMissingFunction = "Module %q got the event %q (%d), but it doesn't know how to handle it."
 	local missingArgument = "Missing required argument when adding a listener to %q."
 	local missingFunction = "%q tried to register a listener to method %q, but it doesn't exist in the module."
+	local invalidId = "Module %q tried to register an invalid spell id (%d) to event %q."
 
 	function boss:CHAT_MSG_MONSTER_YELL(_, msg, ...)
 		if yellMap[self][msg] then
@@ -155,7 +156,11 @@ do
 		if type(func) ~= "function" and not self[func] then error(missingFunction:format(self.moduleName, func)) end
 		if not combatLogMap[self][event] then combatLogMap[self][event] = {} end
 		for i = 1, select("#", ...) do
-			combatLogMap[self][event][(select(i, ...))] = func
+			local id = (select(i, ...))
+			combatLogMap[self][event][id] = func
+			if type(id) == "number" and not GetSpellInfo(id) then
+				print(invalidId:format(self.moduleName, id, event))
+			end
 		end
 		self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 	end
@@ -320,17 +325,6 @@ function boss:Tank()
 	if core.db.profile.ignorerole then return true end
 	local tree = GetSpecialization()
 	local role = GetSpecializationRole(tree)
-	if GetPrimaryTalentTree then --XXX MoP temp
-		local _, class = UnitClass("player")
-		if class == "DRUID" and tree == 2 then
-			local _,_,_,_,talent = GetTalentInfo(2, 18) -- Natural Reaction
-			if talent > 0 then
-				role = "TANK"
-			else
-				role = "DAMAGER"
-			end
-		end
-	end
 	if role == "TANK" then return true end
 end
 
@@ -343,24 +337,20 @@ end
 
 --[[
 function boss:Damager()
+	if core.db.profile.ignorerole then return true end
 	local tree = GetSpecialization()
 	local role
 	local _, class = UnitClass("player")
-	if class == "MAGE" or class == "WARLOCK" or class == "HUNTER" or (class == "DRUID" and t == 1) or (class == "PRIEST" and t == 3) then
+	if
+		class == "MAGE" or class == "WARLOCK" or class == "HUNTER" or (class == "DRUID" and tree == 1) or
+		(class == "PRIEST" and tree == 3) or (class == "SHAMAN" and tree == 1)
+	then
 		role = "RANGED"
-	elseif class == "ROGUE" or (class == "WARRIOR" and tree ~= 3) or (class == "DEATHKNIGHT" and tree ~= 1) or (class == "PALADIN" and tree == 3) then
+	elseif
+		class == "ROGUE" or (class == "WARRIOR" and tree ~= 3) or (class == "DEATHKNIGHT" and tree ~= 1) or
+		(class == "PALADIN" and tree == 3) or (class == "DRUID" and tree == 2) or (class == "SHAMAN" and tree == 2)
+	then
 		role = "MELEE"
-	elseif class == "DRUID" and t == 2 then
-		local _,_,_,_,talent = GetTalentInfo(2, 20)
-		if talent == 0 then
-			role = "MELEE"
-		end
-	elseif class == "SHAMAN" then
-		if t == 1 then
-			role = "RANGED"
-		elseif t == 2 then
-			role = "MELEE"
-		end
 	end
 	return role
 end

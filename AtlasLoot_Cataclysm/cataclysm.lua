@@ -1,4 +1,4 @@
--- $Id: cataclysm.lua 3814 2012-10-02 06:44:41Z Dynaletik $
+-- $Id: cataclysm.lua 3870 2012-10-10 19:10:18Z hegarol $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -3216,7 +3216,7 @@ local moduleName = "AtlasLootCataclysm"
 			};
 		};
 		info = {
-			name = AL["Dragon Soul Patterns/Plans"],
+			name = AtlasLoot:GetMapNameByID(824).. " "..AL["Patterns/Plans"],
 			module = moduleName, instance = "DragonSoul",
 		};
 	};
@@ -3612,7 +3612,7 @@ local moduleName = "AtlasLootCataclysm"
 			};
 		};
 		info = {
-			name = AL["Firelands Patterns/Plans"],
+			name = AtlasLoot:GetMapNameByID(800).. " "..AL["Patterns/Plans"],
 			module = moduleName, instance = "Firelands",
 		};
 	};
@@ -4927,9 +4927,9 @@ local moduleName = "AtlasLootCataclysm"
 				{ 21, 73477, "", "=q4=Cataclysmic Gladiator's Decapitator", "=ds=#h2#, #w1#", "#HONOR:3400#" },
 				{ 22, 73476, "", "=q4=Cataclysmic Gladiator's Bonegrinder", "=ds=#h2#, #w6#", "#HONOR:3400#" },
 				{ 24, 73456, "", "=q4=Cataclysmic Gladiator's Pike", "=ds=#w7#", "#HONOR:3400#" },
-				{ 26, 73466, "", "=q4=Cataclysmic Gladiator's Battle Staff", "=ds=#w7#", "#HONOR:3400#" },
-				{ 27, 73457, "", "=q4=Cataclysmic Gladiator's Energy Staff", "=ds=#w7#", "#HONOR:3400#" },
-				{ 28, 73462, "", "=q4=Cataclysmic Gladiator's Staff", "=ds=#w7#", "#HONOR:3400#" },
+				{ 26, 73466, "", "=q4=Cataclysmic Gladiator's Battle Staff", "=ds=#w9#", "#HONOR:3400#" },
+				{ 27, 73457, "", "=q4=Cataclysmic Gladiator's Energy Staff", "=ds=#w9#", "#HONOR:3400#" },
+				{ 28, 73462, "", "=q4=Cataclysmic Gladiator's Staff", "=ds=#w9#", "#HONOR:3400#" },
 			};
 			{
 				{ 1, 73468, "", "=q4=Cataclysmic Gladiator's Barrier", "=ds=#w8#", "#HONOR:950#" },

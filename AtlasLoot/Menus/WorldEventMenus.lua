@@ -1,4 +1,4 @@
--- $Id: WorldEventMenus.lua 3749 2012-09-02 21:12:17Z hegarol $
+-- $Id: WorldEventMenus.lua 3856 2012-10-07 02:17:53Z Dynaletik $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleInventory = AtlasLoot_GetLocaleLibBabble("LibBabble-Inventory-3.0")
@@ -97,36 +97,16 @@ local BabbleZone = AtlasLoot_GetLocaleLibBabble("LibBabble-Zone-3.0")
 	AtlasLoot_Data["BREWFESTMENU"] = {
 		["Normal"] = {
 			{
-				{ 1, "Brewfest", "inv_holiday_beerfestpretzel01", "=ds="..AL["Food and Drinks"], ""};
-				{ 2, "Brewfest#2", "inv_holiday_brewfestbuff_01", "=ds="..AL["Brew of the Month Club"], ""};
-				{ 16, "CorenDirebrew", "inv_misc_head_dwarf_01", "=ds="..BabbleBoss["Coren Direbrew"], ""};
-			    { 4, 56836, "", "=q3=Overflowing Purple Brewfest Stein", "=ec1=2011 =q1=#m4#: =ds=#h1#"};
+				{ 1, "Brewfest", "inv_holiday_brewfestbuff_01", "=ds="..AL["Vendor"], ""};
+				{ 2, "Brewfest#2", "inv_holiday_beerfestpretzel01", "=ds="..AL["Food and Drinks"], ""};
+				{ 4, 56836, "", "=q3=Overflowing Purple Brewfest Stein", "=ec1=2011 =q1=#m4#: =ds=#h1#"};
 				{ 5, 37892, "", "=q3=Green Brewfest Stein", "#ACHIEVEMENTID:4782#"};
 				{ 6, 33016, "", "=q3=Blue Brewfest Stein", "#ACHIEVEMENTID:1293#"};
 				{ 7, 32912, "", "=q3=Yellow Brewfest Stein", "#ACHIEVEMENTID:1292#"};
 				{ 8, 34140, "", "=q3=Dark Iron Tankard", "=ec1=2007 =q1=#m4#: =ds=#s15#"};
 				{ 9, 33976, "", "=q3=Brewfest Ram", "=ec1=2007 =q1=#m4#: =ds=#e26#"};
-				{ 11, 33927, "", "=q3=Brewfest Pony Keg", "=ds=#m20#", "#BREWFEST:100#"};
-				{ 12, 46707, "", "=q3=Pint-Sized Pink Pachyderm", "=ds=#e13#", "#BREWFEST:100#"};
-				{ 13, 32233, "", "=q3=Wolpertinger's Tankard", "=ds=#e13#", "40 #silver#"};
-				{ 14, 37816, "", "=q2=Preserved Brewfest Hops", "=ds=#m20#", "#BREWFEST:20#"};
-				{
-					{ 19, 34008, "", "=q1=Blix's Eyesight Enhancing Romance Goggles", "=ds=#s1#", "#BREWFEST:100#"};
-					{ 19, 33047, "", "=q1=Belbi's Eyesight Enhancing Romance Goggles", "=ds=#s1#", "#BREWFEST:100#"};
-				};
-				{ 20, 33968, "", "=q1=Blue Brewfest Hat", "=ds=#s1#", "#BREWFEST:50#"};
-				{ 21, 33864, "", "=q1=Brown Brewfest Hat", "=ds=#s1#", "#BREWFEST:50#"};
-				{ 22, 33967, "", "=q1=Green Brewfest Hat", "=ds=#s1#", "#BREWFEST:50#"};
-				{ 23, 33969, "", "=q1=Purple Brewfest Hat", "=ds=#s1#", "#BREWFEST:50#"};
-				{ 24, 33863, "", "=q1=Brewfest Dress", "=ds=#s5#", "#BREWFEST:200#"};
-				{ 25, 33862, "", "=q1=Brewfest Regalia", "=ds=#s5#", "#BREWFEST:200#"};
-				{ 26, 33868, "", "=q1=Brewfest Boots", "=ds=#s12#", "#BREWFEST:100#"};
-				{ 27, 33966, "", "=q1=Brewfest Slippers", "=ds=#s12#", "#BREWFEST:100#"};
-				{ 29, 37750, "", "=q1=Fresh Brewfest Hops", "=ds=#m20#", "#BREWFEST:2#"};
-				{
-					{ 30, 39477, "", "=q1=Fresh Dwarven Brewfest Hops", "=ec1=#m6# =ds=#m20#", "#BREWFEST:5#"};
-					{ 30, 39476, "", "=q1=Fresh Goblin Brewfest Hops", "=ec1=#m7# =ds=#m20#", "#BREWFEST:5#"};
-				};
+				{ 16, "CorenDirebrew", "inv_misc_head_dwarf_01", "=ds="..BabbleBoss["Coren Direbrew"], ""};
+				{ 17, "Brewfest#3", "inv_holiday_brewfestbuff_01", "=ds="..AL["Brew of the Month Club"], ""};
 			};
 		};
 		info = {
@@ -181,10 +161,11 @@ local BabbleZone = AtlasLoot_GetLocaleLibBabble("LibBabble-Zone-3.0")
 				{ 17, "Darkmoon", "ability_hunter_pet_bear", "=ds="..BabbleInventory["Mounts"].." / "..BabbleInventory["Companions"], ""};
 				{ 18, "Darkmoon#2", "inv_misc_food_164_fish_seadog", "=ds="..AL["Food and Drinks"], ""};
 				{ 19, "Darkmoon#3", "inv_misc_bone_taurenskull_01", "=ds="..AL["Heirloom"], ""};
-				{ 21, "DarkmoonDeck", "inv_inscription_tarot_hurricanecard", "=ds="..AL["Level 85 Trinkets"], ""};
-				{ 22, "DarkmoonDeck#2", "INV_Inscription_TarotGreatness", "=ds="..AL["Level 80 Trinkets"], ""};
-				{ 23, "DarkmoonDeck#3", "INV_Misc_Ticket_Tarot_Madness", "=ds="..AL["Level 60 & 70 Trinkets"], ""};
-				{ 24, "DarkmoonDeck#4", "INV_Misc_Ticket_Tarot_Furies", "=ds="..AL["Low Level Decks"], ""};
+				{ 21, "DarkmoonDeck", "inv_inscription_trinket_tiger", "=ds="..AL["Level 90"].." "..AL["Trinkets"], ""};
+				{ 22, "DarkmoonDeck#2", "inv_inscription_tarot_hurricanecard", "=ds="..AL["Level 85"].." "..AL["Trinkets"], ""};
+				{ 23, "DarkmoonDeck#3", "INV_Inscription_TarotGreatness", "=ds="..AL["Level 80"].." "..AL["Trinkets"], ""};
+				{ 24, "DarkmoonDeck#4", "INV_Misc_Ticket_Tarot_Madness", "=ds="..AL["Level 60 & 70 Trinkets"], ""};
+				{ 25, "DarkmoonDeck#5", "INV_Misc_Ticket_Tarot_Furies", "=ds="..AL["Low Level Decks"], ""};
 			};
 		};
 		info = {

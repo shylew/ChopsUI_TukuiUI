@@ -1,4 +1,4 @@
--- $Id: burningcrusade.lua 3812 2012-10-02 01:24:41Z Dynaletik $
+-- $Id: burningcrusade.lua 3848 2012-10-06 06:43:09Z Dynaletik $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -760,7 +760,7 @@ local moduleName = "AtlasLootBurningCrusade"
 			};
 		};
 		info = {
-			name = AL["BT Patterns/Plans"],
+			name = AtlasLoot:GetMapNameByID(796).. " "..AL["Patterns/Plans"],
 			module = moduleName, instance = "BlackTemple",
 		};
 	};
@@ -2723,7 +2723,7 @@ local moduleName = "AtlasLootBurningCrusade"
 			};
 		};
 		info = {
-			name = AL["SP Patterns/Plans"],
+			name = AtlasLoot:GetMapNameByID(789).. " "..AL["Patterns/Plans"],
 			module = moduleName, instance = "SunwellPlateau",
 		};
 	};

@@ -1,4 +1,4 @@
-﻿-- $Id: constants.es.lua 3818 2012-10-02 15:47:36Z Dynaletik $
+﻿-- $Id: constants.es.lua 3865 2012-10-09 04:47:11Z Dynaletik $
 --[[
 constants.es.lua --- Traduction ES por maqjav
 This file defines an AceLocale table for all the various text strings needed
@@ -503,13 +503,11 @@ if AL then
 	AL["Agility"] = "Agilidad";
 	AL["Intellect"] = "Intelecto";
 	AL["Strength"] = "Fuerza";
-	AL["Agility, Intellect, Strength"] = "Agilidad, Intelecto, Fuerza";
 	AL["Spell Power"] = "Poder con hechizos";
 	AL["Attack Power"] = "Poder de ataque";
 	AL["Spell/Attack Power"] = "Poder de ataque/hechizos";
 	AL["Hit Rating"] = "Índice de golpe";
 	AL["Crit Rating"] = "Índice de crítico";
-	AL["Crit/Hit Rating"] = "Índice de golpe/crítico";
 	AL["Haste Rating"] = "Índice de celeridad";
 	AL["Dodge Rating"] = "Índice de esquivar";
 	AL["Expertise Rating"] = "Índice de pericia";
@@ -538,12 +536,10 @@ if AL then
 	AL["Tribute Run"] = "Homenaje de carrera";
 	AL["Dire Maul Books"] = "Libros de La Masacre";
 	AL["Random Boss Loot"] = "Botín de jefes aleatorios";
-	AL["BT Patterns/Plans"] = "Recetas/Planos del Templo Oscuro";
-	AL["Hyjal Summit Designs"] = "Diseños de la Cumbre de Hyjal";
-	AL["SP Patterns/Plans"] = "Recinto de Esclavos Recetas/Planos";
-	AL["Ulduar Formula/Patterns/Plans"] = "Formulas/patrones/planos Ulduar";
-	AL["Trial of the Crusader Patterns/Plans"] = "Patrones/planos Prueba del Cruzado";
+	AL["Formula/Patterns/Plans"] = "Formulas/patrones/planos";
 	AL["BRD Blacksmithing Plans"] = "Planos de herrero BRD";
+	AL["Patterns/Plans"] = "Patrones/planos";
+
 	-- General titles
 	AL["Achievement"] = "Logro";
 
@@ -587,11 +583,8 @@ if AL then
 	--Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "Recompensas Feria de la Luna Negra";
 	AL["Low Level Decks"] = "Bajaras de bajo nivel";
-	AL["Level 60 Trinkets"] = "Abaloríos nivel 60";
-	AL["Level 70 Trinkets"] = "Abaloríos nivel 70";
 	AL["Level 60 & 70 Trinkets"] = "Abaloríos nivel 60 y 70";
-	AL["Level 80 Trinkets"] = "Abaloríos nivel 80";
-	AL["Level 85 Trinkets"] = "Abaloríos nivel 85";
+	AL["Trinkets"] = "Abaloríos";
 
 	--Card Game Decks and descriptions
 	AL["Loot Card Items"] = "Objetos (juegos de cartas)";

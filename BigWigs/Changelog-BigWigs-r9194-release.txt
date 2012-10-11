@@ -1,0 +1,564 @@
+------------------------------------------------------------------------
+r9194 | funkydude | 2012-10-11 02:15:57 +0000 (Thu, 11 Oct 2012) | 1 line
+Changed paths:
+   A /tags/r9194-release (from /trunk:9193)
+
+Tagging as r9194-release
+------------------------------------------------------------------------
+r9193 | funkydude | 2012-10-11 02:04:04 +0000 (Thu, 11 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/Mogushan/Feng.lua
+   M /trunk/Mogushan/Garajal.lua
+   M /trunk/Mogushan/Locales/deDE.lua
+   M /trunk/Mogushan/Locales/esES.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/ptBR.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+Mogushan/Garajal: cleanups and fixes
+------------------------------------------------------------------------
+r9192 | funkydude | 2012-10-11 01:07:21 +0000 (Thu, 11 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+   M /trunk/Mogushan/Locales/deDE.lua
+   M /trunk/Mogushan/Locales/esES.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/ptBR.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+Mogushan/Feng: various code cleanups and fixes
+------------------------------------------------------------------------
+r9191 | pettigrow | 2012-10-10 21:25:34 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/HeartOfFear/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+
+frFR Update
+------------------------------------------------------------------------
+r9190 | Wetxius | 2012-10-10 20:18:45 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+Fix flame phase warning. (also fix feng ruRU locale)
+------------------------------------------------------------------------
+r9189 | gnarfoz | 2012-10-10 20:14:20 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+
+spam protect Shroud of Reversal the same as Nullification Barrier
+------------------------------------------------------------------------
+r9188 | jongt23 | 2012-10-10 19:29:02 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r9187 | stanzilla | 2012-10-10 19:23:53 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/TheStoneGuard.lua
+
+adjust berserk timer, it's 1 min less
+------------------------------------------------------------------------
+r9186 | gnarfoz | 2012-10-10 18:59:05 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/TheStoneGuard.lua
+
+Make the amethyst petrification message a bit brighter
+------------------------------------------------------------------------
+r9185 | funkydude | 2012-10-10 17:14:38 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/HeartOfFear/Locales/esES.lua
+   M /trunk/Mogushan/Locales/esES.lua
+
+fix esMX
+------------------------------------------------------------------------
+r9184 | funkydude | 2012-10-10 12:28:03 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+
+Mogushan/Feng: fix enrage
+------------------------------------------------------------------------
+r9183 | funkydude | 2012-10-10 12:15:08 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+Mogushan/Feng: Make tank alerts local only (also fixes an error on ruRU)
+------------------------------------------------------------------------
+r9182 | funkydude | 2012-10-10 12:07:19 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/deDE.lua
+
+deDE update
+------------------------------------------------------------------------
+r9181 | Wetxius | 2012-10-10 06:48:32 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+ruRU update.
+------------------------------------------------------------------------
+r9179 | funkydude | 2012-10-10 03:10:23 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/deDE.lua
+
+deDE update
+------------------------------------------------------------------------
+r9178 | funkydude | 2012-10-10 03:07:40 +0000 (Wed, 10 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/Core/BossPrototype.lua
+   M /trunk/Mogushan/Feng.lua
+
+Mogushan/Feng: Merge the tank alerts into one option.
+------------------------------------------------------------------------
+r9177 | jongt23 | 2012-10-09 23:41:22 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r9176 | funkydude | 2012-10-09 23:36:15 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/WillOfTheEmperor.lua
+
+Mogushan/WillOfTheEmperor: Add stomp to the "arc attacks".
+------------------------------------------------------------------------
+r9175 | funkydude | 2012-10-09 23:20:00 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/WillOfTheEmperor.lua
+
+Mogushan/WillOfTheEmperor: Restrict arc warnings to the boss you're targeting.
+------------------------------------------------------------------------
+r9174 | funkydude | 2012-10-09 21:04:12 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/TheSpiritKings.lua
+
+Mogushan/TheSpiritKings: fix enrage
+------------------------------------------------------------------------
+r9173 | Wetxius | 2012-10-09 20:08:17 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/TheSpiritKings.lua
+
+Fix some timers.
+------------------------------------------------------------------------
+r9171 | funkydude | 2012-10-09 16:40:01 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+
+bump version
+------------------------------------------------------------------------
+r9170 | Maat | 2012-10-09 14:07:04 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+
+spellId icon fix
+------------------------------------------------------------------------
+r9169 | funkydude | 2012-10-09 13:46:52 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+
+Mogushan/Feng: Add tank stack warnings
+------------------------------------------------------------------------
+r9168 | Maat | 2012-10-09 13:30:50 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Elegon.lua
+
+add/fix some warnings
+------------------------------------------------------------------------
+r9167 | funkydude | 2012-10-09 12:03:57 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Garajal.lua
+
+Mogushan/Garajal: add banishment CD bar.
+------------------------------------------------------------------------
+r9166 | funkydude | 2012-10-09 11:28:04 +0000 (Tue, 09 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/ptBR.lua
+
+add ptBR
+------------------------------------------------------------------------
+r9165 | funkydude | 2012-10-08 17:09:43 +0000 (Mon, 08 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/deDE.lua
+
+deDE by Traeumer
+------------------------------------------------------------------------
+r9163 | funkydude | 2012-10-08 12:17:39 +0000 (Mon, 08 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+
+bump version
+------------------------------------------------------------------------
+r9162 | jongt23 | 2012-10-08 10:36:07 +0000 (Mon, 08 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r9161 | funkydude | 2012-10-08 10:29:33 +0000 (Mon, 08 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/.pkgmeta
+   D /trunk/Baradin
+   D /trunk/Bastion
+   D /trunk/Blackwing
+   D /trunk/DragonSoul
+   D /trunk/Firelands
+   D /trunk/Throne
+   M /trunk/modules.xml
+
+Remove Cataclysm modules
+------------------------------------------------------------------------
+r9160 | Wetxius | 2012-10-08 06:01:00 +0000 (Mon, 08 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+ruRU update.
+------------------------------------------------------------------------
+r9159 | Wetxius | 2012-10-06 08:37:16 +0000 (Sat, 06 Oct 2012) | 2 lines
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+   M /trunk/Mogushan/Garajal.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+Garajal: fix berserk timer
+Feng: change phase sorting in config
+------------------------------------------------------------------------
+r9158 | jongt23 | 2012-10-05 00:22:36 +0000 (Fri, 05 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/esES.lua
+
+esES update (Feng)
+------------------------------------------------------------------------
+r9157 | Wetxius | 2012-10-04 08:22:32 +0000 (Thu, 04 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+ruRU update
+------------------------------------------------------------------------
+r9156 | Wetxius | 2012-10-03 19:26:46 +0000 (Wed, 03 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+ruRU update.
+------------------------------------------------------------------------
+r9155 | funkydude | 2012-09-24 21:26:55 +0000 (Mon, 24 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/EndlessSpring/LeiShi.lua
+   M /trunk/EndlessSpring/Locales/deDE.lua
+   M /trunk/EndlessSpring/Locales/esES.lua
+   M /trunk/EndlessSpring/Locales/frFR.lua
+   M /trunk/EndlessSpring/Locales/itIT.lua
+   M /trunk/EndlessSpring/Locales/koKR.lua
+   M /trunk/EndlessSpring/Locales/ptBR.lua
+   M /trunk/EndlessSpring/Locales/ruRU.lua
+   M /trunk/EndlessSpring/Locales/zhCN.lua
+   M /trunk/EndlessSpring/Locales/zhTW.lua
+   M /trunk/EndlessSpring/Protector.lua
+   M /trunk/EndlessSpring/ShaOfFear.lua
+   M /trunk/EndlessSpring/Tsulong.lua
+   M /trunk/HeartOfFear/Garalon.lua
+   M /trunk/HeartOfFear/Locales/deDE.lua
+   M /trunk/HeartOfFear/Locales/esES.lua
+   M /trunk/HeartOfFear/Locales/frFR.lua
+   M /trunk/HeartOfFear/Locales/itIT.lua
+   M /trunk/HeartOfFear/Locales/koKR.lua
+   M /trunk/HeartOfFear/Locales/ptBR.lua
+   M /trunk/HeartOfFear/Locales/ruRU.lua
+   M /trunk/HeartOfFear/Locales/zhCN.lua
+   M /trunk/HeartOfFear/Locales/zhTW.lua
+   M /trunk/HeartOfFear/Meljarak.lua
+   M /trunk/HeartOfFear/Shekzeer.lua
+   M /trunk/HeartOfFear/Tayak.lua
+   M /trunk/HeartOfFear/Unsok.lua
+   M /trunk/HeartOfFear/Zorlok.lua
+   M /trunk/Mogushan/Elegon.lua
+   M /trunk/Mogushan/Feng.lua
+   M /trunk/Mogushan/Locales/deDE.lua
+   M /trunk/Mogushan/Locales/esES.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/koKR.lua
+   M /trunk/Mogushan/Locales/ptBR.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+   M /trunk/Mogushan/Locales/zhCN.lua
+   M /trunk/Mogushan/Locales/zhTW.lua
+   M /trunk/Mogushan/TheSpiritKings.lua
+   M /trunk/Mogushan/TheStoneGuard.lua
+   M /trunk/Mogushan/WillOfTheEmperor.lua
+
+itIT update and remove more compat
+------------------------------------------------------------------------
+r9154 | pettigrow | 2012-09-24 21:18:48 +0000 (Mon, 24 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/HeartOfFear/Locales/frFR.lua
+   M /trunk/Pandaria/BigWigs_Pandaria.toc
+
+frFR Update
+------------------------------------------------------------------------
+r9153 | Maat | 2012-09-22 10:35:26 +0000 (Sat, 22 Sep 2012) | 4 lines
+Changed paths:
+   M /trunk/Mogushan/Garajal.lua
+
+add counter to totem
+actually do listen to totem sync
+add voodoo dolls removed listener that third party modules need (talk to me about it if you have question)
+bit of cleanup
+------------------------------------------------------------------------
+r9152 | Wetxius | 2012-09-21 07:41:59 +0000 (Fri, 21 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Locales/ruRU.lua
+
+ruRU update.
+------------------------------------------------------------------------
+r9151 | Wetxius | 2012-09-20 19:22:31 +0000 (Thu, 20 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+Firelands/Ragnaros: Fix to show some icons.
+------------------------------------------------------------------------
+r9150 | funkydude | 2012-09-19 16:35:23 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Baradin/Argaloth.lua
+   M /trunk/Blackwing/Magmaw.lua
+   M /trunk/Blackwing/Maloriak.lua
+   M /trunk/Blackwing/Nefarian.lua
+   M /trunk/Blackwing/Omnotron.lua
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/Locales/itIT.lua
+   M /trunk/Firelands/Locales/esES.lua
+   M /trunk/Firelands/Locales/frFR.lua
+   M /trunk/Firelands/Locales/ptBR.lua
+   M /trunk/Firelands/Staghelm.lua
+   M /trunk/Throne/Conclave.lua
+   M /trunk/Throne/Locales/deDE.lua
+   M /trunk/Throne/Locales/esES.lua
+   M /trunk/Throne/Locales/frFR.lua
+   M /trunk/Throne/Locales/koKR.lua
+   M /trunk/Throne/Locales/ptBR.lua
+   M /trunk/Throne/Locales/ruRU.lua
+   M /trunk/Throne/Locales/zhCN.lua
+   M /trunk/Throne/Locales/zhTW.lua
+
+remove more dead spell ids
+------------------------------------------------------------------------
+r9149 | funkydude | 2012-09-19 14:43:23 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Bastion/Chogall.lua
+   M /trunk/Bastion/DoubleDragon.lua
+   M /trunk/Bastion/Halfus.lua
+   M /trunk/Bastion/Sinestra.lua
+   M /trunk/Bastion/TwilightAscendants.lua
+   M /trunk/Throne/Alakir.lua
+
+Bastion: remove dead ids
+------------------------------------------------------------------------
+r9148 | funkydude | 2012-09-19 13:45:27 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Baradin/Argaloth.lua
+   M /trunk/Baradin/Occuthar.lua
+   M /trunk/Throne/Alakir.lua
+   M /trunk/Throne/Locales/deDE.lua
+   M /trunk/Throne/Locales/esES.lua
+   M /trunk/Throne/Locales/frFR.lua
+   M /trunk/Throne/Locales/koKR.lua
+   M /trunk/Throne/Locales/ptBR.lua
+   M /trunk/Throne/Locales/ruRU.lua
+   M /trunk/Throne/Locales/zhCN.lua
+   M /trunk/Throne/Locales/zhTW.lua
+
+Purge more old ids
+------------------------------------------------------------------------
+r9147 | Wetxius | 2012-09-19 12:37:21 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Locales/ruRU.lua
+   M /trunk/Plugins/Locales/ruRU.lua
+
+ruRU update.
+------------------------------------------------------------------------
+r9146 | funkydude | 2012-09-19 12:16:12 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Ragnaros.lua
+
+Firelands/Ragnaros: Heroic check for engulfing flames
+------------------------------------------------------------------------
+r9145 | Wetxius | 2012-09-19 05:12:34 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Bethtilac.lua
+   M /trunk/Firelands/Ragnaros.lua
+   M /trunk/Firelands/Rhyolith.lua
+   M /trunk/Firelands/Shannox.lua
+   M /trunk/Firelands/Staghelm.lua
+
+Firelands: remove old spell ids
+------------------------------------------------------------------------
+r9144 | Wetxius | 2012-09-19 04:57:41 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+   M /trunk/Firelands/Baleroc.lua
+
+Try to fix Tickets 488 and 487.
+------------------------------------------------------------------------
+r9143 | funkydude | 2012-09-19 00:35:21 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/globals.lua
+
+update globals script
+------------------------------------------------------------------------
+r9142 | funkydude | 2012-09-19 00:23:46 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Bastion/Sinestra.lua
+   M /trunk/Core/BossPrototype.lua
+   M /trunk/Core/Core.lua
+   M /trunk/Firelands/Staghelm.lua
+   M /trunk/Loader.lua
+   M /trunk/Options/Options.lua
+   M /trunk/Plugins/Bars.lua
+   M /trunk/Plugins/Broadcast.lua
+   M /trunk/Plugins/Tips.lua
+
+remove MoP compat
+------------------------------------------------------------------------
+r9141 | funkydude | 2012-09-19 00:18:40 +0000 (Wed, 19 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+   M /trunk/DragonSoul/Blackhorn.lua
+   M /trunk/DragonSoul/DeathwingMadness.lua
+   M /trunk/DragonSoul/DeathwingSpine.lua
+   M /trunk/DragonSoul/Hagara.lua
+   M /trunk/DragonSoul/Morchok.lua
+   M /trunk/DragonSoul/Ultraxion.lua
+   M /trunk/DragonSoul/Yorsahj.lua
+   M /trunk/DragonSoul/Zonozz.lua
+
+DragonSoul: remove old spell ids
+------------------------------------------------------------------------
+r9140 | funkydude | 2012-09-18 23:53:15 +0000 (Tue, 18 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: Add some chat prints for invalid spell id's to help with cleaning up the modules.
+------------------------------------------------------------------------
+r9139 | funkydude | 2012-09-17 13:36:57 +0000 (Mon, 17 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/itIT.lua
+
+itIT update
+------------------------------------------------------------------------
+r9138 | Wetxius | 2012-09-15 11:54:38 +0000 (Sat, 15 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/EndlessSpring/Locales/ruRU.lua
+   M /trunk/HeartOfFear/Locales/ruRU.lua
+
+Add more Russian translation for MoP.
+------------------------------------------------------------------------
+r9137 | Wetxius | 2012-09-14 15:00:13 +0000 (Fri, 14 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/EndlessSpring/BigWigs_EndlessSpring.toc
+   M /trunk/EndlessSpring/Locales/ruRU.lua
+   M /trunk/HeartOfFear/BigWigs_HeartOfFear.toc
+   M /trunk/Mogushan/BigWigs_Mogushan.toc
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+ruRU update.
+------------------------------------------------------------------------
+r9135 | funkydude | 2012-09-12 14:56:23 +0000 (Wed, 12 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+   M /trunk/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+
+more itIT
+------------------------------------------------------------------------
+r9134 | funkydude | 2012-09-12 12:49:41 +0000 (Wed, 12 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/DragonSoul/Locales/itIT.lua
+   M /trunk/Locales/common.itIT.lua
+   M /trunk/Locales/itIT.lua
+   M /trunk/Plugins/Locales/itIT.lua
+
+add itIT
+------------------------------------------------------------------------
+r9133 | funkydude | 2012-09-12 12:40:12 +0000 (Wed, 12 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Core/Core.lua
+   M /trunk/Loader.lua
+   M /trunk/Plugins/Broadcast.lua
+
+Fix not loading zones when joining LFR solo.
+------------------------------------------------------------------------
+r9132 | funkydude | 2012-09-11 12:51:02 +0000 (Tue, 11 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Baradin/Argaloth.lua
+   M /trunk/Baradin/BigWigs_Baradin.toc
+   M /trunk/Baradin/Locales/deDE.lua
+   M /trunk/Baradin/Locales/esES.lua
+   M /trunk/Baradin/Locales/frFR.lua
+   A /trunk/Baradin/Locales/itIT.lua
+   M /trunk/Baradin/Locales/koKR.lua
+   M /trunk/Baradin/Locales/ptBR.lua
+   M /trunk/Baradin/Locales/ruRU.lua
+   M /trunk/Baradin/Locales/zhCN.lua
+   M /trunk/Baradin/Locales/zhTW.lua
+   M /trunk/Baradin/Occuthar.lua
+   M /trunk/Baradin/locales.xml
+   M /trunk/Baradin/modules.xml
+   M /trunk/Bastion/Locales/deDE.lua
+   M /trunk/Bastion/Locales/esES.lua
+   A /trunk/Bastion/Locales/itIT.lua
+   M /trunk/Bastion/Locales/ptBR.lua
+   M /trunk/Bastion/Locales/ruRU.lua
+   M /trunk/Bastion/locales.xml
+   M /trunk/Bastion/modules.xml
+   M /trunk/Blackwing/Locales/deDE.lua
+   M /trunk/Blackwing/Locales/esES.lua
+   A /trunk/Blackwing/Locales/itIT.lua
+   M /trunk/Blackwing/Locales/ptBR.lua
+   M /trunk/Blackwing/Locales/ruRU.lua
+   M /trunk/Blackwing/Omnotron.lua
+   M /trunk/Blackwing/locales.xml
+   M /trunk/Core/libs.xml
+   A /trunk/DragonSoul/Locales/itIT.lua
+   M /trunk/DragonSoul/Locales/ptBR.lua
+   M /trunk/DragonSoul/locales.xml
+   M /trunk/EndlessSpring/Locales/esES.lua
+   A /trunk/EndlessSpring/Locales/itIT.lua
+   M /trunk/EndlessSpring/locales.xml
+   A /trunk/Firelands/Locales/itIT.lua
+   M /trunk/Firelands/Locales/ptBR.lua
+   M /trunk/Firelands/locales.xml
+   A /trunk/HeartOfFear/Locales/itIT.lua
+   M /trunk/HeartOfFear/locales.xml
+   A /trunk/Locales/common.itIT.lua
+   M /trunk/Locales/common.ptBR.lua
+   A /trunk/Locales/itIT.lua
+   M /trunk/Locales/ptBR.lua
+   A /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/locales.xml
+   A /trunk/Pandaria/Locales/itIT.lua
+   M /trunk/Pandaria/locales.xml
+   A /trunk/Plugins/Locales/itIT.lua
+   M /trunk/Plugins/Locales/ptBR.lua
+   M /trunk/Plugins/locales.xml
+   M /trunk/Throne/Locales/deDE.lua
+   A /trunk/Throne/Locales/itIT.lua
+   M /trunk/Throne/Locales/ptBR.lua
+   M /trunk/Throne/Locales/ruRU.lua
+   M /trunk/Throne/locales.xml
+   M /trunk/globals.sh
+   M /trunk/locales.xml
+
+Add itIT files
+------------------------------------------------------------------------
+r9131 | nebula169 | 2012-09-09 21:33:23 +0000 (Sun, 09 Sep 2012) | 1 line
+Changed paths:
+   M /trunk/Firelands/Alysrazor.lua
+
+Firelands/Alysrazor: update firestorm bar label
+------------------------------------------------------------------------

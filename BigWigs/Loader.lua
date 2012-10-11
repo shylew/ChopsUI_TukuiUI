@@ -24,7 +24,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("9135")
+	releaseRevision = tonumber("9193")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -96,10 +96,6 @@ local loadOnCoreLoaded = {} -- BigWigs modulepacks that should load when the cor
 -- XXX shouldn't really be named "menus", it's actually panels in interface options now
 local menus = {} -- contains the main menus for BigWigs, once the core is loaded they will get injected
 local enableZones = {} -- contains the zones in which BigWigs will enable
-
--- XXX MOP
-local GetNumSubgroupMembers = GetNumSubgroupMembers or GetRealNumPartyMembers
-local GetNumGroupMembers = GetNumGroupMembers or GetRealNumRaidMembers
 
 -----------------------------------------------------------------------
 -- Utility

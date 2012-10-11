@@ -1,4 +1,4 @@
--- $Id: crafting.lua 3823 2012-10-03 07:30:07Z hegarol $
+-- $Id: crafting.lua 3865 2012-10-09 04:47:11Z Dynaletik $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -67,6 +67,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 ----- Hammersmith
 ----- Swordsmith
 ----- Cataclysm Vendor Sold Plans
+----- Mists of Pandaria Vendor Sold Plans
 ---- Cooking
 ---- Enchanting
 ----- Boots
@@ -1357,6 +1358,63 @@ local SPELLFIRE = GetSpellInfo(26797);
 		};
 	};
 
+	AtlasLoot_Data["SmithingArmorMoP"] = {
+		["Normal"] = {
+			{
+				{ 1, "s126854", "87403", "=q4=Chestplate of Limitless Faith", "=ds=#s5#, #a4# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 2, "s126852", "87402", "=q4=Ornate Battleplate of the Master", "=ds=#s5#, #a4# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 3, "s126850", "87405", "=q4=Unyielding Bloodplate", "=ds=#s5#, #a4# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 4, "s126853", "87407", "=q4=Bloodforged Warfists", "=ds=#s9#, #a4# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 5, "s126851", "87406", "=q4=Gauntlets of Battle Command", "=ds=#s9#, #a4# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 6, "s126855", "87404", "=q4=Gauntlets of Unbound Devotion", "=ds=#s9#, #a4# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 7, "s122653", "82979", "=q4=Breastplate of Ancient Steel", "=ds=#s5#, #a4# / =q1=#sk# 600", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 8, "s122649", "82975", "=q4=Ghost Reaver's Breastplate", "=ds=#s5#, #a4# / =q1=#sk# 600", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 9, "s122651", "82977", "=q4=Living Steel Breastplate", "=ds=#s5#, #a4# / =q1=#sk# 600", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 10, "s122654", "82980", "=q4=Gauntlets of Ancient Steel", "=ds=#s9#, #a4# / =q1=#sk# 600", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 11, "s122650", "82976", "=q4=Ghost Reaver's Gauntlets", "=ds=#s9#, #a4# / =q1=#sk# 600", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 12, "s122652", "82978", "=q4=Living Steel Gauntlets", "=ds=#s9#, #a4# / =q1=#sk# 600", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 13, "s122616", "82943", "=q3=Contender's Revenant Helm", "=ds=#s1#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 14, "s122617", "82944", "=q3=Contender's Revenant Shoulders", "=ds=#s3#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 15, "s122618", "82945", "=q3=Contender's Revenant Breastplate", "=ds=#s5#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 16, "s122621", "82948", "=q3=Contender's Revenant Bracers", "=ds=#s8#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 17, "s122619", "82946", "=q3=Contender's Revenant Gauntlets", "=ds=#s9#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 18, "s122623", "82950", "=q3=Contender's Revenant Belt", "=ds=#s10#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 19, "s122620", "82947", "=q3=Contender's Revenant Legplates", "=ds=#s11#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 20, "s122622", "82949", "=q3=Contender's Revenant Boots", "=ds=#s12#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 21, "s122624", "82951", "=q3=Contender's Spirit Helm", "=ds=#s1#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 22, "s122625", "82952", "=q3=Contender's Spirit Shoulders", "=ds=#s3#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 23, "s122626", "82953", "=q3=Contender's Spirit Breastplate", "=ds=#s5#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 24, "s122629", "82956", "=q3=Contender's Spirit Bracers", "=ds=#s8#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 25, "s122627", "82954", "=q3=Contender's Spirit Gauntlets", "=ds=#s9#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 26, "s122631", "82958", "=q3=Contender's Spirit Belt", "=ds=#s10#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 27, "s122628", "82955", "=q3=Contender's Spirit Legplates", "=ds=#s11#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 28, "s122630", "82957", "=q3=Contender's Spirit Boots", "=ds=#s12#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 29, "s122592", "82919", "=q3=Masterwork Spiritguard Helm", "=ds=#s1#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 30, "s122593", "82920", "=q3=Masterwork Spiritguard Shoulders", "=ds=#s3#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+			};
+			{
+				{ 1, "s122594", "82921", "=q3=Masterwork Spiritguard Breastplate", "=ds=#s5#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 2, "s122597", "82924", "=q3=Masterwork Spiritguard Bracers", "=ds=#s8#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 3, "s122595", "82922", "=q3=Masterwork Spiritguard Gauntlets", "=ds=#s9#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 4, "s122599", "82926", "=q3=Masterwork Spiritguard Belt", "=ds=#s10#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 5, "s122596", "82923", "=q3=Masterwork Spiritguard Legplates", "=ds=#s11#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 6, "s122598", "82925", "=q3=Masterwork Spiritguard Boots", "=ds=#s12#, #a4# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 7, "s122576", "82903", "=q2=Ghost-Forged Helm", "=ds=#s1#, #a4# / =q1=#sk# 550", "=ds="..AL["Trainer"]};
+				{ 8, "s122578", "82905", "=q2=Ghost-Forged Breastplate", "=ds=#s5#, #a4# / =q1=#sk# 550", "=ds="..AL["Trainer"]};
+				{ 9, "s122577", "82904", "=q2=Ghost-Forged Shoulders", "=ds=#s3#, #a4# / =q1=#sk# 540", "=ds="..AL["Trainer"]};
+				{ 10, "s122580", "82907", "=q2=Ghost-Forged Legplates", "=ds=#s11#, #a4# / =q1=#sk# 530", "=ds="..AL["Trainer"]};
+				{ 11, "s122582", "82909", "=q2=Ghost-Forged Boots", "=ds=#s12#, #a4# / =q1=#sk# 530", "=ds="..AL["Trainer"]};
+				{ 12, "s122579", "82906", "=q2=Ghost-Forged Gauntlets", "=ds=#s9#, #a4# / =q1=#sk# 525", "=ds="..AL["Trainer"]};
+				{ 13, "s122583", "82910", "=q2=Ghost-Forged Belt", "=ds=#s10#, #a4# / =q1=#sk# 525", "=ds="..AL["Trainer"]};
+				{ 14, "s122581", "82908", "=q2=Ghost-Forged Bracers", "=ds=#s8#, #a4# / =q1=#sk# 500", "=ds="..AL["Trainer"]};
+			};
+		};
+		info = {
+			name = BLACKSMITHING..": "..BabbleInventory["Armor"].." - "..AL["Mists of Pandaria"],
+			module = moduleName, menu = "SMITHINGMENU", instance = "Blacksmithing",
+		};
+	};
+
 	AtlasLoot_Data["SmithingWeaponOld"] = {
 		["Normal"] = {
 			{
@@ -1552,6 +1610,31 @@ local SPELLFIRE = GetSpellInfo(26797);
 		};
 		info = {
 			name = BLACKSMITHING..": "..BabbleInventory["Weapon"].." - "..AL["Cataclysm"],
+			module = moduleName, menu = "SMITHINGMENU", instance = "Blacksmithing",
+		};
+	};
+
+	AtlasLoot_Data["SmithingWeaponMoP"] = {
+		["Normal"] = {
+			{
+				{ 1, "s122644", "82970", "=q3=Masterwork Forgewire Axe", "=ds=#h3#, #w1# / =ds=#sr# 575", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 2, "s122648", "82974", "=q3=Masterwork Ghost Shard", "=ds=#h1#, #w4# / =ds=#sr# 575", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 3, "s122645", "82971", "=q3=Masterwork Ghost-Forged Blade", "=ds=#h1#, #w10# / =ds=#sr# 575", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 4, "s122646", "82972", "=q3=Masterwork Phantasmal Hammer", "=ds=#h1#, #w6# / =ds=#sr# 575", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 5, "s122647", "82973", "=q3=Masterwork Spiritblade Decimator", "=ds=#h2#, #w1# / =ds=#sr# 575", "=ds="..BabbleFaction["The Klaxxi"].." - "..BabbleFaction["Honored"]};
+				{ 6, "s122642", "82968", "=q3=Masterwork Lightsteel Shield", "=ds=#w8# / =ds=#sr# 575", "=ds="..AL["Vendor"]};
+				{ 7, "s122643", "82969", "=q3=Masterwork Spiritguard Shield", "=ds=#w8# / =ds=#sr# 575", "=ds="..AL["Vendor"]};
+				{ 8, "s122641", "82967", "=q3=Ghost Shard", "=ds=#h1#, #w4# / =ds=#sr# 565", "=ds="..AL["Trainer"]};
+				{ 9, "s122640", "82966", "=q3=Spiritblade Decimator", "=ds=#h2#, #w1# / =ds=#sr# 565", "=ds="..AL["Trainer"]};
+				{ 10, "s122639", "82965", "=q3=Phantasmal Hammer", "=ds=#h1#, #w6# / =ds=#sr# 560", "=ds="..AL["Trainer"]};
+				{ 11, "s122637", "82963", "=q3=Forgewire Axe", "=ds=#h3#, #w1# / =ds=#sr# 545", "=ds="..AL["Trainer"]};
+				{ 12, "s122638", "82964", "=q3=Ghost-Forged Blade", "=ds=#h1#, #w10# / =ds=#sr# 545", "=ds="..AL["Trainer"]};
+				{ 13, "s122636", "82962", "=q2=Spiritguard Shield", "=ds=#w8# / =ds=#sr# 545", "=ds="..AL["Trainer"]};
+				{ 14, "s122635", "82961", "=q2=Lightsteel Shield", "=ds=#w8# / =ds=#sr# 540", "=ds="..AL["Trainer"]};
+			};
+		};
+		info = {
+			name = BLACKSMITHING..": "..BabbleInventory["Weapon"].." - "..AL["Mists of Pandaria"],
 			module = moduleName, menu = "SMITHINGMENU", instance = "Blacksmithing",
 		};
 	};
@@ -1896,90 +1979,120 @@ local SPELLFIRE = GetSpellInfo(26797);
 		--- Cooking ---
 		---------------
 
-	AtlasLoot_Data["CookingStandard"] = {
+	AtlasLoot_Data["CookingAttributes"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Health"]};
-				{ 2, "s88018", "62677", "=q1=Fish Fry", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 3, "s88006", "62676", "=q1=Blackened Surprise", "=ds=#sr# 425", "=ds="..AL["Trainer"]};
-				{ 4, "s57421", "34747", "=q1=Northern Stew", "=ds=#sr# 350", "=ds="..BabbleInventory["Quest"]};
-				{ 5, "s42296", "33048", "=q1=Stewed Trout", "=ds=#sr# 320", "=ds="..AL["Trainer"]};
-				{ 6, "s33290", "27661", "=q1=Blackened Trout", "=ds=#sr# 300", "=ds="..AL["Vendor"]..": "..BabbleZone["Zangarmarsh"]};
-				{ 7, "s18247", "13935", "=q1=Baked Salmon", "=ds=#sr# 275", "=ds="..AL["Vendor"]..": "..BabbleZone["Feralas"]};
-				{ 8, "s18245", "13933", "=q1=Lobster Stew", "=ds=#sr# 275", "=ds="..AL["Vendor"]..": "..BabbleZone["Feralas"]};
-				{ 9, "s18241", "13930", "=q1=Filet of Redgill", "=ds=#sr# 225", "=ds="..AL["Vendor"]..": "..BabbleZone["Stranglethorn Vale"]};
-				{ 10, "s18238", "6887", "=q1=Spotted Yellowtail", "=ds=#sr# 225", "=ds="..AL["Trainer"]};
-				{ 11, "s20626", "16766", "=q1=Undermine Clam Chowder", "=ds=#sr# 225", "=ds="..AL["Vendor"]..": "..BabbleZone["Tanaris"]};
-				{ 12, "s20916", "8364", "=q1=Mithril Head Trout", "=ds=#sr# 175", "=ds="..AL["Vendor"]};
-				{ 13, "s7828", "4594", "=q1=Rockscale Cod", "=ds=#sr# 175", "=ds="..AL["Vendor"]};
-				{ 14, "s2548", "2685", "=q1=Succulent Pork Ribs", "=ds=#sr# 110", "=ds="..AL["Drop"]};
-				{ 15, "s7755", "4593", "=q1=Bristle Whisker Catfish", "=ds=#sr# 100", "=ds="..AL["Vendor"]};
-				{ 17, "s6501", "5526", "=q1=Clam Chowder", "=ds=#sr# 90", "=ds="..AL["Vendor"]};
-				{ 18, "s6417", "5478", "=q1=Dig Rat Stew", "=ds=#sr# 90", "=ds="..AL["Vendor"]};
-				{ 19, "s2543", "733", "=q1=Westfall Stew", "=ds=#sr# 90", "=ds="..AL["Drop"]};
-				{ 20, "s7754", "6316", "=q1=Loch Frenzy Delight", "=ds=#sr# 50", "=ds="..AL["Vendor"]};	
-				{ 21, "s7753", "4592", "=q1=Longjaw Mud Snapper", "=ds=#sr# 50", "=ds="..AL["Vendor"]};
-				{ 22, "s7827", "5095", "=q1=Rainbow Fin Albacore", "=ds=#sr# 50", "=ds="..AL["Vendor"]};
-				{ 23, "s93741", "67230", "=q1=Venison Jerky", "=ds=#sr# 40", "=ds="..AL["Trainer"]};
-				{ 24, "s8607", "6890", "=q1=Smoked Bear Meat", "=ds=#sr# 40", "=ds="..AL["Vendor"]};
-				{ 25, "s7751", "6290", "=q1=Brilliant Smallfish", "=ds=#sr# 1", "=ds="..AL["Vendor"]};
-				{ 26, "s2538", "2679", "=q1=Charred Wolf Meat", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
-				{ 27, "s2540", "2681", "=q1=Roasted Boar Meat", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
-				{ 28, "s7752", "787", "=q1=Slitherskin Mackerel", "=ds=#sr# 1", "=ds="..AL["Vendor"]};
-				{ 29, "s37836", "30816", "=q1=Spice Bread", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Agility"]};
+				{ 2, "s104303", "74648", "=q1=Sea Mist Rice Noodles", "=ds=#sr# 600", "=ds="..AL["Way of the Wok"]};
+				{ 3, "s104302", "74647", "=q1=Valley Stir Fry", "=ds=#sr# 550", "=ds="..AL["Way of the Wok"]};
+				{ 4, "s104301", "74643", "=q1=Sauteed Carrots", "=ds=#sr# 525", "=ds="..AL["Way of the Wok"]};
+				{ 5, "s88042", "62669", "=q1=Skewered Eel", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 6, "s88046", "62658", "=q1=Tender Baked Turtle", "=ds=#sr# 475", "=ds="..AL["Cooking Daily"]};
+				{ 7, "s57441", "42999", "=q1=Blackened Dragonfin", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 8, "s33288", "27659", "=q1=Warp Burger", "=ds=#sr# 325", "=ds="..AL["Vendor"]..": "..BabbleZone["Terokkar Forest"]};
+				{ 9, "s33293", "27664", "=q1=Grilled Mudfish", "=ds=#sr# 320", "=ds="..AL["Vendor"]..": "..BabbleZone["Nagrand"]};
+				{ 10, "s18240", "13928", "=q1=Grilled Squid", "=ds=#sr# 240", "=ds="..AL["Trainer"]};
+				{ 12, 0, "INV_Box_01", "=q6="..AL["Spirit"]};
+				{ 13, "s104309", "74653", "=q1=Steamed Crab Surprise", "=ds=#sr# 600", "=ds="..AL["Way of the Steamer"]};
+				{ 14, "s104308", "74652", "=q1=Fire Spirit Salmon", "=ds=#sr# 550", "=ds="..AL["Way of the Steamer"]};
+				{ 15, "s104307", "74651", "=q1=Shrimp Dumplings", "=ds=#sr# 525", "=ds="..AL["Way of the Steamer"]};
+				{ 16, 0, "INV_Box_01", "=q6="..AL["Intellect"]};
+				{ 17, "s104306", "74650", "=q1=Mogu Fish Stew", "=ds=#sr# 600", "=ds="..AL["Way of the Pot"]};
+				{ 18, "s104305", "74649", "=q1=Braised Turtle", "=ds=#sr# 550", "=ds="..AL["Way of the Pot"]};
+				{ 19, "s104304", "74644", "=q1=Swirling Mist Soup", "=ds=#sr# 525", "=ds="..AL["Way of the Pot"]};
+				{ 20, "s88039", "62671", "=q1=Severed Sagefish Head", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 21, "s88033", "62660", "=q1=Pickled Guppy", "=ds=#sr# 475", "=ds="..AL["Cooking Daily"]};
+				{ 22, "s22761", "18254", "=q1=Runn Tum Tuber Surprise", "=ds=#sr# 275", "=ds="..AL["Drop"]};
+				{ 24, 0, "INV_Box_01", "=q6="..AL["Stamina"]};
+				{ 25, "s104312", "74656", "=q1=Chun Tian Spring Rolls", "=ds=#sr# 600", "=ds="..AL["Way of the Oven"]};
+				{ 26, "s104311", "74655", "=q1=Twin Fish Platter", "=ds=#sr# 550", "=ds="..AL["Way of the Oven"]};
+				{ 27, "s104310", "74654", "=q1=Wildfowl Roast", "=ds=#sr# 525", "=ds="..AL["Way of the Oven"]};
 			};
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Health and Mana"]};
-				{ 2, "s96133", "68687", "=q1=Scalding Murglesnout", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 3, "s64358", "45932", "=q1=Black Jelly", "=ds=#sr# 400", "=ds="..AL["Trainer"]};
-				{ 4, "s45561", "34760", "=q1=Grilled Bonescale", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 5, "s42305", "33053", "=q1=Hot Buttered Trout", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 6, "s45562", "34761", "=q1=Sauteed Goby", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 7, "s45560", "34759", "=q1=Smoked Rockfin", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 8, "s2545", "2682", "=q1=Cooked Crab Claw", "=ds=#sr# 85", "=ds="..AL["World Drop"]};
-				{ 16, 0, "INV_Box_01", "=q6="..AL["Mana"]};
-				{ 17, "s88044", "62672", "=q1=South Island Ice Tea", "=ds=#sr# 525", "=ds="..AL["Cooking Daily"]};
-				{ 18, "s88045", "62675", "=q1=Starfire Espresso", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 19, "s53056", "39520", "=q1=Kungaloosh", "=ds=#sr# 350", "=ds=#QUESTID:13571#"};
-				{ 20, "s13028", "10841", "=q1=Goldthorn Tea", "=ds=#sr# 175", "=ds="..BabbleZone["Razorfen Downs"]};
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Strength"]};
+				{ 2, "s104300", "74646", "=q1=Black Pepper Ribs and Shrimp", "=ds=#sr# 600", "=ds="..AL["Way of the Grill"]};
+				{ 3, "s104299", "74645", "=q1=Eternal Blossom Fish", "=ds=#sr# 550", "=ds="..AL["Way of the Grill"]};
+				{ 4, "s104298", "74642", "=q1=Charbroiled Tiger Steak", "=ds=#sr# 525", "=ds="..AL["Way of the Grill"]};
+				{ 5, "s88005", "62670", "=q1=Bear-Basted Crocolisk", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 6, "s88021", "62659", "=q1=Hearty Seafood Soup", "=ds=#sr# 475", "=ds="..AL["Cooking Daily"]};
+				{ 7, "s57442", "43000", "=q1=Dragonfin Filet", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 8, "s33287", "27658", "=q1=Roasted Clefthoof", "=ds=#sr# 325", "=ds="..AL["Vendor"]..": "..BabbleZone["Nagrand"]};
+				{ 9, "s24801", "20452", "=q1=Smoked Desert Dumplings", "=ds=#sr# 285", "=ds="..BabbleInventory["Quest"]};
 			};
 		};
 		info = {
-			name = COOKING,
+			name = COOKING..": "..AL["Attributes"],
 			module = moduleName, menu = "COOKINGMENU"
 		};
 	};
 
-	AtlasLoot_Data["CookingSpecial"] = {
+	AtlasLoot_Data["CookingRatings"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Tracking"]};
-				{ 2, "s57438", "42997", "=q1=Blackened Worg Steak", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 3, "s57443", "43001", "=q1=Tracker Snacks", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 5, 0, "INV_Box_01", "=q6="..AL["Emotions"]};
-				{ 6, "s58523", "43491", "=q1=Bad Clams", "=ds=#sr# 350", "=ds="..AL["Drop"]};
-				{ 7, "s58525", "43492", "=q1=Haunted Herring", "=ds=#sr# 350", "=ds="..AL["Drop"]};
-				{ 8, "s58521", "43488", "=q1=Last Week's Mammoth", "=ds=#sr# 350", "=ds="..AL["Drop"]};
-				{ 9, "s58512", "43490", "=q1=Tasty Cupcake", "=ds=#sr# 350", "=ds="..AL["Drop"]};
-				{ 10, "s43779", "33924", "=q1=Delicious Chocolate Cake", "=ds=#sr# 1", "=ds="..AL["Cooking Daily"]};
-				{ 12, 0, "INV_Box_01", "=q6=#p24#"};
-				{ 13, "s88017", "62673", "=q1=Feathered Lure", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 14, "s45695", "34832", "=q1=Captain Rumsey's Lager", "=ds=#sr# 100", "=ds="..AL["Drop"]};
-				{ 16, 0, "INV_Box_01", "=q6="..AL["Alcohol"]};
-				{ 17, "s88015", "62790", "=q1=Darkbrew Lager", "=ds=#sr# 415", "=ds="..AL["Trainer"]};
-				{ 18, "s88022", "62674", "=q1=Highland Spirits", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 20, 0, "INV_Box_01", "=q6="..AL["Other"]};
-				{ 21, "s88013", "62680", "=q1=Chocolate Cookie", "=ds=#sr# 505", "=ds="..AL["Cooking Daily"]};
-				{ 22, "s57435", "43004", "=q1=Critter Bites", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 23, "s43758", "33866", "=q1=Stormchops", "=ds=#sr# 300", "=ds="..AL["Drop"]};
-				{ 24, "s15906", "12217", "=q1=Dragonbreath Chili", "=ds=#sr# 200", "=ds="..AL["Vendor"]};
-				{ 25, "s8238", "6657", "=q1=Savory Deviate Delight", "=ds=#sr# 85", "=ds="..AL["Drop"]};
-				{ 26, "s9513", "7676", "=q1=Thistle Tea", "=ds=#sr# 60", "=ds="..AL["Vendor"]..": "..BabbleZone["Hillsbrad Foothills"]};
-				{ 27, "s6413", "5473", "=q1=Scorpid Surprise", "=ds=#sr# 20", "=ds="..AL["Vendor"]..": "..BabbleZone["Durotar"]};
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Crit Rating"], ""};
+				{ 2, "s88003", "62661", "=q1=Baked Rockfish", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 3, "s88028", "62561", "=q1=Lightly Fried Lurker", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 4, "s124231", "81410", "=q1=Green Curry Fish", "=ds=#sr# 420", "=ds="..AL["Trainer"]};
+				{ 5, "s57436", "42995", "=q1=Hearty Rhino", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 6, "s45557", "34756", "=q1=Spiced Worm Burger", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 7, "s45571", "34768", "=q1=Spicy Blue Nettlefish", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 8, "s45565", "34764", "=q1=Poached Nettlefish", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 9, "s45551", "34750", "=q1=Worm Delight", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 10, "s43707", "33825", "=q1=Skullfish Soup", "=ds=#sr# 325", "=ds="..AL["Drop"]..""};
+				{ 16, 0, "INV_Box_01", "=q6="..AL["Dodge Rating"], ""};
+				{ 17, "s88031", "62667", "=q1=Mushroom Sauce Mudfish", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 18, "s88030", "62657", "=q1=Lurker Lunch", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 19, "s124233", "81412", "=q1=Blanched Needle Mushrooms", "=ds=#sr# 330", "=ds="..AL["Trainer"]};
+				{ 20, "s124227", "81404", "=q1=Dried Needle Mushrooms", "=ds=#sr# 90", "=ds="..AL["Trainer"]};
+				{ 22, 0, "INV_Box_01", "=q6="..AL["Expertise Rating"], ""};
+				{ 23, "s125123", "86074", "=q1=Spicy Vegetable Chips", "=ds=#sr# 500", "=ds="..BabbleFaction["The Tillers"].." - "..BabbleFaction["Exalted"]};
+				{ 24, "s125122", "86069", "=q1=Rice Pudding", "=ds=#sr# 520", "=ds="..AL["Trainer"]};
+				{ 25, "s88014", "62664", "=q1=Crocolisk Au Gratin", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 26, "s88024", "62654", "=q1=Lavascale Fillet", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 27, "s57434", "42994", "=q1=Rhinolicious Wormsteak", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 28, "s124229", "81408", "=q1=Red Bean Bun", "=ds=#sr# 360", "=ds="..AL["Trainer"]};
+				{ 29, "s124223", "81400", "=q1=Pounded Rice Cake", "=ds=#sr# 120", "=ds="..AL["Trainer"]};
+			};
+			{
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Haste Rating"], ""};
+				{ 2, "s88004", "62665", "=q1=Basilisk Liverdog", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 3, "s124230", "81409", "=q1=Tangy Yogurt", "=ds=#sr# 480", "=ds="..AL["Trainer"]};
+				{ 4, "s88012", "62655", "=q1=Broiled Mountain Trout", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 5, "s45570", "34769", "=q1=Imperial Manta Steak", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 6, "s45558", "34757", "=q1=Very Burnt Worg", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 7, "s45569", "42942", "=q1=Baked Manta Ray", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 8, "s45552", "34751", "=q1=Roasted Worg", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{
+					{ 9, "s66034", "44839", "=q1=Candied Sweet Potato", "=ds=#sr# 220", "=ds="..AL["Vendor"]};
+					{ 9, "s62051", "44839", "=q1=Candied Sweet Potato", "=ds=#sr# 220", "=ds="..AL["Vendor"]};
+				};
+				{ 10, "s124224", "81401", "=q1=Yak Cheese Curds", "=ds=#sr# 150", "=ds="..AL["Trainer"]};
+				{ 16, 0, "INV_Box_01", "=q6="..AL["Hit Rating"], ""};
+				{ 17, "s125120", "86073", "=q1=Spicy Salmon", "=ds=#sr# 500", "=ds="..BabbleFaction["The Tillers"].." - "..BabbleFaction["Exalted"]};
+				{ 18, "s125121", "86070", "=q1=Wildfowl Ginseng Soup", "=ds=#sr# 510", "=ds="..AL["Trainer"]};
+				{ 19, "s88020", "62662", "=q1=Grilled Dragon", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 20, "s88037", "62652", "=q1=Seasoned Crab", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 21, "s57437", "42996", "=q1=Snapper Extreme", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 22, "s62350", "44953", "=q1=Worg Tartare", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 23, "s124234", "81413", "=q1=Skewered Peanut Chicken", "=ds=#sr# 390", "=ds="..AL["Trainer"]};
+				{ 24, "s43765", "33872", "=q1=Spicy Hot Talbuk", "=ds=#sr# 325", "=ds="..AL["Drop"]};
+				{ 25, "s124228", "81405", "=q1=Boiled Silkworm Pupa", "=ds=#sr# 210", "=ds="..AL["Trainer"]};
+				{ 26, "s66038", "44837", "=q1=Spice Bread Stuffing", "=ds=#sr# 1", "=ds="..AL["Vendor"]};
+			};
+			{
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Mastery Rating"], ""};
+				{ 2, "s88025", "62663", "=q1=Lavascale Minestrone", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 3, "s125080", "81414", "=q1=Pearl Milk Tea", "=ds=#sr# 495", "=ds="..AL["Trainer"]};
+				{ 4, "s88035", "62653", "=q1=Salted Eye", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 5, "s125078", "81406", "=q1=Roasted Barley Tea", "=ds=#sr# 240", "=ds="..AL["Trainer"]};
+				{ 7, 0, "INV_Box_01", "=q6="..AL["Parry Rating"], ""};
+				{ 8, "s88034", "62668", "=q1=Blackbelly Sushi", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 9, "s124232", "81411", "=q1=Peach Pie", "=ds=#sr# 450", "=ds="..AL["Trainer"]};
+				{ 10, "s124226", "81403", "=q1=Dried Peaches", "=ds=#sr# 180", "=ds="..AL["Trainer"]};
 			};
 		};
 		info = {
-			name = COOKING,
+			name = COOKING..": "..AL["Ratings"],
 			module = moduleName, menu = "COOKINGMENU"
 		};
 	};
@@ -2066,7 +2179,78 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = COOKING,
+			name = COOKING..": "..AL["Standard Buffs"],
+			module = moduleName, menu = "COOKINGMENU"
+		};
+	};
+
+	AtlasLoot_Data["CookingSpecial"] = {
+		["Normal"] = {
+			{
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Alcohol"]};
+				{ 2, "s88015", "62790", "=q1=Darkbrew Lager", "=ds=#sr# 415", "=ds="..AL["Trainer"]};
+				{ 3, "s88022", "62674", "=q1=Highland Spirits", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 5, 0, "INV_Box_01", "=q6="..AL["Emotions"]};
+				{ 6, "s58523", "43491", "=q1=Bad Clams", "=ds=#sr# 350", "=ds="..AL["Drop"]};
+				{ 7, "s58525", "43492", "=q1=Haunted Herring", "=ds=#sr# 350", "=ds="..AL["Drop"]};
+				{ 8, "s58521", "43488", "=q1=Last Week's Mammoth", "=ds=#sr# 350", "=ds="..AL["Drop"]};
+				{ 9, "s58512", "43490", "=q1=Tasty Cupcake", "=ds=#sr# 350", "=ds="..AL["Drop"]};
+				{ 10, "s43779", "33924", "=q1=Delicious Chocolate Cake", "=ds=#sr# 1", "=ds="..AL["Cooking Daily"]};
+				{ 16, 0, "INV_Box_01", "=q6=#p24#"};
+				{ 17, "s88017", "62673", "=q1=Feathered Lure", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 18, "s45695", "34832", "=q1=Captain Rumsey's Lager", "=ds=#sr# 100", "=ds="..AL["Drop"]};
+				{ 20, 0, "INV_Box_01", "=q6="..AL["Tracking"]};
+				{ 21, "s57438", "42997", "=q1=Blackened Worg Steak", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 22, "s57443", "43001", "=q1=Tracker Snacks", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+			};
+			{
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Other"]};
+				{ 2, "s126655", "86432", "=q1=Banana Infused Rum", "=ds=#sr# 600", "=ds="..AL["Way of the Brew"]..": "..BabbleZone["Krasarang Wilds"]};
+				{ 3, "s126654", "87264", "=q1=Four Senses Brew", "=ds=#sr# 600", "=ds="..AL["Way of the Brew"]..": "..BabbleZone["Kun-Lai Summit"]};
+				{ 4, "s124054", "75038", "=q1=Mad Brewer's Breakfast", "=ds=#sr# 600", "=ds="..AL["Way of the Brew"]};
+				{ 5, "s124053", "75037", "=q1=Jade Witch Brew", "=ds=#sr# 550", "=ds="..AL["Way of the Brew"]};
+				{ 6, "s88013", "62680", "=q1=Chocolate Cookie", "=ds=#sr# 505", "=ds="..AL["Cooking Daily"]};
+				{ 7, "s57435", "43004", "=q1=Critter Bites", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 8, "s43758", "33866", "=q1=Stormchops", "=ds=#sr# 300", "=ds="..AL["Drop"]};
+				{ 9, "s15906", "12217", "=q1=Dragonbreath Chili", "=ds=#sr# 200", "=ds="..AL["Vendor"]};
+				{ 10, "s8238", "6657", "=q1=Savory Deviate Delight", "=ds=#sr# 85", "=ds="..AL["Drop"]};
+				{ 11, "s9513", "7676", "=q1=Thistle Tea", "=ds=#sr# 60", "=ds="..AL["Vendor"]..": "..BabbleZone["Hillsbrad Foothills"]};
+				{ 12, "s6413", "5473", "=q1=Scorpid Surprise", "=ds=#sr# 20", "=ds="..AL["Vendor"]..": "..BabbleZone["Durotar"]};
+			};
+		};
+		info = {
+			name = COOKING..": "..AL["Special"],
+			module = moduleName, menu = "COOKINGMENU"
+		};
+	};
+
+	AtlasLoot_Data["CookingBanquetFeast"] = {
+		["Normal"] = {
+			{
+				{ 1, "s105190", "74919", "=q1=Pandaren Banquet", "=ds=#sr# 600", "=ds=#QUESTID:31521#"};
+				{ 2, "s105194", "75016", "=q1=Great Pandaren Banquet", "=ds=#sr# 600", "=ds=#QUESTID:31521#"};
+				{ 3, "s125602", "87246", "=q1=Banquet of the Brew", "=ds=#sr# 575", "=ds="..AL["Way of the Brew"]};
+				{ 4, "s125603", "87248", "=q1=Great Banquet of the Brew", "=ds=#sr# 575", "=ds="..AL["Way of the Brew"]};
+				{ 5, "s125141", "87226", "=q1=Banquet of the Grill", "=ds=#sr# 575", "=ds="..AL["Way of the Grill"]};
+				{ 6, "s125142", "87228", "=q1=Great Banquet of the Grill", "=ds=#sr# 575", "=ds="..AL["Way of the Grill"]};
+				{ 7, "s125600", "87242", "=q1=Banquet of the Oven", "=ds=#sr# 575", "=ds="..AL["Way of the Oven"]};
+				{ 8, "s125601", "87244", "=q1=Great Banquet of the Oven", "=ds=#sr# 575", "=ds="..AL["Way of the Oven"]};
+				{ 9, "s125596", "87234", "=q1=Banquet of the Pot", "=ds=#sr# 575", "=ds="..AL["Way of the Pot"]};
+				{ 10, "s125597", "87236", "=q1=Great Banquet of the Pot", "=ds=#sr# 575", "=ds="..AL["Way of the Pot"]};
+				{ 11, "s125598", "87238", "=q1=Banquet of the Steamer", "=ds=#sr# 575", "=ds="..AL["Way of the Steamer"]};
+				{ 12, "s125599", "87240", "=q1=Great Banquet of the Steamer", "=ds=#sr# 575", "=ds="..AL["Way of the Steamer"]};
+				{ 13, "s125594", "87230", "=q1=Banquet of the Wok", "=ds=#sr# 575", "=ds="..AL["Way of the Wok"]};
+				{ 14, "s125595", "87232", "=q1=Great Banquet of the Wok", "=ds=#sr# 575", "=ds="..AL["Way of the Wok"]};
+				{ 16, "s88036", "62290", "=q1=Seafood Magnifique Feast", "=ds=#sr# 525", "#ACHIEVEMENTID:5036#"};
+				{ 17, "s88011", "62289", "=q1=Broiled Dragon Feast", "=ds=#sr# 500", "#ACHIEVEMENTID:5467#"};
+				{ 18, "s57423", "43015", "=q1=Fish Feast", "=ds=#sr# 450", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 19, "s58527", "43478", "=q1=Gigantic Feast", "=ds=#sr# 425", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 20, "s58528", "43480", "=q1=Small Feast", "=ds=#sr# 425", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
+				{ 21, "s45554", "34753", "=q1=Great Feast", "=ds=#sr# 375", "=ds="..AL["Trainer"]};
+			};
+		};
+		info = {
+			name = COOKING..": "..AL["Banquets/Feasts"],
 			module = moduleName, menu = "COOKINGMENU"
 		};
 	};
@@ -2110,35 +2294,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = COOKING,
-			module = moduleName, menu = "COOKINGMENU"
-		};
-	};
-
-	AtlasLoot_Data["CookingAgiStrInt"] = {
-		["Normal"] = {
-			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Agility"]};
-				{ 2, "s88042", "62669", "=q1=Skewered Eel", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 3, "s88046", "62658", "=q1=Tender Baked Turtle", "=ds=#sr# 475", "=ds="..AL["Cooking Daily"]};
-				{ 4, "s57441", "42999", "=q1=Blackened Dragonfin", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 5, "s33288", "27659", "=q1=Warp Burger", "=ds=#sr# 325", "=ds="..AL["Vendor"]..": "..BabbleZone["Terokkar Forest"]};
-				{ 6, "s33293", "27664", "=q1=Grilled Mudfish", "=ds=#sr# 320", "=ds="..AL["Vendor"]..": "..BabbleZone["Nagrand"]};
-				{ 7, "s18240", "13928", "=q1=Grilled Squid", "=ds=#sr# 240", "=ds="..AL["Trainer"]};
-				{ 9, 0, "INV_Box_01", "=q6="..AL["Intellect"]};
-				{ 10, "s88039", "62671", "=q1=Severed Sagefish Head", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 11, "s88033", "62660", "=q1=Pickled Guppy", "=ds=#sr# 475", "=ds="..AL["Cooking Daily"]};
-				{ 12, "s22761", "18254", "=q1=Runn Tum Tuber Surprise", "=ds=#sr# 275", "=ds="..AL["Drop"]};
-				{ 16, 0, "INV_Box_01", "=q6="..AL["Strength"]};
-				{ 17, "s88005", "62670", "=q1=Bear-Basted Crocolisk", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 18, "s88021", "62659", "=q1=Hearty Seafood Soup", "=ds=#sr# 475", "=ds="..AL["Cooking Daily"]};
-				{ 19, "s57442", "43000", "=q1=Dragonfin Filet", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 20, "s33287", "27658", "=q1=Roasted Clefthoof", "=ds=#sr# 325", "=ds="..AL["Vendor"]..": "..BabbleZone["Nagrand"]};
-				{ 21, "s24801", "20452", "=q1=Smoked Desert Dumplings", "=ds=#sr# 285", "=ds="..BabbleInventory["Quest"]};
-			};
-		};
-		info = {
-			name = COOKING,
+			name = COOKING..": "..AL["Spell/Attack Power"],
 			module = moduleName, menu = "COOKINGMENU"
 		};
 	};
@@ -2159,68 +2315,68 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = COOKING,
+			name = COOKING..": "..AL["Other Buffs"],
 			module = moduleName, menu = "COOKINGMENU"
 		};
 	};
 
-	AtlasLoot_Data["CookingHitCrit"] = {
+	AtlasLoot_Data["CookingStandard"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Crit Rating"], ""};
-				{ 2, "s88003", "62661", "=q1=Baked Rockfish", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 3, "s88028", "62561", "=q1=Lightly Fried Lurker", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 4, "s57436", "42995", "=q1=Hearty Rhino", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 5, "s45557", "34756", "=q1=Spiced Worm Burger", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 6, "s45571", "34768", "=q1=Spicy Blue Nettlefish", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 7, "s45565", "34764", "=q1=Poached Nettlefish", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 8, "s45551", "34750", "=q1=Worm Delight", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 9, "s43707", "33825", "=q1=Skullfish Soup", "=ds=#sr# 325", "=ds="..AL["Drop"]..""};
-				{ 16, 0, "INV_Box_01", "=q6="..AL["Hit Rating"], ""};
-				{ 17, "s88020", "62662", "=q1=Grilled Dragon", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 18, "s88037", "62652", "=q1=Seasoned Crab", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 19, "s57437", "42996", "=q1=Snapper Extreme", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 20, "s62350", "44953", "=q1=Worg Tartare", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 21, "s43765", "33872", "=q1=Spicy Hot Talbuk", "=ds=#sr# 325", "=ds="..AL["Drop"]};
-				{ 22, "s66038", "44837", "=q1=Spice Bread Stuffing", "=ds=#sr# 1", "=ds="..AL["Vendor"]};
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Health"]};
+				{ 2, "s124032", "85504", "=q1=Krasarang Fritters", "=ds=#sr# 525", "=ds="..BabbleFaction["The Anglers"].." - "..BabbleFaction["Friendly"]};
+				{ 3, "s88018", "62677", "=q1=Fish Fry", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 4, "s88006", "62676", "=q1=Blackened Surprise", "=ds=#sr# 425", "=ds="..AL["Trainer"]};
+				{ 5, "s57421", "34747", "=q1=Northern Stew", "=ds=#sr# 350", "=ds="..BabbleInventory["Quest"]};
+				{ 6, "s42296", "33048", "=q1=Stewed Trout", "=ds=#sr# 320", "=ds="..AL["Trainer"]};
+				{ 7, "s104297", "74641", "=q1=Fish Cake", "=ds=#sr# 300", "=ds="..AL["Trainer"]};
+				{ 8, "s33290", "27661", "=q1=Blackened Trout", "=ds=#sr# 300", "=ds="..AL["Vendor"]..": "..BabbleZone["Zangarmarsh"]};
+				{ 9, "s18247", "13935", "=q1=Baked Salmon", "=ds=#sr# 275", "=ds="..AL["Vendor"]..": "..BabbleZone["Feralas"]};
+				{ 10, "s18245", "13933", "=q1=Lobster Stew", "=ds=#sr# 275", "=ds="..AL["Vendor"]..": "..BabbleZone["Feralas"]};
+				{ 11, "s18241", "13930", "=q1=Filet of Redgill", "=ds=#sr# 225", "=ds="..AL["Vendor"]..": "..BabbleZone["Stranglethorn Vale"]};
+				{ 12, "s18238", "6887", "=q1=Spotted Yellowtail", "=ds=#sr# 225", "=ds="..AL["Trainer"]};
+				{ 13, "s20626", "16766", "=q1=Undermine Clam Chowder", "=ds=#sr# 225", "=ds="..AL["Vendor"]..": "..BabbleZone["Tanaris"]};
+				{ 14, "s20916", "8364", "=q1=Mithril Head Trout", "=ds=#sr# 175", "=ds="..AL["Vendor"]};
+				{ 15, "s7828", "4594", "=q1=Rockscale Cod", "=ds=#sr# 175", "=ds="..AL["Vendor"]};
+				{ 17, "s2548", "2685", "=q1=Succulent Pork Ribs", "=ds=#sr# 110", "=ds="..AL["Drop"]};
+				{ 18, "s7755", "4593", "=q1=Bristle Whisker Catfish", "=ds=#sr# 100", "=ds="..AL["Vendor"]};
+				{ 19, "s6501", "5526", "=q1=Clam Chowder", "=ds=#sr# 90", "=ds="..AL["Vendor"]};
+				{ 20, "s6417", "5478", "=q1=Dig Rat Stew", "=ds=#sr# 90", "=ds="..AL["Vendor"]};
+				{ 21, "s2543", "733", "=q1=Westfall Stew", "=ds=#sr# 90", "=ds="..AL["Drop"]};
+				{ 22, "s7754", "6316", "=q1=Loch Frenzy Delight", "=ds=#sr# 50", "=ds="..AL["Vendor"]};	
+				{ 23, "s7753", "4592", "=q1=Longjaw Mud Snapper", "=ds=#sr# 50", "=ds="..AL["Vendor"]};
+				{ 24, "s7827", "5095", "=q1=Rainbow Fin Albacore", "=ds=#sr# 50", "=ds="..AL["Vendor"]};
+				{ 25, "s93741", "67230", "=q1=Venison Jerky", "=ds=#sr# 40", "=ds="..AL["Trainer"]};
+				{ 26, "s8607", "6890", "=q1=Smoked Bear Meat", "=ds=#sr# 40", "=ds="..AL["Vendor"]};
+				{ 27, "s125117", "86057", "=q1=Sliced Peaches", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
+				{ 28, "s7751", "6290", "=q1=Brilliant Smallfish", "=ds=#sr# 1", "=ds="..AL["Vendor"]};
+				{ 29, "s2538", "2679", "=q1=Charred Wolf Meat", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
+				{ 30, "s2540", "2681", "=q1=Roasted Boar Meat", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
+			};
+			{
+				{ 1, "s7752", "787", "=q1=Slitherskin Mackerel", "=ds=#sr# 1", "=ds="..AL["Vendor"]};
+				{ 16, "s37836", "30816", "=q1=Spice Bread", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
+				{ 3, 0, "INV_Box_01", "=q6="..AL["Health and Mana"]};
+				{ 4, "s124052", "75026", "=q1=Ginseng Tea", "=ds=#sr# 525", "=ds="..AL["Way of the Brew"]};
+				{ 5, "s96133", "68687", "=q1=Scalding Murglesnout", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
+				{ 6, "s64358", "45932", "=q1=Black Jelly", "=ds=#sr# 400", "=ds="..AL["Trainer"]};
+				{ 7, "s45561", "34760", "=q1=Grilled Bonescale", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 8, "s42305", "33053", "=q1=Hot Buttered Trout", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 9, "s45562", "34761", "=q1=Sauteed Goby", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 10, "s45560", "34759", "=q1=Smoked Rockfin", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 11, "s2545", "2682", "=q1=Cooked Crab Claw", "=ds=#sr# 85", "=ds="..AL["World Drop"]};
+				{ 12, "s125067", "86026", "=q1=Perfectly Cooked Instant Noodles", "=ds=#sr# 30", "=ds="..AL["Trainer"]};
+				{ 18, 0, "INV_Box_01", "=q6="..AL["Mana"]};
+				{ 19, "s124029", "85501", "=q1=Viseclaw Soup", "=ds=#sr# 525", "=ds="..BabbleFaction["The Anglers"].." - "..BabbleFaction["Friendly"]};
+				{ 20, "s88044", "62672", "=q1=South Island Ice Tea", "=ds=#sr# 525", "=ds="..AL["Cooking Daily"]};
+				{ 21, "s88045", "62675", "=q1=Starfire Espresso", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
+				{ 22, "s53056", "39520", "=q1=Kungaloosh", "=ds=#sr# 350", "=ds=#QUESTID:13571#"};
+				{ 23, "s104237", "74636", "=q1=Golden Carp Consomme", "=ds=#sr# 270", "=ds="..AL["Trainer"]};
+				{ 24, "s13028", "10841", "=q1=Goldthorn Tea", "=ds=#sr# 175", "=ds="..BabbleZone["Razorfen Downs"]};
 			};
 		};
 		info = {
-			name = COOKING,
-			module = moduleName, menu = "COOKINGMENU"
-		};
-	};
-
-	AtlasLoot_Data["CookingRating"] = {
-		["Normal"] = {
-			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Haste Rating"], ""};
-				{ 2, "s88004", "62665", "=q1=Basilisk Liverdog", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 3, "s88012", "62655", "=q1=Broiled Mountain Trout", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 4, "s45570", "34769", "=q1=Imperial Manta Steak", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 5, "s45558", "34757", "=q1=Very Burnt Worg", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 6, "s45569", "42942", "=q1=Baked Manta Ray", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 7, "s45552", "34751", "=q1=Roasted Worg", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{
-					{ 8, "s66034", "44839", "=q1=Candied Sweet Potato", "=ds=#sr# 220", "=ds="..AL["Vendor"]};
-					{ 8, "s62051", "44839", "=q1=Candied Sweet Potato", "=ds=#sr# 220", "=ds="..AL["Vendor"]};
-				};
-				{ 10, 0, "INV_Box_01", "=q6="..AL["Expertise Rating"], ""};
-				{ 11, "s88014", "62664", "=q1=Crocolisk Au Gratin", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 12, "s88024", "62654", "=q1=Lavascale Fillet", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 13, "s57434", "42994", "=q1=Rhinolicious Wormsteak", "=ds=#sr# 400", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"]};
-				{ 16, 0, "INV_Box_01", "=q6="..AL["Mastery Rating"], ""};
-				{ 17, "s88025", "62663", "=q1=Lavascale Minestrone", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 18, "s88035", "62653", "=q1=Salted Eye", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 20, 0, "INV_Box_01", "=q6="..AL["Dodge Rating"], ""};
-				{ 21, "s88031", "62667", "=q1=Mushroom Sauce Mudfish", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-				{ 22, "s88030", "62657", "=q1=Lurker Lunch", "=ds=#sr# 450", "=ds="..AL["Cooking Daily"]};
-				{ 24, 0, "INV_Box_01", "=q6="..AL["Parry Rating"], ""};
-				{ 25, "s88034", "62668", "=q1=Blackbelly Sushi", "=ds=#sr# 500", "=ds="..AL["Cooking Daily"]};
-			};
-		};
-		info = {
-			name = COOKING,
+			name = COOKING..": "..AL["Food without Buffs"],
 			module = moduleName, menu = "COOKINGMENU"
 		};
 	};
@@ -3481,95 +3637,30 @@ local SPELLFIRE = GetSpellInfo(26797);
 		--- Inscription ---
 		-------------------
 
-	AtlasLoot_Data["Inscription_OffHand"] = {
-		["Normal"] = {
-			{
-				{ 2, "s86643", "62236", "=q3=Battle Tome", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
-				{ 3, "s86642", "62235", "=q3=Divine Companion", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
-				{ 4, "s86641", "62234", "=q3=Dungeoneering Guide", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
-				{ 5, "s86616", "62231", "=q3=Book of Blood", "=ds=#sr# 475", "=ds="..AL["Trainer"] };
-				{ 6, "s86640", "62233", "=q3=Lord Rottington's Pressed Wisp Book", "=ds=#sr# 475", "=ds="..AL["Trainer"] };
-				{ 7, "s59498", "44210", "=q4=Faces of Doom", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
-				{ 8, "s59497", "38322", "=q4=Iron-bound Tome", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
-				{ 9, "s64051", "45854", "=q3=Rituals of the New Moon", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 10, "s64053", "45849", "=q3=Twilight Tome", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
-				{ 11, "s59496", "43667", "=q3=Book of Clever Tricks", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
-				{ 17, "s59495", "43666", "=q3=Hellfire Tome", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
-				{ 18, "s59494", "43664", "=q3=Manual of Clouds", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
-				{ 19, "s59493", "43663", "=q3=Stormbound Tome", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
-				{ 20, "s59490", "43661", "=q3=Book of Stars", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
-				{ 21, "s59489", "43660", "=q3=Fire Eater's Guide", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
-				{ 22, "s59486", "43657", "=q3=Royal Guide of Escape Routes", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
-				{ 23, "s59484", "43656", "=q3=Tome of Kings", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
-				{ 24, "s59478", "43655", "=q3=Book of Survival", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
-				{ 25, "s59475", "43654", "=q3=Tome of the Dawn", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
-				{ 26, "s58565", "43515", "=q3=Mystic Tome", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
-			};
-		};
-		info = {
-			name = INSCRIPTION..": "..AL["Off-Hand Items"],
-			module = moduleName, menu = "INSCRIPTIONMENU"
-		};
-	};
-	
-	AtlasLoot_Data["Inscription_StavesEnchants"] = {
-		["Normal"] = {
-			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Shoulder Enchants"], "" };
-				{ 2, "s127023", "87582", "=q4=Secret Crane Wing Inscription", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
-				{ 3, "s127024", "87581", "=q4=Secret Ox Horn Inscription", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
-				{ 4, "s127021", "87584", "=q4=Secret Tiger Claw Inscription", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
-				{ 5, "s127020", "87585", "=q4=Secret Tiger Fang Inscription", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
-				{ 7, "s126995", "87559", "=q4=Greater Crane Wing Inscription", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
-				{ 8, "s126994", "87560", "=q4=Greater Ox Horn Inscription", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
-				{ 9, "s126996", "83007", "=q4=Greater Tiger Claw Inscription", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
-				{ 10, "s126997", "83006", "=q4=Greater Tiger Fang Inscription", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
-				{ 12, "s127018", "87578", "=q3=Crane Wing Inscription", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
-				{ 13, "s127019", "87577", "=q3=Ox Horn Inscription", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
-				{ 14, "s127017", "87579", "=q3=Tiger Claw Inscription", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
-				{ 15, "s127016", "87580", "=q3=Tiger Fang Inscription", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
-				{ 16, "s86403", "INV_Misc_MastersInscription", "=ds=Felfire Inscription", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
-				{ 17, "s86402", "INV_Misc_MastersInscription", "=ds=Inscription of the Earthen Prince", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
-				{ 18, "s86401", "INV_Misc_MastersInscription", "=ds=Lionsmane Inscription", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
-				{ 19, "s86375", "INV_Misc_MastersInscription", "=ds=Swiftsteel Inscription", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
-				{ 21, "s61117", "INV_Misc_MastersInscription", "=ds=Master's Inscription of the Axe", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
-				{ 22, "s61118", "INV_Misc_MastersInscription", "=ds=Master's Inscription of the Crag", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
-				{ 23, "s61119", "INV_Misc_MastersInscription", "=ds=Master's Inscription of the Pinnacle", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
-				{ 24, "s61120", "INV_Misc_MastersInscription", "=ds=Master's Inscription of the Storm", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
-				{ 26, 0, "INV_Box_01", "=q6="..BabbleInventory["Staff"], "" };
-				{ 27, "s86652", "87562", "=q3=Rosethorn Staff", "=ds=#sr# 515", "=ds="..AL["Trainer"] };
-				{ 28, "s86653", "87561", "=q3=Silver Inlaid Staff", "=ds=#sr# 515", "=ds="..AL["Trainer"] };
-				{ 29, "s86649", "87566", "=q3=Runed Staff", "=ds=#sr# 505", "=ds="..AL["Trainer"] };
-				{ 30, "s86648", "87565", "=q3=Key to the Planes", "=ds=#sr# 450", "=ds="..AL["Trainer"] };
-			};
-		};
-		info = {
-			name = INSCRIPTION..": "..AL["Staves/Shoulder Enchants"],
-			module = moduleName, menu = "INSCRIPTIONMENU"
-		};
-	};
-
 	AtlasLoot_Data["Inscription_Scrolls"] = {
 		["Normal"] = {
 			{
 				{ 1, 0, "INV_Box_01", "=q6="..AL["Darkmoon Faire Card"], "" };
 				{ 2, "s111830", "79318", "=q3=Darkmoon Card of Mists", "=ds=#sr# 600", "=ds="..AL["Trainer"] };
 				{ 3, "s86615", "61987", "=q3=Darkmoon Card of the Destruction", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
-				{ 4, "s86609", "60838", "=q1=Mysterious Fortune Card", "=ds=#sr# 450", "=ds="..AL["Trainer"] };
-				{ 5, "s59504", "44318", "=q3=Darkmoon Card of the North", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
-				{ 6, "s59503", "44317", "=q3=Greater Darkmoon Card", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
-				{ 7, "s59502", "44316", "=q3=Darkmoon Card", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
-				{ 17, "s59491", "44163", "=q1=Shadowy Tarot", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
-				{ 18, "s59487", "44161", "=q1=Arcane Tarot", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
-				{ 19, "s48247", "37168", "=q1=Mysterious Tarot", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
-				{ 20, "s59480", "44142", "=q1=Strange Tarot", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
-				{ 9, 0, "INV_Box_01", "=q6="..AL["Runescrolls"], "" };
-				{ 10, "s85785", "62251", "=q1=Runescroll of Fortitude II", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
-				{ 24, "s69385", "49632", "=q1=Runescroll of Fortitude", "=ds=#sr# 440", "=ds="..AL["Trainer"] };
-				{ 11, 0, "INV_Box_01", "=q6="..AL["Recall"].." "..AL["Scrolls"], "" };
-				{ 12, "s60337", "44315", "=q1=Scroll of Recall III", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 13, "s60336", "44314", "=q1=Scroll of Recall II", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
-				{ 27, "s48248", "37118", "=q1=Scroll of Recall", "=ds=#sr# 35", "=ds="..AL["Trainer"] };
+				{ 4, "s59504", "44318", "=q3=Darkmoon Card of the North", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
+				{ 5, "s59503", "44317", "=q3=Greater Darkmoon Card", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 6, "s59502", "44316", "=q3=Darkmoon Card", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
+				{ 17, "s86609", "60838", "=q1=Mysterious Fortune Card", "=ds=#sr# 450", "=ds="..AL["Trainer"] };
+				{ 18, "s59491", "44163", "=q1=Shadowy Tarot", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
+				{ 19, "s59487", "44161", "=q1=Arcane Tarot", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
+				{ 20, "s48247", "37168", "=q1=Mysterious Tarot", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
+				{ 21, "s59480", "44142", "=q1=Strange Tarot", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
+				{ 8, "s112996", "79731", "=q3=Scroll of Wisdom", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+				{ 23, "s89373", "63308", "=q1=Scroll of Protection IX", "=ds=#sr# 450", "=ds="..AL["Trainer"] };
+				{ 10, 0, "INV_Box_01", "=q6="..AL["Recall"].." "..AL["Scrolls"], "" };
+				{ 11, "s60337", "44315", "=q1=Scroll of Recall III", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 12, "s60336", "44314", "=q1=Scroll of Recall II", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
+				{ 13, "s48248", "37118", "=q1=Scroll of Recall", "=ds=#sr# 35", "=ds="..AL["Trainer"] };
+				{ 25, 0, "INV_Box_01", "=q6="..AL["Runescrolls"], "" };
+				{ 26, "s112045", "79257", "=q1=Runescroll of Fortitude III", "=ds=#sr# 580", "=ds="..AL["Trainer"] };
+				{ 27, "s85785", "62251", "=q1=Runescroll of Fortitude II", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 28, "s69385", "49632", "=q1=Runescroll of Fortitude", "=ds=#sr# 440", "=ds="..AL["Trainer"] };
 			};
 			{
 				{ 1, 0, "INV_Box_01", "=q6="..AL["Agility"].." "..AL["Scrolls"], "" };
@@ -3629,7 +3720,123 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Scrolls"].."/"..AL["Darkmoon Faire Card"],
+			name = INSCRIPTION..": "..AL["Darkmoon Faire Card"].."/"..AL["Scrolls"],
+			module = moduleName, menu = "INSCRIPTIONMENU"
+		};
+	};
+
+	AtlasLoot_Data["Inscription_Enchants"] = {
+		["Normal"] = {
+			{
+				{ 1, "s127023", "87582", "=q4=Secret Crane Wing Inscription", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 2, "s127024", "87581", "=q4=Secret Ox Horn Inscription", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 3, "s127021", "87584", "=q4=Secret Tiger Claw Inscription", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 4, "s127020", "87585", "=q4=Secret Tiger Fang Inscription", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 6, "s126995", "87559", "=q4=Greater Crane Wing Inscription", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 7, "s126994", "87560", "=q4=Greater Ox Horn Inscription", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 8, "s126996", "83007", "=q4=Greater Tiger Claw Inscription", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 9, "s126997", "83006", "=q4=Greater Tiger Fang Inscription", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 11, "s127018", "87578", "=q3=Crane Wing Inscription", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 12, "s127019", "87577", "=q3=Ox Horn Inscription", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 13, "s127017", "87579", "=q3=Tiger Claw Inscription", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 14, "s127016", "87580", "=q3=Tiger Fang Inscription", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 16, "s86403", "INV_Misc_MastersInscription", "=ds=Felfire Inscription", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 17, "s86402", "INV_Misc_MastersInscription", "=ds=Inscription of the Earthen Prince", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 18, "s86401", "INV_Misc_MastersInscription", "=ds=Lionsmane Inscription", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 19, "s86375", "INV_Misc_MastersInscription", "=ds=Swiftsteel Inscription", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 21, "s61117", "INV_Misc_MastersInscription", "=ds=Master's Inscription of the Axe", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
+				{ 22, "s61118", "INV_Misc_MastersInscription", "=ds=Master's Inscription of the Crag", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
+				{ 23, "s61119", "INV_Misc_MastersInscription", "=ds=Master's Inscription of the Pinnacle", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
+				{ 24, "s61120", "INV_Misc_MastersInscription", "=ds=Master's Inscription of the Storm", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
+			};
+		};
+		info = {
+			name = INSCRIPTION..": "..AL["Shoulder Enchants"],
+			module = moduleName, menu = "INSCRIPTIONMENU"
+		};
+	};
+
+	AtlasLoot_Data["Inscription_Reagents"] = {
+		["Normal"] = {
+			{
+				{ 1, "s111646", "79255", "=q2=Starlight Ink", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 2, "s111645", "79254", "=q1=Ink of Dreams", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 3, "s86005", "61981", "=q2=Inferno Ink", "=ds=#sr# 475", "=ds="..AL["Trainer"] };
+				{ 4, "s86004", "61978", "=q1=Blackfallow Ink", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 5, "s57716", "43127", "=q2=Snowfall Ink", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 6, "s57715", "43126", "=q1=Ink of the Sea", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 7, "s57714", "43125", "=q2=Darkflame Ink", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 8, "s57713", "43124", "=q1=Ethereal Ink", "=ds=#sr# 290", "=ds="..AL["Trainer"] };
+				{ 9, "s57712", "43123", "=q2=Ink of the Sky", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
+				{ 10, "s57711", "43122", "=q1=Shimmering Ink", "=ds=#sr# 250", "=ds="..AL["Trainer"] };
+				{ 16, "s57710", "43121", "=q2=Fiery Ink", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
+				{ 17, "s57709", "43120", "=q1=Celestial Ink", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
+				{ 18, "s57708", "43119", "=q2=Royal Ink", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
+				{ 19, "s57707", "43118", "=q1=Jadefire Ink", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 20, "s57706", "43117", "=q2=Dawnstar Ink", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
+				{ 21, "s57704", "43116", "=q1=Lion's Ink", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
+				{ 22, "s57703", "43115", "=q2=Hunter's Ink", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
+				{ 23, "s53462", "39774", "=q1=Midnight Ink", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
+				{ 24, "s52843", "39469", "=q1=Moonglow Ink", "=ds=#sr# 35", "=ds="..AL["Trainer"] };
+				{ 25, "s52738", "37101", "=q1=Ivory Ink", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
+			};
+		};
+		info = {
+			name = INSCRIPTION..": "..AL["Reagents"],
+			module = moduleName, menu = "INSCRIPTIONMENU"
+		};
+	};
+
+	AtlasLoot_Data["Inscription_OffHand"] = {
+		["Normal"] = {
+			{
+				{ 1, "s111909", "79334", "=q4=Inscribed Jade Fan", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 2, "s111910", "79335", "=q4=Inscribed Red Fan", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 3, "s111908", "79333", "=q3=Inscribed Fan", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 4, "s86643", "62236", "=q3=Battle Tome", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 5, "s86642", "62235", "=q3=Divine Companion", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 6, "s86641", "62234", "=q3=Dungeoneering Guide", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 7, "s86616", "62231", "=q3=Book of Blood", "=ds=#sr# 475", "=ds="..AL["Trainer"] };
+				{ 8, "s86640", "62233", "=q3=Lord Rottington's Pressed Wisp Book", "=ds=#sr# 475", "=ds="..AL["Trainer"] };
+				{ 9, "s59498", "44210", "=q4=Faces of Doom", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
+				{ 10, "s59497", "38322", "=q4=Iron-bound Tome", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
+				{ 11, "s64051", "45854", "=q3=Rituals of the New Moon", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 12, "s64053", "45849", "=q3=Twilight Tome", "=ds=#sr# 350", "=ds="..AL["Trainer"]};
+				{ 13, "s59496", "43667", "=q3=Book of Clever Tricks", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 14, "s59495", "43666", "=q3=Hellfire Tome", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 15, "s59494", "43664", "=q3=Manual of Clouds", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
+				{ 16, "s59493", "43663", "=q3=Stormbound Tome", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
+				{ 17, "s59490", "43661", "=q3=Book of Stars", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
+				{ 18, "s59489", "43660", "=q3=Fire Eater's Guide", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
+				{ 19, "s59486", "43657", "=q3=Royal Guide of Escape Routes", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
+				{ 20, "s59484", "43656", "=q3=Tome of Kings", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
+				{ 21, "s59478", "43655", "=q3=Book of Survival", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
+				{ 22, "s59475", "43654", "=q3=Tome of the Dawn", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
+				{ 23, "s58565", "43515", "=q3=Mystic Tome", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
+			};
+		};
+		info = {
+			name = INSCRIPTION..": "..AL["Off-Hand Items"],
+			module = moduleName, menu = "INSCRIPTIONMENU"
+		};
+	};
+
+	AtlasLoot_Data["Inscription_Staves"] = {
+		["Normal"] = {
+			{
+				{ 1, "s111918", "79340", "=q4=Inscribed Crane Staff", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 2, "s111919", "79341", "=q4=Inscribed Serpent Staff", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 3, "s111921", "79343", "=q4=Inscribed Tiger Staff", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 4, "s111920", "79342", "=q3=Ghost Iron Staff", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 5, "s111917", "79339", "=q3=Rain Poppy Staff", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 16, "s86652", "87562", "=q3=Rosethorn Staff", "=ds=#sr# 515", "=ds="..AL["Trainer"] };
+				{ 17, "s86653", "87561", "=q3=Silver Inlaid Staff", "=ds=#sr# 515", "=ds="..AL["Trainer"] };
+				{ 18, "s86649", "87566", "=q3=Runed Staff", "=ds=#sr# 505", "=ds="..AL["Trainer"] };
+				{ 19, "s86648", "87565", "=q3=Key to the Planes", "=ds=#sr# 480", "=ds="..AL["Trainer"] };
+			};
+		};
+		info = {
+			name = INSCRIPTION..": "..BabbleInventory["Staves"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -3637,38 +3844,24 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Misc"] = {
 		["Normal"] = {
 			{
-				{ 1, "s86654", "63276", "=q1=Forged Documents", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
-				{ 2, "s86646", "63246", "=q1=Origami Beetle", "=ds=#sr# 500", "=ds="..AL["World Drop"] };
-				{ 3, "s86645", "62238", "=q1=Origami Rock", "=ds=#sr# 490", "=ds="..AL["World Drop"] };
-				{ 4, "s86644", "62239", "=q1=Origami Slime", "=ds=#sr# 480", "=ds="..AL["World Drop"] };
-				{ 16, "s92027", "63388", "=q1=Dust of Disappearance", "=ds=#sr# 475", "=ds="..AL["Trainer"] };
-				{ 17, "s89367", "62237", "=q1=Adventurer's Journal", "=ds=#sr# 460", "=ds="..AL["Trainer"] };
-				{ 18, "s59387", "43850", "=q1=Certificate of Ownership", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
-				{ 19, "s92026", "64670", "=q1=Vanishing Powder", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
-				{ 20, "s52739", "38682", "=q1=Enchanting Vellum", "=ds=#sr# 35", "=ds="..AL["Trainer"] };
-				{ 6, 0, "INV_Box_01", "=q6="..AL["Reagents"], "" };
-				{ 7, "s86005", "61981", "=q2=Inferno Ink", "=ds=#sr# 475", "=ds="..AL["Trainer"] };
-				{ 8, "s86004", "61978", "=q1=Blackfallow Ink", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 9, "s57716", "43127", "=q2=Snowfall Ink", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
-				{ 10, "s57715", "43126", "=q1=Ink of the Sea", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 11, "s57714", "43125", "=q2=Darkflame Ink", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
-				{ 12, "s57713", "43124", "=q1=Ethereal Ink", "=ds=#sr# 290", "=ds="..AL["Trainer"] };
-				{ 13, "s57712", "43123", "=q2=Ink of the Sky", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
-				{ 14, "s57711", "43122", "=q1=Shimmering Ink", "=ds=#sr# 250", "=ds="..AL["Trainer"] };
-				{ 15, "s57710", "43121", "=q2=Fiery Ink", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
-				{ 22, "s57709", "43120", "=q1=Celestial Ink", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
-				{ 23, "s57708", "43119", "=q2=Royal Ink", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
-				{ 24, "s57707", "43118", "=q1=Jadefire Ink", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
-				{ 25, "s57706", "43117", "=q2=Dawnstar Ink", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
-				{ 26, "s57704", "43116", "=q1=Lion's Ink", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
-				{ 27, "s57703", "43115", "=q2=Hunter's Ink", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
-				{ 28, "s53462", "39774", "=q1=Midnight Ink", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
-				{ 29, "s52843", "39469", "=q1=Moonglow Ink", "=ds=#sr# 35", "=ds="..AL["Trainer"] };
-				{ 30, "s52738", "37101", "=q1=Ivory Ink", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
-				
-				--[[ Not really a recipe :\
-				{ 14, "s52175", "INV_Misc_Book_11", "=ds=Decipher", "=ds="..AL["Trainer"] };
-				]]--
+				{ 1, "s127009", "89368", "=q1=Chi-ji Kite", "=ds=#sr# 600", "=ds="..AL["Trainer"] };
+				{ 2, "s126988", "87647", "=q1=Origami Crane", "=ds=#sr# 600", "=ds="..AL["Trainer"] };
+				{ 3, "s126989", "87648", "=q1=Origami Frog", "=ds=#sr# 600", "=ds="..AL["Trainer"] };
+				{ 4, "s127007", "89367", "=q1=Yu'lon Kite", "=ds=#sr# 600", "=ds="..AL["Trainer"] };
+				{ 5, "s112883", "79249", "=q1=Tome of the Clear Mind", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 6, "s86654", "63276", "=q1=Forged Documents", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 7, "s86646", "63246", "=q1=Origami Beetle", "=ds=#sr# 500", "=ds="..AL["World Drop"] };
+				{ 8, "s86645", "62238", "=q1=Origami Rock", "=ds=#sr# 490", "=ds="..AL["World Drop"] };
+				{ 9, "s86644", "62239", "=q1=Origami Slime", "=ds=#sr# 480", "=ds="..AL["World Drop"] };
+				{ 10, "s92027", "63388", "=q1=Dust of Disappearance", "=ds=#sr# 475", "=ds="..AL["Trainer"] };
+				{ 11, "s59387", "43850", "=q1=Certificate of Ownership", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
+				{ 12, "s92026", "64670", "=q1=Vanishing Powder", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
+				{ 13, "s52739", "38682", "=q1=Enchanting Vellum", "=ds=#sr# 35", "=ds="..AL["Trainer"] };
+				{ 16, "s127378", "87811", "=q1=Commissioned Painting", "=ds=#sr# 600", "=ds=#QUESTID:31539#" };
+				{ 17, "s127391", "87814", "=q1=Engraved Jade Disk", "=ds=#sr# 600", "=ds=#QUESTID:31541#" };
+				{ 18, "s127475", "87817", "=q1=Incarnadine Ink", "=ds=#sr# 600", "=ds=#QUESTID:31542#" };
+				{ 19, "s127481", "87831", "=q1=Inscribed Monument", "=ds=#sr# 600", "=ds=#QUESTID:31544#" };
+				{ 20, "s128922", "88806", "=q1=Portrait of Madam Goya", "=ds=#sr# 600", "=ds=#QUESTID:31543#" };
 			};
 		};
 		info = {
@@ -3680,45 +3873,44 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_DeathKnight"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s57214", "43542", "=q1=Glyph of Death and Decay", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 3, "s64266", "45804", "=q1=Glyph of Death Coil", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
-				{ 4, "s59340", "43827", "=q1=Glyph of Death Strike", "=ds=#sr# 340", "=ds="..AL["Trainer"] };
-				{ 5, "s57216", "43543", "=q1=Glyph of Frost Strike", "=ds=#sr# 270", "=ds="..AL["Trainer"] };
-				{ 6, "s57208", "43534", "=q1=Glyph of Heart Strike", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 7, "s64300", "45806", "=q1=Glyph of Howling Blast", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 17, "s57219", "43546", "=q1=Glyph of Icy Touch", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
-				{ 18, "s57220", "43547", "=q1=Glyph of Obliterate", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 19, "s57222", "43549", "=q1=Glyph of Raise Dead", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 20, "s57223", "43550", "=q1=Glyph of Rune Strike", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 21, "s57224", "43551", "=q1=Glyph of Scourge Strike", "=ds=#sr# 330", "=ds="..AL["Trainer"] };
-				{ 9, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 10, "s57209", "43535", "=q1=Glyph of Blood Tap", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 11, "s57215", "43539", "=q1=Glyph of Death's Embrace", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 12, "s57217", "43544", "=q1=Glyph of Horn of Winter", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 25, "s57229", "43671", "=q1=Glyph of Path of Frost", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 26, "s57228", "43673", "=q1=Glyph of Raise Ally", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 27, "s57230", "43672", "=q1=Glyph of Resilient Grip", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-			};
-			{ 
 				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s57207", "43533", "=q1=Glyph of Anti-Magic Shell", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 3, "s59339", "43826", "=q1=Glyph of Blood Boil", "=ds=#sr# 320", "=ds="..AL["Trainer"] };
-				{ 4, "s57210", "43536", "=q1=Glyph of Bone Shield", "=ds=#sr# 265", "=ds="..AL["Trainer"] };
+				{ 2, "s64297", "45799", "=q1=Glyph of Dancing Rune Weapon", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s64298", "45800", "=q1=Glyph of Dark Simulacrum", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s57207", "43533", "=q1=Glyph of Anti-Magic Shell", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
 				{ 5, "s57211", "43537", "=q1=Glyph of Chains of Ice", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s64297", "45799", "=q1=Glyph of Dancing Rune Weapon", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 7, "s96284", "68793", "=q1=Glyph of Dark Succor", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
-				{ 8, "s57213", "43541", "=q1=Glyph of Death Grip", "=ds=#sr# 285", "=ds="..AL["Trainer"] };
-				{ 17, "s64298", "45800", "=q1=Glyph of Hungering Cold", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 18, "s57221", "43548", "=q1=Glyph of Pestilence", "=ds=#sr# 300", "=ds="..AL["Trainer"] };
+				{ 6, "s57214", "43542", "=q1=Glyph of Death and Decay", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s57220", "43547", "=q1=Glyph of Enduring Infection", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s57208", "43534", "=q1=Glyph of Unholy Frenzy", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s57225", "43552", "=q1=Glyph of Strangulate", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 10, "s57222", "43549", "=q1=Glyph of Mind Freeze", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 11, "s57227", "43554", "=q1=Glyph of Vampiric Blood", "=ds=#sr# 345", "=ds="..AL["Trainer"] };
+				{ 17, "s59339", "43826", "=q1=Glyph of Outbreak", "=ds=#sr# 320", "=ds="..AL["Trainer"] };
+				{ 18, "s59338", "43825", "=q1=Glyph of Unholy Command", "=ds=#sr# 310", "=ds="..AL["Trainer"] };
 				{ 19, "s57226", "43553", "=q1=Glyph of Pillar of Frost", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
-				{ 20, "s59338", "43825", "=q1=Glyph of Rune Tap", "=ds=#sr# 310", "=ds="..AL["Trainer"] };
-				{ 21, "s57225", "43552", "=q1=Glyph of Strangulate", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
-				{ 22, "s57227", "43554", "=q1=Glyph of Vampiric Blood", "=ds=#sr# 345", "=ds="..AL["Trainer"] };
+				{ 20, "s57221", "43548", "=q1=Glyph of Pestilence", "=ds=#sr# 300", "=ds="..AL["Trainer"] };
+				{ 21, "s57213", "43541", "=q1=Glyph of Death Grip", "=ds=#sr# 285", "=ds="..AL["Trainer"] };
+				{ 22, "s57219", "43546", "=q1=Glyph of Icy Touch", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
+				{ 23, "s96284", "68793", "=q1=Glyph of Dark Succor", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
+				{ 24, "s64266", "45804", "=q1=Glyph of Death Coil", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
+				{ 25, "s57216", "43543", "=q1=Glyph of Shifting Presences", "=ds=#sr# 270", "=ds="..AL["Trainer"] };
+				{ 26, "s57210", "43536", "=q1=Glyph of Icebound Fortitude", "=ds=#sr# 265", "=ds="..AL["Trainer"] };
+			};
+			{
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 2, "s64300", "45806", "=q1=Glyph of Tranquil Grip", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s57223", "43550", "=q1=Glyph of Army of the Dead", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s59340", "43827", "=q1=Glyph of Corpse Explosion", "=ds=#sr# 340", "=ds="..AL["Trainer"] };
+				{ 5, "s57224", "43551", "=q1=Glyph of Foul Menagerie", "=ds=#sr# 330", "=ds="..AL["Trainer"] };
+				{ 6, "s57228", "43673", "=q1=Glyph of Death Gate", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 17, "s57215", "43539", "=q1=Glyph of Death's Embrace", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 18, "s57217", "43544", "=q1=Glyph of Horn of Winter", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 19, "s57229", "43671", "=q1=Glyph of Path of Frost", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 20, "s57230", "43672", "=q1=Glyph of Resilient Grip", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 21, "s57209", "43535", "=q1=Glyph of the Geist", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["DEATHKNIGHT"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["DEATHKNIGHT"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -3726,56 +3918,57 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Druid"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s64268", "45601", "=q1=Glyph of Berserk", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 3, "s56948", "40919", "=q1=Glyph of Insect Swarm", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
-				{ 4, "s94402", "67484", "=q1=Glyph of Lacerate", "=ds=#sr# 330", "=ds="..AL["Trainer"] };
-				{ 5, "s56949", "40915", "=q1=Glyph of Lifebloom", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s56950", "40900", "=q1=Glyph of Mangle", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 7, "s56951", "40923", "=q1=Glyph of Moonfire", "=ds=#sr# 130", "=ds="..AL["Trainer"] };
-				{ 8, "s56954", "40912", "=q1=Glyph of Regrowth", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 9, "s56955", "40913", "=q1=Glyph of Rejuvenation", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 17, "s56956", "40902", "=q1=Glyph of Rip", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
-				{ 18, "s64307", "45604", "=q1=Glyph of Savage Roar", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s64313", "45603", "=q1=Glyph of Might of Ursoc", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s64307", "45604", "=q1=Glyph of Stampeding Roar", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s64270", "45602", "=q1=Glyph of Wild Growth", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s64256", "45623", "=q1=Glyph of Barkskin", "=ds=#sr# 425", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64268", "45601", "=q1=Glyph of Survival Instincts", "=ds=#sr# 425", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s56946", "40920", "=q1=Glyph of Hurricane", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s56947", "40908", "=q1=Glyph of Innervate", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s56949", "40915", "=q1=Glyph of Lifebloom", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s56954", "40912", "=q1=Glyph of Regrowth", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s56958", "40921", "=q1=Glyph of Skull Bash", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 12, "s56944", "40899", "=q1=Glyph of Solar Beam", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 13, "s56960", "40906", "=q1=Glyph of Stampede", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 14, "s62162", "44928", "=q1=Glyph of the Master Shapeshifter", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 15, "s56943", "40896", "=q1=Glyph of Frenzied Regeneration", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 17, "s94402", "67484", "=q1=Glyph of Fae Silence", "=ds=#sr# 330", "=ds="..AL["Trainer"] };
+				{ 18, "s56952", "40903", "=q1=Glyph of Pounce", "=ds=#sr# 310", "=ds="..AL["Trainer"] };
 				{ 19, "s56957", "40901", "=q1=Glyph of Shred", "=ds=#sr# 260", "=ds="..AL["Trainer"] };
-				{ 20, "s56959", "40916", "=q1=Glyph of Starfire", "=ds=#sr# 220", "=ds="..AL["Trainer"] };
-				{ 21, "s64313", "45603", "=q1=Glyph of Starsurge", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 22, "s56960", "40906", "=q1=Glyph of Swiftmend", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 23, "s94401", "67487", "=q1=Glyph of Tiger's Fury", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
-				{ 24, "s56963", "40922", "=q1=Glyph of Wrath", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
-				{ 11, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 12, "s58286", "43316", "=q1=Glyph of Aquatic Form", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 13, "s58287", "43334", "=q1=Glyph of Challenging Roar", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 14, "s59315", "43674", "=q1=Glyph of Dash", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 15, "s58296", "43335", "=q1=Glyph of Mark of the Wild", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 27, "s95215", "68039", "=q1=Glyph of the Treant", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 28, "s56965", "44922", "=q1=Glyph of Typhoon", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 29, "s58288", "43331", "=q1=Glyph of Unburdened Rebirth", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 20, "s64258", "45622", "=q1=Glyph of Cyclone", "=ds=#sr# 250", "=ds="..AL["Trainer"] };
+				{ 21, "s56959", "40916", "=q1=Glyph of The Moonbeast", "=ds=#sr# 220", "=ds="..AL["Trainer"] };
+				{ 22, "s56956", "40902", "=q1=Glyph of Prowl", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
+				{ 23, "s56953", "40909", "=q1=Glyph of Rebirth", "=ds=#sr# 170", "=ds="..AL["Trainer"] };
+				{ 24, "s56951", "40923", "=q1=Glyph of Savagery", "=ds=#sr# 130", "=ds="..AL["Trainer"] };
+				{ 25, "s94401", "67487", "=q1=Glyph of Cat Form", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
+				{ 26, "s94403", "67485", "=q1=Glyph of Faerie Fire", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
+				{ 27, "s56945", "40914", "=q1=Glyph of Healing Touch", "=ds=#sr# 115", "=ds="..AL["Trainer"] };
+				{ 28, "s48121", "40924", "=q1=Glyph of Entangling Roots", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
+				{ 29, "s67600", "48720", "=q1=Glyph of Ferocious Bite", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
+				{ 30, "s56961", "40897", "=q1=Glyph of Maul", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
 			};
 			{
 				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s64256", "45623", "=q1=Glyph of Barkskin", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 3, "s48121", "40924", "=q1=Glyph of Entangling Roots", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
-				{ 4, "s94403", "67485", "=q1=Glyph of Faerie Fire", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
-				{ 5, "s94404", "67486", "=q1=Glyph of Feral Charge", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
-				{ 6, "s67600", "48720", "=q1=Glyph of Ferocious Bite", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
-				{ 7, "s62162", "44928", "=q1=Glyph of Focus", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
-				{ 8, "s56943", "40896", "=q1=Glyph of Frenzied Regeneration", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 9, "s56945", "40914", "=q1=Glyph of Healing Touch", "=ds=#sr# 115", "=ds="..AL["Trainer"] };
-				{ 10, "s56946", "40920", "=q1=Glyph of Hurricane", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 17, "s56947", "40908", "=q1=Glyph of Innervate", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s56961", "40897", "=q1=Glyph of Maul", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
-				{ 19, "s64258", "45622", "=q1=Glyph of Monsoon", "=ds=#sr# 250", "=ds="..AL["Trainer"] };
-				{ 20, "s56952", "40903", "=q1=Glyph of Pounce", "=ds=#sr# 310", "=ds="..AL["Trainer"] };
-				{ 21, "s56953", "40909", "=q1=Glyph of Rebirth", "=ds=#sr# 170", "=ds="..AL["Trainer"] };
-				{ 22, "s56944", "40899", "=q1=Glyph of Solar Beam", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 23, "s56958", "40921", "=q1=Glyph of Starfall", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 24, "s58289", "43332", "=q1=Glyph of Thorns", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 25, "s64270", "45602", "=q1=Glyph of Wild Growth", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
+				{ 2, "s56963", "40922", "=q1=Glyph of Nature's Grasp", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
+				{ 3, "s56955", "40913", "=q1=Glyph of Rejuvenation", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
+				{ 17, "s59315", "43674", "=q1=Glyph of Dash", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 18, "s58288", "43331", "=q1=Glyph of Blooming", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 5, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 6, "s131152", "89868", "=q1=Glyph of the Cheetah", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 7, "s56950", "40900", "=q1=Glyph of the Stag", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s95215", "68039", "=q1=Glyph of the Treant", "=ds=#sr# 155", "=ds="..GetSpellInfo(61288) };
+				{ 9, "s56948", "40919", "=q1=Glyph of the Orca", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 10, "s94404", "67486", "=q1=Glyph of the Predator", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 21, "s58286", "43316", "=q1=Glyph of Aquatic Form", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 22, "s58296", "43335", "=q1=Glyph of Charm Woodland Creature", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 23, "s58289", "43332", "=q1=Glyph of Grace", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 24, "s56965", "44922", "=q1=Glyph of Stars", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 25, "s58287", "43334", "=q1=Glyph of the Chameleon", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["DRUID"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["DRUID"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -3783,46 +3976,50 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Hunter"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s56994", "42897", "=q1=Glyph of Aimed Shot", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
-				{ 3, "s56995", "42898", "=q1=Glyph of Arcane Shot", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
-				{ 4, "s64271", "45625", "=q1=Glyph of Chimera Shot", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 5, "s64273", "45731", "=q1=Glyph of Explosive Shot", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 6, "s57012", "42915", "=q1=Glyph of Kill Command", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 17, "s64304", "45732", "=q1=Glyph of Kill Shot", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 18, "s57008", "42911", "=q1=Glyph of Rapid Fire", "=ds=#sr# 315", "=ds="..AL["Trainer"] };
-				{ 19, "s57009", "42912", "=q1=Glyph of Serpent Sting", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
-				{ 20, "s57011", "42914", "=q1=Glyph of Steady Shot", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 21, "s57006", "42909", "=q1=Glyph of the Dazzled Prey", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
-				{ 8, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 9, "s58297", "43355", "=q1=Glyph of Aspect of the Pack", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 10, "s58302", "43351", "=q1=Glyph of Feign Death", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 11, "s58301", "43350", "=q1=Glyph of Lesser Proportion", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 24, "s58299", "43338", "=q1=Glyph of Revive Pet", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 25, "s58298", "43356", "=q1=Glyph of Scare Beast", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s124443", "85684", "=q1=Glyph of Black Ice", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 3, "s64271", "45625", "=q1=Glyph of Chimera Shot", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s64253", "45733", "=q1=Glyph of Master's Call", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s64246", "45735", "=q1=Glyph of Mirrored Blades", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64249", "45734", "=q1=Glyph of Scatter Shot", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s64273", "45731", "=q1=Glyph of Tranquilizing Shot", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s56998", "42901", "=q1=Glyph of Distracting Shot", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s56999", "42902", "=q1=Glyph of Endless Wrath", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s57014", "42917", "=q1=Glyph of Icy Solace", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s56996", "42899", "=q1=Glyph of Marked For Death", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 12, "s57012", "42915", "=q1=Glyph of Mend Pet", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 13, "s57011", "42914", "=q1=Glyph of Scattering", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 17, "s57010", "42913", "=q1=Glyph of Snake Trap", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 18, "s57006", "42909", "=q1=Glyph of Animal Bond", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 19, "s57003", "42909", "=q1=Glyph of Ice Trap", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 20, "s57008", "42911", "=q1=Glyph of Pathfinding", "=ds=#sr# 315", "=ds="..AL["Trainer"] };
+				{ 21, "s57002", "42905", "=q1=Glyph of Freezing Trap", "=ds=#sr# 260", "=ds="..AL["Trainer"] };
+				{ 22, "s57001", "42904", "=q1=Glyph of Disengage", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
+				{ 23, "s57000", "42903", "=q1=Glyph of Deterrence", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
+				{ 24, "s57007", "42910", "=q1=Glyph of No Escape", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 25, "s57005", "42908", "=q1=Glyph of Explosive Trap", "=ds=#sr# 130", "=ds="..AL["Trainer"] };
+				{ 26, "s56997", "42900", "=q1=Glyph of Mending", "=ds=#sr# 115", "=ds="..AL["Trainer"] };
+				{ 27, "s56995", "42898", "=q1=Glyph of Camouflage", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
+				{ 28, "s57004", "42907", "=q1=Glyph of Misdirection", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
 			};
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s56999", "42902", "=q1=Glyph of Bestial Wrath", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 3, "s56998", "42901", "=q1=Glyph of Concussive Shot", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 4, "s57000", "42903", "=q1=Glyph of Deterrence", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
-				{ 5, "s57001", "42904", "=q1=Glyph of Disengage", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
-				{ 6, "s57002", "42905", "=q1=Glyph of Freezing Trap", "=ds=#sr# 260", "=ds="..AL["Trainer"] };
-				{ 7, "s57003", "42906", "=q1=Glyph of Ice Trap", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 8, "s57005", "42908", "=q1=Glyph of Immolation Trap", "=ds=#sr# 130", "=ds="..AL["Trainer"] };
-				{ 9, "s64253", "45733", "=q1=Glyph of Master's Call", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 17, "s56997", "42900", "=q1=Glyph of Mending", "=ds=#sr# 115", "=ds="..AL["Trainer"] };
-				{ 18, "s57004", "42907", "=q1=Glyph of Misdirection", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 19, "s64246", "45735", "=q1=Glyph of Raptor Strike", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 20, "s64249", "45734", "=q1=Glyph of Scatter Shot", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 21, "s57007", "42910", "=q1=Glyph of Silencing Shot", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
-				{ 22, "s57010", "42913", "=q1=Glyph of Snake Trap", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 23, "s56996", "42899", "=q1=Glyph of Trap Launcher", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 24, "s57014", "42917", "=q1=Glyph of Wyvern Sting", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 2, "s126701", "87278", "=q1=Glyph of Direction", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 3, "s126704", "87279", "=q1=Glyph of Marking", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 4, "s124442", "85683", "=q1=Glyph of Aspect of the Beast", "=ds=#sr# 450", "=ds="..AL["Trainer"] };
+				{ 5, "s126801", "87393", "=q1=Glyph of Fetch", "=ds=#sr# 440", "=ds="..AL["Trainer"] };
+				{ 6, "s64304", "45732", "=q1=Glyph of Aspect of the Cheetah", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s56994", "42897", "=q1=Glyph of Aspects", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
+				{ 17, "s57009", "42912", "=q1=Glyph of Tame Beast", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
+				{ 18, "s58297", "43355", "=q1=Glyph of Aspect of the Pack", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 19, "s58302", "43351", "=q1=Glyph of Fireworks", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 20, "s58301", "43350", "=q1=Glyph of Lesser Proportion", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 21, "s58299", "43338", "=q1=Glyph of Revive Pet", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 22, "s58298", "43356", "=q1=Glyph of Stampede", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["HUNTER"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["HUNTER"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -3830,49 +4027,98 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Mage"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s64276", "45738", "=q1=Glyph of Arcane Barrage", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 3, "s56991", "44955", "=q1=Glyph of Arcane Blast", "=ds=#sr# 315", "=ds="..AL["Trainer"] };
-				{ 4, "s56971", "42735", "=q1=Glyph of Arcane Missiles", "=ds=#sr# 115", "=ds="..AL["Trainer"] };
-				{ 5, "s56988", "42753", "=q1=Glyph of Cone of Cold", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s64274", "45736", "=q1=Glyph of Deep Freeze", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 7, "s56975", "42739", "=q1=Glyph of Fireball", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 8, "s56977", "42742", "=q1=Glyph of Frostbolt", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 17, "s61677", "44684", "=q1=Glyph of Frostfire", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s56980", "42745", "=q1=Glyph of Ice Lance", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
-				{ 19, "s94000", "63539", "=q1=Glyph of Living Bomb", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 20, "s56984", "42749", "=q1=Glyph of Mage Armor", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
-				{ 21, "s56986", "42751", "=q1=Glyph of Molten Armor", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 22, "s56978", "42743", "=q1=Glyph of Pyroblast", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
-				{ 10, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 11, "s58303", "43339", "=q1=Glyph of Arcane Brilliance", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 12, "s95710", "63416", "=q1=Glyph of Armors", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 13, "s58306", "43359", "=q1=Glyph of Conjuring", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 14, "s64314", "45739", "=q1=Glyph of Mirror Image", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 26, "s58308", "43364", "=q1=Glyph of Slow Fall", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 27, "s58307", "43360", "=q1=Glyph of the Monkey", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 28, "s58310", "43361", "=q1=Glyph of the Penguin", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s98398", "69773", "=q1=Glyph of Armors", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s64257", "45740", "=q1=Glyph of Deep Freeze", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s64275", "45737", "=q1=Glyph of Slow", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s64274", "45736", "=q1=Glyph of Water Elemental", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s56987", "42752", "=q1=Glyph of Polymorph", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
+				{ 7, "s94000", "63539", "=q1=Glyph of Fire Blast", "=ds=#sr# 390", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s56975", "42739", "=q1=Glyph of Combustion", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s61677", "44684", "=q1=Glyph of Frostfire Bolt", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s56988", "42753", "=q1=Glyph of Icy Veins", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s56983", "42748", "=q1=Glyph of Invisibility", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 12, "s56989", "42754", "=q1=Glyph of Spellsteal", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 17, "s56980", "42745", "=q1=Glyph of Ice Lance", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 18, "s56972", "42736", "=q1=Glyph of Arcane Explosion", "=ds=#sr# 335", "=ds="..AL["Trainer"] };
+				{ 19, "s56984", "42749", "=q1=Glyph of Mana Gem", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 20, "s56991", "44955", "=q1=Glyph of Arcane Power", "=ds=#sr# 315", "=ds="..AL["Trainer"] };
+				{ 21, "s71101", "50045", "=q1=Glyph of Counterspell", "=ds=#sr# 250", "=ds="..AL["Trainer"] };
+				{ 22, "s56979", "42744", "=q1=Glyph of Ice Block", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
+				{ 23, "s56981", "42746", "=q1=Glyph of Cone of Cold", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
+				{ 24, "s56974", "42738", "=q1=Glyph of Evocation", "=ds=#sr# 155", "=ds="..AL["Trainer"] };
+				{ 25, "s56973", "42737", "=q1=Glyph of Blink", "=ds=#sr# 130", "=ds="..AL["Trainer"] };
+				{ 26, "s56976", "42741", "=q1=Glyph of Frost Nova", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
+				{ 27, "s56990", "44920", "=q1=Glyph of Remove Curse", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s56972", "42736", "=q1=Glyph of Arcane Power", "=ds=#sr# 335", "=ds="..AL["Trainer"] };
-				{ 3, "s56990", "44920", "=q1=Glyph of Blast Wave", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 4, "s56973", "42737", "=q1=Glyph of Blink", "=ds=#sr# 130", "=ds="..AL["Trainer"] };
-				{ 5, "s56989", "42754", "=q1=Glyph of Dragon's Breath", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s56974", "42738", "=q1=Glyph of Evocation", "=ds=#sr# 155", "=ds="..AL["Trainer"] };
-				{ 7, "s56976", "42741", "=q1=Glyph of Frost Nova", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 8, "s98398", "69773", "=q1=Glyph of Frost Armor", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
-				{ 17, "s64257", "45740", "=q1=Glyph of Ice Barrier", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 18, "s56979", "42744", "=q1=Glyph of Ice Block", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
-				{ 19, "s56981", "42746", "=q1=Glyph of Icy Veins", "=ds=#sr# 175", "=ds="..AL["Trainer"] };
-				{ 20, "s56983", "42748", "=q1=Glyph of Invisibility", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 21, "s71101", "50045", "=q1=Glyph of Mana Shield", "=ds=#sr# 250", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 22, "s56987", "42752", "=q1=Glyph of Polymorph", "=ds=#sr# 400", "=ds="..AL["Trainer"] };
-				{ 23, "s64275", "45737", "=q1=Glyph of Slow", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 2, "s64276", "45738", "=q1=Glyph of Illusion", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s64314", "45739", "=q1=Glyph of Mirror Image", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s56986", "42751", "=q1=Glyph of Crittermorph", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s95710", "63416", "=q1=Glyph of Rapid Teleportation", "=ds=#sr# 155", "=ds="..GetSpellInfo(61288) };
+				{ 6, "s56971", "42735", "=q1=Glyph of Loose Mana", "=ds=#sr# 115", "=ds="..AL["Trainer"] };
+				{ 7, "s56978", "42743", "=q1=Glyph of Momentum", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
+				{ 17, "s58308", "43364", "=q1=Glyph of Arcane Language", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 18, "s58306", "43359", "=q1=Glyph of Conjure Familiar", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 19, "s58309", "43362", "=q1=Glyph of the Bear Cub", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
+				{ 20, "s58307", "43360", "=q1=Glyph of the Monkey", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 21, "s58310", "43361", "=q1=Glyph of the Penguin", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 22, "s58303", "43339", "=q1=Glyph of the Porcupine", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["MAGE"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["MAGE"],
+			module = moduleName, menu = "INSCRIPTIONMENU"
+		};
+	};
+
+	AtlasLoot_Data["Inscription_Monk"] = {
+		["Normal"] = {
+			{
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s124444", "85685", "=q1=Glyph of Breath of Fire", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 3, "s124446", "85687", "=q1=Glyph of Clash", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 4, "s124447", "85689", "=q1=Glyph of Enduring Healing Sphere", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 5, "s124448", "82345", "=q1=Glyph of Expel Harm", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 6, "s124449", "85691", "=q1=Glyph of Guard", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 7, "s124450", "85692", "=q1=Glyph of Mana Tea", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 8, "s124457", "84652", "=q1=Glyph of Transcendence", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 9, "s124456", "85700", "=q1=Glyph of Touch of Death", "=ds=#sr# 470", "=ds="..AL["Trainer"] };
+				{ 10, "s124455", "85699", "=q1=Glyph of Surging Mist", "=ds=#sr# 465", "=ds="..AL["Trainer"] };
+				{ 11, "s124445", "87892", "=q1=Glyph of Fists of Fury", "=ds=#sr# 460", "=ds="..AL["Trainer"] };
+				{ 12, "s124453", "85697", "=q1=Glyph of Spinning Crane Kick", "=ds=#sr# 445", "=ds="..AL["Trainer"] };
+				{ 13, "s124452", "85696", "=q1=Glyph of Renewing Mists", "=ds=#sr# 440", "=ds="..AL["Trainer"] };
+				{ 17, "s124463", "87896", "=q1=Glyph of Retreat", "=ds=#sr# 380", "=ds="..AL["Trainer"] };
+				{ 18, "s112458", "87901", "=q1=Glyph of Uplift", "=ds=#sr# 380", "=ds="..AL["Trainer"] };
+				{ 19, "s124451", "85695", "=q1=Glyph of Zen Meditation", "=ds=#sr# 380", "=ds="..AL["Trainer"] };
+				{ 20, "s112444", "87900", "=q1=Glyph of Touch of Karma", "=ds=#sr# 370", "=ds="..AL["Trainer"] };
+				{ 21, "s112454", "87899", "=q1=Glyph of Stoneskin", "=ds=#sr# 365", "=ds="..AL["Trainer"] };
+				{ 22, "s112452", "87898", "=q1=Glyph of Sparring", "=ds=#sr# 360", "=ds="..AL["Trainer"] };
+				{ 23, "s112440", "87897", "=q1=Glyph of Path of Blossoms", "=ds=#sr# 355", "=ds="..AL["Trainer"] };
+				{ 24, "s112442", "87895", "=q1=Glyph of Life Cocoon", "=ds=#sr# 320", "=ds="..AL["Trainer"] };
+				{ 25, "s112450", "87894", "=q1=Glyph of Leer of the Ox", "=ds=#sr# 295", "=ds="..AL["Trainer"] };
+				{ 26, "s112457", "87893", "=q1=Glyph of Fortifying Brew", "=ds=#sr# 255", "=ds="..AL["Trainer"] };
+				{ 27, "s112437", "87880", "=q1=Glyph of Crackling Jade Lightning", "=ds=#sr# 220", "=ds="..AL["Trainer"] };
+				{ 28, "s112451", "87891", "=q1=Glyph of Afterlife", "=ds=#sr# 155", "=ds="..AL["Trainer"] };
+			};
+			{
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 2, "s132167", "90715", "=q1=Glyph of Blackout Kick", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 3, "s112464", "87883", "=q1=Glyph of Honor", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 4, "s112465", "87884", "=q1=Glyph of Jab", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 5, "s112466", "87885", "=q1=Glyph of Rising Tiger Kick", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 6, "s124454", "85698", "=q1=Glyph of Spinning Fire Blossom", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 7, "s112468", "87887", "=q1=Glyph of Spirit Roll", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 17, "s112461", "87889", "=q1=Glyph of Water Roll", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 18, "s112460", "87890", "=q1=Glyph of Zen Flight", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 19, "s112463", "87882", "=q1=Glyph of Flying Serpent Kick", "=ds=#sr# 495", "=ds="..AL["Trainer"] };
+				{ 20, "s112469", "87888", "=q1=Glyph of Fighting Pose", "=ds=#sr# 490", "=ds="..AL["Trainer"] };
+				{ 21, "s112462", "87881", "=q1=Glyph of Crackling Tiger Lightning", "=ds=#sr# 485", "=ds="..AL["Trainer"] };
+			};
+		};
+		info = {
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["MONK"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -3880,50 +4126,56 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Paladin"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s57024", "41098", "=q1=Glyph of Crusader Strike", "=ds=#sr# 230", "=ds="..AL["Trainer"] };
-				{ 3, "s57029", "41106", "=q1=Glyph of Divine Favor", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
-				{ 4, "s57025", "41103", "=q1=Glyph of Exorcism", "=ds=#sr# 265", "=ds="..AL["Trainer"] };
-				{ 5, "s64278", "45742", "=q1=Glyph of Hammer of the Righteous", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 6, "s64254", "45746", "=q1=Glyph of Holy Shock", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 7, "s57030", "41092", "=q1=Glyph of Judgement", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
-				{ 17, "s57034", "41110", "=q1=Glyph of Seal of Insight", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s59561", "43869", "=q1=Glyph of Seal of Truth", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 19, "s64308", "45744", "=q1=Glyph of Shield of the Righteous", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 20, "s64279", "45743", "=q1=Glyph of Templar's Verdict", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 21, "s57026", "41105", "=q1=Glyph of Word of Glory", "=ds=#sr# 300", "=ds="..AL["Trainer"] };
-				{ 9, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 10, "s58311", "43365", "=q1=Glyph of Blessing of Kings", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 11, "s58314", "43340", "=q1=Glyph of Blessing of Might", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 12, "s58312", "43366", "=q1=Glyph of Insight", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 25, "s58316", "43369", "=q1=Glyph of Justice", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 26, "s58313", "43367", "=q1=Glyph of Lay on Hands", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 27, "s58315", "43368", "=q1=Glyph of Truth", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s122030", "83107", "=q1=Glyph of Mass Exorcism", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 3, "s119481", "81956", "=q1=Glyph of the Battle Healer", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 4, "s64277", "45741", "=q1=Glyph of Beacon of Light", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s64305", "45745", "=q1=Glyph of Divine Plea", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64279", "45743", "=q1=Glyph of Divine Storm", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s64278", "45742", "=q1=Glyph of Hammer of the Righteous", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s64254", "45746", "=q1=Glyph of Holy Shock", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s64251", "45747", "=q1=Glyph of Inquisition", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s64308", "45744", "=q1=Glyph of the Alabaster Shield", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s95825", "66918", "=q1=Glyph of Protector of the Innocent", "=ds=#sr# 390", "=ds="..GetSpellInfo(61177) };
+				{ 12, "s57034", "41110", "=q1=Glyph of Blessed Life", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 13, "s59560", "43868", "=q1=Glyph of Dazing Shield", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 14, "s59559", "43867", "=q1=Glyph of Denounce", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 15, "s57019", "41101", "=q1=Glyph of Focused Shield", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 17, "s59561", "43869", "=q1=Glyph of Immediate Truth", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 18, "s57035", "41109", "=q1=Glyph of Light of Dawn", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 19, "s57028", "41097", "=q1=Glyph of Templar's Verdict", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 20, "s57021", "41107", "=q1=Glyph of the Harsh Word", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 21, "s57036", "41102", "=q1=Glyph of Turn Evil", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 22, "s57033", "41094", "=q1=Glyph of Rebuke", "=ds=#sr# 335", "=ds="..AL["Trainer"] };
+				{ 23, "s57026", "41105", "=q1=Glyph of Word of Glory", "=ds=#sr# 300", "=ds="..AL["Trainer"] };
+				{ 24, "s57025", "41103", "=q1=Glyph of Blinding Light", "=ds=#sr# 265", "=ds="..AL["Trainer"] };
+				{ 25, "s57024", "41098", "=q1=Glyph of Avenging Wrath", "=ds=#sr# 230", "=ds="..AL["Trainer"] };
+				{ 26, "s57023", "41099", "=q1=Glyph of Consecration", "=ds=#sr# 205", "=ds="..AL["Trainer"] };
+				{ 27, "s57020", "41104", "=q1=Glyph of Final Wrath", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
+				{ 28, "s57031", "41108", "=q1=Glyph of Divinity", "=ds=#sr# 135", "=ds="..AL["Trainer"] };
+				{ 29, "s57030", "41092", "=q1=Glyph of Double Jeopardy", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
+				{ 30, "s57029", "41106", "=q1=Glyph of Illumination", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
 			};
 			{
 				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s64277", "45741", "=q1=Glyph of Beacon of Light", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 3, "s57020", "41104", "=q1=Glyph of Cleansing", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
-				{ 4, "s57023", "41099", "=q1=Glyph of Consecration", "=ds=#sr# 205", "=ds="..AL["Trainer"] };
-				{ 5, "s59560", "43868", "=q1=Glyph of Dazing Shield", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s64305", "45745", "=q1=Glyph of Divine Plea", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 7, "s57022", "41096", "=q1=Glyph of Divine Protection", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 8, "s57031", "41108", "=q1=Glyph of Divinity", "=ds=#sr# 135", "=ds="..AL["Trainer"] };
-				{ 9, "s57019", "41101", "=q1=Glyph of Focused Shield", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 10, "s57027", "41095", "=q1=Glyph of Hammer of Justice", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
-				{ 17, "s57028", "41097", "=q1=Glyph of Hammer of Wrath", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s59559", "43867", "=q1=Glyph of Holy Wrath", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 19, "s57035", "41109", "=q1=Glyph of Light of Dawn", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 20, "s57033", "41094", "=q1=Glyph of Rebuke", "=ds=#sr# 335", "=ds="..AL["Trainer"] };
-				{ 21, "s57032", "41100", "=q1=Glyph of Righteousness", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 22, "s64251", "45747", "=q1=Glyph of Salvation", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 23, "s57021", "41107", "=q1=Glyph of the Ascetic Crusader", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 24, "s95825", "66918", "=q1=Glyph of the Long Word", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 25, "s57036", "41102", "=q1=Glyph of Turn Evil", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 2, "s57027", "41095", "=q1=Glyph of Holy Wrath", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
+				{ 3, "s57022", "41096", "=q1=Glyph of Divine Protection", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
+				{ 17, "s58313", "43367", "=q1=Glyph of Flash of Light", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
+				{ 5, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 6, "s112266", "80586", "=q1=Glyph of Bladed Judgment", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 7, "s57037", "80581", "=q1=Glyph of Focused Wrath", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 8, "s112265", "80585", "=q1=Glyph of Righteous Retreat", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 9, "s112264", "80584", "=q1=Glyph of the Falling Avenger", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 10, "s57032", "41100", "=q1=Glyph of the Luminous Charger", "=ds=#sr# 155", "=ds="..GetSpellInfo(61288) };
+				{ 21, "s58316", "43369", "=q1=Glyph of Fire From the Heavens", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 22, "s58311", "43365", "=q1=Glyph of Contemplation", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 23, "s58315", "43368", "=q1=Glyph of Seal of Blood", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 24, "s58314", "43340", "=q1=Glyph of the Mounted King", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 25, "s58312", "43366", "=q1=Glyph of Winged Vengeance", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["PALADIN"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["PALADIN"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -3931,101 +4183,109 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Priest"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s64280", "45753", "=q1=Glyph of Dispersion", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 3, "s57186", "42400", "=q1=Glyph of Flash Heal", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
-				{ 4, "s64281", "45755", "=q1=Glyph of Guardian Spirit", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 5, "s57189", "42403", "=q1=Glyph of Lightwell", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s57200", "42415", "=q1=Glyph of Mind Flay", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
-				{ 7, "s64282", "45756", "=q1=Glyph of Penance", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 17, "s57193", "42407", "=q1=Glyph of Power Word: Barrier", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s57194", "42408", "=q1=Glyph of Power Word: Shield", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 19, "s57195", "42409", "=q1=Glyph of Prayer of Healing", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 20, "s57197", "42411", "=q1=Glyph of Renew", "=ds=#sr# 160", "=ds="..AL["Trainer"] };
-				{ 21, "s57199", "42414", "=q1=Glyph of Shadow Word: Death", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 22, "s57192", "42406", "=q1=Glyph of Shadow Word: Pain", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 9, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 10, "s58317", "43342", "=q1=Glyph of Fading", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 11, "s58318", "43371", "=q1=Glyph of Fortitude", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 12, "s58319", "43370", "=q1=Glyph of Levitate", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 13, "s107907", "77101", "=q1=Glyph of Shadow", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 25, "s58320", "43373", "=q1=Glyph of Shackle Undead", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 26, "s58321", "43372", "=q1=Glyph of Shadow Protection", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 27, "s58322", "43374", "=q1=Glyph of Shadowfiend", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s124461", "79514", "=q1=Glyph of Shadow Word: Death", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 3, "s124460", "79515", "=q1=Glyph of Vampiric Embrace", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 4, "s124459", "79513", "=q1=Glyph of Mind Flay", "=ds=#sr# 455", "=ds="..AL["Trainer"] };
+				{ 5, "s64309", "45757", "=q1=Glyph of Dark Binding", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64280", "45753", "=q1=Glyph of Dispersion", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s64281", "45755", "=q1=Glyph of Leap of Faith", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s64283", "45758", "=q1=Glyph of Mind Spike", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s64282", "45756", "=q1=Glyph of Penance", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s57181", "42396", "=q1=Glyph of Circle of Healing", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s57193", "42407", "=q1=Glyph of Inner Focus", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 12, "s57189", "42403", "=q1=Glyph of Lightwell", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 13, "s57190", "42404", "=q1=Glyph of Mass Dispel", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 14, "s57199", "42414", "=q1=Glyph of Mind Blast", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 15, "s57202", "42417", "=q1=Glyph of Prayer of Mending", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 17, "s57191", "42405", "=q1=Glyph of Psychic Horror", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 18, "s57195", "42409", "=q1=Glyph of Spirit of Redemption", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 19, "s57198", "42412", "=q1=Glyph of Scourge Imprisonment", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 20, "s57192", "42406", "=q1=Glyph of Holy Fire", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 21, "s57187", "42401", "=q1=Glyph of Holy Nova", "=ds=#sr# 315", "=ds="..AL["Trainer"] };
+				{ 22, "s57185", "42399", "=q1=Glyph of Fear Ward", "=ds=#sr# 270", "=ds="..AL["Trainer"] };
+				{ 23, "s64259", "45760", "=q1=Glyph of Desperation", "=ds=#sr# 255", "=ds="..AL["Trainer"] };
+				{ 24, "s127625", "87902", "=q1=Glyph of Lightspring", "=ds=#sr# 255", "=ds="..AL["Trainer"] };
+				{ 25, "s57183", "42397", "=q1=Glyph of Purify", "=ds=#sr# 230", "=ds="..AL["Trainer"] };
+				{ 26, "s57201", "42416", "=q1=Glyph of Smite", "=ds=#sr# 210", "=ds="..AL["Trainer"] };
+				{ 27, "s57200", "42415", "=q1=Glyph of Dispel Magic", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
+				{ 28, "s57197", "42411", "=q1=Glyph of Renew", "=ds=#sr# 160", "=ds="..AL["Trainer"] };
+				{ 29, "s57188", "42402", "=q1=Glyph of Inner Fire", "=ds=#sr# 135", "=ds="..AL["Trainer"] };
+				{ 30, "s57186", "42400", "=q1=Glyph of Inner Sanctum", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
 			};
 			{
 				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s57181", "42396", "=q1=Glyph of Circle of Healing", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 3, "s64259", "45760", "=q1=Glyph of Desperation", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 4, "s57183", "42397", "=q1=Glyph of Dispel Magic", "=ds=#sr# 230", "=ds="..AL["Trainer"] };
-				{ 5, "s64283", "45758", "=q1=Glyph of Divine Accuracy", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 6, "s57184", "42398", "=q1=Glyph of Fade", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
-				{ 7, "s57185", "42399", "=q1=Glyph of Fear Ward", "=ds=#sr# 270", "=ds="..AL["Trainer"] };
-				{ 8, "s57187", "42401", "=q1=Glyph of Holy Nova", "=ds=#sr# 315", "=ds="..AL["Trainer"] };
-				{ 9, "s57188", "42402", "=q1=Glyph of Inner Fire", "=ds=#sr# 135", "=ds="..AL["Trainer"] };
-				{ 17, "s57190", "42404", "=q1=Glyph of Mass Dispel", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s57202", "42417", "=q1=Glyph of Prayer of Mending", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 19, "s57191", "42405", "=q1=Glyph of Psychic Horror", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 20, "s57196", "42410", "=q1=Glyph of Psychic Scream", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
-				{ 21, "s57198", "42412", "=q1=Glyph of Scourge Imprisonment", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
-				{ 22, "s57201", "42416", "=q1=Glyph of Smite", "=ds=#sr# 210", "=ds="..AL["Trainer"] };
-				{ 23, "s64309", "45757", "=q1=Glyph of Spirit Tap", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
+				{ 2, "s57184", "42398", "=q1=Glyph of Fade", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
+				{ 3, "s57196", "42410", "=q1=Glyph of Psychic Scream", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
+				{ 4, "s57194", "42408", "=q1=Glyph of Power Word: Shield", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
+				{ 17, "s58319", "43370", "=q1=Glyph of Levitate", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 18, "s58321", "43372", "=q1=Glyph of Reflective Shield", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 6, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 7, "s126153", "86541", "=q1=Glyph of Confession", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 8, "s126687", "87276", "=q1=Glyph of Holy Resurrection", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 9, "s126800", "87392", "=q1=Glyph of Shadowy Friends", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 10, "s124466", "79538", "=q1=Glyph of the Heavens", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 11, "s126696", "87277", "=q1=Glyph of the Val'kyr", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 22, "s107907", "77101", "=q1=Glyph of Shadow", "=ds=#sr# 105", "=ds="..GetSpellInfo(61288) };
+				{ 23, "s58322", "43374", "=q1=Glyph of Dark Archangel", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 24, "s58320", "43373", "=q1=Glyph of Shackle Undead", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 25, "s58318", "43371", "=q1=Glyph of Borrowed Time", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 26, "s58317", "43342", "=q1=Glyph of Shadow Ravens", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["PRIEST"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["PRIEST"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
---http://ptr.wowhead.com/item=71799 needs to be checked before 4.3 goes live.
+
 	AtlasLoot_Data["Inscription_Rogue"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s57112", "42954", "=q1=Glyph of Adrenaline Rush", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 3, "s57114", "42956", "=q1=Glyph of Backstab", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 4, "s57120", "42961", "=q1=Glyph of Eviscerate", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
-				{ 5, "s57126", "42967", "=q1=Glyph of Hemorrhage", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s64285", "45762", "=q1=Glyph of Killing Spree", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 7, "s64260", "45768", "=q1=Glyph of Mutilate", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 17, "s57124", "42965", "=q1=Glyph of Revealing Strike", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s57128", "42969", "=q1=Glyph of Rupture", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 19, "s64286", "45764", "=q1=Glyph of Shadow Dance", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 20, "s57131", "42972", "=q1=Glyph of Sinister Strike", "=ds=#sr# 210", "=ds="..AL["Trainer"] };
-				{ 21, "s57132", "42973", "=q1=Glyph of Slice and Dice", "=ds=#sr# 235", "=ds="..AL["Trainer"] };
-				{ 22, "s64284", "45761", "=q1=Glyph of Vendetta", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 9, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 10, "s58323", "43379", "=q1=Glyph of Blurred Speed", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 11, "s58324", "43376", "=q1=Glyph of Distract", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 12, "s58325", "43377", "=q1=Glyph of Pick Lock", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 25, "s58326", "43343", "=q1=Glyph of Pick Pocket", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 26, "s58328", "43380", "=q1=Glyph of Poisons", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 27, "s58327", "43378", "=q1=Glyph of Safe Fall", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s64303", "45769", "=q1=Glyph of Cloak of Shadows", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s64315", "45766", "=q1=Glyph of Deadly Momentum", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s64286", "45764", "=q1=Glyph of Stealth", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s94711", "63420", "=q1=Glyph of Vanish", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64284", "45761", "=q1=Glyph of Vendetta", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s57115", "42957", "=q1=Glyph of Blade Flurry", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s57128", "42969", "=q1=Glyph of Cheap Shot", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s57116", "42958", "=q1=Glyph of Crippling Poison", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s57130", "42971", "=q1=Glyph of Kick", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s57117", "42959", "=q1=Glyph of Recuperate", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 12, "s57112", "42954", "=q1=Glyph of Shadow Walk", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 13, "s57127", "42968", "=q1=Glyph of Smoke Bomb", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 17, "s57113", "42955", "=q1=Glyph of Ambush", "=ds=#sr# 340", "=ds="..AL["Trainer"] };
+				{ 18, "s57122", "42963", "=q1=Glyph of Feint", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
+				{ 19, "s57133", "42974", "=q1=Glyph of Sprint", "=ds=#sr# 285", "=ds="..AL["Trainer"] };
+				{ 20, "s57132", "42973", "=q1=Glyph of Shiv", "=ds=#sr# 235", "=ds="..AL["Trainer"] };
+				{ 21, "s57131", "42972", "=q1=Glyph of Adrenaline Rush", "=ds=#sr# 210", "=ds="..AL["Trainer"] };
+				{ 22, "s57129", "42970", "=q1=Glyph of Sap", "=ds=#sr# 185", "=ds="..AL["Trainer"] };
+				{ 23, "s92579", "64493", "=q1=Glyph of Blind", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
+				{ 24, "s57125", "42966", "=q1=Glyph of Gouge", "=ds=#sr# 160", "=ds="..AL["Trainer"] };
+				{ 25, "s57123", "42964", "=q1=Glyph of Garrote", "=ds=#sr# 135", "=ds="..AL["Trainer"] };
+				{ 26, "s57121", "42962", "=q1=Glyph of Expose Armor", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
+				{ 27, "s57120", "42961", "=q1=Glyph of Debilitation", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
+				{ 28, "s57119", "42960", "=q1=Glyph of Evasion", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
 			};
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s57113", "42955", "=q1=Glyph of Ambush", "=ds=#sr# 340", "=ds="..AL["Trainer"] };
-				{ 3, "s57115", "42957", "=q1=Glyph of Blade Flurry", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 4, "s92579", "64493", "=q1=Glyph of Blind", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
-				{ 5, "s64303", "45769", "=q1=Glyph of Cloak of Shadows", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 6, "s57116", "42958", "=q1=Glyph of Crippling Poison", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 7, "s57117", "42959", "=q1=Glyph of Deadly Throw", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 8, "s57119", "42960", "=q1=Glyph of Evasion", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
-				{ 9, "s57121", "42962", "=q1=Glyph of Expose Armor", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
-				{ 10, "s64315", "45766", "=q1=Glyph of Fan of Knives", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 17, "s57122", "42963", "=q1=Glyph of Feint", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
-				{ 18, "s57123", "42964", "=q1=Glyph of Garrote", "=ds=#sr# 135", "=ds="..AL["Trainer"] };
-				{ 19, "s57125", "42966", "=q1=Glyph of Gouge", "=ds=#sr# 160", "=ds="..AL["Trainer"] };
-				{ 20, "s57130", "42971", "=q1=Glyph of Kick", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 21, "s57127", "42968", "=q1=Glyph of Preparation", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 22, "s57129", "42970", "=q1=Glyph of Sap", "=ds=#sr# 185", "=ds="..AL["Trainer"] };
-				{ 23, "s57133", "42974", "=q1=Glyph of Sprint", "=ds=#sr# 285", "=ds="..AL["Trainer"] };
-				{ 24, "s64310", "45767", "=q1=Glyph of Tricks of the Trade", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 25, "s94711", "63420", "=q1=Glyph of Vanish", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 2, "s64285", "45762", "=q1=Glyph of Killing Spree", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s64310", "45767", "=q1=Glyph of Tricks of the Trade", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s57124", "42965", "=q1=Glyph of Detection", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s57126", "42967", "=q1=Glyph of Hemorrhage", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64260", "45768", "=q1=Glyph of Disguise", "=ds=#sr# 255", "=ds="..AL["Trainer"] };
+				{ 7, "s57114", "42956", "=q1=Glyph of Decoy", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
+				{ 17, "s58323", "43379", "=q1=Glyph of Blurred Speed", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 18, "s58324", "43376", "=q1=Glyph of Distract", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 19, "s58325", "43377", "=q1=Glyph of Pick Lock", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 20, "s58326", "43343", "=q1=Glyph of Pick Pocket", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 21, "s58328", "43380", "=q1=Glyph of Poisons", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 22, "s58327", "43378", "=q1=Glyph of Safe Fall", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["ROGUE"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["ROGUE"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -4033,51 +4293,50 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Shaman"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s64261", "45775", "=q1=Glyph of Earth Shield", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 3, "s57236", "41527", "=q1=Glyph of Earthliving Weapon", "=ds=#sr# 300", "=ds="..AL["Trainer"] };
-				{ 4, "s64288", "45771", "=q1=Glyph of Feral Spirit", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 5, "s57237", "41529", "=q1=Glyph of Fire Elemental Totem", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s57239", "41531", "=q1=Glyph of Flame Shock", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
-				{ 7, "s57240", "41532", "=q1=Glyph of Flametongue Weapon", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
-				{ 8, "s57234", "41524", "=q1=Glyph of Lava Burst", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 9, "s57249", "41540", "=q1=Glyph of Lava Lash", "=ds=#sr# 165", "=ds="..AL["Trainer"] };
-				{ 17, "s57245", "41536", "=q1=Glyph of Lightning Bolt", "=ds=#sr# 140", "=ds="..AL["Trainer"] };
-				{ 18, "s64289", "45772", "=q1=Glyph of Riptide", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 19, "s57235", "41526", "=q1=Glyph of Shocking", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 20, "s57248", "41539", "=q1=Glyph of Stormstrike", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
-				{ 21, "s101057", "71155", "=q1=Glyph of Unleashed Lightning", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
-				{ 22, "s57251", "41541", "=q1=Glyph of Water Shield", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
-				{ 23, "s57252", "41542", "=q1=Glyph of Windfury Weapon", "=ds=#sr# 330", "=ds="..AL["Trainer"] };
-				{ 11, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 12, "s58329", "43381", "=q1=Glyph of Astral Recall", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 13, "s58330", "43385", "=q1=Glyph of Renewed Life", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 14, "s58332", "43386", "=q1=Glyph of the Arctic Wolf", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 27, "s57253", "44923", "=q1=Glyph of Thunderstorm", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 28, "s58331", "43344", "=q1=Glyph of Water Breathing", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 29, "s58333", "43388", "=q1=Glyph of Water Walking", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s64288", "45771", "=q1=Glyph of Feral Spirit", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s64316", "45777", "=q1=Glyph of Hex", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s64289", "45772", "=q1=Glyph of Riptide", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s64287", "45770", "=q1=Glyph of Thunder", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64247", "45778", "=q1=Glyph of Totemic Vigor", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s101057", "71155", "=q1=Glyph of Unleashed Lightning", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s57235", "41526", "=q1=Glyph of Capacitor Totem", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s57233", "41518", "=q1=Glyph of Chain Lightning", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s57250", "41552", "=q1=Glyph of Chaining", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s57237", "41529", "=q1=Glyph of Fire Elemental Totem", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 12, "s57247", "41538", "=q1=Glyph of Grounding Totem", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 13, "s57243", "41534", "=q1=Glyph of Healing Wave", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 14, "s57232", "41517", "=q1=Glyph of Unstable Earth", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 15, "s57234", "41524", "=q1=Glyph of Spirit Walk", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 17, "s57248", "41539", "=q1=Glyph of Spiritwalker's Grace", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 18, "s57252", "41542", "=q1=Glyph of Cleansing Waters", "=ds=#sr# 330", "=ds="..AL["Trainer"] };
+				{ 19, "s57236", "41527", "=q1=Glyph of Purge", "=ds=#sr# 300", "=ds="..AL["Trainer"] };
+				{ 20, "s57251", "41541", "=q1=Glyph of Water Shield", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
+				{ 21, "s64262", "45776", "=q1=Glyph of Shamanistic Rage", "=ds=#sr# 255", "=ds="..AL["Trainer"] };
+				{ 22, "s57244", "41535", "=q1=Glyph of Totemic Recall", "=ds=#sr# 235", "=ds="..AL["Trainer"] };
+				{ 23, "s57242", "41533", "=q1=Glyph of Healing Stream Totem", "=ds=#sr# 215", "=ds="..AL["Trainer"] };
+				{ 24, "s57241", "41547", "=q1=Glyph of Frost Shock", "=ds=#sr# 185", "=ds="..AL["Trainer"] };
+				{ 25, "s57245", "41536", "=q1=Glyph of Telluric Currents", "=ds=#sr# 140", "=ds="..AL["Trainer"] };
+				{ 26, "s57240", "41532", "=q1=Glyph of Wind Shear", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
+				{ 27, "s57238", "41530", "=q1=Glyph of Fire Nova", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
+				{ 28, "s57239", "41531", "=q1=Glyph of Flame Shock", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
+				{ 29, "s59326", "43725", "=q1=Glyph of Ghost Wolf", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
+				{ 30, "s58331", "43344", "=q1=Glyph of Healing Storm", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s57232", "41517", "=q1=Glyph of Chain Heal", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 3, "s57233", "41518", "=q1=Glyph of Chain Lightning", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 4, "s57250", "41552", "=q1=Glyph of Elemental Mastery", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 5, "s57238", "41530", "=q1=Glyph of Fire Nova", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
-				{ 6, "s57241", "41547", "=q1=Glyph of Frost Shock", "=ds=#sr# 185", "=ds="..AL["Trainer"] };
-				{ 7, "s59326", "43725", "=q1=Glyph of Ghost Wolf", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
-				{ 8, "s57247", "41538", "=q1=Glyph of Grounding Totem", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 9, "s57242", "41533", "=q1=Glyph of Healing Stream Totem", "=ds=#sr# 215", "=ds="..AL["Trainer"] };
-				{ 17, "s57243", "41534", "=q1=Glyph of Healing Wave", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s64316", "45777", "=q1=Glyph of Hex", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 19, "s57246", "41537", "=q1=Glyph of Lightning Shield", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
-				{ 20, "s64262", "45776", "=q1=Glyph of Shamanistic Rage", "=ds=#sr# 255", "=ds="..AL["Trainer"] };
-				{ 21, "s64247", "45778", "=q1=Glyph of Stoneclaw Totem", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 22, "s64287", "45770", "=q1=Glyph of Thunder", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 23, "s57244", "41535", "=q1=Glyph of Totemic Recall", "=ds=#sr# 235", "=ds="..AL["Trainer"] };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 2, "s64261", "45775", "=q1=Glyph of Deluge", "=ds=#sr# 250", "=ds="..AL["Trainer"] };
+				{ 3, "s57249", "41540", "=q1=Glyph of Lava Lash", "=ds=#sr# 165", "=ds="..AL["Trainer"] };
+				{ 4, "s57246", "41537", "=q1=Glyph of the Lakestrider", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
+				{ 5, "s58329", "43381", "=q1=Glyph of Astral Recall", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 17, "s58330", "43385", "=q1=Glyph of Far Sight", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 18, "s58332", "43386", "=q1=Glyph of the Spectral Wolf", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 19, "s57253", "44923", "=q1=Glyph of Thunderstorm", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 20, "s58333", "43388", "=q1=Glyph of Totemic Encirclement", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["SHAMAN"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["SHAMAN"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -4085,49 +4344,47 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Warlock"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s57260", "42456", "=q1=Glyph of Bane of Agony", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 3, "s64294", "45781", "=q1=Glyph of Chaos Bolt", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 4, "s57258", "42454", "=q1=Glyph of Conflagrate", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 5, "s57259", "42455", "=q1=Glyph of Corruption", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
-				{ 6, "s57263", "42459", "=q1=Glyph of Felguard", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 7, "s64291", "45779", "=q1=Glyph of Haunt", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 8, "s57268", "42464", "=q1=Glyph of Immolate", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 17, "s57269", "42465", "=q1=Glyph of Imp", "=ds=#sr# 140", "=ds="..AL["Trainer"] };
-				{ 18, "s57257", "42453", "=q1=Glyph of Incinerate", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 19, "s71102", "50077", "=q1=Glyph of Lash of Pain", "=ds=#sr# 375", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 20, "s64318", "45780", "=q1=Glyph of Metamorphosis", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 21, "s57272", "42468", "=q1=Glyph of Shadowburn", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
-				{ 22, "s57276", "42472", "=q1=Glyph of Unstable Affliction", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 10, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 11, "s58338", "43392", "=q1=Glyph of Curse of Exhaustion", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 12, "s58337", "43390", "=q1=Glyph of Drain Soul", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 13, "s58339", "43393", "=q1=Glyph of Enslave Demon", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 14, "s58340", "43391", "=q1=Glyph of Eye of Kilrogg", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 26, "s57265", "42461", "=q1=Glyph of Health Funnel", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
-				{ 27, "s58341", "43394", "=q1=Glyph of Ritual of Souls", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 28, "s58336", "43389", "=q1=Glyph of Unending Breath", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s64294", "45781", "=q1=Glyph of Burning Embers", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s64318", "45780", "=q1=Glyph of Demon Hunting", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s64317", "45782", "=q1=Glyph of Demonic Circle", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s64248", "45785", "=q1=Glyph of Life Tap", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64311", "45783", "=q1=Glyph of Shadowflame", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s64291", "45779", "=q1=Glyph of Soul Shards", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s57258", "42454", "=q1=Glyph of Conflagrate", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s57268", "42464", "=q1=Glyph of Dark Soul", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s57264", "42460", "=q1=Glyph of Demon Training", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s57276", "42472", "=q1=Glyph of Unstable Affliction", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 17, "s71102", "50077", "=q1=Glyph of Everlasting Affliction", "=ds=#sr# 375", "=ds="..AL["Trainer"] };
+				{ 18, "s57274", "42470", "=q1=Glyph of Soulstone", "=ds=#sr# 240", "=ds="..AL["Trainer"] };
+				{ 19, "s57270", "42466", "=q1=Glyph of Soul Swap", "=ds=#sr# 215", "=ds="..AL["Trainer"] };
+				{ 20, "s57269", "42465", "=q1=Glyph of Imp Swarm", "=ds=#sr# 140", "=ds="..AL["Trainer"] };
+				{ 21, "s57262", "42458", "=q1=Glyph of Fear", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
+				{ 22, "s57266", "42462", "=q1=Glyph of Healthstone", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
+				{ 23, "s57259", "42455", "=q1=Glyph of Siphon Life", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
+				{ 24, "s58338", "43392", "=q1=Glyph of Curse of Exhaustion", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 25, "s58337", "43390", "=q1=Glyph of Drain Soul", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s57261", "42457", "=q1=Glyph of Death Coil", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 3, "s64317", "45782", "=q1=Glyph of Demonic Circle", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 4, "s57262", "42458", "=q1=Glyph of Fear", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
-				{ 5, "s57264", "42460", "=q1=Glyph of Felhunter", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s57266", "42462", "=q1=Glyph of Healthstone", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
-				{ 7, "s57267", "42463", "=q1=Glyph of Howl of Terror", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 8, "s64248", "45785", "=q1=Glyph of Life Tap", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 17, "s57275", "42471", "=q1=Glyph of Seduction", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 2, "s64250", "45789", "=q1=Glyph of Crimson Banish", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 3, "s57263", "42459", "=q1=Glyph of Felguard", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 4, "s57261", "42457", "=q1=Glyph of Nightmares", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s57267", "42463", "=q1=Glyph of Subtlety", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s57260", "42456", "=q1=Glyph of Verdant Spheres", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s57257", "42453", "=q1=Glyph of Hand of Gul'dan", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 8, "s57275", "42471", "=q1=Glyph of Carrion Swarm", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 17, "s57277", "42473", "=q1=Glyph of Falling Meteor", "=ds=#sr# 190", "=ds="..AL["Trainer"] };
 				{ 18, "s57271", "42467", "=q1=Glyph of Shadow Bolt", "=ds=#sr# 165", "=ds="..AL["Trainer"] };
-				{ 19, "s64311", "45783", "=q1=Glyph of Shadowflame", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 20, "s64250", "45789", "=q1=Glyph of Soul Link", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 21, "s57270", "42466", "=q1=Glyph of Soul Swap", "=ds=#sr# 215", "=ds="..AL["Trainer"] };
-				{ 22, "s57274", "42470", "=q1=Glyph of Soulstone", "=ds=#sr# 240", "=ds="..AL["Trainer"] };
-				{ 23, "s57277", "42473", "=q1=Glyph of Voidwalker", "=ds=#sr# 190", "=ds="..AL["Trainer"] };
+				{ 19, "s57265", "42461", "=q1=Glyph of Health Funnel", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
+				{ 20, "s58339", "43393", "=q1=Glyph of Enslave Demon", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 21, "s58340", "43391", "=q1=Glyph of Eye of Kilrogg", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 22, "s58341", "43394", "=q1=Glyph of Soulwell", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 23, "s58336", "43389", "=q1=Glyph of Unending Breath", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["WARLOCK"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["WARLOCK"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -4135,49 +4392,52 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["Inscription_Warrior"] = {
 		["Normal"] = {
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Prime Glyph"], "" };
-				{ 2, "s64295", "45790", "=q1=Glyph of Bladestorm", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 3, "s57156", "43416", "=q1=Glyph of Bloodthirst", "=ds=#sr# 285", "=ds="..AL["Trainer"] };
-				{ 4, "s57155", "43415", "=q1=Glyph of Devastate", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 5, "s57160", "43421", "=q1=Glyph of Mortal Strike", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 6, "s57161", "43422", "=q1=Glyph of Overpower", "=ds=#sr# 170", "=ds="..AL["Trainer"] };
-				{ 17, "s57172", "43432", "=q1=Glyph of Raging Blow", "=ds=#sr# 345", "=ds="..AL["Trainer"] };
-				{ 18, "s57165", "43424", "=q1=Glyph of Revenge", "=ds=#sr# 190", "=ds="..AL["Trainer"] };
-				{ 19, "s57152", "43425", "=q1=Glyph of Shield Slam", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 20, "s57163", "43423", "=q1=Glyph of Slam", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
-				{ 8, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
-				{ 9, "s58342", "43395", "=q1=Glyph of Battle", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 10, "s58343", "43396", "=q1=Glyph of Berserker Rage", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 11, "s57153", "43412", "=q1=Glyph of Bloody Healing", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 12, "s68166", "49084", "=q1=Glyph of Command", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 13, "s58345", "43398", "=q1=Glyph of Demoralizing Shout", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 24, "s58347", "43400", "=q1=Glyph of Enduring Victory", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 25, "s64255", "45793", "=q1=Glyph of Furious Sundering", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 26, "s64312", "45794", "=q1=Glyph of Intimidating Shout", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 27, "s58344", "43397", "=q1=Glyph of Long Charge", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
-				{ 28, "s58346", "43399", "=q1=Glyph of Thunder Clap", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
+				{ 2, "s122015", "83096", "=q1=Glyph of Incite", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 3, "s89815", "63481", "=q1=Glyph of Colossus Smash", "=ds=#sr# 465", "=ds="..AL["Trainer"] };
+				{ 4, "s64296", "45792", "=q1=Glyph of Death From Above", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 5, "s64252", "45797", "=q1=Glyph of Shield Wall", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64302", "45795", "=q1=Glyph of Spell Reflection", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 7, "s64295", "45790", "=q1=Glyph of Whirlwind", "=ds=#sr# 430", "=ds="..GetSpellInfo(61177) };
+				{ 8, "s57159", "43419", "=q1=Glyph of Blitz", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 9, "s57155", "43415", "=q1=Glyph of Heavy Repercussions", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 10, "s57160", "43421", "=q1=Glyph of Mortal Strike", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 11, "s57164", "43430", "=q1=Glyph of Resonating Power", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 12, "s57152", "43425", "=q1=Glyph of Shield Slam", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 13, "s57170", "43431", "=q1=Glyph of Victory Rush", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 14, "s64255", "45793", "=q1=Glyph of Furious Sundering", "=ds=#sr# 355", "=ds="..GetSpellInfo(61177) };
+				{ 15, "s57172", "43432", "=q1=Glyph of Raging Wind", "=ds=#sr# 345", "=ds="..AL["Trainer"] };
+				{ 17, "s57168", "43428", "=q1=Glyph of Sweeping Strikes", "=ds=#sr# 320", "=ds="..AL["Trainer"] };
+				{ 18, "s57156", "43416", "=q1=Glyph of Bloodthirst", "=ds=#sr# 285", "=ds="..AL["Trainer"] };
+				{ 19, "s94406", "67482", "=q1=Glyph of Bull Rush", "=ds=#sr# 250", "=ds="..AL["Trainer"] };
+				{ 20, "s57154", "43414", "=q1=Glyph of Hindering Strikes", "=ds=#sr# 240", "=ds="..AL["Trainer"] };
+				{ 21, "s57165", "43424", "=q1=Glyph of Hold the Line", "=ds=#sr# 190", "=ds="..AL["Trainer"] };
+				{ 22, "s57161", "43422", "=q1=Glyph of Overpower", "=ds=#sr# 170", "=ds="..AL["Trainer"] };
+				{ 23, "s94405", "67483", "=q1=Glyph of Recklessness", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 24, "s57167", "43427", "=q1=Glyph of Hoarse Voice", "=ds=#sr# 140", "=ds="..AL["Trainer"] };
+				{ 25, "s57157", "43417", "=q1=Glyph of Rude Interruption", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
+				{ 26, "s57163", "43423", "=q1=Glyph of Hamstring", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
+				{ 27, "s57158", "43418", "=q1=Glyph of Gag Order", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
+				{ 28, "s57162", "43413", "=q1=Glyph of Enraged Speed", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
+				{ 29, "s58344", "43397", "=q1=Glyph of Long Charge", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
+				{ 30, "s58346", "43399", "=q1=Glyph of Unending Rage", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
 			};
 			{
-				{ 1, 0, "INV_Box_01", "=q6="..AL["Major Glyph"], "" };
-				{ 2, "s57154", "43414", "=q1=Glyph of Cleaving", "=ds=#sr# 240", "=ds="..AL["Trainer"] };
-				{ 3, "s89815", "63481", "=q1=Glyph of Colossus Smash", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"] };
-				{ 4, "s94405", "67483", "=q1=Glyph of Death Wish", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
-				{ 5, "s57158", "43418", "=q1=Glyph of Heroic Throw", "=ds=#sr# 95", "=ds="..AL["Trainer"] };
-				{ 6, "s94406", "67482", "=q1=Glyph of Intercept", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 7, "s57159", "43419", "=q1=Glyph of Intervene", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 8, "s57157", "43417", "=q1=Glyph of Piercing Howl", "=ds=#sr# 125", "=ds="..AL["Trainer"] };
-				{ 9, "s57162", "43413", "=q1=Glyph of Rapid Charge", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
-				{ 17, "s57164", "43430", "=q1=Glyph of Resonating Power", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
-				{ 18, "s64252", "45797", "=q1=Glyph of Shield Wall", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 19, "s64296", "45792", "=q1=Glyph of Shockwave", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 20, "s64302", "45795", "=q1=Glyph of Spell Reflection", "=ds=#sr# 425", "=ds="..AL["Book of Glyph Mastery"]};
-				{ 21, "s57167", "43427", "=q1=Glyph of Sunder Armor", "=ds=#sr# 140", "=ds="..AL["Trainer"] };
-				{ 22, "s57168", "43428", "=q1=Glyph of Sweeping Strikes", "=ds=#sr# 320", "=ds="..AL["Trainer"] };
-				{ 23, "s57170", "43431", "=q1=Glyph of Victory Rush", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 1, 0, "INV_Box_01", "=q6="..AL["Minor Glyph"], "" };
+				{ 2, "s112430", "80588", "=q1=Glyph of Burning Anger", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 3, "s112429", "80587", "=q1=Glyph of Crow Feast", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 4, "s123781", "85221", "=q1=Glyph of the Blazing Trail", "=ds=#sr# 595", "=ds="..GetSpellInfo(112996) };
+				{ 5, "s57153", "43412", "=q1=Glyph of Bloody Healing", "=ds=#sr# 385", "=ds="..GetSpellInfo(61177) };
+				{ 6, "s64312", "45794", "=q1=Glyph of Intimidating Shout", "=ds=#sr# 355", "=ds="..GetSpellInfo(61288) };
+				{ 17, "s58343", "43396", "=q1=Glyph of Bloodcurdling Shout", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 18, "s58345", "43398", "=q1=Glyph of Gushing Wound", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 19, "s58347", "43400", "=q1=Glyph of Mighty Victory", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 20, "s58342", "43395", "=q1=Glyph of Mystic Shout", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
+				{ 21, "s68166", "49084", "=q1=Glyph of Thunder Strike", "=ds=#sr# 75", "=ds="..GetSpellInfo(61288) };
 			};
 		};
 		info = {
-			name = INSCRIPTION..": "..AL["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["WARRIOR"],
+			name = INSCRIPTION..": "..BabbleInventory["Glyph"].." - "..LOCALIZED_CLASS_NAMES_MALE["WARRIOR"],
 			module = moduleName, menu = "INSCRIPTIONMENU"
 		};
 	};
@@ -4189,21 +4449,31 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["JewelRed"] ={
 		["Normal"] = {
 			{
-				{ 1, "s101799", "71883", "=q4=Bold Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 2, "s101797", "71881", "=q4=Brilliant Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 3, "s101795", "71879", "=q4=Delicate Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 4, "s101798", "71882", "=q4=Flashing Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 5, "s101796", "71880", "=q4=Precise Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 7, "s73335", "52206", "=q3=Bold Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 8, "s73338", "52207", "=q3=Brilliant Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 9, "s73336", "52212", "=q3=Delicate Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 10, "s73337", "52216", "=q3=Flashing Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 11, "s73339", "52230", "=q3=Precise Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 16, "s73222", "52081", "=q2=Bold Carnelian", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 17, "s73225", "52084", "=q2=Brilliant Carnelian", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 18, "s73223", "52082", "=q2=Delicate Carnelian", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 19, "s73224", "52083", "=q2=Flashing Carnelian", "=ds=#sr# 425", "=ds="..AL["World Drop"] };
-				{ 20, "s73226", "52085", "=q2=Precise Carnelian", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 1, "s107705", "76696", "=q3=Bold Primordial Ruby", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131686) };
+				{ 2, "s107706", "76694", "=q3=Brilliant Primordial Ruby", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131686) };
+				{ 3, "s107707", "76692", "=q3=Delicate Primordial Ruby", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131686) };
+				{ 4, "s107708", "76695", "=q3=Flashing Primordial Ruby", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131686) };
+				{ 5, "s107709", "76693", "=q3=Precise Primordial Ruby", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131686) };
+				{ 7, "s107622", "76564", "=q2=Bold Pandarian Garnet", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 8, "s107623", "76562", "=q2=Brilliant Pandarian Garnet", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 9, "s107625", "76563", "=q2=Flashing Pandarian Garnet", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 10, "s107626", "76561", "=q2=Precise Pandarian Garnet", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 11, "s107622", "76560", "=q2=Delicate Pandarian Garnet", "=ds=#sr# 530", "=ds="..AL["Trainer"] };
+				{ 16, "s101799", "71883", "=q4=Bold Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 17, "s101797", "71881", "=q4=Brilliant Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 18, "s101795", "71879", "=q4=Delicate Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 19, "s101798", "71882", "=q4=Flashing Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 20, "s101796", "71880", "=q4=Precise Queen's Garnet", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 21, "s73335", "52206", "=q3=Bold Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 22, "s73338", "52207", "=q3=Brilliant Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 23, "s73336", "52212", "=q3=Delicate Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 24, "s73337", "52216", "=q3=Flashing Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 25, "s73339", "52230", "=q3=Precise Inferno Ruby", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 26, "s73222", "52081", "=q2=Bold Carnelian", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 27, "s73225", "52084", "=q2=Brilliant Carnelian", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 28, "s73223", "52082", "=q2=Delicate Carnelian", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 29, "s73224", "52083", "=q2=Flashing Carnelian", "=ds=#sr# 425", "=ds="..AL["World Drop"] };
+				{ 30, "s73226", "52085", "=q2=Precise Carnelian", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
 			};
 			{
 				{ 1, "s66447", "40111", "=q4=Bold Cardinal Ruby", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
@@ -4211,32 +4481,30 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 3, "s66448", "40112", "=q4=Delicate Cardinal Ruby", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 4, "s66453", "40116", "=q4=Flashing Cardinal Ruby", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 5, "s66450", "40118", "=q4=Precise Cardinal Ruby", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 7, "s53830", "39996", "=q3=Bold Scarlet Ruby", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 8, "s53946", "39998", "=q3=Brilliant Scarlet Ruby", "=ds=#sr# 390", "=ds="..BabbleFaction["Kirin Tor"].." - "..BabbleFaction["Exalted"] };
-				{ 9, "s53945", "39997", "=q3=Delicate Scarlet Ruby", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 10, "s53949", "40001", "=q3=Flashing Scarlet Ruby", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 11, "s53951", "40003", "=q3=Precise Scarlet Ruby", "=ds=#sr# 390", "=ds="..AtlasLoot:EJ_GetBossName("Herald Volazj", 584).." ("..AL["Heroic"]..")" };
-				{ 16, "s53831", "39900", "=q2=Bold Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 17, "s53834", "39911", "=q2=Brilliant Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 18, "s53832", "39905", "=q2=Delicate Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 19, "s53844", "39908", "=q2=Flashing Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 20, "s54017", "39910", "=q2=Precise Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-			};
-			{
-				{ 1, "s39705", "32193", "=q4=Bold Crimson Spinel", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
-				{ 2, "s39710", "32195", "=q4=Brilliant Crimson Spinel", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
-				{ 3, "s39706", "32194", "=q4=Delicate Crimson Spinel", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
-				{ 4, "s39714", "32199", "=q4=Flashing Crimson Spinel", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
-				{ 6, "s42589", "33131", "=q4=Crimson Sun", "=ds=#sr# 360", "=ds="..BabbleFaction["The Consortium"].." - "..BabbleFaction["Revered"] };
-				{ 7, "s42558", "33133", "=q4=Don Julio's Heart", "=ds=#sr# 360", "=ds="..BabbleFaction["The Consortium"].." - "..BabbleFaction["Revered"] };
-				{ 8, "s42588", "33134", "=q4=Kailee's Rose", "=ds=#sr# 360", "=ds="..BabbleFaction["The Sha'tar"].." - "..BabbleFaction["Honored"] };
-				{ 16, "s31084", "24027", "=q3=Bold Living Ruby", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 17, "s31087", "24029", "=q3=Brilliant Living Ruby", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 18, "s31085", "24028", "=q3=Delicate Living Ruby", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 19, "s31091", "24036", "=q3=Flashing Living Ruby", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 21, "s28905", "23095", "=q2=Bold Blood Garnet", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
-				{ 22, "s28906", "23096", "=q2=Brilliant Blood Garnet", "=ds=#sr# 305", "=ds="..BabbleFaction["The Scryers"].." - "..BabbleFaction["Friendly"] };
-				{ 23, "s28907", "23097", "=q2=Delicate Blood Garnet", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
+				{ 6, "s53830", "39996", "=q3=Bold Scarlet Ruby", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 7, "s53946", "39998", "=q3=Brilliant Scarlet Ruby", "=ds=#sr# 390", "=ds="..BabbleFaction["Kirin Tor"].." - "..BabbleFaction["Exalted"] };
+				{ 8, "s53945", "39997", "=q3=Delicate Scarlet Ruby", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 9, "s53949", "40001", "=q3=Flashing Scarlet Ruby", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 10, "s53951", "40003", "=q3=Precise Scarlet Ruby", "=ds=#sr# 390", "=ds="..AtlasLoot:EJ_GetBossName("Herald Volazj", 584).." ("..AL["Heroic"]..")" };
+				{ 11, "s53831", "39900", "=q2=Bold Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 12, "s53852", "39912", "=q2=Brilliant Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 13, "s53832", "39905", "=q2=Delicate Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 14, "s53844", "39908", "=q2=Flashing Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 15, "s54017", "39910", "=q2=Precise Bloodstone", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 16, "s39705", "32193", "=q4=Bold Crimson Spinel", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
+				{ 17, "s39711", "32196", "=q4=Brilliant Crimson Spinel", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
+				{ 18, "s39706", "32194", "=q4=Delicate Crimson Spinel", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
+				{ 19, "s39714", "32199", "=q4=Flashing Crimson Spinel", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
+				{ 20, "s42589", "33131", "=q4=Crimson Sun", "=ds=#sr# 360", "=ds="..BabbleFaction["The Consortium"].." - "..BabbleFaction["Revered"] };
+				{ 21, "s42558", "33133", "=q4=Don Julio's Heart", "=ds=#sr# 360", "=ds="..BabbleFaction["The Consortium"].." - "..BabbleFaction["Revered"] };
+				{ 22, "s42588", "33134", "=q4=Kailee's Rose", "=ds=#sr# 360", "=ds="..BabbleFaction["The Sha'tar"].." - "..BabbleFaction["Honored"] };
+				{ 23, "s31084", "24027", "=q3=Bold Living Ruby", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 24, "s31088", "24030", "=q3=Brilliant Living Ruby", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 25, "s31085", "24028", "=q3=Delicate Living Ruby", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 26, "s31091", "24036", "=q3=Flashing Living Ruby", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 27, "s28905", "23095", "=q2=Bold Blood Garnet", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
+				{ 28, "s28903", "23094", "=q2=Brilliant Blood Garnet", "=ds=#sr# 305", "=ds="..BabbleFaction["The Scryers"].." - "..BabbleFaction["Friendly"] };
+				{ 29, "s34590", "28595", "=q2=Delicate Blood Garnet", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
 			};
 		};
 		info = {
@@ -4248,45 +4516,53 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["JewelBlue"] = {
 		["Normal"] = {
 			{
-				{ 1, "s101735", "71817", "=q4=Rigid Deepholm Iolite", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 2, "s101742", "71820", "=q4=Solid Deepholm Iolite", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 3, "s101741", "71819", "=q4=Sparkling Deepholm Iolite", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 4, "s101740", "71818", "=q4=Stormy Deepholm Iolite", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 6, "s73344", "52235", "=q3=Rigid Ocean Sapphire", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 7, "s73340", "52242", "=q3=Solid Ocean Sapphire", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 8, "s73341", "52244", "=q3=Sparkling Ocean Sapphire", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 9, "s73343", "52246", "=q3=Stormy Ocean Sapphire", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 11, "s73230", "52089", "=q2=Rigid Zephyrite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 12, "s73227", "52086", "=q2=Solid Zephyrite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 13, "s73228", "52087", "=q2=Sparkling Zephyrite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 14, "s73229", "52088", "=q2=Stormy Zephyrite", "=ds=#sr# 425", "=ds="..AL["World Drop"] };
-				{ 16, "s66501", "40125", "=q4=Rigid Majestic Zircon", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 17, "s66497", "40119", "=q4=Solid Majestic Zircon", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 18, "s66498", "40120", "=q4=Sparkling Majestic Zircon", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 19, "s66499", "40122", "=q4=Stormy Majestic Zircon", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 21, "s53958", "40014", "=q3=Rigid Sky Sapphire", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 22, "s53952", "40008", "=q3=Solid Sky Sapphire", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 23, "s53953", "40009", "=q3=Sparkling Sky Sapphire", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 24, "s53955", "40011", "=q3=Stormy Sky Sapphire", "=ds=#sr# 390", "=ds="..BabbleZone["Wintergrasp"] };
-				{ 26, "s53854", "39915", "=q2=Rigid Chalcedony", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 27, "s53934", "39919", "=q2=Solid Chalcedony", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 28, "s53940", "39920", "=q2=Sparkling Chalcedony", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 29, "s53943", "39932", "=q2=Stormy Chalcedony", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 1, "s106947", "76636", "=q3=Rigid River's Heart", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131593) };
+				{ 2, "s106950", "76639", "=q3=Solid River's Heart", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131593) };
+				{ 3, "s106949", "76638", "=q3=Sparkling River's Heart", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131593) };
+				{ 4, "s106948", "76637", "=q3=Stormy River's Heart", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131593) };
+				{ 6, "s107621", "76504", "=q2=Stormy Lapis Lazuli", "=ds=#sr# 555", "=ds="..AL["Trainer"] };
+				{ 7, "s107620", "76505", "=q2=Sparkling Lapis Lazuli", "=ds=#sr# 545", "=ds="..AL["Trainer"] };
+				{ 8, "s107619", "76506", "=q2=Solid Lapis Lazuli", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 9, "s107617", "76502", "=q2=Rigid Lapis Lazuli", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+				{ 16, "s101735", "71817", "=q4=Rigid Deepholm Iolite", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 17, "s101742", "71820", "=q4=Solid Deepholm Iolite", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 18, "s101741", "71819", "=q4=Sparkling Deepholm Iolite", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 19, "s101740", "71818", "=q4=Stormy Deepholm Iolite", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 21, "s73344", "52235", "=q3=Rigid Ocean Sapphire", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 22, "s73340", "52242", "=q3=Solid Ocean Sapphire", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 23, "s73341", "52244", "=q3=Sparkling Ocean Sapphire", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 24, "s73343", "52246", "=q3=Stormy Ocean Sapphire", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 26, "s73230", "52089", "=q2=Rigid Zephyrite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 27, "s73227", "52086", "=q2=Solid Zephyrite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 28, "s73228", "52087", "=q2=Sparkling Zephyrite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 29, "s73229", "52088", "=q2=Stormy Zephyrite", "=ds=#sr# 425", "=ds="..AL["World Drop"] };
 			};
 			{
-				{ 1, "s39721", "32206", "=q4=Rigid Empyrean Sapphire", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Revered"] };
-				{ 2, "s39715", "32200", "=q4=Solid Empyrean Sapphire", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
-				{ 3, "s39716", "32201", "=q4=Sparkling Empyrean Sapphire", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
-				{ 4, "s39718", "32203", "=q4=Stormy Empyrean Sapphire", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
-				{ 5, "s42590", "33135", "=q4=Falling Star", "=ds=#sr# 360", "=ds="..BabbleFaction["Lower City"].." - "..BabbleFaction["Revered"] };
-				{ 7, "s31098", "24051", "=q3=Rigid Star of Elune", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 8, "s31092", "24033", "=q3=Solid Star of Elune", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 9, "s31149", "24035", "=q3=Sparkling Star of Elune", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 10, "s31095", "24039", "=q3=Stormy Star of Elune", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 16, "s28948", "23116", "=q2=Rigid Azure Moonstone", "=ds=#sr# 325", "=ds="..AL["Trainer"]};
-				{ 17, "s28955", "23120", "=q2=Stormy Azure Moonstone", "=ds=#sr# 315", "=ds="..AL["World Drop"]};
-				{ 18, "s28950", "23118", "=q2=Solid Azure Moonstone", "=ds=#sr# 305", "=ds="..AL["Trainer"]};
-				{ 19, "s28953", "23119", "=q2=Sparkling Azure Moonstone", "=ds=#sr# 300", "=ds="..AL["Trainer"]};
+				{ 1, "s66501", "40125", "=q4=Rigid Majestic Zircon", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 2, "s66497", "40119", "=q4=Solid Majestic Zircon", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 3, "s66498", "40120", "=q4=Sparkling Majestic Zircon", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 4, "s66499", "40122", "=q4=Stormy Majestic Zircon", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 6, "s53958", "40014", "=q3=Rigid Sky Sapphire", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 7, "s53952", "40008", "=q3=Solid Sky Sapphire", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 8, "s53954", "40010", "=q3=Sparkling Sky Sapphire", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 9, "s53955", "40011", "=q3=Stormy Sky Sapphire", "=ds=#sr# 390", "=ds="..BabbleZone["Wintergrasp"] };
+				{ 11, "s53854", "39915", "=q2=Rigid Chalcedony", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 12, "s53934", "39919", "=q2=Solid Chalcedony", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 13, "s53941", "39927", "=q2=Sparkling Chalcedony", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 14, "s53943", "39932", "=q2=Stormy Chalcedony", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 16, "s39721", "32206", "=q4=Rigid Empyrean Sapphire", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Revered"] };
+				{ 17, "s39715", "32200", "=q4=Solid Empyrean Sapphire", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
+				{ 18, "s39716", "32201", "=q4=Sparkling Empyrean Sapphire", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
+				{ 19, "s39718", "32203", "=q4=Stormy Empyrean Sapphire", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
+				{ 20, "s42590", "33135", "=q4=Falling Star", "=ds=#sr# 360", "=ds="..BabbleFaction["Lower City"].." - "..BabbleFaction["Revered"] };
+				{ 22, "s31098", "24051", "=q3=Rigid Star of Elune", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 23, "s31092", "24033", "=q3=Solid Star of Elune", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 24, "s31149", "24035", "=q3=Sparkling Star of Elune", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 25, "s31095", "24039", "=q3=Stormy Star of Elune", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 27, "s28948", "23116", "=q2=Rigid Azure Moonstone", "=ds=#sr# 325", "=ds="..AL["Trainer"]};
+				{ 28, "s28955", "23120", "=q2=Stormy Azure Moonstone", "=ds=#sr# 315", "=ds="..AL["World Drop"]};
+				{ 29, "s28950", "23118", "=q2=Solid Azure Moonstone", "=ds=#sr# 305", "=ds="..AL["Trainer"]};
+				{ 30, "s28953", "23119", "=q2=Sparkling Azure Moonstone", "=ds=#sr# 300", "=ds="..AL["Trainer"]};
 			};
 		};
 		info = {
@@ -4298,46 +4574,56 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["JewelYellow"] = {
 		["Normal"] = {
 			{
-				{ 1, "s101803", "71877", "=q4=Fractured Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 2, "s101804", "71878", "=q4=Mystic Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 3, "s101802", "71876", "=q4=Quick Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 4, "s101800", "71874", "=q4=Smooth Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 5, "s101801", "71875", "=q4=Subtle Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 7, "s73349", "52219", "=q3=Fractured Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 8, "s73347", "52226", "=q3=Mystic Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 9, "s73348", "52232", "=q3=Quick Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 10, "s73346", "52241", "=q3=Smooth Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 11, "s73345", "52247", "=q3=Subtle Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
-				{ 16, "s73239", "52094", "=q2=Fractured Alicite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 17, "s73234", "52093", "=q2=Quick Alicite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 18, "s73232", "52091", "=q2=Smooth Alicite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 19, "s73231", "52090", "=q2=Subtle Alicite", "=ds=#sr# 425", "=ds="..AL["World Drop"] };
+				{ 1, "s107710", "76700", "=q3=Fractured Sun's Radiance", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131695) };
+				{ 2, "s107711", "76701", "=q3=Mystic Sun's Radiance", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131695) };
+				{ 3, "s107712", "76699", "=q3=Quick Sun's Radiance", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131695) };
+				{ 4, "s107713", "76697", "=q3=Smooth Sun's Radiance", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131695) };
+				{ 5, "s107714", "76698", "=q3=Subtle Sun's Radiance", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131695) };
+				{ 7, "s107644", "76566", "=q2=Subtle Sunstone", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 8, "s107643", "76565", "=q2=Smooth Sunstone", "=ds=#sr# 565", "=ds="..AL["Trainer"] };
+				{ 9, "s107642", "76567", "=q2=Quick Sunstone", "=ds=#sr# 555", "=ds="..AL["Trainer"] };
+				{ 10, "s107641", "76569", "=q2=Mystic Sunstone", "=ds=#sr# 545", "=ds="..AL["Trainer"] };
+				{ 11, "s107640", "76568", "=q2=Fractured Sunstone", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 16, "s101803", "71877", "=q4=Fractured Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 17, "s101804", "71878", "=q4=Mystic Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 18, "s101802", "71876", "=q4=Quick Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 19, "s101800", "71874", "=q4=Smooth Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 20, "s101801", "71875", "=q4=Subtle Lightstone", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 21, "s73349", "52219", "=q3=Fractured Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 22, "s73347", "52226", "=q3=Mystic Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 23, "s73348", "52232", "=q3=Quick Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 24, "s73346", "52241", "=q3=Smooth Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 25, "s73345", "52247", "=q3=Subtle Amberjewel", "=ds=#sr# 465", "#CATAJW:3#"..AL["Vendor"] };
+				{ 26, "s73239", "52094", "=q2=Fractured Alicite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 27, "s73234", "52093", "=q2=Quick Alicite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 28, "s73232", "52091", "=q2=Smooth Alicite", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 29, "s73231", "52090", "=q2=Subtle Alicite", "=ds=#sr# 425", "=ds="..AL["World Drop"] };
 			};
 			{
 				{ 1, "s66505", "40127", "=q4=Mystic King's Amber", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 2, "s66506", "40128", "=q4=Quick King's Amber", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 3, "s66502", "40124", "=q4=Smooth King's Amber", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 4, "s66504", "40126", "=q4=Subtle King's Amber", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 4, "s66452", "40115", "=q4=Subtle King's Amber", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 6, "s53960", "40016", "=q3=Mystic Autumn's Glow", "=ds=#sr# 390", "=ds="..BabbleZone["Wintergrasp"] };
 				{ 7, "s53961", "40017", "=q3=Quick Autumn's Glow", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 8, "s53957", "40013", "=q3=Smooth Autumn's Glow", "=ds=#sr# 390", "=ds="..BabbleFaction["The Sons of Hodir"].." - "..BabbleFaction["Exalted"] };
-				{ 9, "s53959", "40015", "=q3=Subtle Autumn's Glow", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 9, "s53948", "40000", "=q3=Subtle Autumn's Glow", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 11, "s53857", "39917", "=q2=Mystic Sun Crystal", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 12, "s53856", "39918", "=q2=Quick Sun Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 13, "s53853", "39914", "=q2=Smooth Sun Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 14, "s53855", "39916", "=q2=Subtle Sun Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 13, "s53845", "39909", "=q2=Smooth Sun Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 14, "s53843", "39907", "=q2=Subtle Sun Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 16, "s39724", "32209", "=q4=Mystic Lionseye", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
 				{ 17, "s47056", "35761", "=q4=Quick Lionseye", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Revered"] };
 				{ 18, "s39720", "32205", "=q4=Smooth Lionseye", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
-				{ 19, "s39723", "32208", "=q4=Subtle Lionseye", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
+				{ 19, "s39713", "32198", "=q4=Subtle Lionseye", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Friendly"] };
 				{ 20, "s42592", "33140", "=q4=Blood of Amber", "=ds=#sr# 360", "=ds="..BabbleFaction["The Sha'tar"].." - "..BabbleFaction["Revered"] };
 				{ 21, "s42593", "33144", "=q4=Facet of Eternity", "=ds=#sr# 360", "=ds="..BabbleFaction["Keepers of Time"].." - "..BabbleFaction["Honored"] };
 				{ 22, "s42591", "33143", "=q4=Stone of Blades", "=ds=#sr# 360", "=ds="..BabbleFaction["Keepers of Time"].." - "..BabbleFaction["Revered"] };
 				{ 24, "s31101", "24053", "=q3=Mystic Dawnstone", "=ds=#sr# 350", "=ds="..AL["Vendor"]..": "..BabbleZone["Nagrand"] };
 				{ 25, "s46403", "35315", "=q3=Quick Dawnstone", "=ds=#sr# 350", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
 				{ 26, "s31097", "24048", "=q3=Smooth Dawnstone", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 27, "s31100", "24052", "=q3=Subtle Dawnstone", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 29, "s34069", "28290", "=q2=Smooth Golden Draenite", "=ds=#sr# 325", "=ds="..BabbleFaction["The Aldor"].." - "..BabbleFaction["Friendly"] };
+				{ 27, "s31090", "24032", "=q3=Subtle Dawnstone", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 29, "s28944", "23114", "=q2=Smooth Golden Draenite", "=ds=#sr# 325", "=ds="..BabbleFaction["The Aldor"].." - "..BabbleFaction["Friendly"] };
 				{ 30, "s28947", "23115", "=q2=Subtle Golden Draenite", "=ds=#sr# 315", "=ds="..BabbleFaction["The Consortium"].." - "..BabbleFaction["Honored"] };
 			};
 		};
@@ -4349,6 +4635,46 @@ local SPELLFIRE = GetSpellInfo(26797);
 
 	AtlasLoot_Data["JewelGreen"] = {
 		["Normal"] = {
+			{
+				{ 1, "s106960", "76646", "=q3=Balanced Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 2, "s106957", "76644", "=q3=Effulgent Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 3, "s107737", "76651", "=q3=Energized Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 4, "s107738", "76654", "=q3=Forceful Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 5, "s107739", "76652", "=q3=Jagged Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 6, "s106955", "76642", "=q3=Lightning Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 7, "s106953", "76640", "=q3=Misty Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 8, "s107740", "76655", "=q3=Nimble Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 9, "s106954", "76641", "=q3=Piercing Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 16, "s107742", "76656", "=q3=Puissant Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 17, "s107743", "76649", "=q3=Radiant Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 18, "s107744", "76653", "=q3=Regal Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 19, "s106956", "76643", "=q3=Sensei's Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 20, "s107745", "76650", "=q3=Shattered Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 21, "s107746", "76657", "=q3=Steady Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 22, "s106962", "76648", "=q3=Turbid Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 23, "s106961", "76647", "=q3=Vivid Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+				{ 24, "s106958", "76645", "=q3=Zen Wild Jade", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131688) };
+			};
+			{
+				{ 1, "s107609", "76517", "=q2=Radiant Alexandrite", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 2, "s107608", "76524", "=q2=Puissant Alexandrite", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 3, "s107601", "76522", "=q2=Forceful Alexandrite", "=ds=#sr# 565", "=ds="..AL["Trainer"] };
+				{ 4, "s107607", "76519", "=q2=Energized Alexandrite", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 5, "s107607", "76508", "=q2=Piercing Alexandrite", "=ds=#sr# 555", "=ds="..AL["Trainer"] };
+				{ 6, "s107613", "76525", "=q2=Steady Alexandrite", "=ds=#sr# 555", "=ds="..AL["Trainer"] };
+				{ 7, "s107598", "76513", "=q2=Balanced Alexandrite", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 8, "s107599", "76511", "=q2=Effulgent Alexandrite", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 9, "s107611", "76510", "=q2=Sensei's Alexandrite", "=ds=#sr# 545", "=ds="..AL["Trainer"] };
+				{ 16, "s107614", "76515", "=q2=Turbid Alexandrite", "=ds=#sr# 545", "=ds="..AL["Trainer"] };
+				{ 17, "s107605", "76507", "=q2=Misty Alexandrite", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 18, "s107612", "76518", "=q2=Shattered Alexandrite", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 19, "s107610", "76521", "=q2=Regal Alexandrite", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 20, "s107616", "76512", "=q2=Zen Alexandrite", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 21, "s107602", "76520", "=q2=Jagged Alexandrite", "=ds=#sr# 530", "=ds="..AL["Trainer"] };
+				{ 22, "s107606", "76523", "=q2=Nimble Alexandrite", "=ds=#sr# 530", "=ds="..AL["Trainer"] };
+				{ 23, "s107604", "76509", "=q2=Lightning Alexandrite", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+				{ 24, "s107615", "76514", "=q2=Vivid Alexandrite", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+			};
 			{
 				{ 1, "s101749", "71828", "=q4=Balanced Elven Peridot", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
 				{ 2, "s101754", "71833", "=q4=Energized Elven Peridot", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
@@ -4417,13 +4743,13 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 26, "s54005", "40102", "=q3=Turbid Forest Emerald", "=ds=#sr# 390", "=ds="..BabbleZone["Wintergrasp"] };
 			};
 			{
-				{ 1, "s53930", "39989", "=q2=Energized Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 1, "s53925", "39983", "=q2=Energized Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 2, "s53920", "39978", "=q2=Forceful Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 3, "s53916", "39974", "=q2=Jagged Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 4, "s53928", "39986", "=q2=Lightning Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 3, "s53870", "39933", "=q2=Jagged Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 4, "s53923", "39981", "=q2=Lightning Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 5, "s53922", "39980", "=q2=Misty Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 6, "s53917", "39975", "=q2=Nimble Dark Jade", "=ds=#sr# 350", "=ds="..BabbleFaction["The Oracles"].." - "..BabbleFaction["Friendly"] };
-				{ 7, "s53931", "39990", "=q2=Radiant Dark Jade", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 7, "s53932", "39991", "=q2=Radiant Dark Jade", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 8, "s53918", "39976", "=q2=Regal Dark Jade", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 9, "s53933", "39992", "=q2=Shattered Dark Jade", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 10, "s53919", "39977", "=q2=Steady Dark Jade", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
@@ -4436,7 +4762,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 22, "s46405", "35318", "=q3=Forceful Talasite", "=ds=#sr# 350", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
 				{ 23, "s31113", "24067", "=q3=Jagged Talasite", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
 				{ 24, "s31111", "24066", "=q3=Radiant Talasite", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 25, "s31110", "24062", "=q3=Regal Talasite", "=ds=#sr# 350", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Revered"] };
+				{ 25, "s46803", "35707", "=q3=Regal Talasite", "=ds=#sr# 350", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Revered"] };
 				{ 26, "s43493", "33782", "=q3=Steady Talasite", "=ds=#sr# 350", "=ds=#sr# "..AL["Vendor"]..": "..BabbleZone["Nagrand"] };
 				{
 					{ 28, "s28918", "23105", "=q2=Regal Deep Peridot", "=ds=#sr# 315", "=ds="..BabbleFaction["Thrallmar"].." - "..BabbleFaction["Friendly"] };
@@ -4454,6 +4780,54 @@ local SPELLFIRE = GetSpellInfo(26797);
 
 	AtlasLoot_Data["JewelOrange"] = {
 		["Normal"] = {
+			{
+				{ 1, "s107715", "76670", "=q3=Adept Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 2, "s107716", "76672", "=q3=Artful Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 3, "s107717", "76665", "=q3=Champion's Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 4, "s107718", "76659", "=q3=Crafty Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 5, "s107719", "76658", "=q3=Deadly Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 6, "s107720", "76666", "=q3=Deft Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 7, "s107721", "76669", "=q3=Fierce Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 8, "s107722", "76673", "=q3=Fine Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 9, "s107723", "76661", "=q3=Inscribed Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 10, "s107724", "76671", "=q3=Keen Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 11, "s107725", "76675", "=q3=Lucent Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 16, "s107726", "76662", "=q3=Polished Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 17, "s107727", "76660", "=q3=Potent Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 18, "s107728", "76668", "=q3=Reckless Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 19, "s107729", "76663", "=q3=Resolute Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 20, "s107730", "76679", "=q3=Resplendent Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 21, "s107731", "76674", "=q3=Skillful Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 22, "s107732", "76678", "=q3=Splendid Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 23, "s107733", "76664", "=q3=Stalwart Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 24, "s107734", "76676", "=q3=Tenuous Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 25, "s107735", "76667", "=q3=Wicked Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+				{ 26, "s107736", "76677", "=q3=Willful Vermilion Onyx", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131690) };
+			};
+			{
+				{ 1, "s107659", "76531", "=q2=Resolute Tiger Opal", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 2, "s107660", "76547", "=q2=Resplendent Tiger Opal", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 3, "s107662", "76546", "=q2=Splendid Tiger Opal", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 4, "s107666", "76535", "=q2=Wicked Tiger Opal", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 5, "s107648", "76527", "=q2=Crafty Tiger Opal", "=ds=#sr# 565", "=ds="..AL["Trainer"] };
+				{ 6, "s107663", "76532", "=q2=Stalwart Tiger Opal", "=ds=#sr# 565", "=ds="..AL["Trainer"] };
+				{ 7, "s107657", "76528", "=q2=Potent Tiger Opal", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 8, "s107661", "76542", "=q2=Skillful Tiger Opal", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 9, "s107651", "76537", "=q2=Fierce Tiger Opal", "=ds=#sr# 555", "=ds="..AL["Trainer"] };
+				{ 10, "s107653", "76529", "=q2=Inscribed Tiger Opal", "=ds=#sr# 555", "=ds="..AL["Trainer"] };
+				{ 11, "s107645", "76538", "=q2=Adept Tiger Opal", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 16, "s107665", "76544", "=q2=Tenuous Tiger Opal", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 17, "s107647", "76533", "=q2=Champion's Tiger Opal", "=ds=#sr# 545", "=ds="..AL["Trainer"] };
+				{ 18, "s107656", "76530", "=q2=Polished Tiger Opal", "=ds=#sr# 545", "=ds="..AL["Trainer"] };
+				{ 19, "s107655", "76543", "=q2=Lucent Tiger Opal", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 20, "s107658", "76536", "=q2=Reckless Tiger Opal", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 21, "s107652", "76541", "=q2=Fine Tiger Opal", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 22, "s107667", "76545", "=q2=Willful Tiger Opal", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 23, "s107650", "76534", "=q2=Deft Tiger Opal", "=ds=#sr# 530", "=ds="..AL["Trainer"] };
+				{ 24, "s107654", "76539", "=q2=Keen Tiger Opal", "=ds=#sr# 530", "=ds="..AL["Trainer"] };
+				{ 25, "s107646", "76540", "=q2=Artful Tiger Opal", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+				{ 26, "s107649", "76526", "=q2=Deadly Tiger Opal", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+			};
 			{
 				{ 1, "s101773", "71852", "=q4=Adept Lava Coral", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
 				{ 2, "s101775", "71854", "=q4=Artful Lava Coral", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
@@ -4523,7 +4897,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 12, "s66571", "40154", "=q4=Willful Ametrine", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 16, "s53977", "40039", "=q3=Champion's Monarch Topaz", "=ds=#sr# 390", "=ds="..AL["World Drop"]..""};
 				{ 17, "s53979", "40043", "=q3=Deadly Monarch Topaz", "=ds=#sr# 390", "=ds="..BabbleFaction["Knights of the Ebon Blade"].." - "..BabbleFaction["Revered"] };
-				{ 18, "s53982", "40046", "=q3=Deft Monarch Topaz", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 18, "s53991", "40055", "=q3=Deft Monarch Topaz", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 19, "s54019", "40041", "=q3=Fierce Monarch Topaz", "=ds=#sr# 390", "=ds="..AtlasLoot:EJ_GetBossName("Ingvar the Plunderer", 640).." ("..AL["Heroic"]..")" };
 				{ 20, "s53975", "40037", "=q3=Inscribed Monarch Topaz", "=ds=#sr# 390", "=ds="..AL["World Drop"]..""};
 				{ 21, "s53981", "40045", "=q3=Lucent Monarch Topaz", "=ds=#sr# 390", "=ds="..BabbleZone["Wintergrasp"] };
@@ -4531,7 +4905,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 23, "s53987", "40051", "=q3=Reckless Monarch Topaz", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 24, "s54023", "40059", "=q3=Resolute Monarch Topaz", "=ds=#sr# 390", "=ds="..AL["World Drop"]..""};
 				{ 25, "s53978", "40040", "=q3=Resplendent Monarch Topaz", "=ds=#sr# 390", "=ds="..BabbleZone["Wintergrasp"] };
-				{ 26, "s53992", "40056", "=q3=Stalwart Monarch Topaz", "=ds=#sr# 390", "=ds="..BabbleFaction["The Wyrmrest Accord"].." - "..BabbleFaction["Exalted"] };
+				{ 26, "s53993", "40057", "=q3=Stalwart Monarch Topaz", "=ds=#sr# 390", "=ds="..BabbleFaction["The Wyrmrest Accord"].." - "..BabbleFaction["Exalted"] };
 				{ 27, "s53986", "40050", "=q3=Willful Monarch Topaz", "=ds=#sr# 390", "=ds="..BabbleZone["Wintergrasp"] };
 			};
 			{
@@ -4545,7 +4919,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 8, "s53885", "39959", "=q2=Reckless Huge Citrine", "=ds=#sr# 350", "=ds="..BabbleFaction["Frenzyheart Tribe"].." - "..BabbleFaction["Friendly"] };
 				{ 9, "s53893", "39967", "=q2=Resolute Huge Citrine", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 10, "s53875", "39950", "=q2=Resplendent Huge Citrine", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 11, "s53890", "39964", "=q2=Stalwart Huge Citrine", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 11, "s53891", "39965", "=q2=Stalwart Huge Citrine", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 12, "s53884", "39958", "=q2=Willful Huge Citrine", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 16, "s39738", "32222", "=q4=Deadly Pyrestone", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Revered"] };
 				{ 17, "s39733", "32217", "=q4=Inscribed Pyrestone", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
@@ -4554,7 +4928,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 21, "s39471", "31868", "=q3=Deadly Noble Topaz", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
 				{ 22, "s31106", "24058", "=q3=Inscribed Noble Topaz", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
 				{ 23, "s31107", "24059", "=q3=Potent Noble Topaz", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 24, "s46404", "35316", "=q3=Reckless Noble Topaz", "=ds=#sr# 350", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
+				{ 24, "s31108", "24060", "=q3=Reckless Noble Topaz", "=ds=#sr# 350", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
 				{ 26, "s39467", "31869", "=q2=Deadly Flame Spessarite", "=ds=#sr# 325", "=ds="..AL["Drop"]..": "..BabbleZone["Blade's Edge Mountains"] };
 				{ 27, "s28915", "23101", "=q2=Potent Flame Spessarite", "=ds=#sr# 325", "=ds="..BabbleFaction["Lower City"].." - "..BabbleFaction["Friendly"] };
 				{ 28, "s28912", "23099", "=q2=Reckless Flame Spessarite", "=ds=#sr# 305", "=ds="..BabbleFaction["The Consortium"].." - "..BabbleFaction["Friendly"] };
@@ -4569,6 +4943,36 @@ local SPELLFIRE = GetSpellInfo(26797);
 
 	AtlasLoot_Data["JewelPurple"] = {
 		["Normal"] = {
+			{
+				{ 1, "s130657", "89680", "=q3=Assassin's Imperial Amethyst", "=ds=#sr# 600", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 2, "s130658", "89674", "=q3=Tense Imperial Amethyst", "=ds=#sr# 600", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 3, "s107693", "76681", "=q3=Accurate Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 4, "s107694", "76690", "=q3=Defender's Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 5, "s107695", "76684", "=q3=Etched Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 6, "s107696", "76680", "=q3=Glinting Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 7, "s107697", "76688", "=q3=Guardian's Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 9, "s107635", "76551", "=q2=Retaliating Roguestone", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 10, "s130655", "89675", "=q2=Tense Roguestone", "=ds=#sr# 570", "=ds="..AL["Trainer"] };
+				{ 11, "s107634", "76554", "=q2=Purified Roguestone", "=ds=#sr# 565", "=ds="..AL["Trainer"] };
+				{ 12, "s107638", "76557", "=q2=Timeless Roguestone", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 13, "s107628", "76558", "=q2=Defender's Roguestone", "=ds=#sr# 555", "=ds="..AL["Trainer"] };
+				{ 14, "s107627", "76549", "=q2=Accurate Roguestone", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 15, "s107632", "76556", "=q2=Guardian's Roguestone", "=ds=#sr# 545", "=ds="..AL["Trainer"] };
+				{ 16, "s107698", "76685", "=q3=Mysterious Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 17, "s107699", "76686", "=q3=Purified Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 18, "s107700", "76683", "=q3=Retaliating Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 19, "s107701", "76687", "=q3=Shifting Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 20, "s107702", "76691", "=q3=Sovereign Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 21, "s107703", "76689", "=q3=Timeless Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 22, "s107704", "76682", "=q3=Veiled Imperial Amethyst", "=ds=#sr# 550", "=ds="..AL["Discovery"]..": "..GetSpellInfo(131691) };
+				{ 24, "s107631", "76548", "=q2=Glinting Roguestone", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 25, "s107636", "76555", "=q2=Shifting Roguestone", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 26, "s107637", "76559", "=q2=Sovereign Roguestone", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 27, "s130656", "89678", "=q2=Assassin's Roguestone", "=ds=#sr# 530", "=ds="..AL["Trainer"] };
+				{ 28, "s107639", "76550", "=q2=Veiled Roguestone", "=ds=#sr# 530", "=ds="..AL["Trainer"] };
+				{ 29, "s107630", "76552", "=q2=Etched Roguestone", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+				{ 30, "s107633", "76553", "=q2=Mysterious Roguestone", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+			};
 			{
 				{ 1, "s101784", "71863", "=q4=Accurate Shadow Spinel", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
 				{ 2, "s101793", "71872", "=q4=Defender's Shadow Spinel", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
@@ -4609,20 +5013,20 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 16, "s66576", "40162", "=q4=Accurate Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 17, "s66560", "40139", "=q4=Defender's Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 18, "s66572", "40143", "=q4=Etched Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 19, "s66564", "40137", "=q4=Glinting Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 19, "s66573", "40157", "=q4=Glinting Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 20, "s66561", "40141", "=q4=Guardian's Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 21, "s66562", "40135", "=q4=Mysterious Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 22, "s66556", "40133", "=q4=Purified Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 23, "s66557", "40130", "=q4=Shifting Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 24, "s66554", "40129", "=q4=Sovereign Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 25, "s66555", "40132", "=q4=Timeless Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 25, "s66432", "40164", "=q4=Timeless Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 26, "s66570", "40153", "=q4=Veiled Dreadstone", "=ds=#sr# 450", "#DALARANJW:4#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 			};
 			{
 				{ 1, "s53994", "40058", "=q3=Accurate Twilight Opal", "=ds=#sr# 390", "=ds="..AL["Drop"]..": "..BabbleZone["The Storm Peaks"] };
 				{ 2, "s53972", "40032", "=q3=Defender's Twilight Opal", "=ds=#sr# 390", "=ds="..AL["Drop"]..": "..BabbleZone["The Storm Peaks"] };
 				{ 3, "s53976", "40038", "=q3=Etched Twilight Opal", "=ds=#sr# 390", "=ds="..AL["World Drop"] };
-				{ 4, "s53970", "40030", "=q3=Glinting Twilight Opal", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 4, "s53980", "40044", "=q3=Glinting Twilight Opal", "=ds=#sr# 390", "#DALARANJW:3#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 5, "s53974", "40034", "=q3=Guardian's Twilight Opal", "=ds=#sr# 390", "=ds="..BabbleFaction["Argent Crusade"].." - "..BabbleFaction["Revered"] };
 				{ 6, "s53968", "40028", "=q3=Mysterious Twilight Opal", "=ds=#sr# 390", "=ds="..BabbleZone["Wintergrasp"] };
 				{ 7, "s53966", "40026", "=q3=Purified Twilight Opal", "=ds=#sr# 390", "=ds="..AL["World Drop"] };
@@ -4633,7 +5037,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 16, "s53892", "39966", "=q2=Accurate Shadow Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 17, "s53869", "39939", "=q2=Defender's Shadow Crystal", "=ds=#sr# 350", "=ds="..BabbleFaction["The Kalu'ak"].." - "..BabbleFaction["Honored"] };
 				{ 18, "s53873", "39948", "=q2=Etched Shadow Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 19, "s53867", "39944", "=q2=Glinting Shadow Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 19, "s53861", "39942", "=q2=Glinting Shadow Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 20, "s53871", "39940", "=q2=Guardian's Shadow Crystal", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
 				{ 21, "s53865", "39945", "=q2=Mysterious Shadow Crystal", "=ds=#sr# 350", "#DALARANJW:1#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 22, "s53921", "39979", "=q2=Purified Shadow Crystal", "=ds=#sr# 350", "=ds="..BabbleFaction["The Kalu'ak"].." - "..BabbleFaction["Friendly"] };
@@ -4644,13 +5048,13 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 			{
 				{ 1, "s39736", "32220", "=q4=Glinting Shadowsong Amethyst", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Honored"] };
-				{ 2, "s48789", "37503", "=q4=Purified Shadowsong Amethyst", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Honored"] };
+				{ 2, "s39741", "32225", "=q4=Purified Shadowsong Amethyst", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Honored"] };
 				{ 3, "s39728", "32212", "=q4=Shifting Shadowsong Amethyst", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
 				{ 4, "s39727", "32211", "=q4=Sovereign Shadowsong Amethyst", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
 				{ 5, "s39731", "32215", "=q4=Timeless Shadowsong Amethyst", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Honored"] };
 				{ 6, "s39737", "32221", "=q4=Veiled Shadowsong Amethyst", "=ds=#sr# 375", "=ds="..BabbleFaction["Shattered Sun Offensive"].." - "..BabbleFaction["Exalted"] };
-				{ 8, "s39462", "31865", "=q3=Glinting Nightseye", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
-				{ 9, "s31105", "24057", "=q3=Purified Nightseye", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 8, "s31109", "24061", "=q3=Glinting Nightseye", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
+				{ 9, "s31112", "24065", "=q3=Purified Nightseye", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
 				{ 10, "s31103", "24055", "=q3=Shifting Nightseye", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
 				{ 11, "s31102", "24054", "=q3=Sovereign Nightseye", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
 				{ 12, "s31104", "24056", "=q3=Timeless Nightseye", "=ds=#sr# 350", "=ds="..AL["World Drop"] };
@@ -4673,6 +5077,22 @@ local SPELLFIRE = GetSpellInfo(26797);
 
 	AtlasLoot_Data["JewelMeta"] = {
 		["Normal"] = {
+			{
+				{ 1, "s107753", "76884", "=q3=Agile Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 2, "s107754", "76895", "=q3=Austere Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 3, "s107756", "76885", "=q3=Burning Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 4, "s107757", "76890", "=q3=Destructive Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 5, "s107758", "76897", "=q3=Effulgent Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 6, "s107759", "76879", "=q3=Ember Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 7, "s107760", "76892", "=q3=Enigmatic Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 16, "s107762", "76896", "=q3=Eternal Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 17, "s107763", "76887", "=q3=Fleet Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 18, "s107764", "76894", "=q3=Forlorn Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 19, "s107765", "76893", "=q3=Impassive Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 20, "s107766", "76891", "=q3=Powerful Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 21, "s107767", "76886", "=q3=Reverberating Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+				{ 22, "s107768", "76888", "=q3=Revitalizing Primal Diamond", "=ds=#sr# 575", "=ds="..AL["World Drop"] };
+			};
 			{
 				{ 1, "s96255", "68778", "=q3=Agile Shadowspirit Diamond", "=ds=#sr# 490", "=ds="..AL["World Drop"] };
 				{ 2, "s73468", "52294", "=q3=Austere Shadowspirit Diamond", "=ds=#sr# 490", "#CATAJW:4#"..AL["Vendor"] };
@@ -4768,7 +5188,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 17, "s56086", "36767", "=q4=Solid Dragon's Eye", "=ds=#sr# 370", "#DALARANJW:2#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 18, "s56087", "42145", "=q4=Sparkling Dragon's Eye", "=ds=#sr# 370", "#DALARANJW:2#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
 				{ 19, "s56088", "42155", "=q4=Stormy Dragon's Eye", "=ds=#sr# 370", "#DALARANJW:2#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 21, 42225, "", "=q3=Dragon's Eye", "=ds=#e8#", "#DALARANJW:1#"};
+				{ 21, 42225, "", "=q3=Dragon's Eye", "=ds=#e8#", "#DALARANJW:1#"..AL["Vendor"] };
 			};
 		};
 		info = {
@@ -4799,6 +5219,224 @@ local SPELLFIRE = GetSpellInfo(26797);
 		};
 		info = {
 			name = JEWELCRAFTING..": "..AL["Chimera's Eye"],
+			module = moduleName, menu = "JEWELCRAFTINGMENU"
+		};
+	};
+
+	AtlasLoot_Data["JewelSerpentsEye"] = {
+		["Normal"] = {
+			{
+				{ 1, "s122675", "83141", "=q4=Bold Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 2, "s122676", "83150", "=q4=Brilliant Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 3, "s122674", "83151", "=q4=Delicate Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 4, "s122685", "83152", "=q4=Flashing Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 5, "s122683", "83147", "=q4=Precise Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 7, "s122684", "83143", "=q4=Fractured Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 8, "s122682", "83142", "=q4=Quick Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 9, "s122680", "83146", "=q4=Smooth Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 10, "s122679", "83145", "=q4=Subtle Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 16, "s122681", "83144", "=q4=Rigid Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 17, "s122678", "83148", "=q4=Solid Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 18, "s122677", "83149", "=q4=Sparkling Serpent's Eye", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 20, 76734, "", "=q3=Serpent's Eye", "=ds=#e8#", "#spiritofharmony# 1, "..AL["Vendor"] };
+			};
+		};
+		info = {
+			name = JEWELCRAFTING..": "..AL["Serpent's Eye"],
+			module = moduleName, menu = "JEWELCRAFTINGMENU"
+		};
+	};
+
+	AtlasLoot_Data["JewelMountPet"] = {
+		["Normal"] = {
+			{
+				{ 1, "s120045", "82453", "=q4=Jeweled Onyx Panther", "=ds=#sr# 600", "=ds="..BabbleFaction["Order of the Cloud Serpent"].." - "..BabbleFaction["Exalted"] };
+				{ 2, "s121844", "83088", "=q3=Jade Panther", "=ds=#sr# 600", "=ds="..BabbleFaction["Order of the Cloud Serpent"].." - "..BabbleFaction["Honored"] };
+				{ 3, "s121841", "83087", "=q3=Ruby Panther", "=ds=#sr# 600", "=ds="..BabbleFaction["Order of the Cloud Serpent"].." - "..BabbleFaction["Revered"] };
+				{ 4, "s121842", "83090", "=q3=Sapphire Panther", "=ds=#sr# 600", "=ds="..BabbleFaction["Order of the Cloud Serpent"].." - "..BabbleFaction["Revered"] };
+				{ 5, "s121843", "83089", "=q3=Sunstone Panther", "=ds=#sr# 600", "=ds="..BabbleFaction["Order of the Cloud Serpent"].." - "..BabbleFaction["Honored"] };
+				{ 16, "s131897", "82774", "=q3=Jade Owl", "=ds=#sr# 600", "=ds="..AL["Treasures of the Vale"] };
+				{ 17, "s131898", "82775", "=q3=Sapphire Cub", "=ds=#sr# 600", "=ds="..AL["Treasures of the Vale"] };
+			};
+		};
+		info = {
+			name = JEWELCRAFTING..": "..BabbleInventory["Mount"].." & "..BabbleInventory["Pet"],
+			module = moduleName, menu = "JEWELCRAFTINGMENU"
+		};
+	};
+
+	AtlasLoot_Data["JewelNeck"] = {
+		["Normal"] = {
+			{
+				{ 1, "s122670", "83803", "=q3=Golembreaker Amulet", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 2, "s122669", "83802", "=q3=Reflection of the Sea", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 3, "s122672", "83805", "=q3=Skymage Circle", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 4, "s122673", "83806", "=q3=Tiger Opal Pendant", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 5, "s122671", "83804", "=q3=Widow Chain", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 6, "s73521", "52350", "=q3=Brazen Elementium Medallion", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 7, "s73506", "52323", "=q3=Elementium Guardian", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 8, "s73504", "52321", "=q3=Entwined Elementium Choker", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 9, "s73505", "52322", "=q3=Eye of Many Deaths", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 10, "s99543", "75075", "=q3=Vicious Amberjewel Pendant", "=ds=#sr# 520", "=ds="..AL["Trainer"] };
+				{ 11, "s99544", "75078", "=q3=Vicious Ruby Choker", "=ds=#sr# 520", "=ds="..AL["Trainer"] };
+				{ 12, "s99542", "75074", "=q3=Vicious Sapphire Necklace", "=ds=#sr# 520", "=ds="..AL["Trainer"] };
+				{ 13, "s122662", "83794", "=q2=Shadowfire Necklace", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 14, "s73497", "52309", "=q2=Nightstone Choker", "=ds=#sr# 460", "=ds="..AL["Trainer"] };
+				{ 15, "s56500", "42646", "=q4=Titanium Earthguard Chain", "=ds=#sr# 440", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 16, "s56499", "42645", "=q4=Titanium Impact Choker", "=ds=#sr# 440", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 17, "s56501", "42647", "=q4=Titanium Spellshock Necklace", "=ds=#sr# 440", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 18, "s73496", "52307", "=q2=Alicite Pendant", "=ds=#sr# 435", "=ds="..AL["Trainer"] };
+				{ 19, "s64725", "45812", "=q3=Emerald Choker", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
+				{ 20, "s64726", "45813", "=q3=Sky Sapphire Amulet", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
+				{ 21, "s56196", "42339", "=q3=Blood Sun Necklace", "=ds=#sr# 380", "=ds="..AL["Trainer"] };
+				{ 22, "s56195", "42338", "=q3=Jade Dagger Pendant", "=ds=#sr# 380", "=ds="..AL["Trainer"] };
+				{ 23, "s46126", "34360", "=q4=Amulet of Flowing Life", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
+				{ 24, "s46127", "34358", "=q4=Hard Khorium Choker", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
+				{ 25, "s46125", "34359", "=q4=Pendant of Sunfire", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
+				{ 26, "s31076", "24121", "=q3=Chain of the Twilight Owl", "=ds=#sr# 365", "=ds="..AL["World Drop"] };
+				{ 27, "s31072", "24117", "=q3=Embrace of the Dawn", "=ds=#sr# 365", "=ds="..AL["World Drop"] };
+				{ 28, "s31070", "24114", "=q3=Braided Eternium Chain", "=ds=#sr# 360", "=ds="..AL["World Drop"] };
+				{ 29, "s31071", "24116", "=q3=Eye of the Night", "=ds=#sr# 360", "=ds="..AL["World Drop"] };
+				{ 30, "s31062", "24092", "=q3=Pendant of Frozen Flame", "=ds=#sr# 360", "=ds="..BabbleFaction["Keepers of Time"].." - "..BabbleFaction["Revered"] };
+			};
+			{
+				{ 1, "s31065", "24097", "=q3=Pendant of Shadow's End", "=ds=#sr# 360", "=ds="..BabbleFaction["The Aldor"].." - "..BabbleFaction["Revered"] };
+				{ 2, "s31063", "24093", "=q3=Pendant of Thawing", "=ds=#sr# 360", "=ds="..BabbleFaction["Lower City"].." - "..BabbleFaction["Revered"] };
+				{ 3, "s31066", "24098", "=q3=Pendant of the Null Rune", "=ds=#sr# 360", "=ds="..BabbleFaction["The Consortium"].." - "..BabbleFaction["Revered"] };
+				{ 4, "s31064", "24095", "=q3=Pendant of Withering", "=ds=#sr# 360", "=ds="..BabbleFaction["The Scryers"].." - "..BabbleFaction["Revered"] };
+				{ 5, "s31068", "24110", "=q3=Living Ruby Pendant", "=ds=#sr# 355", "=ds="..AL["World Drop"] };
+				{ 6, "s31067", "24106", "=q3=Thick Felsteel Necklace", "=ds=#sr# 355", "=ds="..AL["World Drop"] };
+				{ 7, "s58142", "43245", "=q2=Crystal Chalcedony Amulet", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 8, "s58141", "43244", "=q2=Crystal Citrine Necklace", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 9, "s40514", "32508", "=q3=Necklace of the Deep", "=ds=#sr# 340", "=ds="..AL["Trainer"] };
+				{ 10, "s31051", "24077", "=q2=Thick Adamantite Necklace", "=ds=#sr# 335", "=ds="..AL["Trainer"] };
+				{ 11, "s26915", "21792", "=q3=Necklace of the Diamond Tower", "=ds=#sr# 305", "=ds="..AL["Vendor"]..": "..BabbleZone["Winterspring"] };
+				{ 12, "s26911", "21791", "=q3=Living Emerald Pendant", "=ds=#sr# 290", "=ds="..AL["Trainer"] };
+				{ 13, "s26908", "21790", "=q2=Sapphire Pendant of Winter Night", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
+				{ 14, "s26897", "21766", "=q3=Opal Necklace of Impact", "=ds=#sr# 250", "=ds="..AL["Vendor"] };
+				{ 15, "s26883", "21764", "=q2=Ruby Pendant of Fire", "=ds=#sr# 235", "=ds="..AL["Trainer"] };
+				{ 16, "s26876", "21755", "=q2=Aquamarine Pendant of the Warrior", "=ds=#sr# 220", "=ds="..AL["Trainer"] };
+				{ 17, "s63743", "45627", "=q3=Amulet of Truesight", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
+				{ 18, "s25622", "20967", "=q2=Citrine Pendant of Golden Healing", "=ds=#sr# 190", "=ds="..AL["World Drop"] };
+				{ 19, "s25618", "20966", "=q2=Jade Pendant of Blasting", "=ds=#sr# 160", "=ds="..AL["World Drop"] };
+				{ 20, "s25320", "20831", "=q2=Heavy Golden Necklace of Battle", "=ds=#sr# 150", "=ds="..AL["Vendor"] };
+				{ 21, "s25610", "20950", "=q2=Pendant of the Agate Shield", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
+				{ 22, "s25339", "20830", "=q2=Amulet of the Moon", "=ds=#sr# 110", "=ds="..AL["Vendor"] };
+				{ 23, "s25498", "20909", "=q2=Barbaric Iron Collar", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
+				{ 24, "s38175", "31154", "=q2=Bronze Torc", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
+				{ 25, "s36523", "30419", "=q2=Brilliant Necklace", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
+				{ 26, "s26927", "21933", "=q2=Thick Bronze Necklace", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
+				{ 27, "s26928", "21934", "=q2=Ornate Tigerseye Necklace", "=ds=#sr# 30", "=ds="..AL["Trainer"] };
+				{ 28, "s32178", "25438", "=q2=Malachite Pendant", "=ds=#sr# 20", "=ds="..AL["Trainer"] };
+			};
+		};
+		info = {
+			name = JEWELCRAFTING..": "..BabbleInventory["Neck"],
+			module = moduleName, menu = "JEWELCRAFTINGMENU"
+		};
+	};
+
+	AtlasLoot_Data["JewelRing"] = {
+		["Normal"] = {
+			{
+				{ 1, "s122668", "83801", "=q3=Band of Blood", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 2, "s122664", "83796", "=q3=Heart of the Earth", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 3, "s122667", "83800", "=q3=Lionsfall Ring", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 4, "s122666", "83799", "=q3=Lord's Signet", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 5, "s122665", "83798", "=q3=Roguestone Shadowband", "=ds=#sr# 575", "=ds="..AL["Trainer"] };
+				{ 6, "s73498", "52318", "=q3=Band of Blades", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 7, "s73520", "52348", "=q3=Elementium Destroyer's Ring", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 8, "s73503", "52320", "=q3=Elementium Moebius Band", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 9, "s98921", "69852", "=q3=Punisher's Band", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 10, "s73502", "52319", "=q3=Ring of Warring Elements", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
+				{ 11, "s99540", "75068", "=q3=Vicious Amberjewel Band", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 12, "s99541", "75071", "=q3=Vicious Ruby Signet", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 13, "s99539", "75067", "=q3=Vicious Sapphire Ring", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 14, "s122661", "83793", "=q2=Ornate Band", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 15, "s73495", "52308", "=q2=Hessonite Band", "=ds=#sr# 450", "=ds="..AL["Trainer"] };
+				{ 16, "s56497", "42643", "=q4=Titanium Earthguard Ring", "=ds=#sr# 430", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 17, "s56496", "42642", "=q4=Titanium Impact Band", "=ds=#sr# 430", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 18, "s56498", "42644", "=q4=Titanium Spellshock Ring", "=ds=#sr# 430", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 19, "s73494", "52306", "=q2=Jasper Ring", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 20, "s58954", "43582", "=q4=Titanium Frostguard Ring", "=ds=#sr# 420", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 21, "s56197", "42340", "=q3=Dream Signet", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
+				{ 22, "s58147", "43250", "=q3=Ring of Earthen Might", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 23, "s58150", "43253", "=q3=Ring of Northern Tears", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 24, "s58148", "43251", "=q3=Ring of Scarlet Shadows", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 25, "s64727", "45808", "=q3=Runed Mana Band", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
+				{ 26, "s58507", "43498", "=q3=Savage Titanium Band", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 27, "s58492", "43482", "=q3=Savage Titanium Ring", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 28, "s64728", "45809", "=q3=Scarlet Signet", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
+				{ 29, "s58149", "43252", "=q3=Windfire Band", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
+				{ 30, "s58146", "43249", "=q2=Shadowmight Ring", "=ds=#sr# 390", "=ds="..AL["Trainer"] };
+			};
+			{
+				{ 1, "s58145", "43248", "=q2=Stoneguard Band", "=ds=#sr# 390", "=ds="..AL["Trainer"] };
+				{ 2, "s38503", "31398", "=q4=The Frozen Eye", "=ds=#sr# 375", "=ds="..BabbleFaction["The Violet Eye"].." - "..BabbleFaction["Honored"] };
+				{ 3, "s38504", "31399", "=q4=The Natural Ward", "=ds=#sr# 375", "=ds="..BabbleFaction["Cenarion Expedition"].." - "..BabbleFaction["Exalted"] };
+				{ 4, "s46124", "34361", "=q4=Hard Khorium Band", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
+				{ 5, "s46122", "34362", "=q4=Loop of Forged Power", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
+				{ 6, "s46123", "34363", "=q4=Ring of Flowing Life", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
+				{ 7, "s31061", "24089", "=q3=Blazing Eternium Band", "=ds=#sr# 365", "=ds="..AL["World Drop"] };
+				{ 8, "s31057", "24086", "=q3=Arcane Khorium Band", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Netherstorm"] };
+				{ 9, "s31056", "24085", "=q3=Khorium Band of Leaves", "=ds=#sr# 360", "=ds="..AL["Drop"]..": "..BabbleZone["Blade's Edge Mountains"]};
+				{ 10, "s37855", "30825", "=q3=Ring of Arcane Shielding", "=ds=#sr# 360", "=ds="..BabbleFaction["The Sha'tar"].." - "..BabbleFaction["Honored"] };
+				{ 11, "s31060", "24088", "=q3=Delicate Eternium Ring", "=ds=#sr# 355", "=ds="..AL["World Drop"] };
+				{ 12, "s31054", "24080", "=q3=Khorium Band of Frost", "=ds=#sr# 355", "=ds="..AL["Drop"]..": "..BabbleZone["The Steamvault"] };
+				{ 13, "s31055", "24082", "=q3=Khorium Inferno Band", "=ds=#sr# 355", "=ds="..AtlasLoot:EJ_GetBossName("Darkweaver Syth", 541) };
+				{ 14, "s58143", "43246", "=q3=Earthshadow Ring", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 15, "s58144", "43247", "=q3=Jade Ring of Slaying", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 16, "s31053", "24079", "=q3=Khorium Band of Shadows", "=ds=#sr# 350", "=ds="..AL["Drop"]..": "..BabbleZone["Shadowmoon Valley"] };
+				{ 17, "s56193", "42336", "=q2=Bloodstone Band", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 18, "s56194", "42337", "=q2=Sun Rock Ring", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 19, "s31058", "24087", "=q3=Heavy Felsteel Ring", "=ds=#sr# 345", "=ds="..AL["World Drop"] };
+				{ 20, "s31052", "24078", "=q2=Heavy Adamantite Ring", "=ds=#sr# 335", "=ds="..AL["Trainer"] };
+				{ 21, "s41415", "32774", "=q3=The Black Pearl", "=ds=#sr# 330", "=ds="..AL["Trainer"] };
+				{ 22, "s41414", "32772", "=q3=Brilliant Pearl Band", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 23, "s31050", "24076", "=q2=Azure Moonstone Ring", "=ds=#sr# 320", "=ds="..AL["Trainer"] };
+				{ 24, "s26916", "21779", "=q3=Band of Natural Fire", "=ds=#sr# 310", "=ds="..AL["Trainer"] };
+				{ 25, "s31048", "24074", "=q2=Fel Iron Blood Ring", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
+				{ 26, "s31049", "24075", "=q2=Golden Draenite Ring", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
+				{ 27, "s34961", "29160", "=q2=Emerald Lion Ring", "=ds=#sr# 290", "=ds="..AL["Trainer"] };
+				{ 28, "s26910", "21778", "=q2=Ring of Bitter Shadows", "=ds=#sr# 285", "=ds="..AL["Vendor"]..": "..BabbleZone["Eastern Plaguelands"] };
+				{ 29, "s34960", "29159", "=q2=Glowing Thorium Band", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
+				{ 30, "s26907", "21775", "=q2=Onslaught Ring", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
+			};
+			{
+				{ 1, "s26903", "21768", "=q3=Sapphire Signet", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
+				{ 2, "s36526", "30422", "=q2=Diamond Focus Ring", "=ds=#sr# 265", "=ds="..AL["Trainer"] };
+				{ 3, "s26902", "21767", "=q2=Simple Opal Ring", "=ds=#sr# 260", "=ds="..AL["Trainer"] };
+				{ 4, "s26896", "21753", "=q3=Gem Studded Band", "=ds=#sr# 250", "=ds="..AL["World Drop"] };
+				{ 5, "s26887", "21754", "=q2=The Aquamarine Ward", "=ds=#sr# 245", "=ds="..AL["World Drop"] };
+				{ 6, "s26885", "21765", "=q2=Truesilver Healing Ring", "=ds=#sr# 240", "=ds="..AL["Trainer"] };
+				{ 7, "s36525", "30421", "=q2=Red Ring of Destruction", "=ds=#sr# 230", "=ds="..AL["Trainer"] };
+				{ 8, "s26874", "20964", "=q3=Aquamarine Signet", "=ds=#sr# 210", "=ds="..AL["Trainer"] };
+				{ 9, "s34959", "29158", "=q3=Truesilver Commander's Ring", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
+				{ 10, "s34955", "29157", "=q3=Golden Ring of Power", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
+				{ 11, "s25621", "20961", "=q2=Citrine Ring of Rapid Healing", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
+				{ 12, "s25620", "20960", "=q2=Engraved Truesilver Ring", "=ds=#sr# 170", "=ds="..AL["Trainer"] };
+				{ 13, "s25619", "20959", "=q2=The Jade Eye", "=ds=#sr# 170", "=ds="..AL["Vendor"] };
+				{ 14, "s25617", "20958", "=q2=Blazing Citrine Ring", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 15, "s25613", "20955", "=q2=Golden Dragon Ring", "=ds=#sr# 135", "=ds="..AL["Trainer"] };
+				{ 16, "s25323", "20833", "=q2=Wicked Moonstone Ring", "=ds=#sr# 125", "=ds="..AL["Vendor"] };
+				{ 17, "s36524", "30420", "=q2=Heavy Jade Ring", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
+				{ 18, "s25318", "20828", "=q2=Ring of Twilight Shadows", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
+				{ 19, "s25305", "20826", "=q3=Heavy Silver Ring", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
+				{ 20, "s25317", "20827", "=q2=Ring of Silver Might", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
+				{ 21, "s25287", "20823", "=q2=Gloom Band", "=ds=#sr# 70", "=ds="..AL["Trainer"] };
+				{ 22, "s37818", "30804", "=q3=Bronze Band of Force", "=ds=#sr# 65", "=ds="..AL["Trainer"] };
+				{ 23, "s25284", "20820", "=q2=Simple Pearl Ring", "=ds=#sr# 60", "=ds="..AL["Trainer"] };
+				{ 24, "s25280", "20818", "=q2=Elegant Silver Ring", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
+				{ 25, "s25490", "20907", "=q2=Solid Bronze Ring", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
+				{ 26, "s25283", "20821", "=q2=Inlaid Malachite Ring", "=ds=#sr# 30", "=ds="..AL["Trainer"] };
+				{ 27, "s32179", "25439", "=q2=Tigerseye Band", "=ds=#sr# 20", "=ds="..AL["Trainer"] };
+				{ 28, "s26926", "21932", "=q2=Heavy Copper Ring", "=ds=#sr# 5", "=ds="..AL["Trainer"] };
+				{ 29, "s25493", "20906", "=q2=Braided Copper Ring", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
+				{ 30, "s26925", "21931", "=q2=Woven Copper Ring", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
+			};
+		};
+		info = {
+			name = JEWELCRAFTING..": "..BabbleInventory["Ring"],
 			module = moduleName, menu = "JEWELCRAFTINGMENU"
 		};
 	};
@@ -4854,203 +5492,49 @@ local SPELLFIRE = GetSpellInfo(26797);
 		};
 	};
 
-	AtlasLoot_Data["JewelRing"] = {
-		["Normal"] = {
-			{
-				{ 1, "s73498", "52318", "=q3=Band of Blades", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 2, "s73520", "52348", "=q3=Elementium Destroyer's Ring", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 3, "s73503", "52320", "=q3=Elementium Moebius Band", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 4, "s98921", "69852", "=q3=Punisher's Band", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 5, "s73502", "52319", "=q3=Ring of Warring Elements", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 6, "s99540", "75068", "=q3=Vicious Amberjewel Band", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
-				{ 7, "s99541", "75071", "=q3=Vicious Ruby Signet", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
-				{ 8, "s99539", "75067", "=q3=Vicious Sapphire Ring", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
-				{ 9, "s73495", "52308", "=q2=Hessonite Band", "=ds=#sr# 450", "=ds="..AL["Trainer"] };
-				{ 10, "s56497", "42643", "=q4=Titanium Earthguard Ring", "=ds=#sr# 430", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 11, "s56496", "42642", "=q4=Titanium Impact Band", "=ds=#sr# 430", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 12, "s56498", "42644", "=q4=Titanium Spellshock Ring", "=ds=#sr# 430", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 13, "s73494", "52306", "=q2=Jasper Ring", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 14, "s58954", "43582", "=q4=Titanium Frostguard Ring", "=ds=#sr# 420", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 15, "s56197", "42340", "=q3=Dream Signet", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
-				{ 16, "s58147", "43250", "=q3=Ring of Earthen Might", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 17, "s58150", "43253", "=q3=Ring of Northern Tears", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 18, "s58148", "43251", "=q3=Ring of Scarlet Shadows", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 19, "s64727", "45808", "=q3=Runed Mana Band", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
-				{ 20, "s58507", "43498", "=q3=Savage Titanium Band", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 21, "s58492", "43482", "=q3=Savage Titanium Ring", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 22, "s64728", "45809", "=q3=Scarlet Signet", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
-				{ 23, "s58149", "43252", "=q3=Windfire Band", "=ds=#sr# 420", "=ds="..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 24, "s58146", "43249", "=q2=Shadowmight Ring", "=ds=#sr# 390", "=ds="..AL["Trainer"] };
-				{ 25, "s58145", "43248", "=q2=Stoneguard Band", "=ds=#sr# 390", "=ds="..AL["Trainer"] };
-				{ 26, "s38503", "31398", "=q4=The Frozen Eye", "=ds=#sr# 375", "=ds="..BabbleFaction["The Violet Eye"].." - "..BabbleFaction["Honored"] };
-				{ 27, "s38504", "31399", "=q4=The Natural Ward", "=ds=#sr# 375", "=ds="..BabbleFaction["Cenarion Expedition"].." - "..BabbleFaction["Exalted"] };
-				{ 28, "s46124", "34361", "=q4=Hard Khorium Band", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
-				{ 29, "s46122", "34362", "=q4=Loop of Forged Power", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
-				{ 30, "s46123", "34363", "=q4=Ring of Flowing Life", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
-			};
-			{
-				{ 1, "s31061", "24089", "=q3=Blazing Eternium Band", "=ds=#sr# 365", "=ds="..AL["World Drop"] };
-				{ 2, "s31057", "24086", "=q3=Arcane Khorium Band", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Netherstorm"] };
-				{ 3, "s31056", "24085", "=q3=Khorium Band of Leaves", "=ds=#sr# 360", "=ds="..AL["Drop"]..": "..BabbleZone["Blade's Edge Mountains"]};
-				{ 4, "s37855", "30825", "=q3=Ring of Arcane Shielding", "=ds=#sr# 360", "=ds="..BabbleFaction["The Sha'tar"].." - "..BabbleFaction["Honored"] };
-				{ 5, "s31060", "24088", "=q3=Delicate Eternium Ring", "=ds=#sr# 355", "=ds="..AL["World Drop"] };
-				{ 6, "s31054", "24080", "=q3=Khorium Band of Frost", "=ds=#sr# 355", "=ds="..AL["Drop"]..": "..BabbleZone["The Steamvault"] };
-				{ 7, "s31055", "24082", "=q3=Khorium Inferno Band", "=ds=#sr# 355", "=ds="..AtlasLoot:EJ_GetBossName("Darkweaver Syth", 541) };
-				{ 8, "s58143", "43246", "=q3=Earthshadow Ring", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 9, "s58144", "43247", "=q3=Jade Ring of Slaying", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 10, "s31053", "24079", "=q3=Khorium Band of Shadows", "=ds=#sr# 350", "=ds="..AL["Drop"]..": "..BabbleZone["Shadowmoon Valley"] };
-				{ 11, "s56193", "42336", "=q2=Bloodstone Band", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 12, "s56194", "42337", "=q2=Sun Rock Ring", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 13, "s31058", "24087", "=q3=Heavy Felsteel Ring", "=ds=#sr# 345", "=ds="..AL["World Drop"] };
-				{ 14, "s31052", "24078", "=q2=Heavy Adamantite Ring", "=ds=#sr# 335", "=ds="..AL["Trainer"] };
-				{ 15, "s41415", "32774", "=q3=The Black Pearl", "=ds=#sr# 330", "=ds="..AL["Trainer"] };
-				{ 16, "s41414", "32772", "=q3=Brilliant Pearl Band", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
-				{ 17, "s31050", "24076", "=q2=Azure Moonstone Ring", "=ds=#sr# 320", "=ds="..AL["Trainer"] };
-				{ 18, "s26916", "21779", "=q3=Band of Natural Fire", "=ds=#sr# 310", "=ds="..AL["Trainer"] };
-				{ 19, "s31048", "24074", "=q2=Fel Iron Blood Ring", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
-				{ 20, "s31049", "24075", "=q2=Golden Draenite Ring", "=ds=#sr# 305", "=ds="..AL["Trainer"] };
-				{ 21, "s34961", "29160", "=q2=Emerald Lion Ring", "=ds=#sr# 290", "=ds="..AL["Trainer"] };
-				{ 22, "s26910", "21778", "=q2=Ring of Bitter Shadows", "=ds=#sr# 285", "=ds="..AL["Vendor"]..": "..BabbleZone["Eastern Plaguelands"] };
-				{ 23, "s34960", "29159", "=q2=Glowing Thorium Band", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
-				{ 24, "s26907", "21775", "=q2=Onslaught Ring", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
-				{ 25, "s26903", "21768", "=q3=Sapphire Signet", "=ds=#sr# 275", "=ds="..AL["Trainer"] };
-				{ 26, "s36526", "30422", "=q2=Diamond Focus Ring", "=ds=#sr# 265", "=ds="..AL["Trainer"] };
-				{ 27, "s26902", "21767", "=q2=Simple Opal Ring", "=ds=#sr# 260", "=ds="..AL["Trainer"] };
-				{ 28, "s26896", "21753", "=q3=Gem Studded Band", "=ds=#sr# 250", "=ds="..AL["World Drop"] };
-				{ 29, "s26887", "21754", "=q2=The Aquamarine Ward", "=ds=#sr# 245", "=ds="..AL["World Drop"] };
-				{ 30, "s26885", "21765", "=q2=Truesilver Healing Ring", "=ds=#sr# 240", "=ds="..AL["Trainer"] };
-			};
-			{
-				{ 1, "s36525", "30421", "=q2=Red Ring of Destruction", "=ds=#sr# 230", "=ds="..AL["Trainer"] };
-				{ 2, "s26874", "20964", "=q3=Aquamarine Signet", "=ds=#sr# 210", "=ds="..AL["Trainer"] };
-				{ 3, "s34959", "29158", "=q3=Truesilver Commander's Ring", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
-				{ 4, "s34955", "29157", "=q3=Golden Ring of Power", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
-				{ 5, "s25621", "20961", "=q2=Citrine Ring of Rapid Healing", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
-				{ 6, "s25620", "20960", "=q2=Engraved Truesilver Ring", "=ds=#sr# 170", "=ds="..AL["Trainer"] };
-				{ 7, "s25619", "20959", "=q2=The Jade Eye", "=ds=#sr# 170", "=ds="..AL["Vendor"] };
-				{ 8, "s25617", "20958", "=q2=Blazing Citrine Ring", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
-				{ 9, "s25613", "20955", "=q2=Golden Dragon Ring", "=ds=#sr# 135", "=ds="..AL["Trainer"] };
-				{ 10, "s25323", "20833", "=q2=Wicked Moonstone Ring", "=ds=#sr# 125", "=ds="..AL["Vendor"] };
-				{ 11, "s36524", "30420", "=q2=Heavy Jade Ring", "=ds=#sr# 105", "=ds="..AL["Trainer"] };
-				{ 12, "s25318", "20828", "=q2=Ring of Twilight Shadows", "=ds=#sr# 100", "=ds="..AL["Trainer"] };
-				{ 13, "s25305", "20826", "=q3=Heavy Silver Ring", "=ds=#sr# 90", "=ds="..AL["Trainer"] };
-				{ 14, "s25317", "20827", "=q2=Ring of Silver Might", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 15, "s25287", "20823", "=q2=Gloom Band", "=ds=#sr# 70", "=ds="..AL["Trainer"] };
-				{ 16, "s37818", "30804", "=q3=Bronze Band of Force", "=ds=#sr# 65", "=ds="..AL["Trainer"] };
-				{ 17, "s25284", "20820", "=q2=Simple Pearl Ring", "=ds=#sr# 60", "=ds="..AL["Trainer"] };
-				{ 18, "s25280", "20818", "=q2=Elegant Silver Ring", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
-				{ 19, "s25490", "20907", "=q2=Solid Bronze Ring", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
-				{ 20, "s25283", "20821", "=q2=Inlaid Malachite Ring", "=ds=#sr# 30", "=ds="..AL["Trainer"] };
-				{ 21, "s32179", "25439", "=q2=Tigerseye Band", "=ds=#sr# 20", "=ds="..AL["Trainer"] };
-				{ 22, "s26926", "21932", "=q2=Heavy Copper Ring", "=ds=#sr# 5", "=ds="..AL["Trainer"] };
-				{ 23, "s25493", "20906", "=q2=Braided Copper Ring", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
-				{ 24, "s26925", "21931", "=q2=Woven Copper Ring", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
-			};
-		};
-		info = {
-			name = JEWELCRAFTING..": "..BabbleInventory["Ring"],
-			module = moduleName, menu = "JEWELCRAFTINGMENU"
-		};
-	};
-
-	AtlasLoot_Data["JewelNeck"] = {
-		["Normal"] = {
-			{
-				{ 1, "s73521", "52350", "=q3=Brazen Elementium Medallion", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 2, "s73506", "52323", "=q3=Elementium Guardian", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 3, "s73504", "52321", "=q3=Entwined Elementium Choker", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 4, "s73505", "52322", "=q3=Eye of Many Deaths", "=ds=#sr# 525", "#CATAJW:5#"..AL["Vendor"] };
-				{ 5, "s99543", "75075", "=q3=Vicious Amberjewel Pendant", "=ds=#sr# 520", "=ds="..AL["Trainer"] };
-				{ 6, "s99544", "75078", "=q3=Vicious Ruby Choker", "=ds=#sr# 520", "=ds="..AL["Trainer"] };
-				{ 7, "s99542", "75074", "=q3=Vicious Sapphire Necklace", "=ds=#sr# 520", "=ds="..AL["Trainer"] };
-				{ 8, "s73497", "52309", "=q2=Nightstone Choker", "=ds=#sr# 460", "=ds="..AL["Trainer"] };
-				{ 9, "s56500", "42646", "=q4=Titanium Earthguard Chain", "=ds=#sr# 440", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 10, "s56499", "42645", "=q4=Titanium Impact Choker", "=ds=#sr# 440", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 11, "s56501", "42647", "=q4=Titanium Spellshock Necklace", "=ds=#sr# 440", "#DALARANJW:6#"..AL["Vendor"]..": "..BabbleZone["Dalaran"] };
-				{ 12, "s73496", "52307", "=q2=Alicite Pendant", "=ds=#sr# 435", "=ds="..AL["Trainer"] };
-				{ 13, "s64725", "45812", "=q3=Emerald Choker", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
-				{ 14, "s64726", "45813", "=q3=Sky Sapphire Amulet", "=ds=#sr# 420", "=ds="..AL["Trainer"] };
-				{ 15, "s56196", "42339", "=q3=Blood Sun Necklace", "=ds=#sr# 380", "=ds="..AL["Trainer"] };
-				{ 16, "s56195", "42338", "=q3=Jade Dagger Pendant", "=ds=#sr# 380", "=ds="..AL["Trainer"] };
-				{ 17, "s46126", "34360", "=q4=Amulet of Flowing Life", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
-				{ 18, "s46127", "34358", "=q4=Hard Khorium Choker", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
-				{ 19, "s46125", "34359", "=q4=Pendant of Sunfire", "=ds=#sr# 365", "=ds="..AL["Drop"]..": "..BabbleZone["Sunwell Plateau"] };
-				{ 20, "s31076", "24121", "=q3=Chain of the Twilight Owl", "=ds=#sr# 365", "=ds="..AL["World Drop"] };
-				{ 21, "s31072", "24117", "=q3=Embrace of the Dawn", "=ds=#sr# 365", "=ds="..AL["World Drop"] };
-				{ 22, "s31070", "24114", "=q3=Braided Eternium Chain", "=ds=#sr# 360", "=ds="..AL["World Drop"] };
-				{ 23, "s31071", "24116", "=q3=Eye of the Night", "=ds=#sr# 360", "=ds="..AL["World Drop"] };
-				{ 24, "s31062", "24092", "=q3=Pendant of Frozen Flame", "=ds=#sr# 360", "=ds="..BabbleFaction["Keepers of Time"].." - "..BabbleFaction["Revered"] };
-				{ 25, "s31065", "24097", "=q3=Pendant of Shadow's End", "=ds=#sr# 360", "=ds="..BabbleFaction["The Aldor"].." - "..BabbleFaction["Revered"] };
-				{ 26, "s31063", "24093", "=q3=Pendant of Thawing", "=ds=#sr# 360", "=ds="..BabbleFaction["Lower City"].." - "..BabbleFaction["Revered"] };
-				{ 27, "s31066", "24098", "=q3=Pendant of the Null Rune", "=ds=#sr# 360", "=ds="..BabbleFaction["The Consortium"].." - "..BabbleFaction["Revered"] };
-				{ 28, "s31064", "24095", "=q3=Pendant of Withering", "=ds=#sr# 360", "=ds="..BabbleFaction["The Scryers"].." - "..BabbleFaction["Revered"] };
-				{ 29, "s31068", "24110", "=q3=Living Ruby Pendant", "=ds=#sr# 355", "=ds="..AL["World Drop"] };
-				{ 30, "s31067", "24106", "=q3=Thick Felsteel Necklace", "=ds=#sr# 355", "=ds="..AL["World Drop"] };
-			};
-			{
-				{ 1, "s58142", "43245", "=q2=Crystal Chalcedony Amulet", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 2, "s58141", "43244", "=q2=Crystal Citrine Necklace", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 3, "s40514", "32508", "=q3=Necklace of the Deep", "=ds=#sr# 340", "=ds="..AL["Trainer"] };
-				{ 4, "s31051", "24077", "=q2=Thick Adamantite Necklace", "=ds=#sr# 335", "=ds="..AL["Trainer"] };
-				{ 5, "s26915", "21792", "=q3=Necklace of the Diamond Tower", "=ds=#sr# 305", "=ds="..AL["Vendor"]..": "..BabbleZone["Winterspring"] };
-				{ 6, "s26911", "21791", "=q3=Living Emerald Pendant", "=ds=#sr# 290", "=ds="..AL["Trainer"] };
-				{ 7, "s26908", "21790", "=q2=Sapphire Pendant of Winter Night", "=ds=#sr# 280", "=ds="..AL["Trainer"] };
-				{ 8, "s26897", "21766", "=q3=Opal Necklace of Impact", "=ds=#sr# 250", "=ds="..AL["Vendor"] };
-				{ 9, "s26883", "21764", "=q2=Ruby Pendant of Fire", "=ds=#sr# 235", "=ds="..AL["Trainer"] };
-				{ 10, "s26876", "21755", "=q2=Aquamarine Pendant of the Warrior", "=ds=#sr# 220", "=ds="..AL["Trainer"] };
-				{ 11, "s63743", "45627", "=q3=Amulet of Truesight", "=ds=#sr# 200", "=ds="..AL["Trainer"] };
-				{ 12, "s25622", "20967", "=q2=Citrine Pendant of Golden Healing", "=ds=#sr# 190", "=ds="..AL["World Drop"] };
-				{ 13, "s25618", "20966", "=q2=Jade Pendant of Blasting", "=ds=#sr# 160", "=ds="..AL["World Drop"] };
-				{ 14, "s25320", "20831", "=q2=Heavy Golden Necklace of Battle", "=ds=#sr# 150", "=ds="..AL["Vendor"] };
-				{ 15, "s25610", "20950", "=q2=Pendant of the Agate Shield", "=ds=#sr# 120", "=ds="..AL["Trainer"] };
-				{ 16, "s25339", "20830", "=q2=Amulet of the Moon", "=ds=#sr# 110", "=ds="..AL["Vendor"] };
-				{ 17, "s25498", "20909", "=q2=Barbaric Iron Collar", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
-				{ 18, "s38175", "31154", "=q2=Bronze Torc", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 19, "s36523", "30419", "=q2=Brilliant Necklace", "=ds=#sr# 75", "=ds="..AL["Trainer"] };
-				{ 20, "s26927", "21933", "=q2=Thick Bronze Necklace", "=ds=#sr# 50", "=ds="..AL["Trainer"] };
-				{ 21, "s26928", "21934", "=q2=Ornate Tigerseye Necklace", "=ds=#sr# 30", "=ds="..AL["Trainer"] };
-				{ 22, "s32178", "25438", "=q2=Malachite Pendant", "=ds=#sr# 20", "=ds="..AL["Trainer"] };
-			};
-		};
-		info = {
-			name = JEWELCRAFTING..": "..BabbleInventory["Neck"],
-			module = moduleName, menu = "JEWELCRAFTINGMENU"
-		};
-	};
-
 	AtlasLoot_Data["JewelMisc"] = {
 		["Normal"] = {
 			{
-				{ 1, "s73623", "52489", "=q3=Rhinestone Sunglasses", "=ds=#sr# 525", "=ds="..AL["World Drop"] };
-				{ 2, "s73478", "52304", "=q3=Fire Prism", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
-				{ 3, "s73621", "52493", "=q3=The Perforator", "=ds=#sr# 490", "=ds="..AL["Trainer"] };
-				{ 4, "s73627", "52487", "=q3=Jeweler's Amber Monocle", "=ds=#sr# 460", "=ds="..AL["World Drop"] };
-				{ 5, "s73620", "52492", "=q2=Carnelian Spikes", "=ds=#sr# 460", "=ds="..AL["Trainer"] };
-				{ 6, "s73626", "52486", "=q3=Jeweler's Sapphire Monocle", "=ds=#sr# 455", "=ds="..AL["World Drop"] };
-				{ 7, "s73625", "52485", "=q3=Jeweler's Ruby Monocle", "=ds=#sr# 450", "=ds="..AL["World Drop"] };
-				{ 8, "s73622", "52490", "=q1=Stardust", "=ds=#sr# 435", "=ds="..AL["Trainer"] };
-				{ 9, "s62242", "44943", "=q3=Icy Prism", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
-				{ 10, "s31078", "24123", "=q4=Circlet of Arcane Might", "=ds=#sr# 370", "=ds="..BabbleZone["Old Hillsbrad Foothills"] };
-				{ 11, "s31077", "24122", "=q4=Coronet of the Verdant Flame", "=ds=#sr# 370", "=ds="..BabbleZone["The Botanica"] };
-				{ 12, "s41418", "32776", "=q3=Crown of the Sea Witch", "=ds=#sr# 365", "=ds="..AL["Trainer"] };
-				{ 13, "s47280", "35945", "=q3=Brilliant Glass", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 14, "s56208", "42421", "=q2=Shadow Jade Focusing Lens", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 15, "s56206", "42420", "=q2=Shadow Crystal Focusing Lens", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 16, "s56205", "41367", "=q2=Dark Jade Focusing Lens", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
-				{ 17, "s38068", "31079", "=q3=Mercurial Adamantite", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
-				{ 18, "s26906", "21774", "=q3=Emerald Crown of Destruction", "=ds=#sr# 275", "=ds="..AL["Vendor"]..": "..BabbleZone["Silithus"] };
-				{ 19, "s26878", "20969", "=q3=Ruby Crown of Restoration", "=ds=#sr# 225", "=ds="..AL["Vendor"]..": "..BabbleZone["Arathi Highlands"] };
-				{ 20, "s26880", "21752", "=q1=Thorium Setting", "=ds=#sr# 225", "=ds="..AL["Trainer"]};
-				{ 21, "s32809", "25883", "=q1=Dense Stone Statue", "=ds=#sr# 225", "=ds="..AL["Trainer"]};
-				{ 22, "s32808", "25882", "=q1=Solid Stone Statue", "=ds=#sr# 175", "=ds="..AL["Trainer"]};
-				{ 23, "s25615", "20963", "=q1=Mithril Filigree", "=ds=#sr# 150", "=ds="..AL["Trainer"]};
-				{ 24, "s25612", "20954", "=q2=Heavy Iron Knuckles", "=ds=#sr# 125", "=ds="..AL["Trainer"]};
-				{ 25, "s25321", "20832", "=q3=Moonsoul Crown", "=ds=#sr# 120", "=ds="..AL["Trainer"]};
-				{ 26, "s32807", "25881", "=q1=Heavy Stone Statue", "=ds=#sr# 110", "=ds="..AL["Trainer"]};
-				{ 27, "s25278", "20817", "=q1=Bronze Setting", "=ds=#sr# 50", "=ds="..AL["Trainer"]};
-				{ 28, "s32801", "25880", "=q1=Coarse Stone Statue", "=ds=#sr# 50", "=ds="..AL["Trainer"]};
-				{ 29, "s25255", "20816", "=q1=Delicate Copper Wire", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
-				{ 30, "s32259", "25498", "=q1=Rough Stone Statue", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
+				{ 1, "s131686", "90401", "=q3=Primordial Ruby", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 2, "s131759", "90406", "=q3=Secrets of the Stone", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 3, "s131691", "90399", "=q3=Imperial Amethyst", "=ds=#sr# 545", "=ds="..AL["Trainer"] };
+				{ 4, "s131690", "90400", "=q3=Vermilion Onyx", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 5, "s131688", "90397", "=q3=Wild Jade", "=ds=#sr# 535", "=ds="..AL["Trainer"] };
+				{ 6, "s131593", "90395", "=q3=River's Heart", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+				{ 7, "s131695", "90398", "=q3=Sun's Radiance", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+				{ 8, "s122663", "83795", "=q1=Scrying Roguestone", "=ds=#sr# 525", "=ds="..AL["Trainer"] };
+				{ 9, "s73623", "52489", "=q3=Rhinestone Sunglasses", "=ds=#sr# 525", "=ds="..AL["World Drop"] };
+				{ 10, "s73478", "52304", "=q3=Fire Prism", "=ds=#sr# 500", "=ds="..AL["Trainer"] };
+				{ 11, "s73621", "52493", "=q3=The Perforator", "=ds=#sr# 490", "=ds="..AL["Trainer"] };
+				{ 12, "s73627", "52487", "=q3=Jeweler's Amber Monocle", "=ds=#sr# 460", "=ds="..AL["World Drop"] };
+				{ 13, "s73620", "52492", "=q2=Carnelian Spikes", "=ds=#sr# 460", "=ds="..AL["Trainer"] };
+				{ 14, "s73626", "52486", "=q3=Jeweler's Sapphire Monocle", "=ds=#sr# 455", "=ds="..AL["World Drop"] };
+				{ 15, "s73625", "52485", "=q3=Jeweler's Ruby Monocle", "=ds=#sr# 450", "=ds="..AL["World Drop"] };
+				{ 16, "s73622", "52490", "=q1=Stardust", "=ds=#sr# 435", "=ds="..AL["Trainer"] };
+				{ 17, "s62242", "44943", "=q3=Icy Prism", "=ds=#sr# 425", "=ds="..AL["Trainer"] };
+				{ 18, "s31078", "24123", "=q4=Circlet of Arcane Might", "=ds=#sr# 370", "=ds="..BabbleZone["Old Hillsbrad Foothills"] };
+				{ 19, "s31077", "24122", "=q4=Coronet of the Verdant Flame", "=ds=#sr# 370", "=ds="..BabbleZone["The Botanica"] };
+				{ 20, "s41418", "32776", "=q3=Crown of the Sea Witch", "=ds=#sr# 365", "=ds="..AL["Trainer"] };
+				{ 21, "s47280", "35945", "=q3=Brilliant Glass", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 22, "s56208", "42421", "=q2=Shadow Jade Focusing Lens", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 23, "s56206", "42420", "=q2=Shadow Crystal Focusing Lens", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 24, "s56205", "41367", "=q2=Dark Jade Focusing Lens", "=ds=#sr# 350", "=ds="..AL["Trainer"] };
+				{ 25, "s38068", "31079", "=q3=Mercurial Adamantite", "=ds=#sr# 325", "=ds="..AL["Trainer"] };
+				{ 26, "s26906", "21774", "=q3=Emerald Crown of Destruction", "=ds=#sr# 275", "=ds="..AL["Vendor"]..": "..BabbleZone["Silithus"] };
+				{ 27, "s26878", "20969", "=q3=Ruby Crown of Restoration", "=ds=#sr# 225", "=ds="..AL["Vendor"]..": "..BabbleZone["Arathi Highlands"] };
+				{ 28, "s26880", "21752", "=q1=Thorium Setting", "=ds=#sr# 225", "=ds="..AL["Trainer"]};
+				{ 29, "s32809", "25883", "=q1=Dense Stone Statue", "=ds=#sr# 225", "=ds="..AL["Trainer"]};
+				{ 30, "s32808", "25882", "=q1=Solid Stone Statue", "=ds=#sr# 175", "=ds="..AL["Trainer"]};
+			};
+			{
+				{ 1, "s25615", "20963", "=q1=Mithril Filigree", "=ds=#sr# 150", "=ds="..AL["Trainer"]};
+				{ 2, "s25612", "20954", "=q2=Heavy Iron Knuckles", "=ds=#sr# 125", "=ds="..AL["Trainer"]};
+				{ 3, "s25321", "20832", "=q3=Moonsoul Crown", "=ds=#sr# 120", "=ds="..AL["Trainer"]};
+				{ 4, "s32807", "25881", "=q1=Heavy Stone Statue", "=ds=#sr# 110", "=ds="..AL["Trainer"]};
+				{ 5, "s25278", "20817", "=q1=Bronze Setting", "=ds=#sr# 50", "=ds="..AL["Trainer"]};
+				{ 6, "s32801", "25880", "=q1=Coarse Stone Statue", "=ds=#sr# 50", "=ds="..AL["Trainer"]};
+				{ 7, "s25255", "20816", "=q1=Delicate Copper Wire", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
+				{ 8, "s32259", "25498", "=q1=Rough Stone Statue", "=ds=#sr# 1", "=ds="..AL["Trainer"]};
 			};
 		};
 		info = {
@@ -5247,7 +5731,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = LEATHERWORKING..": "..AL["Leather Armor"],
+			name = LEATHERWORKING..": "..AL["Leather Armor"].." - "..AL["Classic WoW"],
 			module = moduleName, menu = "LEATHERWORKINGMENU"
 		};
 	};
@@ -5313,7 +5797,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = LEATHERWORKING..": "..AL["Leather Armor"],
+			name = LEATHERWORKING..": "..AL["Leather Armor"].." - "..AL["Burning Crusade"],
 			module = moduleName, menu = "LEATHERWORKINGMENU"
 		};
 	};
@@ -5396,7 +5880,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = LEATHERWORKING..": "..AL["Leather Armor"],
+			name = LEATHERWORKING..": "..AL["Leather Armor"].." - "..AL["Wrath of the Lich King"],
 			module = moduleName, menu = "LEATHERWORKINGMENU"
 		};
 	};
@@ -5445,7 +5929,52 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = LEATHERWORKING..": "..AL["Leather Armor"],
+			name = LEATHERWORKING..": "..AL["Leather Armor"].." - "..AL["Cataclysm"],
+			module = moduleName, menu = "LEATHERWORKINGMENU"
+		};
+	};
+
+	AtlasLoot_Data["LeatherLeatherArmorMoP"] = {
+		["Normal"] = {
+			{
+				{ 1, "s124638", "85788", "=q4=Chestguard of Nemeses", "=ds=#s5#, #a2# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 2, "s124640", "85829", "=q4=Nightfire Robe", "=ds=#s5#, #a2# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 3, "s124641", "85827", "=q4=Liferuned Leather Gloves", "=ds=#s9#, #a2# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 4, "s124639", "85828", "=q4=Murderer's Gloves", "=ds=#s9#, #a2# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 5, "s124619", "85823", "=q4=Greyshadow Chestguard", "=ds=#s5#, #a2# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 6, "s124621", "85850", "=q4=Wildblood Vest", "=ds=#s5#, #a2# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 7, "s124620", "85824", "=q4=Greyshadow Gloves", "=ds=#s9#, #a2# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 8, "s124622", "85849", "=q4=Wildblood Gloves", "=ds=#s9#, #a2# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 9, "s124603", "85802", "=q3=Contender's Leather Helm", "=ds=#s1#, #a2# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 10, "s124605", "85800", "=q3=Contender's Leather Chestguard", "=ds=#s5#, #a2# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 11, "s124587", "85818", "=q3=Contender's Wyrmhide Helm", "=ds=#s1#, #a2# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 12, "s124589", "85816", "=q3=Contender's Wyrmhide Chestguard", "=ds=#s5#, #a2# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 13, "s124604", "85804", "=q3=Contender's Leather Shoulders", "=ds=#s3#, #a2# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 14, "s124588", "85820", "=q3=Contender's Wyrmhide Shoulders", "=ds=#s3#, #a2# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 15, "s124606", "85801", "=q3=Contender's Leather Gloves", "=ds=#s9#, #a2# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 16, "s124610", "85797", "=q3=Contender's Leather Belt", "=ds=#s10#, #a2# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 17, "s124607", "85803", "=q3=Contender's Leather Leggings", "=ds=#s11#, #a2# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 18, "s124609", "85798", "=q3=Contender's Leather Boots", "=ds=#s12#, #a2# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 19, "s124590", "85817", "=q3=Contender's Wyrmhide Gloves", "=ds=#s9#, #a2# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 20, "s124594", "85813", "=q3=Contender's Wyrmhide Belt", "=ds=#s10#, #a2# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 21, "s124591", "85819", "=q3=Contender's Wyrmhide Leggings", "=ds=#s11#, #a2# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 22, "s124593", "85814", "=q3=Contender's Wyrmhide Boots", "=ds=#s12#, #a2# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 23, "s124573", "85835", "=q2=Misthide Chestguard", "=ds=#s5#, #a2# / =q1=#sk# 560", "=ds="..AL["Trainer"]};
+				{ 24, "s124608", "85799", "=q3=Contender's Leather Bracers", "=ds=#s8#, #a2# / =q1=#sk# 555", "=ds="..AL["Vendor"]};
+				{ 25, "s124592", "85815", "=q3=Contender's Wyrmhide Bracers", "=ds=#s8#, #a2# / =q1=#sk# 555", "=ds="..AL["Vendor"]};
+				{ 26, "s124571", "85837", "=q2=Misthide Helm", "=ds=#s1#, #a2# / =q1=#sk# 555", "=ds="..AL["Trainer"]};
+				{ 27, "s124575", "85838", "=q2=Misthide Leggings", "=ds=#s11#, #a2# / =q1=#sk# 550", "=ds="..AL["Trainer"]};
+				{ 28, "s124574", "85836", "=q2=Misthide Gloves", "=ds=#s9#, #a2# / =q1=#sk# 545", "=ds="..AL["Trainer"]};
+				{ 29, "s124572", "85839", "=q2=Misthide Shoulders", "=ds=#s3#, #a2# / =q1=#sk# 540", "=ds="..AL["Trainer"]};
+				{ 30, "s124578", "85832", "=q2=Misthide Belt", "=ds=#s10#, #a2# / =q1=#sk# 535", "=ds="..AL["Trainer"]};
+			};
+			{
+				{ 1, "s124576", "85834", "=q2=Misthide Bracers", "=ds=#s8#, #a2# / =q1=#sk# 530", "=ds="..AL["Trainer"]};
+				{ 2, "s124577", "85833", "=q2=Misthide Boots", "=ds=#s12#, #a2# / =q1=#sk# 525", "=ds="..AL["Trainer"]};
+			};
+		};
+		info = {
+			name = LEATHERWORKING..": "..AL["Leather Armor"].." - "..AL["Mists of Pandaria"],
 			module = moduleName, menu = "LEATHERWORKINGMENU"
 		};
 	};
@@ -5503,7 +6032,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = LEATHERWORKING..": "..AL["Mail Armor"],
+			name = LEATHERWORKING..": "..AL["Mail Armor"].." - "..AL["Classic WoW"],
 			module = moduleName, menu = "LEATHERWORKINGMENU"
 		};
 	};
@@ -5567,7 +6096,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = LEATHERWORKING..": "..AL["Mail Armor"],
+			name = LEATHERWORKING..": "..AL["Mail Armor"].." - "..AL["Burning Crusade"],
 			module = moduleName, menu = "LEATHERWORKINGMENU"
 		};
 	};
@@ -5648,7 +6177,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = LEATHERWORKING..": "..AL["Mail Armor"],
+			name = LEATHERWORKING..": "..AL["Mail Armor"].." - "..AL["Wrath of the Lich King"],
 			module = moduleName, menu = "LEATHERWORKINGMENU"
 		};
 	};
@@ -5697,7 +6226,52 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = LEATHERWORKING..": "..AL["Mail Armor"],
+			name = LEATHERWORKING..": "..AL["Mail Armor"].." - "..AL["Cataclysm"],
+			module = moduleName, menu = "LEATHERWORKINGMENU"
+		};
+	};
+
+	AtlasLoot_Data["LeatherMailArmorMoP"] = {
+		["Normal"] = {
+			{
+				{ 1, "s124644", "85830", "=q4=Raiment of Blood and Bone", "=ds=#s5#, #a3# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 2, "s124642", "85840", "=q4=Stormbreaker Chestguard", "=ds=#s5#, #a3# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 3, "s124643", "85821", "=q4=Fists of Lightning", "=ds=#s9#, #a3# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 4, "s124645", "85831", "=q4=Raven Lord's Gloves", "=ds=#s9#, #a3# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 5, "s124625", "85787", "=q4=Chestguard of Earthen Harmony", "=ds=#s5#, #a3# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 6, "s124623", "85826", "=q4=Lifekeeper's Robe", "=ds=#s5#, #a3# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 7, "s124626", "85822", "=q4=Gloves of Earthen Harmony", "=ds=#s9#, #a3# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 8, "s124624", "85825", "=q4=Lifekeeper's Gloves", "=ds=#s9#, #a3# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 9, "s124611", "85794", "=q3=Contender's Dragonscale Helm", "=ds=#s1#, #a3# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 10, "s124613", "85792", "=q3=Contender's Dragonscale Chestguard", "=ds=#s5#, #a3# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 11, "s124595", "85810", "=q3=Contender's Scale Helm", "=ds=#s1#, #a3# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 12, "s124597", "85808", "=q3=Contender's Scale Chestguard", "=ds=#s5#, #a3# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 13, "s124612", "85796", "=q3=Contender's Dragonscale Shoulders", "=ds=#s3#, #a3# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 14, "s124596", "85812", "=q3=Contender's Scale Shoulders", "=ds=#s3#, #a3# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 15, "s124614", "85793", "=q3=Contender's Dragonscale Gloves", "=ds=#s9#, #a3# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 16, "s124618", "85789", "=q3=Contender's Dragonscale Belt", "=ds=#s10#, #a3# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 17, "s124615", "85795", "=q3=Contender's Dragonscale Leggings", "=ds=#s11#, #a3# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 18, "s124617", "85790", "=q3=Contender's Dragonscale Boots", "=ds=#s12#, #a3# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 19, "s124598", "85809", "=q3=Contender's Scale Gloves", "=ds=#s9#, #a3# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 20, "s124602", "85805", "=q3=Contender's Scale Belt", "=ds=#s10#, #a3# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 21, "s124599", "85811", "=q3=Contender's Scale Leggings", "=ds=#s11#, #a3# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 22, "s124601", "85806", "=q3=Contender's Scale Boots", "=ds=#s12#, #a3# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 23, "s124583", "85847", "=q2=Stormscale Leggings", "=ds=#s11#, #a3# / =q1=#sk# 560", "=ds="..AL["Trainer"]};
+				{ 24, "s124616", "85791", "=q3=Contender's Dragonscale Bracers", "=ds=#s8#, #a3# / =q1=#sk# 555", "=ds="..AL["Vendor"]};
+				{ 25, "s124600", "85807", "=q3=Contender's Scale Bracers", "=ds=#s8#, #a3# / =q1=#sk# 555", "=ds="..AL["Vendor"]};
+				{ 26, "s124581", "85844", "=q2=Stormscale Chestguard", "=ds=#s5#, #a3# / =q1=#sk# 555", "=ds="..AL["Trainer"]};
+				{ 27, "s124579", "85846", "=q2=Stormscale Helm", "=ds=#s1#, #a3# / =q1=#sk# 550", "=ds="..AL["Trainer"]};
+				{ 28, "s124580", "85848", "=q2=Stormscale Shoulders", "=ds=#s3#, #a3# / =q1=#sk# 545", "=ds="..AL["Trainer"]};
+				{ 29, "s124582", "85845", "=q2=Stormscale Gloves", "=ds=#s9#, #a3# / =q1=#sk# 540", "=ds="..AL["Trainer"]};
+				{ 30, "s124585", "85842", "=q2=Stormscale Boots", "=ds=#s12#, #a3# / =q1=#sk# 535", "=ds="..AL["Trainer"]};
+			};
+			{
+				{ 1, "s124586", "85841", "=q2=Stormscale Belt", "=ds=#s10#, #a3# / =q1=#sk# 530", "=ds="..AL["Trainer"]};
+				{ 2, "s124584", "85843", "=q2=Stormscale Bracers", "=ds=#s8#, #a3# / =q1=#sk# 525", "=ds="..AL["Trainer"]};
+			};
+		};
+		info = {
+			name = LEATHERWORKING..": "..AL["Mail Armor"].." - "..AL["Mists of Pandaria"],
 			module = moduleName, menu = "LEATHERWORKINGMENU"
 		};
 	};
@@ -5705,38 +6279,41 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["LeatherCloaks"] = {
 		["Normal"] = {
 			{
-				{ 1, "s78475", "56549", "=q3=Razor-Edged Cloak", "=ds=#sr# 525", "=ds="..AL["Vendor"] };
-				{ 2, "s78476", "56548", "=q3=Twilight Dragonscale Cloak", "=ds=#sr# 525", "=ds="..AL["Vendor"] };
-				{ 3, "s99536", "75076", "=q3=Vicious Fur Cloak", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
-				{ 4, "s99535", "75077", "=q3=Vicious Hide Cloak", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
-				{ 5, "s78438", "56518", "=q3=Cloak of Beasts", "=ds=#sr# 495", "=ds="..AL["Trainer"] };
-				{ 6, "s78439", "56519", "=q3=Cloak of War", "=ds=#sr# 495", "=ds="..AL["Trainer"] };
-				{ 7, "s78405", "56489", "=q2=Hardened Scale Cloak", "=ds=#sr# 470", "=ds="..AL["Trainer"] };
-				{ 8, "s78380", "56480", "=q2=Savage Cloak", "=ds=#sr# 460", "=ds="..AL["Trainer"] };
-				{ 9, "s60637", "43566", "=q4=Ice Striker's Cloak", "=ds=#sr# 440", "=ds="..AL["Trainer"] };
-				{ 10, "s55199", "41238", "=q3=Cloak of Tormented Skies", "=ds=#sr# 395", "=ds="..AL["Trainer"] };
-				{ 11, "s60631", "38441", "=q3=Cloak of Harsh Winds", "=ds=#sr# 380", "=ds="..AL["Trainer"] };	
-				{ 12, "s42546", "33122", "=q4=Cloak of Darkness", "=ds=#sr# 360", "=ds="..BabbleFaction["The Violet Eye"].." - "..BabbleFaction["Exalted"] };
-				{ 13, "s22926", "18509", "=q4=Chromatic Cloak", "=ds=#sr# 300", "=ds="..BabbleZone["Dire Maul"] };
-				{ 14, "s22928", "18511", "=q4=Shifting Cloak", "=ds=#sr# 300", "=ds="..BabbleZone["Dire Maul"] };
+				{ 1, "s124637", "85852", "=q3=Quick Strike Cloak", "=ds=#sr# 560", "=ds="..AL["Trainer"] };
+				{ 2, "s124635", "85851", "=q2=Cloak of the Mists", "=ds=#sr# 555", "=ds="..AL["Trainer"] };
+				{ 3, "s124636", "85853", "=q3=Stormscale Drape", "=ds=#sr# 550", "=ds="..AL["Trainer"] };
+				{ 4, "s78475", "56549", "=q3=Razor-Edged Cloak", "=ds=#sr# 525", "=ds="..AL["Vendor"] };
+				{ 5, "s78476", "56548", "=q3=Twilight Dragonscale Cloak", "=ds=#sr# 525", "=ds="..AL["Vendor"] };
+				{ 6, "s99536", "75076", "=q3=Vicious Fur Cloak", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 7, "s99535", "75077", "=q3=Vicious Hide Cloak", "=ds=#sr# 510", "=ds="..AL["Trainer"] };
+				{ 8, "s78438", "56518", "=q3=Cloak of Beasts", "=ds=#sr# 495", "=ds="..AL["Trainer"] };
+				{ 9, "s78439", "56519", "=q3=Cloak of War", "=ds=#sr# 495", "=ds="..AL["Trainer"] };
+				{ 10, "s78405", "56489", "=q2=Hardened Scale Cloak", "=ds=#sr# 470", "=ds="..AL["Trainer"] };
+				{ 11, "s78380", "56480", "=q2=Savage Cloak", "=ds=#sr# 460", "=ds="..AL["Trainer"] };
+				{ 12, "s60637", "43566", "=q4=Ice Striker's Cloak", "=ds=#sr# 440", "=ds="..AL["Trainer"] };
+				{ 13, "s55199", "41238", "=q3=Cloak of Tormented Skies", "=ds=#sr# 395", "=ds="..AL["Trainer"] };
+				{ 14, "s60631", "38441", "=q3=Cloak of Harsh Winds", "=ds=#sr# 380", "=ds="..AL["Trainer"] };	
+				{ 15, "s42546", "33122", "=q4=Cloak of Darkness", "=ds=#sr# 360", "=ds="..BabbleFaction["The Violet Eye"].." - "..BabbleFaction["Exalted"] };
+				{ 16, "s22926", "18509", "=q4=Chromatic Cloak", "=ds=#sr# 300", "=ds="..BabbleZone["Dire Maul"] };
+				{ 17, "s22928", "18511", "=q4=Shifting Cloak", "=ds=#sr# 300", "=ds="..BabbleZone["Dire Maul"] };
 				{
-					{ 16, "s19093", "15138", "=q3=Onyxia Scale Cloak", "=ds=#sr# 300", "=ds=#QUESTID:7493#" };
-					{ 16, "s19093", "15138", "=q3=Onyxia Scale Cloak", "=ds=#sr# 300", "=ds=#QUESTID:7497#" };
+					{ 18, "s19093", "15138", "=q3=Onyxia Scale Cloak", "=ds=#sr# 300", "=ds=#QUESTID:7493#" };
+					{ 18, "s19093", "15138", "=q3=Onyxia Scale Cloak", "=ds=#sr# 300", "=ds=#QUESTID:7497#" };
 				};
 				{
-					{ 17, "s10574", "8215", "=q2=Wild Leather Cloak", "=ds=#sr# 250", "=ds=#QUESTID:2860#" };
-					{ 17, "s10574", "8215", "=q2=Wild Leather Cloak", "=ds=#sr# 250", "=ds=#QUESTID:2853#" };
+					{ 19, "s10574", "8215", "=q2=Wild Leather Cloak", "=ds=#sr# 250", "=ds=#QUESTID:2860#" };
+					{ 19, "s10574", "8215", "=q2=Wild Leather Cloak", "=ds=#sr# 250", "=ds=#QUESTID:2853#" };
 				};
-				{ 18, "s10562", "8216", "=q2=Big Voodoo Cloak", "=ds=#sr# 240", "=ds="..AL["World Drop"] };
-				{ 19, "s7153", "5965", "=q2=Guardian Cloak", "=ds=#sr# 185", "=ds="..AL["World Drop"] };
-				{ 20, "s9198", "7377", "=q2=Frost Leather Cloak", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
-				{ 21, "s3760", "3719", "=q2=Hillman's Cloak", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
-				{ 22, "s2168", "2316", "=q2=Dark Leather Cloak", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
-				{ 23, "s9070", "7283", "=q2=Black Whelp Cloak", "=ds=#sr# 100", "=ds="..AL["Vendor"]..": "..BabbleZone["Redridge Mountains"] };
-				{ 24, "s7953", "6466", "=q2=Deviate Scale Cloak", "=ds=#sr# 90", "=ds="..AL["Vendor"]..": "..BabbleZone["Northern Barrens"] };
-				{ 25, "s2159", "2308", "=q2=Fine Leather Cloak", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
-				{ 26, "s2162", "2310", "=q2=Embossed Leather Cloak", "=ds=#sr# 60", "=ds="..AL["Trainer"] };
-				{ 27, "s9058", "7276", "=q1=Handstitched Leather Cloak", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
+				{ 20, "s10562", "8216", "=q2=Big Voodoo Cloak", "=ds=#sr# 240", "=ds="..AL["World Drop"] };
+				{ 21, "s7153", "5965", "=q2=Guardian Cloak", "=ds=#sr# 185", "=ds="..AL["World Drop"] };
+				{ 22, "s9198", "7377", "=q2=Frost Leather Cloak", "=ds=#sr# 180", "=ds="..AL["Trainer"] };
+				{ 23, "s3760", "3719", "=q2=Hillman's Cloak", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 24, "s2168", "2316", "=q2=Dark Leather Cloak", "=ds=#sr# 110", "=ds="..AL["Trainer"] };
+				{ 25, "s9070", "7283", "=q2=Black Whelp Cloak", "=ds=#sr# 100", "=ds="..AL["Vendor"]..": "..BabbleZone["Redridge Mountains"] };
+				{ 26, "s7953", "6466", "=q2=Deviate Scale Cloak", "=ds=#sr# 90", "=ds="..AL["Vendor"]..": "..BabbleZone["Northern Barrens"] };
+				{ 27, "s2159", "2308", "=q2=Fine Leather Cloak", "=ds=#sr# 85", "=ds="..AL["Trainer"] };
+				{ 28, "s2162", "2310", "=q2=Embossed Leather Cloak", "=ds=#sr# 60", "=ds="..AL["Trainer"] };
+				{ 29, "s9058", "7276", "=q1=Handstitched Leather Cloak", "=ds=#sr# 1", "=ds="..AL["Trainer"] };
 			};
 		};
 		info = {
@@ -6274,7 +6851,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = TAILORING..": "..AL["Cloth Armor"],
+			name = TAILORING..": "..AL["Cloth Armor"].." - "..AL["Classic WoW"],
 			module = moduleName, menu = "TAILORINGMENU",
 		};
 	};
@@ -6354,7 +6931,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = TAILORING..": "..AL["Cloth Armor"],
+			name = TAILORING..": "..AL["Cloth Armor"].." - "..AL["Burning Crusade"],
 			module = moduleName, menu = "TAILORINGMENU",
 		};
 	};
@@ -6436,7 +7013,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = TAILORING..": "..AL["Cloth Armor"],
+			name = TAILORING..": "..AL["Cloth Armor"].." - "..AL["Wrath of the Lich King"],
 			module = moduleName, menu = "TAILORINGMENU",
 		};
 	};
@@ -6495,7 +7072,52 @@ local SPELLFIRE = GetSpellInfo(26797);
 			};
 		};
 		info = {
-			name = TAILORING..": " ..AL["Cloth Armor"],
+			name = TAILORING..": " ..AL["Cloth Armor"].." - "..AL["Cataclysm"],
+			module = moduleName, menu = "TAILORINGMENU",
+		};
+	};
+
+	AtlasLoot_Data["TailoringArmorMoP"] = {
+		["Normal"] = {
+			{
+				{ 1, "s125560", "86312", "=q4=Legacy of the Emperor", "=ds=#s5#, #a1# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 2, "s125558", "86311", "=q4=Robe of Eternal Rule", "=ds=#s5#, #a1# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 3, "s125559", "86313", "=q4=Imperial Silk Gloves", "=ds=#s9#, #a1# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 4, "s125561", "86314", "=q4=Touch of the Light", "=ds=#s9#, #a1# / =q1=#sk# 600", "=ds="..AL["Drop"]..": "..AtlasLoot:GetMapNameByID(896)};
+				{ 5, "s125549", "82439", "=q4=Robes of Creation", "=ds=#s5#, #a1# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 6, "s125547", "82437", "=q4=Spelltwister's Grand Robe", "=ds=#s5#, #a1# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 7, "s125550", "82440", "=q4=Gloves of Creation", "=ds=#s9#, #a1# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 8, "s125548", "82438", "=q4=Spelltwister's Gloves", "=ds=#s9#, #a1# / =q1=#sk# 600", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"]};
+				{ 9, "s125539", "82429", "=q3=Contender's Satin Cowl", "=ds=#s1#, #a1# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 10, "s125541", "82431", "=q3=Contender's Satin Rainment", "=ds=#s5#, #a1# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 11, "s125531", "82421", "=q3=Contender's Silk Cowl", "=ds=#s1#, #a1# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 12, "s125533", "82423", "=q3=Contender's Silk Rainment", "=ds=#s5#, #a1# / =q1=#sk# 590", "=ds="..AL["Vendor"]};
+				{ 13, "s125540", "82430", "=q3=Contender's Satin Amice", "=ds=#s3#, #a1# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 14, "s125532", "82422", "=q3=Contender's Silk Amice", "=ds=#s3#, #a1# / =q1=#sk# 575", "=ds="..AL["Vendor"]};
+				{ 15, "s125542", "82432", "=q3=Contender's Satin Handwraps", "=ds=#s9#, #a1# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 16, "s125546", "82436", "=q3=Contender's Satin Belt", "=ds=#s10#, #a1# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 17, "s125543", "82433", "=q3=Contender's Satin Pants", "=ds=#s11#, #a1# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 18, "s125545", "82435", "=q3=Contender's Satin Footwraps", "=ds=#s12#, #a1# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 19, "s125534", "82424", "=q3=Contender's Silk Handwraps", "=ds=#s9#, #a1# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 20, "s125538", "82428", "=q3=Contender's Silk Belt", "=ds=#s10#, #a1# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 21, "s125535", "82425", "=q3=Contender's Silk Pants", "=ds=#s11#, #a1# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 22, "s125537", "82427", "=q3=Contender's Silk Footwraps", "=ds=#s12#, #a1# / =q1=#sk# 565", "=ds="..AL["Vendor"]};
+				{ 23, "s125544", "82434", "=q3=Contender's Satin Cuffs", "=ds=#s8#, #a1# / =q1=#sk# 555", "=ds="..AL["Vendor"]};
+				{ 24, "s125536", "82426", "=q3=Contender's Silk Cuffs", "=ds=#s8#, #a1# / =q1=#sk# 555", "=ds="..AL["Vendor"]};
+				{ 25, "s125523", "82397", "=q2=Windwool Hood", "=ds=#s1#, #a1# / =q1=#sk# 555", "=ds="..AL["Trainer"]};
+				{ 26, "s125525", "82399", "=q2=Windwool Tunic", "=ds=#s5#, #a1# / =q1=#sk# 555", "=ds="..AL["Trainer"]};
+				{ 27, "s125527", "82401", "=q2=Windwool Pants", "=ds=#s11#, #a1# / =q1=#sk# 545", "=ds="..AL["Trainer"]};
+				{ 28, "s125529", "82403", "=q2=Windwool Boots", "=ds=#s12#, #a1# / =q1=#sk# 545", "=ds="..AL["Trainer"]};
+				{ 29, "s125524", "82398", "=q2=Windwool Shoulders", "=ds=#s3#, #a1# / =q1=#sk# 535", "=ds="..AL["Trainer"]};
+				{ 30, "s125530", "82404", "=q2=Windwool Belt", "=ds=#s10#, #a1# / =q1=#sk# 535", "=ds="..AL["Trainer"]};
+			};
+			{
+				{ 1, "s125528", "82402", "=q2=Windwool Bracers", "=ds=#s8#, #a1# / =q1=#sk# 525", "=ds="..AL["Trainer"]};
+				{ 2, "s125526", "82400", "=q2=Windwool Gloves", "=ds=#s9#, #a1# / =q1=#sk# 525", "=ds="..AL["Trainer"]};
+			};
+		};
+		info = {
+			name = TAILORING..": " ..AL["Cloth Armor"].." - "..AL["Mists of Pandaria"],
 			module = moduleName, menu = "TAILORINGMENU",
 		};
 	};
@@ -6503,46 +7125,47 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["TailoringBags"] = {
 		["Normal"] = {
 			{
-				{ 1, "s75308", "54444", "=q3=Illusionary Bag", "=ds=#sr# 525", "=ds="..AL["Vendor"]};
-				{ 2, "s100585", "70138", "=q3=Luxurious Silk Gem Bag", "=ds=#sr# 515", "=ds="..BabbleZone["Molten Front"]};
-				{ 3, "s75268", "54446", "=q2=Hyjal Expedition Bag", "=ds=#sr# 490", "=ds="..AL["Trainer"] };
-				{ 4, "s75264", "54443", "=q2=Embersilk Bag", "=ds=#sr# 480", "=ds="..AL["Trainer"] };
-				{ 5, "s75265", "54445", "=q3=Otherworldly Bag", "=ds=#sr# 480", "=ds="..AL["Trainer"] };
-				{ 6, "s56007", "41599", "=q2=Frostweave Bag", "=ds=#sr# 410", "=ds="..AL["Trainer"] };
-				{ 7, "s56005", "41600", "=q3=Glacial Bag", "=ds=#sr# 445", "=ds="..BabbleFaction["The Sons of Hodir"].." - "..BabbleFaction["Exalted"] };
-				{ 8, "s56006", "41598", "=q3=Mysterious Bag", "=ds=#sr# 440", "=ds="..BabbleFaction["The Wyrmrest Accord"].." - "..BabbleFaction["Revered"] };
-				{ 9, "s56004", "41597", "=q3=Abyssal Bag", "=ds=#sr# 435", "=ds="..BabbleFaction["Knights of the Ebon Blade"].." - "..BabbleFaction["Revered"] };
-				{ 10, "s63924", "45773", "=q3=Emerald Bag", "=ds=#sr# 435", "=ds="..BabbleFaction["The Kalu'ak"].." - "..BabbleFaction["Revered"] };
-				{ 11, "s26759", "21872", "=q3=Ebon Shadowbag",  "=ds=#sr# 375", "=ds="..AL["Vendor"] };
-				{ 12, "s50194", "38225", "=q3=Mycah's Botanical Bag", "=ds=#sr# 375", "=ds="..BabbleFaction["Sporeggar"].." - "..BabbleFaction["Revered"] };
-				{ 13, "s26763", "21876", "=q3=Primal Mooncloth Bag", "=ds=#sr# 375", "=ds="..AL["Vendor"] };
-				{ 14, "s26755", "21858", "=q3=Spellfire Bag", "=ds=#sr# 375", "=ds="..AL["Vendor"] };
-				{ 15, "s31459", "24270", "=q2=Bag of Jewels", "=ds=#sr# 340", "=ds="..AL["Vendor"] };
-				{ 16, "s26749", "21843", "=q2=Imbued Netherweave Bag", "=ds=#sr# 340", "=ds="..AL["Vendor"] };
-				{ 17, "s26746", "21841", "=q2=Netherweave Bag", "=ds=#sr# 315", "=ds="..AL["Trainer"] };
-				{ 18, "s26087", "21342", "=q4=Core Felcloth Bag", "=ds=#sr# 300", "=ds="..AL["Drop"]..": "..BabbleZone["Molten Core"] };
-				{ 19, "s18455", "14156", "=q3=Bottomless Bag", "=ds=#sr# 300", "=ds="..AL["Drop"]};
-				{ 20, "s27660", "22249", "=q2=Big Bag of Enchantment", "=ds=#sr# 300", "=ds="..AL["Drop"]..": "..BabbleZone["Dire Maul"] };
-				{ 21, "s18445", "14155", "=q2=Mooncloth Bag", "=ds=#sr# 300", "=ds="..AL["Drop"]};
-				{ 22, "s27725", "22252", "=q2=Satchel of Cenarius", "=ds=#sr# 300", "=ds="..BabbleFaction["Cenarion Circle"].." - "..BabbleFaction["Revered"] };
-				{ 23, "s26086", "21341", "=q3=Felcloth Bag", "=ds=#sr# 280", "=ds="..AL["Drop"]..": "..BabbleZone["Scholomance"] };
-				{ 24, "s27659", "22248", "=q2=Enchanted Runecloth Bag", "=ds=#sr# 275", "=ds="..AL["Vendor"]..": "..BabbleZone["Silithus"]};
-				{ 25, "s27724", "22251", "=q2=Cenarion Herb Bag", "=ds=#sr# 275", "=ds="..BabbleFaction["Cenarion Circle"].." - "..BabbleFaction["Friendly"] };
-				{ 26, "s26085", "21340", "=q2=Soul Pouch", "=ds=#sr# 260", "=ds="..AL["Vendor"]..": "..BabbleZone["Tanaris"]};
-				{ 27, "s27658", "22246", "=q2=Enchanted Mageweave Pouch", "=ds=#sr# 225", "=ds="..AL["Vendor"]..""};
-				{ 28, "s18405", "14046", "=q1=Runecloth Bag", "=ds=#sr# 260", "=ds="..AL["Vendor"]..": "..BabbleZone["Winterspring"]};
-				{ 29, "s12079", "10051", "=q1=Red Mageweave Bag", "=ds=#sr# 235", "=ds="..AL["Trainer"] };
-				{ 30, "s12065", "10050", "=q1=Mageweave Bag", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
+				{ 1, "s125556", "82446", "=q4=Royal Satchel", "=ds=#sr# 600", "=ds="..BabbleFaction["The August Celestials"].." - "..BabbleFaction["Exalted"] };
+				{ 2, "s75308", "54444", "=q3=Illusionary Bag", "=ds=#sr# 525", "=ds="..AL["Vendor"]};
+				{ 3, "s100585", "70138", "=q3=Luxurious Silk Gem Bag", "=ds=#sr# 515", "=ds="..BabbleZone["Molten Front"]};
+				{ 4, "s75268", "54446", "=q2=Hyjal Expedition Bag", "=ds=#sr# 490", "=ds="..AL["Trainer"] };
+				{ 5, "s75264", "54443", "=q2=Embersilk Bag", "=ds=#sr# 480", "=ds="..AL["Trainer"] };
+				{ 6, "s75265", "54445", "=q3=Otherworldly Bag", "=ds=#sr# 480", "=ds="..AL["Trainer"] };
+				{ 7, "s56007", "41599", "=q2=Frostweave Bag", "=ds=#sr# 410", "=ds="..AL["Trainer"] };
+				{ 8, "s56005", "41600", "=q3=Glacial Bag", "=ds=#sr# 445", "=ds="..BabbleFaction["The Sons of Hodir"].." - "..BabbleFaction["Exalted"] };
+				{ 9, "s56006", "41598", "=q3=Mysterious Bag", "=ds=#sr# 440", "=ds="..BabbleFaction["The Wyrmrest Accord"].." - "..BabbleFaction["Revered"] };
+				{ 10, "s56004", "41597", "=q3=Abyssal Bag", "=ds=#sr# 435", "=ds="..BabbleFaction["Knights of the Ebon Blade"].." - "..BabbleFaction["Revered"] };
+				{ 11, "s63924", "45773", "=q3=Emerald Bag", "=ds=#sr# 435", "=ds="..BabbleFaction["The Kalu'ak"].." - "..BabbleFaction["Revered"] };
+				{ 12, "s26759", "21872", "=q3=Ebon Shadowbag",  "=ds=#sr# 375", "=ds="..AL["Vendor"] };
+				{ 13, "s50194", "38225", "=q3=Mycah's Botanical Bag", "=ds=#sr# 375", "=ds="..BabbleFaction["Sporeggar"].." - "..BabbleFaction["Revered"] };
+				{ 14, "s26763", "21876", "=q3=Primal Mooncloth Bag", "=ds=#sr# 375", "=ds="..AL["Vendor"] };
+				{ 15, "s26755", "21858", "=q3=Spellfire Bag", "=ds=#sr# 375", "=ds="..AL["Vendor"] };
+				{ 16, "s31459", "24270", "=q2=Bag of Jewels", "=ds=#sr# 340", "=ds="..AL["Vendor"] };
+				{ 17, "s26749", "21843", "=q2=Imbued Netherweave Bag", "=ds=#sr# 340", "=ds="..AL["Vendor"] };
+				{ 18, "s26746", "21841", "=q2=Netherweave Bag", "=ds=#sr# 315", "=ds="..AL["Trainer"] };
+				{ 19, "s26087", "21342", "=q4=Core Felcloth Bag", "=ds=#sr# 300", "=ds="..AL["Drop"]..": "..BabbleZone["Molten Core"] };
+				{ 20, "s18455", "14156", "=q3=Bottomless Bag", "=ds=#sr# 300", "=ds="..AL["Drop"]};
+				{ 21, "s27660", "22249", "=q2=Big Bag of Enchantment", "=ds=#sr# 300", "=ds="..AL["Drop"]..": "..BabbleZone["Dire Maul"] };
+				{ 22, "s18445", "14155", "=q2=Mooncloth Bag", "=ds=#sr# 300", "=ds="..AL["Drop"]};
+				{ 23, "s27725", "22252", "=q2=Satchel of Cenarius", "=ds=#sr# 300", "=ds="..BabbleFaction["Cenarion Circle"].." - "..BabbleFaction["Revered"] };
+				{ 24, "s26086", "21341", "=q3=Felcloth Bag", "=ds=#sr# 280", "=ds="..AL["Drop"]..": "..BabbleZone["Scholomance"] };
+				{ 25, "s27659", "22248", "=q2=Enchanted Runecloth Bag", "=ds=#sr# 275", "=ds="..AL["Vendor"]..": "..BabbleZone["Silithus"]};
+				{ 26, "s27724", "22251", "=q2=Cenarion Herb Bag", "=ds=#sr# 275", "=ds="..BabbleFaction["Cenarion Circle"].." - "..BabbleFaction["Friendly"] };
+				{ 27, "s26085", "21340", "=q2=Soul Pouch", "=ds=#sr# 260", "=ds="..AL["Vendor"]..": "..BabbleZone["Tanaris"]};
+				{ 28, "s27658", "22246", "=q2=Enchanted Mageweave Pouch", "=ds=#sr# 225", "=ds="..AL["Vendor"]..""};
+				{ 29, "s18405", "14046", "=q1=Runecloth Bag", "=ds=#sr# 260", "=ds="..AL["Vendor"]..": "..BabbleZone["Winterspring"]};
+				{ 30, "s12079", "10051", "=q1=Red Mageweave Bag", "=ds=#sr# 235", "=ds="..AL["Trainer"] };
 			};
 			{
-				{ 1, "s6695", "5765", "=q1=Black Silk Pack", "=ds=#sr# 185", "=ds="..AL["Drop"]};
-				{ 2, "s6693", "5764", "=q1=Green Silk Pack", "=ds=#sr# 175", "=ds="..AL["Drop"]};
-				{ 3, "s3813", "4245", "=q1=Small Silk Pack", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
-				{ 4, "s6688", "5763", "=q1=Red Woolen Bag", "=ds=#sr# 115", "=ds="..AL["Vendor"] };
-				{ 5, "s3758", "4241", "=q1=Green Woolen Bag", "=ds=#sr# 95", "=ds="..AL["Drop"]};
-				{ 6, "s3757", "4240", "=q1=Woolen Bag", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
-				{ 7, "s6686", "5762", "=q1=Red Linen Bag", "=ds=#sr# 70", "=ds="..AL["Vendor"] };
-				{ 8, "s3755", "4238", "=q1=Linen Bag", "=ds=#sr# 45", "=ds="..AL["Trainer"] };
+				{ 1, "s12065", "10050", "=q1=Mageweave Bag", "=ds=#sr# 225", "=ds="..AL["Trainer"] };
+				{ 2, "s6695", "5765", "=q1=Black Silk Pack", "=ds=#sr# 185", "=ds="..AL["Drop"]};
+				{ 3, "s6693", "5764", "=q1=Green Silk Pack", "=ds=#sr# 175", "=ds="..AL["Drop"]};
+				{ 4, "s3813", "4245", "=q1=Small Silk Pack", "=ds=#sr# 150", "=ds="..AL["Trainer"] };
+				{ 5, "s6688", "5763", "=q1=Red Woolen Bag", "=ds=#sr# 115", "=ds="..AL["Vendor"] };
+				{ 6, "s3758", "4241", "=q1=Green Woolen Bag", "=ds=#sr# 95", "=ds="..AL["Drop"]};
+				{ 7, "s3757", "4240", "=q1=Woolen Bag", "=ds=#sr# 80", "=ds="..AL["Trainer"] };
+				{ 8, "s6686", "5762", "=q1=Red Linen Bag", "=ds=#sr# 70", "=ds="..AL["Vendor"] };
+				{ 9, "s3755", "4238", "=q1=Linen Bag", "=ds=#sr# 45", "=ds="..AL["Trainer"] };
 			};
 		};
 		info = {
@@ -6572,7 +7195,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 16, "s125555", "82445", "=q3=Greater Cerulean Spellthread", "=ds=#sr# 575", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"] };
 				{ 17, "s125554", "82444", "=q3=Greater Pearlescent Spellthread", "=ds=#sr# 575", "=ds="..BabbleFaction["Golden Lotus"].." - "..BabbleFaction["Honored"] };
 				{ 18, "s125553", "82443", "=q2=Cerulean Spellthread", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
-				{ 19, "s125552", "82442", "=q2=Pearlescent Spellthread", "=ds=#sr# 540", "=ds="..AL["Trainer"] };
+				{ 19, "s125552", "82442", "=q2=Pearlescent Spellthread", "=ds=#sr# 530", "=ds="..AL["Trainer"] };
 				{ 21, "s75309", "54448", "=q4=Powerful Enchanted Spellthread", "=ds=#sr# 525", "=ds="..AL["Vendor"] };
 				{ 22, "s75310", "54450", "=q4=Powerful Ghostly Spellthread", "=ds=#sr# 525", "=ds="..AL["Vendor"] };
 				{ 23, "s75255", "54449", "=q3=Ghostly Spellthread", "=ds=#sr# 450", "=ds="..AL["Trainer"] };
@@ -7821,68 +8444,120 @@ local SPELLFIRE = GetSpellInfo(26797);
 	AtlasLoot_Data["CookingDaily"] = {
 		["Normal"] = {
 			{
-				{ 1, 65411, "", "=q2=Recipe: Broiled Mountain Trout", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 2, 65408, "", "=q2=Recipe: Feathered Lure", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 3, 65415, "", "=q2=Recipe: Highland Spirits", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 4, 65407, "", "=q2=Recipe: Lavascale Fillet", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 5, 65412, "", "=q2=Recipe: Lightly Fried Lurker", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 6, 65416, "", "=q2=Recipe: Lurker Lunch", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 7, 65410, "", "=q2=Recipe: Salted Eye", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 8, 65413, "", "=q2=Recipe: Seasoned Crab", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 9, 65414, "", "=q2=Recipe: Starfire Espresso", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 10, 65406, "", "=q2=Recipe: Whitecrest Gumbo", "=ds=#sr# (450)", "#CHEFAWARD:3#"};
-				{ 11, 65418, "", "=q2=Recipe: Hearty Seafood Soup", "=ds=#sr# (475)", "#CHEFAWARD:3#"};
-				{ 12, 65417, "", "=q2=Recipe: Pickled Guppy", "=ds=#sr# (475)", "#CHEFAWARD:3#"};
-				{ 13, 65419, "", "=q2=Recipe: Tender Baked Turtle", "=ds=#sr# (475)", "#CHEFAWARD:3#"};
-				{ 14, 65426, "", "=q2=Recipe: Baked Rockfish", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 15, 65427, "", "=q2=Recipe: Basilisk Liverdog", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 16, 65429, "", "=q2=Recipe: Beer-Basted Crocolisk", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 17, 65424, "", "=q2=Recipe: Blackbelly Sushi", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 18, 65430, "", "=q2=Recipe: Crocolisk Au Gratin", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 19, 65422, "", "=q2=Recipe: Delicious Sagefish Tail", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 20, 65423, "", "=q2=Recipe: Fish Fry", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 21, 65428, "", "=q2=Recipe: Grilled Dragon", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 22, 65409, "", "=q2=Recipe: Lavascale Minestrone", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 23, 65420, "", "=q2=Recipe: Mushroom Sauce Mudfish", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 24, 68688, "", "=q2=Recipe: Scalding Murglesnout", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 25, 65421, "", "=q2=Recipe: Severed Sagefish Head", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 26, 65425, "", "=q2=Recipe: Skewered Eel", "=ds=#sr# (500)", "#CHEFAWARD:3#"};
-				{ 27, 65431, "", "=q2=Recipe: Chocolate Cookie", "=ds=#sr# (505)", "#CHEFAWARD:3#"};
-				{ 28, 65432, "", "=q2=Recipe: Fortune Cookie", "=ds=#sr# (525)", "#CHEFAWARD:5#"};
-				{ 29, 65433, "", "=q2=Recipe: South Island Iced Tea", "=ds=#sr# (525)", "#CHEFAWARD:5#"};
-				extraText = ": "..BabbleZone["Stormwind"] .." / "..BabbleZone["Orgrimmar"];
+				{ 1, 86425, "", "=q3=Cooking School Bell", "=ds=#sr# (450)", "#IRONPAW:50#"};
+				{ 2, 86559, "", "=q7=Frying Pan", "=ds=#h1#", "#IRONPAW:50#"};
+				{ 3, 86558, "", "=q7=Rolling Pin", "=ds=#s15#", "#IRONPAW:50#"};
+				{ 4, 86468, "", "=q7=Apron", "=ds=#s7#", "#IRONPAW:50#"};
+				{ 5, 75017, "", "=q2=Recipe: Great Pandaren Banquet", "=ds=#sr# (600)", "#IRONPAW:10#"};
+				{ 6, 75013, "", "=q2=Recipe: Pandaren Banquet", "=ds=#sr# (600)", "#IRONPAW:10#"};
+				{ 7, 88801, "", "=q1=Flippable Table", "=ds=", "#IRONPAW:40#"};
+				{ 8, 74853, "", "=q1=100 Year Soy Sauce", "=ds=#e8#", "#IRONPAW:1#"};
+				{ 9, 74661, "", "=q1=Black Pepper", "=ds=#e8#", "#IRONPAW:1#"};
+				{ 10, 74662, "", "=q1=Rice Flour", "=ds=#e8#", "#IRONPAW:1#"};
+				{ 12, 0, "inv_misc_bag_10_blue", "=q6="..BabbleInventory["Fish"], ""};
+				{ 13, 87723, "", "=q1=Sack of Emperor Salmon", "=ds=#e21#", "#IRONPAW:1#"};
+				{ 14, 87722, "", "=q1=Sack of Giant Mantis Shrimp", "=ds=#e21#", "#IRONPAW:1#"};
+				{ 15, 87729, "", "=q1=Sack of Golden Carp", "=ds=#e21#", "#IRONPAW:1#"};
+				{ 16, 87721, "", "=q1=Sack of Jade Lungfish", "=ds=#e21#", "#IRONPAW:1#"};
+				{ 17, 87728, "", "=q1=Sack of Krasarang Paddlefish", "=ds=#e21#", "#IRONPAW:1#"};
+				{ 18, 87724, "", "=q1=Sack of Redbelly Mandarin", "=ds=#e21#", "#IRONPAW:1#"};
+				{ 19, 87727, "", "=q1=Sack of Reef Octopus", "=ds=#e21#", "#IRONPAW:1#"};
+				{ 20, 87725, "", "=q1=Sack of Tiger Gourami", "=ds=#e21#", "#IRONPAW:1#"};
+				{ 22, 0, "inv_misc_bag_10_red", "=q6="..BabbleInventory["Meat"], ""};
+				{ 23, 87730, "", "=q1=Sack of Crocolisk Belly", "=ds=#e30#", "#IRONPAW:1#"};
+				{ 24, 87702, "", "=q1=Sack of Mushan Ribs", "=ds=#e30#", "#IRONPAW:1#"};
+				{ 25, 87704, "", "=q1=Sack of Raw Crab Meat", "=ds=#e30#", "#IRONPAW:1#"};
+				{ 26, 87701, "", "=q1=Sack of Raw Tiger Steaks", "=ds=#e30#", "#IRONPAW:1#"};
+				{ 27, 87703, "", "=q1=Sack of Raw Turtle Meat", "=ds=#e30#", "#IRONPAW:1#"};
+				{ 28, 87705, "", "=q1=Sack of Wildfowl Breasts", "=ds=#e30#", "#IRONPAW:1#"};
+				extraText = ": "..AtlasLoot:GetMapNameByID(807);
 			};
 			{
-				{ 1, 43035, "", "=q2=Recipe: Blackened Dragonfin", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 2, 43032, "", "=q2=Recipe: Blackened Worg Steak", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 3, 43029, "", "=q2=Recipe: Critter Bites", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 4, 43033, "", "=q2=Recipe: Cuttlesteak", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 5, 43036, "", "=q2=Recipe: Dragonfin Filet", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 6, 43024, "", "=q2=Recipe: Firecracker Salmon", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 7, 43030, "", "=q2=Recipe: Hearty Rhino", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 8, 43026, "", "=q2=Recipe: Imperial Manta Steak", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 9, 43018, "", "=q2=Recipe: Mega Mammoth Meal", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 10, 43022, "", "=q2=Recipe: Mighty Rhino Dogs", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 11, 43023, "", "=q2=Recipe: Poached Northern Sculpin", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 12, 43028, "", "=q2=Recipe: Rhinolicious Wormsteak", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 13, 43031, "", "=q2=Recipe: Snapper Extreme", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 14, 43034, "", "=q2=Recipe: Spiced Mammoth Treats", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 15, 43020, "", "=q2=Recipe: Spiced Worm Burger", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 16, 43025, "", "=q2=Recipe: Spicy Blue Nettlefish", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 17, 43027, "", "=q2=Recipe: Spicy Fried Herring", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 18, 43019, "", "=q2=Recipe: Tender Shoveltusk Steak", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 19, 43037, "", "=q2=Recipe: Tracker Snacks", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 20, 43021, "", "=q2=Recipe: Very Burnt Worg", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 21, 44954, "", "=q2=Recipe: Worg Tartare", "=ds=#sr# (400)", "#DALARANCK:3#"};
-				{ 22, 43505, "", "=q2=Recipe: Gigantic Feast", "=ds=#sr# (425)", "#DALARANCK:3#"};
-				{ 23, 43506, "", "=q2=Recipe: Small Feast", "=ds=#sr# (425)", "#DALARANCK:3#"};
-				{ 24, 43017, "", "=q2=Recipe: Fish Feast", "=ds=#sr# (450)", "#DALARANCK:5#"};
-				{ 26, 0, "inv_misc_bag_11", "=q6="..AL["Small Spice Bag"], ""};
-				{ 27, 33925, "", "=q3=Recipe: Delicious Chocolate Cake", "=ds=#sr# (1)", ""};
-				{ 28, 33871, "", "=q3=Recipe: Stormchops", "=ds=#sr# (300)", ""};
-				{ 29, 44228, "", "=q1=Baby Spice", "=ds=#m20#", ""};
-				{ 30, 44114, "", "=q1=Old Spices", "=ds=#m20#", ""};
-				extraText = ": "..BabbleZone["Dalaran"];
+				{ 1, 0, "inv_misc_bag_10_green", "=q6="..AL["Vegetables"], ""};
+				{ 2, 87706, "", "=q1=Sack of Green Cabbages", "=ds=#e31#", "#IRONPAW:1#"};
+				{ 3, 87713, "", "=q1=Sack of Jade Squash", "=ds=#e31#", "#IRONPAW:1#"};
+				{ 4, 87707, "", "=q1=Sack of Juicycrunch Carrots", "=ds=#e31#", "#IRONPAW:1#"};
+				{ 5, 87708, "", "=q1=Sack of Mogu Pumpkins", "=ds=#e31#", "#IRONPAW:1#"};
+				{ 6, 87715, "", "=q1=Sack of Pink Turnips", "=ds=#e31#", "#IRONPAW:1#"};
+				{ 7, 87710, "", "=q1=Sack of Red Blossom Leeks", "=ds=#e31#", "#IRONPAW:1#"};
+				{ 8, 87709, "", "=q1=Sack of Scallions", "=ds=#e31#", "#IRONPAW:1#"};
+				{ 9, 87714, "", "=q1=Sack of Striped Melons", "=ds=#e31#", "#IRONPAW:1#"};
+				extraText = ": "..AtlasLoot:GetMapNameByID(807);
+			};
+			{
+				{ 1, 65411, "", "=q2=Recipe: Broiled Mountain Trout", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 2, 65408, "", "=q2=Recipe: Feathered Lure", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 3, 65415, "", "=q2=Recipe: Highland Spirits", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 4, 65407, "", "=q2=Recipe: Lavascale Fillet", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 5, 65412, "", "=q2=Recipe: Lightly Fried Lurker", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 6, 65416, "", "=q2=Recipe: Lurker Lunch", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 7, 65410, "", "=q2=Recipe: Salted Eye", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 8, 65413, "", "=q2=Recipe: Seasoned Crab", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 9, 65414, "", "=q2=Recipe: Starfire Espresso", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 10, 65406, "", "=q2=Recipe: Whitecrest Gumbo", "=ds=#sr# (450)", "#EPICUREAN:3#"};
+				{ 11, 65418, "", "=q2=Recipe: Hearty Seafood Soup", "=ds=#sr# (475)", "#EPICUREAN:3#"};
+				{ 12, 65417, "", "=q2=Recipe: Pickled Guppy", "=ds=#sr# (475)", "#EPICUREAN:3#"};
+				{ 13, 65419, "", "=q2=Recipe: Tender Baked Turtle", "=ds=#sr# (475)", "#EPICUREAN:3#"};
+				{ 14, 65426, "", "=q2=Recipe: Baked Rockfish", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 15, 65427, "", "=q2=Recipe: Basilisk Liverdog", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 16, 65429, "", "=q2=Recipe: Beer-Basted Crocolisk", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 17, 65424, "", "=q2=Recipe: Blackbelly Sushi", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 18, 65430, "", "=q2=Recipe: Crocolisk Au Gratin", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 19, 65422, "", "=q2=Recipe: Delicious Sagefish Tail", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 20, 65423, "", "=q2=Recipe: Fish Fry", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 21, 65428, "", "=q2=Recipe: Grilled Dragon", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 22, 65409, "", "=q2=Recipe: Lavascale Minestrone", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 23, 65420, "", "=q2=Recipe: Mushroom Sauce Mudfish", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 24, 68688, "", "=q2=Recipe: Scalding Murglesnout", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 25, 65421, "", "=q2=Recipe: Severed Sagefish Head", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				{ 26, 65425, "", "=q2=Recipe: Skewered Eel", "=ds=#sr# (500)", "#EPICUREAN:3#"};
+				extraText = ": "..AtlasLoot:GetMapNameByID(301).." / "..AtlasLoot:GetMapNameByID(321);
+			};
+			{
+				{ 1, 65431, "", "=q2=Recipe: Chocolate Cookie", "=ds=#sr# (505)", "#EPICUREAN:3#"};
+				{ 2, 65432, "", "=q2=Recipe: Fortune Cookie", "=ds=#sr# (525)", "#EPICUREAN:5#"};
+				{ 3, 65433, "", "=q2=Recipe: South Island Iced Tea", "=ds=#sr# (525)", "#EPICUREAN:5#"};
+				{ 4, 65513, "", "=q1=Crate of Tasty Meat", "=ds=#e30#", "#EPICUREAN:2#"};
+				{ 5, 68689, "", "=q1=Imported Supplies", "=ds=#e8#", "#EPICUREAN:1#"};
+				extraText = ": "..AtlasLoot:GetMapNameByID(301).." / "..AtlasLoot:GetMapNameByID(321);
+			};
+			{
+				{ 1, 46349, "", "=q3=Chef's Hat", "=ds=#s1#", "#EPICUREAN:100#"};
+				{ 2, 43035, "", "=q2=Recipe: Blackened Dragonfin", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 3, 43032, "", "=q2=Recipe: Blackened Worg Steak", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 4, 43029, "", "=q2=Recipe: Critter Bites", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 5, 43033, "", "=q2=Recipe: Cuttlesteak", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 6, 43036, "", "=q2=Recipe: Dragonfin Filet", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 7, 43024, "", "=q2=Recipe: Firecracker Salmon", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 8, 43030, "", "=q2=Recipe: Hearty Rhino", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 9, 43026, "", "=q2=Recipe: Imperial Manta Steak", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 10, 43018, "", "=q2=Recipe: Mega Mammoth Meal", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 11, 43022, "", "=q2=Recipe: Mighty Rhino Dogs", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 12, 43023, "", "=q2=Recipe: Poached Northern Sculpin", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 13, 43028, "", "=q2=Recipe: Rhinolicious Wormsteak", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 14, 43031, "", "=q2=Recipe: Snapper Extreme", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 15, 43034, "", "=q2=Recipe: Spiced Mammoth Treats", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 16, 43020, "", "=q2=Recipe: Spiced Worm Burger", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 17, 43025, "", "=q2=Recipe: Spicy Blue Nettlefish", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 18, 43027, "", "=q2=Recipe: Spicy Fried Herring", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 19, 43019, "", "=q2=Recipe: Tender Shoveltusk Steak", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 20, 43037, "", "=q2=Recipe: Tracker Snacks", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 21, 43021, "", "=q2=Recipe: Very Burnt Worg", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 22, 44954, "", "=q2=Recipe: Worg Tartare", "=ds=#sr# (400)", "#EPICUREAN:3#"};
+				{ 23, 43505, "", "=q2=Recipe: Gigantic Feast", "=ds=#sr# (425)", "#EPICUREAN:3#"};
+				{ 24, 43506, "", "=q2=Recipe: Small Feast", "=ds=#sr# (425)", "#EPICUREAN:3#"};
+				{ 25, 43017, "", "=q2=Recipe: Fish Feast", "=ds=#sr# (450)", "#EPICUREAN:5#"};
+				{ 26, 43007, "", "=q1=Northern Spices", "=ds=#e8#", "#EPICUREAN:1#"};
+				extraText = ": "..AtlasLoot:GetMapNameByID(504);
+			};
+			{				
+				{ 1, 0, "inv_misc_bag_11", "=q6="..AL["Small Spice Bag"], ""};
+				{ 2, 33925, "", "=q3=Recipe: Delicious Chocolate Cake", "=ds=#sr# (1)", ""};
+				{ 3, 33871, "", "=q3=Recipe: Stormchops", "=ds=#sr# (300)", ""};
+				{ 4, 44228, "", "=q1=Baby Spice", "=ds=#m20#", ""};
+				{ 5, 43007, "", "=q1=Northern Spices", "=ds=#e8#"};
+				{ 6, 44114, "", "=q1=Old Spices", "=ds=#m20#", ""};
+				extraText = ": "..AtlasLoot:GetMapNameByID(504);
 			};
 			{
 				{ 2, 33870, "", "=q2=Recipe: Skullfish Soup", "=ds=#sr# (325)", "", ""};
@@ -7891,7 +8566,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 5, 33875, "", "=q2=Recipe: Kibler's Bits", "=ds=#sr# (300)", "", ""};
 				{ 17, 33871, "", "=q3=Recipe: Stormchops", "=ds=#sr# (300)", "", ""};
 				{ 18, 33925, "", "=q3=Recipe: Delicious Chocolate Cake", "=ds=#sr# (1)", "", ""};
-				extraText = ": "..BabbleZone["Shattrath"];
+				extraText = ": "..AtlasLoot:GetMapNameByID(481);
 			};
 		};
 		info = {
@@ -7929,7 +8604,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 24, 8827, "", "=q1=Elixir of Water Walking", "=ds=#e2#", "", ""};
 				{ 25, 46004, "", "=q1=Sealed Vial of Poison", "=ds=#m2#", "", ""};
 				{ 26, 48679, "", "=q1=Waterlogged Recipe", "=ds=#m2# #sr# (350)", "", ""};
-				extraText = ": "..BabbleZone["Dalaran"];
+				extraText = ": "..AtlasLoot:GetMapNameByID(504);
 			};
 			{
 				{ 1, 34837, "", "=q4=The 2 Ring", "=ds=#s13#", "", ""};
@@ -7949,7 +8624,7 @@ local SPELLFIRE = GetSpellInfo(26797);
 				{ 21, 34109, "", "=q1=Weather-Beaten Journal", "=ds=#e10#", "", ""};
 				{ 22, 8827, "", "=q1=Elixir of Water Walking", "=ds=#e2#", "", ""};
 				{ 23, 34861, "", "=q1=Sharpened Fish Hook", "=ds=#e24#", "", ""};
-				extraText = ": "..BabbleZone["Terokkar Forest"];
+				extraText = ": "..AtlasLoot:GetMapNameByID(478);
 			};
 		};
 		info = {

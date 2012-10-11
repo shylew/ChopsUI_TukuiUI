@@ -1,13 +1,15 @@
 ## Interface: 50001
-## X-Curse-Packaged-Version: r9136-release
+## X-Curse-Packaged-Version: r9194-release
 ## X-Curse-Project-Name: BigWigs Bossmods
 ## X-Curse-Project-ID: big-wigs
 ## X-Curse-Repository-ID: wow/big-wigs/mainline
 
 ## Title: Big Wigs [|cffeda55fMogu'shan Vaults|r]
 ## Title-frFR: Big Wigs [|cffeda55fCaveaux Mogu'shan|r]
+## Title-ruRU: Big Wigs [|cffeda55fПодземелья Могу'шан|r]
 ## Notes: Big Wigs Modules for the Mogu'shan Vaults.
 ## Notes-frFR: Modules Big Wigs concernant les caveaux Mogu'shan.
+## Notes-ruRU: Модуль Big Wigs для Подземелий Могу'шан.
 
 ## LoadOnDemand: 1
 ## Dependencies: BigWigs
@@ -17,4 +19,3 @@
 
 locales.xml
 modules.xml
-

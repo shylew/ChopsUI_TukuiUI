@@ -1,4 +1,4 @@
-﻿-- $Id: constants.de.lua 3824 2012-10-03 08:28:36Z Dynaletik $
+﻿-- $Id: constants.de.lua 3865 2012-10-09 04:47:11Z Dynaletik $
 --[[
 constants.de.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -72,7 +72,7 @@ if AL then
 	AL["Load AtlasLoot"] = "AtlasLoot laden";
 	AL["Module \"%s\" is disabled."] = "Modul \"%s\" ist deaktiviert.";
 	AL["Module \"%s\" is missing."] = "Modul \"%s\" fehlt.";
-	
+
 	-- MiniMap-Button
 	AL["|cffFF0000Click: |cffFFFFFFOpen AtlasLoot\n|cffFF0000Shift+Click: |cffFFFFFFOpen AtlasLoot-Options "] = "|cffFF0000Klicken: |cffFFFFFFAtlasLoot öffnen\n|cffFF0000Shift+Klicken: |cffFFFFFFAtlasLoot-Optionen öffnen";
 
@@ -343,6 +343,7 @@ if AL then
 	AL["Crafted Epic Weapons"] = "Herstellbare epische Waffen";
 	AL["Dragon's Eye"] = "Drachenauge";
 	AL["Chimera's Eye"] = "Schimärenauge";
+	AL["Serpent's Eye"] = "Serpentin";
 
 	-- Sets/Collections Menu
 	-- AL["Sets"] = true;
@@ -467,6 +468,15 @@ if AL then
 	AL["Armor Enhancements"] = "Rüstungsverbesserungen";
 	AL["Weapon Enhancements"] = "Waffenverbesserungen";
 
+	-- Cooking
+	AL["Banquets/Feasts"] = "Bankette/Festmähler";
+	AL["Way of the Brew"] = "Weg des Gebräus";
+	AL["Way of the Grill"] = "Weg des Grills";
+	AL["Way of the Oven"] = "Weg des Ofens";
+	AL["Way of the Pot"] = "Weg des Topfes";
+	AL["Way of the Steamer"] = "Weg des Dämpfens";
+	AL["Way of the Wok"] = "Weg des Woks";
+
 	-- Enchanting
 	AL["Enchant Boots"] = "Stiefel verzaubern";
 	AL["Enchant Bracer"] = "Armschienen verzaubern";
@@ -483,15 +493,12 @@ if AL then
 	AL["Tinker"] = "Basteln";
 
 	-- Inscription
-	AL["Glyph"] = "Glyphe";
-	AL["Prime Glyph"] = "Primärglyphe";
 	AL["Major Glyph"] = "Erhebliche Glyphe";
 	AL["Minor Glyph"] = "Geringe Glyphe";
 	AL["Runescrolls"] = "Runenschriftrollen";
 	AL["Recall"] = "Rückruf";
 	AL["Scrolls"] = "Rollen";
 	AL["Off-Hand Items"] = "Nebenhand-Gegenstände";
-	AL["Staves/Shoulder Enchants"] = "Stäbe/Schulterverzauberungen";
 	AL["Shoulder Enchants"] = "Schulterverzauberungen";
 	AL["Reagents"] = "Reagenzien";
 	AL["Book of Glyph Mastery"] = "Buch der Glyphenbeherrschung";
@@ -605,6 +612,7 @@ if AL then
 	AL["Raid Finder"] = "Schlachtzugsbrowser";
 	AL["Pandaria World Bosses"] = "Pandaria Weltbosse";
 	-- AL["Elite"] = true;
+	AL["Vegetables"] = "Gemüse";
 
 	-- Loot Table Names
 	AL["Level 30-39"] = "Stufe 30-39";
@@ -618,17 +626,16 @@ if AL then
 	-- Profession descriptions
 	-- AL["Buff"] = true;
 	AL["Agility"] = "Beweglichkeit";
+	AL["Attributes"] = "Attribute";
 	AL["Intellect"] = "Intelligenz";
 	AL["Strength"] = "Stärke";
 	AL["Spirit"] = "Willenskraft";
 	AL["Stamina"] = "Ausdauer";
-	AL["Agility, Intellect, Strength"] = "Beweglichkeit, Intelligenz, Stärke";
 	AL["Spell Power"] = "Zaubermacht";
 	AL["Attack Power"] = "Angriffskraft";
 	AL["Spell/Attack Power"] = "Zaubermacht/Angriffskraft";
 	AL["Hit Rating"] = "Trefferwertung";
 	AL["Crit Rating"] = "Kritische Trefferwertung";
-	AL["Crit/Hit Rating"] = "Kritische / Trefferwertung";
 	AL["Haste Rating"] = "Tempowertung";
 	AL["Dodge Rating"] = "Ausweichwertung";
 	AL["Expertise Rating"] = "Waffenkundewertung";
@@ -680,14 +687,9 @@ if AL then
 	AL["Tribute Run"] = "Tribut Run";
 	AL["Dire Maul Books"] = "Düsterbruch Bücher";
 	AL["Random Boss Loot"] = "Zufälliger Boss Loot";
-	AL["BT Patterns/Plans"] = "BT Muster/Pläne";	
-	AL["Hyjal Summit Designs"] = "Berg Hyjal Designs";
-	AL["SP Patterns/Plans"] = "SP Muster/Pläne";
-	AL["Ulduar Formula/Patterns/Plans"] = "Ulduar Formeln/Muster/Pläne";
-	AL["Trial of the Crusader Patterns/Plans"] = "Prüfung des Kreuzfahrers Muster/Pläne";
+	AL["Formula/Patterns/Plans"] = "Formeln/Muster/Pläne";
 	AL["BRD Blacksmithing Plans"] = "Schwarzfelstiefen Schmiedepläne";
-	AL["Firelands Patterns/Plans"] = "Feuerlande Muster/Pläne";
-	AL["Dragon Soul Patterns/Plans"] = "Drachenseele Muster/Pläne";
+	AL["Patterns/Plans"] = "Muster/Pläne";
 
 	-- General titles
 	AL["Achievement"] = "Erfolg";
@@ -746,11 +748,8 @@ if AL then
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "Dunkelmond-Jahrmarkt Belohnungen";
 	AL["Low Level Decks"] = "Niedrigstufige Decks";
-	AL["Level 60 Trinkets"] = "Stufe 60 Schmuckstücke";
-	AL["Level 70 Trinkets"] = "Stufe 70 Schmuckstücke";
 	AL["Level 60 & 70 Trinkets"] = "Stufe 60 & 70 Schmuckstücke";
-	AL["Level 80 Trinkets"] = "Stufe 80 Schmuckstücke";
-	AL["Level 85 Trinkets"] = "Stufe 85 Schmuckstücke";
+	AL["Trinkets"] = "Schmuckstücke";
 
 	-- Card Game Decks and descriptions
 	AL["Loot Card Items"] = "Beutekarten Gegenstände";
@@ -1149,6 +1148,7 @@ if AL then
 	AL["Stolen Present"] = "Gestohlenes Geschenk";
 	AL["Oozing Bag"] = "Schlammiger Beutel";
 	AL["Ominous Seed"] = "Ominöser Samen";
+	AL["Treasures of the Vale"] = "Schätze des Tals";
 
 	-- Blizzard Promotions
 	AL["Annual Pass"] = "Jahrespass";

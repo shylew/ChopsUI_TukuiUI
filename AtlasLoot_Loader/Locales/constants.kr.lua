@@ -1,4 +1,4 @@
-﻿-- $Id: constants.kr.lua 3818 2012-10-02 15:47:36Z Dynaletik $
+﻿-- $Id: constants.kr.lua 3865 2012-10-09 04:47:11Z Dynaletik $
 --[[
 constants.en.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -510,13 +510,11 @@ if AL then
 	AL["Agility"] = true;
 	AL["Intellect"] = true;
 	AL["Strength"] = true;
-	AL["Agility, Intellect, Strength"] = true;
 	AL["Spell Power"] = true;
 	AL["Attack Power"] = true;
 	AL["Spell/Attack Power"] = true;
 	AL["Hit Rating"] = true;
 	AL["Crit Rating"] = true;
-	AL["Crit/Hit Rating"] = true;
 	AL["Haste Rating"] = true;
 	AL["Dodge Rating"] = true;
 	AL["Expertise Rating"] = true;
@@ -545,12 +543,9 @@ if AL then
 	AL["Tribute Run"] = "공물함";
 	AL["Dire Maul Books"] = "혈투의 전장 직업 책";
 	AL["Random Boss Loot"] = "렌덤 보스 드랍";
-	AL["BT Patterns/Plans"] = true;
-	AL["Hyjal Summit Designs"] = true;
-	AL["SP Patterns/Plans"] = true;
-	AL["Ulduar Formula/Patterns/Plans"] = true;
-	AL["Trial of the Crusader Patterns/Plans"] = true;
+	AL["Formula/Patterns/Plans"] = true;
 	AL["BRD Blacksmithing Plans"] = true;
+	AL["Patterns/Plans"] = true;
 
 	-- General titles
 	AL["Achievement"] = true;
@@ -594,11 +589,8 @@ if AL then
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = true;
 	AL["Low Level Decks"] = true;
-	AL["Level 60 Trinkets"] = true;
-	AL["Level 70 Trinkets"] = true;
 	AL["Level 60 & 70 Trinkets"] = true;
-	AL["Level 80 Trinkets"] = true;
-	AL["Level 85 Trinkets"] = true;
+	AL["Trinkets"] = true;
 
 	-- Card Game Decks and descriptions
 	AL["Loot Card Items"] = true;

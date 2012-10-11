@@ -1,4 +1,4 @@
--- $Id: TextParsing.lua 3830 2012-10-03 18:41:48Z hegarol $
+-- $Id: TextParsing.lua 3842 2012-10-05 12:03:41Z Dynaletik $
 local AL = LibStub("AceLocale-3.0"):GetLocale("AtlasLoot");
 local BabbleBoss = AtlasLoot_GetLocaleLibBabble("LibBabble-Boss-3.0")
 local BabbleFaction = AtlasLoot_GetLocaleLibBabble("LibBabble-Faction-3.0")
@@ -126,6 +126,10 @@ AtlasLoot_TextParsing = {
 	{ "#e25#", AL["Transformation Item"] },
 	{ "#e26#", BabbleInventory["Ground Mount"] },
 	{ "#e27#", BabbleInventory["Flying Mount"] },
+	--{ "#e28#", BabbleInventory["Aquatic Mount"] }, -- Saved for later
+	--{ "#e29#", BabbleInventory["Aquatic Mount"] }, -- Saved for later
+	{ "#e30#", BabbleInventory["Meat"] },
+	{ "#e31#", AL["Vegetables"] },
 
 	-- Labels for Loot Descriptions
 	{ "#m1#", AL["Classes:"] },
@@ -799,6 +803,7 @@ AtlasLoot_TextParsing = {
 	{ "#cremulos#", "|TInterface\\Icons\\INV_Jewelry_Necklace_14:0|t" },
 	{ "#ccenarius#", "|TInterface\\Icons\\INV_Jewelry_Necklace_12:0|t" },
 	{ "#glowcap#", "|TInterface\\Icons\\INV_Mushroom_02:0|t" },
+	{ "#kyparite#", "|TInterface\\Icons\\inv_ore_manticyte:0|t" },							-- Kyparite (Klaxxi)
 	{ "#ogrilashard#", "|TInterface\\Icons\\INV_Misc_Apexis_Shard:0|t" },
 	{ "#ogrilacrystal#", "|TInterface\\Icons\\INV_Misc_Apexis_Crystal:0|t" },
 	{ "#winterfinclam#", "|TInterface\\Icons\\INV_Misc_Shell_03:0|t" },

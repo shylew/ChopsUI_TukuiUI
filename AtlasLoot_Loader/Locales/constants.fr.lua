@@ -1,4 +1,4 @@
-﻿-- $Id: constants.fr.lua 3821 2012-10-03 06:40:44Z TrAsHeR $
+﻿-- $Id: constants.fr.lua 3866 2012-10-09 07:35:11Z TrAsHeR $
 --[[
 constants.fr.lua --- Traduction frFR par TrAsHeR (Tchoupie @ Nerz'hul-EU). Merci à KKram pour les premières traductions & Pettigrow pour ses quelques traductions.
 This file defines an AceLocale table for all the various text strings needed
@@ -466,6 +466,15 @@ if AL then
 	AL["Armor Enhancements"] = "Améliorations d'armure";
 	AL["Weapon Enhancements"] = "Améliorations d'arme";
 
+	-- Cooking
+	AL["Banquets/Feasts"] = "Banquets / Festins";
+	AL["Way of the Brew"] = "Maître du brassage";
+	AL["Way of the Grill"] = "Maître du grill";
+	AL["Way of the Oven"] = "Maître du four";
+	AL["Way of the Pot"] = "Maître de la marmite";
+	AL["Way of the Steamer"] = "Maître du cuit-vapeur";
+	AL["Way of the Wok"] = "Maître du wok";
+
 	-- Enchanting
 	AL["Enchant Boots"] = "Enchantement Bottes";
 	AL["Enchant Bracer"] = "Enchantement Bracelets";
@@ -482,15 +491,12 @@ if AL then
 	AL["Tinker"] = "Objets bricolés";
 
 	-- Inscription
-	AL["Glyph"] = "Glyphe";
-	AL["Prime Glyph"] = "Glyphe primordial";
 	AL["Major Glyph"] = "Glyphe majeur";
 	AL["Minor Glyph"] = "Glyphe mineur";
 	AL["Runescrolls"] = "Parchemins";
 	AL["Recall"] = "Rappel";
 	AL["Scrolls"] = "Parchemins";
 	AL["Off-Hand Items"] = "Objets tenu en main gauche";
-	AL["Staves/Shoulder Enchants"] = "Enchantements Bâtons / épaules";
 	AL["Shoulder Enchants"] = "Enchantements d'épaule";
 	AL["Reagents"] = "Réactifs";
 	AL["Book of Glyph Mastery"] = "Livre de la maîtrise des glyphes";
@@ -568,6 +574,7 @@ if AL then
 	AL["Season 9"] = "Saison 9";
 	AL["Season 10"] = "Saison 10";
 	AL["Season 11"] = "Saison 11";
+	AL["Season 12"] = "Saison 12";
 	AL["Fire"] = "Feu";
 	AL["Water"] = "Eau";
 	AL["Wind"] = "Vent";
@@ -602,6 +609,7 @@ if AL then
 	AL["Raid Finder"] = "Recherche de raid";
 	AL["Pandaria World Bosses"] = "World Boss de Pandarie";
 	--AL["Elite"] = true;
+	AL["Vegetables"] = "Légumes";
 
 	-- Loot Table Names
 	AL["Level 30-39"] = "Niveau 30-39";
@@ -615,17 +623,16 @@ if AL then
 	-- Profession descriptions
 	--AL["Buff"] = true;
 	AL["Agility"] = "Agilité";
+	AL["Attributes"] = "Attributs";
 	AL["Intellect"] = "Intelligence";
 	AL["Strength"] = "Force";
 	AL["Spirit"] = "Esprit";
 	AL["Stamina"] = "Endurance";
-	AL["Agility, Intellect, Strength"] = "Agilité, intelligence, force";
 	AL["Spell Power"] = "Puissance des sorts";
 	AL["Attack Power"] = "Puissance d'attaque";
 	AL["Spell/Attack Power"] = "Puissance des sorts / d'attaque";
 	AL["Hit Rating"] = "Score de toucher";
 	AL["Crit Rating"] = "Score de critique";
-	AL["Crit/Hit Rating"] = "Score de critique / toucher";
 	AL["Haste Rating"] = "Score de hâte";
 	AL["Dodge Rating"] = "Score d'esquive";
 	AL["Expertise Rating"] = "Score d'expertise";
@@ -677,14 +684,9 @@ if AL then
 	AL["Tribute Run"] = "Tribut du Roi";
 	AL["Dire Maul Books"] = "Livres de Hache Tripes";
 	AL["Random Boss Loot"] = "Objets aléatoires des boss";
-	AL["BT Patterns/Plans"] = "Patrons / Plans du Temple Noir";
-	AL["Hyjal Summit Designs"] = "Dessins du Sommet d'Hyjal";
-	AL["SP Patterns/Plans"] = "Patrons / Plans du Plateau du Puits de soleil";
-	AL["Ulduar Formula/Patterns/Plans"] = "Formules / Patrons / Plans d'Ulduar";
-	AL["Trial of the Crusader Patterns/Plans"] = "Patrons / Plans de L'épreuve du croisé";
+	AL["Formula/Patterns/Plans"] = "Formules / Patrons / Plans";
 	AL["BRD Blacksmithing Plans"] = "Plans de forge de BRD";
-	AL["Firelands Patterns/Plans"] = "Plans / Patrons des Terres de Feu";
-	AL["Dragon Soul Patterns/Plans"] = "Plans / Patrons de La Fin des temps";
+	AL["Patterns/Plans"] = "Plans / Patrons";
 
 	-- General titles
 	AL["Achievement"] = "Haut fait";
@@ -743,11 +745,8 @@ if AL then
 	-- Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "Récompenses Foire de Sombrelune";
 	AL["Low Level Decks"] = "Cartes bas level";
-	AL["Level 60 Trinkets"] = "Bijoux niveau 60";
-	AL["Level 70 Trinkets"] = "Bijoux niveau 70";
 	AL["Level 60 & 70 Trinkets"] = "Bijoux niveau 60 & 70";
-	AL["Level 80 Trinkets"] = "Bijoux niveau 80";
-	AL["Level 85 Trinkets"] = "Bijoux niveau 85";
+	AL["Trinkets"] = "Bijoux";
 
 	-- Card Game Decks and descriptions
 	AL["Loot Card Items"] = "Objets du jeu de cartes";

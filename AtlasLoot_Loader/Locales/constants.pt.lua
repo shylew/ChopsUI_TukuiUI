@@ -1,4 +1,4 @@
-﻿-- $Id: constants.pt.lua 3818 2012-10-02 15:47:36Z Dynaletik $
+﻿-- $Id: constants.pt.lua 3865 2012-10-09 04:47:11Z Dynaletik $
 --[[
 constants.pt.lua
 This file defines an AceLocale table for all the various text strings needed
@@ -504,13 +504,11 @@ if AL then
 	AL["Agility"] = "Agilidade";
 	AL["Intellect"] = "Intelecto";
 	AL["Strength"] = "Força";
-	AL["Agility, Intellect, Strength"] = "Agilidade, Intelecto, Força";
 	AL["Spell Power"] = "Poder Mágico";
 	AL["Attack Power"] = "Poder de Ataque";
 	AL["Spell/Attack Power"] = "Poder de Ataque/Mágico";
 	AL["Hit Rating"] = "Taxa de Acerto";
 	AL["Crit Rating"] = "Taxa de Acerto Crítico";
-	AL["Crit/Hit Rating"] = "Taxa de Crítico/Acerto";
 	AL["Haste Rating"] = "Taxa de Aceleração";
 	AL["Dodge Rating"] = "Taxa de Esquiva";
 	AL["Expertise Rating"] = "Taxa de Aptidão";
@@ -540,12 +538,10 @@ if AL then
 	AL["Tribute Run"] = "Corrida de Tributo";
 	AL["Dire Maul Books"] = "Livros do Gládio Cruel";
 	AL["Random Boss Loot"] = "Saque de Chefe Aleatório";
-	AL["BT Patterns/Plans"] = "Modelos/Planos do Templo Negro";
-	AL["Hyjal Summit Designs"] = "Designs do Pico Hyjal";
-	AL["SP Patterns/Plans"] = "Modelos/Planos da Nascente do Sol";
-	AL["Ulduar Formula/Patterns/Plans"] = "Formulas/Modelos/Planos Ulduar";
-	AL["Trial of the Crusader Patterns/Plans"] = "Modelos/Planos Prova do Cruzado";
+	AL["Formula/Patterns/Plans"] = "Formulas/Modelos/Planos";
 	AL["BRD Blacksmithing Plans"] = "Planos de Ferraria BRD";
+	AL["Patterns/Plans"] = "Modelos/Planos";
+
 	-- General titles
 	AL["Achievement"] = "Conquista";
 
@@ -589,11 +585,8 @@ if AL then
 	--Darkmoon Faire
 	AL["Darkmoon Faire Rewards"] = "Recompensas da Feira de Negraluna";
 	AL["Low Level Decks"] = "Baralhos de Nível Baixo";
-	AL["Level 60 Trinkets"] = "Berloques  Nível 60";
-	AL["Level 70 Trinkets"] = "Berloques  Nível 70";
 	AL["Level 60 & 70 Trinkets"] = "Berloques Nível 60 e 70";
-	AL["Level 80 Trinkets"] = "Berloques Nível 80";
-	AL["Level 85 Trinkets"] = "Berloques Nível 85";
+	AL["Trinkets"] = "Berloques";
 
 	--Card Game Decks and descriptions
 	AL["Loot Card Items"] = "Saques (Jogo de Cartas)";
