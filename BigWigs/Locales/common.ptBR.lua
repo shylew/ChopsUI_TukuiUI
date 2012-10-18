@@ -4,6 +4,7 @@ if not L then return end
 L.you = "%s em VOCÊ"
 L.underyou = "%s debaixo de VOCÊ!"
 L.other = "%s: %s"
+L.onother = "%s on %s!"
 L.say = "%s em MIM!"
 L.cast = "<Castando %s>"
 L.soon = "%s iminente!"
@@ -14,9 +15,15 @@ L.heroic = "Modo heróico"
 L.hard = "Modo dificil"
 L.general = "Geral" -- General settings, i.e. things that apply to both normal and hard mode.
 
+L.duration = "%s for %s sec"
+L.over = "%s Over!"
+
 L.custom_start = "%s iniciado - %s em %d min"
 L.custom_start_s = "%s iniciado - %s em %d seg"
 L.custom_end = "%s começa em %s!"
 L.custom_min = "%s em %d min"
 L.custom_sec = "%s em %d seg!"
+
+L.tank = "Tank alerts only. "
+L.healer = "Healer alerts only. "
 

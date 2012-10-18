@@ -5,8 +5,12 @@
 
 local mod, CL = BigWigs:NewBoss("The Spirit Kings", 896, 687)
 if not mod then return end
-mod:RegisterEnableMob(60701, 60708, 60709, 60710) -- Zian of the Endless Shadows, Meng the Demented, Qiang the Merciless, Subetai the Swift
-
+mod:RegisterEnableMob(
+	60701, 61421, -- Zian of the Endless Shadows
+	60708, 61429, -- Meng the Demented
+	60709, 61423, -- Qiang the Merciless
+	60710, 61427 -- Subetai the Swift
+)
 --------------------------------------------------------------------------------
 -- Locales
 --
@@ -17,6 +21,8 @@ local meng, qiang, subetai, zian = (EJ_GetSectionInfo(5835)), (EJ_GetSectionInfo
 local undyingShadows = (EJ_GetSectionInfo(5853))
 local pinnedTargets = mod:NewTargetList()
 
+local bossActivated = {}
+
 --------------------------------------------------------------------------------
 -- Localization
 --
@@ -24,6 +30,9 @@ local pinnedTargets = mod:NewTargetList()
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.shield_removed = "Shield removed!"
+	L.casting_shields = "Casting shields"
+	L.casting_shields_desc = "Warning for when shields are casted for all bosses"
+	L.casting_shields_icon = 871
 end
 L = mod:GetLocale()
 
@@ -35,9 +44,9 @@ function mod:GetOptions()
 	return {
 		"ej:5841", 119521, 117910, {117961, "FLASHSHAKE"},   -- qiang
 		"ej:5852", 118303, {117697, "FLASHSHAKE"}, -- zian
-		"ej:5846", 118047, 118122, {118162, "FLASHSHAKE"}, -- subetai
+		"ej:5846", 118047, 118122, 118094, {118162, "FLASHSHAKE"}, -- subetai
 		"ej:5835", 117708, -- meng
-		"proximity", "berserk", "bosskill",
+		"proximity", "casting_shields", "berserk", "bosskill",
 	}, {
 		["ej:5841"] = qiang,
 		["ej:5852"] = zian,
@@ -62,6 +71,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Pillage", 118047)
 	self:Log("SPELL_AURA_APPLIED", "PinnedDown", 118135)
 	self:Log("SPELL_CAST_START", "SleightofHand", 118162)
+	self:Log("SPELL_CAST_START", "Volley", 118094)
 
 	-- meng
 	self:Log("SPELL_CAST_START", "MaddeningShout", 117708)
@@ -71,11 +81,12 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "EngageCheck")
 
-	self:Death("Win", 60701)
+	self:Death("Win", 60701, 60708, 60709, 60710)
 end
 
 function mod:OnEngage(diff)
 	self:Berserk(600)
+	wipe(bossActivated)
 end
 
 --------------------------------------------------------------------------------
@@ -83,7 +94,7 @@ end
 --
 
 local function isBossActiveById(bossId)
-	for i=1, 4 do
+	for i=1, 5 do
 		if UnitExists("boss"..i) then
 			local id = tonumber((UnitGUID("boss"..i)):sub(7, 10), 16)
 			if id == bossId then
@@ -127,6 +138,7 @@ end
 function mod:ShieldofDarkness(_, _, _, _, spellName)
 	self:Message(117697, spellName, "Important", 117697, "Alert")
 	self:Bar(117697, spellName.."~", 42.5, 117697)
+	self:Bar("casting_shields", CL["cast"]:format(spellname), 2, 117697)
 	self:FlashShake(117697)
 end
 
@@ -138,6 +150,7 @@ do
 		scheduled = nil
 	end
 	function mod:PinnedDown(player, _, _, _, spellName)
+		self:Bar(118122, spellName, 41, 118122)
 		pinnedTargets[#pinnedTargets + 1] = player
 		if not scheduled then
 			scheduled = true
@@ -149,6 +162,11 @@ end
 function mod:Pillage(_, _, _, _, spellName)
 	self:Message(118047, spellName, "Urgent", 118047, "Alarm")
 	self:Bar(118047, spellName, 41, 118047)
+end
+
+function mod:Volley(_, _, _, _, spellName)
+	self:Message(118094, spellName, "Urgent", 118094)
+	self:Bar(118094, spellName, 37, 118094)
 end
 
 function mod:SleightofHand(_, _, _, _, spellName)
@@ -182,6 +200,7 @@ end
 function mod:Shield(_, _, _, _, spellName)
 	self:Message(117961, spellName, "Important", 117961, "Alert")
 	self:Bar(117961, spellName, 42, 117961)
+	self:Bar("casting_shields", CL["cast"]:format(spellname), 2, 117961)
 	self:FlashShake(117961)
 end
 
@@ -190,34 +209,36 @@ function mod:ShieldRemoved()
 end
 
 function mod:EngageCheck()
-	local isHeroic = self:Heroic()
-	for i=1, 4 do
-		if UnitExists("boss"..i) then
-			local id = tonumber((UnitGUID("boss"..i)):sub(7, 10), 16)
+	for i=1, 5 do
+		local unitId = ("boss%d"):format(i)
+		if UnitExists(unitId) then
+			local id = self:GetCID(UnitGUID(unitId))
 			-- this is needed because of heroic
-			local hp = UnitHealth("boss"..i) / UnitHealthMax("boss"..i) * 100
-			if hp < 35 then return end --35 to be safe EJ says 30
-			if id == 60709 then -- qiang
-				if isHeroic then
+			if id == 60709 and not bossActivated[60709] then -- qiang
+				bossActivated[60709] = true
+				if self:Heroic() then
 					self:Bar(117961, imperviousShield, 40, 117961)
 				end
 				self:Bar(119521, annihilate, 10, 119521)
 				self:Bar(117910, flankingOrders, 26, 117910)
 				self:Message("ej:5841", qiang, "Positive", 117920)
-			elseif id == 60701 then -- zian
-				if isHeroic then
+			elseif id == 60701 and not bossActivated[60701] then -- zian
+				bossActivated[60701] = true
+				if self:Heroic() then
 					self:Bar(117697, shieldOfDarkness, 40, 117697)
 				end
 				self:OpenProximity(8)
 				self:Message("ej:5852", zian, "Positive", 117628)
-			elseif id == 60710 then -- subetai
-				if isHeroic then
+			elseif id == 60710 and not bossActivated[60710] then -- subetai
+				bossActivated[60710] = true
+				if self:Heroic() then
 					self:Bar(118162, sleightOfHand, 40, 118162)
 				end
 				self:OpenProximity(8)
 				self:Bar(118047, pillage, 26, 118047)
 				self:Message("ej:5846", subetai, "Positive", 118122)
-			elseif id == 60708 then
+			elseif id == 60708 and not bossActivated[60708] then
+				bossActivated[60708] = true
 				self:Bar(117708, maddening, 21, 117708)
 				self:Message("ej:5835", meng, "Positive", 117833)
 			end

@@ -15,10 +15,6 @@ local L = mod:NewLocale("enUS", true)
 if L then
 	L.engage_yell = "Tender your souls, mortals! These are the halls of the dead!"
 
-	L.phases = "Phases"
-	L.phases_desc = "Warning for phase changes"
-	L.phases_icon = 116363
-
 	L.phase_lightning_trigger = "Oh great spirit! Grant me the power of the earth!"
 	L.phase_flame_trigger = "Oh exalted one! Through me you shall melt flesh from bone!"
 	L.phase_arcane_trigger =  "Oh sage of the ages! Instill to me your arcane wisdom!"
@@ -49,26 +45,30 @@ L.tank = L.tank.." "..INLINE_TANK_ICON
 
 function mod:GetOptions()
 	return {
-		116295, 116018,
+		116157, 116018,
 		{116784, "ICON", "FLASHSHAKE", "SAY"}, 116711,
 		{116417, "ICON", "SAY", "FLASHSHAKE", "PROXIMITY"}, 116364,
-		"phases", 115817, 115911, "tank", "berserk", "bosskill",
+		118071,
+		"stages", 115817, 115911, "tank", "berserk", "bosskill",
 	}, {
-		[116295] = L["phase_lightning"],
+		[116157] = L["phase_lightning"],
 		[116784] = L["phase_flame"],
 		[116417] = L["phase_arcane"],
-		phases = "general",
+		[118071] = L["phase_shadow"],
+		stages = "general",
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "LightningFists", 116295)
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:Log("SPELL_CAST_START", "LightningFists", 116157)
 	self:Log("SPELL_CAST_START", "Epicenter", 116018)
 
 	self:Log("SPELL_AURA_APPLIED", "WildfireSparkApplied", 116784)
 	self:Log("SPELL_AURA_REMOVED", "WildfireSparkRemoved", 116784)
 	self:Log("SPELL_AURA_APPLIED", "DrawFlame", 116711)
 	self:Log("SPELL_DAMAGE", "Wildfire", 116793)
+	self:Log("SPELL_MISSED", "Wildfire", 116793)
 
 	self:Log("SPELL_AURA_APPLIED", "ArcaneResonanceApplied", 116417)
 	self:Log("SPELL_AURA_REMOVED", "ArcaneResonanceRemoved", 116417)
@@ -116,7 +116,7 @@ end
 do
 	local epicenter = GetSpellInfo(116018)
 	function mod:LightningPhase()
-		self:Message("phases", L["phase_lightning"], "Positive", 116363)
+		self:Message("stages", L["phase_lightning"], "Positive", 116363)
 		self:Bar(116018, "~"..epicenter, 32, 116018)
 	end
 end
@@ -128,14 +128,14 @@ end
 
 function mod:Epicenter(_, spellId, _, _, spellName)
 	self:Message(spellId, spellName, "Important", spellId, "Alarm")
-	self:Bar(spellId, "~"..spellName, 32, spellId)
+	self:Bar(spellId, spellName, 30, spellId)
 end
 
 -- FLAME
 do
 	local drawflame = GetSpellInfo(116711)
 	function mod:FlamePhase()
-		self:Message("phases", L["phase_flame"], "Positive", 116363)
+		self:Message("stages", L["phase_flame"], "Positive", 116363)
 		self:Bar(116711, "~"..drawflame, 35, 116711)
 	end
 end
@@ -177,7 +177,8 @@ end
 do
 	local arcanevelocity = GetSpellInfo(116364)
 	function mod:ArcanePhase()
-		self:Bar(116364, "~"..arcanevelocity, 13, 116364)
+		self:Message("stages", L["phase_arcane"], "Positive", 116363)
+		self:DelayedMessage(116364, 10, CL["soon"]:format(arcanevelocity), "Attention")
 	end
 end
 
@@ -213,12 +214,24 @@ end
 
 function mod:ArcaneVelocity(_, spellId, _, _, spellName)
 	self:Message(spellId, spellName, "Important", spellId, "Alarm")
-	self:Bar(spellId, "~"..spellName, 30, spellId)
+	self:Bar(spellId, "~"..spellName, 28, spellId)
+	self:DelayedMessage(spellId, 25.5, CL["soon"]:format(spellName), "Attention")
 end
 
 -- SHADOW
-function mod:ShadowPhase()
+do
+	local siphoningShield = (GetSpellInfo(118071))
+	function mod:ShadowPhase()
+		self:Bar(118071, "~"..siphoningShield, 4, 118071)
+	end
+end
 
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, _, spellId)
+	if spellId == 117203 and unit:match("boss") then
+		self:Message(118071, spellName, "Important", 118071, "Alarm")
+		self:Bar(118071, "~"..spellName, 35, 118071)
+	end
 end
 
 do

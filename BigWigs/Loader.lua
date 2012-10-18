@@ -24,7 +24,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("9193")
+	releaseRevision = tonumber("9238")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -100,33 +100,6 @@ local enableZones = {} -- contains the zones in which BigWigs will enable
 -----------------------------------------------------------------------
 -- Utility
 --
-
---[[
-function GetMapID(name)
-	for i=1,1500 do
-		local fetchedName = GetMapNameByID(i)
-		if fetchedName and (fetchedName):find(name) then print(fetchedName, i) end
-	end
-end
-function GetBossID(name)
-	for i=1,1500 do
-		local fetchedName = EJ_GetEncounterInfo(i)
-		if fetchedName and (fetchedName):find(name) then print(fetchedName, i) end
-	end
-end
-function GetSectionID(name)
-	for i=1,10000 do
-		local fetchedName = EJ_GetSectionInfo(i)
-		if fetchedName and (fetchedName):find(name) then print(fetchedName, i) end
-	end
-end
-function PrintNewBossIDs() 
-	for i=200,1500 do
-		local n,_,id = EJ_GetEncounterInfo(i)
-		if n then print(n,id) end
-	end
-end
-]]
 
 local printFormat = "|cffffff00%s|r"
 local function sysprint(msg) print(printFormat:format(msg)) end
@@ -350,12 +323,7 @@ function loader:OnEnable()
 	end
 
 	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "ZoneChanged")
-	if GetSpecialization then
-		self:RegisterEvent("GROUP_ROSTER_UPDATE", "CheckRoster")
-	else
-		self:RegisterEvent("RAID_ROSTER_UPDATE", "CheckRoster")
-		self:RegisterEvent("PARTY_MEMBERS_CHANGED", "CheckRoster")
-	end
+	self:RegisterEvent("GROUP_ROSTER_UPDATE", "CheckRoster")
 
 	self:RegisterEvent("CHAT_MSG_ADDON")
 	self:RegisterMessage("BigWigs_AddonMessage")
