@@ -39,4 +39,5 @@
   <Script file="modules\chopsui\skada.lua" />
   <Script file="modules\chopsui\viewport.lua" />
   <Script file="modules\chopsui\skinning.lua" />
+  <Script file="modules\chopsui\pulltimer.lua" />
 </Ui>
