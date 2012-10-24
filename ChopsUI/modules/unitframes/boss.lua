@@ -5,6 +5,7 @@ if C.unitframes.enable ~= true then return end
 for i = 1, MAX_BOSS_FRAMES do
 	local frame = _G["TukuiBoss"..i]
   if i == 1 then
-    frame:SetPoint("BOTTOMRIGHT", TukuiChatBackgroundRight, "TOPRIGHT", 0, 90)
+    frame:ClearAllPoints()
+    frame:SetPoint("BOTTOMLEFT", TukuiExtraActionBarFrameHolder, "TOPLEFT", 0, 40)
   end
 end
