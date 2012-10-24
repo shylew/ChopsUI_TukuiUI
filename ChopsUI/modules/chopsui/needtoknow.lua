@@ -313,7 +313,7 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
       ChopsUI.modules.needtoknow.TargetDebuff(1, "Insect Swarm", { 0.03, 0.72, 0.05 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(2, "Moonfire, Sunfire", { 0.82, 0.8, 0.8 }, true)
     elseif T.Spec == "FERAL" then
-      ChopsUI.modules.needtoknow.TargetDebuff(2, "Trash", { 0, 0.44, 0.6 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Thrash", { 0, 0.44, 0.6 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(3, "Rip", { 0.89, 0.38, 0 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(4, "Rake", { 0.6, 0.02, 0 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(5, "Faerie Fire, Expose Armor, Sunder Armor", { 0.6, 0, 0.55 }, false)
