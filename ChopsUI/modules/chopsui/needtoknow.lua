@@ -105,12 +105,12 @@ function ChopsUI.modules.needtoknow.ConfigurePlayerBuffs()
       ChopsUI.modules.needtoknow.PlayerBuff(5, "Stampede", { 0.74, 0.33, 0 }, true)
       ChopsUI.modules.needtoknow.PlayerBuff(6, "Savage Roar", { 0.92, 0.76, 0 }, true)
     elseif T.Spec == "GUARDIAN" then
-      ChopsUI.modules.needtoknow.PlayerBuff(1, "Barkskin", { 0.19, 0.71, 0.78 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(2, "Survival Instincts", { 0.75, 0.58, 0 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(3, "Earthen Armor", { 0.25, 0.25, 0.25 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(4, "Savage Defense", { 0.91, 0.91, 0.91 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(5, "Pulverize", { 0.14, 0.6, 0.2 }, true)
-      ChopsUI.modules.needtoknow.PlayerBuff(6, "Berserk", { 0.6, 0, 0.05 }, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(1, "Barkskin", COLOR_CODES.yellowlight, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(2, "Might of Ursoc, Survival Instincts", COLOR_CODES.green, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(3, "Potion of the Mountains", COLOR_CODES.purplelight, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(4, "Savage Defense", COLOR_CODES.red, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(5, "Son of Ursoc", COLOR_CODES.blue, true)
+      ChopsUI.modules.needtoknow.PlayerBuff(6, "Berserk", COLOR_CODES.yellowdark, true)
     end
 
   elseif T.myclass == "HUNTER" then
@@ -313,7 +313,7 @@ function ChopsUI.modules.needtoknow.ConfigureTargetDebuffs()
       ChopsUI.modules.needtoknow.TargetDebuff(1, "Insect Swarm", { 0.03, 0.72, 0.05 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(2, "Moonfire, Sunfire", { 0.82, 0.8, 0.8 }, true)
     elseif T.Spec == "FERAL" then
-      ChopsUI.modules.needtoknow.TargetDebuff(2, "Pounce", { 0, 0.44, 0.6 }, true)
+      ChopsUI.modules.needtoknow.TargetDebuff(2, "Trash", { 0, 0.44, 0.6 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(3, "Rip", { 0.89, 0.38, 0 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(4, "Rake", { 0.6, 0.02, 0 }, true)
       ChopsUI.modules.needtoknow.TargetDebuff(5, "Faerie Fire, Expose Armor, Sunder Armor", { 0.6, 0, 0.55 }, false)
