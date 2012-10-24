@@ -3,9 +3,9 @@ if not L then return end
 if L then
 	L.petrifications = "Petrificação"
 	L.petrifications_desc = "Avisa quando o chefe vai petrificar"
+
 	L.overload = "Sobrecarregar"
 	L.overload_desc = "Avisa todos os tipos de sobrecarregamento."
-
 end
 
 L = BigWigs:NewBossLocale("Feng the Accursed", "ptBR")
@@ -38,27 +38,43 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "ptBR")
 if L then
 	L.engage_yell = "É hora de morrer!"
 
-	L.totem = "Totem"
-	L.frenzy = "Frênesi iminente!"
+	L.totem = "Totem %d"
+	L.shadowy_message = "Ataque %d"
+	L.banish_message = "Tank Banished"
 end
 
 L = BigWigs:NewBossLocale("The Spirit Kings", "ptBR")
 if L then
-	L.shield_removed = "Escudo removido!"
+	L.shield_removed = "Escudo removido! (%s)"
+	L.casting_shields = "Conjurando escudos!"
+	L.casting_shields_desc = "Avisa quando os escudos são conjurados para todos os chefes."
 end
 
 L = BigWigs:NewBossLocale("Elegon", "ptBR")
 if L then
 	L.last_phase = "Última Fase!"
-	L.floor_despawn = "Piso desaparece"
 	L.overcharged_total_annihilation = "Você tem (%d) %s, reinicie sua penalidade!"
+
+	L.floor = "Floor Despawn"
+	L.floor_desc = "Warnings for when the floor is about to despawn."
+	L.floor_message = "The floor is falling!!"
 end
 
 L = BigWigs:NewBossLocale("Will of the Emperor", "ptBR")
 if L then
-	L.rage_trigger = "A ira do imperador ecoa pelas colinas."
-	L.strength_trigger = "A força do imperador prende esta terra com punhos de ferro!"
-	L.courage_trigger = "A coragem do imperador queima eternamente!"
-	L.bosses_trigger = "Dois constructos titânicos aparecem na grandes alcovas!"
+	L.enable_zone = DUNGEON_FLOOR_MOGUSHANVAULTS3 -- translate me
+
+	L.rage_trigger = "A Ira do Imperador ecoa pelas colinas."
+	L.strength_trigger = "A Força do Imperador prende esta terra com punhos de ferro."
+	L.courage_trigger = "A Coragem do Imperador queima eternamente."
+	L.bosses_trigger = "Dois construtos titânicos aparecem nas grandes alcovas!"
+	L.energizing = "%s está energizando!"
+	L.combo = "%s: combo em progresso"
+
+	L.heroic_start_trigger = "Destruindo os canos"
+	L.normal_start_trigger = "A máquina toma vida! Vá para o nível inferior!"
+	L.arc = EJ_GetSectionInfo(5673)
+	L.arc_desc = "|cFFFF0000Este aviso só será mostrado para o chefe que você estiver com alvo.|r " .. (select(2, EJ_GetSectionInfo(5673)))
+	L.gas_trigger = "A Máquina Mogu Ancestral quebrou!"
 end
 

@@ -21,7 +21,7 @@ local pName = UnitName("player")
 -- Target monitoring
 --
 
-local enablezones, enablemobs, enableyells, enableemotes = {}, {}, {}, {}
+local enablezones, enablemobs, enableyells = {}, {}, {}
 local monitoring = nil
 
 local function enableBossModule(module, noSync)
@@ -66,13 +66,6 @@ local function chatMsgMonsterYell(event, msg)
 		end
 	end
 end
-local function raidBossEmote(event, msg)
-	for emote, mod in pairs(enableemotes) do
-		if emote == msg or msg:find(emote) then
-			targetSeen("player", mod)
-		end
-	end
-end
 local function updateMouseover() targetCheck("mouseover") end
 local function unitTargetChanged(event, target)
 	targetCheck(target .. "target")
@@ -90,14 +83,12 @@ local function zoneChanged()
 		if not monitoring then
 			monitoring = true
 			addon:RegisterEvent("CHAT_MSG_MONSTER_YELL", chatMsgMonsterYell)
-			addon:RegisterEvent("RAID_BOSS_EMOTE", raidBossEmote)
 			addon:RegisterEvent("UPDATE_MOUSEOVER_UNIT", updateMouseover)
 			addon:RegisterEvent("UNIT_TARGET", unitTargetChanged)
 		end
 	elseif monitoring then
 		monitoring = nil
 		addon:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
-		addon:UnregisterEvent("RAID_BOSS_EMOTE")
 		addon:UnregisterEvent("UPDATE_MOUSEOVER_UNIT")
 		addon:UnregisterEvent("UNIT_TARGET")
 	end
@@ -122,10 +113,8 @@ do
 	end
 	function addon:RegisterEnableMob(module, ...) add(module.moduleName, enablemobs, ...) end
 	function addon:RegisterEnableYell(module, ...) add(module.moduleName, enableyells, ...) end
-	function addon:RegisterEnableEmote(module, ...) add(module.moduleName, enableemotes, ...) end
 	function addon:GetEnableMobs() return enablemobs end
 	function addon:GetEnableYells() return enableyells end
-	function addon:GetEnableEmotes() return enableemotes end
 end
 
 -------------------------------------------------------------------------------
@@ -279,9 +268,8 @@ do
 
 	function chatMsgAddon(event, prefix, message, sender)
 		if prefix ~= "T" then return end
-		local sync, rest = select(3, message:find("(%S+)%s*(.*)$"))
-		if not sync then return end
-		if not times[sync] or GetTime() > (times[sync] + 2) then
+		local _, _, sync, rest = message:find("(%S+)%s*(.*)$")
+		if sync and (not times[sync] or GetTime() > (times[sync] + 2)) then
 			times[sync] = GetTime()
 			onSync(sync, rest, sender)
 		end
@@ -292,9 +280,7 @@ do
 		registered[sync][module] = true
 	end
 	function addon:Transmit(sync, ...)
-		if GetNumGroupMembers() == 0 and GetNumSubgroupMembers() == 0 then return end
-		if not sync then return end
-		if not times[sync] or GetTime() > (times[sync] + 2) then
+		if sync and (IsInRaid() or IsInGroup()) and (not times[sync] or GetTime() > (times[sync] + 2)) then
 			times[sync] = GetTime()
 			SendAddonMessage("BigWigs", "T:"..strjoin(" ", sync, ...), "RAID")
 			onSync(sync, strjoin(" ", ...), pName)

@@ -24,7 +24,7 @@ do
 	--@end-alpha@]===]
 
 	-- This will (in ZIPs), be replaced by the highest revision number in the source tree.
-	releaseRevision = tonumber("9238")
+	releaseRevision = tonumber("9297")
 
 	-- If the releaseRevision ends up NOT being a number, it means we're running a SVN copy.
 	if type(releaseRevision) ~= "number" then
@@ -162,7 +162,7 @@ end
 local function load(obj, name)
 	if obj then return true end
 	-- Verify that the addon isn't disabled
-	local enabled = select(4, GetAddOnInfo(name))
+	local _, _, _, enabled = GetAddOnInfo(name)
 	if not enabled then
 		sysprint("Error loading " .. name .. " ("..name.." is not enabled)")
 		return
@@ -344,7 +344,7 @@ end
 
 function loader:CHAT_MSG_ADDON(_, prefix, msg, _, sender)
 	if prefix ~= "BigWigs" then return end
-	local _, _, bwPrefix, bwMsg = (msg):find("^(%u-):(.+)")
+	local _, _, bwPrefix, bwMsg = msg:find("^(%u-):(.+)")
 	if bwPrefix then
 		self:SendMessage("BigWigs_AddonMessage", bwPrefix, bwMsg, sender)
 	end
@@ -416,15 +416,15 @@ do
 end
 
 function loader:ZoneChanged()
-	if not grouped then return end
 	-- Hack to make the zone ID available when reloading/relogging inside an instance.
 	-- This was moved from OnEnable to here because Astrolabe likes to screw with map setting in rare situations, so we need to force an update.
-	if IsInInstance() then
+	local inside = IsInInstance()
+	if inside then
 		SetMapToCurrentZone()
 	end
 	local id = GetCurrentMapAreaID()
-	-- load party content in raid, but don't load raid content in a party...
-	if enableZones[id] and enableZones[id] <= grouped then
+	-- Always load content in an instance, otherwise require a group (world bosses)
+	if enableZones[id] and (inside or (grouped and enableZones[id] <= grouped)) then
 		if load(BigWigs, "BigWigs_Core") then
 			if BigWigs:IsEnabled() and loadOnZone[id] then
 				loadZone(id)
@@ -436,19 +436,19 @@ function loader:ZoneChanged()
 end
 
 function loader:CheckRoster()
-	local raid = GetNumGroupMembers()
-	local party = GetNumSubgroupMembers()
-	if not grouped and raid > 0 then
+	local raid = IsInRaid()
+	local party = IsInGroup()
+	if not grouped and raid then
 		grouped = BWRAID
 		self:SendMessage("BigWigs_JoinedGroup", grouped)
-	elseif not grouped and party > 0 then
+	elseif not grouped and party then
 		grouped = BWPARTY
 		self:SendMessage("BigWigs_JoinedGroup", grouped)
 	elseif grouped then
-		if grouped == BWPARTY and raid > 0 then
+		if grouped == BWPARTY and raid then
 			grouped = BWRAID
 			self:SendMessage("BigWigs_JoinedGroup", grouped)
-		elseif raid == 0 and party == 0 then
+		elseif not raid and not party then
 			grouped = nil
 			self:SendMessage("BigWigs_LeftGroup")
 		end
@@ -588,11 +588,11 @@ do
 	local coloredNames = setmetatable({}, {__index =
 		function(self, key)
 			if type(key) == "nil" then return nil end
-			local class = select(2, UnitClass(key))
+			local _, class = UnitClass(key)
 			if class then
-				self[key] = hexColors[class]  .. gsub(key, "%-.+", "*") .. "|r" -- Replace server names with *
+				self[key] = hexColors[class]  .. key:gsub("%-.+", "*") .. "|r" -- Replace server names with *
 			else
-				self[key] = "|cffcccccc" .. gsub(key, "%-.+", "*") .. "|r" -- Replace server names with *
+				self[key] = "|cffcccccc" .. key:gsub("%-.+", "*") .. "|r" -- Replace server names with *
 			end
 			return self[key]
 		end

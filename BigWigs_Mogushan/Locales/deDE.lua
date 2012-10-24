@@ -38,24 +38,30 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "deDE")
 if L then
 	L.engage_yell = "Jetzt is' Sterbenszeit!"
 
-	L.totem = "Totem"
-	L.frenzy = "Raserei bald!"
+	L.totem = "Totem %d"
+	L.shadowy_message = "Attack %d"
+	L.banish_message = "Tank Banished"
 end
 
 L = BigWigs:NewBossLocale("The Spirit Kings", "deDE")
 if L then
-	L.shield_removed = "Schild entfernt!"
+	L.shield_removed = "Schild entfernt! (%s)"
 end
 
 L = BigWigs:NewBossLocale("Elegon", "deDE")
 if L then
 	L.last_phase = "Letzte Phase"
-	L.floor_despawn = "Boden verschwindet"
 	L.overcharged_total_annihilation = "Du hast (%d) %s, werde deinen Debuff los!"
+
+	L.floor = "Floor Despawn"
+	L.floor_desc = "Warnings for when the floor is about to despawn."
+	L.floor_message = "The floor is falling!!"
 end
 
 L = BigWigs:NewBossLocale("Will of the Emperor", "deDE")
 if L then
+	L.enable_zone = DUNGEON_FLOOR_MOGUSHANVAULTS3 -- translate me
+
 	L.rage_trigger = "Der Zorn des Kaisers schallt durch die Berge."
 	L.strength_trigger = "Die Stärke des Kaisers erscheint in den Erkern!"
 	L.courage_trigger = "Der Mut des Kaisers erscheint in den Erkern!"

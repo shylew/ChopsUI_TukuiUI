@@ -23,8 +23,12 @@ local phase2SoonWarned, phase2SoonWarned2ndTime
 local L = mod:NewLocale("enUS", true)
 if L then
 	L.last_phase = "Last Phase"
-	L.floor_despawn = "Floor despawn"
 	L.overcharged_total_annihilation = "You have (%d) %s, reset your debuff!"
+
+	L.floor = "Floor Despawn"
+	L.floor_desc = "Warnings for when the floor is about to despawn."
+	L.floor_icon = "ability_vehicle_launchplayer"
+	L.floor_message = "The floor is falling!!"
 end
 L = mod:GetLocale()
 
@@ -36,13 +40,13 @@ function mod:GetOptions()
 	return {
 		117960, "ej:6177", 117911, "ej:6186", {117878, "FLASHSHAKE"},
 		119360,
-		"ej:6176",
-		"berserk", "bosskill",
+		{"floor", "FLASHSHAKE"},
+		"stages", "berserk", "bosskill",
 	}, {
 		[117960] = "ej:6174",
 		[119360] = "ej:6175",
-		["ej:6176"] = "ej:6176",
-		berserk = "general",
+		["floor"] = "ej:6176",
+		stages = "general",
 	}
 end
 
@@ -80,8 +84,10 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, _, _, spellId)
 	-- Trigger Phase A when the spark hits the conduit
-	if spellId == 118189 and unit:match("boss") then
-		self:Bar("ej:6176", L["floor_despawn"], 6, 116994)
+	if spellId == 118189 and unit == "boss1" then
+		self:Bar("floor", L["floor"], 6, L.floor_icon)
+		self:Message("floor", L["floor_message"], "Personal", L.floor_icon, "Alarm")
+		self:FlashShake("floor")
 	end
 end
 
@@ -132,11 +138,11 @@ end
 
 function mod:UnstableEnergyRemoved()
 	if phase2SoonWarned2ndTime then
-		self:Message("ej:6176", L["last_phase"], "Positive", 116994)
+		self:Message("stages", L["last_phase"], "Positive", 116994)
 	else
 		drawPowerCounter = 0
 		totalAnnihilationCounter = 0
-		self:Message("ej:6176", CL["phase"]:format(1), "Positive", 116994)
+		self:Message("stages", CL["phase"]:format(1), "Positive", 116994)
 		self:Bar("ej:6177", materializeProtector, 15, 117954)
 		self:RegisterEvent("UNIT_HEALTH_FREQUENT")
 	end

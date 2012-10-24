@@ -31,6 +31,7 @@ if L then
 	-- Tanks
 	L.tank = "Tank Alerts"
 	L.tank_desc = "Tank alerts only. Count the stacks of Lightning Lash, Flaming Spear, Arcane Shock & Shadowburn (Heroic)."
+	L.tank_icon = "inv_shield_05"
 	L.lash_message = "%2$dx Lash on %1$s"
 	L.spear_message = "%2$dx Spear on %1$s"
 	L.shock_message = "%2$dx Shock on %1$s"
@@ -49,13 +50,13 @@ function mod:GetOptions()
 		{116784, "ICON", "FLASHSHAKE", "SAY"}, 116711,
 		{116417, "ICON", "SAY", "FLASHSHAKE", "PROXIMITY"}, 116364,
 		118071,
-		"stages", 115817, 115911, "tank", "berserk", "bosskill",
+		115817, 115911, "tank", "stages", "berserk", "bosskill",
 	}, {
 		[116157] = L["phase_lightning"],
 		[116784] = L["phase_flame"],
 		[116417] = L["phase_arcane"],
 		[118071] = L["phase_shadow"],
-		stages = "general",
+		[115817] = "general",
 	}
 end
 
@@ -112,13 +113,28 @@ function mod:NullificationBarrier(_, spellId)
 	self:Bar(spellId, L["barrier_message"], 6, spellId)
 end
 
--- LIGHTNING
 do
-	local epicenter = GetSpellInfo(116018)
-	function mod:LightningPhase()
-		self:Message("stages", L["phase_lightning"], "Positive", 116363)
-		self:Bar(116018, "~"..epicenter, 32, 116018)
+	local msgTbl = {
+		[131788] = L["lash_message"],
+		[116942] = L["spear_message"],
+		[131790] = L["shock_message"],
+		[131792] = L["burn_message"],
+	}
+	function mod:TankAlerts(player, spellId, _, _, _, stack)
+		if self:Tank() then
+			stack = stack or 1
+			self:LocalMessage("tank", msgTbl[spellId], "Urgent", spellId, stack > 2 and "Info" or nil, player, stack)
+		end
 	end
+end
+
+--------------------------------------------------------------------------------
+-- LIGHTNING
+--
+
+function mod:LightningPhase()
+	self:Message("stages", L["phase_lightning"], "Positive", 116363)
+	self:Bar(116018, "~"..self:SpellName(116018), 32, 116018) -- Epicenter
 end
 
 function mod:LightningFists(_, spellId, _, _, spellName)
@@ -131,17 +147,19 @@ function mod:Epicenter(_, spellId, _, _, spellName)
 	self:Bar(spellId, spellName, 30, spellId)
 end
 
+--------------------------------------------------------------------------------
 -- FLAME
-do
-	local drawflame = GetSpellInfo(116711)
-	function mod:FlamePhase()
-		self:Message("stages", L["phase_flame"], "Positive", 116363)
-		self:Bar(116711, "~"..drawflame, 35, 116711)
-	end
+--
+
+function mod:FlamePhase()
+	self:Message("stages", L["phase_flame"], "Positive", 116363)
+	self:Bar(116711, "~"..self:SpellName(116711), 35, 116711) -- Draw Flame
+	self:SendMessage("BigWigs_StopBar", self, self:SpellName(116018)) -- Epicenter
+	self:SendMessage("BigWigs_StopBar", self, "~"..self:SpellName(116157)) -- Fists
 end
 
 do
-	local wildfire = GetSpellInfo(116793)
+	local wildfire = mod:SpellName(116793)
 	function mod:WildfireSparkApplied(player, spellId)
 		self:TargetMessage(spellId, wildfire, player, "Urgent", spellId, "Alert")
 		self:PrimaryIcon(spellId, player)
@@ -173,23 +191,29 @@ function mod:DrawFlame(_, spellId, _, _, spellName)
 	self:Bar(spellId, "~"..spellName, 35, spellId)
 end
 
+--------------------------------------------------------------------------------
 -- ARCANE
-do
-	local arcanevelocity = GetSpellInfo(116364)
-	function mod:ArcanePhase()
-		self:Message("stages", L["phase_arcane"], "Positive", 116363)
-		self:DelayedMessage(116364, 10, CL["soon"]:format(arcanevelocity), "Attention")
-	end
+--
+
+function mod:ArcanePhase()
+	self:Message("stages", L["phase_arcane"], "Positive", 116363)
+	self:DelayedMessage(116364, 10, CL["soon"]:format(self:SpellName(116364)), "Attention") -- Arcane Velocity
+	self:SendMessage("BigWigs_StopBar", self, "~"..self:SpellName(116711)) -- Draw flame
 end
 
 do
-	local resonance = GetSpellInfo(33657)
+	local resonance = mod:SpellName(33657)
 	local markUsedOn = nil
+	local resonanceTargets = mod:NewTargetList()
+	local function warnResonance(spellId)
+		mod:TargetMessage(spellId, resonance, resonanceTargets, "Urgent", spellId, "Alert")
+	end
 	function mod:ArcaneResonanceApplied(player, spellId)
-		self:TargetMessage(spellId, resonance, player, "Urgent", spellId, "Alert")
+		resonanceTargets[#resonanceTargets + 1] = player
 		if not markUsedOn then
 			self:PrimaryIcon(spellId, player)
 			markUsedOn = player
+			self:ScheduleTimer(warnResonance, 0.2, spellId)
 		else
 			self:SecondaryIcon(spellId, player)
 		end
@@ -218,34 +242,18 @@ function mod:ArcaneVelocity(_, spellId, _, _, spellName)
 	self:DelayedMessage(spellId, 25.5, CL["soon"]:format(spellName), "Attention")
 end
 
--- SHADOW
-do
-	local siphoningShield = (GetSpellInfo(118071))
-	function mod:ShadowPhase()
-		self:Bar(118071, "~"..siphoningShield, 4, 118071)
-	end
-end
+--------------------------------------------------------------------------------
+-- SHADOW (HEROIC)
+--
 
+function mod:ShadowPhase()
+	self:Bar(118071, "~"..self:SpellName(118071), 4, 118071) -- Siphoning Shield
+end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, spellName, _, _, spellId)
-	if spellId == 117203 and unit:match("boss") then
+	if spellId == 117203 and unit == "boss1" then
 		self:Message(118071, spellName, "Important", 118071, "Alarm")
 		self:Bar(118071, "~"..spellName, 35, 118071)
-	end
-end
-
-do
-	local msgTbl = {
-		[131788] = L["lash_message"],
-		[116942] = L["spear_message"],
-		[131790] = L["shock_message"],
-		[131792] = L["burn_message"],
-	}
-	function mod:TankAlerts(player, spellId, _, _, _, stack)
-		if self:Tank() then
-			stack = stack or 1
-			self:LocalMessage("tank", msgTbl[spellId], "Urgent", spellId, "Info", player, stack)
-		end
 	end
 end
 

@@ -5,13 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Stone Guard", 896, 679)
 if not mod then return end
-mod:RegisterEnableMob(60051, 60043, 59915) --Cobalt Jade Jasper
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local jasperChainsTargets = mod:NewTargetList()
+mod:RegisterEnableMob(60051, 60047, 60043, 59915) -- Cobalt, Amethyst, Jade, Jasper
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -35,12 +29,12 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"ej:5772",
+		--"ej:5772",
 		130774,
-		{130395, "FLASHSHAKE", "PROXIMITY"},
+		{130395, "FLASHSHAKE", "PROXIMITY", "SAY"},
 		"overload", "petrifications", "berserk", "bosskill",
 	}, {
-		["ej:5772"] = "ej:5771",
+		--["ej:5772"] = "ej:5771",
 		[130774] = "ej:5691",
 		[130395] = "ej:5774",
 		overload = "general",
@@ -56,13 +50,11 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 
-	self:Death("Win", 60051) -- they share HP
+	self:Death("Deaths", 60051, 60047, 60043, 59915)
 end
 
 function mod:OnEngage(diff)
-
 	self:Berserk(420) -- assume
-
 end
 
 --------------------------------------------------------------------------------
@@ -70,44 +62,46 @@ end
 --
 
 function mod:Overload(msg, boss)
-	self:Message("overload", msg:format(boss), "Important", L["overload_icon"], "Alarm")
+	self:Message("overload", msg:format(boss), "Important", L["overload_icon"], "Long")
 end
 
 do
 	local scheduled = nil
+	local jasperChainsTargets = mod:NewTargetList()
 	local function jasperChains(spellName)
 		mod:TargetMessage(130395, spellName, jasperChainsTargets, "Attention", 130395, "Info")
 		scheduled = nil
 	end
-	function mod:JasperChainsApplied(player, _, _, _, spellName)
+	function mod:JasperChainsApplied(player, spellId, _, _, spellName)
 		jasperChainsTargets[#jasperChainsTargets + 1] = player
 		if UnitIsUnit(player, "player") then
-			self:FlashShake(130395)
+			self:FlashShake(spellId)
+			self:LocalMessage(spellId, CL["you"]:format(spellName), "Personal", spellId)
+			self:Say(spellId, CL["say"]:format(spellName))
 			-- this is kind of a reverse proximity now, it should help to know when you are actually close as you are supposed to be
-			self:OpenProximity(10, 130395)
+			self:OpenProximity(10, spellId)
 		end
 		if not scheduled then
 			scheduled = true
-			self:ScheduleTimer(jasperChains, 0.1, spellName)
+			self:ScheduleTimer(jasperChains, 0.2, spellName)
 		end
 	end
-end
-
-function mod:JasperChainsRemoved(player, _, _, _, spellName)
-	if UnitIsUnit("player", player) then
-		self:LocalMessage(130395, CL["you"]:format(spellName), "Personal", 130395)
-		self:CloseProximity(130395)
+	function mod:JasperChainsRemoved(player, spellId, _, _, spellName)
+		if UnitIsUnit("player", player) then
+			self:LocalMessage(spellId, CL["over"]:format(spellName), "Personal", spellId)
+			self:CloseProximity(spellId)
+		end
 	end
 end
 
 do
 	local prev = 0
-	function mod:AmethystPool(player, _, _, _, spellName)
+	function mod:AmethystPool(player, spellId, _, _, spellName)
 		if not UnitIsUnit(player, "player") then return end
 		local t = GetTime()
 		if t-prev > 2 then
 			prev = t
-			self:LocalMessage(130774, CL["underyou"]:format(spellName), "Personal", 130774, "Alert")
+			self:LocalMessage(spellId, CL["underyou"]:format(spellName), "Personal", spellId, "Alarm")
 		end
 	end
 end
@@ -116,13 +110,23 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, spellName, _, _, spellId)
 	if not unitId:match("boss") then return end
 	-- we could be using the same colors as blizzard but they are too "faint" imo
 	if spellId == 115852 then -- cobalt
-		self:Message("petrifications", ("|c001E90FF%s|r"):format(spellName), nil, 115852, "Alert") -- blue
+		self:Message("petrifications", ("|c001E90FF%s|r"):format(spellName), nil, spellId, "Alert") -- blue
 	elseif spellId == 116006 then -- jade
-		self:Message("petrifications", ("|c00008000%s|r"):format(spellName), nil, 116006, "Alert") -- green
+		self:Message("petrifications", ("|c00008000%s|r"):format(spellName), nil, spellId, "Alert") -- green
 	elseif spellId == 116036 then -- jasper
-		self:Message("petrifications", ("|c00FF0000%s|r"):format(spellName), nil, 116036, "Alert") -- red
+		self:Message("petrifications", ("|c00FF0000%s|r"):format(spellName), nil, spellId, "Alert") -- red
 	elseif spellId == 116057 then -- amethyst
-		self:Message("petrifications", ("|c00FF44FF%s|r"):format(spellName), nil, 116057, "Alert") -- purple
+		self:Message("petrifications", ("|c00FF44FF%s|r"):format(spellName), nil, spellId, "Alert") -- purple
+	end
+end
+
+do
+	local count = 0
+	function mod:Deaths()
+		count = count + 1
+		if count > 2 then
+			self:Win()
+		end
 	end
 end
 

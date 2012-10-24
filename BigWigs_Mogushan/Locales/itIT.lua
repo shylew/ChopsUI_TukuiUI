@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.petrifications = "Pietrificazione"
 	L.petrifications_desc = "Avvertimento quando il boss comincia la pietrificazione"
+
 	L.overload = "Sovraccarico"
 	L.overload_desc = "Avviso per tutti i tipi di Sovraccarico."
 end
@@ -29,22 +30,27 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "itIT")
 if L then
 	L.engage_yell = "È giunta l'ora di schiattare!" -- From ChatLog
 
-	L.totem = "Totem"
-	L.frenzy = "Frenesia Imminente!"
+	L.totem = "Totem %d"
+	L.shadowy_message = "Attack %d"
+	L.banish_message = "Tank Banished"
 end
 
 L = BigWigs:NewBossLocale("The Spirit Kings", "itIT")
 if L then
-	L.shield_removed = "Scudo Rimosso!"
+	L.shield_removed = "Scudo Rimosso! (%s)"
 end
 
 L = BigWigs:NewBossLocale("Elegon", "itIT")
 if L then
-	L.floor_despawn = "Il Suolo scompare!"
+	L.floor = "Floor Despawn"
+	L.floor_desc = "Warnings for when the floor is about to despawn."
+	L.floor_message = "The floor is falling!!"
 end
 
 L = BigWigs:NewBossLocale("Will of the Emperor", "itIT")
 if L then
+	L.enable_zone = DUNGEON_FLOOR_MOGUSHANVAULTS3 -- translate me
+
 	L.rage_trigger = "Rabbia dell'Imperatore echeggia tra le colline."
 	L.strength_trigger = "Forza dell'Imperatore appare nelle alcove!"
 	L.courage_trigger = "Coraggio dell'Imperatore appare nelle alcove!"

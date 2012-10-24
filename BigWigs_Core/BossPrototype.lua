@@ -29,7 +29,6 @@ local emoteMap = setmetatable({}, metaMap)
 local deathMap = setmetatable({}, metaMap)
 local icons = setmetatable({}, {__index =
 	function(self, key)
-		if not key then return end
 		local _, value
 		if type(key) == "number" then
 			_, _, value = GetSpellInfo(key)
@@ -95,7 +94,6 @@ function boss:GetLocale(state) return AL:GetLocale(self.name, state) end
 
 function boss:RegisterEnableMob(...) core:RegisterEnableMob(self, ...) end
 function boss:RegisterEnableYell(...) core:RegisterEnableYell(self, ...) end
-function boss:RegisterEnableEmote(...) core:RegisterEnableEmote(self, ...) end
 
 -------------------------------------------------------------------------------
 -- Combat log related code
@@ -302,27 +300,6 @@ do
 		end
 	end
 
-	function boss:Difficulty()
-		local _, _, diff = GetInstanceInfo()
-		return diff
-	end
-	boss.GetInstanceDifficulty = boss.Difficulty
-
-	function boss:LFR()
-		local _, _, diff = GetInstanceInfo()
-		return diff == 7
-	end
-
-	function boss:Heroic()
-		local _, _, diff = GetInstanceInfo()
-		return diff == 5 or diff == 6
-	end
-
-	function boss:GetCID(guid)
-		local creatureId = tonumber(guid:sub(7, 10), 16)
-		return creatureId
-	end
-
 	function boss:Engage()
 		if debug then dbg(self, ":Engage") end
 		CombatLogClearEntries()
@@ -337,6 +314,47 @@ do
 		self:Sync("Death", self.moduleName)
 		wipe(icons) -- Wipe icon cache
 		wipe(spells)
+	end
+end
+
+-------------------------------------------------------------------------------
+-- Misc utility functions
+--
+
+function boss:Difficulty()
+	local _, _, diff = GetInstanceInfo()
+	return diff
+end
+boss.GetInstanceDifficulty = boss.Difficulty
+
+function boss:LFR()
+	local _, _, diff = GetInstanceInfo()
+	return diff == 7
+end
+
+function boss:Heroic()
+	local _, _, diff = GetInstanceInfo()
+	return diff == 5 or diff == 6
+end
+
+function boss:GetCID(guid)
+	local creatureId = tonumber(guid:sub(7, 10), 16)
+	return creatureId
+end
+
+do
+	local t = {}
+	function boss:SpellName(spellId, ...)
+		if ... then
+			wipe(t)
+			for i=1, select("#", ...) do
+				local id = select(i, ...)
+				tinsert(t, spells[id])
+			end
+			return unpack(t)
+		else
+			return spells[spellId]
+		end
 	end
 end
 
@@ -487,7 +505,7 @@ end
 
 function boss:Message(key, text, color, icon, sound, noraidsay, broadcastonly)
 	if not checkFlag(self, key, C.MESSAGE) then return end
-	self:SendMessage("BigWigs_Message", self, key, text, color, noraidsay, sound, broadcastonly, icons[icon])
+	self:SendMessage("BigWigs_Message", self, key, text, color, noraidsay, sound, broadcastonly, icon and icons[icon])
 end
 
 do
@@ -498,9 +516,9 @@ do
 	local coloredNames = setmetatable({}, {__index =
 		function(self, key)
 			if type(key) == "nil" then return nil end
-			local class = select(2, UnitClass(key))
+			local _, class = UnitClass(key)
 			if class then
-				self[key] = hexColors[class]  .. gsub(key, "%-.+", "*") .. "|r" -- Replace server names with *
+				self[key] = hexColors[class]  .. key:gsub("%-.+", "*") .. "|r" -- Replace server names with *
 			else
 				return key
 			end
@@ -524,10 +542,10 @@ do
 			if stack then
 				text = format(text, coloredNames[player], stack)
 			else
-				text = format(text, coloredNames[player])
+				text = format(L["other"], text, coloredNames[player])
 			end
 		end
-		self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icons[icon])
+		self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icon and icons[icon])
 	end
 
 	function boss:TargetMessage(key, spellName, player, color, icon, sound, ...)
@@ -537,15 +555,15 @@ do
 			wipe(player)
 			if not (list):find(UnitName("player")) then sound = nil end
 			local text = format(L["other"], spellName, list)
-			self:SendMessage("BigWigs_Message", self, key, text, color, nil, sound, nil, icons[icon])
+			self:SendMessage("BigWigs_Message", self, key, text, color, nil, sound, nil, icon and icons[icon])
 		else
 			if UnitIsUnit(player, "player") then
 				if ... then
 					local text = format(spellName, coloredNames[player], ...)
-					self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icons[icon])
+					self:SendMessage("BigWigs_Message", self, key, text, color, true, sound, nil, icon and icons[icon])
 					self:SendMessage("BigWigs_Message", self, key, text, nil, nil, nil, true)
 				else
-					self:SendMessage("BigWigs_Message", self, key, format(L["you"], spellName), "Personal", true, sound, nil, icons[icon])
+					self:SendMessage("BigWigs_Message", self, key, format(L["you"], spellName), "Personal", true, sound, nil, icon and icons[icon])
 					self:SendMessage("BigWigs_Message", self, key, format(L["other"], spellName, player), nil, nil, nil, true)
 				end
 			else
@@ -557,7 +575,7 @@ do
 				else
 					text = format(L["other"], spellName, coloredNames[player])
 				end
-				self:SendMessage("BigWigs_Message", self, key, text, color, nil, nil, nil, icons[icon])
+				self:SendMessage("BigWigs_Message", self, key, text, color, nil, nil, nil, icon and icons[icon])
 			end
 		end
 	end
@@ -581,7 +599,7 @@ end
 
 function boss:Bar(key, text, length, icon, barColor, barEmphasized, barText, barBackground, ...)
 	if checkFlag(self, key, C.BAR) then
-		self:SendMessage("BigWigs_StartBar", self, key, text, length, icons[icon], ...)
+		self:SendMessage("BigWigs_StartBar", self, key, text, length, icon and icons[icon], ...)
 	end
 end
 
