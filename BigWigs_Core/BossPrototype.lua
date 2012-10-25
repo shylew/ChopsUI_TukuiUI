@@ -8,6 +8,7 @@ local UnitExists = UnitExists
 local UnitAffectingCombat = UnitAffectingCombat
 local GetSpellInfo = GetSpellInfo
 local format = string.format
+local type = type
 local core = BigWigs
 local C = core.C
 
@@ -343,15 +344,15 @@ function boss:GetCID(guid)
 end
 
 do
-	local t = {}
+	local spellList = {}
 	function boss:SpellName(spellId, ...)
 		if ... then
-			wipe(t)
+			wipe(spellList)
 			for i=1, select("#", ...) do
 				local id = select(i, ...)
-				tinsert(t, spells[id])
+				spellList[#spellList+1] = spells[id]
 			end
-			return unpack(t)
+			return unpack(spellList)
 		else
 			return spells[spellId]
 		end
@@ -599,7 +600,7 @@ end
 
 function boss:Bar(key, text, length, icon, barColor, barEmphasized, barText, barBackground, ...)
 	if checkFlag(self, key, C.BAR) then
-		self:SendMessage("BigWigs_StartBar", self, key, text, length, icon and icons[icon], ...)
+		self:SendMessage("BigWigs_StartBar", self, key, type(text) == "number" and spells[text] or text, length, icon and icons[icon], ...)
 	end
 end
 

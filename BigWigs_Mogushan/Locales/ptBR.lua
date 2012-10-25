@@ -17,6 +17,7 @@ if L then
 	L.phase_arcane_trigger =  "Oh, inteligência das eras! Dê-me sua sabedoria arcana!"
 	L.phase_shadow_trigger = "Grande alma dos antigos campeões! Leve-me ao seu escudo!"
 
+	L.phase_message = "New phase soon!"
 	L.shroud_message = "%2$s conjurou mortalha em %1$s"
 	L.barrier_message = "Barreira ATIVADA!"
 
@@ -38,9 +39,9 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "ptBR")
 if L then
 	L.engage_yell = "É hora de morrer!"
 
-	L.totem = "Totem %d"
-	L.shadowy_message = "Ataque %d"
-	L.banish_message = "Tank Banished"
+	L.totem = "Totem (%d)"
+	L.shadowy_message = "Ataque (%d)"
+	L.banish_message = "Tanque Banido!"
 end
 
 L = BigWigs:NewBossLocale("The Spirit Kings", "ptBR")
@@ -55,26 +56,26 @@ if L then
 	L.last_phase = "Última Fase!"
 	L.overcharged_total_annihilation = "Você tem (%d) %s, reinicie sua penalidade!"
 
-	L.floor = "Floor Despawn"
-	L.floor_desc = "Warnings for when the floor is about to despawn."
-	L.floor_message = "The floor is falling!!"
+	L.floor = "O Vórtice de Energia está descarregando!"
+	L.floor_desc = "Avisa quando o chão está prestes a desaparecer."
+	L.floor_message = "O chão está desaparecendo!!"
 end
 
 L = BigWigs:NewBossLocale("Will of the Emperor", "ptBR")
 if L then
 	L.enable_zone = DUNGEON_FLOOR_MOGUSHANVAULTS3 -- translate me
 
+	L.heroic_start_trigger = "Destruindo os canos"
+	L.normal_start_trigger = "A máquina toma vida! Vá para o nível inferior!"
+
 	L.rage_trigger = "A Ira do Imperador ecoa pelas colinas."
 	L.strength_trigger = "A Força do Imperador prende esta terra com punhos de ferro."
 	L.courage_trigger = "A Coragem do Imperador queima eternamente."
 	L.bosses_trigger = "Dois construtos titânicos aparecem nas grandes alcovas!"
-	L.energizing = "%s está energizando!"
-	L.combo = "%s: combo em progresso"
-
-	L.heroic_start_trigger = "Destruindo os canos"
-	L.normal_start_trigger = "A máquina toma vida! Vá para o nível inferior!"
-	L.arc = EJ_GetSectionInfo(5673)
-	L.arc_desc = "|cFFFF0000Este aviso só será mostrado para o chefe que você estiver com alvo.|r " .. (select(2, EJ_GetSectionInfo(5673)))
 	L.gas_trigger = "A Máquina Mogu Ancestral quebrou!"
+	L.gas_overdrive_trigger = "The Ancient Mogu Machine goes into overdrive!"
+
+	L.target_only = "|cFFFF0000Este aviso só será mostrado para o chefe que você estiver com alvo.|r"
+	L.combo_message = "%s: Combo soon!"
 end
 

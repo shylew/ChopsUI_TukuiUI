@@ -22,6 +22,7 @@ if L then
 	L.phase_arcane = "祕法階段！"
 	L.phase_shadow = "暗影階段！(英雄)"
 
+	L.phase_message = "New phase soon!"
 	L.shroud_message = "%2$s 施放護罩在 %1$s"
 	L.barrier_message = "阻擋!"
 
@@ -38,8 +39,8 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "zhTW")
 if L then
 	L.engage_yell = "受死吧，你們!"
 
-	L.totem = "Totem %d"
-	L.shadowy_message = "Attack %d"
+	L.totem = "Totem (%d)"
+	L.shadowy_message = "Attack (%d)"
 	L.banish_message = "Tank Banished"
 end
 
@@ -64,9 +65,6 @@ L = BigWigs:NewBossLocale("Will of the Emperor", "zhTW")
 if L then
 	L.enable_zone = "無盡熔爐"
 
-	L.energizing = "%s 已經活動了！"
-	L.combo = "%s: 組合技就要開始！"
-
 	L.heroic_start_trigger = "Destroying the pipes" -- Destroying the pipes leaks |cFFFF0000|Hspell:116779|h[Titan Gas]|h|r into the room!
 	L.normal_start_trigger = "The machine hums" -- The machine hums to life!  Get to the lower level!
 
@@ -77,6 +75,7 @@ if L then
 	L.gas_trigger = "The Ancient Mogu Machine breaks down!"
 	L.gas_overdrive_trigger = "The Ancient Mogu Machine goes into overdrive!"
 
-	L.arc_desc = "|cFFFF0000這個警告只會顯示你設為目標的首領。|r " .. (select(2, EJ_GetSectionInfo(5673)))
+	L.target_only = "|cFFFF0000這個警告只會顯示你設為目標的首領。|r"
+	L.combo_message = "%s: Combo soon!"
 end
 

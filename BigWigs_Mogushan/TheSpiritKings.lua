@@ -140,7 +140,7 @@ end
 
 function mod:ShieldofDarkness(_, _, _, _, spellName)
 	self:Message(117697, spellName, "Important", 117697, "Alert")
-	self:Bar(117697, spellName.."~", 42.5, 117697)
+	self:Bar(117697, "~"..spellName, 42.5, 117697)
 	self:Bar("casting_shields", CL["cast"]:format(spellName), 2, 117697)
 	self:FlashShake(117697)
 end
@@ -275,7 +275,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, unitId, spellName, _, _, spellId)
 				self:CloseProximity()
 			end
 		elseif (id == 60708 or id == 61429) then -- meng
-			self:Bar(117708, maddening, 30, 117708)
+			self:Bar(117708, "~"..maddening, 30, 117708)
 		end
 	end
 end

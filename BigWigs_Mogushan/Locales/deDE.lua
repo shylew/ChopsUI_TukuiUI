@@ -22,6 +22,7 @@ if L then
 	L.phase_arcane = "Arkanphase!"
 	L.phase_shadow = "(Heroisch) Schattenphase!"
 
+	L.phase_message = "New phase soon!"
 	L.shroud_message = "%2$s wirkt Wolke der Umkehrung auf %1$s"
 	L.barrier_message = "Nullifikationsbarriere AN!"
 
@@ -38,8 +39,8 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "deDE")
 if L then
 	L.engage_yell = "Jetzt is' Sterbenszeit!"
 
-	L.totem = "Totem %d"
-	L.shadowy_message = "Attack %d"
+	L.totem = "Totem (%d)"
+	L.shadowy_message = "Attack (%d)"
 	L.banish_message = "Tank Banished"
 end
 
@@ -62,11 +63,17 @@ L = BigWigs:NewBossLocale("Will of the Emperor", "deDE")
 if L then
 	L.enable_zone = DUNGEON_FLOOR_MOGUSHANVAULTS3 -- translate me
 
+	L.heroic_start_trigger = "Destroying the pipes" -- Destroying the pipes leaks |cFFFF0000|Hspell:116779|h[Titan Gas]|h|r into the room!
+	L.normal_start_trigger = "The machine hums" -- The machine hums to life!  Get to the lower level!
+
 	L.rage_trigger = "Der Zorn des Kaisers schallt durch die Berge."
 	L.strength_trigger = "Die Stärke des Kaisers erscheint in den Erkern!"
 	L.courage_trigger = "Der Mut des Kaisers erscheint in den Erkern!"
 	L.bosses_trigger = "In den riesigen Erkern erscheinen zwei Titanenkonstrukte!"
+	L.gas_trigger = "The Ancient Mogu Machine breaks down!"
+	L.gas_overdrive_trigger = "The Ancient Mogu Machine goes into overdrive!"
 
-	L.arc_desc = "|cFFFF0000Diese Warnung wird nur für den Boss angezeigt, welchen du anvisierst.|r " .. (select(2, EJ_GetSectionInfo(5673)))
+	L.target_only = "|cFFFF0000Diese Warnung wird nur für den Boss angezeigt, welchen du anvisierst.|r"
+	L.combo_message = "%s: Combo soon!"
 end
 

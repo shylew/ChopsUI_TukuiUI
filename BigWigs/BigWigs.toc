@@ -1,5 +1,5 @@
 ## Interface: 50001
-## X-Curse-Packaged-Version: r9298-release
+## X-Curse-Packaged-Version: r9318-release
 ## X-Curse-Project-Name: BigWigs Bossmods
 ## X-Curse-Project-ID: big-wigs
 ## X-Curse-Repository-ID: wow/big-wigs/mainline
@@ -15,7 +15,7 @@
 ## Notes-esES: Avisos y barras para encuentros con jefes. Modular, ligero y no intrusivo.
 ## Notes-esMX: Avisos y barras para encuentros con jefes. Modular, ligero y no intrusivo.
 ## Author: Ammo, Funkydude, Maat, Rabbit
-## Version: 3.861
+## Version: 3.862
 ## X-Category: Raid
 
 ## LoadManagers: AddonLoader

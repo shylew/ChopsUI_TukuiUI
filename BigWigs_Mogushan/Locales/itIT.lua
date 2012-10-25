@@ -17,6 +17,7 @@ if L then
 	L.phase_arcane_trigger =  "Oh, saggio delle ere! Concedimi la tua saggezza arcana!"
 	L.phase_shadow_trigger = "Grande spirito dei campioni del passato! concedimi il tuo scudo!"
 
+	L.phase_message = "New phase soon!"
 	L.shroud_message = "%2$s attiva Manto su %1$s"
 	L.barrier_message = "Barriera Attiva!"
 
@@ -30,8 +31,8 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "itIT")
 if L then
 	L.engage_yell = "È giunta l'ora di schiattare!" -- From ChatLog
 
-	L.totem = "Totem %d"
-	L.shadowy_message = "Attack %d"
+	L.totem = "Totem (%d)"
+	L.shadowy_message = "Attack (%d)"
 	L.banish_message = "Tank Banished"
 end
 
@@ -51,9 +52,17 @@ L = BigWigs:NewBossLocale("Will of the Emperor", "itIT")
 if L then
 	L.enable_zone = DUNGEON_FLOOR_MOGUSHANVAULTS3 -- translate me
 
+	L.heroic_start_trigger = "Destroying the pipes" -- Destroying the pipes leaks |cFFFF0000|Hspell:116779|h[Titan Gas]|h|r into the room!
+	L.normal_start_trigger = "The machine hums" -- The machine hums to life!  Get to the lower level!
+
 	L.rage_trigger = "Rabbia dell'Imperatore echeggia tra le colline."
 	L.strength_trigger = "Forza dell'Imperatore appare nelle alcove!"
 	L.courage_trigger = "Coraggio dell'Imperatore appare nelle alcove!"
 	L.bosses_trigger = "Due costrutti titanici appaiono nelle grandi alcove!"
+	L.gas_trigger = "The Ancient Mogu Machine breaks down!"
+	L.gas_overdrive_trigger = "The Ancient Mogu Machine goes into overdrive!"
+
+	L.target_only = "|cFFFF0000This warning will only show for the boss you're targeting.|r"
+	L.combo_message = "%s: Combo soon!"
 end
 

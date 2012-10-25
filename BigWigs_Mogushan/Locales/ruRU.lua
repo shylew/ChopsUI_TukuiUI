@@ -22,6 +22,7 @@ if L then
 	L.phase_arcane = "Фаза тайной магии"
 	L.phase_shadow = "Фаза тьмы"
 
+	L.phase_message = "Новая фаза скоро!"
 	L.shroud_message = "%2$s вешает Покров на %1$s"
 	L.barrier_message = "Барьер АКТИВЕН!"
 
@@ -37,9 +38,9 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "ruRU")
 if L then
 	L.engage_yell = "Пора умирать!"
 
-	L.totem = "Тотем %d"
-	L.shadowy_message = "Атака %d"
-	L.banish_message = "Tank Banished"
+	L.totem = "Тотем (%d)"
+	L.shadowy_message = "Атака (%d)"
+	L.banish_message = "Танк изгнан"
 end
 
 L = BigWigs:NewBossLocale("The Spirit Kings", "ruRU")
@@ -54,17 +55,14 @@ if L then
 	L.last_phase = "Последняя фаза"
 	L.overcharged_total_annihilation = "На вас (%d) %s, срочно сбросьте!"
 
-	L.floor = "Пол исчезает"
+	L.floor = "Исчезание пола"
 	L.floor_desc = "Предупреждать, когда пол готовится исчезнуть."
-	L.floor_message = "Пол падает!!"
+	L.floor_message = "Пол пропадает!!"
 end
 
 L = BigWigs:NewBossLocale("Will of the Emperor", "ruRU")
 if L then
 	L.enable_zone = "Кузня Бесконечности"
-
-	L.energizing = "%s наполняется энергией!"
-	L.combo = "%s: череда ударов"
 
 	L.heroic_start_trigger = "Трубы разрушены"
 	L.normal_start_trigger = "Машина гудит"
@@ -76,6 +74,7 @@ if L then
 	L.gas_trigger = "Древняя машина могу ломается!"
 	L.gas_overdrive_trigger = "Древняя машина могу перегружена!"
 
-	L.arc_desc = "|cFFFF0000Это предупреждение показывается только для выбранного в цель босса.|r " .. (select(2, EJ_GetSectionInfo(5673)))
+	L.target_only = "|cFFFF0000Это предупреждение показывается только для выбранного в цель босса.|r"
+	L.combo_message = "%s: Череда ударов скоро!"
 end
 

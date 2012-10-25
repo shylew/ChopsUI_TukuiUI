@@ -1,9 +1,162 @@
 ------------------------------------------------------------------------
-r9298 | funkydude | 2012-10-23 01:49:14 +0000 (Tue, 23 Oct 2012) | 1 line
+r9318 | funkydude | 2012-10-25 00:38:03 +0000 (Thu, 25 Oct 2012) | 1 line
 Changed paths:
-   A /tags/r9298-release (from /trunk:9297)
+   A /tags/r9318-release (from /trunk:9317)
 
-Tagging as r9298-release
+Tagging as r9318-release
+------------------------------------------------------------------------
+r9317 | funkydude | 2012-10-24 23:32:24 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/TheStoneGuard.lua
+
+TheStoneGuard: tweak some names
+------------------------------------------------------------------------
+r9316 | nebula169 | 2012-10-24 22:59:17 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/deDE.lua
+   M /trunk/Mogushan/Locales/esES.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/ptBR.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+   M /trunk/Mogushan/Locales/zhCN.lua
+   M /trunk/Mogushan/Locales/zhTW.lua
+   M /trunk/Mogushan/WillOfTheEmperor.lua
+
+WillOfTheEmperor: make combo warning target only, tweak add icons, add some missing strings to locales
+------------------------------------------------------------------------
+r9315 | funkydude | 2012-10-24 22:29:13 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+   M /trunk/Mogushan/Feng.lua
+
+Feng: tweak resonance function
+------------------------------------------------------------------------
+r9314 | funkydude | 2012-10-24 22:11:06 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+
+Feng: wipe the resonance icon table after use.
+------------------------------------------------------------------------
+r9313 | funkydude | 2012-10-24 21:56:14 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+
+Mogushan/Feng: Fix arcane resonance warning rarely failing, add a cd bar.
+------------------------------------------------------------------------
+r9312 | funkydude | 2012-10-24 20:54:03 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Locales/common.ptBR.lua
+   M /trunk/Locales/ptBR.lua
+   M /trunk/Mogushan/Locales/ptBR.lua
+
+ptBR update
+------------------------------------------------------------------------
+r9311 | Maat | 2012-10-24 20:31:24 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/TheSpiritKings.lua
+
+another fix
+------------------------------------------------------------------------
+r9310 | funkydude | 2012-10-24 20:27:09 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/TheStoneGuard.lua
+
+Mogushan/TheStoneGuard: Add cobalt mine cooldown bar and target scanning /say and warning.
+------------------------------------------------------------------------
+r9309 | Maat | 2012-10-24 20:18:29 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/TheSpiritKings.lua
+
+small fix
+------------------------------------------------------------------------
+r9308 | jongt23 | 2012-10-24 17:12:23 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r9307 | wetxius | 2012-10-24 05:38:25 +0000 (Wed, 24 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/ruRU.lua
+
+ruRU update.
+------------------------------------------------------------------------
+r9306 | pettigrow | 2012-10-23 21:20:54 +0000 (Tue, 23 Oct 2012) | 2 lines
+Changed paths:
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/WillOfTheEmperor.lua
+
+- frFR Update
+- WillOfTheEmperor: fix some bar texts
+------------------------------------------------------------------------
+r9305 | nebula169 | 2012-10-23 21:03:56 +0000 (Tue, 23 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Feng.lua
+   M /trunk/Mogushan/Locales/deDE.lua
+   M /trunk/Mogushan/Locales/esES.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/ptBR.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+   M /trunk/Mogushan/Locales/zhCN.lua
+   M /trunk/Mogushan/Locales/zhTW.lua
+
+Feng: counters on the main phase abilities, phase change warning
+------------------------------------------------------------------------
+r9304 | jongt23 | 2012-10-23 18:24:50 +0000 (Tue, 23 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/esES.lua
+
+esES update
+------------------------------------------------------------------------
+r9303 | funkydude | 2012-10-23 13:16:55 +0000 (Tue, 23 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/BigWigs.toc
+
+bump to grab the latest candybar alpha for testing
+------------------------------------------------------------------------
+r9302 | wetxius | 2012-10-23 07:58:14 +0000 (Tue, 23 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Locales/common.ruRU.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+   M /trunk/Plugins/Locales/ruRU.lua
+
+ruRU update.
+------------------------------------------------------------------------
+r9301 | nebula169 | 2012-10-23 07:13:52 +0000 (Tue, 23 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Locales/deDE.lua
+   M /trunk/Mogushan/Locales/esES.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/ptBR.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+   M /trunk/Mogushan/Locales/zhCN.lua
+   M /trunk/Mogushan/Locales/zhTW.lua
+   M /trunk/Mogushan/WillOfTheEmperor.lua
+
+WillOfTheEmperor: don't need a gas timer in heroic, rebrand energize as a devastating combo timer
+------------------------------------------------------------------------
+r9300 | funkydude | 2012-10-23 02:43:44 +0000 (Tue, 23 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Core/BossPrototype.lua
+
+Core/BossPrototype: Let bars take spell ids for text
+------------------------------------------------------------------------
+r9299 | nebula169 | 2012-10-23 02:35:07 +0000 (Tue, 23 Oct 2012) | 1 line
+Changed paths:
+   M /trunk/Mogushan/Garajal.lua
+   M /trunk/Mogushan/Locales/deDE.lua
+   M /trunk/Mogushan/Locales/esES.lua
+   M /trunk/Mogushan/Locales/frFR.lua
+   M /trunk/Mogushan/Locales/itIT.lua
+   M /trunk/Mogushan/Locales/ptBR.lua
+   M /trunk/Mogushan/Locales/ruRU.lua
+   M /trunk/Mogushan/Locales/zhCN.lua
+   M /trunk/Mogushan/Locales/zhTW.lua
+
+Garajal: parens are for counting
 ------------------------------------------------------------------------
 r9297 | funkydude | 2012-10-23 01:23:59 +0000 (Tue, 23 Oct 2012) | 1 line
 Changed paths:
@@ -1045,10 +1198,4 @@ add counter to totem
 actually do listen to totem sync
 add voodoo dolls removed listener that third party modules need (talk to me about it if you have question)
 bit of cleanup
-------------------------------------------------------------------------
-r9152 | Wetxius | 2012-09-21 07:41:59 +0000 (Fri, 21 Sep 2012) | 1 line
-Changed paths:
-   M /trunk/Firelands/Locales/ruRU.lua
-
-ruRU update.
 ------------------------------------------------------------------------

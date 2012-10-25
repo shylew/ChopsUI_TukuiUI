@@ -22,6 +22,7 @@ if L then
 	L.phase_arcane = "¡Fase arcana!"
 	L.phase_shadow = "(Heroico) ¡Fase de sombras!"
 
+	L.phase_message = "¡Nueva fase pronto!"
 	L.shroud_message = "%2$s castea Embozo en %1$s"
 	L.barrier_message = "¡Barrera Activa!"
 
@@ -38,8 +39,8 @@ L = BigWigs:NewBossLocale("Gara'jal the Spiritbinder", "esES") or BigWigs:NewBos
 if L then
 	L.engage_yell = "¡Ya es hora de morir!"
 
-	L.totem = "Totem %d"
-	L.shadowy_message = "Ataque %d"
+	L.totem = "Totem (%d)"
+	L.shadowy_message = "Ataque (%d)"
 	L.banish_message = "Tanque desterrado"
 end
 
@@ -62,9 +63,6 @@ L = BigWigs:NewBossLocale("Will of the Emperor", "esES") or BigWigs:NewBossLocal
 if L then
 	L.enable_zone = "Forja del Infinito"
 
-	L.energizing = "¡%s se está energizando!"
-	L.combo = "%s: combo en progreso"
-
 	L.heroic_start_trigger = "Destroying the pipes" -- Destroying the pipes leaks |cFFFF0000|Hspell:116779|h[Titan Gas]|h|r into the room!
 	L.normal_start_trigger = "¡La máquina vuelve a la vida! ¡Baja el nivel inferior!" -- The machine hums to life!  Get to the lower level!
 
@@ -75,6 +73,7 @@ if L then
 	L.gas_trigger = "¡La Antigua Máquina Mogu se rompe!"
 	L.gas_overdrive_trigger = "¡La Antigua Máquina Mogu se sobrecarga!"
 
-	L.arc_desc = "|cFFFF0000Este aviso solo se mostrará para el jefe que estés targeteando.|r " .. (select(2, EJ_GetSectionInfo(5673)))
+	L.target_only = "|cFFFF0000Este aviso solo se mostrará para el jefe que estés targeteando.|r"
+	L.combo_message = "¡%s: Combo inminente!"
 end
 
